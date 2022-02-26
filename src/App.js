@@ -27,7 +27,7 @@ import theme from "assets/theme";
 import Presentation from "layouts/pages/presentation";
 
 // Otis Kit PRO routes
-import routes from "routes";
+import routes from "constants/routes";
 
 import  BridgestarsHome from "bridgestars/home"
 

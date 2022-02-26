@@ -34,8 +34,8 @@ import Features from "pages/Support/HelpCenter/sections/Features";
 import Contact from "pages/Support/HelpCenter/sections/Contact";
 
 // Routes
-import routes from "routes";
-import footerRoutes from "footer.routes";
+import routes from "constants/routes";
+import footerRoutes from "constants/footer.routes";
 
 // Images
 import bgImage from "assets/images/bg3.jpg";

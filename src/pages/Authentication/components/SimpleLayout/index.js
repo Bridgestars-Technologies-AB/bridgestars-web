@@ -28,7 +28,7 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import CenteredFooter from "examples/Footers/CenteredFooter";
 
 // Otis Kit PRO page layout routes
-import routes from "routes";
+import routes from "constants/routes";
 
 function SimpleLayout({ children }) {
   return (

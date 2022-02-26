@@ -27,7 +27,7 @@ import MKTypography from "components/MKTypography";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
 // Otis Kit PRO page layout routes
-import routes from "routes";
+import routes from "constants/routes";
 
 function IllustrationLayout({ header, title, description, illustration, children }) {
   return (

@@ -33,8 +33,8 @@ import Trust from "pages/Company/Pricing/sections/Trust";
 import Faq from "pages/Company/Pricing/sections/Faq";
 
 // Routes
-import routes from "routes";
-import footerRoutes from "footer.routes";
+import routes from "constants/routes";
+import footerRoutes from "constants/footer.routes";
 
 function Pricing() {
   return (

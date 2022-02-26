@@ -29,6 +29,7 @@ import Popper from "@mui/material/Popper";
 import Grow from "@mui/material/Grow";
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
+import { spacing } from '@mui/system';
 import MuiLink from "@mui/material/Link";
 
 // Otis Kit PRO components
@@ -42,6 +43,9 @@ import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMob
 
 // Otis Kit PRO base styles
 import breakpoints from "assets/theme/base/breakpoints";
+import logo from "assets/images/bridgestars/logo-trans-64px.png";
+import Image from 'material-ui-image'
+
 
 function DefaultNavbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
   const [dropdown, setDropdown] = useState("");
@@ -468,18 +472,30 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           backdropFilter: transparent ? "none" : `saturate(200%) blur(30px)`,
         })}
       >
-        <MKBox display="flex" justifyContent="space-between" alignItems="center">
+        <MKBox display="flex" justifyContent="space-between" alignItems="left">
           <MKBox
             component={Link}
             to="/"
             lineHeight={1}
             py={transparent ? 1.5 : 0.75}
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
+            sx={{
+              ml:-2
+            }}
           >
-            <MKTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
+            <img 
+                src={logo} 
+                width={32}
+            />
+            <MKTypography sx={{pl:1, fontSize:20}} variant="button" verticalAlign="super" fontWeight="bold" color={light ? "white" : "dark"}>
               {brand}
             </MKTypography>
           </MKBox>
+
+
+ 
+            
+
           <MKBox
             color="inherit"
             display={{ xs: "none", lg: "flex" }}
@@ -488,7 +504,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           >
             {renderNavbarItems}
           </MKBox>
-          <MKBox ml={{ xs: "auto", lg: 0 }}>
+          <MKBox ml={{ xs: "auto", lg: 0}}>
             {action &&
               (action.type === "internal" ? (
                 <MKButton
@@ -501,6 +517,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                   }
                   color={action.color ? action.color : "info"}
                   size="small"
+                  sx={{verticalAlign: "sub"}}
                 >
                   {action.label}
                 </MKButton>

@@ -27,8 +27,8 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 
 // Routes
-import routes from "routes";
-import footerRoutes from "footer.routes";
+import routes from "constants/routes";
+import footerRoutes from "constants/footer.routes";
 
 function Privacy() {
   return (

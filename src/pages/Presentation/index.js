@@ -42,8 +42,8 @@ import Pricing from "pages/Presentation/sections/Pricing";
 import BuiltByDevelopers from "pages/Presentation/components/BuiltByDevelopers";
 
 // Routes
-import routes from "routes";
-import footerRoutes from "footer.routes";
+import routes from "constants/routes";
+import footerRoutes from "constants/footer.routes";
 
 // Images
 import bgImage from "assets/images/bg-presentation.jpg";

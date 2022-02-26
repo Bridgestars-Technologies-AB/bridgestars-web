@@ -40,8 +40,8 @@ import Posts from "pages/Blogs/SingleArticle/sections/Posts";
 import Support from "pages/Blogs/SingleArticle/sections/Support";
 
 // Routes
-import routes from "routes";
-import footerRoutes from "footer.routes";
+import routes from "constants/routes";
+import footerRoutes from "constants/footer.routes";
 
 // Images
 import bgImage from "assets/images/bg5.jpg";

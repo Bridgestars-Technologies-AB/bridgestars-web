@@ -21,7 +21,7 @@ import MKBox from "components/MKBox";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
 // Routes
-import routes from "routes";
+import routes from "constants/routes";
 
 function NavbarDark() {
   return (

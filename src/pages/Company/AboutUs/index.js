@@ -42,8 +42,8 @@ import Featuring from "pages/Company/AboutUs/sections/Featuring";
 import Newsletter from "pages/Company/AboutUs/sections/Newsletter";
 
 // Routes
-import routes from "routes";
-import footerRoutes from "footer.routes";
+import routes from "constants/routes";
+import footerRoutes from "constants/footer.routes";
 
 // Images
 import bgImage from "assets/images/bg-about-us.jpg";

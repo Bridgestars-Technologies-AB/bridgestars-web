@@ -45,8 +45,8 @@ export default {
   },
 
   primary: {
-    main: "#e91e63",
-    focus: "#e91e63",
+    main: "#1A73E8",
+    focus: "#1662C4",
   },
 
   secondary: {
@@ -55,7 +55,7 @@ export default {
   },
 
   info: {
-    main: "#1A73E8",
+    main: "#De3e42",
     focus: "#1662C4",
   },
 
@@ -97,9 +97,9 @@ export default {
   },
 
   gradients: {
-    primary: {
-      main: "#EC407A",
-      state: "#D81B60",
+    info: {
+      main: "#49a3f1",
+      state: "#1A73E8",
     },
 
     secondary: {
@@ -107,9 +107,9 @@ export default {
       state: "#495361",
     },
 
-    info: {
-      main: "#49a3f1",
-      state: "#1A73E8",
+    primary: {
+      main: "#F74040",
+      state: "#933547",
     },
 
     success: {
