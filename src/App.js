@@ -29,6 +29,8 @@ import Presentation from "layouts/pages/presentation";
 // Otis Kit PRO routes
 import routes from "routes";
 
+import  BridgestarsHome from "bridgestars/home"
+
 export default function App() {
   const { pathname } = useLocation();
 
@@ -56,7 +58,7 @@ export default function App() {
       <CssBaseline />
       <Routes>
         {getRoutes(routes)}
-        <Route path="/presentation" element={<Presentation />} />
+        <Route path="/presentation" element={<BridgestarsHome/>} />
         <Route path="*" element={<Navigate to="/presentation" />} />
       </Routes>
     </ThemeProvider>
