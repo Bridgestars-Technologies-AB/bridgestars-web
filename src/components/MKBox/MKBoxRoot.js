@@ -22,7 +22,7 @@ export default styled(Box)(({ theme, ownerState }) => {
   const { variant, bgColor, color, opacity, borderRadius, shadow, coloredShadow } = ownerState;
 
   const { gradients, grey, white } = palette;
-  const { linearGradient } = functions;
+  const { linearGradient, linearHomepageGradient } = functions;
   const { borderRadius: radius } = borders;
   const { colored } = boxShadows;
 

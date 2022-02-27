@@ -29,6 +29,7 @@ import globals from "assets/theme/base/globals";
 import boxShadow from "assets/theme/functions/boxShadow";
 import hexToRgb from "assets/theme/functions/hexToRgb";
 import linearGradient from "assets/theme/functions/linearGradient";
+import linearHomepageGradient from "./functions/linearHomepageGradient";
 import pxToRem from "assets/theme/functions/pxToRem";
 import rgba from "assets/theme/functions/rgba";
 
@@ -95,6 +96,7 @@ export default createTheme({
     boxShadow,
     hexToRgb,
     linearGradient,
+    linearHomepageGradient,
     pxToRem,
     rgba,
   },
