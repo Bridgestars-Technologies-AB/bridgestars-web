@@ -41,6 +41,7 @@ import footerRoutes from "constants/footer.routes";
 // Images
 import bgImage from "assets/images/bridgeBG0.webp";
 import linearHomepageGradient from "assets/theme/functions/linearHomepageGradient";
+import FeatureCounter from "./sections/FeatureCounter.js";
 
 
 export default function BridgestarsHome() {
@@ -75,9 +76,13 @@ export default function BridgestarsHome() {
         sx={{
           backgroundImage: ({ functions: {linearHomepageGradient,rgba}, palette: { gradients } }) =>
             `${linearHomepageGradient([
-              {color: rgba(255, 0, 0, 0.3), percentage: 0},
-              {color: rgba(0, 0, 0, 0.15), percentage: 35}
-            ],0)}
+              {color: rgba(gradients.primary.main, 0.6), percentage: 0},
+              {color: `rgba(0, 0, 0, 0.25)`, percentage: 30},
+              {color: `rgba(0, 0, 0, 0.25)`, percentage: 65},
+              {color: rgba(gradients.secondary.main, 1), percentage: 100},
+              //{color: `rgba(255, 0, 0, 0.5)`, percentage: 0},
+              // {color: `rgba(0, 0, 0, 0.15)`, percentage: 35}
+            ],135)}
             , url(${bgImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -137,6 +142,7 @@ export default function BridgestarsHome() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
+        <FeatureCounter/>
         <Information />
         <Testimonials />
         <AboutUs />

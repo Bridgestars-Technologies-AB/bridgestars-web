@@ -469,7 +469,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
         zIndex={3}
         sx={({ palette: { transparent: transparentColor, white }, functions: { rgba } }) => ({
           backgroundColor: transparent ? transparentColor.main : rgba(white.main, 0.8),
-          backdropFilter: transparent ? "none" : `saturate(200%) blur(30px)`,
+          backdropFilter: transparent ? "none" : `saturate(400%) blur(30px)`,
         })}
       >
         <MKBox display="flex" justifyContent="space-between" alignItems="left">
