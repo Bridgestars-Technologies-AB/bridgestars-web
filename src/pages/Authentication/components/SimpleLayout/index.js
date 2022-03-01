@@ -32,12 +32,18 @@ import routes from "constants/routes";
 
 function SimpleLayout({ children }) {
   return (
-    <MKBox height="100vh" display="flex" flexDirection="column" justifyContent="space-between">
+    <MKBox
+      height="100vh"
+      display="flex"
+      flexDirection="column"
+      justifyContent="space-between"
+    >
       <DefaultNavbar
         routes={routes}
         action={{
           type: "external",
-          route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+          route:
+            "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
           label: "buy now",
           color: "info",
         }}

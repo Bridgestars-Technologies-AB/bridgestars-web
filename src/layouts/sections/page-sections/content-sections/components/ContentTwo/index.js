@@ -39,21 +39,40 @@ function ContentTwo() {
             <Grid container justifyContent="space-betweeb" alignItems="center">
               <Grid item xs={12} md={6}>
                 <MKBox ml={-1}>
-                  <MKBadge badgeContent="Photography" variant="contained" color="info" />
-                  <MKBadge badgeContent="Stories" variant="contained" color="info" />
-                  <MKBadge badgeContent="Castle" variant="contained" color="info" />
+                  <MKBadge
+                    badgeContent="Photography"
+                    variant="contained"
+                    color="info"
+                  />
+                  <MKBadge
+                    badgeContent="Stories"
+                    variant="contained"
+                    color="info"
+                  />
+                  <MKBadge
+                    badgeContent="Castle"
+                    variant="contained"
+                    color="info"
+                  />
                 </MKBox>
               </Grid>
               <Grid item xs={12} md={6}>
                 <Stack direction="row" spacing={1} justifyContent="flex-end">
                   <MKSocialButton color="facebook" size="small">
-                    <MKBox className="fab fa-facebook" color="inherit" mr={1} /> 872
+                    <MKBox className="fab fa-facebook" color="inherit" mr={1} />{" "}
+                    872
                   </MKSocialButton>
                   <MKSocialButton color="twitter" size="small">
-                    <MKBox className="fab fa-twitter" color="inherit" mr={1} /> 910
+                    <MKBox className="fab fa-twitter" color="inherit" mr={1} />{" "}
+                    910
                   </MKSocialButton>
                   <MKSocialButton color="pinterest" size="small">
-                    <MKBox className="fab fa-pinterest" color="inherit" mr={1} /> 232
+                    <MKBox
+                      className="fab fa-pinterest"
+                      color="inherit"
+                      mr={1}
+                    />{" "}
+                    232
                   </MKSocialButton>
                 </Stack>
               </Grid>
@@ -72,8 +91,9 @@ function ContentTwo() {
                   Alec Thompson
                 </MKTypography>
                 <MKTypography variant="button" color="text">
-                  I&apos;ve been trying to figure out the bed design for the master bedroom at our
-                  Hidden Hills compound...I like good music from Youtube.
+                  I&apos;ve been trying to figure out the bed design for the
+                  master bedroom at our Hidden Hills compound...I like good
+                  music from Youtube.
                 </MKTypography>
               </MKBox>
               <MKBox display={{ xs: "none", lg: "block" }} ml={1}>

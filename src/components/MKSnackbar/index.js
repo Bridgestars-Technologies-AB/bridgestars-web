@@ -30,7 +30,16 @@ import MKTypography from "components/MKTypography";
 // Custom styles for the MKSnackbar
 import MKSnackbarIconRoot from "components/MKSnackbar/MKSnackbarIconRoot";
 
-function MKSnackbar({ color, icon, title, dateTime, content, close, bgWhite, ...rest }) {
+function MKSnackbar({
+  color,
+  icon,
+  title,
+  dateTime,
+  content,
+  close,
+  bgWhite,
+  ...rest
+}) {
   let titleColor;
   let dateTimeColor;
   let dividerColor;
@@ -59,7 +68,12 @@ function MKSnackbar({ color, icon, title, dateTime, content, close, bgWhite, ...
       }}
       {...rest}
       action={
-        <IconButton size="small" aria-label="close" color="inherit" onClick={close}>
+        <IconButton
+          size="small"
+          aria-label="close"
+          color="inherit"
+          onClick={close}
+        >
           <Icon fontSize="small">close</Icon>
         </IconButton>
       }
@@ -73,7 +87,8 @@ function MKSnackbar({ color, icon, title, dateTime, content, close, bgWhite, ...
         borderRadius="md"
         p={1}
         sx={{
-          backgroundColor: ({ palette }) => palette[color] || palette.white.main,
+          backgroundColor: ({ palette }) =>
+            palette[color] || palette.white.main,
         }}
       >
         <MKBox
@@ -84,7 +99,10 @@ function MKSnackbar({ color, icon, title, dateTime, content, close, bgWhite, ...
           p={1.5}
         >
           <MKBox display="flex" alignItems="center" lineHeight={0}>
-            <MKSnackbarIconRoot fontSize="small" ownerState={{ color, bgWhite }}>
+            <MKSnackbarIconRoot
+              fontSize="small"
+              ownerState={{ color, bgWhite }}
+            >
               {icon}
             </MKSnackbarIconRoot>
             <MKTypography
@@ -104,7 +122,8 @@ function MKSnackbar({ color, icon, title, dateTime, content, close, bgWhite, ...
               sx={{
                 color: ({ palette: { dark, white } }) =>
                   bgWhite || color === "light" ? dark.main : white.main,
-                fontWeight: ({ typography: { fontWeightBold } }) => fontWeightBold,
+                fontWeight: ({ typography: { fontWeightBold } }) =>
+                  fontWeightBold,
                 cursor: "pointer",
                 marginLeft: 2,
                 transform: "translateY(-1px)",

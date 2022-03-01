@@ -35,15 +35,19 @@ function StatsOne() {
               Be the first to see the news
             </MKTypography>
             <MKTypography variant="body2" color="text" mb={3}>
-              Your company may not be in the software business, but eventually, a software company
-              will be in your business.
+              Your company may not be in the software business, but eventually,
+              a software company will be in your business.
             </MKTypography>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={5}>
                 <MKInput label="Email Here" fullWidth />
               </Grid>
               <Grid item xs={12} sm={4}>
-                <MKButton variant="gradient" color="warning" sx={{ height: "100%" }}>
+                <MKButton
+                  variant="gradient"
+                  color="warning"
+                  sx={{ height: "100%" }}
+                >
                   Subscribe
                 </MKButton>
               </Grid>

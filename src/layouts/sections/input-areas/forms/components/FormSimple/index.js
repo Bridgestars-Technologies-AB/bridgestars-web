@@ -34,7 +34,15 @@ function FormSimple() {
   return (
     <MKBox component="section" py={12}>
       <Container>
-        <Grid container item justifyContent="center" xs={10} lg={7} mx="auto" textAlign="center">
+        <Grid
+          container
+          item
+          justifyContent="center"
+          xs={10}
+          lg={7}
+          mx="auto"
+          textAlign="center"
+        >
           <MKTypography variant="h3" mb={1}>
             Contact Us
           </MKTypography>
@@ -50,10 +58,21 @@ function FormSimple() {
                   <MKInput variant="standard" label="Last Name" fullWidth />
                 </Grid>
                 <Grid item xs={12}>
-                  <MKInput variant="standard" type="email" label="Email Address" fullWidth />
+                  <MKInput
+                    variant="standard"
+                    type="email"
+                    label="Email Address"
+                    fullWidth
+                  />
                 </Grid>
                 <Grid item xs={12}>
-                  <MKInput variant="standard" label="Your Message" multiline fullWidth rows={6} />
+                  <MKInput
+                    variant="standard"
+                    label="Your Message"
+                    multiline
+                    fullWidth
+                    rows={6}
+                  />
                 </Grid>
                 <Grid item xs={12} alignItems="center" ml={-1}>
                   <Switch checked={checked} onChange={handleChecked} />
@@ -79,7 +98,12 @@ function FormSimple() {
                 </Grid>
               </Grid>
               <Grid container item justifyContent="center" xs={12} my={2}>
-                <MKButton type="submit" variant="gradient" color="dark" fullWidth>
+                <MKButton
+                  type="submit"
+                  variant="gradient"
+                  color="dark"
+                  fullWidth
+                >
                   Send Message
                 </MKButton>
               </Grid>

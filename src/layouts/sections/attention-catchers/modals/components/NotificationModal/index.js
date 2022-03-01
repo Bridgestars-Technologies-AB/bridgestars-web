@@ -43,7 +43,11 @@ function NotificationModal() {
             Launch Demo Modal
           </MKButton>
         </Grid>
-        <Modal open={show} onClose={toggleModal} sx={{ display: "grid", placeItems: "center" }}>
+        <Modal
+          open={show}
+          onClose={toggleModal}
+          sx={{ display: "grid", placeItems: "center" }}
+        >
           <Slide direction="down" in={show} timeout={500}>
             <MKBox
               position="relative"
@@ -80,13 +84,23 @@ function NotificationModal() {
                 <MKTypography variant="h4" color="white" mt={3} mb={1}>
                   You should read this!
                 </MKTypography>
-                <MKTypography variant="body2" color="white" opacity={0.8} mb={2}>
-                  A small river named Duden flows by their place and supplies it with the necessary
-                  regelialia.
+                <MKTypography
+                  variant="body2"
+                  color="white"
+                  opacity={0.8}
+                  mb={2}
+                >
+                  A small river named Duden flows by their place and supplies it
+                  with the necessary regelialia.
                 </MKTypography>
               </MKBox>
               <Divider light sx={{ my: 0 }} />
-              <MKBox display="flex" justifyContent="space-between" py={2} px={1.5}>
+              <MKBox
+                display="flex"
+                justifyContent="space-between"
+                py={2}
+                px={1.5}
+              >
                 <MKButton color="white">ok, got it</MKButton>
                 <MKButton variant="text" color="white" onClick={toggleModal}>
                   close

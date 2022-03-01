@@ -29,7 +29,7 @@ import Popper from "@mui/material/Popper";
 import Grow from "@mui/material/Grow";
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
-import { spacing } from '@mui/system';
+import { spacing } from "@mui/system";
 import MuiLink from "@mui/material/Link";
 
 // Otis Kit PRO components
@@ -44,10 +44,18 @@ import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMob
 // Otis Kit PRO base styles
 import breakpoints from "assets/theme/base/breakpoints";
 import logo from "assets/images/bridgestars/logo-trans-64px.png";
-import Image from 'material-ui-image'
+import Image from "material-ui-image";
 
-
-function DefaultNavbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
+function DefaultNavbar({
+  brand,
+  routes,
+  transparent,
+  light,
+  action,
+  sticky,
+  relative,
+  center,
+}) {
   const [dropdown, setDropdown] = useState("");
   const [dropdownEl, setDropdownEl] = useState("");
   const [dropdownName, setDropdownName] = useState("");
@@ -85,203 +93,221 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
     return () => window.removeEventListener("resize", displayMobileNavbar);
   }, []);
 
-  const renderNavbarItems = routes.map(({ name, icon, href, route, collapse }) => (
-    <DefaultNavbarDropdown
-      key={name}
-      name={name}
-      icon={icon}
-      href={href}
-      route={route}
-      collapse={Boolean(collapse)}
-      onMouseEnter={({ currentTarget }) => {
-        if (collapse) {
-          setDropdown(currentTarget);
-          setDropdownEl(currentTarget);
-          setDropdownName(name);
-        }
-      }}
-      onMouseLeave={() => collapse && setDropdown(null)}
-      light={light}
-    />
-  ));
+  const renderNavbarItems = routes.map(
+    ({ name, icon, href, route, collapse }) => (
+      <DefaultNavbarDropdown
+        key={name}
+        name={name}
+        icon={icon}
+        href={href}
+        route={route}
+        collapse={Boolean(collapse)}
+        onMouseEnter={({ currentTarget }) => {
+          if (collapse) {
+            setDropdown(currentTarget);
+            setDropdownEl(currentTarget);
+            setDropdownName(name);
+          }
+        }}
+        onMouseLeave={() => collapse && setDropdown(null)}
+        light={light}
+      />
+    )
+  );
 
   // Render the routes on the dropdown menu
-  const renderRoutes = routes.map(({ name, collapse, columns, rowsPerColumn }) => {
-    let template;
+  const renderRoutes = routes.map(
+    ({ name, collapse, columns, rowsPerColumn }) => {
+      let template;
 
-    // Render the dropdown menu that should be display as columns
-    if (collapse && columns && name === dropdownName) {
-      const calculateColumns = collapse.reduce((resultArray, item, index) => {
-        const chunkIndex = Math.floor(index / rowsPerColumn);
+      // Render the dropdown menu that should be display as columns
+      if (collapse && columns && name === dropdownName) {
+        const calculateColumns = collapse.reduce((resultArray, item, index) => {
+          const chunkIndex = Math.floor(index / rowsPerColumn);
 
-        if (!resultArray[chunkIndex]) {
-          resultArray[chunkIndex] = [];
-        }
+          if (!resultArray[chunkIndex]) {
+            resultArray[chunkIndex] = [];
+          }
 
-        resultArray[chunkIndex].push(item);
+          resultArray[chunkIndex].push(item);
 
-        return resultArray;
-      }, []);
+          return resultArray;
+        }, []);
 
-      template = (
-        <Grid key={name} container spacing={3} py={1} px={1.5}>
-          {calculateColumns.map((cols, key) => {
-            const gridKey = `grid-${key}`;
-            const dividerKey = `divider-${key}`;
+        template = (
+          <Grid key={name} container spacing={3} py={1} px={1.5}>
+            {calculateColumns.map((cols, key) => {
+              const gridKey = `grid-${key}`;
+              const dividerKey = `divider-${key}`;
 
-            return (
-              <Grid key={gridKey} item xs={12 / columns} sx={{ position: "relative" }}>
-                {cols.map((col, index) => (
-                  <Fragment key={col.name}>
-                    <MKTypography
-                      display="block"
-                      variant="button"
-                      fontWeight="bold"
-                      textTransform="capitalize"
-                      py={1}
-                      px={0.5}
-                      mt={index !== 0 ? 2 : 0}
-                    >
-                      {col.name}
-                    </MKTypography>
-                    {col.collapse.map((item) => (
+              return (
+                <Grid
+                  key={gridKey}
+                  item
+                  xs={12 / columns}
+                  sx={{ position: "relative" }}
+                >
+                  {cols.map((col, index) => (
+                    <Fragment key={col.name}>
                       <MKTypography
-                        key={item.name}
-                        component={item.route ? Link : MuiLink}
-                        to={item.route ? item.route : ""}
-                        href={item.href ? item.href : (e) => e.preventDefault()}
-                        target={item.href ? "_blank" : ""}
-                        rel={item.href ? "noreferrer" : "noreferrer"}
-                        minWidth="11.25rem"
                         display="block"
                         variant="button"
-                        color="text"
+                        fontWeight="bold"
                         textTransform="capitalize"
-                        fontWeight="regular"
-                        py={0.625}
-                        px={2}
-                        sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
-                          borderRadius: borderRadius.md,
-                          cursor: "pointer",
-                          transition: "all 300ms linear",
-
-                          "&:hover": {
-                            backgroundColor: grey[200],
-                            color: dark.main,
-                          },
-                        })}
+                        py={1}
+                        px={0.5}
+                        mt={index !== 0 ? 2 : 0}
                       >
-                        {item.name}
+                        {col.name}
                       </MKTypography>
-                    ))}
-                  </Fragment>
-                ))}
-                {key !== 0 && (
-                  <Divider
-                    key={dividerKey}
-                    orientation="vertical"
-                    sx={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "-4px",
-                      transform: "translateY(-45%)",
-                      height: "90%",
-                    }}
-                  />
-                )}
-              </Grid>
-            );
-          })}
-        </Grid>
-      );
+                      {col.collapse.map((item) => (
+                        <MKTypography
+                          key={item.name}
+                          component={item.route ? Link : MuiLink}
+                          to={item.route ? item.route : ""}
+                          href={
+                            item.href ? item.href : (e) => e.preventDefault()
+                          }
+                          target={item.href ? "_blank" : ""}
+                          rel={item.href ? "noreferrer" : "noreferrer"}
+                          minWidth="11.25rem"
+                          display="block"
+                          variant="button"
+                          color="text"
+                          textTransform="capitalize"
+                          fontWeight="regular"
+                          py={0.625}
+                          px={2}
+                          sx={({
+                            palette: { grey, dark },
+                            borders: { borderRadius },
+                          }) => ({
+                            borderRadius: borderRadius.md,
+                            cursor: "pointer",
+                            transition: "all 300ms linear",
 
-      // Render the dropdown menu that should be display as list items
-    } else if (collapse && name === dropdownName) {
-      template = collapse.map((item) => {
-        const linkComponent = {
-          component: MuiLink,
-          href: item.href,
-          target: "_blank",
-          rel: "noreferrer",
-        };
-
-        const routeComponent = {
-          component: Link,
-          to: item.route,
-        };
-
-        return (
-          <MKTypography
-            key={item.name}
-            {...(item.route ? routeComponent : linkComponent)}
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            variant="button"
-            textTransform="capitalize"
-            minWidth={item.description ? "14rem" : "12rem"}
-            color={item.description ? "dark" : "text"}
-            fontWeight={item.description ? "bold" : "regular"}
-            py={item.description ? 1 : 0.625}
-            px={2}
-            sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
-              borderRadius: borderRadius.md,
-              cursor: "pointer",
-              transition: "all 300ms linear",
-
-              "&:hover": {
-                backgroundColor: grey[200],
-                color: dark.main,
-
-                "& *": {
-                  color: dark.main,
-                },
-              },
+                            "&:hover": {
+                              backgroundColor: grey[200],
+                              color: dark.main,
+                            },
+                          })}
+                        >
+                          {item.name}
+                        </MKTypography>
+                      ))}
+                    </Fragment>
+                  ))}
+                  {key !== 0 && (
+                    <Divider
+                      key={dividerKey}
+                      orientation="vertical"
+                      sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "-4px",
+                        transform: "translateY(-45%)",
+                        height: "90%",
+                      }}
+                    />
+                  )}
+                </Grid>
+              );
             })}
-            onMouseEnter={({ currentTarget }) => {
-              if (item.dropdown) {
-                setNestedDropdown(currentTarget);
-                setNestedDropdownEl(currentTarget);
-                setNestedDropdownName(item.name);
-              }
-            }}
-            onMouseLeave={() => {
-              if (item.dropdown) {
-                setNestedDropdown(null);
-              }
-            }}
-          >
-            {item.description ? (
-              <MKBox>
-                {item.name}
-                <MKTypography
-                  display="block"
-                  variant="button"
-                  color="text"
-                  fontWeight="regular"
-                  sx={{ transition: "all 300ms linear" }}
-                >
-                  {item.description}
-                </MKTypography>
-              </MKBox>
-            ) : (
-              item.name
-            )}
-            {item.collapse && (
-              <Icon
-                fontSize="small"
-                sx={{ fontWeight: "normal", verticalAlign: "middle", mr: -0.5 }}
-              >
-                keyboard_arrow_right
-              </Icon>
-            )}
-          </MKTypography>
+          </Grid>
         );
-      });
-    }
 
-    return template;
-  });
+        // Render the dropdown menu that should be display as list items
+      } else if (collapse && name === dropdownName) {
+        template = collapse.map((item) => {
+          const linkComponent = {
+            component: MuiLink,
+            href: item.href,
+            target: "_blank",
+            rel: "noreferrer",
+          };
+
+          const routeComponent = {
+            component: Link,
+            to: item.route,
+          };
+
+          return (
+            <MKTypography
+              key={item.name}
+              {...(item.route ? routeComponent : linkComponent)}
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              variant="button"
+              textTransform="capitalize"
+              minWidth={item.description ? "14rem" : "12rem"}
+              color={item.description ? "dark" : "text"}
+              fontWeight={item.description ? "bold" : "regular"}
+              py={item.description ? 1 : 0.625}
+              px={2}
+              sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
+                borderRadius: borderRadius.md,
+                cursor: "pointer",
+                transition: "all 300ms linear",
+
+                "&:hover": {
+                  backgroundColor: grey[200],
+                  color: dark.main,
+
+                  "& *": {
+                    color: dark.main,
+                  },
+                },
+              })}
+              onMouseEnter={({ currentTarget }) => {
+                if (item.dropdown) {
+                  setNestedDropdown(currentTarget);
+                  setNestedDropdownEl(currentTarget);
+                  setNestedDropdownName(item.name);
+                }
+              }}
+              onMouseLeave={() => {
+                if (item.dropdown) {
+                  setNestedDropdown(null);
+                }
+              }}
+            >
+              {item.description ? (
+                <MKBox>
+                  {item.name}
+                  <MKTypography
+                    display="block"
+                    variant="button"
+                    color="text"
+                    fontWeight="regular"
+                    sx={{ transition: "all 300ms linear" }}
+                  >
+                    {item.description}
+                  </MKTypography>
+                </MKBox>
+              ) : (
+                item.name
+              )}
+              {item.collapse && (
+                <Icon
+                  fontSize="small"
+                  sx={{
+                    fontWeight: "normal",
+                    verticalAlign: "middle",
+                    mr: -0.5,
+                  }}
+                >
+                  keyboard_arrow_right
+                </Icon>
+              )}
+            </MKTypography>
+          );
+        });
+      }
+
+      return template;
+    }
+  );
 
   // Routes dropdown menu
   const dropdownMenu = (
@@ -368,7 +394,10 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                     fontWeight={item.description ? "bold" : "regular"}
                     py={item.description ? 1 : 0.625}
                     px={2}
-                    sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
+                    sx={({
+                      palette: { grey, dark },
+                      borders: { borderRadius },
+                    }) => ({
                       borderRadius: borderRadius.md,
                       cursor: "pointer",
                       transition: "all 300ms linear",
@@ -402,7 +431,11 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                     {item.collapse && (
                       <Icon
                         fontSize="small"
-                        sx={{ fontWeight: "normal", verticalAlign: "middle", mr: -0.5 }}
+                        sx={{
+                          fontWeight: "normal",
+                          verticalAlign: "middle",
+                          mr: -0.5,
+                        }}
                       >
                         keyboard_arrow_right
                       </Icon>
@@ -467,9 +500,14 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
         position={relative ? "relative" : "absolute"}
         left={0}
         zIndex={3}
-        sx={({ palette: { transparent: transparentColor, white }, functions: { rgba } }) => ({
-          backgroundColor: transparent ? transparentColor.main : rgba(white.main, 0.8),
-          backdropFilter: transparent ? "none" : `saturate(200%) blur(30px)`,
+        sx={({
+          palette: { transparent: transparentColor, white },
+          functions: { rgba },
+        }) => ({
+          backgroundColor: transparent
+            ? transparentColor.main
+            : rgba(white.main, 0.8),
+          backdropFilter: transparent ? "none" : `saturate(400%) blur(30px)`,
         })}
       >
         <MKBox display="flex" justifyContent="space-between" alignItems="left">
@@ -480,21 +518,20 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             py={transparent ? 1.5 : 0.75}
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
             sx={{
-              ml:-2
+              ml: -2,
             }}
           >
-            <img 
-                src={logo} 
-                width={32}
-            />
-            <MKTypography sx={{pl:1, fontSize:20}} variant="button" verticalAlign="super" fontWeight="bold" color={light ? "white" : "dark"}>
+            <img src={logo} width={32} />
+            <MKTypography
+              sx={{ pl: 1, fontSize: 20 }}
+              variant="button"
+              verticalAlign="super"
+              fontWeight="bold"
+              color={light ? "white" : "dark"}
+            >
               {brand}
             </MKTypography>
           </MKBox>
-
-
- 
-            
 
           <MKBox
             color="inherit"
@@ -504,7 +541,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           >
             {renderNavbarItems}
           </MKBox>
-          <MKBox ml={{ xs: "auto", lg: 0}}>
+          <MKBox ml={{ xs: "auto", lg: 0 }}>
             {action &&
               (action.type === "internal" ? (
                 <MKButton
@@ -517,7 +554,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                   }
                   color={action.color ? action.color : "info"}
                   size="small"
-                  sx={{verticalAlign: "sub"}}
+                  sx={{ verticalAlign: "sub" }}
                 >
                   {action.label}
                 </MKButton>
@@ -557,7 +594,9 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           borderRadius="xl"
           px={transparent ? 2 : 0}
         >
-          {mobileView && <DefaultNavbarMobile routes={routes} open={mobileNavbar} />}
+          {mobileView && (
+            <DefaultNavbarMobile routes={routes} open={mobileNavbar} />
+          )}
         </MKBox>
       </MKBox>
       {dropdownMenu}

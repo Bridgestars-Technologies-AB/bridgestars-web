@@ -55,7 +55,8 @@ function Presentation() {
         routes={routes}
         action={{
           type: "external",
-          route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+          route:
+            "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
           label: "buy now",
           color: "info",
         }}
@@ -95,8 +96,15 @@ function Presentation() {
                 sx={{ mt: -4 }}
               />
             </MKTypography>
-            <MKTypography variant="body1" color="white" textAlign="center" px={6} mt={1}>
-              Start the Development with a ReactJS & MUI Design System inspired by Material Design.
+            <MKTypography
+              variant="body1"
+              color="white"
+              textAlign="center"
+              px={6}
+              mt={1}
+            >
+              Start the Development with a ReactJS & MUI Design System inspired
+              by Material Design.
             </MKTypography>
           </Grid>
         </Container>
@@ -107,7 +115,8 @@ function Presentation() {
           mx: { xs: 2, lg: 3 },
           mt: -8,
           mb: 4,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
+          backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
+            rgba(white.main, 0.8),
           backdropFilter: "saturate(200%) blur(30px)",
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
@@ -172,7 +181,13 @@ function Presentation() {
         <MKBox pt={18} pb={6}>
           <Container>
             <Grid container spacing={3}>
-              <Grid item xs={12} lg={5} ml="auto" sx={{ textAlign: { xs: "center", lg: "left" } }}>
+              <Grid
+                item
+                xs={12}
+                lg={5}
+                ml="auto"
+                sx={{ textAlign: { xs: "center", lg: "left" } }}
+              >
                 <MKTypography variant="h4" fontWeight="bold" mb={0.5}>
                   Thank you for your support!
                 </MKTypography>

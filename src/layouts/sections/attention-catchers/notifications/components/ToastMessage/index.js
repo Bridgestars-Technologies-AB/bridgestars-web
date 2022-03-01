@@ -49,7 +49,12 @@ function ToastMessage() {
   });
 
   const toastTemplate = (
-    <MKBox display="flex" justifyContent="space-between" alignItems="center" color="white">
+    <MKBox
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
+      color="white"
+    >
       Hello, world! This is a notification message.
     </MKBox>
   );
@@ -69,7 +74,11 @@ function ToastMessage() {
           onClose={toggleSnackbar}
           message={toastTemplate}
           action={
-            <CloseIcon fontSize="medium" sx={{ cursor: "pointer" }} onClick={toggleSnackbar} />
+            <CloseIcon
+              fontSize="medium"
+              sx={{ cursor: "pointer" }}
+              onClick={toggleSnackbar}
+            />
           }
           sx={toastStyles}
         />

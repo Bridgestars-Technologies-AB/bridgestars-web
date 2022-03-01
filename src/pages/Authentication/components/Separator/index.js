@@ -40,10 +40,10 @@ function Separator() {
             right: "0.5em",
             marginLeft: "-50%",
             background: ({ functions: { rgba }, palette: { secondary } }) =>
-              `linear-gradient(90deg, transparent, ${rgba(secondary.main, 0.4)}, ${rgba(
+              `linear-gradient(90deg, transparent, ${rgba(
                 secondary.main,
                 0.4
-              )})`,
+              )}, ${rgba(secondary.main, 0.4)})`,
           },
           "&::after": {
             ...separatorStyles,

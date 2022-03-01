@@ -41,8 +41,9 @@ function BlogPostFour() {
             Build something great
           </MKTypography>
           <MKTypography variant="body2" color="text" pr={{ xs: 0, lg: 6 }}>
-            We&apos;re constantly trying to express ourselves and actualize our dreams. If you have
-            the opportunity to play this game of life you need to appreciate every moment.
+            We&apos;re constantly trying to express ourselves and actualize our
+            dreams. If you have the opportunity to play this game of life you
+            need to appreciate every moment.
           </MKTypography>
         </Grid>
         <Grid container spacing={3} mt={3}>

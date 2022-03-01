@@ -86,7 +86,10 @@ export default {
           name: "knowledge center",
           href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
         },
-        { name: "custom development", href: "https://services.creative-tim.com/" },
+        {
+          name: "custom development",
+          href: "https://services.creative-tim.com/",
+        },
         {
           name: "sponsorships",
           href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",

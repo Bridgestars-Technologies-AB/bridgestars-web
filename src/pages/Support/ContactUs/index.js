@@ -41,7 +41,8 @@ function ContactUs() {
           routes={routes}
           action={{
             type: "external",
-            route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+            route:
+              "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
             label: "buy now",
             color: "info",
           }}
@@ -95,10 +96,16 @@ function ContactUs() {
             </MKBox>
             <MKBox p={3}>
               <MKTypography variant="body2" color="text" mb={3}>
-                For further questions, including partnership opportunities, please email
-                hello@creative-tim.com or contact using our contact form.
+                For further questions, including partnership opportunities,
+                please email hello@creative-tim.com or contact using our contact
+                form.
               </MKTypography>
-              <MKBox width="100%" component="form" method="post" autocomplete="off">
+              <MKBox
+                width="100%"
+                component="form"
+                method="post"
+                autocomplete="off"
+              >
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={6}>
                     <MKInput
@@ -129,7 +136,14 @@ function ContactUs() {
                     />
                   </Grid>
                 </Grid>
-                <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
+                <Grid
+                  container
+                  item
+                  justifyContent="center"
+                  xs={12}
+                  mt={5}
+                  mb={2}
+                >
                   <MKButton type="submit" variant="gradient" color="info">
                     Send Message
                   </MKButton>

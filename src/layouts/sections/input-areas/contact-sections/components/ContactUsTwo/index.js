@@ -127,8 +127,14 @@ function ContactUsTwo() {
                     <MKTypography variant="h3" color="white" mb={1}>
                       Contact Information
                     </MKTypography>
-                    <MKTypography variant="body2" color="white" opacity={0.8} mb={3}>
-                      Fill up the form and our Team will get back to you within 24 hours.
+                    <MKTypography
+                      variant="body2"
+                      color="white"
+                      opacity={0.8}
+                      mb={3}
+                    >
+                      Fill up the form and our Team will get back to you within
+                      24 hours.
                     </MKTypography>
                     <MKBox display="flex" p={1}>
                       <MKTypography variant="button" color="white">
@@ -176,17 +182,49 @@ function ContactUsTwo() {
                       </MKTypography>
                     </MKBox>
                     <MKBox mt={3}>
-                      <MKButton variant="text" color="white" size="large" iconOnly>
-                        <i className="fab fa-facebook" style={{ fontSize: "1.25rem" }} />
+                      <MKButton
+                        variant="text"
+                        color="white"
+                        size="large"
+                        iconOnly
+                      >
+                        <i
+                          className="fab fa-facebook"
+                          style={{ fontSize: "1.25rem" }}
+                        />
                       </MKButton>
-                      <MKButton variant="text" color="white" size="large" iconOnly>
-                        <i className="fab fa-twitter" style={{ fontSize: "1.25rem" }} />
+                      <MKButton
+                        variant="text"
+                        color="white"
+                        size="large"
+                        iconOnly
+                      >
+                        <i
+                          className="fab fa-twitter"
+                          style={{ fontSize: "1.25rem" }}
+                        />
                       </MKButton>
-                      <MKButton variant="text" color="white" size="large" iconOnly>
-                        <i className="fab fa-dribbble" style={{ fontSize: "1.25rem" }} />
+                      <MKButton
+                        variant="text"
+                        color="white"
+                        size="large"
+                        iconOnly
+                      >
+                        <i
+                          className="fab fa-dribbble"
+                          style={{ fontSize: "1.25rem" }}
+                        />
                       </MKButton>
-                      <MKButton variant="text" color="white" size="large" iconOnly>
-                        <i className="fab fa-instagram" style={{ fontSize: "1.25rem" }} />
+                      <MKButton
+                        variant="text"
+                        color="white"
+                        size="large"
+                        iconOnly
+                      >
+                        <i
+                          className="fab fa-instagram"
+                          style={{ fontSize: "1.25rem" }}
+                        />
                       </MKButton>
                     </MKBox>
                   </MKBox>

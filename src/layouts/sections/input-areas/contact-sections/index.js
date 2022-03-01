@@ -30,7 +30,10 @@ function ContactSections() {
     <BaseLayout
       title="Contact Sections"
       breadcrumb={[
-        { label: "Page Sections", route: "/sections/input-areas/contact-sections" },
+        {
+          label: "Page Sections",
+          route: "/sections/input-areas/contact-sections",
+        },
         { label: "Contact Sections" },
       ]}
     >

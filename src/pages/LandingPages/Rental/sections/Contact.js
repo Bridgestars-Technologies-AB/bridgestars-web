@@ -48,12 +48,25 @@ function Contact() {
         top={{ xs: 0, lg: "unset" }}
         sx={{
           objectFit: "cover",
-          borderTopLeftRadius: ({ borders: { borderRadius } }) => ({ xs: 0, lg: borderRadius.lg }),
+          borderTopLeftRadius: ({ borders: { borderRadius } }) => ({
+            xs: 0,
+            lg: borderRadius.lg,
+          }),
         }}
       />
       <Container>
-        <Grid container spacing={{ xs: 0, lg: 3 }} sx={{ mt: { xs: 0, lg: 12 } }}>
-          <Grid item xs={12} lg={7} justifyContent="center" flexDirection="column">
+        <Grid
+          container
+          spacing={{ xs: 0, lg: 3 }}
+          sx={{ mt: { xs: 0, lg: 12 } }}
+        >
+          <Grid
+            item
+            xs={12}
+            lg={7}
+            justifyContent="center"
+            flexDirection="column"
+          >
             <MKBox
               display="flex"
               justifyContent="center"
@@ -62,8 +75,10 @@ function Contact() {
               shadow="lg"
               borderRadius="xl"
               sx={{
-                backgroundColor: ({ functions: { rgba }, palette: { white } }) =>
-                  rgba(white.main, 0.8),
+                backgroundColor: ({
+                  functions: { rgba },
+                  palette: { white },
+                }) => rgba(white.main, 0.8),
                 backdropFilter: "saturate(200%) blur(30px)",
                 px: { xs: 3, sm: 6 },
                 py: { xs: 3, sm: 8 },
@@ -128,14 +143,24 @@ function Contact() {
                         sx={{ userSelect: "none", cursor: "pointer" }}
                       >
                         I agree to the{" "}
-                        <MKTypography component="a" href="#" variant="button" fontWeight="regular">
+                        <MKTypography
+                          component="a"
+                          href="#"
+                          variant="button"
+                          fontWeight="regular"
+                        >
                           <u>Terms and Conditions</u>
                         </MKTypography>
                         .
                       </MKTypography>
                     </Grid>
                     <Grid item xs={12}>
-                      <MKButton type="submit" variant="gradient" color="dark" fullWidth>
+                      <MKButton
+                        type="submit"
+                        variant="gradient"
+                        color="dark"
+                        fullWidth
+                      >
                         Send Message
                       </MKButton>
                     </Grid>

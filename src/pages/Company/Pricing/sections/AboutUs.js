@@ -62,9 +62,9 @@ function AboutUs() {
         <Grid container item xs={12} lg={8}>
           <MKTypography variant="h3">Read More About Us</MKTypography>
           <MKTypography variant="body2" fontWeight="regular" color="text">
-            Pain is what we go through as we become older. We get insulted by others, lose trust for
-            those others. We get back stabbed by friends. It becomes harder for us to give others a
-            hand.
+            Pain is what we go through as we become older. We get insulted by
+            others, lose trust for those others. We get back stabbed by friends.
+            It becomes harder for us to give others a hand.
           </MKTypography>
         </Grid>
         <Grid container sx={{ mt: 6 }}>
@@ -83,7 +83,11 @@ function AboutUs() {
                       <Icon sx={{ fontWeight: "bold" }}>done</Icon>
                     </MKTypography>
                     <MKBox pl={2}>
-                      <MKTypography variant="button" color="text" fontWeight="bold">
+                      <MKTypography
+                        variant="button"
+                        color="text"
+                        fontWeight="bold"
+                      >
                         {item}
                       </MKTypography>
                     </MKBox>

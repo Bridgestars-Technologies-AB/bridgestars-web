@@ -55,7 +55,8 @@ function PricingOne() {
               See our pricing
             </MKTypography>
             <MKTypography variant="body2" color="white">
-              You have Free Unlimited Updates and Premium Support on each package.
+              You have Free Unlimited Updates and Premium Support on each
+              package.
             </MKTypography>
           </Grid>
         </Container>
@@ -63,7 +64,13 @@ function PricingOne() {
       <MKBox mt={-16}>
         <Container>
           <Grid container sx={{ mb: 6 }}>
-            <Grid item xs={7} md={6} lg={4} sx={{ mx: "auto", textAlign: "center" }}>
+            <Grid
+              item
+              xs={7}
+              md={6}
+              lg={4}
+              sx={{ mx: "auto", textAlign: "center" }}
+            >
               <AppBar position="static">
                 <Tabs value={activeTab} onChange={handleTabType}>
                   <Tab
@@ -91,7 +98,11 @@ function PricingOne() {
               <Grid item xs={12} lg={4}>
                 <DefaultPricingCard
                   badge={{ color: "light", label: "starter" }}
-                  price={{ currency: "$", value: tabType === "annual" ? 119 : 59, type: "mo" }}
+                  price={{
+                    currency: "$",
+                    value: tabType === "annual" ? 119 : 59,
+                    type: "mo",
+                  }}
                   specifications={[
                     { label: "2 team members", includes: true },
                     { label: "20GB Cloud storage", includes: true },
@@ -112,7 +123,11 @@ function PricingOne() {
                 <DefaultPricingCard
                   color="dark"
                   badge={{ color: "info", label: "premium" }}
-                  price={{ currency: "$", value: tabType === "annual" ? 159 : 89, type: "mo" }}
+                  price={{
+                    currency: "$",
+                    value: tabType === "annual" ? 159 : 89,
+                    type: "mo",
+                  }}
                   specifications={[
                     { label: "10 team members", includes: true },
                     { label: "40GB Cloud storage", includes: true },
@@ -132,7 +147,11 @@ function PricingOne() {
               <Grid item xs={12} lg={4}>
                 <DefaultPricingCard
                   badge={{ color: "light", label: "enterprise" }}
-                  price={{ currency: "$", value: tabType === "annual" ? 99 : 399, type: "mo" }}
+                  price={{
+                    currency: "$",
+                    value: tabType === "annual" ? 99 : 399,
+                    type: "mo",
+                  }}
                   specifications={[
                     { label: "Unlimited team members", includes: true },
                     { label: "100GB Cloud storage", includes: true },

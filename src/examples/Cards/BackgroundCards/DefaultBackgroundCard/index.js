@@ -46,7 +46,12 @@ function DefaultBackgroundCard({ image, label, title, description, action }) {
     >
       <MKBox textAlign="center" pt={12} pb={3} px={3}>
         {label && (
-          <MKTypography variant="body2" color="white" textTransform="uppercase" mb={2}>
+          <MKTypography
+            variant="body2"
+            color="white"
+            textTransform="uppercase"
+            mb={2}
+          >
             {label}
           </MKTypography>
         )}
@@ -57,7 +62,13 @@ function DefaultBackgroundCard({ image, label, title, description, action }) {
           {description}
         </MKTypography>
         {action.type === "internal" ? (
-          <MKButton component={Link} to={action.route} color="white" size="small" sx={{ my: 2 }}>
+          <MKButton
+            component={Link}
+            to={action.route}
+            color="white"
+            size="small"
+            sx={{ my: 2 }}
+          >
             {action.label}
           </MKButton>
         ) : (

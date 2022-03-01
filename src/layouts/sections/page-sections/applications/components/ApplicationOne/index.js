@@ -47,7 +47,9 @@ function ApplicationOne() {
           >
             Our Work
           </MKTypography>
-          <MKTypography variant="h3">Some of our awesome projects - 3</MKTypography>
+          <MKTypography variant="h3">
+            Some of our awesome projects - 3
+          </MKTypography>
         </Grid>
         <Grid container spacing={3} mt={4}>
           <Grid item xs={12} md={6} lg={4}>

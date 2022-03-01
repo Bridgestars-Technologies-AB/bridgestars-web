@@ -44,7 +44,8 @@ function DesktopApp() {
         routes={routes}
         action={{
           type: "external",
-          route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+          route:
+            "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
           label: "buy now",
           color: "warning",
         }}
@@ -56,8 +57,10 @@ function DesktopApp() {
           minHeight="50vh"
           width="100%"
           sx={{
-            backgroundImage: ({ functions: { linearGradient }, palette: { gradients } }) =>
-              linearGradient(gradients.dark.main, gradients.dark.state),
+            backgroundImage: ({
+              functions: { linearGradient },
+              palette: { gradients },
+            }) => linearGradient(gradients.dark.main, gradients.dark.state),
           }}
         />
         <Banner />

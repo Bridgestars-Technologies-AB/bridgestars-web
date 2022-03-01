@@ -50,8 +50,8 @@ export default {
   },
 
   secondary: {
-    main: "#7b809a",
-    focus: "#8f93a9",
+    main: "#e2e294e",
+    focus: "#e2e294e",
   },
 
   info: {
@@ -103,8 +103,8 @@ export default {
     },
 
     secondary: {
-      main: "#747b8a",
-      state: "#495361",
+      main: "#482c4d",
+      state: "#232032",
     },
 
     primary: {

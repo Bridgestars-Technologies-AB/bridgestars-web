@@ -81,7 +81,8 @@ function AboutUs() {
         routes={routes}
         action={{
           type: "external",
-          route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+          route:
+            "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
           label: "buy now",
           color: "default",
         }}
@@ -93,7 +94,10 @@ function AboutUs() {
         minHeight="75vh"
         width="100%"
         sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
+          backgroundImage: ({
+            functions: { linearGradient, rgba },
+            palette: { gradients },
+          }) =>
             `${linearGradient(
               rgba(gradients.dark.main, 0.6),
               rgba(gradients.dark.state, 0.6)
@@ -126,27 +130,59 @@ function AboutUs() {
             >
               Work with an amazing <span ref={typedJSRef} />
             </MKTypography>
-            <MKTypography variant="body1" color="white" opacity={0.8} mt={1} mb={3}>
-              We&apos;re constantly trying to express ourselves and actualize our dreams. If you
-              have the opportunity to play this game
+            <MKTypography
+              variant="body1"
+              color="white"
+              opacity={0.8}
+              mt={1}
+              mb={3}
+            >
+              We&apos;re constantly trying to express ourselves and actualize
+              our dreams. If you have the opportunity to play this game
             </MKTypography>
-            <MKButton color="default" sx={{ color: ({ palette: { dark } }) => dark.main }}>
+            <MKButton
+              color="default"
+              sx={{ color: ({ palette: { dark } }) => dark.main }}
+            >
               create account
             </MKButton>
             <MKTypography variant="h6" color="white" mt={8} mb={1}>
               Find us on
             </MKTypography>
             <MKBox display="flex" justifyContent="center" alignItems="center">
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
+              <MKTypography
+                component="a"
+                variant="body1"
+                color="white"
+                href="#"
+                mr={3}
+              >
                 <i className="fab fa-facebook" />
               </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
+              <MKTypography
+                component="a"
+                variant="body1"
+                color="white"
+                href="#"
+                mr={3}
+              >
                 <i className="fab fa-instagram" />
               </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
+              <MKTypography
+                component="a"
+                variant="body1"
+                color="white"
+                href="#"
+                mr={3}
+              >
                 <i className="fab fa-twitter" />
               </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#">
+              <MKTypography
+                component="a"
+                variant="body1"
+                color="white"
+                href="#"
+              >
                 <i className="fab fa-google-plus" />
               </MKTypography>
             </MKBox>

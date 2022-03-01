@@ -67,8 +67,8 @@ function ApplicationTwo() {
             How To Handle Them
           </MKTypography>
           <MKTypography variant="body2" color="text">
-            We&apos;re constantly trying to express ourselves and actualize our dreams. Don&apos;t
-            stop.
+            We&apos;re constantly trying to express ourselves and actualize our
+            dreams. Don&apos;t stop.
           </MKTypography>
         </Grid>
         <Grid container spacing={3} alignItems="center" sx={{ mt: 6 }}>
@@ -87,16 +87,16 @@ function ApplicationTwo() {
           </Grid>
           <Grid item xs={12} md={5} sx={{ mr: "auto", ml: { xs: 0, md: 6 } }}>
             <ListItem title="1. Listen to Social Conversations">
-              Gain access to the demographics, psychographics, and location of unique people who are
-              interested and talk about your brand.
+              Gain access to the demographics, psychographics, and location of
+              unique people who are interested and talk about your brand.
             </ListItem>
             <ListItem title="2. Performance Analyze">
-              Unify data from Facebook, Instagram, Twitter, LinkedIn, and Youtube to gain rich
-              insights from easy-to-use reports.
+              Unify data from Facebook, Instagram, Twitter, LinkedIn, and
+              Youtube to gain rich insights from easy-to-use reports.
             </ListItem>
             <ListItem title="3. Social Conversions">
-              Track actions taken on your website that originated from social, and understand the
-              impact on your bottom line.
+              Track actions taken on your website that originated from social,
+              and understand the impact on your bottom line.
             </ListItem>
           </Grid>
         </Grid>
@@ -104,13 +104,16 @@ function ApplicationTwo() {
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} md={5} sx={{ ml: "auto" }}>
             <ListItem title="1. Always In Sync">
-              No matter where you are, Trello stays in sync across all of your devices.
+              No matter where you are, Trello stays in sync across all of your
+              devices.
             </ListItem>
             <ListItem title="2. Work With Any Team">
-              Whether it&apos;s for work or even the next family vacation, Trello helps your team.
+              Whether it&apos;s for work or even the next family vacation,
+              Trello helps your team.
             </ListItem>
             <ListItem title="3. A Productivity Platform">
-              Integrate the apps your team already uses directly into your workflow.
+              Integrate the apps your team already uses directly into your
+              workflow.
             </ListItem>
           </Grid>
           <Grid item xs={12} md={4} sx={{ mr: "auto", ml: { xs: 0, md: 6 } }}>

@@ -78,7 +78,14 @@ function CenteredFooter({ company, links, socials, light }) {
           </Stack>
         </Grid>
         <Grid item xs={12} lg={8}>
-          <Stack display="flex" direction="row" justifyContent="center" spacing={3} mt={1} mb={3}>
+          <Stack
+            display="flex"
+            direction="row"
+            justifyContent="center"
+            spacing={3}
+            mt={1}
+            mb={3}
+          >
             {renderSocials}
           </Stack>
         </Grid>
@@ -118,12 +125,18 @@ CenteredFooter.defaultProps = {
       href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
       name: "About Us",
     },
-    { href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/", name: "Team" },
+    {
+      href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+      name: "Team",
+    },
     {
       href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
       name: "Products",
     },
-    { href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/", name: "Blog" },
+    {
+      href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+      name: "Blog",
+    },
     {
       href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
       name: "License",

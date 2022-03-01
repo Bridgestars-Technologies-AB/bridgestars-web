@@ -28,19 +28,31 @@ function SocialButtonsIcon() {
         <Grid container justifyContent="center">
           <MKBox display="flex" flexWrap="wrap" justifyContent="center" gap={1}>
             <MKSocialButton color="facebook" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-facebook" />
+              <MKBox
+                component="i"
+                color="inherit"
+                className="fab fa-facebook"
+              />
             </MKSocialButton>
             <MKSocialButton color="twitter" iconOnly>
               <MKBox component="i" color="inherit" className="fab fa-twitter" />
             </MKSocialButton>
             <MKSocialButton color="instagram" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-instagram" />
+              <MKBox
+                component="i"
+                color="inherit"
+                className="fab fa-instagram"
+              />
             </MKSocialButton>
             <MKSocialButton color="github" iconOnly>
               <MKBox component="i" color="inherit" className="fab fa-github" />
             </MKSocialButton>
             <MKSocialButton color="pinterest" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-pinterest" />
+              <MKBox
+                component="i"
+                color="inherit"
+                className="fab fa-pinterest"
+              />
             </MKSocialButton>
             <MKSocialButton color="youtube" iconOnly>
               <MKBox component="i" color="inherit" className="fab fa-youtube" />
@@ -52,7 +64,11 @@ function SocialButtonsIcon() {
               <MKBox component="i" color="inherit" className="fab fa-slack" />
             </MKSocialButton>
             <MKSocialButton color="dribbble" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-dribbble" />
+              <MKBox
+                component="i"
+                color="inherit"
+                className="fab fa-dribbble"
+              />
             </MKSocialButton>
             <MKSocialButton color="reddit" iconOnly>
               <MKBox component="i" color="inherit" className="fab fa-reddit" />
@@ -61,7 +77,11 @@ function SocialButtonsIcon() {
               <MKBox component="i" color="inherit" className="fab fa-tumblr" />
             </MKSocialButton>
             <MKSocialButton color="linkedin" iconOnly>
-              <MKBox component="i" color="inherit" className="fab fa-linkedin" />
+              <MKBox
+                component="i"
+                color="inherit"
+                className="fab fa-linkedin"
+              />
             </MKSocialButton>
           </MKBox>
         </Grid>

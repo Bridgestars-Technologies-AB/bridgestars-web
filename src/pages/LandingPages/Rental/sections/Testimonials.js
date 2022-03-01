@@ -33,7 +33,14 @@ import team4 from "assets/images/team-4.jpg";
 
 function Testimonials() {
   return (
-    <MKBox position="relative" variant="gradient" bgColor="dark" mt={6} py={2} mx={-2}>
+    <MKBox
+      position="relative"
+      variant="gradient"
+      bgColor="dark"
+      mt={6}
+      py={2}
+      mx={-2}
+    >
       <MKBox
         component="img"
         src={bgPattern}
@@ -64,8 +71,9 @@ function Testimonials() {
               Some thoughts from our clients
             </MKTypography>
             <MKTypography variant="body1" color="white" fontWeight="light">
-              If you&apos;re selected for them you&apos;ll also get three tickets, opportunity to
-              access Investor Office Hours and Mentor Hours and much more all for free.
+              If you&apos;re selected for them you&apos;ll also get three
+              tickets, opportunity to access Investor Office Hours and Mentor
+              Hours and much more all for free.
             </MKTypography>
           </Grid>
         </Grid>

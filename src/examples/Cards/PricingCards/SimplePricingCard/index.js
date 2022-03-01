@@ -29,7 +29,15 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
 
-function SimplePricingCard({ variant, color, title, description, price, specifications, action }) {
+function SimplePricingCard({
+  variant,
+  color,
+  title,
+  description,
+  price,
+  specifications,
+  action,
+}) {
   let titleColor = "white";
   let priceColor = "white";
   let buttonColor = "white";
@@ -63,7 +71,8 @@ function SimplePricingCard({ variant, color, title, description, price, specific
       <MKTypography
         variant="button"
         color={
-          variant === "contained" || (variant === "gradient" && color === "light")
+          variant === "contained" ||
+          (variant === "gradient" && color === "light")
             ? "text"
             : "white"
         }
@@ -76,15 +85,25 @@ function SimplePricingCard({ variant, color, title, description, price, specific
 
   return (
     <Card sx={{ width: "100%", height: "100%", overflow: "hidden" }}>
-      <MKBox variant={variant} bgColor={variant === "gradient" ? color : "white"} height="100%">
+      <MKBox
+        variant={variant}
+        bgColor={variant === "gradient" ? color : "white"}
+        height="100%"
+      >
         <MKBox p={3} lineHeight={1}>
-          <MKTypography variant="h5" fontWeight="bold" color={titleColor} mb={0.5}>
+          <MKTypography
+            variant="h5"
+            fontWeight="bold"
+            color={titleColor}
+            mb={0.5}
+          >
             {title}
           </MKTypography>
           <MKTypography
             variant="button"
             color={
-              variant === "contained" || (variant === "gradient" && color === "light")
+              variant === "contained" ||
+              (variant === "gradient" && color === "light")
                 ? "text"
                 : "white"
             }
@@ -100,7 +119,8 @@ function SimplePricingCard({ variant, color, title, description, price, specific
                 component="small"
                 variant="h6"
                 color={
-                  variant === "contained" || (variant === "gradient" && color === "light")
+                  variant === "contained" ||
+                  (variant === "gradient" && color === "light")
                     ? "secondary"
                     : "white"
                 }
@@ -143,7 +163,10 @@ function SimplePricingCard({ variant, color, title, description, price, specific
           )}
         </MKBox>
         <Divider
-          light={variant === "gradient" || (variant === "gradient" && color === "light")}
+          light={
+            variant === "gradient" ||
+            (variant === "gradient" && color === "light")
+          }
           sx={{ my: 0, opacity: variant === "gradient" ? 0.5 : 0.25 }}
         />
         <MKBox p={3}>{renderSpecifications}</MKBox>

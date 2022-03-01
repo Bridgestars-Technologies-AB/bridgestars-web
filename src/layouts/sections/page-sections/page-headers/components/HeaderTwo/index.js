@@ -135,7 +135,11 @@ function HeaderTwo() {
                   p={1}
                   onClick={(e) => e.preventDefault()}
                 >
-                  <MKBox component="i" color="white" className="fab fa-twitter" />
+                  <MKBox
+                    component="i"
+                    color="white"
+                    className="fab fa-twitter"
+                  />
                 </MKTypography>
               </MKBox>
               <MKBox component="li">
@@ -146,7 +150,11 @@ function HeaderTwo() {
                   p={1}
                   onClick={(e) => e.preventDefault()}
                 >
-                  <MKBox component="i" color="white" className="fab fa-facebook" />
+                  <MKBox
+                    component="i"
+                    color="white"
+                    className="fab fa-facebook"
+                  />
                 </MKTypography>
               </MKBox>
               <MKBox component="li">
@@ -157,7 +165,11 @@ function HeaderTwo() {
                   p={1}
                   onClick={(e) => e.preventDefault()}
                 >
-                  <MKBox component="i" color="white" className="fab fa-instagram" />
+                  <MKBox
+                    component="i"
+                    color="white"
+                    className="fab fa-instagram"
+                  />
                 </MKTypography>
               </MKBox>
             </MKBox>
@@ -169,7 +181,10 @@ function HeaderTwo() {
         alignItems="center"
         minHeight="100%"
         sx={{
-          backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) =>
+          backgroundImage: ({
+            palette: { gradients },
+            functions: { linearGradient, rgba },
+          }) =>
             `${linearGradient(
               rgba(gradients.info.main, 0.4),
               rgba(gradients.info.state, 0.4)
@@ -201,9 +216,15 @@ function HeaderTwo() {
             >
               Our company mission is to lead the <span ref={typedJSRef} />
             </MKTypography>
-            <MKTypography variant="body1" color="white" mt={1} mb={6} px={{ xs: 3, lg: 6 }}>
-              The time is now for it to be okay to be great. People in this world shun people for
-              being great. For being a bright color.
+            <MKTypography
+              variant="body1"
+              color="white"
+              mt={1}
+              mb={6}
+              px={{ xs: 3, lg: 6 }}
+            >
+              The time is now for it to be okay to be great. People in this
+              world shun people for being great. For being a bright color.
             </MKTypography>
             <MKButton color="white">contact us</MKButton>
           </Grid>

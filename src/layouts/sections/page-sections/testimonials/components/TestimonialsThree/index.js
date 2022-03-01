@@ -64,8 +64,9 @@ function TestimonialsThree() {
               Some thoughts from our clients
             </MKTypography>
             <MKTypography variant="body1" color="white" fontWeight="light">
-              If you&apos;re selected for them you&apos;ll also get three tickets, opportunity to
-              access Investor Office Hours and Mentor Hours and much more all for free.
+              If you&apos;re selected for them you&apos;ll also get three
+              tickets, opportunity to access Investor Office Hours and Mentor
+              Hours and much more all for free.
             </MKTypography>
           </Grid>
         </Grid>

@@ -32,7 +32,10 @@ function CtaThree() {
       my={24}
       py={6}
       sx={{
-        backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) =>
+        backgroundImage: ({
+          palette: { gradients },
+          functions: { linearGradient, rgba },
+        }) =>
           `${linearGradient(
             rgba(gradients.dark.main, 0.8),
             rgba(gradients.dark.state, 0.8)
@@ -43,13 +46,18 @@ function CtaThree() {
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} md={8} lg={5}>
             <MKTypography variant="h5" color="white" fontWeight="bold">
-              For being a bright color. For standing out. But the time is now to be okay to be the
-              greatest you.
+              For being a bright color. For standing out. But the time is now to
+              be okay to be the greatest you.
             </MKTypography>
           </Grid>
           <Grid item xs={12} lg={6} sx={{ ml: "auto" }}>
             <MKBox width="12rem" ml="auto">
-              <MKButton variant="gradient" color="warning" fullWidth sx={{ boxShadow: "none" }}>
+              <MKButton
+                variant="gradient"
+                color="warning"
+                fullWidth
+                sx={{ boxShadow: "none" }}
+              >
                 start now
               </MKButton>
             </MKBox>

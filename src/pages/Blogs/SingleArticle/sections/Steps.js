@@ -51,28 +51,32 @@ function Steps() {
         "https://images.unsplash.com/photo-1609365635346-524d0024684f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=934&amp;q=80",
       label: "First Step",
       title: "Give your best",
-      description: "Give your best to create something unique with high impact.",
+      description:
+        "Give your best to create something unique with high impact.",
     },
     {
       image:
         "https://images.unsplash.com/photo-1602781975725-cab34bd38d94?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
       label: "Second Step",
       title: "Plan your work",
-      description: "As we live, our hearts turn colder. Cause pain is what we go through.",
+      description:
+        "As we live, our hearts turn colder. Cause pain is what we go through.",
     },
     {
       image:
         "https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=974&q=80",
       label: "Third Step",
       title: "Follow your dreams",
-      description: "As we live, our hearts turn colder. Cause pain is what we go through.",
+      description:
+        "As we live, our hearts turn colder. Cause pain is what we go through.",
     },
     {
       image:
         "https://images.unsplash.com/photo-1579523616974-c2b09289c27e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80",
       label: "Fourth Step",
       title: "Never give up",
-      description: "Everyone’s born confident, and everything’s taken away from you.",
+      description:
+        "Everyone’s born confident, and everything’s taken away from you.",
     },
   ];
 
@@ -130,7 +134,12 @@ function Steps() {
         >
           {slides.map(({ image, label, title, description }) => (
             <SwiperSlide key={label}>
-              <Grid container spacing={3} alignItems="center" sx={{ mb: { xs: 6, md: 0 } }}>
+              <Grid
+                container
+                spacing={3}
+                alignItems="center"
+                sx={{ mb: { xs: 6, md: 0 } }}
+              >
                 <Grid item xs={12} md={5} ml={{ xs: 0, lg: "auto" }}>
                   <MKBox p={2}>
                     <MKBox
@@ -143,7 +152,13 @@ function Steps() {
                     />
                   </MKBox>
                 </Grid>
-                <Grid item xs={12} md={5} mr={{ xs: 0, lg: "auto" }} position="relative">
+                <Grid
+                  item
+                  xs={12}
+                  md={5}
+                  mr={{ xs: 0, lg: "auto" }}
+                  position="relative"
+                >
                   <MKTypography
                     component="h6"
                     variant="button"
@@ -188,7 +203,12 @@ function Steps() {
             >
               <MKBox className="fas fa-chevron-left" />
             </MKTypography>
-            <MKTypography variant="h2" ref={navigationNextRef} color="dark" sx={navigationStyles}>
+            <MKTypography
+              variant="h2"
+              ref={navigationNextRef}
+              color="dark"
+              sx={navigationStyles}
+            >
               <MKBox className="fas fa-chevron-right" />
             </MKTypography>
           </MKBox>
@@ -202,7 +222,10 @@ function Steps() {
                 fontWeight="bold"
                 pl={2}
                 textGradient
-                sx={{ fontFamily: ({ typography: { h1 } }) => h1.fontFamily, cursor: "pointer" }}
+                sx={{
+                  fontFamily: ({ typography: { h1 } }) => h1.fontFamily,
+                  cursor: "pointer",
+                }}
                 onClick={() => slideTo(index + 1)}
               >
                 <MKBox component="span">{number}</MKBox>

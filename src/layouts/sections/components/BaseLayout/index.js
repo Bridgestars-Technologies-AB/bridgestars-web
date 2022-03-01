@@ -34,13 +34,19 @@ import routes from "constants/routes";
 
 function BaseLayout({ breadcrumb, title, children }) {
   return (
-    <MKBox display="flex" flexDirection="column" bgColor="white" minHeight="100vh">
+    <MKBox
+      display="flex"
+      flexDirection="column"
+      bgColor="white"
+      minHeight="100vh"
+    >
       <MKBox bgColor="white" shadow="sm" py={0.25}>
         <DefaultNavbar
           routes={routes}
           action={{
             type: "external",
-            route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+            route:
+              "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
             label: "buy now",
             color: "info",
           }}
@@ -49,7 +55,14 @@ function BaseLayout({ breadcrumb, title, children }) {
         />
       </MKBox>
       <Container sx={{ mt: 6 }}>
-        <Grid container item xs={12} flexDirection="column" justifyContent="center" mx="auto">
+        <Grid
+          container
+          item
+          xs={12}
+          flexDirection="column"
+          justifyContent="center"
+          mx="auto"
+        >
           <MKBox width={{ xs: "100%", md: "50%", lg: "25%" }} mb={3}>
             <Breadcrumbs routes={breadcrumb} />
           </MKBox>

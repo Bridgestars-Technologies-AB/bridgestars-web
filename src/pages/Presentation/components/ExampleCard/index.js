@@ -37,7 +37,8 @@ function ExampleCard({ image, name, count, ...rest }) {
           transition: "transform 200ms ease-out",
 
           "&:hover": {
-            transform: "perspective(999px) rotateX(7deg) translate3d(0px, -4px, 5px)",
+            transform:
+              "perspective(999px) rotateX(7deg) translate3d(0px, -4px, 5px)",
           },
         }}
         {...rest}
@@ -52,7 +53,11 @@ function ExampleCard({ image, name, count, ...rest }) {
             </MKTypography>
           )}
           {count > 0 && (
-            <MKTypography variant="button" fontWeight="regular" color="secondary">
+            <MKTypography
+              variant="button"
+              fontWeight="regular"
+              color="secondary"
+            >
               {count} {count === 1 ? "Example" : "Examples"}
             </MKTypography>
           )}

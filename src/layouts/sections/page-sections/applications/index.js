@@ -30,7 +30,10 @@ function Applications() {
     <BaseLayout
       title="Applications"
       breadcrumb={[
-        { label: "Page Sections", route: "/sections/page-sections/applications" },
+        {
+          label: "Page Sections",
+          route: "/sections/page-sections/applications",
+        },
         { label: "Applications" },
       ]}
     >

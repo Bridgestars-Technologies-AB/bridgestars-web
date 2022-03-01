@@ -43,8 +43,8 @@ function SocialAnalytics() {
             Turn your idea into a startup
           </MKTypography>
           <MKTypography variant="body1" color="text">
-            We&apos;re constantly trying to express ourselves and actualize our dreams. If you have
-            the opportunity to play
+            We&apos;re constantly trying to express ourselves and actualize our
+            dreams. If you have the opportunity to play
           </MKTypography>
         </Grid>
         <Grid container spacing={3} sx={{ mt: 3 }}>

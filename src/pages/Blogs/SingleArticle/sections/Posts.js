@@ -41,9 +41,15 @@ function Posts() {
             <MKTypography variant="h3" mb={0.5}>
               See other articles
             </MKTypography>
-            <MKTypography variant="body2" color="text" px={{ xs: 0, md: 6 }} mb={4}>
-              Create a unique and beautiful blog posts. You can also connect your blog directly to
-              Google Analytics to have a more detailed look.
+            <MKTypography
+              variant="body2"
+              color="text"
+              px={{ xs: 0, md: 6 }}
+              mb={4}
+            >
+              Create a unique and beautiful blog posts. You can also connect
+              your blog directly to Google Analytics to have a more detailed
+              look.
             </MKTypography>
           </Grid>
           <Grid item xs={12} lg={4} mb={{ xs: 3, lg: 0 }}>
@@ -57,7 +63,10 @@ function Posts() {
                 name: "Mathew Glock",
                 date: "Posted on 28 February",
               }}
-              action={{ type: "internal", route: "/pages/blogs/single-article" }}
+              action={{
+                type: "internal",
+                route: "/pages/blogs/single-article",
+              }}
             />
           </Grid>
           <Grid item xs={12} lg={4} mb={{ xs: 3, lg: 0 }}>
@@ -71,7 +80,10 @@ function Posts() {
                 name: "Mathew Glock",
                 date: "Posted on 28 February",
               }}
-              action={{ type: "internal", route: "/pages/blogs/single-article" }}
+              action={{
+                type: "internal",
+                route: "/pages/blogs/single-article",
+              }}
             />
           </Grid>
           <Grid item xs={12} lg={4} mb={{ xs: 3, lg: 0 }}>
@@ -85,7 +97,10 @@ function Posts() {
                 name: "Mathew Glock",
                 date: "Posted on 28 February",
               }}
-              action={{ type: "internal", route: "/pages/blogs/single-article" }}
+              action={{
+                type: "internal",
+                route: "/pages/blogs/single-article",
+              }}
             />
           </Grid>
         </Grid>

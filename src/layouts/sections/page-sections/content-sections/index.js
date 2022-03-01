@@ -30,7 +30,10 @@ function ContentSections() {
     <BaseLayout
       title="Content Sections"
       breadcrumb={[
-        { label: "Page Sections", route: "/sections/page-sections/content-sections" },
+        {
+          label: "Page Sections",
+          route: "/sections/page-sections/content-sections",
+        },
         { label: "Content Sections" },
       ]}
     >

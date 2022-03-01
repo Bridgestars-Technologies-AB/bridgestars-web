@@ -46,22 +46,58 @@ function LogoAreaThree() {
         </Grid>
         <Grid container spacing={3} sx={{ mt: 3 }}>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={coinbase} alt="coinbase" width="100%" opacity={0.9} />
+            <MKBox
+              component="img"
+              src={coinbase}
+              alt="coinbase"
+              width="100%"
+              opacity={0.9}
+            />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={nasa} alt="nasa" width="100%" opacity={0.9} />
+            <MKBox
+              component="img"
+              src={nasa}
+              alt="nasa"
+              width="100%"
+              opacity={0.9}
+            />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={netflix} alt="netflix" width="100%" opacity={0.9} />
+            <MKBox
+              component="img"
+              src={netflix}
+              alt="netflix"
+              width="100%"
+              opacity={0.9}
+            />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={pinterest} alt="pinterest" width="100%" opacity={0.9} />
+            <MKBox
+              component="img"
+              src={pinterest}
+              alt="pinterest"
+              width="100%"
+              opacity={0.9}
+            />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={spotify} alt="spotify" width="100%" opacity={0.9} />
+            <MKBox
+              component="img"
+              src={spotify}
+              alt="spotify"
+              width="100%"
+              opacity={0.9}
+            />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={vodafone} alt="vodafone" width="100%" opacity={0.9} />
+            <MKBox
+              component="img"
+              src={vodafone}
+              alt="vodafone"
+              width="100%"
+              opacity={0.9}
+            />
           </Grid>
         </Grid>
       </Container>

@@ -36,7 +36,10 @@ function GeneralCards() {
     <BaseLayout
       title="General Cards"
       breadcrumb={[
-        { label: "Page Sections", route: "/sections/page-sections/general-cards" },
+        {
+          label: "Page Sections",
+          route: "/sections/page-sections/general-cards",
+        },
         { label: "General Cards" },
       ]}
     >

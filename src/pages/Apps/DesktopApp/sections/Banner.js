@@ -51,14 +51,23 @@ function Banner() {
       />
       <Container sx={{ position: "relative" }}>
         <Grid container justifyContent="center" alignItems="center">
-          <Grid item xs={12} md={7} lg={5} py={{ xs: 0, sm: 6 }} mr="auto" position="relative">
+          <Grid
+            item
+            xs={12}
+            md={7}
+            lg={5}
+            py={{ xs: 0, sm: 6 }}
+            mr="auto"
+            position="relative"
+          >
             <MKTypography variant="h2" color="white" mb={1}>
               Start building your awesome application
             </MKTypography>
             <MKTypography variant="body1" color="white" mb={6}>
-              Elegance is the end result of hard work, not the starting point. Strive to make your
-              work so invisible that the reader thinks they could have written what you published.
-              Trusted by 5.000+ clients from all around the world.
+              Elegance is the end result of hard work, not the starting point.
+              Strive to make your work so invisible that the reader thinks they
+              could have written what you published. Trusted by 5.000+ clients
+              from all around the world.
             </MKTypography>
             <MKButton variant="gradient" color="dark">
               Start now
@@ -67,7 +76,14 @@ function Banner() {
               Read more
             </MKButton>
           </Grid>
-          <Grid item xs={12} position="absolute" left="50%" mr={-32} width="75%">
+          <Grid
+            item
+            xs={12}
+            position="absolute"
+            left="50%"
+            mr={-32}
+            width="75%"
+          >
             <MKBox
               component="img"
               src={laptop}

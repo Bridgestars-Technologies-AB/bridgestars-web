@@ -37,14 +37,26 @@ function NewsletterOne() {
               Join our newsletter and get news in your inbox every week!
             </MKTypography>
           </Grid>
-          <Grid item xs={12} lg={6} flexDirection="column" justifyContent="center" ml="auto">
+          <Grid
+            item
+            xs={12}
+            lg={6}
+            flexDirection="column"
+            justifyContent="center"
+            ml="auto"
+          >
             <MKBox component="form" method="" action="">
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={8}>
                   <MKInput label="Your Email..." fullWidth />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                  <MKButton variant="gradient" color="info" fullWidth sx={{ height: "100%" }}>
+                  <MKButton
+                    variant="gradient"
+                    color="info"
+                    fullWidth
+                    sx={{ height: "100%" }}
+                  >
                     Subscribe
                   </MKButton>
                 </Grid>

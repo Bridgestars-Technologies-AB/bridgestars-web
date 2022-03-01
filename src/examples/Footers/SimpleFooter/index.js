@@ -42,7 +42,11 @@ function SimpleFooter({ company, links, light }) {
         lineHeight={1}
       >
         <Link href={link.href} target="_blank">
-          <MKTypography variant="button" fontWeight="regular" color={light ? "white" : "text"}>
+          <MKTypography
+            variant="button"
+            fontWeight="regular"
+            color={light ? "white" : "text"}
+          >
             {link.name}
           </MKTypography>
         </Link>
@@ -67,14 +71,23 @@ function SimpleFooter({ company, links, light }) {
           fontSize={size.sm}
         >
           &copy; {new Date().getFullYear()}, made with
-          <MKBox fontSize={size.md} color={light ? "white" : "text"} mb={-0.5} mx={0.25}>
+          <MKBox
+            fontSize={size.md}
+            color={light ? "white" : "text"}
+            mb={-0.5}
+            mx={0.25}
+          >
             <Icon color="inherit" fontSize="inherit">
               favorite
             </Icon>
           </MKBox>
           by
           <Link href={href} target="_blank">
-            <MKTypography variant="button" fontWeight="medium" color={light ? "white" : "dark"}>
+            <MKTypography
+              variant="button"
+              fontWeight="medium"
+              color={light ? "white" : "dark"}
+            >
               &nbsp;{name}&nbsp;
             </MKTypography>
           </Link>
@@ -119,7 +132,10 @@ SimpleFooter.defaultProps = {
       href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
       name: "About Us",
     },
-    { href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/", name: "Blog" },
+    {
+      href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+      name: "Blog",
+    },
     {
       href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
       name: "License",

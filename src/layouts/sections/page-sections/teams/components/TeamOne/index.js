@@ -40,7 +40,8 @@ function Team1() {
           fontSize="1.125rem"
           className="fab fa-twitter"
           sx={{
-            color: ({ palette: { socialMediaColors } }) => socialMediaColors.twitter.main,
+            color: ({ palette: { socialMediaColors } }) =>
+              socialMediaColors.twitter.main,
             cursor: "pointer",
           }}
         />
@@ -51,7 +52,8 @@ function Team1() {
           fontSize="1.125rem"
           className="fab fa-dribbble"
           sx={{
-            color: ({ palette: { socialMediaColors } }) => socialMediaColors.dribbble.main,
+            color: ({ palette: { socialMediaColors } }) =>
+              socialMediaColors.dribbble.main,
             cursor: "pointer",
           }}
         />
@@ -62,7 +64,8 @@ function Team1() {
           fontSize="1.125rem"
           className="fab fa-linkedin"
           sx={{
-            color: ({ palette: { socialMediaColors } }) => socialMediaColors.linkedin.main,
+            color: ({ palette: { socialMediaColors } }) =>
+              socialMediaColors.linkedin.main,
             cursor: "pointer",
           }}
         />
@@ -93,8 +96,8 @@ function Team1() {
             Our Awesome Team
           </MKTypography>
           <MKTypography variant="body2" color="text">
-            This is the paragraph where you can write more details about your team. Keep you user
-            engaged by providing meaningful information.
+            This is the paragraph where you can write more details about your
+            team. Keep you user engaged by providing meaningful information.
           </MKTypography>
         </Grid>
         <Grid container spacing={3} mt={6}>

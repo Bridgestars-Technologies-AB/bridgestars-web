@@ -32,7 +32,11 @@ function TabsVertical() {
     <Container>
       <Grid container item justifyContent="center" xs={12} lg={4} mx="auto">
         <AppBar position="static">
-          <Tabs value={activeTab} orientation="vertical" onChange={handleTabType}>
+          <Tabs
+            value={activeTab}
+            orientation="vertical"
+            onChange={handleTabType}
+          >
             <Tab label="My Profile" />
             <Tab label="Dashboard" />
             <Tab label="Payments" />

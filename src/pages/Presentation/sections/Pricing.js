@@ -32,7 +32,13 @@ import bgPattern from "assets/images/shapes/pattern-lines.svg";
 function Pricing() {
   return (
     <>
-      <MKBox position="relative" variant="gradient" bgColor="info" mt={{ xs: 0, lg: 12 }} mx={-2}>
+      <MKBox
+        position="relative"
+        variant="gradient"
+        bgColor="info"
+        mt={{ xs: 0, lg: 12 }}
+        mx={-2}
+      >
         <MKBox
           component="img"
           src={bgPattern}
@@ -47,13 +53,19 @@ function Pricing() {
         <Container>
           <Grid container justifyContent="center" sx={{ pt: 6, pb: 18 }}>
             <Grid item xs={12} md={7} sx={{ textAlign: "center" }}>
-              <MKBadge badgeContent="pricing" color="dark" size="sm" container sx={{ mb: 1 }} />
+              <MKBadge
+                badgeContent="pricing"
+                color="dark"
+                size="sm"
+                container
+                sx={{ mb: 1 }}
+              />
               <MKTypography variant="h3" color="white" mb={1}>
                 Ready to get Material Kit?
               </MKTypography>
               <MKTypography variant="body2" color="white">
-                Based on the license you get, you will have direct access to our team <br /> of
-                developers who built the product.
+                Based on the license you get, you will have direct access to our
+                team <br /> of developers who built the product.
               </MKTypography>
             </Grid>
           </Grid>
@@ -134,7 +146,13 @@ function Pricing() {
               />
             </Grid>
           </Grid>
-          <Grid container item xs={12} flexDirection="column" sx={{ textAlign: "center" }}>
+          <Grid
+            container
+            item
+            xs={12}
+            flexDirection="column"
+            sx={{ textAlign: "center" }}
+          >
             <MKTypography variant="body2" color="text" mt={6} mb={3} mx="auto">
               <Icon>lock</Icon> Secured Payment by <b>2Checkout</b> with:
             </MKTypography>
@@ -147,9 +165,15 @@ function Pricing() {
               &nbsp;
               <i className="fa fa-cc-amex fa-2x" />
             </MKTypography>
-            <MKTypography variant="body2" color="text" mx="auto" sx={{ maxWidth: "500px" }}>
-              <b>Info:</b> If you are a Registered Company inside the European Union you will be
-              able to add your VAT ID after your Press &quot;Buy Now&quot;
+            <MKTypography
+              variant="body2"
+              color="text"
+              mx="auto"
+              sx={{ maxWidth: "500px" }}
+            >
+              <b>Info:</b> If you are a Registered Company inside the European
+              Union you will be able to add your VAT ID after your Press
+              &quot;Buy Now&quot;
             </MKTypography>
           </Grid>
         </Container>

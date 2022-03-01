@@ -31,7 +31,10 @@ function OurEfforts() {
         mx={-2}
         minHeight="18.75rem"
         sx={{
-          backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) =>
+          backgroundImage: ({
+            palette: { gradients },
+            functions: { linearGradient, rgba },
+          }) =>
             `${linearGradient(
               rgba(gradients.dark.main, 0.6),
               rgba(gradients.dark.state, 0.6)
@@ -40,7 +43,15 @@ function OurEfforts() {
         }}
       />
       <Container>
-        <Grid container item flexDirection="column" xs={12} lg={8} mt={12} mx="auto">
+        <Grid
+          container
+          item
+          flexDirection="column"
+          xs={12}
+          lg={8}
+          mt={12}
+          mx="auto"
+        >
           <MKTypography
             component="h6"
             variant="button"
@@ -55,8 +66,9 @@ function OurEfforts() {
             The powerfull design system
           </MKTypography>
           <MKTypography variant="body2">
-            The way to survive in modern society is to be an ascetic. It is to retreat from society.
-            There&apos;s too much society everywhere you go…The only solution is turn it off.
+            The way to survive in modern society is to be an ascetic. It is to
+            retreat from society. There&apos;s too much society everywhere you
+            go…The only solution is turn it off.
           </MKTypography>
         </Grid>
       </Container>

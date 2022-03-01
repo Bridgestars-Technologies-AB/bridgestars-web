@@ -57,50 +57,98 @@ function Testimonials() {
             Think about us
           </MKTypography>
           <MKTypography variant="body2" color="text">
-            That&apos;s the main thing people are controlled by! Thoughts- their perception of
-            themselves!{" "}
+            That&apos;s the main thing people are controlled by! Thoughts- their
+            perception of themselves!{" "}
           </MKTypography>
         </Grid>
         <Grid container spacing={3} mt={8}>
           <Grid item xs={12} md={8} lg={4}>
             <MiniReviewCard
               review="If you have the opportunity to play this game of life you need to appreciate every moment."
-              author={{ image: review1, name: "Mathew Glock", date: "Posted on 28 February" }}
+              author={{
+                image: review1,
+                name: "Mathew Glock",
+                date: "Posted on 28 February",
+              }}
             />
           </Grid>
           <Grid item xs={12} md={8} lg={4}>
             <MiniReviewCard
               color="warning"
               review="If you have the opportunity to play this game of life you need to appreciate every moment."
-              author={{ image: review2, name: "Mathew Glock", date: "Posted on 28 February" }}
+              author={{
+                image: review2,
+                name: "Mathew Glock",
+                date: "Posted on 28 February",
+              }}
             />
           </Grid>
           <Grid item xs={12} md={8} lg={4}>
             <MiniReviewCard
               review="If you have the opportunity to play this game of life you need to appreciate every moment."
-              author={{ image: review3, name: "Mathew Glock", date: "Posted on 28 February" }}
+              author={{
+                image: review3,
+                name: "Mathew Glock",
+                date: "Posted on 28 February",
+              }}
             />
           </Grid>
         </Grid>
         <Divider sx={{ my: 6 }} />
         <Grid container spacing={3}>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={apple} alt="apple" width="100%" opacity={0.6} />
+            <MKBox
+              component="img"
+              src={apple}
+              alt="apple"
+              width="100%"
+              opacity={0.6}
+            />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={facebook} alt="facebook" width="100%" opacity={0.6} />
+            <MKBox
+              component="img"
+              src={facebook}
+              alt="facebook"
+              width="100%"
+              opacity={0.6}
+            />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={behance} alt="behance" width="100%" opacity={0.6} />
+            <MKBox
+              component="img"
+              src={behance}
+              alt="behance"
+              width="100%"
+              opacity={0.6}
+            />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={spotify} alt="spotify" width="100%" opacity={0.6} />
+            <MKBox
+              component="img"
+              src={spotify}
+              alt="spotify"
+              width="100%"
+              opacity={0.6}
+            />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={coinbase} alt="coinbase" width="100%" opacity={0.6} />
+            <MKBox
+              component="img"
+              src={coinbase}
+              alt="coinbase"
+              width="100%"
+              opacity={0.6}
+            />
           </Grid>
           <Grid item xs={6} md={4} lg={2}>
-            <MKBox component="img" src={pinterest} alt="pinterest" width="100%" opacity={0.6} />
+            <MKBox
+              component="img"
+              src={pinterest}
+              alt="pinterest"
+              width="100%"
+              opacity={0.6}
+            />
           </Grid>
         </Grid>
       </Container>

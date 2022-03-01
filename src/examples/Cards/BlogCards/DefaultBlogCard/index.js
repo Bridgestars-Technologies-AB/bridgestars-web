@@ -28,7 +28,15 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKAvatar from "components/MKAvatar";
 
-function DefaultBlogCard({ image, category, title, description, author, raised, action }) {
+function DefaultBlogCard({
+  image,
+  category,
+  title,
+  description,
+  author,
+  raised,
+  action,
+}) {
   const imageTemplate = (
     <>
       <MKBox
@@ -123,7 +131,12 @@ function DefaultBlogCard({ image, category, title, description, author, raised, 
               variant={raised ? "circular" : "rounded"}
             />
             <MKBox pl={2} lineHeight={0}>
-              <MKTypography component="h6" variant="button" fontWeight="medium" gutterBottom>
+              <MKTypography
+                component="h6"
+                variant="button"
+                fontWeight="medium"
+                gutterBottom
+              >
                 {author.name}
               </MKTypography>
               <MKTypography variant="caption" color="text">

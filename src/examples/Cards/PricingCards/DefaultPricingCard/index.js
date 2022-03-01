@@ -28,7 +28,14 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
 
-function DefaultPricingCard({ color, badge, price, specifications, action, shadow }) {
+function DefaultPricingCard({
+  color,
+  badge,
+  price,
+  specifications,
+  action,
+  shadow,
+}) {
   const renderSpecifications = specifications.map(({ label, includes }) => (
     <MKBox key={label} display="flex" alignItems="center" p={1}>
       <MKBox
@@ -59,7 +66,9 @@ function DefaultPricingCard({ color, badge, price, specifications, action, shado
   ));
 
   return (
-    <Card sx={{ boxShadow: ({ boxShadows: { lg } }) => (shadow ? lg : "none") }}>
+    <Card
+      sx={{ boxShadow: ({ boxShadows: { lg } }) => (shadow ? lg : "none") }}
+    >
       <MKBox
         bgColor={color}
         variant={color === "white" ? "contained" : "gradient"}
@@ -87,7 +96,10 @@ function DefaultPricingCard({ color, badge, price, specifications, action, shado
         </MKBox>
         <MKBox pt={3} pb={2} px={2} textAlign="center">
           <MKBox my={1}>
-            <MKTypography variant="h1" color={color === "white" ? "dark" : "white"}>
+            <MKTypography
+              variant="h1"
+              color={color === "white" ? "dark" : "white"}
+            >
               <MKTypography
                 display="inline"
                 component="small"
@@ -98,7 +110,12 @@ function DefaultPricingCard({ color, badge, price, specifications, action, shado
                 {price.currency}
               </MKTypography>
               {price.value}
-              <MKTypography display="inline" component="small" variant="h5" color="inherit">
+              <MKTypography
+                display="inline"
+                component="small"
+                variant="h5"
+                color="inherit"
+              >
                 /{price.type}
               </MKTypography>
             </MKTypography>

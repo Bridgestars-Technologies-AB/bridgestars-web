@@ -29,7 +29,13 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 // Otis Kit PRO page layout routes
 import routes from "constants/routes";
 
-function IllustrationLayout({ header, title, description, illustration, children }) {
+function IllustrationLayout({
+  header,
+  title,
+  description,
+  illustration,
+  children,
+}) {
   return (
     <MKBox width="100%" height="100%" bgColor="white">
       <MKBox position="absolute" width="100%" mt={1}>
@@ -37,7 +43,8 @@ function IllustrationLayout({ header, title, description, illustration, children
           routes={routes}
           action={{
             type: "external",
-            route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+            route:
+              "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
             label: "buy now",
             color: "dark",
           }}
@@ -56,7 +63,12 @@ function IllustrationLayout({ header, title, description, illustration, children
           />
         </Grid>
         <Grid item xs={11} sm={8} md={5} lg={4} xl={3} sx={{ mx: "auto" }}>
-          <MKBox display="flex" flexDirection="column" justifyContent="center" height="100vh">
+          <MKBox
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            height="100vh"
+          >
             <MKBox p={3} textAlign="center">
               {!header ? (
                 <>

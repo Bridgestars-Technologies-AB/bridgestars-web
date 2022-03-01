@@ -37,12 +37,18 @@ function FooterThress() {
       href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
       name: "About Us",
     },
-    { href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/", name: "Team" },
+    {
+      href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+      name: "Team",
+    },
     {
       href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
       name: "Products",
     },
-    { href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/", name: "Blog" },
+    {
+      href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+      name: "Blog",
+    },
     {
       href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
       name: "License",

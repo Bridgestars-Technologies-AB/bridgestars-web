@@ -31,7 +31,13 @@ import bgBack from "assets/images/rotating-card-bg-back.jpeg";
 function CardRotate() {
   return (
     <MKBox pt={6} pb={3} px={3}>
-      <Grid container item xs={12} lg={6} sx={{ mx: "auto", px: { xs: 0, lg: 6 } }}>
+      <Grid
+        container
+        item
+        xs={12}
+        lg={6}
+        sx={{ mx: "auto", px: { xs: 0, lg: 6 } }}
+      >
         <RotatingCard>
           <RotatingCardFront
             image={bgFront}
@@ -49,7 +55,11 @@ function CardRotate() {
             image={bgBack}
             title="Discover More"
             description="You will save a lot of time going from prototyping to full-functional code because all elements are implemented."
-            action={{ type: "internal", route: "/", label: "start with header" }}
+            action={{
+              type: "internal",
+              route: "/",
+              label: "start with header",
+            }}
           />
         </RotatingCard>
       </Grid>

@@ -30,7 +30,10 @@ function Modals() {
     <BaseLayout
       title="Modals"
       breadcrumb={[
-        { label: "Page Sections", route: "/sections/attention-catchers/modals" },
+        {
+          label: "Page Sections",
+          route: "/sections/attention-catchers/modals",
+        },
         { label: "Modals" },
       ]}
     >

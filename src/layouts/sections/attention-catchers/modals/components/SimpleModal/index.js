@@ -42,7 +42,11 @@ function SimpleModal() {
             Launch Demo Modal
           </MKButton>
         </Grid>
-        <Modal open={show} onClose={toggleModal} sx={{ display: "grid", placeItems: "center" }}>
+        <Modal
+          open={show}
+          onClose={toggleModal}
+          sx={{ display: "grid", placeItems: "center" }}
+        >
           <Slide direction="down" in={show} timeout={500}>
             <MKBox
               position="relative"
@@ -53,20 +57,35 @@ function SimpleModal() {
               bgColor="white"
               shadow="xl"
             >
-              <MKBox display="flex" alginItems="center" justifyContent="space-between" p={2}>
+              <MKBox
+                display="flex"
+                alginItems="center"
+                justifyContent="space-between"
+                p={2}
+              >
                 <MKTypography variant="h5">Your modal title</MKTypography>
-                <CloseIcon fontSize="medium" sx={{ cursor: "pointer" }} onClick={toggleModal} />
+                <CloseIcon
+                  fontSize="medium"
+                  sx={{ cursor: "pointer" }}
+                  onClick={toggleModal}
+                />
               </MKBox>
               <Divider sx={{ my: 0 }} />
               <MKBox p={2}>
-                <MKTypography variant="body2" color="secondary" fontWeight="regular">
-                  Society has put up so many boundaries, so many limitations on what&apos;s right
-                  and wrong that it&apos;s almost impossible to get a pure thought out.
+                <MKTypography
+                  variant="body2"
+                  color="secondary"
+                  fontWeight="regular"
+                >
+                  Society has put up so many boundaries, so many limitations on
+                  what&apos;s right and wrong that it&apos;s almost impossible
+                  to get a pure thought out.
                   <br />
                   <br />
-                  It&apos;s like a little kid, a little boy, looking at colors, and no one told him
-                  what colors are good, before somebody tells you you shouldn&apos;t like pink
-                  because that&apos;s for girls, or you&apos;d instantly become a gay two-year-old.
+                  It&apos;s like a little kid, a little boy, looking at colors,
+                  and no one told him what colors are good, before somebody
+                  tells you you shouldn&apos;t like pink because that&apos;s for
+                  girls, or you&apos;d instantly become a gay two-year-old.
                 </MKTypography>
               </MKBox>
               <Divider sx={{ my: 0 }} />

@@ -28,7 +28,8 @@ function DismissingAlert() {
         <Grid container item xs={12} lg={10} mx="auto">
           <Grid item xs={12}>
             <MKAlert color="warning" dismissible>
-              <strong>Holy molly!</strong>&nbsp; You should check in on some of those fields below.
+              <strong>Holy molly!</strong>&nbsp; You should check in on some of
+              those fields below.
             </MKAlert>
           </Grid>
         </Grid>

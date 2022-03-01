@@ -52,7 +52,8 @@ function VirtualReality() {
         routes={routes}
         action={{
           type: "external",
-          route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+          route:
+            "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
           label: "buy now",
           color: "dark",
         }}
@@ -62,7 +63,10 @@ function VirtualReality() {
         minHeight="100vh"
         width="100%"
         sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
+          backgroundImage: ({
+            functions: { linearGradient, rgba },
+            palette: { gradients },
+          }) =>
             `${linearGradient(
               rgba(gradients.dark.main, 0.6),
               rgba(gradients.dark.state, 0.6)
@@ -74,7 +78,12 @@ function VirtualReality() {
         }}
       >
         <Container>
-          <Grid container spacing={3} justifyContent="center" pt={{ xs: 16, lg: 6 }}>
+          <Grid
+            container
+            spacing={3}
+            justifyContent="center"
+            pt={{ xs: 16, lg: 6 }}
+          >
             <Grid item xs={12} md={1}>
               <MKBox
                 display="flex"
@@ -99,7 +108,10 @@ function VirtualReality() {
                     <MKButton
                       iconOnly
                       size="large"
-                      sx={({ palette: { black }, borders: { borderRadius } }) => ({
+                      sx={({
+                        palette: { black },
+                        borders: { borderRadius },
+                      }) => ({
                         color: black.main,
                         borderRadius: borderRadius.lg,
                       })}
@@ -113,7 +125,10 @@ function VirtualReality() {
                     <MKButton
                       iconOnly
                       size="large"
-                      sx={({ palette: { black }, borders: { borderRadius } }) => ({
+                      sx={({
+                        palette: { black },
+                        borders: { borderRadius },
+                      }) => ({
                         color: black.main,
                         borderRadius: borderRadius.lg,
                       })}
@@ -126,7 +141,10 @@ function VirtualReality() {
                   <MKButton
                     iconOnly
                     size="large"
-                    sx={({ palette: { black }, borders: { borderRadius } }) => ({
+                    sx={({
+                      palette: { black },
+                      borders: { borderRadius },
+                    }) => ({
                       color: black.main,
                       borderRadius: borderRadius.lg,
                     })}

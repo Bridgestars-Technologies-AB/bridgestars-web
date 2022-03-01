@@ -30,7 +30,13 @@ function AlertsWithLinks() {
           <Grid item xs={12}>
             <MKAlert color="primary">
               A simple primary alert with an&nbsp;
-              <MKTypography component="a" href="#" variant="body2" fontWeight="bold" color="white">
+              <MKTypography
+                component="a"
+                href="#"
+                variant="body2"
+                fontWeight="bold"
+                color="white"
+              >
                 example link
               </MKTypography>
               . Give it a click if you like.
@@ -39,7 +45,13 @@ function AlertsWithLinks() {
           <Grid item xs={12}>
             <MKAlert color="secondary">
               A simple secondary alert with an&nbsp;
-              <MKTypography component="a" href="#" variant="body2" fontWeight="bold" color="white">
+              <MKTypography
+                component="a"
+                href="#"
+                variant="body2"
+                fontWeight="bold"
+                color="white"
+              >
                 example link
               </MKTypography>
               . Give it a click if you like.
@@ -48,7 +60,13 @@ function AlertsWithLinks() {
           <Grid item xs={12}>
             <MKAlert color="success">
               A simple success alert with an&nbsp;
-              <MKTypography component="a" href="#" variant="body2" fontWeight="bold" color="white">
+              <MKTypography
+                component="a"
+                href="#"
+                variant="body2"
+                fontWeight="bold"
+                color="white"
+              >
                 example link
               </MKTypography>
               . Give it a click if you like.
@@ -57,7 +75,13 @@ function AlertsWithLinks() {
           <Grid item xs={12}>
             <MKAlert color="error">
               A simple error alert with an&nbsp;
-              <MKTypography component="a" href="#" variant="body2" fontWeight="bold" color="white">
+              <MKTypography
+                component="a"
+                href="#"
+                variant="body2"
+                fontWeight="bold"
+                color="white"
+              >
                 example link
               </MKTypography>
               . Give it a click if you like.
@@ -66,7 +90,13 @@ function AlertsWithLinks() {
           <Grid item xs={12}>
             <MKAlert color="warning">
               A simple warning alert with an&nbsp;
-              <MKTypography component="a" href="#" variant="body2" fontWeight="bold" color="white">
+              <MKTypography
+                component="a"
+                href="#"
+                variant="body2"
+                fontWeight="bold"
+                color="white"
+              >
                 example link
               </MKTypography>
               . Give it a click if you like.
@@ -75,7 +105,13 @@ function AlertsWithLinks() {
           <Grid item xs={12}>
             <MKAlert color="info">
               A simple info alert with an&nbsp;
-              <MKTypography component="a" href="#" variant="body2" fontWeight="bold" color="white">
+              <MKTypography
+                component="a"
+                href="#"
+                variant="body2"
+                fontWeight="bold"
+                color="white"
+              >
                 example link
               </MKTypography>
               . Give it a click if you like.
@@ -84,7 +120,13 @@ function AlertsWithLinks() {
           <Grid item xs={12}>
             <MKAlert color="light">
               A simple light alert with an&nbsp;
-              <MKTypography component="a" href="#" variant="body2" fontWeight="bold" color="dark">
+              <MKTypography
+                component="a"
+                href="#"
+                variant="body2"
+                fontWeight="bold"
+                color="dark"
+              >
                 example link
               </MKTypography>
               . Give it a click if you like.
@@ -93,7 +135,13 @@ function AlertsWithLinks() {
           <Grid item xs={12}>
             <MKAlert color="dark">
               A simple dark alert with an&nbsp;
-              <MKTypography component="a" href="#" variant="body2" fontWeight="bold" color="white">
+              <MKTypography
+                component="a"
+                href="#"
+                variant="body2"
+                fontWeight="bold"
+                color="white"
+              >
                 example link
               </MKTypography>
               . Give it a click if you like.

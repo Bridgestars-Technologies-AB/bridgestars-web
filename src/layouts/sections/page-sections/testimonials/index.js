@@ -35,7 +35,10 @@ function Testimonials() {
     <BaseLayout
       title="Testimonials"
       breadcrumb={[
-        { label: "Page Sections", route: "/sections/page-sections/testimonials" },
+        {
+          label: "Page Sections",
+          route: "/sections/page-sections/testimonials",
+        },
         { label: "Testimonials" },
       ]}
     >

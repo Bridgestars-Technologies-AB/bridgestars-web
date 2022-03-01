@@ -29,7 +29,7 @@ import Presentation from "layouts/pages/presentation";
 // Otis Kit PRO routes
 import routes from "constants/routes";
 
-import  BridgestarsHome from "bridgestars/home"
+import BridgestarsHome from "bridgestars/home";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -47,7 +47,14 @@ export default function App() {
       }
 
       if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
+        return (
+          <Route
+            exact
+            path={route.route}
+            element={route.component}
+            key={route.key}
+          />
+        );
       }
 
       return null;
@@ -58,7 +65,7 @@ export default function App() {
       <CssBaseline />
       <Routes>
         {getRoutes(routes)}
-        <Route path="/presentation" element={<BridgestarsHome/>} />
+        <Route path="/presentation" element={<BridgestarsHome />} />
         <Route path="*" element={<Navigate to="/presentation" />} />
       </Routes>
     </ThemeProvider>

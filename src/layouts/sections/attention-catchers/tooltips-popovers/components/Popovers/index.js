@@ -43,7 +43,12 @@ function Popovers() {
   const closePopover = () => setPopover(null);
 
   const popoverTemplate = (
-    <Popover open={Boolean(popover)} anchorEl={popover} onClose={closePopover} {...popoverOrigin}>
+    <Popover
+      open={Boolean(popover)}
+      anchorEl={popover}
+      onClose={closePopover}
+      {...popoverOrigin}
+    >
       <MKBox bgColor="white" py={1.5} px={2} lineHeight={0.8}>
         <MKTypography variant="caption" color="text">
           That&apos;s the main thing people are controlled

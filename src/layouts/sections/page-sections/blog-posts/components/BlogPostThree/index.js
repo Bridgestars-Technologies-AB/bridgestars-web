@@ -51,7 +51,10 @@ function BlogPostThree() {
                 name: "Mathew Glock",
                 date: "Posted on 28 February",
               }}
-              action={{ type: "internal", route: "/pages/blogs/single-article" }}
+              action={{
+                type: "internal",
+                route: "/pages/blogs/single-article",
+              }}
             />
           </Grid>
           <Grid item xs={12} lg={4} mb={{ xs: 3, lg: 0 }}>
@@ -65,7 +68,10 @@ function BlogPostThree() {
                 name: "Mathew Glock",
                 date: "Posted on 28 February",
               }}
-              action={{ type: "internal", route: "/pages/blogs/single-article" }}
+              action={{
+                type: "internal",
+                route: "/pages/blogs/single-article",
+              }}
             />
           </Grid>
           <Grid item xs={12} lg={4} mb={{ xs: 3, lg: 0 }}>
@@ -79,7 +85,10 @@ function BlogPostThree() {
                 name: "Mathew Glock",
                 date: "Posted on 28 February",
               }}
-              action={{ type: "internal", route: "/pages/blogs/single-article" }}
+              action={{
+                type: "internal",
+                route: "/pages/blogs/single-article",
+              }}
             />
           </Grid>
         </Grid>

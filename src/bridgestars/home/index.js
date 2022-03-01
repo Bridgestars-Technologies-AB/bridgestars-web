@@ -29,7 +29,7 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 
 // Coworking page sections
-import Information from "bridgestars/home/sections/Information";
+import Features from "bridgestars/home/sections/Features";
 import Testimonials from "bridgestars/home/sections/Testimonials";
 import AboutUs from "bridgestars/home/sections/AboutUs";
 import Places from "bridgestars/home/sections/Places";
@@ -42,7 +42,6 @@ import footerRoutes from "constants/footer.routes";
 import bgImage from "assets/images/bridgeBG0.webp";
 import linearHomepageGradient from "assets/theme/functions/linearHomepageGradient";
 
-
 export default function BridgestarsHome() {
   return (
     <>
@@ -50,11 +49,12 @@ export default function BridgestarsHome() {
         routes={routes}
         action={{
           type: "internal",
-          route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+          route:
+            "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
           label: "sign in",
           color: "primary",
 
-                 /* "primary",
+          /* "primary",
         "secondary",
         "info",
         "success",
@@ -65,7 +65,6 @@ export default function BridgestarsHome() {
         "default",
         "white",*/
         }}
-        
         sticky
         brand="Bridgestars"
       />
@@ -73,11 +72,21 @@ export default function BridgestarsHome() {
         minHeight="75vh"
         width="100%"
         sx={{
-          backgroundImage: ({ functions: {linearHomepageGradient,rgba}, palette: { gradients } }) =>
-            `${linearHomepageGradient([
-              {color: rgba(255, 0, 0, 0.3), percentage: 0},
-              {color: rgba(0, 0, 0, 0.15), percentage: 35}
-            ],0)}
+          backgroundImage: ({
+            functions: { linearHomepageGradient, rgba },
+            palette: { gradients },
+          }) =>
+            `${linearHomepageGradient(
+              [
+                { color: rgba(gradients.primary.main, 0.6), percentage: 0 },
+                { color: `rgba(0, 0, 0, 0.25)`, percentage: 30 },
+                { color: `rgba(0, 0, 0, 0.25)`, percentage: 65 },
+                { color: rgba(gradients.secondary.main, 1), percentage: 100 },
+                //{color: `rgba(255, 0, 0, 0.5)`, percentage: 0},
+                // {color: `rgba(0, 0, 0, 0.15)`, percentage: 35}
+              ],
+              135
+            )}
             , url(${bgImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -132,12 +141,13 @@ export default function BridgestarsHome() {
           mx: { xs: 2, lg: 3 },
           mt: -8,
           mb: 4,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
+          backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
+            rgba(white.main, 0.8),
           backdropFilter: "saturate(200%) blur(30px)",
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        <Information />
+        <Features />
         <Testimonials />
         <AboutUs />
         <Places />
@@ -157,13 +167,18 @@ export default function BridgestarsHome() {
             <Grid container spacing={3} alignItems="center">
               <Grid item xs={12} md={8} lg={5}>
                 <MKTypography variant="h5" color="white" fontWeight="bold">
-                  For being a bright color. For standing out. But the time is now to be okay to be
-                  the greatest you.
+                  For being a bright color. For standing out. But the time is
+                  now to be okay to be the greatest you.
                 </MKTypography>
               </Grid>
               <Grid item xs={12} lg={6} sx={{ ml: "auto" }}>
                 <MKBox width="12rem" ml="auto">
-                  <MKButton variant="gradient" color="warning" fullWidth sx={{ boxShadow: "none" }}>
+                  <MKButton
+                    variant="gradient"
+                    color="warning"
+                    fullWidth
+                    sx={{ boxShadow: "none" }}
+                  >
                     start now
                   </MKButton>
                 </MKBox>

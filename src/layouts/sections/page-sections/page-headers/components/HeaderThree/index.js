@@ -109,7 +109,10 @@ function HeaderThree() {
         alignItems="center"
         minHeight="100%"
         sx={{
-          backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) =>
+          backgroundImage: ({
+            palette: { gradients },
+            functions: { linearGradient, rgba },
+          }) =>
             `${linearGradient(
               rgba(gradients.dark.main, 0.4),
               rgba(gradients.dark.state, 0.4)
@@ -142,11 +145,23 @@ function HeaderThree() {
             >
               Work with an amazing
             </MKTypography>
-            <MKTypography variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
-              We&apos;re constantly trying to express ourselves and actualize our dreams. If you
-              have the opportunity to play this game. If you have the opportunity to play this game.
+            <MKTypography
+              variant="body1"
+              color="white"
+              mt={1}
+              mb={{ xs: 3, sm: 8 }}
+              px={3}
+            >
+              We&apos;re constantly trying to express ourselves and actualize
+              our dreams. If you have the opportunity to play this game. If you
+              have the opportunity to play this game.
             </MKTypography>
-            <MKTypography variant="h6" color="white" textTransform="uppercase" mb={3}>
+            <MKTypography
+              variant="h6"
+              color="white"
+              textTransform="uppercase"
+              mb={3}
+            >
               connect with us on:
             </MKTypography>
             <Stack direction="row" spacing={6} mx="auto">
@@ -156,7 +171,11 @@ function HeaderThree() {
                 variant="body2"
                 onClick={(e) => e.preventDefault()}
               >
-                <MKBox component="i" color="white" className="fab fa-facebook" />
+                <MKBox
+                  component="i"
+                  color="white"
+                  className="fab fa-facebook"
+                />
               </MKTypography>
               <MKTypography
                 component={Link}
@@ -164,7 +183,11 @@ function HeaderThree() {
                 variant="body2"
                 onClick={(e) => e.preventDefault()}
               >
-                <MKBox component="i" color="white" className="fab fa-instagram" />
+                <MKBox
+                  component="i"
+                  color="white"
+                  className="fab fa-instagram"
+                />
               </MKTypography>
               <MKTypography
                 component={Link}
@@ -180,7 +203,11 @@ function HeaderThree() {
                 variant="body2"
                 onClick={(e) => e.preventDefault()}
               >
-                <MKBox component="i" color="white" className="fab fa-google-plus" />
+                <MKBox
+                  component="i"
+                  color="white"
+                  className="fab fa-google-plus"
+                />
               </MKTypography>
             </Stack>
           </Grid>

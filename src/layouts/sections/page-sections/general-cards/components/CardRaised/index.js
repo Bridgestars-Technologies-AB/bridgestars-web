@@ -28,7 +28,13 @@ function CardRaised() {
 
   return (
     <MKBox pt={6} pb={3} px={3}>
-      <Grid container item xs={12} lg={6} sx={{ mx: "auto", px: { xs: 0, lg: 6 } }}>
+      <Grid
+        container
+        item
+        xs={12}
+        lg={6}
+        sx={{ mx: "auto", px: { xs: 0, lg: 6 } }}
+      >
         <RaisedBlogCard
           image={image}
           title="Material Kit"

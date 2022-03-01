@@ -39,7 +39,10 @@ function TeamTwo() {
       position="relative"
       py={12}
       sx={{
-        backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) =>
+        backgroundImage: ({
+          palette: { gradients },
+          functions: { linearGradient, rgba },
+        }) =>
           `${linearGradient(
             rgba(gradients.dark.main, 0.8),
             rgba(gradients.dark.state, 0.8)
@@ -68,8 +71,8 @@ function TeamTwo() {
               The Executive Team
             </MKTypography>
             <MKTypography variant="body2" color="white" opacity={0.8}>
-              There&apos;s nothing I really wanted to do in life that I wasn&apos;t able to get good
-              at. That&apos;s my skill.
+              There&apos;s nothing I really wanted to do in life that I
+              wasn&apos;t able to get good at. That&apos;s my skill.
             </MKTypography>
           </Grid>
         </Grid>

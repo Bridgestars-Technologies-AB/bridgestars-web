@@ -35,9 +35,10 @@ function AlertWithContent() {
                   Good job!
                 </MKTypography>
                 <MKTypography variant="body2" color="white">
-                  That&apos;s the main thing people are controlled by! Thoughts- their perception of
-                  themselves! They&apos;re slowed down by their perception of themselves. If
-                  you&apos;re taught you can&apos;t do anything, you won&apos;t do anything. I was
+                  That&apos;s the main thing people are controlled by! Thoughts-
+                  their perception of themselves! They&apos;re slowed down by
+                  their perception of themselves. If you&apos;re taught you
+                  can&apos;t do anything, you won&apos;t do anything. I was
                   taught I could do everything.
                 </MKTypography>
                 <Divider light />

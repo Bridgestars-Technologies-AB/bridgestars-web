@@ -60,7 +60,10 @@ function Table({ columns, rows }) {
         textAlign={align}
         color="secondary"
         opacity={0.7}
-        sx={({ typography: { size, fontWeightBold }, borders: { borderWidth, borderColor } }) => ({
+        sx={({
+          typography: { size, fontWeightBold },
+          borders: { borderWidth, borderColor },
+        }) => ({
           fontSize: size.xxs,
           fontWeight: fontWeightBold,
           borderBottom: `${borderWidth[1]} solid ${borderColor}`,
@@ -84,14 +87,25 @@ function Table({ columns, rows }) {
             component="td"
             p={1}
             sx={({ borders: { borderWidth, borderColor } }) => ({
-              borderBottom: row.hasBorder ? `${borderWidth[1]} solid ${borderColor}` : 0,
+              borderBottom: row.hasBorder
+                ? `${borderWidth[1]} solid ${borderColor}`
+                : 0,
             })}
           >
             <MKBox display="flex" alignItems="center" py={0.5} px={1}>
               <MKBox mr={2}>
-                <MKAvatar src={row[name][0]} name={row[name][1]} variant="rounded" size="sm" />
+                <MKAvatar
+                  src={row[name][0]}
+                  name={row[name][1]}
+                  variant="rounded"
+                  size="sm"
+                />
               </MKBox>
-              <MKTypography variant="button" fontWeight="medium" sx={{ width: "max-content" }}>
+              <MKTypography
+                variant="button"
+                fontWeight="medium"
+                sx={{ width: "max-content" }}
+              >
                 {row[name][1]}
               </MKTypography>
             </MKBox>
@@ -105,7 +119,9 @@ function Table({ columns, rows }) {
             p={1}
             textAlign={align}
             sx={({ borders: { borderWidth, borderColor } }) => ({
-              borderBottom: row.hasBorder ? `${borderWidth[1]} solid ${borderColor}` : 0,
+              borderBottom: row.hasBorder
+                ? `${borderWidth[1]} solid ${borderColor}`
+                : 0,
             })}
           >
             <MKTypography

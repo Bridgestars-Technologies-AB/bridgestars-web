@@ -29,7 +29,13 @@ import author from "assets/images/marie.jpg";
 function CardImageInside() {
   return (
     <MKBox pt={6} pb={3} px={3}>
-      <Grid container item xs={12} lg={6} sx={{ mx: "auto", px: { xs: 0, lg: 6 } }}>
+      <Grid
+        container
+        item
+        xs={12}
+        lg={6}
+        sx={{ mx: "auto", px: { xs: 0, lg: 6 } }}
+      >
         <DefaultBlogCard
           image={image}
           category={{ color: "warning", label: "hub" }}

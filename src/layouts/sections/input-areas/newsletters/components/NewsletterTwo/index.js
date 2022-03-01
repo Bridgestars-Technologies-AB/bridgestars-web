@@ -59,7 +59,8 @@ function NewsletterTwo() {
             Subscribe
           </MKTypography>
           <MKTypography variant="body2" color="text">
-            This is the paragraph where you can write more details about your product.
+            This is the paragraph where you can write more details about your
+            product.
           </MKTypography>
         </Grid>
         <Grid
@@ -78,7 +79,12 @@ function NewsletterTwo() {
                 <MKInput label="Your Email..." fullWidth />
               </Grid>
               <Grid item xs={12} sm={4}>
-                <MKButton variant="gradient" color="warning" fullWidth sx={{ height: "100%" }}>
+                <MKButton
+                  variant="gradient"
+                  color="warning"
+                  fullWidth
+                  sx={{ height: "100%" }}
+                >
                   Subscribe
                 </MKButton>
               </Grid>

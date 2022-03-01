@@ -25,7 +25,15 @@ import MKPagination from "components/MKPagination";
 function PaginationSimple() {
   return (
     <Container sx={{ height: "100%" }}>
-      <Grid container item justifyContent="center" xs={12} lg={6} mx="auto" height="100%">
+      <Grid
+        container
+        item
+        justifyContent="center"
+        xs={12}
+        lg={6}
+        mx="auto"
+        height="100%"
+      >
         <MKPagination>
           <MKPagination item>
             <Icon>keyboard_arrow_left</Icon>

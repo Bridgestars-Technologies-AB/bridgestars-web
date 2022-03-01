@@ -65,7 +65,8 @@ function SingleArticle() {
           routes={routes}
           action={{
             type: "external",
-            route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+            route:
+              "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
             label: "buy now",
             color: "success",
           }}
@@ -78,7 +79,10 @@ function SingleArticle() {
         minHeight="85vh"
         width="100%"
         sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
+          backgroundImage: ({
+            functions: { linearGradient, rgba },
+            palette: { gradients },
+          }) =>
             `${linearGradient(
               rgba(gradients.dark.main, 0.8),
               rgba(gradients.dark.state, 0.8)
@@ -90,7 +94,14 @@ function SingleArticle() {
         }}
       >
         <Container>
-          <Grid container item xs={12} lg={7} justifyContent="center" flexDirection="column">
+          <Grid
+            container
+            item
+            xs={12}
+            lg={7}
+            justifyContent="center"
+            flexDirection="column"
+          >
             <MKTypography
               variant="h1"
               color="white"
@@ -110,23 +121,46 @@ function SingleArticle() {
               mr={{ xs: 0, sm: 6 }}
               pr={{ xs: 0, sm: 6 }}
             >
-              The time is now for it be okay to be great. People in this world shun people for being
-              nice.
+              The time is now for it be okay to be great. People in this world
+              shun people for being nice.
             </MKTypography>
             <MKTypography variant="h5" color="white" mt={2} mb={1}>
               Connect with us on
             </MKTypography>
             <MKBox display="flex" alignItems="center">
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
+              <MKTypography
+                component="a"
+                variant="body1"
+                color="white"
+                href="#"
+                mr={3}
+              >
                 <i className="fab fa-facebook" />
               </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
+              <MKTypography
+                component="a"
+                variant="body1"
+                color="white"
+                href="#"
+                mr={3}
+              >
                 <i className="fab fa-instagram" />
               </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
+              <MKTypography
+                component="a"
+                variant="body1"
+                color="white"
+                href="#"
+                mr={3}
+              >
                 <i className="fab fa-twitter" />
               </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#">
+              <MKTypography
+                component="a"
+                variant="body1"
+                color="white"
+                href="#"
+              >
                 <i className="fab fa-google-plus" />
               </MKTypography>
             </MKBox>

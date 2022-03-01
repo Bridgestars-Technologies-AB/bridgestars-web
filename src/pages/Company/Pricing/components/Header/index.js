@@ -35,7 +35,10 @@ function Header({ image, label, title, description, cards }) {
         minHeight="75vh"
         width="100%"
         sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
+          backgroundImage: ({
+            functions: { linearGradient, rgba },
+            palette: { gradients },
+          }) =>
             `${linearGradient(
               rgba(gradients.dark.main, 0.8),
               rgba(gradients.dark.state, 0.8)
@@ -87,22 +90,30 @@ function Header({ image, label, title, description, cards }) {
         }}
       >
         <Grid container spacing={2}>
-          {cards.map(({ variant, color, icon, title: cardTitle, description: cardDescription }) => (
-            <Grid key={icon} item xs={12} sm={6} lg={4}>
-              <FilledInfoCard
-                variant={variant}
-                color={color}
-                icon={icon}
-                title={cardTitle}
-                description={cardDescription}
-                action={{
-                  type: "internal",
-                  route: "/pages/company/about-us",
-                  label: "More about us",
-                }}
-              />
-            </Grid>
-          ))}
+          {cards.map(
+            ({
+              variant,
+              color,
+              icon,
+              title: cardTitle,
+              description: cardDescription,
+            }) => (
+              <Grid key={icon} item xs={12} sm={6} lg={4}>
+                <FilledInfoCard
+                  variant={variant}
+                  color={color}
+                  icon={icon}
+                  title={cardTitle}
+                  description={cardDescription}
+                  action={{
+                    type: "internal",
+                    route: "/pages/company/about-us",
+                    label: "More about us",
+                  }}
+                />
+              </Grid>
+            )
+          )}
         </Grid>
       </Card>
     </>

@@ -98,7 +98,6 @@ import Tables from "layouts/sections/elements/tables";
 import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
 
-
 const routes = [
   {
     name: "dashboard",
@@ -108,7 +107,7 @@ const routes = [
     route: "/pages/extra/virtual-reality",
     component: <VirtualRealityPage />,
   },
-]
+];
 
 const routesOld = [
   {

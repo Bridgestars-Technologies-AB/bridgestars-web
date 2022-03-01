@@ -39,7 +39,13 @@ function DesignBlocks() {
           <MKTypography variant="h3" fontWeight="bold" mb={1}>
             {title}
           </MKTypography>
-          <MKTypography variant="body2" fontWeight="regular" color="secondary" mb={1} pr={2}>
+          <MKTypography
+            variant="body2"
+            fontWeight="regular"
+            color="secondary"
+            mb={1}
+            pr={2}
+          >
             {description}
           </MKTypography>
         </MKBox>
@@ -81,8 +87,8 @@ function DesignBlocks() {
             Huge collection of sections
           </MKTypography>
           <MKTypography variant="body1" color="text">
-            We have created multiple options for you to put together and customise into pixel
-            perfect pages.
+            We have created multiple options for you to put together and
+            customise into pixel perfect pages.
           </MKTypography>
         </Grid>
       </Container>

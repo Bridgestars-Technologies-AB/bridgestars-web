@@ -27,19 +27,27 @@ function SimpleAlerts() {
       <Container>
         <Grid container item xs={12} lg={10} mx="auto">
           <Grid item xs={12}>
-            <MKAlert color="primary">A simple primary alert—check it out!</MKAlert>
+            <MKAlert color="primary">
+              A simple primary alert—check it out!
+            </MKAlert>
           </Grid>
           <Grid item xs={12}>
-            <MKAlert color="secondary">A simple secondary alert—check it out!</MKAlert>
+            <MKAlert color="secondary">
+              A simple secondary alert—check it out!
+            </MKAlert>
           </Grid>
           <Grid item xs={12}>
-            <MKAlert color="success">A simple success alert—check it out!</MKAlert>
+            <MKAlert color="success">
+              A simple success alert—check it out!
+            </MKAlert>
           </Grid>
           <Grid item xs={12}>
             <MKAlert color="error">A simple error alert—check it out!</MKAlert>
           </Grid>
           <Grid item xs={12}>
-            <MKAlert color="warning">A simple warning alert—check it out!</MKAlert>
+            <MKAlert color="warning">
+              A simple warning alert—check it out!
+            </MKAlert>
           </Grid>
           <Grid item xs={12}>
             <MKAlert color="info">A simple info alert—check it out!</MKAlert>

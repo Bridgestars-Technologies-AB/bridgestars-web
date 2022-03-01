@@ -38,7 +38,8 @@ function CoverLayout({ coverHeight, image, children }) {
           routes={routes}
           action={{
             type: "external",
-            route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+            route:
+              "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
             label: "buy now",
           }}
           transparent
@@ -54,7 +55,10 @@ function CoverLayout({ coverHeight, image, children }) {
         pt={6}
         pb={28}
         sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
+          backgroundImage: ({
+            functions: { linearGradient, rgba },
+            palette: { gradients },
+          }) =>
             image &&
             `${linearGradient(
               rgba(gradients.dark.main, 0.6),
@@ -65,7 +69,12 @@ function CoverLayout({ coverHeight, image, children }) {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <MKBox mt={{ xs: -20, lg: -18 }} px={1} width="calc(100% - 2rem)" mx="auto">
+      <MKBox
+        mt={{ xs: -20, lg: -18 }}
+        px={1}
+        width="calc(100% - 2rem)"
+        mx="auto"
+      >
         <Grid container spacing={1} justifyContent="center">
           <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
             {children}

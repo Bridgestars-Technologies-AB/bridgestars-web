@@ -36,7 +36,15 @@ function Pricing() {
   return (
     <MKBox component="section" py={{ xs: 0, md: 12 }}>
       <Container>
-        <Grid container item xs={12} justifyContent="center" md={8} mx="auto" textAlign="center">
+        <Grid
+          container
+          item
+          xs={12}
+          justifyContent="center"
+          md={8}
+          mx="auto"
+          textAlign="center"
+        >
           <MKTypography variant="h3">Pick the best plan for you</MKTypography>
           <MKTypography variant="body2" color="text">
             You have Free Unlimited Updates and Premium Support on each package.
@@ -82,7 +90,10 @@ function Pricing() {
               description="Free access for 2 members"
               price={{ value: "$199", type: "year" }}
               action={{ type: "internal", route: "/", label: "buy now" }}
-              specifications={["Complete documentation", "Working materials in Sketch"]}
+              specifications={[
+                "Complete documentation",
+                "Working materials in Sketch",
+              ]}
             />
           </Grid>
           <Grid item xs={12} sm={6} lg={3}>

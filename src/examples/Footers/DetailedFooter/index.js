@@ -61,7 +61,13 @@ function DetailedFooter({ content }) {
             </MKBox>
           </Grid>
           {menus.map(({ name: title, items }, key) => (
-            <Grid key={title} item xs={6} md={2} ml={key === 0 ? { xs: 0, lg: "auro" } : 0}>
+            <Grid
+              key={title}
+              item
+              xs={6}
+              md={2}
+              ml={key === 0 ? { xs: 0, lg: "auro" } : 0}
+            >
               <MKTypography
                 component="h6"
                 variant="button"
@@ -73,7 +79,13 @@ function DetailedFooter({ content }) {
               </MKTypography>
               <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none" }}>
                 {items.map(({ name, route, href }) => (
-                  <MKBox key={name} component="li" p={0} m={0} lineHeight={1.25}>
+                  <MKBox
+                    key={name}
+                    component="li"
+                    p={0}
+                    m={0}
+                    lineHeight={1.25}
+                  >
                     {href ? (
                       <MKTypography
                         component="a"
@@ -118,7 +130,9 @@ function DetailedFooter({ content }) {
 
 // Typechecking props for the DetailedFooter
 DetailedFooter.propTypes = {
-  content: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.object, PropTypes.array])).isRequired,
+  content: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+  ).isRequired,
 };
 
 export default DetailedFooter;

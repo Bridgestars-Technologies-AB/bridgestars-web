@@ -60,8 +60,8 @@ function BlogPostOne() {
               Check out what&apos;s new
             </MKTypography>
             <MKTypography variant="body2" color="text">
-              We get insulted by others, lose trust for those others. We get back freezes every
-              winter
+              We get insulted by others, lose trust for those others. We get
+              back freezes every winter
             </MKTypography>
           </MKBox>
         </Grid>

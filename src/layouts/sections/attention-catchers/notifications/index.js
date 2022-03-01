@@ -30,7 +30,10 @@ function Notifications() {
     <BaseLayout
       title="Notifications"
       breadcrumb={[
-        { label: "Page Sections", route: "/sections/attention-catchers/notifications" },
+        {
+          label: "Page Sections",
+          route: "/sections/attention-catchers/notifications",
+        },
         { label: "Notifications" },
       ]}
     >

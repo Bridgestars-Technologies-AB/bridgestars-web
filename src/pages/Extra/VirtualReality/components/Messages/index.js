@@ -43,22 +43,47 @@ function Messages() {
 
   return (
     <Card>
-      <MKBox display="flex" alignItems="center" justifyContent="space-between" p={3}>
+      <MKBox
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        p={3}
+      >
         <MKTypography variant="body2" color="text">
           Messages
         </MKTypography>
         <MKBox display="flex">
           <Tooltip title="2 New Messages" placement="top">
-            <MKAvatar src={team1} alt="team-1" size="sm" sx={messagesAvatarStyles} />
+            <MKAvatar
+              src={team1}
+              alt="team-1"
+              size="sm"
+              sx={messagesAvatarStyles}
+            />
           </Tooltip>
           <Tooltip title="1 New Messages" placement="top">
-            <MKAvatar src={team2} alt="team-2" size="sm" sx={messagesAvatarStyles} />
+            <MKAvatar
+              src={team2}
+              alt="team-2"
+              size="sm"
+              sx={messagesAvatarStyles}
+            />
           </Tooltip>
           <Tooltip title="13 New Messages" placement="top">
-            <MKAvatar src={team3} alt="team-3" size="sm" sx={messagesAvatarStyles} />
+            <MKAvatar
+              src={team3}
+              alt="team-3"
+              size="sm"
+              sx={messagesAvatarStyles}
+            />
           </Tooltip>
           <Tooltip title="7 New Messages" placement="top">
-            <MKAvatar src={team4} alt="team-4" size="sm" sx={messagesAvatarStyles} />
+            <MKAvatar
+              src={team4}
+              alt="team-4"
+              size="sm"
+              sx={messagesAvatarStyles}
+            />
           </Tooltip>
         </MKBox>
       </MKBox>
