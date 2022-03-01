@@ -14,81 +14,81 @@ Coded by www.creative-tim.com
 */
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
+import MKButton from 'components/MKButton';
 
 // Presentation page components
-import ExampleCard from "pages/Presentation/components/ExampleCard";
+import ExampleCard from 'pages/Presentation/components/ExampleCard';
 
 // Images
-import bgPattern from "assets/images/shapes/pattern-lines.svg";
+import bgPattern from 'assets/images/shapes/pattern-lines.svg';
 
 function AuthPages() {
   // pages images
   const img1 =
-    "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/presentation/account/sign-up-cover.jpg";
+    'https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/presentation/account/sign-up-cover.jpg';
   const img2 =
-    "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/presentation/account/reset-cover.jpg";
+    'https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/presentation/account/reset-cover.jpg';
   const img3 =
-    "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/presentation/account/signin-basic.jpg";
+    'https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/presentation/account/signin-basic.jpg';
 
   return (
     <MKBox
-      position="relative"
-      variant="gradient"
-      bgColor="dark"
+      position='relative'
+      variant='gradient'
+      bgColor='dark'
       mt={{ xs: 0, lg: 12 }}
       mx={-2}
     >
       <MKBox
-        component="img"
+        component='img'
         src={bgPattern}
-        alt="background-pattern"
-        position="absolute"
+        alt='background-pattern'
+        position='absolute'
         top={0}
         left={0}
-        width={{ xs: "auto", lg: "100%" }}
-        height={{ xs: "100%", lg: "auto" }}
+        width={{ xs: 'auto', lg: '100%' }}
+        height={{ xs: '100%', lg: 'auto' }}
         opacity={0.6}
       />
       <Container>
-        <Grid container alignItems="center">
+        <Grid container alignItems='center'>
           <Grid
             item
             xs={12}
             lg={4}
             sx={{
-              my: "auto",
+              my: 'auto',
               py: 6,
               pr: { xs: 3, lg: 2 },
               pl: { xs: 3, lg: 0 },
             }}
           >
-            <MKTypography variant="h2" color="white" mb={3}>
+            <MKTypography variant='h2' color='white' mb={3}>
               Account Pages for beautiful webapps
             </MKTypography>
-            <MKTypography variant="body2" color="white" mb={2} opacity={0.8}>
+            <MKTypography variant='body2' color='white' mb={2} opacity={0.8}>
               We created many examples for pages like Signup, Signin, Forgot
               Password, 2FA Authentification and so on. Just choose between a
               Basic Design, an illustration or a cover and you are good to go!
             </MKTypography>
-            <MKBox display="flex" alignItems="center">
+            <MKBox display='flex' alignItems='center'>
               <MKButton
-                variant="gradient"
-                color="info"
+                variant='gradient'
+                color='info'
                 sx={{ mt: 3, mb: 2, mr: 1 }}
               >
                 view pages
               </MKButton>
-              <MKButton variant="text" color="white" sx={{ mt: 3, mb: 2 }}>
+              <MKButton variant='text' color='white' sx={{ mt: 3, mb: 2 }}>
                 view signup pages
               </MKButton>
             </MKBox>
@@ -101,31 +101,31 @@ function AuthPages() {
           >
             <Grid container spacing={3}>
               <Grid item xs={12} lg={4} sx={{ mt: { xs: 0, lg: 6 } }}>
-                <Link to="/authentication/sign-up/cover">
+                <Link to='/authentication/sign-up/cover'>
                   <ExampleCard
                     image={img1}
-                    display="grid"
-                    minHeight="max-content"
+                    display='grid'
+                    minHeight='max-content'
                     p={0.5}
                   />
                 </Link>
               </Grid>
               <Grid item xs={12} lg={4} sx={{ mt: { xs: 0, lg: 6 } }}>
-                <Link to="/authentication/reset-password/cover">
+                <Link to='/authentication/reset-password/cover'>
                   <ExampleCard
                     image={img2}
-                    display="grid"
-                    minHeight="max-content"
+                    display='grid'
+                    minHeight='max-content'
                     p={0.5}
                   />
                 </Link>
               </Grid>
               <Grid item xs={12} lg={4} sx={{ mt: { xs: 0, lg: 6 } }}>
-                <Link to="/authentication/sign-in/basic">
+                <Link to='/authentication/sign-in/basic'>
                   <ExampleCard
                     image={img3}
-                    display="grid"
-                    minHeight="max-content"
+                    display='grid'
+                    minHeight='max-content'
                     p={0.5}
                   />
                 </Link>

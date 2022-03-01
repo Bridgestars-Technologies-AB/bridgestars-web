@@ -14,33 +14,33 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for type checking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Icon from "@mui/material/Icon";
+import Icon from '@mui/material/Icon';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 function AboutUsOption({ icon, content }) {
   return (
-    <MKBox display="flex" alignItems="center" p={2}>
+    <MKBox display='flex' alignItems='center' p={2}>
       <MKBox
-        width="3rem"
-        height="3rem"
-        variant="gradient"
-        bgColor="info"
-        color="white"
-        coloredShadow="info"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        borderRadius="xl"
+        width='3rem'
+        height='3rem'
+        variant='gradient'
+        bgColor='info'
+        color='white'
+        coloredShadow='info'
+        display='flex'
+        alignItems='center'
+        justifyContent='center'
+        borderRadius='xl'
       >
-        <Icon fontSize="small">{icon}</Icon>
+        <Icon fontSize='small'>{icon}</Icon>
       </MKBox>
-      <MKTypography variant="body2" color="text" pl={2}>
+      <MKTypography variant='body2' color='text' pl={2}>
         {content}
       </MKTypography>
     </MKBox>

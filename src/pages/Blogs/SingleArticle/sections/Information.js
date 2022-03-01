@@ -14,31 +14,31 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 function Information() {
   return (
-    <MKBox component="section" py={6} mt={6}>
+    <MKBox component='section' py={6} mt={6}>
       <Container>
-        <Grid container spacing={3} item xs={12} lg={8} mx="auto">
+        <Grid container spacing={3} item xs={12} lg={8} mx='auto'>
           <MKTypography
-            component="h6"
-            variant="button"
+            component='h6'
+            variant='button'
             opacity={0.7}
-            textTransform="uppercase"
-            fontWeight="bold"
+            textTransform='uppercase'
+            fontWeight='bold'
           >
             The Idea
           </MKTypography>
-          <MKTypography variant="h3" mb={3}>
+          <MKTypography variant='h3' mb={3}>
             Create a design system that can be used in any product available
           </MKTypography>
-          <MKTypography variant="body2">
+          <MKTypography variant='body2'>
             This is the paragraph where you can write more details about your
             product. Keep you user engaged by providing meaningful information.
             Remember that by this time, the user is curious, otherwise he

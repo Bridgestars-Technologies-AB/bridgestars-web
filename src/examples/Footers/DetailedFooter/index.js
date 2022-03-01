@@ -14,46 +14,46 @@ Coded by www.creative-tim.com
 */
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // prop-types is a library for typechecking of props.
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Divider from "@mui/material/Divider";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 function DetailedFooter({ content }) {
   const { brand, socials, menus, copyright } = content;
 
   return (
-    <MKBox component="footer">
+    <MKBox component='footer'>
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} lg={3} mb={{ xs: 6, lg: 0 }}>
-            <MKTypography variant="h6" textTransform="uppercase" mb={1}>
+            <MKTypography variant='h6' textTransform='uppercase' mb={1}>
               {brand.name}
             </MKTypography>
-            <MKTypography variant="body2" color="text" mb={3} pb={1} pr={3}>
+            <MKTypography variant='body2' color='text' mb={3} pb={1} pr={3}>
               {brand.description}
             </MKTypography>
-            <MKBox display="flex" alignItems="center">
+            <MKBox display='flex' alignItems='center'>
               {socials.map(({ icon, link }, key) => (
                 <MKTypography
                   key={link}
-                  component="a"
+                  component='a'
                   href={link}
-                  target="_blank"
-                  rel="noreferrer"
-                  variant="body2"
-                  color="secondary"
+                  target='_blank'
+                  rel='noreferrer'
+                  variant='body2'
+                  color='secondary'
                   mr={key === socials.length - 1 ? 0 : 3}
-                  sx={{ fontSize: "1.125rem" }}
+                  sx={{ fontSize: '1.125rem' }}
                 >
                   {icon}
                 </MKTypography>
@@ -66,36 +66,36 @@ function DetailedFooter({ content }) {
               item
               xs={6}
               md={2}
-              ml={key === 0 ? { xs: 0, lg: "auro" } : 0}
+              ml={key === 0 ? { xs: 0, lg: 'auro' } : 0}
             >
               <MKTypography
-                component="h6"
-                variant="button"
-                fontWeight="bold"
-                textTransform="capitalize"
+                component='h6'
+                variant='button'
+                fontWeight='bold'
+                textTransform='capitalize'
                 mb={1}
               >
                 {title}
               </MKTypography>
-              <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none" }}>
+              <MKBox component='ul' p={0} m={0} sx={{ listStyle: 'none' }}>
                 {items.map(({ name, route, href }) => (
                   <MKBox
                     key={name}
-                    component="li"
+                    component='li'
                     p={0}
                     m={0}
                     lineHeight={1.25}
                   >
                     {href ? (
                       <MKTypography
-                        component="a"
+                        component='a'
                         href={href}
-                        target="_blank"
-                        rel="noreferrer"
-                        variant="button"
-                        color="secondary"
-                        fontWeight="regular"
-                        textTransform="capitalize"
+                        target='_blank'
+                        rel='noreferrer'
+                        variant='button'
+                        color='secondary'
+                        fontWeight='regular'
+                        textTransform='capitalize'
                         pb={0.5}
                       >
                         {name}
@@ -104,10 +104,10 @@ function DetailedFooter({ content }) {
                       <MKTypography
                         component={Link}
                         to={route}
-                        variant="button"
-                        color="secondary"
-                        fontWeight="regular"
-                        textTransform="capitalize"
+                        variant='button'
+                        color='secondary'
+                        fontWeight='regular'
+                        textTransform='capitalize'
                         pb={0.5}
                       >
                         {name}
@@ -118,7 +118,7 @@ function DetailedFooter({ content }) {
               </MKBox>
             </Grid>
           ))}
-          <Grid item xs={12} pr={3} sx={{ textAlign: "center", mb: 3 }}>
+          <Grid item xs={12} pr={3} sx={{ textAlign: 'center', mb: 3 }}>
             <Divider />
             {copyright}
           </Grid>

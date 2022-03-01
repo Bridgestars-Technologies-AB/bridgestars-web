@@ -13,27 +13,27 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
+import { useState } from 'react';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 // Otis Kit PRO examples
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import SimpleFooter from "examples/Footers/SimpleFooter";
-import SimpleInfoCard from "examples/Cards/InfoCards/SimpleInfoCard";
+import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
+import SimpleFooter from 'examples/Footers/SimpleFooter';
+import SimpleInfoCard from 'examples/Cards/InfoCards/SimpleInfoCard';
 
 // HelpCenter page components
-import FaqCollapse from "pages/Support/Faq/components/FaqCollapse";
+import FaqCollapse from 'pages/Support/Faq/components/FaqCollapse';
 
 // Routes
-import routes from "constants/routes";
+import routes from 'constants/routes';
 
 function Faq() {
   const [collapse, setCollapse] = useState(false);
@@ -43,69 +43,69 @@ function Faq() {
       <DefaultNavbar
         routes={routes}
         action={{
-          type: "external",
+          type: 'external',
           route:
-            "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-          label: "buy now",
-          color: "info",
+            'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+          label: 'buy now',
+          color: 'info',
         }}
         sticky
       />
-      <MKBox component="section" pt={20} pb={12}>
+      <MKBox component='section' pt={20} pb={12}>
         <Container sx={{ mb: 8 }}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
               <SimpleInfoCard
-                icon="description"
-                title="Detailed Documentation"
-                description="The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever."
-                direction="center"
+                icon='description'
+                title='Detailed Documentation'
+                description='The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever.'
+                direction='center'
               />
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <SimpleInfoCard
-                icon="support"
-                title="Awesome Support"
+                icon='support'
+                title='Awesome Support'
                 description="The time is now for it to be okay to be great. People in this world shun people for being great. I'm not trying, I'm not trying to do the best way."
-                direction="center"
+                direction='center'
               />
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <SimpleInfoCard
-                icon="grid_view"
-                title="Styled Components"
-                description="If you have the opportunity to play this game of life you need to appreciate every moment. A lot of people don’t appreciate the moment until it’s passed."
-                direction="center"
+                icon='grid_view'
+                title='Styled Components'
+                description='If you have the opportunity to play this game of life you need to appreciate every moment. A lot of people don’t appreciate the moment until it’s passed.'
+                direction='center'
               />
             </Grid>
           </Grid>
         </Container>
         <Container>
-          <Grid container justifyContent="center">
+          <Grid container justifyContent='center'>
             <Grid item xs={12}>
               <Card>
                 <MKBox
-                  variant="gradient"
-                  bgColor="info"
-                  borderRadius="lg"
-                  coloredShadow="info"
+                  variant='gradient'
+                  bgColor='info'
+                  borderRadius='lg'
+                  coloredShadow='info'
                   p={3}
                   mt={-3}
                   mx={2}
                 >
-                  <MKTypography variant="h3" color="white">
+                  <MKTypography variant='h3' color='white'>
                     FAQ
                   </MKTypography>
-                  <MKTypography variant="body2" color="white" opacity={0.8}>
+                  <MKTypography variant='body2' color='white' opacity={0.8}>
                     Last modified: Sept 07 2021
                   </MKTypography>
                 </MKBox>
                 <MKBox p={6}>
-                  <MKTypography variant="h5" my={3}>
+                  <MKTypography variant='h5' my={3}>
                     Basics
                   </MKTypography>
                   <FaqCollapse
-                    title="How do I order?"
+                    title='How do I order?'
                     open={collapse === 1}
                     onClick={() =>
                       collapse === 1 ? setCollapse(false) : setCollapse(1)
@@ -120,7 +120,7 @@ function Faq() {
                     it&apos;s passed.
                   </FaqCollapse>
                   <FaqCollapse
-                    title="How can i make the payment?"
+                    title='How can i make the payment?'
                     open={collapse === 2}
                     onClick={() =>
                       collapse === 2 ? setCollapse(false) : setCollapse(2)
@@ -140,7 +140,7 @@ function Faq() {
                     don&apos;t appreciate the moment until it&apos;s passed.
                   </FaqCollapse>
                   <FaqCollapse
-                    title="How much time does it take to receive the order?"
+                    title='How much time does it take to receive the order?'
                     open={collapse === 3}
                     onClick={() =>
                       collapse === 3 ? setCollapse(false) : setCollapse(3)
@@ -160,7 +160,7 @@ function Faq() {
                     how.
                   </FaqCollapse>
                   <FaqCollapse
-                    title="Can I resell the products?"
+                    title='Can I resell the products?'
                     open={collapse === 4}
                     onClick={() =>
                       collapse === 4 ? setCollapse(false) : setCollapse(4)
@@ -183,7 +183,7 @@ function Faq() {
                     how.
                   </FaqCollapse>
                   <FaqCollapse
-                    title="Where do I find the shipping details?"
+                    title='Where do I find the shipping details?'
                     open={collapse === 5}
                     onClick={() =>
                       collapse === 5 ? setCollapse(false) : setCollapse(5)
@@ -202,11 +202,11 @@ function Faq() {
                     anything, you won&apos;t do anything. I was taught I could
                     do everything.
                   </FaqCollapse>
-                  <MKTypography variant="h5" mt={6} mb={3}>
+                  <MKTypography variant='h5' mt={6} mb={3}>
                     Account & Settings
                   </MKTypography>
                   <FaqCollapse
-                    title="How do I change my password?"
+                    title='How do I change my password?'
                     open={collapse === 6}
                     onClick={() =>
                       collapse === 6 ? setCollapse(false) : setCollapse(6)
@@ -221,7 +221,7 @@ function Faq() {
                     you&apos;d instantly become a gay two-year-old.
                   </FaqCollapse>
                   <FaqCollapse
-                    title="How can I delete my account?"
+                    title='How can I delete my account?'
                     open={collapse === 7}
                     onClick={() =>
                       collapse === 7 ? setCollapse(false) : setCollapse(7)
@@ -237,7 +237,7 @@ function Faq() {
                     mistakes.
                   </FaqCollapse>
                   <FaqCollapse
-                    title="How can I change account make account settings?"
+                    title='How can I change account make account settings?'
                     open={collapse === 8}
                     onClick={() =>
                       collapse === 8 ? setCollapse(false) : setCollapse(8)
@@ -251,7 +251,7 @@ function Faq() {
                     moment until it&apos;s passed.
                   </FaqCollapse>
                   <FaqCollapse
-                    title="How to reset my password?"
+                    title='How to reset my password?'
                     open={collapse === 9}
                     onClick={() =>
                       collapse === 9 ? setCollapse(false) : setCollapse(9)
@@ -263,11 +263,11 @@ function Faq() {
                     I&apos;m here to follow my dreams and inspire other people
                     to follow their dreams, too.
                   </FaqCollapse>
-                  <MKTypography variant="h5" mt={6} mb={3}>
+                  <MKTypography variant='h5' mt={6} mb={3}>
                     Licenses
                   </MKTypography>
                   <FaqCollapse
-                    title="What are the differences between the licenses on the website?"
+                    title='What are the differences between the licenses on the website?'
                     open={collapse === 10}
                     onClick={() =>
                       collapse === 10 ? setCollapse(false) : setCollapse(10)
@@ -280,7 +280,7 @@ function Faq() {
                     passed. The time is now for it to be okay to be great.
                   </FaqCollapse>
                   <FaqCollapse
-                    title="Can I use a premium product in an open source project?"
+                    title='Can I use a premium product in an open source project?'
                     open={collapse === 11}
                     onClick={() =>
                       collapse === 11 ? setCollapse(false) : setCollapse(11)
@@ -293,7 +293,7 @@ function Faq() {
                     live, our hearts turn colder.
                   </FaqCollapse>
                   <FaqCollapse
-                    title="Can I use my Freelancer/Startup License on an alias domain?"
+                    title='Can I use my Freelancer/Startup License on an alias domain?'
                     open={collapse === 12}
                     onClick={() =>
                       collapse === 12 ? setCollapse(false) : setCollapse(12)
@@ -307,7 +307,7 @@ function Faq() {
                     What else could rust the heart more over time? Blackgold.
                   </FaqCollapse>
                   <FaqCollapse
-                    title="Can I use my Freelancer/Startup License on an alias domain?"
+                    title='Can I use my Freelancer/Startup License on an alias domain?'
                     open={collapse === 13}
                     onClick={() =>
                       collapse === 13 ? setCollapse(false) : setCollapse(13)

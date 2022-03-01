@@ -14,25 +14,25 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Card from "@mui/material/Card";
+import Card from '@mui/material/Card';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
+import MKBox from 'components/MKBox';
 
 // Otis Kit PRO examples
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
+import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
 
 // Author page sections
-import Profile from "pages/Blogs/Author/sections/Profile";
-import Posts from "pages/Blogs/Author/sections/Posts";
-import Contact from "pages/Blogs/Author/sections/Contact";
-import Footer from "pages/Blogs/Author/sections/Footer";
+import Profile from 'pages/Blogs/Author/sections/Profile';
+import Posts from 'pages/Blogs/Author/sections/Posts';
+import Contact from 'pages/Blogs/Author/sections/Contact';
+import Footer from 'pages/Blogs/Author/sections/Footer';
 
 // Routes
-import routes from "constants/routes";
+import routes from 'constants/routes';
 
 // Images
-import bgImage from "assets/images/city-profile.jpg";
+import bgImage from 'assets/images/city-profile.jpg';
 
 function Author() {
   return (
@@ -40,19 +40,19 @@ function Author() {
       <DefaultNavbar
         routes={routes}
         action={{
-          type: "external",
+          type: 'external',
           route:
-            "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-          label: "buy now",
-          color: "info",
+            'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+          label: 'buy now',
+          color: 'info',
         }}
         transparent
         light
       />
-      <MKBox bgColor="white">
+      <MKBox bgColor='white'>
         <MKBox
-          minHeight="25rem"
-          width="100%"
+          minHeight='25rem'
+          width='100%'
           sx={{
             backgroundImage: ({
               functions: { linearGradient, rgba },
@@ -62,10 +62,10 @@ function Author() {
                 rgba(gradients.dark.main, 0.8),
                 rgba(gradients.dark.state, 0.8)
               )}, url(${bgImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            display: "grid",
-            placeItems: "center",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            display: 'grid',
+            placeItems: 'center',
           }}
         />
         <Card
@@ -76,7 +76,7 @@ function Author() {
             mb: 4,
             backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
               rgba(white.main, 0.8),
-            backdropFilter: "saturate(200%) blur(30px)",
+            backdropFilter: 'saturate(200%) blur(30px)',
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
         >

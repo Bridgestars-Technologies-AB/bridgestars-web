@@ -14,31 +14,31 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 // Otis Kit PRO examples
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import DefaultFooter from "examples/Footers/DefaultFooter";
+import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
+import DefaultFooter from 'examples/Footers/DefaultFooter';
 
 // Rental page sections
-import Search from "pages/LandingPages/Rental/sections/Search";
-import Places from "pages/LandingPages/Rental/sections/Places";
-import Testimonials from "pages/LandingPages/Rental/sections/Testimonials";
-import Faq from "pages/LandingPages/Rental/sections/Faq";
-import Contact from "pages/LandingPages/Rental/sections/Contact";
+import Search from 'pages/LandingPages/Rental/sections/Search';
+import Places from 'pages/LandingPages/Rental/sections/Places';
+import Testimonials from 'pages/LandingPages/Rental/sections/Testimonials';
+import Faq from 'pages/LandingPages/Rental/sections/Faq';
+import Contact from 'pages/LandingPages/Rental/sections/Contact';
 
 // Routes
-import routes from "constants/routes";
-import footerRoutes from "constants/footer.routes";
+import routes from 'constants/routes';
+import footerRoutes from 'constants/footer.routes';
 
 // Images
-import bgImage from "assets/images/bg-rental.jpeg";
+import bgImage from 'assets/images/bg-rental.jpeg';
 
 function Rental() {
   return (
@@ -46,18 +46,18 @@ function Rental() {
       <DefaultNavbar
         routes={routes}
         action={{
-          type: "external",
+          type: 'external',
           route:
-            "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-          label: "buy now",
-          color: "info",
+            'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+          label: 'buy now',
+          color: 'info',
         }}
         transparent
         light
       />
       <MKBox
-        minHeight="50vh"
-        width="100%"
+        minHeight='50vh'
+        width='100%'
         sx={{
           backgroundImage: ({
             functions: { linearGradient, rgba },
@@ -67,10 +67,10 @@ function Rental() {
               rgba(gradients.dark.main, 0.5),
               rgba(gradients.dark.state, 0.5)
             )}, url(${bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "grid",
-          placeItems: "center",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'grid',
+          placeItems: 'center',
         }}
       >
         <Container>
@@ -79,21 +79,21 @@ function Rental() {
             item
             xs={12}
             lg={8}
-            justifyContent="center"
-            sx={{ mx: "auto", textAlign: "center" }}
+            justifyContent='center'
+            sx={{ mx: 'auto', textAlign: 'center' }}
           >
             <MKTypography
-              variant="h2"
-              color="white"
+              variant='h2'
+              color='white'
               sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
+                [breakpoints.down('md')]: {
+                  fontSize: size['3xl'],
                 },
               })}
             >
               Book your next trip
             </MKTypography>
-            <MKTypography variant="body1" color="white" mt={1}>
+            <MKTypography variant='body1' color='white' mt={1}>
               The time is now for it be okay to be great. People in this world
               shun people for being nice.
             </MKTypography>
@@ -108,9 +108,9 @@ function Rental() {
           mb: 4,
           backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
             rgba(white.main, 0.8),
-          backdropFilter: "saturate(200%) blur(30px)",
+          backdropFilter: 'saturate(200%) blur(30px)',
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
-          overflow: "hidden",
+          overflow: 'hidden',
         }}
       >
         <Search />

@@ -14,25 +14,25 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props.
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Icon from "@mui/material/Icon";
+import Icon from '@mui/material/Icon';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 function RotatingCardFront({ color, image, icon, title, description }) {
   return (
     <MKBox
-      display="flex"
-      justifyContent="center"
-      alignContent="center"
-      borderRadius="lg"
+      display='flex'
+      justifyContent='center'
+      alignContent='center'
+      borderRadius='lg'
       coloredShadow={color}
-      width="100%"
-      position="relative"
+      width='100%'
+      position='relative'
       zIndex={2}
       sx={{
         backgroundImage: ({
@@ -49,20 +49,20 @@ function RotatingCardFront({ color, image, icon, title, description }) {
               0.85
             )
           )}, url(${image})`,
-        backgroundSize: "cover",
-        backfaceVisibility: "hidden",
+        backgroundSize: 'cover',
+        backfaceVisibility: 'hidden',
       }}
     >
-      <MKBox py={12} px={3} textAlign="center" lineHeight={1}>
+      <MKBox py={12} px={3} textAlign='center' lineHeight={1}>
         {icon && (
-          <MKTypography variant="h2" color="white" my={2}>
-            {typeof icon === "string" ? <Icon>{icon}</Icon> : icon}
+          <MKTypography variant='h2' color='white' my={2}>
+            {typeof icon === 'string' ? <Icon>{icon}</Icon> : icon}
           </MKTypography>
         )}
-        <MKTypography variant="h3" color="white" gutterBottom>
+        <MKTypography variant='h3' color='white' gutterBottom>
           {title}
         </MKTypography>
-        <MKTypography variant="body2" color="white" opacity={0.8}>
+        <MKTypography variant='body2' color='white' opacity={0.8}>
           {description}
         </MKTypography>
       </MKBox>
@@ -72,21 +72,21 @@ function RotatingCardFront({ color, image, icon, title, description }) {
 
 // Setting default props for the RotatingCardFront
 RotatingCardFront.defaultProps = {
-  color: "info",
-  icon: "",
+  color: 'info',
+  icon: '',
 };
 
 // Typechecking props for the RotatingCardFront
 RotatingCardFront.propTypes = {
   color: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "dark",
-    "light",
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'error',
+    'dark',
+    'light',
   ]),
   image: PropTypes.string.isRequired,
   icon: PropTypes.node,

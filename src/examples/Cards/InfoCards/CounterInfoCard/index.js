@@ -14,47 +14,47 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Icon from "@mui/material/Icon";
+import Icon from '@mui/material/Icon';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import CountUp from "react-countup";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
+import CountUp from 'react-countup';
 
 function CounterInfoCard({ color, countUp, title, description, direction }) {
-  let alignment = "flex-start";
+  let alignment = 'flex-start';
 
-  if (direction === "center") {
-    alignment = "center";
-  } else if (direction === "right") {
-    alignment = "flex-end";
+  if (direction === 'center') {
+    alignment = 'center';
+  } else if (direction === 'right') {
+    alignment = 'flex-end';
   }
 
   return (
     <MKBox
-      display="flex"
-      flexDirection="column"
+      display='flex'
+      flexDirection='column'
       alignItems={alignment}
       textAlign={direction}
-      p={direction === "center" ? 2 : 0}
+      p={direction === 'center' ? 2 : 0}
       lineHeight={1}
     >
-      <MKTypography variant="h1" color={color} textGradient>
+      <MKTypography variant='h1' color={color} textGradient>
         <CountUp duration={1} {...countUp} />
       </MKTypography>
       <MKTypography
-        display="block"
-        variant="5"
-        fontWeight="bold"
+        display='block'
+        variant='5'
+        fontWeight='bold'
         mt={2.5}
         mb={1.5}
       >
         {title}
       </MKTypography>
-      <MKTypography display="block" variant="body2" color="text">
+      <MKTypography display='block' variant='body2' color='text'>
         {description}
       </MKTypography>
     </MKBox>
@@ -63,26 +63,26 @@ function CounterInfoCard({ color, countUp, title, description, direction }) {
 
 // Setting default props for the SimpleInfoCard
 CounterInfoCard.defaultProps = {
-  color: "info",
-  direction: "left",
+  color: 'info',
+  direction: 'left',
 };
 
 // Typechecking props for the SimpleInfoCard
 CounterInfoCard.propTypes = {
   color: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "light",
-    "dark",
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'error',
+    'light',
+    'dark',
   ]),
   countUp: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  direction: PropTypes.oneOf(["left", "right", "center"]),
+  direction: PropTypes.oneOf(['left', 'right', 'center']),
 };
 
 export default CounterInfoCard;

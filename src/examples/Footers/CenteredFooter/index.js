@@ -14,23 +14,23 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 
 // @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import PinterestIcon from "@mui/icons-material/Pinterest";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import PinterestIcon from '@mui/icons-material/Pinterest';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 function CenteredFooter({ company, links, socials, light }) {
   const { href, name } = company;
@@ -42,9 +42,9 @@ function CenteredFooter({ company, links, socials, light }) {
       key={link.name}
       component={Link}
       href={link.href}
-      variant="body2"
-      color={light ? "white" : "secondary"}
-      fontWeight="regular"
+      variant='body2'
+      color={light ? 'white' : 'secondary'}
+      fontWeight='regular'
     >
       {link.name}
     </MKTypography>
@@ -55,22 +55,22 @@ function CenteredFooter({ company, links, socials, light }) {
       key={social.link}
       component={Link}
       href={social.link}
-      variant="body2"
-      color={light ? "white" : "secondary"}
-      fontWeight="regular"
+      variant='body2'
+      color={light ? 'white' : 'secondary'}
+      fontWeight='regular'
     >
       {social.icon}
     </MKTypography>
   ));
 
   return (
-    <MKBox component="footer" py={6}>
-      <Grid container justifyContent="center">
+    <MKBox component='footer' py={6}>
+      <Grid container justifyContent='center'>
         <Grid item xs={10} lg={8}>
           <Stack
-            direction="row"
-            flexWrap="wrap"
-            justifyContent="center"
+            direction='row'
+            flexWrap='wrap'
+            justifyContent='center'
             spacing={{ xs: 2, lg: 3, xl: 6 }}
             mb={3}
           >
@@ -79,9 +79,9 @@ function CenteredFooter({ company, links, socials, light }) {
         </Grid>
         <Grid item xs={12} lg={8}>
           <Stack
-            display="flex"
-            direction="row"
-            justifyContent="center"
+            display='flex'
+            direction='row'
+            justifyContent='center'
             spacing={3}
             mt={1}
             mb={3}
@@ -89,16 +89,16 @@ function CenteredFooter({ company, links, socials, light }) {
             {renderSocials}
           </Stack>
         </Grid>
-        <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
-          <MKTypography variant="body2" color={light ? "white" : "secondary"}>
-            Copyright &copy; {year} Material by{" "}
+        <Grid item xs={12} lg={8} sx={{ textAlign: 'center' }}>
+          <MKTypography variant='body2' color={light ? 'white' : 'secondary'}>
+            Copyright &copy; {year} Material by{' '}
             <MKTypography
               component={Link}
               href={href}
-              target="_blank"
-              rel="noreferrer"
-              variant="body2"
-              color={light ? "white" : "secondary"}
+              target='_blank'
+              rel='noreferrer'
+              variant='body2'
+              color={light ? 'white' : 'secondary'}
             >
               {name}
             </MKTypography>
@@ -113,55 +113,55 @@ function CenteredFooter({ company, links, socials, light }) {
 // Setting default values for the props of CenteredFooter
 CenteredFooter.defaultProps = {
   company: {
-    href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-    name: "Creative Tim",
+    href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+    name: 'Creative Tim',
   },
   links: [
     {
-      href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-      name: "Company",
+      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      name: 'Company',
     },
     {
-      href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-      name: "About Us",
+      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      name: 'About Us',
     },
     {
-      href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-      name: "Team",
+      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      name: 'Team',
     },
     {
-      href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-      name: "Products",
+      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      name: 'Products',
     },
     {
-      href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-      name: "Blog",
+      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      name: 'Blog',
     },
     {
-      href: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-      name: "License",
+      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      name: 'License',
     },
   ],
   socials: [
     {
-      icon: <FacebookIcon fontSize="small" />,
-      link: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+      icon: <FacebookIcon fontSize='small' />,
+      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
     },
     {
-      icon: <TwitterIcon fontSize="small" />,
-      link: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+      icon: <TwitterIcon fontSize='small' />,
+      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
     },
     {
-      icon: <InstagramIcon fontSize="small" />,
-      link: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+      icon: <InstagramIcon fontSize='small' />,
+      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
     },
     {
-      icon: <PinterestIcon fontSize="small" />,
-      link: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+      icon: <PinterestIcon fontSize='small' />,
+      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
     },
     {
-      icon: <GitHubIcon fontSize="small" />,
-      link: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
+      icon: <GitHubIcon fontSize='small' />,
+      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
     },
   ],
   light: false,

@@ -14,42 +14,42 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
+import MKBox from 'components/MKBox';
 // import MKTypography from "components/MKTypography";
 
 // Otis Kit PRO example components
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import SimpleFooter from "examples/Footers/SimpleFooter";
+import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
+import SimpleFooter from 'examples/Footers/SimpleFooter';
 
 // Otis Kit PRO page layout routes
-import routes from "constants/routes";
+import routes from 'constants/routes';
 
 function CoverLayout({ coverHeight, image, children }) {
   return (
-    <MKBox height="calc(100vh - 1rem)">
-      <MKBox width="100%" position="absolute" top="0.25rem">
+    <MKBox height='calc(100vh - 1rem)'>
+      <MKBox width='100%' position='absolute' top='0.25rem'>
         <DefaultNavbar
           routes={routes}
           action={{
-            type: "external",
+            type: 'external',
             route:
-              "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-            label: "buy now",
+              'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+            label: 'buy now',
           }}
           transparent
           light
         />
       </MKBox>
       <MKBox
-        width="calc(100% - 2rem)"
+        width='calc(100% - 2rem)'
         minHeight={coverHeight}
-        borderRadius="xl"
+        borderRadius='xl'
         mx={2}
         my={2}
         pt={6}
@@ -64,24 +64,24 @@ function CoverLayout({ coverHeight, image, children }) {
               rgba(gradients.dark.main, 0.6),
               rgba(gradients.dark.state, 0.6)
             )}, url(${image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
         }}
       />
       <MKBox
         mt={{ xs: -20, lg: -18 }}
         px={1}
-        width="calc(100% - 2rem)"
-        mx="auto"
+        width='calc(100% - 2rem)'
+        mx='auto'
       >
-        <Grid container spacing={1} justifyContent="center">
+        <Grid container spacing={1} justifyContent='center'>
           <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
             {children}
           </Grid>
         </Grid>
       </MKBox>
-      <MKBox width="100%" position="absolute" bottom="1.625rem">
+      <MKBox width='100%' position='absolute' bottom='1.625rem'>
         <SimpleFooter />
       </MKBox>
     </MKBox>
@@ -90,7 +90,7 @@ function CoverLayout({ coverHeight, image, children }) {
 
 // Setting default props for the CoverLayout
 CoverLayout.defaultProps = {
-  coverHeight: "35vh",
+  coverHeight: '35vh',
 };
 
 // Typechecking props for the CoverLayout

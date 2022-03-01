@@ -14,10 +14,10 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO examples
-import DefaultFooter from "examples/Footers/DefaultFooter";
+import DefaultFooter from 'examples/Footers/DefaultFooter';
 
 // routes
-import footerRoutes from "constants/footer.routes";
+import footerRoutes from 'constants/footer.routes';
 
 function FooterTwo() {
   return <DefaultFooter content={footerRoutes} />;

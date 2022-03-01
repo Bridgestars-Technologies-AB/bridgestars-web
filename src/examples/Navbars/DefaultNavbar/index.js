@@ -14,37 +14,37 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect } from 'react';
 
 // react-router components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // prop-types is a library for typechecking of props.
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Icon from "@mui/material/Icon";
-import Popper from "@mui/material/Popper";
-import Grow from "@mui/material/Grow";
-import Grid from "@mui/material/Grid";
-import Divider from "@mui/material/Divider";
-import { spacing } from "@mui/system";
-import MuiLink from "@mui/material/Link";
+import Container from '@mui/material/Container';
+import Icon from '@mui/material/Icon';
+import Popper from '@mui/material/Popper';
+import Grow from '@mui/material/Grow';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
+import { spacing } from '@mui/system';
+import MuiLink from '@mui/material/Link';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
+import MKButton from 'components/MKButton';
 
 // Otis Kit PRO examples
-import DefaultNavbarDropdown from "examples/Navbars/DefaultNavbar/DefaultNavbarDropdown";
-import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMobile";
+import DefaultNavbarDropdown from 'examples/Navbars/DefaultNavbar/DefaultNavbarDropdown';
+import DefaultNavbarMobile from 'examples/Navbars/DefaultNavbar/DefaultNavbarMobile';
 
 // Otis Kit PRO base styles
-import breakpoints from "assets/theme/base/breakpoints";
-import logo from "assets/images/bridgestars/logo-trans-64px.png";
-import Image from "material-ui-image";
+import breakpoints from 'assets/theme/base/breakpoints';
+import logo from 'assets/images/bridgestars/logo-trans-64px.png';
+import Image from 'material-ui-image';
 
 function DefaultNavbar({
   brand,
@@ -56,12 +56,12 @@ function DefaultNavbar({
   relative,
   center,
 }) {
-  const [dropdown, setDropdown] = useState("");
-  const [dropdownEl, setDropdownEl] = useState("");
-  const [dropdownName, setDropdownName] = useState("");
-  const [nestedDropdown, setNestedDropdown] = useState("");
-  const [nestedDropdownEl, setNestedDropdownEl] = useState("");
-  const [nestedDropdownName, setNestedDropdownName] = useState("");
+  const [dropdown, setDropdown] = useState('');
+  const [dropdownEl, setDropdownEl] = useState('');
+  const [dropdownName, setDropdownName] = useState('');
+  const [nestedDropdown, setNestedDropdown] = useState('');
+  const [nestedDropdownEl, setNestedDropdownEl] = useState('');
+  const [nestedDropdownName, setNestedDropdownName] = useState('');
   const [arrowRef, setArrowRef] = useState(null);
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
@@ -84,13 +84,13 @@ function DefaultNavbar({
      The event listener that's calling the displayMobileNavbar function when 
      resizing the window.
     */
-    window.addEventListener("resize", displayMobileNavbar);
+    window.addEventListener('resize', displayMobileNavbar);
 
     // Call the displayMobileNavbar function to set the state with the initial value.
     displayMobileNavbar();
 
     // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", displayMobileNavbar);
+    return () => window.removeEventListener('resize', displayMobileNavbar);
   }, []);
 
   const renderNavbarItems = routes.map(
@@ -145,15 +145,15 @@ function DefaultNavbar({
                   key={gridKey}
                   item
                   xs={12 / columns}
-                  sx={{ position: "relative" }}
+                  sx={{ position: 'relative' }}
                 >
                   {cols.map((col, index) => (
                     <Fragment key={col.name}>
                       <MKTypography
-                        display="block"
-                        variant="button"
-                        fontWeight="bold"
-                        textTransform="capitalize"
+                        display='block'
+                        variant='button'
+                        fontWeight='bold'
+                        textTransform='capitalize'
                         py={1}
                         px={0.5}
                         mt={index !== 0 ? 2 : 0}
@@ -164,18 +164,18 @@ function DefaultNavbar({
                         <MKTypography
                           key={item.name}
                           component={item.route ? Link : MuiLink}
-                          to={item.route ? item.route : ""}
+                          to={item.route ? item.route : ''}
                           href={
                             item.href ? item.href : (e) => e.preventDefault()
                           }
-                          target={item.href ? "_blank" : ""}
-                          rel={item.href ? "noreferrer" : "noreferrer"}
-                          minWidth="11.25rem"
-                          display="block"
-                          variant="button"
-                          color="text"
-                          textTransform="capitalize"
-                          fontWeight="regular"
+                          target={item.href ? '_blank' : ''}
+                          rel={item.href ? 'noreferrer' : 'noreferrer'}
+                          minWidth='11.25rem'
+                          display='block'
+                          variant='button'
+                          color='text'
+                          textTransform='capitalize'
+                          fontWeight='regular'
                           py={0.625}
                           px={2}
                           sx={({
@@ -183,10 +183,10 @@ function DefaultNavbar({
                             borders: { borderRadius },
                           }) => ({
                             borderRadius: borderRadius.md,
-                            cursor: "pointer",
-                            transition: "all 300ms linear",
+                            cursor: 'pointer',
+                            transition: 'all 300ms linear',
 
-                            "&:hover": {
+                            '&:hover': {
                               backgroundColor: grey[200],
                               color: dark.main,
                             },
@@ -200,13 +200,13 @@ function DefaultNavbar({
                   {key !== 0 && (
                     <Divider
                       key={dividerKey}
-                      orientation="vertical"
+                      orientation='vertical'
                       sx={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "-4px",
-                        transform: "translateY(-45%)",
-                        height: "90%",
+                        position: 'absolute',
+                        top: '50%',
+                        left: '-4px',
+                        transform: 'translateY(-45%)',
+                        height: '90%',
                       }}
                     />
                   )}
@@ -222,8 +222,8 @@ function DefaultNavbar({
           const linkComponent = {
             component: MuiLink,
             href: item.href,
-            target: "_blank",
-            rel: "noreferrer",
+            target: '_blank',
+            rel: 'noreferrer',
           };
 
           const routeComponent = {
@@ -235,26 +235,26 @@ function DefaultNavbar({
             <MKTypography
               key={item.name}
               {...(item.route ? routeComponent : linkComponent)}
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              variant="button"
-              textTransform="capitalize"
-              minWidth={item.description ? "14rem" : "12rem"}
-              color={item.description ? "dark" : "text"}
-              fontWeight={item.description ? "bold" : "regular"}
+              display='flex'
+              justifyContent='space-between'
+              alignItems='center'
+              variant='button'
+              textTransform='capitalize'
+              minWidth={item.description ? '14rem' : '12rem'}
+              color={item.description ? 'dark' : 'text'}
+              fontWeight={item.description ? 'bold' : 'regular'}
               py={item.description ? 1 : 0.625}
               px={2}
               sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
                 borderRadius: borderRadius.md,
-                cursor: "pointer",
-                transition: "all 300ms linear",
+                cursor: 'pointer',
+                transition: 'all 300ms linear',
 
-                "&:hover": {
+                '&:hover': {
                   backgroundColor: grey[200],
                   color: dark.main,
 
-                  "& *": {
+                  '& *': {
                     color: dark.main,
                   },
                 },
@@ -276,11 +276,11 @@ function DefaultNavbar({
                 <MKBox>
                   {item.name}
                   <MKTypography
-                    display="block"
-                    variant="button"
-                    color="text"
-                    fontWeight="regular"
-                    sx={{ transition: "all 300ms linear" }}
+                    display='block'
+                    variant='button'
+                    color='text'
+                    fontWeight='regular'
+                    sx={{ transition: 'all 300ms linear' }}
                   >
                     {item.description}
                   </MKTypography>
@@ -290,10 +290,10 @@ function DefaultNavbar({
               )}
               {item.collapse && (
                 <Icon
-                  fontSize="small"
+                  fontSize='small'
                   sx={{
-                    fontWeight: "normal",
-                    verticalAlign: "middle",
+                    fontWeight: 'normal',
+                    verticalAlign: 'middle',
                     mr: -0.5,
                   }}
                 >
@@ -315,12 +315,12 @@ function DefaultNavbar({
       anchorEl={dropdown}
       popperRef={null}
       open={Boolean(dropdown)}
-      placement="top-start"
+      placement='top-start'
       transition
       style={{ zIndex: 10 }}
       modifiers={[
         {
-          name: "arrow",
+          name: 'arrow',
           enabled: true,
           options: {
             element: arrowRef,
@@ -331,7 +331,7 @@ function DefaultNavbar({
       onMouseLeave={() => {
         if (!nestedDropdown) {
           setDropdown(null);
-          setDropdownName("");
+          setDropdownName('');
         }
       }}
     >
@@ -339,17 +339,17 @@ function DefaultNavbar({
         <Grow
           {...TransitionProps}
           sx={{
-            transformOrigin: "left top",
+            transformOrigin: 'left top',
             background: ({ palette: { white } }) => white.main,
           }}
         >
-          <MKBox borderRadius="lg">
-            <MKTypography variant="h1" color="white">
+          <MKBox borderRadius='lg'>
+            <MKTypography variant='h1' color='white'>
               <Icon ref={setArrowRef} sx={{ mt: -3 }}>
                 arrow_drop_up
               </Icon>
             </MKTypography>
-            <MKBox shadow="lg" borderRadius="lg" p={2} mt={2}>
+            <MKBox shadow='lg' borderRadius='lg' p={2} mt={2}>
               {renderRoutes}
             </MKBox>
           </MKBox>
@@ -371,8 +371,8 @@ function DefaultNavbar({
                 const linkComponent = {
                   component: MuiLink,
                   href: item.href,
-                  target: "_blank",
-                  rel: "noreferrer",
+                  target: '_blank',
+                  rel: 'noreferrer',
                 };
 
                 const routeComponent = {
@@ -384,14 +384,14 @@ function DefaultNavbar({
                   <MKTypography
                     key={item.name}
                     {...(item.route ? routeComponent : linkComponent)}
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    variant="button"
-                    textTransform="capitalize"
-                    minWidth={item.description ? "14rem" : "12rem"}
-                    color={item.description ? "dark" : "text"}
-                    fontWeight={item.description ? "bold" : "regular"}
+                    display='flex'
+                    justifyContent='space-between'
+                    alignItems='center'
+                    variant='button'
+                    textTransform='capitalize'
+                    minWidth={item.description ? '14rem' : '12rem'}
+                    color={item.description ? 'dark' : 'text'}
+                    fontWeight={item.description ? 'bold' : 'regular'}
                     py={item.description ? 1 : 0.625}
                     px={2}
                     sx={({
@@ -399,14 +399,14 @@ function DefaultNavbar({
                       borders: { borderRadius },
                     }) => ({
                       borderRadius: borderRadius.md,
-                      cursor: "pointer",
-                      transition: "all 300ms linear",
+                      cursor: 'pointer',
+                      transition: 'all 300ms linear',
 
-                      "&:hover": {
+                      '&:hover': {
                         backgroundColor: grey[200],
                         color: dark.main,
 
-                        "& *": {
+                        '& *': {
                           color: dark.main,
                         },
                       },
@@ -416,11 +416,11 @@ function DefaultNavbar({
                       <MKBox>
                         {item.name}
                         <MKTypography
-                          display="block"
-                          variant="button"
-                          color="text"
-                          fontWeight="regular"
-                          sx={{ transition: "all 300ms linear" }}
+                          display='block'
+                          variant='button'
+                          color='text'
+                          fontWeight='regular'
+                          sx={{ transition: 'all 300ms linear' }}
                         >
                           {item.description}
                         </MKTypography>
@@ -430,10 +430,10 @@ function DefaultNavbar({
                     )}
                     {item.collapse && (
                       <Icon
-                        fontSize="small"
+                        fontSize='small'
                         sx={{
-                          fontWeight: "normal",
-                          verticalAlign: "middle",
+                          fontWeight: 'normal',
+                          verticalAlign: 'middle',
                           mr: -0.5,
                         }}
                       >
@@ -456,7 +456,7 @@ function DefaultNavbar({
       anchorEl={nestedDropdown}
       popperRef={null}
       open={Boolean(nestedDropdown)}
-      placement="right-start"
+      placement='right-start'
       transition
       style={{ zIndex: 10 }}
       onMouseEnter={() => {
@@ -464,7 +464,7 @@ function DefaultNavbar({
       }}
       onMouseLeave={() => {
         setNestedDropdown(null);
-        setNestedDropdownName("");
+        setNestedDropdownName('');
         setDropdown(null);
       }}
     >
@@ -472,12 +472,12 @@ function DefaultNavbar({
         <Grow
           {...TransitionProps}
           sx={{
-            transformOrigin: "left top",
+            transformOrigin: 'left top',
             background: ({ palette: { white } }) => white.main,
           }}
         >
-          <MKBox ml={2.5} mt={-2.5} borderRadius="lg">
-            <MKBox shadow="lg" borderRadius="lg" py={1.5} px={1} mt={2}>
+          <MKBox ml={2.5} mt={-2.5} borderRadius='lg'>
+            <MKBox shadow='lg' borderRadius='lg' py={1.5} px={1} mt={2}>
               {renderNestedRoutes}
             </MKBox>
           </MKBox>
@@ -487,17 +487,17 @@ function DefaultNavbar({
   );
 
   return (
-    <Container sx={sticky ? { position: "sticky", top: 0, zIndex: 10 } : null}>
+    <Container sx={sticky ? { position: 'sticky', top: 0, zIndex: 10 } : null}>
       <MKBox
         py={1}
         px={{ xs: 4, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}
         my={relative ? 0 : 2}
         mx={relative ? 0 : 3}
-        width={relative ? "100%" : "calc(100% - 48px)"}
-        borderRadius="xl"
-        shadow={transparent ? "none" : "md"}
-        color={light ? "white" : "dark"}
-        position={relative ? "relative" : "absolute"}
+        width={relative ? '100%' : 'calc(100% - 48px)'}
+        borderRadius='xl'
+        shadow={transparent ? 'none' : 'md'}
+        color={light ? 'white' : 'dark'}
+        position={relative ? 'relative' : 'absolute'}
         left={0}
         zIndex={3}
         sx={({
@@ -507,13 +507,13 @@ function DefaultNavbar({
           backgroundColor: transparent
             ? transparentColor.main
             : rgba(white.main, 0.8),
-          backdropFilter: transparent ? "none" : `saturate(400%) blur(30px)`,
+          backdropFilter: transparent ? 'none' : `saturate(400%) blur(30px)`,
         })}
       >
-        <MKBox display="flex" justifyContent="space-between" alignItems="left">
+        <MKBox display='flex' justifyContent='space-between' alignItems='left'>
           <MKBox
             component={Link}
-            to="/"
+            to='/'
             lineHeight={1}
             py={transparent ? 1.5 : 0.75}
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
@@ -524,74 +524,74 @@ function DefaultNavbar({
             <img src={logo} width={32} />
             <MKTypography
               sx={{ pl: 1, fontSize: 20 }}
-              variant="button"
-              verticalAlign="super"
-              fontWeight="bold"
-              color={light ? "white" : "dark"}
+              variant='button'
+              verticalAlign='super'
+              fontWeight='bold'
+              color={light ? 'white' : 'dark'}
             >
               {brand}
             </MKTypography>
           </MKBox>
 
           <MKBox
-            color="inherit"
-            display={{ xs: "none", lg: "flex" }}
-            ml="auto"
-            mr={center ? "auto" : 0}
+            color='inherit'
+            display={{ xs: 'none', lg: 'flex' }}
+            ml='auto'
+            mr={center ? 'auto' : 0}
           >
             {renderNavbarItems}
           </MKBox>
-          <MKBox ml={{ xs: "auto", lg: 0 }}>
+          <MKBox ml={{ xs: 'auto', lg: 0 }}>
             {action &&
-              (action.type === "internal" ? (
+              (action.type === 'internal' ? (
                 <MKButton
                   component={Link}
                   to={action.route}
                   variant={
-                    action.color === "white" || action.color === "default"
-                      ? "contained"
-                      : "gradient"
+                    action.color === 'white' || action.color === 'default'
+                      ? 'contained'
+                      : 'gradient'
                   }
-                  color={action.color ? action.color : "info"}
-                  size="small"
-                  sx={{ verticalAlign: "sub" }}
+                  color={action.color ? action.color : 'info'}
+                  size='small'
+                  sx={{ verticalAlign: 'sub' }}
                 >
                   {action.label}
                 </MKButton>
               ) : (
                 <MKButton
-                  component="a"
+                  component='a'
                   href={action.route}
-                  target="_blank"
-                  rel="noreferrer"
+                  target='_blank'
+                  rel='noreferrer'
                   variant={
-                    action.color === "white" || action.color === "default"
-                      ? "contained"
-                      : "gradient"
+                    action.color === 'white' || action.color === 'default'
+                      ? 'contained'
+                      : 'gradient'
                   }
-                  color={action.color ? action.color : "info"}
-                  size="small"
+                  color={action.color ? action.color : 'info'}
+                  size='small'
                 >
                   {action.label}
                 </MKButton>
               ))}
           </MKBox>
           <MKBox
-            display={{ xs: "inline-block", lg: "none" }}
+            display={{ xs: 'inline-block', lg: 'none' }}
             lineHeight={0}
             py={1.5}
             pl={1.5}
-            color={transparent ? "white" : "inherit"}
-            sx={{ cursor: "pointer" }}
+            color={transparent ? 'white' : 'inherit'}
+            sx={{ cursor: 'pointer' }}
             onClick={openMobileNavbar}
           >
-            <Icon fontSize="default">{mobileNavbar ? "close" : "menu"}</Icon>
+            <Icon fontSize='default'>{mobileNavbar ? 'close' : 'menu'}</Icon>
           </MKBox>
         </MKBox>
         <MKBox
-          bgColor={transparent ? "white" : "transparent"}
-          shadow={transparent ? "lg" : "none"}
-          borderRadius="xl"
+          bgColor={transparent ? 'white' : 'transparent'}
+          shadow={transparent ? 'lg' : 'none'}
+          borderRadius='xl'
           px={transparent ? 2 : 0}
         >
           {mobileView && (
@@ -607,7 +607,7 @@ function DefaultNavbar({
 
 // Setting default values for the props of DefaultNavbar
 DefaultNavbar.defaultProps = {
-  brand: "Otis Kit PRO",
+  brand: 'Otis Kit PRO',
   transparent: false,
   light: false,
   action: false,
@@ -625,19 +625,19 @@ DefaultNavbar.propTypes = {
   action: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.shape({
-      type: PropTypes.oneOf(["external", "internal"]).isRequired,
+      type: PropTypes.oneOf(['external', 'internal']).isRequired,
       route: PropTypes.string.isRequired,
       color: PropTypes.oneOf([
-        "primary",
-        "secondary",
-        "info",
-        "success",
-        "warning",
-        "error",
-        "dark",
-        "light",
-        "default",
-        "white",
+        'primary',
+        'secondary',
+        'info',
+        'success',
+        'warning',
+        'error',
+        'dark',
+        'light',
+        'default',
+        'white',
       ]),
       label: PropTypes.string.isRequired,
     }),

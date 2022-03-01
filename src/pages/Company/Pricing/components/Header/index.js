@@ -14,26 +14,26 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 // Otis Kit PRO examples
-import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
+import FilledInfoCard from 'examples/Cards/InfoCards/FilledInfoCard';
 
 function Header({ image, label, title, description, cards }) {
   return (
     <>
       <MKBox
-        minHeight="75vh"
-        width="100%"
+        minHeight='75vh'
+        width='100%'
         sx={{
           backgroundImage: ({
             functions: { linearGradient, rgba },
@@ -43,10 +43,10 @@ function Header({ image, label, title, description, cards }) {
               rgba(gradients.dark.main, 0.8),
               rgba(gradients.dark.state, 0.8)
             )}, url(${image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "grid",
-          placeItems: "center",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'grid',
+          placeItems: 'center',
         }}
       >
         <Container>
@@ -55,26 +55,26 @@ function Header({ image, label, title, description, cards }) {
             item
             xs={12}
             lg={6}
-            alignItems="flex-start"
-            flexDirection="column"
+            alignItems='flex-start'
+            flexDirection='column'
             sx={{ px: { xs: 1, lg: 0 } }}
           >
-            <MKTypography variant="h4" color="white">
+            <MKTypography variant='h4' color='white'>
               {label}
             </MKTypography>
             <MKTypography
-              variant="h1"
-              color="white"
+              variant='h1'
+              color='white'
               mb={1}
               sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
+                [breakpoints.down('md')]: {
+                  fontSize: size['3xl'],
                 },
               })}
             >
               {title}
             </MKTypography>
-            <MKTypography variant="body1" color="white" opacity={0.8}>
+            <MKTypography variant='body1' color='white' opacity={0.8}>
               {description}
             </MKTypography>
           </Grid>
@@ -106,9 +106,9 @@ function Header({ image, label, title, description, cards }) {
                   title={cardTitle}
                   description={cardDescription}
                   action={{
-                    type: "internal",
-                    route: "/pages/company/about-us",
-                    label: "More about us",
+                    type: 'internal',
+                    route: '/pages/company/about-us',
+                    label: 'More about us',
                   }}
                 />
               </Grid>

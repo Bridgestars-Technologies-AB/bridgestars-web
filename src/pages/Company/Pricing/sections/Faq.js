@@ -13,48 +13,48 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
+import { useState } from 'react';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 // Pricing page components
-import FaqCollapse from "pages/Company/Pricing/components/FaqCollapse";
+import FaqCollapse from 'pages/Company/Pricing/components/FaqCollapse';
 
 function Faq() {
   const [collapse, setCollapse] = useState(false);
 
   return (
-    <MKBox component="section" py={6}>
+    <MKBox component='section' py={6}>
       <Container>
-        <Grid container justifyContent="center">
+        <Grid container justifyContent='center'>
           <Grid item xs={12} md={10}>
             <Card>
               <MKBox
-                variant="gradient"
-                bgColor="error"
-                borderRadius="lg"
-                coloredShadow="error"
+                variant='gradient'
+                bgColor='error'
+                borderRadius='lg'
+                coloredShadow='error'
                 p={3}
                 mt={-3}
                 mx={2}
               >
-                <MKTypography variant="h4" color="white">
+                <MKTypography variant='h4' color='white'>
                   Frequently Asked Questions
                 </MKTypography>
-                <MKTypography variant="body2" color="white" opacity={0.8}>
+                <MKTypography variant='body2' color='white' opacity={0.8}>
                   Last modified: Sept 07 2021
                 </MKTypography>
               </MKBox>
               <MKBox py={2} px={3}>
                 <FaqCollapse
-                  title="How do I order?"
+                  title='How do I order?'
                   open={collapse === 1}
                   onClick={() =>
                     collapse === 1 ? setCollapse(false) : setCollapse(1)
@@ -69,7 +69,7 @@ function Faq() {
                   passed.
                 </FaqCollapse>
                 <FaqCollapse
-                  title="How can i make the payment?"
+                  title='How can i make the payment?'
                   open={collapse === 2}
                   onClick={() =>
                     collapse === 2 ? setCollapse(false) : setCollapse(2)
@@ -89,7 +89,7 @@ function Faq() {
                   until it&apos;s passed.
                 </FaqCollapse>
                 <FaqCollapse
-                  title="How much time does it take to receive the order?"
+                  title='How much time does it take to receive the order?'
                   open={collapse === 3}
                   onClick={() =>
                     collapse === 3 ? setCollapse(false) : setCollapse(3)
@@ -108,7 +108,7 @@ function Faq() {
                   the best way I know how.
                 </FaqCollapse>
                 <FaqCollapse
-                  title="Can I resell the products?"
+                  title='Can I resell the products?'
                   open={collapse === 4}
                   onClick={() =>
                     collapse === 4 ? setCollapse(false) : setCollapse(4)
@@ -130,7 +130,7 @@ function Faq() {
                   and I&apos;m not trying to do the best way I know how.
                 </FaqCollapse>
                 <FaqCollapse
-                  title="Where do I find the shipping details?"
+                  title='Where do I find the shipping details?'
                   open={collapse === 5}
                   onClick={() =>
                     collapse === 5 ? setCollapse(false) : setCollapse(5)

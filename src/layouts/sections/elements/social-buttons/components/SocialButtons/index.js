@@ -14,124 +14,124 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKSocialButton from "components/MKSocialButton";
+import MKBox from 'components/MKBox';
+import MKSocialButton from 'components/MKSocialButton';
 
 function SocialButtons() {
   return (
-    <MKBox component="section" py={12}>
+    <MKBox component='section' py={12}>
       <Container>
-        <Grid container justifyContent="center">
-          <MKBox display="flex" flexWrap="wrap" justifyContent="center" gap={1}>
-            <MKSocialButton color="facebook">
+        <Grid container justifyContent='center'>
+          <MKBox display='flex' flexWrap='wrap' justifyContent='center' gap={1}>
+            <MKSocialButton color='facebook'>
               <MKBox
-                component="i"
-                color="inherit"
+                component='i'
+                color='inherit'
                 mr={0.5}
-                className="fab fa-facebook"
+                className='fab fa-facebook'
               />
               facebook
             </MKSocialButton>
-            <MKSocialButton color="twitter">
+            <MKSocialButton color='twitter'>
               <MKBox
-                component="i"
-                color="inherit"
+                component='i'
+                color='inherit'
                 mr={0.5}
-                className="fab fa-twitter"
+                className='fab fa-twitter'
               />
               twitter
             </MKSocialButton>
-            <MKSocialButton color="instagram">
+            <MKSocialButton color='instagram'>
               <MKBox
-                component="i"
-                color="inherit"
+                component='i'
+                color='inherit'
                 mr={0.5}
-                className="fab fa-instagram"
+                className='fab fa-instagram'
               />
               instagram
             </MKSocialButton>
-            <MKSocialButton color="github">
+            <MKSocialButton color='github'>
               <MKBox
-                component="i"
-                color="inherit"
+                component='i'
+                color='inherit'
                 mr={0.5}
-                className="fab fa-github"
+                className='fab fa-github'
               />
               github
             </MKSocialButton>
-            <MKSocialButton color="pinterest">
+            <MKSocialButton color='pinterest'>
               <MKBox
-                component="i"
-                color="inherit"
+                component='i'
+                color='inherit'
                 mr={0.5}
-                className="fab fa-pinterest"
+                className='fab fa-pinterest'
               />
               pinterest
             </MKSocialButton>
-            <MKSocialButton color="youtube">
+            <MKSocialButton color='youtube'>
               <MKBox
-                component="i"
-                color="inherit"
+                component='i'
+                color='inherit'
                 mr={0.5}
-                className="fab fa-youtube"
+                className='fab fa-youtube'
               />
               youtube
             </MKSocialButton>
-            <MKSocialButton color="vimeo">
+            <MKSocialButton color='vimeo'>
               <MKBox
-                component="i"
-                color="inherit"
+                component='i'
+                color='inherit'
                 mr={0.5}
-                className="fab fa-vimeo"
+                className='fab fa-vimeo'
               />
               vimeo
             </MKSocialButton>
-            <MKSocialButton color="slack">
+            <MKSocialButton color='slack'>
               <MKBox
-                component="i"
-                color="inherit"
+                component='i'
+                color='inherit'
                 mr={0.5}
-                className="fab fa-slack"
+                className='fab fa-slack'
               />
               slack
             </MKSocialButton>
-            <MKSocialButton color="dribbble">
+            <MKSocialButton color='dribbble'>
               <MKBox
-                component="i"
-                color="inherit"
+                component='i'
+                color='inherit'
                 mr={0.5}
-                className="fab fa-dribbble"
+                className='fab fa-dribbble'
               />
               dribbble
             </MKSocialButton>
-            <MKSocialButton color="reddit">
+            <MKSocialButton color='reddit'>
               <MKBox
-                component="i"
-                color="inherit"
+                component='i'
+                color='inherit'
                 mr={0.5}
-                className="fab fa-reddit"
+                className='fab fa-reddit'
               />
               reddit
             </MKSocialButton>
-            <MKSocialButton color="tumblr">
+            <MKSocialButton color='tumblr'>
               <MKBox
-                component="i"
-                color="inherit"
+                component='i'
+                color='inherit'
                 mr={0.5}
-                className="fab fa-tumblr"
+                className='fab fa-tumblr'
               />
               tumblr
             </MKSocialButton>
-            <MKSocialButton color="linkedin">
+            <MKSocialButton color='linkedin'>
               <MKBox
-                component="i"
-                color="inherit"
+                component='i'
+                color='inherit'
                 mr={0.5}
-                className="fab fa-linkedin"
+                className='fab fa-linkedin'
               />
               linkedin
             </MKSocialButton>

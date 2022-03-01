@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO pages
-import DesktopApp from "pages/Apps/DesktopApp";
+import DesktopApp from 'pages/Apps/DesktopApp';
 
 export default function DesktopAppPage() {
   return <DesktopApp />;

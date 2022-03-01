@@ -14,25 +14,25 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
+import MKBox from 'components/MKBox';
+import MKButton from 'components/MKButton';
 
 function ButtonsSizes() {
   return (
-    <MKBox component="section" py={12}>
+    <MKBox component='section' py={12}>
       <Container>
-        <Grid container justifyContent="center">
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <MKButton color="info" size="small">
+        <Grid container justifyContent='center'>
+          <Stack direction='row' alignItems='center' spacing={1}>
+            <MKButton color='info' size='small'>
               small
             </MKButton>
-            <MKButton color="info">default</MKButton>
-            <MKButton color="info" size="large">
+            <MKButton color='info'>default</MKButton>
+            <MKButton color='info' size='large'>
               large
             </MKButton>
           </Stack>

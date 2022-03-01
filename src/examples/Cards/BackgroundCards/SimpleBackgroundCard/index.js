@@ -14,14 +14,14 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Card from "@mui/material/Card";
+import Card from '@mui/material/Card';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 function SimpleBackgroundCard({ image, title, description }) {
   return (
@@ -35,19 +35,19 @@ function SimpleBackgroundCard({ image, title, description }) {
           rgba(black.main, 0.5),
           rgba(black.main, 0.5)
         )}, url(${image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         borderRadius: borderRadius.xl,
-        height: "100%",
-        display: "grid",
-        justifyContent: "end",
+        height: '100%',
+        display: 'grid',
+        justifyContent: 'end',
       })}
     >
       <MKBox pt={32} pb={3} px={3}>
-        <MKTypography variant="h4" color="white" mb={1}>
+        <MKTypography variant='h4' color='white' mb={1}>
           {title}
         </MKTypography>
-        <MKTypography variant="body2" color="white" mb={2}>
+        <MKTypography variant='body2' color='white' mb={2}>
           {description}
         </MKTypography>
       </MKBox>

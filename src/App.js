@@ -13,23 +13,23 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 // react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 // @mui material components
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 // Otis Kit PRO themes
-import theme from "assets/theme";
-import Presentation from "layouts/pages/presentation";
+import theme from 'assets/theme';
+import Presentation from 'layouts/pages/presentation';
 
 // Otis Kit PRO routes
-import routes from "constants/routes";
+import routes from 'constants/routes';
 
-import BridgestarsHome from "bridgestars/home";
+import BridgestarsHome from 'bridgestars/home';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -65,8 +65,8 @@ export default function App() {
       <CssBaseline />
       <Routes>
         {getRoutes(routes)}
-        <Route path="/presentation" element={<BridgestarsHome />} />
-        <Route path="*" element={<Navigate to="/presentation" />} />
+        <Route path='/presentation' element={<BridgestarsHome />} />
+        <Route path='*' element={<Navigate to='/presentation' />} />
       </Routes>
     </ThemeProvider>
   );

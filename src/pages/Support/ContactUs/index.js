@@ -14,47 +14,47 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKInput from 'components/MKInput';
+import MKButton from 'components/MKButton';
+import MKTypography from 'components/MKTypography';
 
 // Otis Kit PRO examples
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import DefaultFooter from "examples/Footers/DefaultFooter";
+import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
+import DefaultFooter from 'examples/Footers/DefaultFooter';
 
 // Routes
-import routes from "constants/routes";
-import footerRoutes from "constants/footer.routes";
+import routes from 'constants/routes';
+import footerRoutes from 'constants/footer.routes';
 
 // Image
-import bgImage from "assets/images/illustrations/illustration-reset.jpg";
+import bgImage from 'assets/images/illustrations/illustration-reset.jpg';
 
 function ContactUs() {
   return (
     <>
-      <MKBox position="fixed" top="0.5rem" width="100%">
+      <MKBox position='fixed' top='0.5rem' width='100%'>
         <DefaultNavbar
           routes={routes}
           action={{
-            type: "external",
+            type: 'external',
             route:
-              "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-            label: "buy now",
-            color: "info",
+              'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+            label: 'buy now',
+            color: 'info',
           }}
         />
       </MKBox>
-      <Grid container spacing={3} alignItems="center">
+      <Grid container spacing={3} alignItems='center'>
         <Grid item xs={12} lg={6}>
           <MKBox
-            display={{ xs: "none", lg: "flex" }}
-            width="calc(100% - 2rem)"
-            height="calc(100vh - 2rem)"
-            borderRadius="lg"
+            display={{ xs: 'none', lg: 'flex' }}
+            width='calc(100% - 2rem)'
+            height='calc(100vh - 2rem)'
+            borderRadius='lg'
             ml={2}
             mt={2}
             sx={{ backgroundImage: `url(${bgImage})` }}
@@ -67,68 +67,68 @@ function ContactUs() {
           md={7}
           lg={6}
           xl={4}
-          ml={{ xs: "auto", lg: 6 }}
-          mr={{ xs: "auto", lg: 6 }}
+          ml={{ xs: 'auto', lg: 6 }}
+          mr={{ xs: 'auto', lg: 6 }}
         >
           <MKBox
-            bgColor="white"
-            borderRadius="xl"
-            shadow="lg"
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
+            bgColor='white'
+            borderRadius='xl'
+            shadow='lg'
+            display='flex'
+            flexDirection='column'
+            justifyContent='center'
             mt={{ xs: 20, sm: 18, md: 20 }}
             mb={{ xs: 20, sm: 18, md: 20 }}
             mx={3}
           >
             <MKBox
-              variant="gradient"
-              bgColor="info"
-              coloredShadow="info"
-              borderRadius="lg"
+              variant='gradient'
+              bgColor='info'
+              coloredShadow='info'
+              borderRadius='lg'
               p={2}
               mx={2}
               mt={-3}
             >
-              <MKTypography variant="h3" color="white">
+              <MKTypography variant='h3' color='white'>
                 Contact us
               </MKTypography>
             </MKBox>
             <MKBox p={3}>
-              <MKTypography variant="body2" color="text" mb={3}>
+              <MKTypography variant='body2' color='text' mb={3}>
                 For further questions, including partnership opportunities,
                 please email hello@creative-tim.com or contact using our contact
                 form.
               </MKTypography>
               <MKBox
-                width="100%"
-                component="form"
-                method="post"
-                autocomplete="off"
+                width='100%'
+                component='form'
+                method='post'
+                autocomplete='off'
               >
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={6}>
                     <MKInput
-                      variant="standard"
-                      label="Full Name"
+                      variant='standard'
+                      label='Full Name'
                       InputLabelProps={{ shrink: true }}
                       fullWidth
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <MKInput
-                      type="email"
-                      variant="standard"
-                      label="Email"
+                      type='email'
+                      variant='standard'
+                      label='Email'
                       InputLabelProps={{ shrink: true }}
                       fullWidth
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <MKInput
-                      variant="standard"
-                      label="What can we help you?"
-                      placeholder="Describe your problem in at least 250 characters"
+                      variant='standard'
+                      label='What can we help you?'
+                      placeholder='Describe your problem in at least 250 characters'
                       InputLabelProps={{ shrink: true }}
                       multiline
                       fullWidth
@@ -139,12 +139,12 @@ function ContactUs() {
                 <Grid
                   container
                   item
-                  justifyContent="center"
+                  justifyContent='center'
                   xs={12}
                   mt={5}
                   mb={2}
                 >
-                  <MKButton type="submit" variant="gradient" color="info">
+                  <MKButton type='submit' variant='gradient' color='info'>
                     Send Message
                   </MKButton>
                 </Grid>

@@ -1,10 +1,10 @@
 /* eslint-disable no-template-curly-in-string */
-const bg1 = "`url(${bg1})`";
-const bg2 = "`url(${bg2})`";
-const bg3 = "`url(${bg3})`";
-const bg4 = "`url(${bg4})`";
-const bg5 = "`url(${bg5})`";
-const bg6 = "`url(${bg6})`";
+const bg1 = '`url(${bg1})`';
+const bg2 = '`url(${bg2})`';
+const bg3 = '`url(${bg3})`';
+const bg4 = '`url(${bg4})`';
+const bg5 = '`url(${bg5})`';
+const bg6 = '`url(${bg6})`';
 
 const contentOneCode = `// @mui material components
 import Container from "@mui/material/Container";

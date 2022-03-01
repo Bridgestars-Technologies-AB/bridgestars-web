@@ -14,33 +14,33 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import Stack from "@mui/material/Stack";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import Stack from '@mui/material/Stack';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
+import MKButton from 'components/MKButton';
 
 // Otis Kit PRO examples
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import DefaultFooter from "examples/Footers/DefaultFooter";
+import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
+import DefaultFooter from 'examples/Footers/DefaultFooter';
 
 // Coworking page sections
-import Features from "bridgestars/home/sections/Features";
-import Testimonials from "bridgestars/home/sections/Testimonials";
-import AboutUs from "bridgestars/home/sections/AboutUs";
-import Places from "bridgestars/home/sections/Places";
+import Features from 'bridgestars/home/sections/Features';
+import Testimonials from 'bridgestars/home/sections/Testimonials';
+import AboutUs from 'bridgestars/home/sections/AboutUs';
+import Places from 'bridgestars/home/sections/Places';
 
 // Routes
-import routes from "constants/routes";
-import footerRoutes from "constants/footer.routes";
+import routes from 'constants/routes';
+import footerRoutes from 'constants/footer.routes';
 
 // Images
-import bgImage from "assets/images/bridgeBG0.webp";
-import linearHomepageGradient from "assets/theme/functions/linearHomepageGradient";
+import bgImage from 'assets/images/bridgeBG0.webp';
+import linearHomepageGradient from 'assets/theme/functions/linearHomepageGradient';
 
 export default function BridgestarsHome() {
   return (
@@ -48,11 +48,11 @@ export default function BridgestarsHome() {
       <DefaultNavbar
         routes={routes}
         action={{
-          type: "internal",
+          type: 'internal',
           route:
-            "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-          label: "sign in",
-          color: "primary",
+            'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+          label: 'sign in',
+          color: 'primary',
 
           /* "primary",
         "secondary",
@@ -66,11 +66,11 @@ export default function BridgestarsHome() {
         "white",*/
         }}
         sticky
-        brand="Bridgestars"
+        brand='Bridgestars'
       />
       <MKBox
-        minHeight="75vh"
-        width="100%"
+        minHeight='75vh'
+        width='100%'
         sx={{
           backgroundImage: ({
             functions: { linearHomepageGradient, rgba },
@@ -88,10 +88,10 @@ export default function BridgestarsHome() {
               135
             )}
             , url(${bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "grid",
-          placeItems: "center",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'grid',
+          placeItems: 'center',
         }}
       >
         <Container>
@@ -100,35 +100,35 @@ export default function BridgestarsHome() {
             item
             xs={12}
             md={7}
-            justifyContent={{ xs: "center", md: "start" }}
-            sx={{ textAlign: { xs: "center", md: "left" } }}
+            justifyContent={{ xs: 'center', md: 'start' }}
+            sx={{ textAlign: { xs: 'center', md: 'left' } }}
           >
             <MKTypography
-              variant="h1"
-              color="primary"
-              textGradient="true"
+              variant='h1'
+              color='primary'
+              textGradient='true'
               sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["5xl"],
+                [breakpoints.down('md')]: {
+                  fontSize: size['5xl'],
                 },
               })}
             >
               Bridgestars
             </MKTypography>
             <MKTypography
-              variant="body1"
-              color="white"
+              variant='body1'
+              color='white'
               mt={1}
               pr={{ md: 12, lg: 24, xl: 32 }}
               opacity={0.8}
             >
               The time is now. We are taking Contract Bridge to the next level.
             </MKTypography>
-            <Stack direction="row" spacing={1} mt={6} mb={3}>
-              <MKButton variant="gradient" color="primary">
+            <Stack direction='row' spacing={1} mt={6} mb={3}>
+              <MKButton variant='gradient' color='primary'>
                 sign up for closed beta
               </MKButton>
-              <MKButton variant="text" color="white">
+              <MKButton variant='text' color='white'>
                 read more
               </MKButton>
             </Stack>
@@ -143,7 +143,7 @@ export default function BridgestarsHome() {
           mb: 4,
           backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
             rgba(white.main, 0.8),
-          backdropFilter: "saturate(200%) blur(30px)",
+          backdropFilter: 'saturate(200%) blur(30px)',
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
@@ -153,31 +153,31 @@ export default function BridgestarsHome() {
         <Places />
         <Container>
           <MKBox
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            borderRadius="xl"
+            display='flex'
+            justifyContent='space-between'
+            alignItems='center'
+            borderRadius='xl'
             my={24}
             p={6}
             sx={{
               backgroundImage:
-                "url(https://images.unsplash.com/photo-1533563906091-fdfdffc3e3c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80)",
+                'url(https://images.unsplash.com/photo-1533563906091-fdfdffc3e3c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80)',
             }}
           >
-            <Grid container spacing={3} alignItems="center">
+            <Grid container spacing={3} alignItems='center'>
               <Grid item xs={12} md={8} lg={5}>
-                <MKTypography variant="h5" color="white" fontWeight="bold">
+                <MKTypography variant='h5' color='white' fontWeight='bold'>
                   For being a bright color. For standing out. But the time is
                   now to be okay to be the greatest you.
                 </MKTypography>
               </Grid>
-              <Grid item xs={12} lg={6} sx={{ ml: "auto" }}>
-                <MKBox width="12rem" ml="auto">
+              <Grid item xs={12} lg={6} sx={{ ml: 'auto' }}>
+                <MKBox width='12rem' ml='auto'>
                   <MKButton
-                    variant="gradient"
-                    color="warning"
+                    variant='gradient'
+                    color='warning'
                     fullWidth
-                    sx={{ boxShadow: "none" }}
+                    sx={{ boxShadow: 'none' }}
                   >
                     start now
                   </MKButton>

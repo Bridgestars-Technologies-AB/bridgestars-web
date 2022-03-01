@@ -14,21 +14,21 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import Icon from "@mui/material/Icon";
-import Divider from "@mui/material/Divider";
-import Fade from "@mui/material/Fade";
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import Icon from '@mui/material/Icon';
+import Divider from '@mui/material/Divider';
+import Fade from '@mui/material/Fade';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 // Custom styles for the MKSnackbar
-import MKSnackbarIconRoot from "components/MKSnackbar/MKSnackbarIconRoot";
+import MKSnackbarIconRoot from 'components/MKSnackbar/MKSnackbarIconRoot';
 
 function MKSnackbar({
   color,
@@ -46,15 +46,15 @@ function MKSnackbar({
 
   if (bgWhite) {
     titleColor = color;
-    dateTimeColor = "dark";
+    dateTimeColor = 'dark';
     dividerColor = false;
-  } else if (color === "light") {
-    titleColor = "dark";
-    dateTimeColor = "text";
+  } else if (color === 'light') {
+    titleColor = 'dark';
+    dateTimeColor = 'text';
     dividerColor = false;
   } else {
-    titleColor = "white";
-    dateTimeColor = "white";
+    titleColor = 'white';
+    dateTimeColor = 'white';
     dividerColor = true;
   }
 
@@ -63,28 +63,28 @@ function MKSnackbar({
       TransitionComponent={Fade}
       autoHideDuration={5000}
       anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "right",
+        vertical: 'bottom',
+        horizontal: 'right',
       }}
       {...rest}
       action={
         <IconButton
-          size="small"
-          aria-label="close"
-          color="inherit"
+          size='small'
+          aria-label='close'
+          color='inherit'
           onClick={close}
         >
-          <Icon fontSize="small">close</Icon>
+          <Icon fontSize='small'>close</Icon>
         </IconButton>
       }
     >
       <MKBox
-        variant={bgWhite ? "contained" : "gradient"}
-        bgColor={bgWhite ? "white" : color}
-        minWidth="21.875rem"
-        maxWidth="100%"
-        shadow="md"
-        borderRadius="md"
+        variant={bgWhite ? 'contained' : 'gradient'}
+        bgColor={bgWhite ? 'white' : color}
+        minWidth='21.875rem'
+        maxWidth='100%'
+        shadow='md'
+        borderRadius='md'
         p={1}
         sx={{
           backgroundColor: ({ palette }) =>
@@ -92,41 +92,41 @@ function MKSnackbar({
         }}
       >
         <MKBox
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          color="dark"
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
+          color='dark'
           p={1.5}
         >
-          <MKBox display="flex" alignItems="center" lineHeight={0}>
+          <MKBox display='flex' alignItems='center' lineHeight={0}>
             <MKSnackbarIconRoot
-              fontSize="small"
+              fontSize='small'
               ownerState={{ color, bgWhite }}
             >
               {icon}
             </MKSnackbarIconRoot>
             <MKTypography
-              variant="button"
-              fontWeight="medium"
+              variant='button'
+              fontWeight='medium'
               color={titleColor}
               textGradient={bgWhite}
             >
               {title}
             </MKTypography>
           </MKBox>
-          <MKBox display="flex" alignItems="center" lineHeight={0}>
-            <MKTypography variant="caption" color={dateTimeColor}>
+          <MKBox display='flex' alignItems='center' lineHeight={0}>
+            <MKTypography variant='caption' color={dateTimeColor}>
               {dateTime}
             </MKTypography>
             <Icon
               sx={{
                 color: ({ palette: { dark, white } }) =>
-                  bgWhite || color === "light" ? dark.main : white.main,
+                  bgWhite || color === 'light' ? dark.main : white.main,
                 fontWeight: ({ typography: { fontWeightBold } }) =>
                   fontWeightBold,
-                cursor: "pointer",
+                cursor: 'pointer',
                 marginLeft: 2,
-                transform: "translateY(-1px)",
+                transform: 'translateY(-1px)',
               }}
               onClick={close}
             >
@@ -140,7 +140,7 @@ function MKSnackbar({
           sx={{
             fontSize: ({ typography: { size } }) => size.sm,
             color: ({ palette: { white, text } }) =>
-              bgWhite || color === "light" ? text.main : white.main,
+              bgWhite || color === 'light' ? text.main : white.main,
           }}
         >
           {content}
@@ -153,20 +153,20 @@ function MKSnackbar({
 // Setting default values for the props of MKSnackbar
 MKSnackbar.defaultProps = {
   bgWhite: false,
-  color: "info",
+  color: 'info',
 };
 
 // Typechecking props for MKSnackbar
 MKSnackbar.propTypes = {
   color: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "dark",
-    "light",
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'error',
+    'dark',
+    'light',
   ]),
   icon: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,

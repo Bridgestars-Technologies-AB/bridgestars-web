@@ -14,18 +14,18 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
-import Tooltip from "@mui/material/Tooltip";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
+import Tooltip from '@mui/material/Tooltip';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
+import MKButton from 'components/MKButton';
 
 function MediaPlayer() {
   const bgImage =
-    "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80";
+    'https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80';
 
   const mediaPlayerButtonStyles = ({ functions: { pxToRem } }) => ({
     width: pxToRem(46),
@@ -45,23 +45,23 @@ function MediaPlayer() {
           rgba(gradients.dark.main, 0.85),
           rgba(gradients.dark.state, 0.85)
         )}, url(${bgImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       })}
     >
-      <MKBox p={3} position="relative" lineHeight={0}>
-        <MKTypography variant="h5" color="white" fontWeight="medium">
+      <MKBox p={3} position='relative' lineHeight={0}>
+        <MKTypography variant='h5' color='white' fontWeight='medium'>
           Some Kind Of Blues
         </MKTypography>
-        <MKTypography variant="button" color="white" fontWeight="regular">
+        <MKTypography variant='button' color='white' fontWeight='regular'>
           Deftones
         </MKTypography>
-        <MKBox display="flex" mt={6} pt={1}>
-          <MKBox display="flex" alignItems="center" justifyContent="center">
-            <Tooltip title="Prev" placement="top">
+        <MKBox display='flex' mt={6} pt={1}>
+          <MKBox display='flex' alignItems='center' justifyContent='center'>
+            <Tooltip title='Prev' placement='top'>
               <MKButton
-                variant="outlined"
-                size="large"
+                variant='outlined'
+                size='large'
                 circular
                 iconOnly
                 sx={mediaPlayerButtonStyles}
@@ -69,10 +69,10 @@ function MediaPlayer() {
                 <Icon>skip_previous</Icon>
               </MKButton>
             </Tooltip>
-            <Tooltip title="Pause" placement="top">
+            <Tooltip title='Pause' placement='top'>
               <MKButton
-                variant="outlined"
-                size="large"
+                variant='outlined'
+                size='large'
                 circular
                 iconOnly
                 sx={mediaPlayerButtonStyles}
@@ -80,10 +80,10 @@ function MediaPlayer() {
                 <Icon>play_arrow</Icon>
               </MKButton>
             </Tooltip>
-            <Tooltip title="Next" placement="top">
+            <Tooltip title='Next' placement='top'>
               <MKButton
-                variant="outlined"
-                size="large"
+                variant='outlined'
+                size='large'
                 circular
                 iconOnly
                 sx={mediaPlayerButtonStyles}

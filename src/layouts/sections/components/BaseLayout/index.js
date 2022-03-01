@@ -14,41 +14,41 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 // Otis Kit PRO examples
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import CenteredFooter from "examples/Footers/CenteredFooter";
-import Breadcrumbs from "examples/Breadcrumbs";
+import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
+import CenteredFooter from 'examples/Footers/CenteredFooter';
+import Breadcrumbs from 'examples/Breadcrumbs';
 
 // Routes
-import routes from "constants/routes";
+import routes from 'constants/routes';
 
 function BaseLayout({ breadcrumb, title, children }) {
   return (
     <MKBox
-      display="flex"
-      flexDirection="column"
-      bgColor="white"
-      minHeight="100vh"
+      display='flex'
+      flexDirection='column'
+      bgColor='white'
+      minHeight='100vh'
     >
-      <MKBox bgColor="white" shadow="sm" py={0.25}>
+      <MKBox bgColor='white' shadow='sm' py={0.25}>
         <DefaultNavbar
           routes={routes}
           action={{
-            type: "external",
+            type: 'external',
             route:
-              "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-            label: "buy now",
-            color: "info",
+              'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+            label: 'buy now',
+            color: 'info',
           }}
           transparent
           relative
@@ -59,20 +59,20 @@ function BaseLayout({ breadcrumb, title, children }) {
           container
           item
           xs={12}
-          flexDirection="column"
-          justifyContent="center"
-          mx="auto"
+          flexDirection='column'
+          justifyContent='center'
+          mx='auto'
         >
-          <MKBox width={{ xs: "100%", md: "50%", lg: "25%" }} mb={3}>
+          <MKBox width={{ xs: '100%', md: '50%', lg: '25%' }} mb={3}>
             <Breadcrumbs routes={breadcrumb} />
           </MKBox>
-          <MKTypography variant="h3" mb={1}>
+          <MKTypography variant='h3' mb={1}>
             {title}
           </MKTypography>
           {children}
         </Grid>
       </Container>
-      <MKBox mt="auto">
+      <MKBox mt='auto'>
         <CenteredFooter />
       </MKBox>
     </MKBox>

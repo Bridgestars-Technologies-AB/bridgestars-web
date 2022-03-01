@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO pages
-import Privacy from "pages/Support/Privacy";
+import Privacy from 'pages/Support/Privacy';
 
 export default function PrivacyPage() {
   return <Privacy />;

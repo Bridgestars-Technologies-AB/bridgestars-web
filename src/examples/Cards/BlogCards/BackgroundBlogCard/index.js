@@ -14,32 +14,32 @@ Coded by www.creative-tim.com
 */
 
 // react-router components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import MuiLink from "@mui/material/Link";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import MuiLink from '@mui/material/Link';
+import Icon from '@mui/material/Icon';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 function BackgroundBlogCard({ image, title, description, action }) {
   const cardActionStyles = {
-    display: "flex",
-    alignItems: "center",
-    width: "max-content",
+    display: 'flex',
+    alignItems: 'center',
+    width: 'max-content',
 
-    "& .material-icons, .material-icons-round,": {
+    '& .material-icons, .material-icons-round,': {
       transform: `translateX(2px)`,
-      transition: "transform 0.2s cubic-bezier(0.34,1.61,0.7,1.3)",
+      transition: 'transform 0.2s cubic-bezier(0.34,1.61,0.7,1.3)',
     },
 
-    "&:hover .material-icons, &:focus .material-icons, &:hover .material-icons-round, &:focus .material-icons-round":
+    '&:hover .material-icons, &:focus .material-icons, &:hover .material-icons-round, &:focus .material-icons-round':
       {
         transform: `translateX(6px)`,
       },
@@ -56,53 +56,53 @@ function BackgroundBlogCard({ image, title, description, action }) {
             rgba(black.main, 0.5),
             rgba(black.main, 0.5)
           )}, url(${image})`,
-        backgroundSize: "cover",
+        backgroundSize: 'cover',
       }}
     >
       <MKBox p={3}>
-        <MKBox minHeight="20.625rem" my="auto" py={3}>
+        <MKBox minHeight='20.625rem' my='auto' py={3}>
           <MKTypography
-            variant="h2"
-            color="white"
+            variant='h2'
+            color='white'
             mb={1}
             sx={({ breakpoints, typography: { size } }) => ({
-              [breakpoints.down("md")]: {
-                fontSize: size["3xl"],
+              [breakpoints.down('md')]: {
+                fontSize: size['3xl'],
               },
             })}
           >
             {title}
           </MKTypography>
-          <MKTypography variant="body2" color="white" my={3}>
+          <MKTypography variant='body2' color='white' my={3}>
             {description}
           </MKTypography>
-          {action.type === "internal" ? (
+          {action.type === 'internal' ? (
             <MKTypography
               component={Link}
               to={action.route}
-              variant="body2"
-              fontWeight="regular"
-              color="white"
-              textTransform="capitalize"
+              variant='body2'
+              fontWeight='regular'
+              color='white'
+              textTransform='capitalize'
               sx={cardActionStyles}
             >
               {action.label}
-              <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
+              <Icon sx={{ fontWeight: 'bold' }}>arrow_forward</Icon>
             </MKTypography>
           ) : (
             <MKTypography
               component={MuiLink}
               href={action.route}
-              target="_blank"
-              rel="noreferrer"
-              variant="body2"
-              fontWeight="regular"
-              color="white"
-              textTransform="capitalize"
+              target='_blank'
+              rel='noreferrer'
+              variant='body2'
+              fontWeight='regular'
+              color='white'
+              textTransform='capitalize'
               sx={cardActionStyles}
             >
               {action.label}
-              <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
+              <Icon sx={{ fontWeight: 'bold' }}>arrow_forward</Icon>
             </MKTypography>
           )}
         </MKBox>
@@ -117,7 +117,7 @@ BackgroundBlogCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   action: PropTypes.shape({
-    type: PropTypes.oneOf(["external", "internal"]).isRequired,
+    type: PropTypes.oneOf(['external', 'internal']).isRequired,
     route: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
   }).isRequired,

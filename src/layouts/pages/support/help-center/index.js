@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO pages
-import HelpCenter from "pages/Support/HelpCenter";
+import HelpCenter from 'pages/Support/HelpCenter';
 
 export default function HelpCenterPage() {
   return <HelpCenter />;

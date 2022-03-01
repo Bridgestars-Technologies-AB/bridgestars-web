@@ -13,52 +13,52 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
+import { useState } from 'react';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 // Sections components
-import BaseLayout from "layouts/sections/components/BaseLayout";
-import View from "layouts/sections/components/View";
+import BaseLayout from 'layouts/sections/components/BaseLayout';
+import View from 'layouts/sections/components/View';
 
 // HelpCenter page components
-import FaqCollapse from "pages/Support/HelpCenter/components/FaqCollapse";
+import FaqCollapse from 'pages/Support/HelpCenter/components/FaqCollapse';
 
 // Faq page code
-import faqCode from "layouts/sections/page-sections/faq/code";
+import faqCode from 'layouts/sections/page-sections/faq/code';
 
 function Faq() {
   const [collapse, setCollapse] = useState(false);
 
   return (
     <BaseLayout
-      title="FAQ"
+      title='FAQ'
       breadcrumb={[
-        { label: "Page Sections", route: "/sections/page-sections/faq" },
-        { label: "Faq" },
+        { label: 'Page Sections', route: '/sections/page-sections/faq' },
+        { label: 'Faq' },
       ]}
     >
-      <View title="Faq" code={faqCode}>
-        <MKBox component="section" py={12}>
+      <View title='Faq' code={faqCode}>
+        <MKBox component='section' py={12}>
           <Container>
-            <Grid container justifyContent="center">
+            <Grid container justifyContent='center'>
               <Grid item xs={12} md={6} my={6}>
                 <MKTypography
-                  variant="h2"
-                  align="center"
-                  fontWeight="bold"
+                  variant='h2'
+                  align='center'
+                  fontWeight='bold'
                   gutterBottom
                 >
                   Frequently Asked Questions
                 </MKTypography>
                 <MKBox mb={2}>
-                  <MKTypography variant="body2" align="center" color="text">
+                  <MKTypography variant='body2' align='center' color='text'>
                     A lot of people don&apos;t appreciate the moment until
                     it&apos;s passed. I&apos;m not trying my hardest, and
                     I&apos;m not trying to do
@@ -67,7 +67,7 @@ function Faq() {
               </Grid>
               <Grid item xs={12} md={10}>
                 <FaqCollapse
-                  title="How do I order?"
+                  title='How do I order?'
                   open={collapse === 1}
                   onClick={() =>
                     collapse === 1 ? setCollapse(false) : setCollapse(1)
@@ -82,7 +82,7 @@ function Faq() {
                   passed.
                 </FaqCollapse>
                 <FaqCollapse
-                  title="How can i make the payment?"
+                  title='How can i make the payment?'
                   open={collapse === 2}
                   onClick={() =>
                     collapse === 2 ? setCollapse(false) : setCollapse(2)
@@ -102,7 +102,7 @@ function Faq() {
                   until it&apos;s passed.
                 </FaqCollapse>
                 <FaqCollapse
-                  title="How much time does it take to receive the order?"
+                  title='How much time does it take to receive the order?'
                   open={collapse === 3}
                   onClick={() =>
                     collapse === 3 ? setCollapse(false) : setCollapse(3)
@@ -121,7 +121,7 @@ function Faq() {
                   the best way I know how.
                 </FaqCollapse>
                 <FaqCollapse
-                  title="Can I resell the products?"
+                  title='Can I resell the products?'
                   open={collapse === 4}
                   onClick={() =>
                     collapse === 4 ? setCollapse(false) : setCollapse(4)
@@ -143,7 +143,7 @@ function Faq() {
                   and I&apos;m not trying to do the best way I know how.
                 </FaqCollapse>
                 <FaqCollapse
-                  title="Where do I find the shipping details?"
+                  title='Where do I find the shipping details?'
                   open={collapse === 5}
                   onClick={() =>
                     collapse === 5 ? setCollapse(false) : setCollapse(5)

@@ -14,8 +14,8 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Icon from "@mui/material/Icon";
-import { styled } from "@mui/material/styles";
+import Icon from '@mui/material/Icon';
+import { styled } from '@mui/material/styles';
 
 export default styled(Icon)(({ theme, ownerState }) => {
   const { palette, functions, typography } = theme;
@@ -32,7 +32,7 @@ export default styled(Icon)(({ theme, ownerState }) => {
     backgroundImageValue = gradients[color]
       ? linearGradient(gradients[color].main, gradients[color].state)
       : linearGradient(gradients.info.main, gradients.info.state);
-  } else if (color === "light") {
+  } else if (color === 'light') {
     backgroundImageValue = linearGradient(
       gradients.dark.main,
       gradients.dark.state
@@ -42,8 +42,8 @@ export default styled(Icon)(({ theme, ownerState }) => {
   return {
     backgroundImage: backgroundImageValue,
     WebkitTextFillColor:
-      bgWhite || color === "light" ? transparent.main : white.main,
-    WebkitBackgroundClip: "text",
+      bgWhite || color === 'light' ? transparent.main : white.main,
+    WebkitBackgroundClip: 'text',
     marginRight: pxToRem(8),
     fontSize: size.lg,
     transform: `translateY(${pxToRem(-2)})`,
