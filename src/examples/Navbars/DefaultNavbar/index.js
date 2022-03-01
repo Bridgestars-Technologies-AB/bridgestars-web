@@ -500,6 +500,7 @@ function DefaultNavbar({
         position={relative ? 'relative' : 'absolute'}
         left={0}
         zIndex={3}
+<<<<<<< HEAD
         sx={({
           palette: { transparent: transparentColor, white },
           functions: { rgba },
@@ -508,6 +509,11 @@ function DefaultNavbar({
             ? transparentColor.main
             : rgba(white.main, 0.8),
           backdropFilter: transparent ? 'none' : `saturate(400%) blur(30px)`,
+=======
+        sx={({ palette: { transparent: transparentColor, white }, functions: { rgba } }) => ({
+          backgroundColor: transparent ? transparentColor.main : rgba(white.main, 0.8),
+          backdropFilter: transparent ? "none" : `saturate(400%) blur(30px)`,
+>>>>>>> 99cbaf222b9f75dfcfe224aa392370ed478207d1
         })}
       >
         <MKBox display='flex' justifyContent='space-between' alignItems='left'>

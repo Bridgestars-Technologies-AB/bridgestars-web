@@ -50,8 +50,13 @@ export default {
   },
 
   secondary: {
+<<<<<<< HEAD
     main: '#e2e294e',
     focus: '#e2e294e',
+=======
+    main: "#e2e294e",
+    focus: "#e2e294e",
+>>>>>>> 99cbaf222b9f75dfcfe224aa392370ed478207d1
   },
 
   info: {
@@ -103,8 +108,13 @@ export default {
     },
 
     secondary: {
+<<<<<<< HEAD
       main: '#482c4d',
       state: '#232032',
+=======
+      main: "#482c4d",
+      state: "#232032",
+>>>>>>> 99cbaf222b9f75dfcfe224aa392370ed478207d1
     },
 
     primary: {
