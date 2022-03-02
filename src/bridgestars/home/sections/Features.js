@@ -29,9 +29,9 @@ import CounterInfoCard from 'examples/Cards/InfoCards/CounterInfoCard';
 import MilitaryTechRoundedIcon from '@mui/icons-material/MilitaryTechRounded';
 import CenteredBlogCard from 'examples/Cards/BlogCards/CenteredBlogCard';
 
-function Features() {
+function Features(...rest) {
   return (
-    <MKBox component='section' py={{ xs: 6, md: 12 }}>
+    <MKBox {...rest} component='section' py={{ xs: 6, md: 12 }}>
       <Container>
         <Grid container item xs={12} justifyContent='space-evenly'>
           <Grid

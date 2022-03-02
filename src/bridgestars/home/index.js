@@ -41,8 +41,29 @@ import footerRoutes from 'constants/footer.routes';
 // Images
 import bgImage from 'assets/images/bridgeBG0.webp';
 import linearHomepageGradient from 'assets/theme/functions/linearHomepageGradient';
+//import Zoom from '@mui/material/Zoom';
+import { Grow, Fade } from '@mui/material';
+
+import CountUp from 'react-countup';
+import { HashLink } from 'react-router-hash-link';
 
 //TODO bridgestars titel centered
+
+const mapToAlphabets = (num) => {
+  const numStr = '' + num;
+  let res = '';
+
+  if (num === 23456789737) {
+    return 'BRIDGESTARS';
+  }
+  for (let i = 0; i < numStr.length; i++) {
+    const element = numStr[i];
+    const finalStr = '-PBRIDGESTARS';
+    res += finalStr[Number(element)];
+  }
+
+  return res;
+};
 
 export default function BridgestarsHome() {
   return (
@@ -92,52 +113,62 @@ export default function BridgestarsHome() {
             , url(${bgImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          display: 'grid',
+          display: 'flex',
           placeItems: 'center',
         }}
       >
         <Container>
-          <Grid
-            container
-            item
-            xs={12}
-            md={7}
-            justifyContent={{ xs: 'center', md: 'start' }}
-            sx={{ textAlign: { xs: 'center', md: 'left' } }}
-          >
+          <Stack justifyContent='center'>
             <MKTypography
               variant='h1'
               color='primary'
+              align='center'
               textGradient='true'
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down('md')]: {
-                  fontSize: size['5xl'],
-                },
-              })}
+              fontSize={70}
             >
-              Bridgestars
+              <CountUp
+                duration={1.5}
+                end={23456789737}
+                formattingFn={mapToAlphabets}
+              />
             </MKTypography>
-            <MKTypography
-              variant='body1'
-              color='white'
-              mt={1}
-              pr={{ md: 12, lg: 24, xl: 32 }}
-              opacity={0.8}
-            >
-              The time is now. We are taking Contract Bridge to the next level.
-            </MKTypography>
-            <Stack direction='row' spacing={1} mt={6} mb={3}>
-              <MKButton variant='gradient' color='primary'>
-                sign up for closed beta
-              </MKButton>
-              <MKButton variant='text' color='white'>
-                read more
-              </MKButton>
-            </Stack>
-          </Grid>
+            <Grow in='true' style={{ transformOrigin: '0 1 0' }} timeout={1500}>
+              <MKTypography
+                variant='body1'
+                color='white'
+                align='center'
+                fontSize={25}
+                mt={1}
+                //pr={{ md: 12, lg: 24, xl: 32 }}
+                opacity={0.8}
+              >
+                The time is now. We are taking Contract Bridge to the next
+                level.
+              </MKTypography>
+            </Grow>
+            <Grow in='true' style={{ transformOrigin: '0 1 0' }} timeout={3500}>
+              <Stack
+                direction='row'
+                justifyContent='center'
+                spacing={1}
+                mt={6}
+                mb={3}
+              >
+                <MKButton variant='gradient' size='large' color='primary'>
+                  sign up for closed beta
+                </MKButton>
+                <HashLink to='#read-more' smooth>
+                  <MKButton variant='text' size='large' color='white'>
+                    read more
+                  </MKButton>
+                </HashLink>
+              </Stack>
+            </Grow>
+          </Stack>
         </Container>
       </MKBox>
       <Card
+        id='read-more'
         sx={{
           p: 2,
           mx: { xs: 2, lg: 3 },
