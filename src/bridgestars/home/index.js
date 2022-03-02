@@ -39,15 +39,10 @@ import routes from 'constants/routes';
 import footerRoutes from 'constants/footer.routes';
 
 // Images
-<<<<<<< HEAD
 import bgImage from 'assets/images/bridgeBG0.webp';
 import linearHomepageGradient from 'assets/theme/functions/linearHomepageGradient';
-=======
-import bgImage from "assets/images/bridgeBG0.webp";
-import linearHomepageGradient from "assets/theme/functions/linearHomepageGradient";
-import FeatureCounter from "./sections/FeatureCounter.js";
 
->>>>>>> 99cbaf222b9f75dfcfe224aa392370ed478207d1
+//TODO bridgestars titel centered
 
 export default function BridgestarsHome() {
   return (
@@ -79,7 +74,6 @@ export default function BridgestarsHome() {
         minHeight='75vh'
         width='100%'
         sx={{
-<<<<<<< HEAD
           backgroundImage: ({
             functions: { linearHomepageGradient, rgba },
             palette: { gradients },
@@ -95,17 +89,6 @@ export default function BridgestarsHome() {
               ],
               135
             )}
-=======
-          backgroundImage: ({ functions: {linearHomepageGradient,rgba}, palette: { gradients } }) =>
-            `${linearHomepageGradient([
-              {color: rgba(gradients.primary.main, 0.6), percentage: 0},
-              {color: `rgba(0, 0, 0, 0.25)`, percentage: 30},
-              {color: `rgba(0, 0, 0, 0.25)`, percentage: 65},
-              {color: rgba(gradients.secondary.main, 1), percentage: 100},
-              //{color: `rgba(255, 0, 0, 0.5)`, percentage: 0},
-              // {color: `rgba(0, 0, 0, 0.15)`, percentage: 35}
-            ],135)}
->>>>>>> 99cbaf222b9f75dfcfe224aa392370ed478207d1
             , url(${bgImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -166,12 +149,7 @@ export default function BridgestarsHome() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-<<<<<<< HEAD
         <Features />
-=======
-        <FeatureCounter/>
-        <Information />
->>>>>>> 99cbaf222b9f75dfcfe224aa392370ed478207d1
         <Testimonials />
         <AboutUs />
         <Places />

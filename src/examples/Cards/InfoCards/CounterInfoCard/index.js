@@ -39,7 +39,8 @@ function CounterInfoCard({ color, countUp, title, description, direction }) {
       flexDirection='column'
       alignItems={alignment}
       textAlign={direction}
-      p={direction === 'center' ? 2 : 0}
+      p={direction === 'center' ? 0 : 0}
+      mt={0}
       lineHeight={1}
     >
       <MKTypography variant='h1' color={color} textGradient>

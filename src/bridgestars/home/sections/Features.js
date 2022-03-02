@@ -26,24 +26,55 @@ import DefaultCounterCard from 'examples/Cards/CounterCards/DefaultCounterCard';
 // Otis Kit PRO examples
 import SimpleInfoCard from 'examples/Cards/InfoCards/SimpleInfoCard';
 import CounterInfoCard from 'examples/Cards/InfoCards/CounterInfoCard';
+import MilitaryTechRoundedIcon from '@mui/icons-material/MilitaryTechRounded';
 import CenteredBlogCard from 'examples/Cards/BlogCards/CenteredBlogCard';
 
 function Features() {
   return (
-    <MKBox component='section'>
-      <Container sx={{ mt: 10, mb: 10 }}>
-        <Grid container spacing={5} justifyContent={'space-evenly'} wrap={''}>
-          {/*
-          xs, extra-small: 0px
-          sm, small: 600px
-          md, medium: 900px
-          lg, large: 1200px
-          xl, extra-large: 1536px
-          //TODO
-          
-          */}
-          <Grid item xs={6} md={3}>
-            <Stack spacing={{ xs: 4, md: 6 }}>
+    <MKBox component='section' py={{ xs: 6, md: 12 }}>
+      <Container>
+        <Grid container item xs={12} justifyContent='space-evenly'>
+          <Grid
+            item
+            xs={12}
+            md={3}
+            sx={{
+              ml: { xs: 0, md: 'auto' },
+              mr: { xs: 0, md: 6 },
+              mb: { xs: 4, md: 0 },
+            }}
+          >
+            <Stack spacing={{ xs: 4, md: 8 }}>
+              <SimpleInfoCard
+                icon={
+                  <MilitaryTechRoundedIcon fontSize='medium'></MilitaryTechRoundedIcon>
+                }
+                color='primary'
+                direction='center'
+                title='Competitive Ranking'
+                description='Compare yourself with your friends by playing competitive and earning a rank.'
+              />
+              <SimpleInfoCard
+                icon='insights'
+                color='primary'
+                direction='center'
+                title='Extensive Analytics'
+                description='Watch your games in replay and get feedback about your deals.'
+              />
+            </Stack>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={3}
+            sx={{
+              mt: { xs: 0, s: 0 },
+              mr: { xs: 4, md: 'auto' },
+              ml: { xs: 4, md: 6 },
+              mb: { xs: 4, md: 0 },
+            }}
+          >
+            <Stack spacing={{ xs: 4, md: 8 }}>
               <CounterInfoCard
                 countUp={{
                   end: 1000,
@@ -54,48 +85,48 @@ function Features() {
                 }}
                 color='primary'
                 icon='payment'
-                title='Modular Components'
-                description='The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever.'
+                direction='center'
+                title='Free deals'
+                description='Contract Bridge should be available to everyone, therefore we offer unlimited free deals for all account types.'
+              />
+              <SimpleInfoCard
+                icon='peoplealtroundedicon'
+                direction='center'
+                title='Agile Multiplayer'
+                color='primary'
+                description='Practice with your friends in private lobbies or cooperate to conquer global tournaments.'
+              />
+            </Stack>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={3}
+            sx={{
+              mt: { xs: 0, s: 0 },
+              mr: { xs: 4, md: 'auto' },
+              ml: { xs: 4, md: 6 },
+              mb: { xs: 4, md: 0 },
+            }}
+          >
+            <Stack spacing={{ xs: 4, md: 8 }}>
+              <SimpleInfoCard
+                icon={
+                  <MilitaryTechRoundedIcon fontSize='medium'></MilitaryTechRoundedIcon>
+                }
+                color='primary'
+                direction='center'
+                title='Competitive Ranking'
+                description='Compare yourself with your friends by playing competitive and earning a rank.'
               />
               <SimpleInfoCard
                 icon='insights'
-                title='Great Features'
-                description="People are so scared to lose that they don't even try. Like, one thing people can't say is that I'm not trying, and I'm not trying my hardest."
-              />
-            </Stack>
-          </Grid>
-
-          <Grid item xs={6} md={3}>
-            <Stack spacing={{ xs: 4, md: 6 }}>
-              <SimpleInfoCard
                 color='primary'
-                count={1000}
-                duration='3'
-                useEasing='false'
-                formattingFn={(value) => (value === 1000 ? 'free' : value)}
-                title='Analytics'
-                description='Free analytics tool for improvning your play'
-              />
-              <SimpleInfoCard
-                icon='sentiment_satisfied'
-                title='Modern Interface'
-                description="If everything I did failed - which it doesn't, it actually succeeds - just the fact that I'm willing to fail is an inspiration."
+                direction='center'
+                title='Extensive Analytics'
+                description='Watch your games in replay and get feedback about your deals.'
               />
             </Stack>
-          </Grid>
-
-          <Grid item xs={12} md={6} wrap='nowrap'>
-            <CenteredBlogCard
-              image='https://images.unsplash.com/photo-1544717302-de2939b7ef71?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
-              title='Get insights on Search'
-              description='Website visitors today demand a frictionless user expericence — especially when using search. Because of the hight standards.'
-              action={{
-                type: 'internal',
-                route: 'pages/company/about-us',
-                color: 'info',
-                label: 'find out more',
-              }}
-            />
           </Grid>
         </Grid>
       </Container>

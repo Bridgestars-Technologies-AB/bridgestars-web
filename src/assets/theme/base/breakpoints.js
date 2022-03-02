@@ -27,11 +27,14 @@ export default {
     lg: 992,
     xl: 1200,
     xxl: 1400,
-
-    s: 576,
-    m: 768,
-    l: 992,
-    xl: 1200,
-    xxl: 1400,
   },
 };
+
+/*
+xs
+s
+m
+l
+xl
+xxl
+*/

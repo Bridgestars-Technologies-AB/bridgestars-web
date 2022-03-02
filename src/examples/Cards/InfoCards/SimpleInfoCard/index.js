@@ -53,7 +53,11 @@ function SimpleInfoCard({ color, icon, title, description, direction }) {
         bgColor={color}
         coloredShadow={color}
       >
-        {typeof icon === 'string' ? <Icon fontSize='small'>{icon}</Icon> : icon}
+        {typeof icon === 'string' ? (
+          <Icon fontSize='medium'>{icon}</Icon>
+        ) : (
+          icon
+        )}
       </MKBox>
       <MKTypography
         display='block'
