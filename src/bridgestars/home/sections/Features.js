@@ -27,7 +27,9 @@ import DefaultCounterCard from 'examples/Cards/CounterCards/DefaultCounterCard';
 import SimpleInfoCard from 'examples/Cards/InfoCards/SimpleInfoCard';
 import CounterInfoCard from 'examples/Cards/InfoCards/CounterInfoCard';
 import MilitaryTechRoundedIcon from '@mui/icons-material/MilitaryTechRounded';
+import SchoolIcon from '@mui/icons-material/School';
 import CenteredBlogCard from 'examples/Cards/BlogCards/CenteredBlogCard';
+import unity from 'assets/images/logos/logo-unity.png';
 
 function Features(...rest) {
   return (
@@ -74,7 +76,7 @@ function Features(...rest) {
               mb: { xs: 4, md: 0 },
             }}
           >
-            <Stack spacing={{ xs: 4, md: 8 }}>
+            <Stack spacing={{ xs: 5, md: 10 }}>
               <CounterInfoCard
                 countUp={{
                   end: 1000,
@@ -86,7 +88,7 @@ function Features(...rest) {
                 color='primary'
                 icon='payment'
                 direction='center'
-                title='Free deals'
+                title='Free Deals'
                 description='Contract Bridge should be available to everyone, therefore we offer unlimited free deals for all account types.'
               />
               <SimpleInfoCard
@@ -109,22 +111,29 @@ function Features(...rest) {
               mb: { xs: 4, md: 0 },
             }}
           >
-            <Stack spacing={{ xs: 4, md: 8 }}>
+            <Stack spacing={{ xs: 4, md: 5, lg: 8 }}>
+              <SimpleInfoCard
+                icon={<SchoolIcon fontSize='medium'></SchoolIcon>}
+                color='primary'
+                direction='center'
+                title='In-game Tutorials'
+                description='Learn Bridge with our comprehensive in-game tutorials or use them to dust of your skills.'
+              />
               <SimpleInfoCard
                 icon={
-                  <MilitaryTechRoundedIcon fontSize='medium'></MilitaryTechRoundedIcon>
+                  <MKBox
+                    component='img'
+                    sx={{
+                      width: '55%',
+                      ml: -0.5,
+                    }}
+                    src={unity}
+                  ></MKBox>
                 }
                 color='primary'
                 direction='center'
-                title='Competitive Ranking'
-                description='Compare yourself with your friends by playing competitive and earning a rank.'
-              />
-              <SimpleInfoCard
-                icon='insights'
-                color='primary'
-                direction='center'
-                title='Extensive Analytics'
-                description='Watch your games in replay and get feedback about your deals.'
+                title='Native Application'
+                description='The Bridgestars application is built using Unity for maximum native support.'
               />
             </Stack>
           </Grid>
