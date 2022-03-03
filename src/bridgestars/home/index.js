@@ -33,6 +33,7 @@ import Features from 'bridgestars/home/sections/Features';
 import Testimonials from 'bridgestars/home/sections/Testimonials';
 import AboutUs from 'bridgestars/home/sections/AboutUs';
 import Places from 'bridgestars/home/sections/Places';
+import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
 
 // Routes
 import routes from 'constants/routes';
@@ -53,12 +54,9 @@ const mapToAlphabets = (num) => {
   const numStr = '' + num;
   let res = '';
 
-  if (num === 23456789737) {
-    return 'BRIDGESTARS';
-  }
   for (let i = 0; i < numStr.length; i++) {
     const element = numStr[i];
-    const finalStr = '-PBRIDGESTARS';
+    const finalStr = 'ABRIDGESTP';
     res += finalStr[Number(element)];
   }
 
@@ -128,7 +126,8 @@ export default function BridgestarsHome() {
             >
               <CountUp
                 duration={1.5}
-                end={23456789737}
+                //'ABRIDGEST'
+                end={12345678027}
                 formattingFn={mapToAlphabets}
               />
             </MKTypography>
@@ -223,7 +222,7 @@ export default function BridgestarsHome() {
         </Card>
       </Fade>
       <MKBox pt={6} px={1} mt={6}>
-        <DefaultFooter content={footerRoutes} />
+        <BridgestarsFooter />
       </MKBox>
     </>
   );
