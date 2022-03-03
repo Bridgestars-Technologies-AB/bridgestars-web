@@ -33,7 +33,7 @@ export default {
       borderRadius: borderRadius.md,
 
       '&:hover .MuiOutlinedInput-notchedOutline': {
-        borderColor: inputBorderColor,
+        borderColor: info.main,
       },
 
       '&.Mui-focused': {

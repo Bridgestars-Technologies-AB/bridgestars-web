@@ -1,9 +1,9 @@
 {
-  "short_name": "Otis Kit",
-  "name": "Otis Kit PRO",
+  "short_name": "Bridgestars",
+  "name": "Bridgestars",
   "icons": [
     {
-      "src": "favicon.png",
+      "src": "logo-trans-64px.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     }

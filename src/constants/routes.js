@@ -100,42 +100,36 @@ import Typography from 'layouts/sections/elements/typography';
 
 const routes = [
   {
-    name: 'dashboard',
-    icon: <Icon>dashboard</Icon>,
-    columns: 1,
-    rowsPerColumn: 2,
-    route: '/pages/extra/virtual-reality',
-    component: <VirtualRealityPage />,
+    name: 'download',
+    icon: <Icon>contacts</Icon>,
+    route: '/signin',
+    component: <SignUp />,
   },
   {
     name: 'account',
     icon: <Icon>contacts</Icon>,
-    collapse: [
-      {
-        name: 'sign in',
-        dropdown: false,
+    route: '/signin',
+    component: <SignUp />,
+    // collapse: [
+    //   {
+    //     name: 'sign in',
+    //     dropdown: false,
 
-        route: '/authentication/sign-in/illustration',
-        component: <SignInIllustration />,
-      },
-      {
-        name: 'sign up',
-        name: 'cover',
-        route: '/authentication/sign-up/cover',
-        component: <SignUp />,
-      },
-      {
-        name: 'reset password',
-        dropdown: true,
-        collapse: [
-          {
-            name: 'cover',
-            route: '/authentication/reset-password/cover',
-            component: <ResetPasswordPage />,
-          },
-        ],
-      },
-    ],
+    //     route: '/authentication/sign-in/illustration',
+    //     component: <SignInIllustration />,
+    //   },
+    //   {
+    //     name: 'sign up',
+    //     route: '/authentication/sign-up/cover',
+    //     component: <SignUp />,
+    //   },
+    //   {
+    //   name: 'reset password',
+
+    //         route: '/authentication/reset-password/cover',
+    //         component: <ResetPasswordPage />,
+    //   },
+    // ],
   },
 ];
 

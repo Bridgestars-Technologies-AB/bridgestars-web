@@ -70,8 +70,7 @@ export default function BridgestarsHome() {
         routes={routes}
         action={{
           type: 'internal',
-          route:
-            'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+          route: '/signin',
           label: 'sign in',
           color: 'primary',
 
