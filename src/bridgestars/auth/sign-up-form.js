@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function omit(key, obj) {
+function omit(obj, key) {
   const { [key]: omitted, ...rest } = obj;
   return rest;
 }
@@ -20,12 +20,14 @@ const useSignUpForm = (callback) => {
     let val = event.target.value;
 
     validate(event, name, val);
-    console.log(name);
     //Let's set these values in state
     setValues({
       ...values,
       [name]: val,
     });
+
+    console.log('Form Values ', values);
+    console.log('Form errors ', errors);
   };
 
   const validate = (event, name, value) => {
@@ -34,7 +36,7 @@ const useSignUpForm = (callback) => {
         if (value.length <= 4)
           setErrors({
             ...errors,
-            name: 'Username needs to have atleast 5 letters',
+            username: 'Username needs to have atleast 5 letters',
           });
         else {
           let newObj = omit(errors, 'username');
@@ -59,16 +61,20 @@ const useSignUpForm = (callback) => {
         }
         break;
       case 'password':
-        if (
-          !new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/).test(value)
-        ) {
+        handlePasswordCheck();
+        break;
+      case 'passwordCheck':
+        handlePasswordCheck();
+        break;
+
+      case 'policy':
+        if (!value) {
           setErrors({
             ...errors,
-            password:
-              'Password should contains atleast 8 charaters and containing uppercase,lowercase and numbers',
+            policy: 'Policy must be accepted',
           });
         } else {
-          let newObj = omit(errors, 'password');
+          let newObj = omit(errors, 'policy');
           setErrors(newObj);
         }
         break;
@@ -77,13 +83,42 @@ const useSignUpForm = (callback) => {
     }
   };
 
+  const handlePasswordCheck = () => {
+    let passCheck = values['passwordCheck'];
+    let pass = values['password'];
+
+    console.log('pass: ' + pass);
+    console.log('passCheck: ' + passCheck);
+    if (pass === passCheck) {
+      //setErrors(omit(errors, 'passwordCheck'));
+    } else {
+      console.log('ADDING ERRORS');
+      setErrors({
+        ...errors,
+        passwordCheck: 'Password does not match',
+      });
+    }
+
+    if (!new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/).test(pass)) {
+      setErrors({
+        ...errors,
+        password:
+          'Password should contains atleast 8 charaters and containing uppercase,lowercase and numbers',
+      });
+    } else {
+      let newObj = omit(errors, 'password');
+      setErrors(newObj);
+    }
+    //console.log('render()');
+  };
+
   const handleSubmit = (event) => {
     if (event) event.preventDefault();
 
     if (Object.keys(errors).length === 0 && Object.keys(values).length !== 0) {
       callback();
     } else {
-      alert('There is an Error!');
+      alert(errors[Object.keys(errors)[0]]);
     }
   };
 

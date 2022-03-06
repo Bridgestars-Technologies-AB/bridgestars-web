@@ -41,7 +41,9 @@ function SignUp() {
   //Final submit function
   const formLogin = () => {
     console.log('Callback function when form is submitted!');
+    //errors['username'] = 'asdasd';
     console.log('Form Values ', values);
+    console.log('Form errors ', errors);
     //AUTH SIGNIN
   };
 
@@ -49,9 +51,9 @@ function SignUp() {
   const { handleChange, values, errors, handleSubmit } =
     useSignUpForm(formLogin);
 
-  const handleSetPolicy = () => {
+  const handleSetPolicy = (event) => {
     setPolicy(!policy);
-    handleChange();
+    handleChange(event);
   };
 
   return (
@@ -66,6 +68,7 @@ function SignUp() {
           <MKInput
             name='username'
             label='Username'
+            error={errors['username'] ? true : false}
             fullWidth
             onChange={handleChange}
           />
@@ -75,7 +78,8 @@ function SignUp() {
             type='email'
             name='email'
             label='Email'
-            error={errors.email ? true : false}
+            error={errors['email'] ? true : false}
+            success={values['email'] && !errors['email']}
             fullWidth
             onChange={handleChange}
           />
@@ -85,6 +89,8 @@ function SignUp() {
             type='password'
             name='password'
             label='Password'
+            error={errors['password'] ? true : false}
+            success={values['password'] && !errors['password']}
             fullWidth
             onChange={handleChange}
           />
@@ -92,14 +98,16 @@ function SignUp() {
         <MKBox mb={2}>
           <MKInput
             type='password'
-            name='password-check'
+            name='passwordCheck'
+            error={errors['passwordCheck'] ? true : false}
+            success={values['passwordCheck'] && !errors['passwordCheck']}
             label='Confirm Password'
             fullWidth
             onChange={handleChange}
           />
         </MKBox>
         <MKBox display='flex' alignItems='center' ml={-1}>
-          <Checkbox checked={policy} onChange={handleSetPolicy} />
+          <Checkbox checked={policy} name='policy' onChange={handleSetPolicy} />
           <MKTypography
             variant='button'
             fontWeight='regular'
