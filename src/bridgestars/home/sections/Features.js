@@ -27,11 +27,13 @@ import DefaultCounterCard from 'examples/Cards/CounterCards/DefaultCounterCard';
 import SimpleInfoCard from 'examples/Cards/InfoCards/SimpleInfoCard';
 import CounterInfoCard from 'examples/Cards/InfoCards/CounterInfoCard';
 import MilitaryTechRoundedIcon from '@mui/icons-material/MilitaryTechRounded';
+import SchoolIcon from '@mui/icons-material/School';
 import CenteredBlogCard from 'examples/Cards/BlogCards/CenteredBlogCard';
+import unity from 'assets/images/logos/logo-unity.png';
 
-function Features() {
+function Features(...rest) {
   return (
-    <MKBox component='section' py={{ xs: 6, md: 12 }}>
+    <MKBox {...rest} component='section' py={{ xs: 6, md: 12 }}>
       <Container>
         <Grid container item xs={12} justifyContent='space-evenly'>
           <Grid
@@ -52,14 +54,14 @@ function Features() {
                 color='primary'
                 direction='center'
                 title='Competitive Ranking'
-                description='Compare yourself with your friends by playing competitive and earning a rank.'
+                description='With our integrated ranking system you can compete on a global ranking ladder and earn rewards.'
               />
               <SimpleInfoCard
                 icon='insights'
                 color='primary'
                 direction='center'
                 title='Extensive Analytics'
-                description='Watch your games in replay and get feedback about your deals.'
+                description='Analyze and simulate deals or review your own deals with feedback.'
               />
             </Stack>
           </Grid>
@@ -74,7 +76,7 @@ function Features() {
               mb: { xs: 4, md: 0 },
             }}
           >
-            <Stack spacing={{ xs: 4, md: 8 }}>
+            <Stack spacing={{ xs: 5, md: 10 }}>
               <CounterInfoCard
                 countUp={{
                   end: 1000,
@@ -86,8 +88,8 @@ function Features() {
                 color='primary'
                 icon='payment'
                 direction='center'
-                title='Free deals'
-                description='Contract Bridge should be available to everyone, therefore we offer unlimited free deals for all account types.'
+                title='Free Deals'
+                description='Bridge should not be locked behind a paywall, therefore we offer unlimited free deals for everyone.'
               />
               <SimpleInfoCard
                 icon='peoplealtroundedicon'
@@ -109,22 +111,29 @@ function Features() {
               mb: { xs: 4, md: 0 },
             }}
           >
-            <Stack spacing={{ xs: 4, md: 8 }}>
+            <Stack spacing={{ xs: 4, md: 5, lg: 8 }}>
+              <SimpleInfoCard
+                icon={<SchoolIcon fontSize='medium'></SchoolIcon>}
+                color='primary'
+                direction='center'
+                title='In-game Tutorials'
+                description='Learn Bridge with our comprehensive in-game tutorials or use them to improve your defensive and declarer play.'
+              />
               <SimpleInfoCard
                 icon={
-                  <MilitaryTechRoundedIcon fontSize='medium'></MilitaryTechRoundedIcon>
+                  <MKBox
+                    component='img'
+                    sx={{
+                      width: '55%',
+                      ml: -0.5,
+                    }}
+                    src={unity}
+                  ></MKBox>
                 }
                 color='primary'
                 direction='center'
-                title='Competitive Ranking'
-                description='Compare yourself with your friends by playing competitive and earning a rank.'
-              />
-              <SimpleInfoCard
-                icon='insights'
-                color='primary'
-                direction='center'
-                title='Extensive Analytics'
-                description='Watch your games in replay and get feedback about your deals.'
+                title='Native Application'
+                description='The Bridgestars application is built using Unity for maximum native support.'
               />
             </Stack>
           </Grid>

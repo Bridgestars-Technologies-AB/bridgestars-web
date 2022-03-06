@@ -58,7 +58,7 @@ import SignInBasicPage from 'layouts/authentication/sign-in/basic';
 import SignInCoverPage from 'layouts/authentication/sign-in/cover';
 import SignInIllustration from 'layouts/authentication/sign-in/illustration';
 import SignInSimplePage from 'layouts/authentication/sign-in/simple';
-import SignUpCoverPage from 'layouts/authentication/sign-up/cover';
+import SignUp from 'bridgestars/auth/sign-up';
 import ResetPasswordPage from 'layouts/authentication/reset-password/cover';
 
 // Sections
@@ -100,12 +100,36 @@ import Typography from 'layouts/sections/elements/typography';
 
 const routes = [
   {
-    name: 'dashboard',
-    icon: <Icon>dashboard</Icon>,
-    columns: 1,
-    rowsPerColumn: 2,
-    route: '/pages/extra/virtual-reality',
-    component: <VirtualRealityPage />,
+    name: 'download',
+    icon: <Icon>contacts</Icon>,
+    route: '/signin',
+    component: <SignUp />,
+  },
+  {
+    name: 'account',
+    icon: <Icon>contacts</Icon>,
+    route: '/signin',
+    component: <SignUp />,
+    // collapse: [
+    //   {
+    //     name: 'sign in',
+    //     dropdown: false,
+
+    //     route: '/authentication/sign-in/illustration',
+    //     component: <SignInIllustration />,
+    //   },
+    //   {
+    //     name: 'sign up',
+    //     route: '/authentication/sign-up/cover',
+    //     component: <SignUp />,
+    //   },
+    //   {
+    //   name: 'reset password',
+
+    //         route: '/authentication/reset-password/cover',
+    //         component: <ResetPasswordPage />,
+    //   },
+    // ],
   },
 ];
 
@@ -224,7 +248,7 @@ const routesOld = [
           {
             name: 'cover',
             route: '/authentication/sign-in/cover',
-            component: <SignInCoverPage />,
+            component: <SignUp />,
           },
           {
             name: 'illustration',
@@ -245,7 +269,7 @@ const routesOld = [
           {
             name: 'cover',
             route: '/authentication/sign-up/cover',
-            component: <SignUpCoverPage />,
+            component: <SignUp />,
           },
         ],
       },

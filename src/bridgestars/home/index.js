@@ -33,6 +33,7 @@ import Features from 'bridgestars/home/sections/Features';
 import Testimonials from 'bridgestars/home/sections/Testimonials';
 import AboutUs from 'bridgestars/home/sections/AboutUs';
 import Places from 'bridgestars/home/sections/Places';
+import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
 
 // Routes
 import routes from 'constants/routes';
@@ -41,8 +42,26 @@ import footerRoutes from 'constants/footer.routes';
 // Images
 import bgImage from 'assets/images/bridgeBG0.webp';
 import linearHomepageGradient from 'assets/theme/functions/linearHomepageGradient';
+//import Zoom from '@mui/material/Zoom';
+import { Grow, Fade } from '@mui/material';
+
+import CountUp from 'react-countup';
+import { HashLink } from 'react-router-hash-link';
 
 //TODO bridgestars titel centered
+
+const mapToAlphabets = (num) => {
+  const numStr = '' + num;
+  let res = '';
+
+  for (let i = 0; i < numStr.length; i++) {
+    const element = numStr[i];
+    const finalStr = 'ABRIDGESTP';
+    res += finalStr[Number(element)];
+  }
+
+  return res;
+};
 
 export default function BridgestarsHome() {
   return (
@@ -51,8 +70,7 @@ export default function BridgestarsHome() {
         routes={routes}
         action={{
           type: 'internal',
-          route:
-            'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+          route: '/signin',
           label: 'sign in',
           color: 'primary',
 
@@ -92,105 +110,119 @@ export default function BridgestarsHome() {
             , url(${bgImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          display: 'grid',
+          display: 'flex',
           placeItems: 'center',
         }}
       >
         <Container>
-          <Grid
-            container
-            item
-            xs={12}
-            md={7}
-            justifyContent={{ xs: 'center', md: 'start' }}
-            sx={{ textAlign: { xs: 'center', md: 'left' } }}
-          >
+          <Stack justifyContent='center'>
             <MKTypography
               variant='h1'
               color='primary'
+              align='center'
               textGradient='true'
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down('md')]: {
-                  fontSize: size['5xl'],
-                },
-              })}
+              fontSize='10vmin'
             >
-              Bridgestars
+              <CountUp
+                duration={1.5}
+                //'ABRIDGEST'
+                end={12345678027}
+                formattingFn={mapToAlphabets}
+              />
             </MKTypography>
-            <MKTypography
-              variant='body1'
-              color='white'
-              mt={1}
-              pr={{ md: 12, lg: 24, xl: 32 }}
-              opacity={0.8}
-            >
-              The time is now. We are taking Contract Bridge to the next level.
-            </MKTypography>
-            <Stack direction='row' spacing={1} mt={6} mb={3}>
-              <MKButton variant='gradient' color='primary'>
-                sign up for closed beta
-              </MKButton>
-              <MKButton variant='text' color='white'>
-                read more
-              </MKButton>
-            </Stack>
-          </Grid>
+            <Grow in='true' style={{ transformOrigin: '0 1 0' }} timeout={1500}>
+              <MKTypography
+                variant='body1'
+                color='white'
+                align='center'
+                fontSize='4vmin'
+                mt={1}
+                mx={1}
+                //pr={{ md: 12, lg: 24, xl: 32 }}
+                opacity={0.8}
+              >
+                The time is now. We are taking Bridge to the next level.
+              </MKTypography>
+            </Grow>
+            <Grow in='true' style={{ transformOrigin: '0 1 0' }} timeout={3500}>
+              <Stack
+                direction='row'
+                justifyContent='center'
+                spacing={1}
+                mt={6}
+                mb={3}
+                mx={3}
+              >
+                <MKButton variant='gradient' size='large' color='primary'>
+                  sign up for closed beta
+                </MKButton>
+                <HashLink to='#read-more' smooth>
+                  <MKButton variant='text' size='large' color='white'>
+                    read more
+                  </MKButton>
+                </HashLink>
+              </Stack>
+            </Grow>
+          </Stack>
         </Container>
       </MKBox>
-      <Card
-        sx={{
-          p: 2,
-          mx: { xs: 2, lg: 3 },
-          mt: -8,
-          mb: 4,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
-            rgba(white.main, 0.8),
-          backdropFilter: 'saturate(200%) blur(30px)',
-          boxShadow: ({ boxShadows: { xxl } }) => xxl,
-        }}
-      >
-        <Features />
-        <Testimonials />
-        <AboutUs />
-        <Places />
-        <Container>
-          <MKBox
-            display='flex'
-            justifyContent='space-between'
-            alignItems='center'
-            borderRadius='xl'
-            my={24}
-            p={6}
-            sx={{
-              backgroundImage:
-                'url(https://images.unsplash.com/photo-1533563906091-fdfdffc3e3c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80)',
-            }}
-          >
-            <Grid container spacing={3} alignItems='center'>
-              <Grid item xs={12} md={8} lg={5}>
-                <MKTypography variant='h5' color='white' fontWeight='bold'>
-                  For being a bright color. For standing out. But the time is
-                  now to be okay to be the greatest you.
-                </MKTypography>
+      <Fade in timeout={1000}>
+        <Card
+          id='read-more'
+          sx={{
+            p: 2,
+            mx: { xs: 2, lg: 3 },
+            mt: -8,
+            mb: 4,
+            backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
+              rgba(white.main, 0.8),
+            backdropFilter: 'saturate(200%) blur(30px)',
+            boxShadow: ({ boxShadows: { xxl } }) => xxl,
+          }}
+        >
+          <Features />
+          <Testimonials />
+          <AboutUs />
+          <Places />
+          <Container>
+            <MKBox
+              display='flex'
+              justifyContent='space-between'
+              alignItems='center'
+              borderRadius='xl'
+              my={24}
+              p={6}
+              sx={{
+                backgroundImage:
+                  'url(https://images.unsplash.com/photo-1533563906091-fdfdffc3e3c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80)',
+              }}
+            >
+              <Grid container spacing={3} alignItems='center'>
+                <Grid item xs={12} md={8} lg={5}>
+                  <MKTypography variant='h5' color='white' fontWeight='bold'>
+                    For being a bright color. For standing out. But the time is
+                    now to be okay to be the greatest you.
+                  </MKTypography>
+                </Grid>
+                <Grid item xs={12} lg={6} sx={{ ml: 'auto' }}>
+                  <MKBox width='12rem' ml='auto'>
+                    <MKButton
+                      variant='gradient'
+                      color='warning'
+                      fullWidth
+                      sx={{ boxShadow: 'none' }}
+                    >
+                      start now
+                    </MKButton>
+                  </MKBox>
+                </Grid>
               </Grid>
-              <Grid item xs={12} lg={6} sx={{ ml: 'auto' }}>
-                <MKBox width='12rem' ml='auto'>
-                  <MKButton
-                    variant='gradient'
-                    color='warning'
-                    fullWidth
-                    sx={{ boxShadow: 'none' }}
-                  >
-                    start now
-                  </MKButton>
-                </MKBox>
-              </Grid>
-            </Grid>
-          </MKBox>
-        </Container>
-      </Card>
+            </MKBox>
+          </Container>
+        </Card>
+      </Fade>
       <MKBox pt={6} px={1} mt={6}>
-        <DefaultFooter content={footerRoutes} />
+        <BridgestarsFooter />
       </MKBox>
     </>
   );

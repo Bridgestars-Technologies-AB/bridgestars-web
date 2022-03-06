@@ -50,13 +50,15 @@ export default {
   },
 
   secondary: {
-    main: '#e2e294e',
-    focus: '#e2e294e',
+    main: '#2e294e',
+    focus: '#2e294e',
   },
 
   info: {
-    main: '#De3e42',
-    focus: '#1662C4',
+    main: '#49a3f1',
+    focus: '#1A73E8',
+    // main: '#e2e294e',
+    // focus: '#e2e294e',
   },
 
   success: {

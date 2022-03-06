@@ -25,6 +25,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 // Otis Kit PRO themes
 import theme from 'assets/theme';
 import Presentation from 'layouts/pages/presentation';
+import SignUp from 'bridgestars/auth/sign-up';
 
 // Otis Kit PRO routes
 import routes from 'constants/routes';
@@ -65,8 +66,9 @@ export default function App() {
       <CssBaseline />
       <Routes>
         {getRoutes(routes)}
-        <Route path='/presentation' element={<BridgestarsHome />} />
-        <Route path='*' element={<Navigate to='/presentation' />} />
+        <Route path='*' element={<BridgestarsHome />} />
+        {/* <Route path='/signup' element={<SignUp />} />
+        <Route path='/signin' element={<SignUp />} /> */}
       </Routes>
     </ThemeProvider>
   );
