@@ -89,7 +89,11 @@ function Features(...rest) {
                 icon='payment'
                 direction='center'
                 title='Free Deals'
+<<<<<<< HEAD
                 description='Bridge should not be locked behind a paywall, therefore we offer unlimited free deals for everyone.'
+=======
+                description='Contract Bridge should be available to everyone, therefore we offer unlimited free deals for all account types.'
+>>>>>>> 1bce9475a4884807644ef92b2298b4283204b0c0
               />
               <SimpleInfoCard
                 icon='peoplealtroundedicon'
@@ -117,7 +121,11 @@ function Features(...rest) {
                 color='primary'
                 direction='center'
                 title='In-game Tutorials'
+<<<<<<< HEAD
                 description='Learn Bridge with our comprehensive in-game tutorials or use them to improve your defensive and declarer play.'
+=======
+                description='Learn Bridge with our comprehensive in-game tutorials or use them to dust of your skills.'
+>>>>>>> 1bce9475a4884807644ef92b2298b4283204b0c0
               />
               <SimpleInfoCard
                 icon={
