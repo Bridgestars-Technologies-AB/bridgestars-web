@@ -10,10 +10,7 @@ const useValidator = (callback) => {
   //Form values
   const [values, setValues] = useState({});
   //Errors
-  const [errors, setErrors] = useState({
-    policy:
-      "You can't create an account without accepting the Terms and Conditions",
-  });
+  const [errors, setErrors] = useState({ policy: 'Policy must be accepted' });
 
   //A method to handle form inputs
   const handleChange = (event) => {
@@ -33,6 +30,19 @@ const useValidator = (callback) => {
 
   const validate = (event, name, value) => {
     switch (name) {
+      case 'username':
+        if (value.length <= 4)
+          setErrors({
+            ...errors,
+            username: 'Username needs to have atleast 5 letters',
+          });
+        else {
+          let newObj = omit(errors, 'username');
+          setErrors(newObj);
+        }
+
+        break;
+
       case 'email':
         if (
           !new RegExp(
@@ -57,8 +67,7 @@ const useValidator = (callback) => {
         if (value === 'false') {
           setErrors({
             ...errors,
-            policy:
-              "You can't create an account without accepting the Terms and Conditions",
+            policy: 'Policy must be accepted',
           });
         } else {
           let newObj = omit(errors, 'policy');
@@ -94,7 +103,7 @@ const useValidator = (callback) => {
   const handleSubmit = (event) => {
     if (event) event.preventDefault();
 
-    if (Object.keys(errors).length === 0 && Object.keys(values).length === 4) {
+    if (Object.keys(errors).length === 0 && Object.keys(values).length === 5) {
       callback();
     } else {
       if (Object.keys(errors).length === 0)

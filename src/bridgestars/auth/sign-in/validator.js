@@ -5,11 +5,12 @@ function omit(obj, key) {
   return rest;
 }
 
-const useSigninForm = (callback) => {
+const useValidator = (callback) => {
+  const [formDenied, setFormDenied] = useState(false);
   //Form values
   const [values, setValues] = useState({});
   //Errors
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({ policy: 'Policy must be accepted' });
 
   //A method to handle form inputs
   const handleChange = (event) => {
@@ -63,7 +64,7 @@ const useSigninForm = (callback) => {
         break;
 
       case 'policy':
-        if (!value) {
+        if (value === 'false') {
           setErrors({
             ...errors,
             policy: 'Policy must be accepted',
@@ -102,10 +103,13 @@ const useSigninForm = (callback) => {
   const handleSubmit = (event) => {
     if (event) event.preventDefault();
 
-    if (Object.keys(errors).length === 0 && Object.keys(values).length !== 0) {
+    if (Object.keys(errors).length === 0 && Object.keys(values).length === 5) {
       callback();
     } else {
-      alert(errors[Object.keys(errors)[0]]);
+      if (Object.keys(errors).length === 0)
+        alert("Don't forget to enter your information");
+      else alert(errors[Object.keys(errors)[0]]);
+      setFormDenied(true);
     }
   };
 
@@ -114,7 +118,8 @@ const useSigninForm = (callback) => {
     errors,
     handleChange,
     handleSubmit,
+    formDenied,
   };
 };
 
-export default useSigninForm;
+export default useValidator;

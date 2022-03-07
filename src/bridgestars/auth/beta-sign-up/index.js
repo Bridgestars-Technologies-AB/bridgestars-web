@@ -36,54 +36,43 @@ import IllustrationLayout from '../IllustrationLayout';
 // Image
 import bgImage from 'assets/images/illustrations/illustration-reset.jpg';
 import logo from 'assets/images/bridgestars/logo-trans-512px.png';
-import useBetaSignUpForm from 'bridgestars/auth/beta-sign-up/validator';
+import useValidator from 'bridgestars/auth/beta-sign-up/validator.js';
 
 function BetaSignupForm() {
   //Final submit function
   const formLogin = () => {
-    console.log('Callback function when form is submitted!');
-    //errors['username'] = 'asdasd';
-    console.log('Form Values ', values);
-    console.log('Form errors ', errors);
-
-    success.username = true;
-    console.log(success['username'] ? true : false);
+    //setTriedToSubmit(true);
     //AUTH SIGNIN
+    setConfirmed(true);
+    setTitle('You are now registered for the closed beta');
+    setDescription('Check your email inbox for more information');
   };
-  const success = { username: false };
+  const [confirmed, setConfirmed] = useState(false);
+  const [title, setTitle] = useState('Gain access to the closed beta');
+  const [description, setDescription] = useState(
+    'Lets register by creating an account'
+  );
+
   const [policy, setPolicy] = useState(false);
-  const { handleChange, values, errors, handleSubmit } =
-    useBetaSignUpForm(formLogin);
+
+  const { formDenied, values, errors, handleChange, handleSubmit } =
+    useValidator(formLogin);
 
   const handleSetPolicy = (event) => {
+    event.target.value = !policy;
     setPolicy(!policy);
     handleChange(event);
   };
 
-  return (
-    <IllustrationLayout
-      logo={logo}
-      title="Let's create your beta tester account"
-      description='Enter your email and password'
-      illustration={bgImage}
-    >
+  const form = () => {
+    return (
       <MKBox component='form' role='form'>
-        <MKBox mb={2}>
-          <MKInput
-            name='username'
-            label='Username'
-            error={errors['username'] ? true : false}
-            success={success['username'] ? true : false}
-            fullWidth
-            onChange={handleChange}
-          />
-        </MKBox>
         <MKBox mb={2}>
           <MKInput
             type='email'
             name='email'
             label='Email'
-            error={errors['email'] ? true : false}
+            error={errors['email'] || formDenied}
             success={values['email'] && !errors['email']}
             fullWidth
             onChange={handleChange}
@@ -94,7 +83,7 @@ function BetaSignupForm() {
             type='password'
             name='password'
             label='Password'
-            error={errors['password'] ? true : false}
+            error={errors['password'] || formDenied}
             success={values['password'] && !errors['password']}
             fullWidth
             onChange={handleChange}
@@ -104,7 +93,7 @@ function BetaSignupForm() {
           <MKInput
             type='password'
             name='password-check'
-            error={errors['password-check'] ? true : false}
+            error={errors['password-check'] || formDenied}
             success={values['password-check'] && !errors['password-check']}
             label='Confirm Password'
             fullWidth
@@ -159,6 +148,17 @@ function BetaSignupForm() {
           </MKTypography>
         </MKBox>
       </MKBox>
+    );
+  };
+
+  return (
+    <IllustrationLayout
+      logo={logo}
+      title={title}
+      description={description}
+      illustration={bgImage}
+    >
+      {!confirmed ? form() : ''}
     </IllustrationLayout>
   );
 }

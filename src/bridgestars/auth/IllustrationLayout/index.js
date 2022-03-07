@@ -109,12 +109,15 @@ function IllustrationLayout({
             ) : (
               header
             )}
-            {/* </Stack> */}
-            <MKBox p={3}>
-              <Grow in timeout={1000}>
-                {children}
-              </Grow>
-            </MKBox>
+            {children ? (
+              <MKBox p={3}>
+                <Grow in timeout={1000}>
+                  {children}
+                </Grow>
+              </MKBox>
+            ) : (
+              <></>
+            )}
           </MKBox>
         </Grid>
       </Grid>
