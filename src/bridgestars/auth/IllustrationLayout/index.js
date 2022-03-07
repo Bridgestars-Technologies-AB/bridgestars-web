@@ -125,6 +125,7 @@ function IllustrationLayout({
 // Setting default values for the props of IllustrationLayout
 IllustrationLayout.defaultProps = {
   header: '',
+  logo: '',
   title: '',
   description: '',
   illustration: '',

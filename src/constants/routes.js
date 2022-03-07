@@ -58,7 +58,7 @@ import SignInBasicPage from 'layouts/authentication/sign-in/basic';
 import SignInCoverPage from 'layouts/authentication/sign-in/cover';
 import SignInIllustration from 'layouts/authentication/sign-in/illustration';
 import SignInSimplePage from 'layouts/authentication/sign-in/simple';
-import SignUp from 'bridgestars/auth/sign-up';
+import SignupForm from 'bridgestars/auth/sign-up';
 import ResetPasswordPage from 'layouts/authentication/reset-password/cover';
 
 // Sections
@@ -101,15 +101,15 @@ import Typography from 'layouts/sections/elements/typography';
 const routes = [
   {
     name: 'download',
-    icon: <Icon>contacts</Icon>,
+    icon: <Icon>download</Icon>,
     route: '/signin',
-    component: <SignUp />,
+    component: <SignupForm />,
   },
   {
     name: 'account',
     icon: <Icon>contacts</Icon>,
     route: '/signin',
-    component: <SignUp />,
+    component: <SignupForm />,
     // collapse: [
     //   {
     //     name: 'sign in',
@@ -245,11 +245,11 @@ const routesOld = [
             route: '/authentication/sign-in/basic',
             component: <SignInBasicPage />,
           },
-          {
-            name: 'cover',
-            route: '/authentication/sign-in/cover',
-            component: <SignUp />,
-          },
+          // {
+          //   name: 'cover',
+          //   route: '/authentication/sign-in/cover',
+          //   component: <SignUp />,
+          // },
           {
             name: 'illustration',
             route: '/authentication/sign-in/illustration',
@@ -266,11 +266,11 @@ const routesOld = [
         name: 'sign up',
         dropdown: true,
         collapse: [
-          {
-            name: 'cover',
-            route: '/authentication/sign-up/cover',
-            component: <SignUp />,
-          },
+          // {
+          //   name: 'cover',
+          //   route: '/authentication/sign-up/cover',
+          //   component: <SignUp />,
+          // },
         ],
       },
       {
