@@ -144,7 +144,7 @@ function SignupForm() {
             Already have an account?{' '}
             <MKTypography
               component={Link}
-              to='/authentication/sign-in/cover'
+              to='/signin'
               variant='button'
               color='info'
               fontWeight='medium'

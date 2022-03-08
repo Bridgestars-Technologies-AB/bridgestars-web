@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Otis Kit PRO - v2.0.0
-=========================================================
-
-* Product Page: https://material-ui.com/store/items/otis-kit-pro-material-kit-react/
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 
@@ -38,13 +23,12 @@ import bgImage from 'assets/images/illustrations/illustration-reset.jpg';
 import logo from 'assets/images/bridgestars/logo-trans-512px.png';
 import useValidator from 'bridgestars/auth/sign-in/validator.js';
 
-function SignupForm() {
+function SigninForm() {
   //Final submit function
   const formLogin = () => {
     //setTriedToSubmit(true);
     //AUTH SIGNIN
   };
-  const success = { username: false };
   const [policy, setPolicy] = useState(false);
 
   const { formDenied, values, errors, handleChange, handleSubmit } =
@@ -56,15 +40,17 @@ function SignupForm() {
     handleChange(event);
   };
 
+  const handleForget = () => {};
+
   return (
     <IllustrationLayout
       logo={logo}
-      title="Let's create an account for you"
-      description='Enter your email and password to register'
+      title='Sign in to your Bridgestars account'
+      description='Enter your email and password'
       illustration={bgImage}
     >
       <MKBox component='form' role='form'>
-        <MKBox mb={2}>
+        {/* <MKBox mb={2}>
           <MKInput
             name='username'
             label='Username'
@@ -73,7 +59,7 @@ function SignupForm() {
             fullWidth
             onChange={handleChange}
           />
-        </MKBox>
+        </MKBox> */}
         <MKBox mb={2}>
           <MKInput
             type='email'
@@ -96,39 +82,8 @@ function SignupForm() {
             onChange={handleChange}
           />
         </MKBox>
-        <MKBox mb={2}>
-          <MKInput
-            type='password'
-            name='password-check'
-            error={errors['password-check'] || formDenied}
-            success={values['password-check'] && !errors['password-check']}
-            label='Confirm Password'
-            fullWidth
-            onChange={handleChange}
-          />
-        </MKBox>
-        <MKBox display='flex' alignItems='center' ml={-1}>
-          <Checkbox checked={policy} name='policy' onChange={handleSetPolicy} />
-          <MKTypography
-            variant='button'
-            fontWeight='regular'
-            color='text'
-            sx={{ cursor: 'pointer', userSelect: 'none', ml: -1 }}
-          >
-            &nbsp;&nbsp;I agree with the&nbsp;
-          </MKTypography>
-          <MKTypography
-            component='a'
-            href='#'
-            variant='button'
-            fontWeight='bold'
-            color='info'
-            textGradient
-          >
-            Terms and Conditions
-          </MKTypography>
-        </MKBox>
-        <MKBox mt={4} mb={1}>
+
+        <MKBox mt={3} mb={1}>
           <MKButton
             onClick={handleSubmit}
             variant='gradient'
@@ -136,21 +91,36 @@ function SignupForm() {
             size='large'
             fullWidth
           >
-            sign up
+            sign in
           </MKButton>
         </MKBox>
-        <MKBox mt={3} mb={1} textAlign='center'>
+        <MKBox mt={2} mb={1} textAlign='center'>
           <MKTypography variant='button' color='text'>
-            Already have an account?{' '}
+            Dont have an account?{' '}
             <MKTypography
               component={Link}
-              to='/authentication/sign-in/cover'
+              to='/signup'
               variant='button'
               color='info'
               fontWeight='medium'
               textGradient
             >
-              Sign In
+              Sign Up
+            </MKTypography>
+          </MKTypography>
+        </MKBox>
+        <MKBox mt={1} mb={0} textAlign='center'>
+          <MKTypography variant='button' color='text'>
+            <MKTypography
+              component={Link}
+              to='/signin'
+              variant='button'
+              color='info'
+              fontWeight='medium'
+              textGradient
+              onClick={handleForget}
+            >
+              Forgot your password?{' '}
             </MKTypography>
           </MKTypography>
         </MKBox>
@@ -159,4 +129,4 @@ function SignupForm() {
   );
 }
 
-export default SignupForm;
+export default SigninForm;

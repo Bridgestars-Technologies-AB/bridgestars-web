@@ -25,19 +25,20 @@ import MKTypography from 'components/MKTypography';
 import MKButton from 'components/MKButton';
 
 // Otis Kit PRO examples
-import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
+import DefaultNavbar from 'bridgestars/navbar';
 import DefaultFooter from 'examples/Footers/DefaultFooter';
 
 // Coworking page sections
 import Features from 'bridgestars/home/sections/Features';
 import Testimonials from 'bridgestars/home/sections/Testimonials';
-import AboutUs from 'bridgestars/home/sections/AboutUs';
+import Upcoming from 'bridgestars/home/sections/Upcoming';
 import Places from 'bridgestars/home/sections/Places';
 import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
 
 // Routes
 import routes from 'constants/routes';
 import footerRoutes from 'constants/footer.routes';
+import { Link } from 'react-router-dom';
 
 // Images
 import bgImage from 'assets/images/bridgeBG0.webp';
@@ -70,8 +71,8 @@ export default function BridgestarsHome() {
         routes={routes}
         action={{
           type: 'internal',
-          route: '/signin',
-          label: 'sign in',
+          route: '/betasignup',
+          label: 'sign up',
           color: 'primary',
 
           /* "primary",
@@ -153,7 +154,13 @@ export default function BridgestarsHome() {
                 mb={3}
                 mx={3}
               >
-                <MKButton variant='gradient' size='large' color='primary'>
+                <MKButton
+                  variant='gradient'
+                  component={Link}
+                  to='/betasignup'
+                  size='large'
+                  color='primary'
+                >
                   sign up for closed beta
                 </MKButton>
                 <HashLink to='#read-more' smooth>
@@ -181,46 +188,47 @@ export default function BridgestarsHome() {
           }}
         >
           <Features />
-          <Testimonials />
-          <AboutUs />
-          <Places />
-          <Container>
-            <MKBox
-              display='flex'
-              justifyContent='space-between'
-              alignItems='center'
-              borderRadius='xl'
-              my={24}
-              p={6}
-              sx={{
-                backgroundImage:
-                  'url(https://images.unsplash.com/photo-1533563906091-fdfdffc3e3c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80)',
-              }}
-            >
-              <Grid container spacing={3} alignItems='center'>
-                <Grid item xs={12} md={8} lg={5}>
-                  <MKTypography variant='h5' color='white' fontWeight='bold'>
-                    For being a bright color. For standing out. But the time is
-                    now to be okay to be the greatest you.
-                  </MKTypography>
-                </Grid>
-                <Grid item xs={12} lg={6} sx={{ ml: 'auto' }}>
-                  <MKBox width='12rem' ml='auto'>
-                    <MKButton
-                      variant='gradient'
-                      color='warning'
-                      fullWidth
-                      sx={{ boxShadow: 'none' }}
-                    >
-                      start now
-                    </MKButton>
-                  </MKBox>
-                </Grid>
-              </Grid>
-            </MKBox>
-          </Container>
         </Card>
       </Fade>
+      <Testimonials />
+      <Upcoming />
+      <Places />
+      <Container>
+        <MKBox
+          display='flex'
+          justifyContent='space-between'
+          alignItems='center'
+          borderRadius='xl'
+          my={24}
+          p={6}
+          sx={{
+            backgroundImage:
+              'url(https://images.unsplash.com/photo-1533563906091-fdfdffc3e3c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80)',
+          }}
+        >
+          <Grid container spacing={3} alignItems='center'>
+            <Grid item xs={12} md={8} lg={5}>
+              <MKTypography variant='h5' color='white' fontWeight='bold'>
+                For being a bright color. For standing out. But the time is now
+                to be okay to be the greatest you.
+              </MKTypography>
+            </Grid>
+            <Grid item xs={12} lg={6} sx={{ ml: 'auto' }}>
+              <MKBox width='12rem' ml='auto'>
+                <MKButton
+                  variant='gradient'
+                  color='warning'
+                  fullWidth
+                  sx={{ boxShadow: 'none' }}
+                >
+                  start now
+                </MKButton>
+              </MKBox>
+            </Grid>
+          </Grid>
+        </MKBox>
+      </Container>
+
       <MKBox pt={6} px={1} mt={6}>
         <BridgestarsFooter />
       </MKBox>

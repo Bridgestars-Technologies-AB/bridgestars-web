@@ -59,6 +59,7 @@ import SignInCoverPage from 'layouts/authentication/sign-in/cover';
 import SignInIllustration from 'layouts/authentication/sign-in/illustration';
 import SignInSimplePage from 'layouts/authentication/sign-in/simple';
 import SignupForm from 'bridgestars/auth/sign-up';
+import SigninForm from 'bridgestars/auth/sign-in';
 import ResetPasswordPage from 'layouts/authentication/reset-password/cover';
 
 // Sections
@@ -102,34 +103,14 @@ const routes = [
   {
     name: 'download',
     icon: <Icon>download</Icon>,
-    route: '/signin',
+    route: '/download',
     component: <SignupForm />,
   },
   {
     name: 'account',
     icon: <Icon>contacts</Icon>,
     route: '/signin',
-    component: <SignupForm />,
-    // collapse: [
-    //   {
-    //     name: 'sign in',
-    //     dropdown: false,
-
-    //     route: '/authentication/sign-in/illustration',
-    //     component: <SignInIllustration />,
-    //   },
-    //   {
-    //     name: 'sign up',
-    //     route: '/authentication/sign-up/cover',
-    //     component: <SignUp />,
-    //   },
-    //   {
-    //   name: 'reset password',
-
-    //         route: '/authentication/reset-password/cover',
-    //         component: <ResetPasswordPage />,
-    //   },
-    // ],
+    component: <SigninForm />,
   },
 ];
 

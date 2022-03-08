@@ -134,16 +134,16 @@ function BetaSignupForm() {
         </MKBox>
         <MKBox mt={3} mb={1} textAlign='center'>
           <MKTypography variant='button' color='text'>
-            Already have an account?{' '}
+            Already registered?{' '}
             <MKTypography
               component={Link}
-              to='/authentication/sign-in/cover'
+              to='/auth/beta-status'
               variant='button'
               color='info'
               fontWeight='medium'
               textGradient
             >
-              Sign In
+              See your status
             </MKTypography>
           </MKTypography>
         </MKBox>
