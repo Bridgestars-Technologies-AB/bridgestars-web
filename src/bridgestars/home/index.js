@@ -15,7 +15,6 @@ Coded by www.creative-tim.com
 
 // React
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 // @mui material components
 import Container from '@mui/material/Container';
