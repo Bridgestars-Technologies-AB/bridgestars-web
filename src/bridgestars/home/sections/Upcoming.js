@@ -32,7 +32,10 @@ function Upcoming() {
     {
       icon: 'videocamera',
       title: 'Delayed Kibitzing',
-      items: ['', ''],
+      items: [
+        'Set delay to specific number of minutes',
+        'Set delay to specific number of deals',
+      ],
       implemented: [false, false],
     },
     {
@@ -43,26 +46,32 @@ function Upcoming() {
     },
     {
       icon: 'smart_toy',
-      title: 'Play with bots',
-      items: ['', ''],
+      title: 'Intelligent computer player',
+      items: ['Bots can do bidding', 'Bots can play'],
       implemented: [false, false],
     },
     {
-      icon: 'block',
-      title: 'Automatic cheat and  detection',
-      items: ['', ''],
-      implemented: false,
+      icon: 'extension',
+      title: 'Puzzles that practice edge cases',
+      items: [
+        'Puzzles that challenge bidding and declaring skills',
+        'Double dummy problems and Suit combination puzzles',
+      ],
+      implemented: [false, false],
     },
     {
       icon: 'credit_card',
-      title: 'Financial reconciliation and reporting',
-      items: ['', ''],
+      title: 'Support for real money',
+      items: ['Tournament with prize pools', 'Versus with stakes'],
       implemented: false,
     },
     {
       icon: 'emoji_events',
       title: 'Global tournaments',
-      items: ['', ''],
+      items: [
+        'Competitive tournaments spanning days or weeks',
+        'Let organizations host tournaments',
+      ],
       implemented: false,
     },
   ];
@@ -93,7 +102,8 @@ function Upcoming() {
           </MKTypography>
           <MKTypography variant='body2' color='text'>
             These are features that are still work in progress. You can
-            contribute with ideas in our discord server.
+            contribute with ideas and vote for your favorites on our discord
+            server.
           </MKTypography>
         </Grid>
 
