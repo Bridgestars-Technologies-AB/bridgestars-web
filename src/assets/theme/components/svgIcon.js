@@ -14,16 +14,16 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO helper functions
-import pxToRem from "assets/theme/functions/pxToRem";
+import pxToRem from 'assets/theme/functions/pxToRem';
 
 export default {
   defaultProps: {
-    fontSize: "inherit",
+    fontSize: 'inherit',
   },
 
   styleOverrides: {
     fontSizeInherit: {
-      fontSize: "inherit !important",
+      fontSize: 'inherit !important',
     },
 
     fontSizeSmall: {

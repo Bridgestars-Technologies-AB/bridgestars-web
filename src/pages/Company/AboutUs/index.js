@@ -13,40 +13,40 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 // rellax
-import Rellax from "rellax";
+import Rellax from 'rellax';
 
 // typed-js
-import * as Typed from "typed.js";
+import * as Typed from 'typed.js';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
+import MKButton from 'components/MKButton';
 
 // Otis Kit PRO examples
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import DefaultFooter from "examples/Footers/DefaultFooter";
+import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
+import DefaultFooter from 'examples/Footers/DefaultFooter';
 
 // About Us page sections
-import Information from "pages/Company/AboutUs/sections/Information";
-import Team from "pages/Company/AboutUs/sections/Team";
-import Featuring from "pages/Company/AboutUs/sections/Featuring";
-import Newsletter from "pages/Company/AboutUs/sections/Newsletter";
+import Information from 'pages/Company/AboutUs/sections/Information';
+import Team from 'pages/Company/AboutUs/sections/Team';
+import Featuring from 'pages/Company/AboutUs/sections/Featuring';
+import Newsletter from 'pages/Company/AboutUs/sections/Newsletter';
 
 // Routes
-import routes from "routes";
-import footerRoutes from "footer.routes";
+import routes from 'constants/routes';
+import footerRoutes from 'constants/footer.routes';
 
 // Images
-import bgImage from "assets/images/bg-about-us.jpg";
+import bgImage from 'assets/images/bg-about-us.jpg';
 
 function AboutUs() {
   const headerRef = useRef(null);
@@ -64,7 +64,7 @@ function AboutUs() {
   // Setting up typedJS
   useEffect(() => {
     const typedJS = new Typed(typedJSRef.current, {
-      strings: ["team", "design", "tool"],
+      strings: ['team', 'design', 'tool'],
       typeSpeed: 90,
       backSpeed: 90,
       backDelay: 200,
@@ -80,28 +80,32 @@ function AboutUs() {
       <DefaultNavbar
         routes={routes}
         action={{
-          type: "external",
-          route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-          label: "buy now",
-          color: "default",
+          type: 'external',
+          route:
+            'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+          label: 'buy now',
+          color: 'default',
         }}
         transparent
         light
       />
       <MKBox
         ref={headerRef}
-        minHeight="75vh"
-        width="100%"
+        minHeight='75vh'
+        width='100%'
         sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
+          backgroundImage: ({
+            functions: { linearGradient, rgba },
+            palette: { gradients },
+          }) =>
             `${linearGradient(
               rgba(gradients.dark.main, 0.6),
               rgba(gradients.dark.state, 0.6)
             )}, url(${bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "grid",
-          placeItems: "center",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'grid',
+          placeItems: 'center',
         }}
       >
         <Container>
@@ -110,44 +114,76 @@ function AboutUs() {
             item
             xs={12}
             lg={8}
-            justifyContent="center"
-            alignItems="center"
-            flexDirection="column"
-            sx={{ mx: "auto", textAlign: "center" }}
+            justifyContent='center'
+            alignItems='center'
+            flexDirection='column'
+            sx={{ mx: 'auto', textAlign: 'center' }}
           >
             <MKTypography
-              variant="h1"
-              color="white"
+              variant='h1'
+              color='white'
               sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
+                [breakpoints.down('md')]: {
+                  fontSize: size['3xl'],
                 },
               })}
             >
               Work with an amazing <span ref={typedJSRef} />
             </MKTypography>
-            <MKTypography variant="body1" color="white" opacity={0.8} mt={1} mb={3}>
-              We&apos;re constantly trying to express ourselves and actualize our dreams. If you
-              have the opportunity to play this game
+            <MKTypography
+              variant='body1'
+              color='white'
+              opacity={0.8}
+              mt={1}
+              mb={3}
+            >
+              We&apos;re constantly trying to express ourselves and actualize
+              our dreams. If you have the opportunity to play this game
             </MKTypography>
-            <MKButton color="default" sx={{ color: ({ palette: { dark } }) => dark.main }}>
+            <MKButton
+              color='default'
+              sx={{ color: ({ palette: { dark } }) => dark.main }}
+            >
               create account
             </MKButton>
-            <MKTypography variant="h6" color="white" mt={8} mb={1}>
+            <MKTypography variant='h6' color='white' mt={8} mb={1}>
               Find us on
             </MKTypography>
-            <MKBox display="flex" justifyContent="center" alignItems="center">
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
-                <i className="fab fa-facebook" />
+            <MKBox display='flex' justifyContent='center' alignItems='center'>
+              <MKTypography
+                component='a'
+                variant='body1'
+                color='white'
+                href='#'
+                mr={3}
+              >
+                <i className='fab fa-facebook' />
               </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
-                <i className="fab fa-instagram" />
+              <MKTypography
+                component='a'
+                variant='body1'
+                color='white'
+                href='#'
+                mr={3}
+              >
+                <i className='fab fa-instagram' />
               </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>
-                <i className="fab fa-twitter" />
+              <MKTypography
+                component='a'
+                variant='body1'
+                color='white'
+                href='#'
+                mr={3}
+              >
+                <i className='fab fa-twitter' />
               </MKTypography>
-              <MKTypography component="a" variant="body1" color="white" href="#">
-                <i className="fab fa-google-plus" />
+              <MKTypography
+                component='a'
+                variant='body1'
+                color='white'
+                href='#'
+              >
+                <i className='fab fa-google-plus' />
               </MKTypography>
             </MKBox>
           </Grid>

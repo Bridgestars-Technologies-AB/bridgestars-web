@@ -14,21 +14,21 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // @mui material components
-import MuiBreadcrumbs from "@mui/material/Breadcrumbs";
+import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 function Breadcrumbs({ routes, ...rest }) {
   return (
-    <MKBox bgColor="light" borderRadius="md" py={1} px={2} width="100%">
+    <MKBox bgColor='light' borderRadius='md' py={1} px={2} width='100%'>
       <MuiBreadcrumbs {...rest}>
         {routes.map(({ label, route }) =>
           route ? (
@@ -36,12 +36,12 @@ function Breadcrumbs({ routes, ...rest }) {
               key={label}
               component={Link}
               to={route}
-              variant="button"
-              color="text"
-              fontWeight="regular"
+              variant='button'
+              color='text'
+              fontWeight='regular'
               opacity={0.8}
               sx={{
-                "&:hover, &:focus": {
+                '&:hover, &:focus': {
                   color: ({ palette: { info } }) => info.main,
                 },
               }}
@@ -49,7 +49,7 @@ function Breadcrumbs({ routes, ...rest }) {
               {label}
             </MKTypography>
           ) : (
-            <MKTypography key={label} variant="button" fontWeight="regular">
+            <MKTypography key={label} variant='button' fontWeight='regular'>
               {label}
             </MKTypography>
           )

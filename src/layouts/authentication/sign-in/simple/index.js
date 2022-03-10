@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO pages
-import SignInSimple from "pages/Authentication/SignIn/Simple";
+import SignInSimple from 'pages/Authentication/SignIn/Simple';
 
 export default function SignInSimplePage() {
   return <SignInSimple />;

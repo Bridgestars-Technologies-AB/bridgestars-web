@@ -14,30 +14,36 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
+import MKBox from 'components/MKBox';
 
 // Otis Kit PRO examples
-import TransparentBlogCard from "examples/Cards/BlogCards/TransparentBlogCard";
+import TransparentBlogCard from 'examples/Cards/BlogCards/TransparentBlogCard';
 
 // Images
-import image from "assets/images/products/product-1-min.jpg";
+import image from 'assets/images/products/product-1-min.jpg';
 
 function CardWithColoredShadow() {
   return (
     <MKBox pt={6} pb={3} px={3}>
-      <Grid container item xs={12} lg={6} sx={{ mx: "auto", px: { xs: 0, lg: 6 } }}>
+      <Grid
+        container
+        item
+        xs={12}
+        lg={6}
+        sx={{ mx: 'auto', px: { xs: 0, lg: 6 } }}
+      >
         <TransparentBlogCard
           image={image}
-          title="MateLabs mixes machine learning with IFTTT"
-          description="If you’ve ever wanted to train a machine learning model and integrate it with IFTTT, you now can with ..."
+          title='MateLabs mixes machine learning with IFTTT'
+          description='If you’ve ever wanted to train a machine learning model and integrate it with IFTTT, you now can with ...'
           action={{
-            type: "internal",
-            route: "/sections/page-sections/general-cards",
-            color: "info",
-            label: "Read More",
+            type: 'internal',
+            route: '/sections/page-sections/general-cards',
+            color: 'info',
+            label: 'Read More',
           }}
         />
       </Grid>

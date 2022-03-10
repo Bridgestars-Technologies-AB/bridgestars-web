@@ -2,7 +2,7 @@ const navbarTransparentCode = `// Otis Kit PRO examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
 // Routes
-import routes from "routes";
+import routes from "src/constants/routes";
 
 function NavbarTransparent() {
   return (

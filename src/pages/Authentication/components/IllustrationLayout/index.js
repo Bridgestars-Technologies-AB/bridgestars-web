@@ -14,58 +14,70 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 // Otis Kit PRO example components
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
+import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
 
 // Otis Kit PRO page layout routes
-import routes from "routes";
+import routes from 'constants/routes';
 
-function IllustrationLayout({ header, title, description, illustration, children }) {
+function IllustrationLayout({
+  header,
+  title,
+  description,
+  illustration,
+  children,
+}) {
   return (
-    <MKBox width="100%" height="100%" bgColor="white">
-      <MKBox position="absolute" width="100%" mt={1}>
+    <MKBox width='100%' height='100%' bgColor='white'>
+      <MKBox position='absolute' width='100%' mt={1}>
         <DefaultNavbar
           routes={routes}
           action={{
-            type: "external",
-            route: "https://material-ui.com/store/items/otis-kit-pro-material-kit-react/",
-            label: "buy now",
-            color: "dark",
+            type: 'external',
+            route:
+              'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+            label: 'buy now',
+            color: 'dark',
           }}
         />
       </MKBox>
       <Grid container>
         <Grid item xs={12} lg={6}>
           <MKBox
-            display={{ xs: "none", lg: "flex" }}
-            width="calc(100% - 2rem)"
-            height="calc(100vh - 2rem)"
-            borderRadius="lg"
+            display={{ xs: 'none', lg: 'flex' }}
+            width='calc(100% - 2rem)'
+            height='calc(100vh - 2rem)'
+            borderRadius='lg'
             ml={2}
             mt={2}
             sx={{ backgroundImage: `url(${illustration})` }}
           />
         </Grid>
-        <Grid item xs={11} sm={8} md={5} lg={4} xl={3} sx={{ mx: "auto" }}>
-          <MKBox display="flex" flexDirection="column" justifyContent="center" height="100vh">
-            <MKBox p={3} textAlign="center">
+        <Grid item xs={11} sm={8} md={5} lg={4} xl={3} sx={{ mx: 'auto' }}>
+          <MKBox
+            display='flex'
+            flexDirection='column'
+            justifyContent='center'
+            height='100vh'
+          >
+            <MKBox p={3} textAlign='center'>
               {!header ? (
                 <>
-                  <MKBox mb={1} textAlign="center">
-                    <MKTypography variant="h4" fontWeight="bold">
+                  <MKBox mb={1} textAlign='center'>
+                    <MKTypography variant='h4' fontWeight='bold'>
                       {title}
                     </MKTypography>
                   </MKBox>
-                  <MKTypography variant="body2" color="text">
+                  <MKTypography variant='body2' color='text'>
                     {description}
                   </MKTypography>
                 </>
@@ -83,10 +95,10 @@ function IllustrationLayout({ header, title, description, illustration, children
 
 // Setting default values for the props of IllustrationLayout
 IllustrationLayout.defaultProps = {
-  header: "",
-  title: "",
-  description: "",
-  illustration: "",
+  header: '',
+  title: '',
+  description: '',
+  illustration: '',
 };
 
 // Typechecking props for the IllustrationLayout

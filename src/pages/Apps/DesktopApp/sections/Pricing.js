@@ -12,21 +12,21 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-import { useState } from "react";
+import { useState } from 'react';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import AppBar from "@mui/material/AppBar";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import AppBar from '@mui/material/AppBar';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 // Otis Kit PRO examples
-import SimplePricingCard from "examples/Cards/PricingCards/SimplePricingCard";
+import SimplePricingCard from 'examples/Cards/PricingCards/SimplePricingCard';
 
 function Pricing() {
   const [activeTab, setActiveTab] = useState(0);
@@ -34,11 +34,19 @@ function Pricing() {
   const handleTabType = (event, newValue) => setActiveTab(newValue);
 
   return (
-    <MKBox component="section" py={{ xs: 0, md: 12 }}>
+    <MKBox component='section' py={{ xs: 0, md: 12 }}>
       <Container>
-        <Grid container item xs={12} justifyContent="center" md={8} mx="auto" textAlign="center">
-          <MKTypography variant="h3">Pick the best plan for you</MKTypography>
-          <MKTypography variant="body2" color="text">
+        <Grid
+          container
+          item
+          xs={12}
+          justifyContent='center'
+          md={8}
+          mx='auto'
+          textAlign='center'
+        >
+          <MKTypography variant='h3'>Pick the best plan for you</MKTypography>
+          <MKTypography variant='body2' color='text'>
             You have Free Unlimited Updates and Premium Support on each package.
           </MKTypography>
         </Grid>
@@ -48,25 +56,25 @@ function Pricing() {
           xs={12}
           md={10}
           lg={8}
-          justifyContent="center"
-          textAlign="center"
-          mx="auto"
+          justifyContent='center'
+          textAlign='center'
+          mx='auto'
           mt={6}
         >
-          <AppBar position="static">
+          <AppBar position='static'>
             <Tabs value={activeTab} onChange={handleTabType}>
               <Tab
-                id="monthly"
+                id='monthly'
                 label={
-                  <MKBox py={0.5} px={2} color="inherit">
+                  <MKBox py={0.5} px={2} color='inherit'>
                     Monthly
                   </MKBox>
                 }
               />
               <Tab
-                id="annual"
+                id='annual'
                 label={
-                  <MKBox py={0.5} px={2} color="inherit">
+                  <MKBox py={0.5} px={2} color='inherit'>
                     Annual
                   </MKBox>
                 }
@@ -77,57 +85,60 @@ function Pricing() {
         <Grid container spacing={3} mt={6}>
           <Grid item xs={12} sm={6} lg={3}>
             <SimplePricingCard
-              color="dark"
-              title="Starter"
-              description="Free access for 2 members"
-              price={{ value: "$199", type: "year" }}
-              action={{ type: "internal", route: "/", label: "buy now" }}
-              specifications={["Complete documentation", "Working materials in Sketch"]}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} lg={3}>
-            <SimplePricingCard
-              color="dark"
-              title="Pro"
-              description="Free access for 30 members"
-              price={{ value: "$299", type: "year" }}
-              action={{ type: "internal", route: "/", label: "buy now" }}
+              color='dark'
+              title='Starter'
+              description='Free access for 2 members'
+              price={{ value: '$199', type: 'year' }}
+              action={{ type: 'internal', route: '/', label: 'buy now' }}
               specifications={[
-                "Complete documentation",
-                "Working materials in Sketch",
-                "2GB cloud storage",
+                'Complete documentation',
+                'Working materials in Sketch',
               ]}
             />
           </Grid>
           <Grid item xs={12} sm={6} lg={3}>
             <SimplePricingCard
-              variant="gradient"
-              color="dark"
-              title="Premium"
-              description="Free access for 200 members"
-              price={{ value: "$499", type: "year" }}
-              action={{ type: "internal", route: "/", label: "buy now" }}
+              color='dark'
+              title='Pro'
+              description='Free access for 30 members'
+              price={{ value: '$299', type: 'year' }}
+              action={{ type: 'internal', route: '/', label: 'buy now' }}
               specifications={[
-                "Complete documentation",
-                "Working materials in Sketch",
-                "20GB cloud storage",
-                "100 team members",
+                'Complete documentation',
+                'Working materials in Sketch',
+                '2GB cloud storage',
               ]}
             />
           </Grid>
           <Grid item xs={12} sm={6} lg={3}>
             <SimplePricingCard
-              color="dark"
-              title="Enterprise"
-              description="Free access for all members"
-              price={{ value: "$899", type: "year" }}
-              action={{ type: "internal", route: "/", label: "buy now" }}
+              variant='gradient'
+              color='dark'
+              title='Premium'
+              description='Free access for 200 members'
+              price={{ value: '$499', type: 'year' }}
+              action={{ type: 'internal', route: '/', label: 'buy now' }}
               specifications={[
-                "Complete documentation",
-                "Working materials in Sketch",
-                "100GB cloud storage",
-                "500 team members",
-                "Premium support",
+                'Complete documentation',
+                'Working materials in Sketch',
+                '20GB cloud storage',
+                '100 team members',
+              ]}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} lg={3}>
+            <SimplePricingCard
+              color='dark'
+              title='Enterprise'
+              description='Free access for all members'
+              price={{ value: '$899', type: 'year' }}
+              action={{ type: 'internal', route: '/', label: 'buy now' }}
+              specifications={[
+                'Complete documentation',
+                'Working materials in Sketch',
+                '100GB cloud storage',
+                '500 team members',
+                'Premium support',
               ]}
             />
           </Grid>

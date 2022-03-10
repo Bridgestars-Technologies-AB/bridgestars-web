@@ -13,16 +13,16 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
+import { useState } from 'react';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Switch from "@mui/material/Switch";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Switch from '@mui/material/Switch';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 function ToggleContext() {
   const [checked, setChecked] = useState(false);
@@ -30,16 +30,16 @@ function ToggleContext() {
   const toggleSwitch = () => setChecked(!checked);
 
   return (
-    <MKBox component="section" py={8}>
+    <MKBox component='section' py={8}>
       <Container>
-        <Grid container item xs={4} justifyContent="center" mx="auto">
-          <MKBox display="flex" alignItems="center">
+        <Grid container item xs={4} justifyContent='center' mx='auto'>
+          <MKBox display='flex' alignItems='center'>
             <Switch checked={checked} onChange={toggleSwitch} />
             <MKBox ml={2} lineHeight={0.5}>
-              <MKTypography display="block" variant="button" fontWeight="bold">
+              <MKTypography display='block' variant='button' fontWeight='bold'>
                 Remember me
               </MKTypography>
-              <MKTypography variant="caption" color="text" fontWeight="regular">
+              <MKTypography variant='caption' color='text' fontWeight='regular'>
                 Be sure that you will always be logged in.
               </MKTypography>
             </MKBox>

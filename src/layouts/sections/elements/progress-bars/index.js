@@ -14,35 +14,35 @@ Coded by www.creative-tim.com
 */
 
 // Sections components
-import BaseLayout from "layouts/sections/components/BaseLayout";
-import View from "layouts/sections/components/View";
+import BaseLayout from 'layouts/sections/components/BaseLayout';
+import View from 'layouts/sections/components/View';
 
 // ProgressBars page components
-import ProgressSimple from "layouts/sections/elements/progress-bars/components/ProgressSimple";
-import ProgressGradient from "layouts/sections/elements/progress-bars/components/ProgressGradient";
-import Sliders from "layouts/sections/elements/progress-bars/components/Sliders";
+import ProgressSimple from 'layouts/sections/elements/progress-bars/components/ProgressSimple';
+import ProgressGradient from 'layouts/sections/elements/progress-bars/components/ProgressGradient';
+import Sliders from 'layouts/sections/elements/progress-bars/components/Sliders';
 
 // ProgressBars page components code
-import progressSimpleCode from "layouts/sections/elements/progress-bars/components/ProgressSimple/code";
-import progressGradientCode from "layouts/sections/elements/progress-bars/components/ProgressGradient/code";
-import slidersCode from "layouts/sections/elements/progress-bars/components/Sliders/code";
+import progressSimpleCode from 'layouts/sections/elements/progress-bars/components/ProgressSimple/code';
+import progressGradientCode from 'layouts/sections/elements/progress-bars/components/ProgressGradient/code';
+import slidersCode from 'layouts/sections/elements/progress-bars/components/Sliders/code';
 
 function ProgressBars() {
   return (
     <BaseLayout
-      title="Progress Bars"
+      title='Progress Bars'
       breadcrumb={[
-        { label: "Page Sections", route: "/sections/elements/progress-bars" },
-        { label: "Progress Bars" },
+        { label: 'Page Sections', route: '/sections/elements/progress-bars' },
+        { label: 'Progress Bars' },
       ]}
     >
-      <View title="Progress bar simple" code={progressSimpleCode}>
+      <View title='Progress bar simple' code={progressSimpleCode}>
         <ProgressSimple />
       </View>
-      <View title="Progress bar gradient" code={progressGradientCode}>
+      <View title='Progress bar gradient' code={progressGradientCode}>
         <ProgressGradient />
       </View>
-      <View title="Sliders" code={slidersCode}>
+      <View title='Sliders' code={slidersCode}>
         <Sliders />
       </View>
     </BaseLayout>

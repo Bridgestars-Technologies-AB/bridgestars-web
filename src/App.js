@@ -13,21 +13,26 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 // react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 // @mui material components
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 // Otis Kit PRO themes
-import theme from "assets/theme";
-import Presentation from "layouts/pages/presentation";
+import theme from 'assets/theme';
+import Presentation from 'layouts/pages/presentation';
+import SignupForm from 'bridgestars/auth/sign-up';
+import SigninForm from 'bridgestars/auth/sign-in';
+import BetaSignupForm from 'bridgestars/auth/beta-sign-up';
 
 // Otis Kit PRO routes
-import routes from "routes";
+import routes from 'constants/routes';
+
+import BridgestarsHome from 'bridgestars/home';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -45,7 +50,14 @@ export default function App() {
       }
 
       if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
+        return (
+          <Route
+            exact
+            path={route.route}
+            element={route.component}
+            key={route.key}
+          />
+        );
       }
 
       return null;
@@ -56,8 +68,10 @@ export default function App() {
       <CssBaseline />
       <Routes>
         {getRoutes(routes)}
-        <Route path="/presentation" element={<Presentation />} />
-        <Route path="*" element={<Navigate to="/presentation" />} />
+        <Route path='*' element={<BridgestarsHome />} />
+        <Route path='/signup' element={<SignupForm />} />
+        <Route path='/signin' element={<SigninForm />} />
+        <Route path='/betasignup' element={<BetaSignupForm />} />
       </Routes>
     </ThemeProvider>
   );

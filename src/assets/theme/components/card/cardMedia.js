@@ -14,10 +14,10 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO Base Styles
-import borders from "assets/theme/base/borders";
+import borders from 'assets/theme/base/borders';
 
 // Otis Kit PRO Helper Functions
-import pxToRem from "assets/theme/functions/pxToRem";
+import pxToRem from 'assets/theme/functions/pxToRem';
 
 const { borderRadius } = borders;
 
@@ -29,7 +29,7 @@ export default {
     },
 
     media: {
-      width: "auto",
+      width: 'auto',
     },
   },
 };

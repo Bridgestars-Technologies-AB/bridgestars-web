@@ -14,65 +14,65 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 // Otis Kit PRO examples
-import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
+import DefaultInfoCard from 'examples/Cards/InfoCards/DefaultInfoCard';
 
 function SocialAnalytics() {
   return (
-    <MKBox component="section" py={6}>
+    <MKBox component='section' py={6}>
       <Container>
         <Grid
           container
           item
-          justifyContent="center"
+          justifyContent='center'
           xs={12}
           lg={6}
-          sx={{ mx: "auto", pb: 3, textAlign: "center" }}
+          sx={{ mx: 'auto', pb: 3, textAlign: 'center' }}
         >
-          <MKTypography variant="h4" color="info" textGradient>
+          <MKTypography variant='h4' color='info' textGradient>
             Social Analytics
           </MKTypography>
-          <MKTypography variant="h2" my={1}>
+          <MKTypography variant='h2' my={1}>
             Turn your idea into a startup
           </MKTypography>
-          <MKTypography variant="body1" color="text">
-            We&apos;re constantly trying to express ourselves and actualize our dreams. If you have
-            the opportunity to play
+          <MKTypography variant='body1' color='text'>
+            We&apos;re constantly trying to express ourselves and actualize our
+            dreams. If you have the opportunity to play
           </MKTypography>
         </Grid>
         <Grid container spacing={3} sx={{ mt: 3 }}>
           <Grid item xs={12} md={6} lg={4}>
             <DefaultInfoCard
-              icon="groups"
-              title="Check our team"
-              description="We get insulted by others, lose trust for those others. We get back here to follow
-                my dreams"
-              direction="center"
+              icon='groups'
+              title='Check our team'
+              description='We get insulted by others, lose trust for those others. We get back here to follow
+                my dreams'
+              direction='center'
             />
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
             <DefaultInfoCard
-              icon="support_agent"
-              title="Support 24/7"
-              description="We get insulted by others, lose trust for those others. We get back here to follow
-                my dreams"
-              direction="center"
+              icon='support_agent'
+              title='Support 24/7'
+              description='We get insulted by others, lose trust for those others. We get back here to follow
+                my dreams'
+              direction='center'
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={4} sx={{ mx: "auto" }}>
+          <Grid item xs={12} md={6} lg={4} sx={{ mx: 'auto' }}>
             <DefaultInfoCard
-              icon="update"
-              title="Unlimited revisions"
-              description="We get insulted by others, lose trust for those others. We get back here to follow
-                my dreams"
-              direction="center"
+              icon='update'
+              title='Unlimited revisions'
+              description='We get insulted by others, lose trust for those others. We get back here to follow
+                my dreams'
+              direction='center'
             />
           </Grid>
         </Grid>

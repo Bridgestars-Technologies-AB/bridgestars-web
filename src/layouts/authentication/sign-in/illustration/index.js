@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO pages
-import SignInIllustration from "pages/Authentication/SignIn/Illustration";
+import SignInIllustration from 'pages/Authentication/SignIn/Illustration';
 
 export default function SignInIllustrationPage() {
   return <SignInIllustration />;

@@ -14,18 +14,18 @@ Coded by www.creative-tim.com
 */
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Card from "@mui/material/Card";
+import Card from '@mui/material/Card';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKButton from 'components/MKButton';
+import MKTypography from 'components/MKTypography';
 
 function DefaultBackgroundCard({ image, label, title, description, action }) {
   return (
@@ -39,35 +39,46 @@ function DefaultBackgroundCard({ image, label, title, description, action }) {
           rgba(black.main, 0.5),
           rgba(black.main, 0.5)
         )}, url(${image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         borderRadius: borderRadius.xl,
       })}
     >
-      <MKBox textAlign="center" pt={12} pb={3} px={3}>
+      <MKBox textAlign='center' pt={12} pb={3} px={3}>
         {label && (
-          <MKTypography variant="body2" color="white" textTransform="uppercase" mb={2}>
+          <MKTypography
+            variant='body2'
+            color='white'
+            textTransform='uppercase'
+            mb={2}
+          >
             {label}
           </MKTypography>
         )}
-        <MKTypography variant="h3" color="white">
+        <MKTypography variant='h3' color='white'>
           {title}
         </MKTypography>
-        <MKTypography variant="body2" color="white" opacity={0.8} mb={2}>
+        <MKTypography variant='body2' color='white' opacity={0.8} mb={2}>
           {description}
         </MKTypography>
-        {action.type === "internal" ? (
-          <MKButton component={Link} to={action.route} color="white" size="small" sx={{ my: 2 }}>
+        {action.type === 'internal' ? (
+          <MKButton
+            component={Link}
+            to={action.route}
+            color='white'
+            size='small'
+            sx={{ my: 2 }}
+          >
             {action.label}
           </MKButton>
         ) : (
           <MKButton
-            component="a"
+            component='a'
             href={action.route}
-            target="_blank"
-            rel="noreferrer"
-            color="white"
-            size="small"
+            target='_blank'
+            rel='noreferrer'
+            color='white'
+            size='small'
             sx={{ my: 2 }}
           >
             {action.label}
@@ -80,7 +91,7 @@ function DefaultBackgroundCard({ image, label, title, description, action }) {
 
 // Setting default values for the props of DefaultBackgroundCard
 DefaultBackgroundCard.defaultProps = {
-  label: "",
+  label: '',
 };
 
 // Typechecking props for the DefaultBackgroundCard
@@ -90,7 +101,7 @@ DefaultBackgroundCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.node.isRequired,
   action: PropTypes.shape({
-    type: PropTypes.oneOf(["external", "internal"]).isRequired,
+    type: PropTypes.oneOf(['external', 'internal']).isRequired,
     route: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
   }).isRequired,

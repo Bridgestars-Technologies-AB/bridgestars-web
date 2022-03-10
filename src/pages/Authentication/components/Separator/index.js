@@ -14,41 +14,41 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 function Separator() {
   const separatorStyles = {
     content: '""',
-    display: "inline-block",
-    width: "30%",
-    height: "1px",
-    position: "relative",
-    verticalAlign: "middle",
+    display: 'inline-block',
+    width: '30%',
+    height: '1px',
+    position: 'relative',
+    verticalAlign: 'middle',
   };
 
   return (
-    <MKBox my={3} position="relative" textAlign="center">
+    <MKBox my={3} position='relative' textAlign='center'>
       <MKTypography
-        variant="button"
-        fontWeight="bold"
-        color="secondary"
+        variant='button'
+        fontWeight='bold'
+        color='secondary'
         px={2}
         sx={{
-          "&::before": {
+          '&::before': {
             ...separatorStyles,
-            right: "0.5em",
-            marginLeft: "-50%",
+            right: '0.5em',
+            marginLeft: '-50%',
             background: ({ functions: { rgba }, palette: { secondary } }) =>
-              `linear-gradient(90deg, transparent, ${rgba(secondary.main, 0.4)}, ${rgba(
+              `linear-gradient(90deg, transparent, ${rgba(
                 secondary.main,
                 0.4
-              )})`,
+              )}, ${rgba(secondary.main, 0.4)})`,
           },
-          "&::after": {
+          '&::after': {
             ...separatorStyles,
-            left: "0.5em",
-            marginRight: "-50%",
+            left: '0.5em',
+            marginRight: '-50%',
             background: ({ functions: { rgba }, palette: { secondary } }) =>
               `linear-gradient(90deg, ${rgba(secondary.main, 0.4)}, ${rgba(
                 secondary.main,

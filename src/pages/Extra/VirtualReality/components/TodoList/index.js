@@ -14,71 +14,87 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Divider from "@mui/material/Divider";
-import Icon from "@mui/material/Icon";
-import Tooltip from "@mui/material/Tooltip";
+import Card from '@mui/material/Card';
+import Divider from '@mui/material/Divider';
+import Icon from '@mui/material/Icon';
+import Tooltip from '@mui/material/Tooltip';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 function TodoList() {
   return (
-    <Card sx={{ height: "100%", overflow: "hidden" }}>
+    <Card sx={{ height: '100%', overflow: 'hidden' }}>
       <MKBox p={3}>
-        <MKBox display="flex" lineHeight={1}>
+        <MKBox display='flex' lineHeight={1}>
           <MKBox mr={2}>
-            <MKTypography variant="h6" fontWeight="medium">
+            <MKTypography variant='h6' fontWeight='medium'>
               08:00
             </MKTypography>
           </MKBox>
           <MKBox>
-            <MKTypography variant="h6" fontWeight="medium">
+            <MKTypography variant='h6' fontWeight='medium'>
               Synk up with Mark
             </MKTypography>
-            <MKTypography variant="button" fontWeight="regular" color="secondary">
+            <MKTypography
+              variant='button'
+              fontWeight='regular'
+              color='secondary'
+            >
               Hangouts
             </MKTypography>
           </MKBox>
         </MKBox>
         <Divider />
-        <MKBox display="flex" lineHeight={0}>
+        <MKBox display='flex' lineHeight={0}>
           <MKBox mr={2}>
-            <MKTypography variant="h6" fontWeight="medium">
+            <MKTypography variant='h6' fontWeight='medium'>
               09:30
             </MKTypography>
           </MKBox>
           <MKBox>
-            <MKTypography variant="h6" fontWeight="medium">
+            <MKTypography variant='h6' fontWeight='medium'>
               Gym
             </MKTypography>
-            <MKTypography variant="button" fontWeight="regular" color="secondary">
+            <MKTypography
+              variant='button'
+              fontWeight='regular'
+              color='secondary'
+            >
               World Class
             </MKTypography>
           </MKBox>
         </MKBox>
         <Divider />
-        <MKBox display="flex" lineHeight={1}>
+        <MKBox display='flex' lineHeight={1}>
           <MKBox mr={2}>
-            <MKTypography variant="h6" fontWeight="medium">
+            <MKTypography variant='h6' fontWeight='medium'>
               11:00
             </MKTypography>
           </MKBox>
           <MKBox>
-            <MKTypography variant="h6" fontWeight="medium">
+            <MKTypography variant='h6' fontWeight='medium'>
               Design Review
             </MKTypography>
-            <MKTypography variant="button" fontWeight="regular" color="secondary">
+            <MKTypography
+              variant='button'
+              fontWeight='regular'
+              color='secondary'
+            >
               Zoom
             </MKTypography>
           </MKBox>
         </MKBox>
       </MKBox>
-      <MKBox bgColor="grey-100" mt="auto">
-        <Tooltip title="Show More" placement="top" sx={{ cursor: "pointer" }}>
-          <MKBox textAlign="center" py={0.5} color="info" lineHeight={0}>
-            <Icon sx={{ fontWeight: "bold" }} color="inherit" fontSize="default">
+      <MKBox bgColor='grey-100' mt='auto'>
+        <Tooltip title='Show More' placement='top' sx={{ cursor: 'pointer' }}>
+          <MKBox textAlign='center' py={0.5} color='info' lineHeight={0}>
+            <Icon
+              sx={{ fontWeight: 'bold' }}
+              color='inherit'
+              fontSize='default'
+            >
               keyboard_arrow_down
             </Icon>
           </MKBox>

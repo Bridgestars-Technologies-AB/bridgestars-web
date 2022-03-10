@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO pages
-import Presentation from "pages/Presentation";
+import Presentation from 'pages/Presentation';
 
 export default function PresentationPage() {
   return <Presentation />;

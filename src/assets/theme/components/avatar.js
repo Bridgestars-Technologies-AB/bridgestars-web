@@ -14,14 +14,14 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO base styles
-import borders from "assets/theme/base/borders";
+import borders from 'assets/theme/base/borders';
 
 const { borderRadius } = borders;
 
 export default {
   styleOverrides: {
     root: {
-      transition: "all 200ms ease-in-out",
+      transition: 'all 200ms ease-in-out',
     },
 
     rounded: {
@@ -29,7 +29,7 @@ export default {
     },
 
     img: {
-      height: "auto",
+      height: 'auto',
     },
   },
 };

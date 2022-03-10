@@ -14,15 +14,15 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // @mui material components
-import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
+import Card from '@mui/material/Card';
+import Icon from '@mui/material/Icon';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 function InfoBackgroundCard({ image, icon, title, label }) {
   return (
@@ -36,30 +36,30 @@ function InfoBackgroundCard({ image, icon, title, label }) {
           rgba(gradients.dark.main, 0.8),
           rgba(gradients.dark.state, 0.8)
         )}, url(${image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         borderRadius: borderRadius.xl,
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
       })}
     >
-      <MKBox width="100%" p={3}>
-        <MKTypography variant="h3" color="white">
-          {typeof icon === "string" ? <Icon>{icon}</Icon> : icon}
+      <MKBox width='100%' p={3}>
+        <MKTypography variant='h3' color='white'>
+          {typeof icon === 'string' ? <Icon>{icon}</Icon> : icon}
         </MKTypography>
       </MKBox>
-      <MKBox width="100%" pt={1} pb={2} px={3} lineHeight={1}>
-        <MKTypography variant="h4" color="white">
+      <MKBox width='100%' pt={1} pb={2} px={3} lineHeight={1}>
+        <MKTypography variant='h4' color='white'>
           {title}
         </MKTypography>
         {label && (
           <MKTypography
-            variant="caption"
-            textTransform="uppercase"
-            fontWeight="bold"
-            color="white"
+            variant='caption'
+            textTransform='uppercase'
+            fontWeight='bold'
+            color='white'
             opacity={0.7}
           >
             {label}
@@ -72,7 +72,7 @@ function InfoBackgroundCard({ image, icon, title, label }) {
 
 // Setting default values for the props of InfoBackgroundCard
 InfoBackgroundCard.defaultProps = {
-  label: "",
+  label: '',
 };
 
 // Typechecking props for the InfoBackgroundCard

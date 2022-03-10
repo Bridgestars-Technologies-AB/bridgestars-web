@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO pages
-import Coworking from "pages/LandingPages/Coworking";
+import Coworking from 'pages/LandingPages/Coworking';
 
 export default function CoworkingPage() {
   return <Coworking />;

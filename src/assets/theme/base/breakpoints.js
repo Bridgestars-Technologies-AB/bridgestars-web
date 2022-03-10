@@ -29,3 +29,12 @@ export default {
     xxl: 1400,
   },
 };
+
+/*
+xs
+s
+m
+l
+xl
+xxl
+*/

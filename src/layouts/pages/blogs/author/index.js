@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // Otis Kit PRO pages
-import Author from "pages/Blogs/Author";
+import Author from 'pages/Blogs/Author';
 
 export default function AuthorPage() {
   return <Author />;
