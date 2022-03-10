@@ -13,6 +13,10 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+// React
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 // @mui material components
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -41,10 +45,10 @@ import footerRoutes from 'constants/footer.routes';
 import { Link } from 'react-router-dom';
 
 // Images
-import bgImage from 'assets/images/bridgeBG0.webp';
+import bgImage from 'assets/images/bridgestars/mockup-1_1-smoke.jpg';
 import linearHomepageGradient from 'assets/theme/functions/linearHomepageGradient';
 //import Zoom from '@mui/material/Zoom';
-import { Grow, Fade } from '@mui/material';
+import { Grow, Fade, Collapse, Slide } from '@mui/material';
 
 import CountUp from 'react-countup';
 import { HashLink } from 'react-router-hash-link';
@@ -99,23 +103,23 @@ export default function BridgestarsHome() {
           }) =>
             `${linearHomepageGradient(
               [
-                { color: rgba(gradients.primary.main, 0.6), percentage: 0 },
-                { color: `rgba(0, 0, 0, 0.25)`, percentage: 30 },
-                { color: `rgba(0, 0, 0, 0.25)`, percentage: 65 },
-                { color: rgba(gradients.secondary.main, 1), percentage: 100 },
+                { color: `rgba(0, 0, 0, 0.6)`, percentage: 15 },
+                { color: `rgba(0, 0, 0, 0.6)`, percentage: 80 },
                 //{color: `rgba(255, 0, 0, 0.5)`, percentage: 0},
                 // {color: `rgba(0, 0, 0, 0.15)`, percentage: 35}
               ],
-              135
+              90
             )}
             , url(${bgImage})`,
-          backgroundSize: 'cover',
+          backgroundSize: 'contain',
+          backgroundColor: '#000000',
+          backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           display: 'flex',
           placeItems: 'center',
         }}
       >
-        <Container>
+        <Container justifyContent='space-between'>
           <Stack justifyContent='center'>
             <MKTypography
               variant='h1'
@@ -131,7 +135,12 @@ export default function BridgestarsHome() {
                 formattingFn={mapToAlphabets}
               />
             </MKTypography>
-            <Grow in='true' style={{ transformOrigin: '0 1 0' }} timeout={1500}>
+            <FadeInSection
+              in
+              appear={true}
+              timeout={1600}
+              style={{ transformOrigin: '0 0 0', transitionDelay: 500 }}
+            >
               <MKTypography
                 variant='body1'
                 color='white'
@@ -144,8 +153,12 @@ export default function BridgestarsHome() {
               >
                 The time is now. We are taking Bridge to the next level.
               </MKTypography>
-            </Grow>
-            <Grow in='true' style={{ transformOrigin: '0 1 0' }} timeout={3500}>
+            </FadeInSection>
+            <Grow
+              in='true'
+              style={{ transformOrigin: '50 0 0' }}
+              timeout={1500}
+            >
               <Stack
                 direction='row'
                 justifyContent='center'
@@ -158,7 +171,8 @@ export default function BridgestarsHome() {
                   variant='gradient'
                   component={Link}
                   to='/betasignup'
-                  size='large'
+                  size='medium'
+                  fontSize='2vmin'
                   color='primary'
                 >
                   sign up for closed beta
@@ -190,6 +204,7 @@ export default function BridgestarsHome() {
           <Features />
         </Card>
       </Fade>
+
       <Testimonials />
       <Upcoming />
 

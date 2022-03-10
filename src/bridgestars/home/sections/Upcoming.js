@@ -109,7 +109,7 @@ function Upcoming() {
 
         <Grid container sx={{ mt: 6 }} textAlign='center'>
           {data.map(({ icon, title, items, implemented }) => (
-            <Grid key={icon} item xs={12} lg={4} textAlign='center'>
+            <Grid key={icon} item xs={12} md={6} lg={4} textAlign='center'>
               <MKBox py={2} pr={2} mb={2}>
                 <MKTypography variant='h3' color='primary'>
                   <Icon>{icon}</Icon>
