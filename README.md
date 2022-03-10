@@ -1,6 +1,6 @@
 # Bridgestars website repo
 
-## [Live page](https://bridgestars.se)
+## [Live page (bridgestars.se)](https://bridgestars.se)
 
 ## [Beta preview](https://bridge-fcee8--bridgestars-dev-yx23h1er.web.app)
 
