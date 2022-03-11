@@ -33,6 +33,7 @@ import BetaSignupForm from 'bridgestars/auth/beta-sign-up';
 import routes from 'constants/routes';
 
 import BridgestarsHome from 'bridgestars/home';
+import BridgestarsHome2 from 'bridgestars/home2';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -69,9 +70,11 @@ export default function App() {
       <Routes>
         {getRoutes(routes)}
         <Route path='*' element={<BridgestarsHome />} />
+        <Route path='/home2' element={<BridgestarsHome2 />} />
         <Route path='/signup' element={<SignupForm />} />
         <Route path='/signin' element={<SigninForm />} />
         <Route path='/betasignup' element={<BetaSignupForm />} />
+        <Route path='/404.html' exact />
       </Routes>
     </ThemeProvider>
   );

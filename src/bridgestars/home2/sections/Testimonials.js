@@ -26,53 +26,44 @@ import image from 'assets/images/bridgestars/black-gold-large.jpg';
 
 function Testimonials() {
   return (
-    <MKBox component='section' position='relative' py={6} mt={15}>
-      <Container
-        sx={{
-          maxWidth: { xl: '90% !important', xxl: '1300px !important' },
-        }}
-      >
+    <MKBox component='section' position='relative' py={6}>
+      <Container sx={{ maxWidth: '100% !important' }}>
         <Grid container item xs={10} sx={{ mx: 'auto' }}>
           <MKBox
             variant='gradient'
             bgColor='dark'
-            borderRadius='xxl'
+            borderRadius='lg'
             width='100%'
             py={6}
-            sx={{ boxShadow: ({ boxShadows: { xxl } }) => xxl }}
           >
-            <Grid container flex justifyContent='left'>
+            <Grid container>
               <Grid
                 item
                 xs={12}
-                xl={6}
-                alignItems='center'
-                textAlign='center'
+                md={6}
+                xl={4}
                 sx={{ position: 'relative', px: 6 }}
               >
                 <MKBox
                   component='img'
                   src={image}
                   alt='image'
-                  borderRadius='lg'
-                  maxWidth='450px'
+                  borderRadius='md'
+                  maxWidth='300px'
                   width='100%'
                   position='relative'
-                  sx={{
-                    mt: { xxl: 5, xl: 10, lg: -12, xs: -12 },
-                  }}
+                  mt={-12}
                 />
               </Grid>
               <Grid
                 item
-                xs={11}
-                xl={5}
-                mr={0.5}
+                xs={12}
+                md={5}
+                xl={4}
                 sx={{
                   position: 'relative',
-                  py: { xs: 3 },
-                  px: { xs: 6, xl: 1 },
-                  mt: { xs: 10, xl: 0 },
+                  px: { xs: 6, md: 2 },
+                  mt: { xs: 3, md: 0 },
                   my: { xs: 0, md: 'auto' },
                   color: ({ palette: { white } }) => white.main,
                 }}
@@ -100,6 +91,62 @@ function Testimonials() {
                   <MKTypography variant='caption' color='white'>
                     Bridgestars CEO and Junior World Champion 2018
                   </MKTypography>
+                </MKTypography>
+              </Grid>
+              <Grid item xs={1} />
+              <Grid
+                item
+                xs={12}
+                xl={2}
+                sx={{
+                  px: { xs: 6, xl: 0 },
+                  my: { xs: 0, xl: 'auto' },
+                  lineHeight: 1,
+                }}
+              >
+                <MKTypography
+                  variant='h3'
+                  color='white'
+                  mt={{ xs: 6, xl: 0 }}
+                  mb={1}
+                >
+                  1,679,700 +
+                </MKTypography>
+                <MKTypography
+                  component='p'
+                  variant='button'
+                  color='white'
+                  opacity={0.8}
+                  mb={2}
+                >
+                  Developers and Companies around the world using our products.
+                </MKTypography>
+                <MKTypography
+                  component='a'
+                  href='#'
+                  variant='button'
+                  color='white'
+                  fontWeight='regular'
+                  sx={{
+                    width: 'max-content',
+                    display: 'flex',
+                    alignItems: 'center',
+
+                    '& .material-icons-round': {
+                      fontSize: '1.125rem',
+                      transform: `translateX(3px)`,
+                      transition:
+                        'transform 0.2s cubic-bezier(0.34, 1.61, 0.7, 1.3)',
+                    },
+
+                    '&:hover .material-icons-round, &:focus .material-icons-round':
+                      {
+                        transform: `translateX(6px)`,
+                      },
+                  }}
+                >
+                  See all products
+                  <Icon sx={{ fontWeight: 'bold' }}>arrow_forward</Icon>
                 </MKTypography>
               </Grid>
             </Grid>

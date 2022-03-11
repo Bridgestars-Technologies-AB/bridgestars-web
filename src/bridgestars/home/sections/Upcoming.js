@@ -47,7 +47,10 @@ function Upcoming() {
     {
       icon: 'smart_toy',
       title: 'Intelligent computer player',
-      items: ['Bots can do bidding', 'Bots can play'],
+      items: [
+        'Knowledge of multiple bidding systems',
+        'Capable of advanced play',
+      ],
       implemented: [false, false],
     },
     {
@@ -55,7 +58,7 @@ function Upcoming() {
       title: 'Puzzles that practice edge cases',
       items: [
         'Puzzles that challenge bidding and declaring skills',
-        'Double dummy problems and Suit combination puzzles',
+        'Suit combination puzzles and dubbly dummy problems',
       ],
       implemented: [false, false],
     },
@@ -109,7 +112,7 @@ function Upcoming() {
 
         <Grid container sx={{ mt: 6 }} textAlign='center'>
           {data.map(({ icon, title, items, implemented }) => (
-            <Grid key={icon} item xs={12} lg={4} textAlign='center'>
+            <Grid key={icon} item xs={12} md={6} lg={4} textAlign='center'>
               <MKBox py={2} pr={2} mb={2}>
                 <MKTypography variant='h3' color='primary'>
                   <Icon>{icon}</Icon>

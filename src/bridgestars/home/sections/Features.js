@@ -30,11 +30,40 @@ import MilitaryTechRoundedIcon from '@mui/icons-material/MilitaryTechRounded';
 import SchoolIcon from '@mui/icons-material/School';
 import CenteredBlogCard from 'examples/Cards/BlogCards/CenteredBlogCard';
 import unity from 'assets/images/logos/logo-unity.png';
+import MKBadge from 'components/MKBadge';
+import MKTypography from 'components/MKTypography';
 
 function Features(...rest) {
   return (
     <MKBox {...rest} component='section' py={{ xs: 6, md: 12 }}>
       <Container>
+        <Grid
+          container
+          item
+          flexDirection='column'
+          alignItems='center'
+          textAlign={'center'}
+          xs={12}
+          lg={8}
+          sx={{ textAlign: 'center', mx: 'auto' }}
+          mb={8}
+          mt={-2}
+        >
+          <MKBadge
+            variant='contained'
+            color='primary'
+            badgeContent='Current'
+            container
+            circular
+            sx={{ mb: 1 }}
+          />
+          <MKTypography variant='h2' mb={1}>
+            Our Features{' '}
+          </MKTypography>
+          <MKTypography variant='body2' color='text'>
+            Get a quick look at the features that we are the most proud of
+          </MKTypography>
+        </Grid>
         <Grid container item xs={12} justifyContent='space-evenly'>
           <Grid
             item
@@ -46,7 +75,7 @@ function Features(...rest) {
               mb: { xs: 4, md: 0 },
             }}
           >
-            <Stack spacing={{ xs: 4, md: 8 }}>
+            <Stack spacing={{ xs: 4, md: 8, lg: 11, xl: 11, xxl: 8 }}>
               <SimpleInfoCard
                 icon={
                   <MilitaryTechRoundedIcon fontSize='medium'></MilitaryTechRoundedIcon>

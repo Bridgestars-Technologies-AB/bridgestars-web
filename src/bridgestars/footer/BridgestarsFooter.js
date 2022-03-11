@@ -8,54 +8,63 @@ import MailRoundedIcon from '@mui/icons-material/MailRounded';
 
 // Otis Kit PRO examples
 import CenteredFooter from 'examples/Footers/CenteredFooter';
+import MKBox from 'components/MKBox';
+import DiscordLogo from 'assets/images/logos/discord.png';
 
-function BridgestarsFooter() {
+function BridgestarsFooter(props) {
   const company = {
-    href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+    href: '/404.html',
     name: 'Bridgestars Technologies AB',
   };
   const links = [
     {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      href: '/404.html',
       name: 'Contact',
     },
     {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      href: '/404.html',
       name: 'FAQ',
     },
     {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      href: '/404.html',
       name: 'Download',
     },
     {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      href: '/404.html',
       name: 'Policy',
     },
   ];
   const socials = [
     {
       icon: <FacebookIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      link: '/404.html',
     },
     // {
     //   icon: <TwitterIcon fontSize='small' />,
     //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
     // },
-    // {
-    //   icon: <InstagramIcon fontSize='small' />,
-    //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    // },
+    {
+      icon: <i className='fab fa-discord' />,
+      link: '/404.html',
+    },
     {
       icon: <MailRoundedIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      link: 'mailto: bridgestarstechnologies@gmail.com',
     },
     {
       icon: <GitHubIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      link: '/404.html',
     },
   ];
 
-  return <CenteredFooter company={company} links={links} socials={socials} />;
+  return (
+    <CenteredFooter
+      company={company}
+      links={links}
+      socials={socials}
+      {...props}
+    />
+  );
 }
 
 export default BridgestarsFooter;

@@ -515,7 +515,7 @@ function DefaultNavbar({
             component={Link}
             to='/'
             lineHeight={1}
-            py={transparent ? 1.5 : 0.75}
+            py={transparent ? 0.5 : 0.5}
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
             sx={{
               ml: -2,
@@ -554,7 +554,7 @@ function DefaultNavbar({
                   }
                   color={action.color ? action.color : 'info'}
                   size='small'
-                  sx={{ verticalAlign: 'sub' }}
+                  sx={{ verticalAlign: 'baseline' }}
                 >
                   {action.label}
                 </MKButton>
@@ -584,6 +584,7 @@ function DefaultNavbar({
             color={transparent ? 'white' : 'inherit'}
             sx={{ cursor: 'pointer' }}
             onClick={openMobileNavbar}
+            mt={-0.5}
           >
             <Icon fontSize='default'>{mobileNavbar ? 'close' : 'menu'}</Icon>
           </MKBox>
