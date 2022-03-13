@@ -21,11 +21,10 @@ import CountUp from 'react-countup';
 
 // Otis Kit PRO components
 import MKBox from 'components/MKBox';
-import DefaultCounterCard from 'examples/Cards/CounterCards/DefaultCounterCard';
 
 // Otis Kit PRO examples
 import SimpleInfoCard from 'examples/Cards/InfoCards/SimpleInfoCard';
-import CounterInfoCard from 'examples/Cards/InfoCards/CounterInfoCard';
+import CounterInfoCard from '../components/CounterInfoCard.js';
 import MilitaryTechRoundedIcon from '@mui/icons-material/MilitaryTechRounded';
 import SchoolIcon from '@mui/icons-material/School';
 import CenteredBlogCard from 'examples/Cards/BlogCards/CenteredBlogCard';
@@ -49,19 +48,21 @@ function Features(...rest) {
           mb={8}
           mt={-2}
         >
-          <MKBadge
+          {/* <MKBadge
             variant='contained'
             color='primary'
             badgeContent='Current'
             container
             circular
             sx={{ mb: 1 }}
-          />
+          /> */}
           <MKTypography variant='h2' mb={1}>
-            Our Features{' '}
+            The platform you've always wanted{' '}
           </MKTypography>
           <MKTypography variant='body2' color='text'>
-            Get a quick look at the features that we are the most proud of
+            This is an selection of our current features. These are continuously
+            improved and expanded upon with ideas and comments from our
+            community.
           </MKTypography>
         </Grid>
         <Grid container item xs={12} justifyContent='space-evenly'>
@@ -105,7 +106,7 @@ function Features(...rest) {
               mb: { xs: 4, md: 0 },
             }}
           >
-            <Stack spacing={{ xs: 5, md: 10 }}>
+            <Stack spacing={{ xs: 5, md: 16, lg: 13.5, xxl: 11 }}>
               <CounterInfoCard
                 countUp={{
                   end: 1000,

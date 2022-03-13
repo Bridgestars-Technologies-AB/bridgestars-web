@@ -45,15 +45,11 @@ function BridgestarsFooter(props) {
     // },
     {
       icon: <i className='fab fa-discord' />,
-      link: '/404.html',
+      link: 'https://discord.gg/YhwRDgtSX2',
     },
     {
       icon: <MailRoundedIcon fontSize='small' />,
       link: 'mailto: bridgestarstechnologies@gmail.com',
-    },
-    {
-      icon: <GitHubIcon fontSize='small' />,
-      link: '/404.html',
     },
   ];
 

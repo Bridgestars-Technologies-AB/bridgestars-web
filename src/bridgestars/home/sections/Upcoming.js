@@ -57,8 +57,8 @@ function Upcoming() {
       icon: 'extension',
       title: 'Puzzles that practice edge cases',
       items: [
-        'Puzzles that challenge bidding and declaring skills',
         'Suit combination puzzles and dubbly dummy problems',
+        'Puzzles that challenge bidding and declaring skills',
       ],
       implemented: [false, false],
     },
@@ -103,7 +103,7 @@ function Upcoming() {
           <MKTypography variant='h2' mb={1}>
             Explore our upcoming features{' '}
           </MKTypography>
-          <MKTypography variant='body2' color='text'>
+          <MKTypography variant='body1' color='text'>
             These are features that are still work in progress. You can
             contribute with ideas and vote for your favorites on our discord
             server.

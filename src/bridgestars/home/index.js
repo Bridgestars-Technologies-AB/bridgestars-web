@@ -13,14 +13,18 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-// React
-import React from 'react';
+import { useEffect, useRef } from 'react';
+
+// rellax
+import Rellax from 'rellax';
+
+// typed-js
+import * as Typed from 'typed.js';
 
 // @mui material components
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
 
 // Otis Kit PRO components
 import MKBox from 'components/MKBox';
@@ -31,16 +35,30 @@ import MKButton from 'components/MKButton';
 import DefaultNavbar from 'bridgestars/navbar';
 import DefaultFooter from 'examples/Footers/DefaultFooter';
 
-// Coworking page sections
-import Features from 'bridgestars/home/sections/Features';
-import Testimonials from 'bridgestars/home/sections/Testimonials';
-import Upcoming from 'bridgestars/home/sections/Upcoming';
-import Places from 'bridgestars/home/sections/Places';
-import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
+// About Us page sections
+import Information from 'pages/Company/AboutUs/sections/Information';
+import Testimonials from './sections/Testimonial.js';
+import Featuring from 'pages/Company/AboutUs/sections/Featuring';
+import Newsletter from 'pages/Company/AboutUs/sections/Newsletter';
 
 // Routes
 import routes from 'constants/routes';
-import footerRoutes from 'constants/footer.routes';
+
+// Images
+// React
+
+// @mui material components
+import Stack from '@mui/material/Stack';
+
+// Otis Kit PRO examples
+
+// Coworking page sections
+import Features from 'bridgestars/home/sections/Features';
+import Upcoming from 'bridgestars/home/sections/Upcoming';
+import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
+import Discord from './sections/Discord.js';
+
+// Routes
 import { Link } from 'react-router-dom';
 
 // Images
@@ -51,48 +69,78 @@ import { Grow, Fade, Collapse, Slide } from '@mui/material';
 
 import CountUp from 'react-countup';
 import { HashLink } from 'react-router-hash-link';
+import { useState } from 'react';
+import { TramRounded } from '@mui/icons-material';
+import { Icon } from '@mui/material';
 
-//TODO bridgestars titel centered
+function BridgestarsHome() {
+  const [typeNext, setTypeNext] = useState(0);
+  const headerRef = useRef(null);
+  const typedHeaderRef = useRef(null);
+  const typedSubHeaderRef = useRef(null);
 
-const mapToAlphabets = (num) => {
-  const numStr = '' + num;
-  let res = '';
+  // Setting up rellax
+  useEffect(() => {
+    const parallax = new Rellax(headerRef.current, {
+      speed: -6,
+    });
 
-  for (let i = 0; i < numStr.length; i++) {
-    const element = numStr[i];
-    const finalStr = 'ABRIDGESTP';
-    res += finalStr[Number(element)];
-  }
+    return () => parallax.destroy();
+  }, []);
 
-  return res;
-};
+  // Setting up typedJS
+  useEffect(() => {
+    if (typeNext == 0) {
+      const typedJS = new Typed(typedHeaderRef.current, {
+        strings: ['BRIDGESTARS'],
+        typeSpeed: 90,
+        startDelay: 0,
+        loop: false,
+        showCursor: false,
+        onComplete: (self) => {
+          setTypeNext(1);
+        },
+      });
+    }
+    //return () => typedJS.destroy();
+  }, []);
 
-export default function BridgestarsHome() {
+  useEffect(() => {
+    if (typeNext == 1) {
+      const typedJS2 = new Typed(typedSubHeaderRef.current, {
+        strings: [
+          '`Online` `Bridge` `platforms` `have` `become` `outdated. `We are constantly working our hardest to',
+        ],
+        typeSpeed: 45,
+        backSpeed: 90,
+        backDelay: 200,
+        startDelay: 500,
+        loop: false,
+        showCursor: true,
+        onStart: () => {
+          setTypeNext(2);
+        },
+      });
+    }
+    //return () => typedJS.destroy();
+  }, []);
+
   return (
     <>
       <DefaultNavbar
         routes={routes}
         action={{
           type: 'internal',
-          route: '/betasignup',
+          route: '/signup',
           label: 'sign up',
           color: 'primary',
-
-          /* "primary",
-        "secondary",
-        "info",
-        "success",
-        "warning",
-        "error",
-        "dark",
-        "light",
-        "default",
-        "white",*/
         }}
-        sticky
+        transparent
+        light
         brand='Bridgestars'
       />
       <MKBox
+        ref={headerRef}
         minHeight='75vh'
         width='100%'
         sx={{
@@ -114,12 +162,21 @@ export default function BridgestarsHome() {
           backgroundColor: '#000000',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
-          display: 'flex',
+          display: 'grid',
           placeItems: 'center',
         }}
       >
-        <Container justifyContent='space-between'>
-          <Stack justifyContent='center'>
+        <Container>
+          <Grid
+            container
+            item
+            xs={12}
+            lg={8}
+            justifyContent='center'
+            alignItems='center'
+            flexDirection='column'
+            sx={{ mx: 'auto', textAlign: 'center' }}
+          >
             <MKTypography
               variant='h1'
               color='primary'
@@ -127,101 +184,81 @@ export default function BridgestarsHome() {
               textGradient='true'
               fontSize='10vmin'
             >
-              <CountUp
-                duration={1.5}
-                //'ABRIDGEST'
-                end={12345678027}
-                formattingFn={mapToAlphabets}
-              />
+              <span ref={typedHeaderRef} />
             </MKTypography>
-            <Grow
-              in
-              appear={true}
-              timeout={1600}
-              style={{ transformOrigin: '1 0 0', transitionDelay: 500 }}
+            <MKTypography
+              variant='body1'
+              color='white'
+              opacity={0.8}
+              mt={1}
+              mb={3}
             >
+              <span ref={typedSubHeaderRef} />
+            </MKTypography>
+            <MKButton
+              color='default'
+              sx={{ color: ({ palette: { dark } }) => dark.main }}
+            >
+              create account
+            </MKButton>
+            <MKTypography variant='h6' color='white' mt={10} mb={1}>
+              Find us on
+            </MKTypography>
+            <MKBox display='flex' justifyContent='center' alignItems='center'>
               <MKTypography
-                variant='body2'
+                component='a'
+                variant='body1'
                 color='white'
-                align='center'
-                fontSize='4vmin'
-                mt={7}
-                mb={-2}
-                mx={1}
-                //pr={{ md: 12, lg: 24, xl: 32 }}
-                opacity={0.7}
+                href='#'
+                mr={3}
               >
-                The time is now. We are taking Bridge to the next level.
+                <i className='fab fa-facebook' />
               </MKTypography>
-            </Grow>
-            <Grow in='true' timeout={1500}>
-              <Stack
-                direction='row'
-                justifyContent='center'
-                spacing={1}
-                mt={6}
-                mb={3}
-                mx={3}
+              <MKTypography
+                component='a'
+                variant='body1'
+                color='white'
+                href='https://discord.gg/YhwRDgtSX2'
+                mr={3}
               >
-                <MKButton
-                  variant='gradient'
-                  component={Link}
-                  to='/betasignup'
-                  size='medium'
-                  fontSize='2vmin'
-                  color='primary'
-                >
-                  sign up for closed beta
-                </MKButton>
-                <HashLink to='#read-more' smooth>
-                  <MKButton variant='text' size='large' color='white'>
-                    read more
-                  </MKButton>
-                </HashLink>
-              </Stack>
-            </Grow>
-          </Stack>
+                <i className='fab fa-discord' />
+              </MKTypography>
+              <MKTypography
+                component='a'
+                variant='h4'
+                color='white'
+                href='mailto: bridgestarstechnologies@gmail.com'
+                mr={0}
+                mt={1}
+              >
+                <Icon>email</Icon>
+              </MKTypography>
+            </MKBox>
+          </Grid>
         </Container>
       </MKBox>
-      <Fade in timeout={1000}>
+      <Grid container width='100%' justifyContent='center'>
         <Card
-          id='read-more'
           sx={{
             p: 2,
             mx: { xs: 2, lg: 3 },
             mt: -8,
             mb: 4,
-            backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
-              rgba(white.main, 0.8),
-            backdropFilter: 'saturate(200%) blur(30px)',
+            width: { xxl: 1600, xl: '100%' },
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
         >
           <Features />
+          <Testimonials />
+          <Upcoming />
         </Card>
-      </Fade>
-
-      <Testimonials />
-
-      <Card
-        id='read-more'
-        sx={{
-          p: 2,
-          mx: { xs: 2, lg: 3 },
-          mt: 8,
-          mb: 4,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
-            rgba(white.main, 0.8),
-          backdropFilter: 'saturate(200%) blur(30px)',
-          boxShadow: ({ boxShadows: { xxl } }) => xxl,
-        }}
-      >
-        <Upcoming />
-      </Card>
-
+        <Discord />
+      </Grid>
       <MKBox pt={6} px={1} mt={6}>
         <BridgestarsFooter />
       </MKBox>
     </>
   );
 }
+
+export default BridgestarsHome;
