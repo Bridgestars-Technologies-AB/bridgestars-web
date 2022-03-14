@@ -16,7 +16,13 @@ Coded by www.creative-tim.com
 import { useEffect } from 'react';
 
 // react-router components
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 
 // @mui material components
 import { ThemeProvider } from '@mui/material/styles';
@@ -32,8 +38,8 @@ import BetaSignupForm from 'bridgestars/auth/beta-sign-up';
 // Otis Kit PRO routes
 import routes from 'constants/routes';
 
+import BridgestarsHomeOld from 'bridgestars/home_old';
 import BridgestarsHome from 'bridgestars/home';
-import BridgestarsHome2 from 'bridgestars/home2';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -63,18 +69,18 @@ export default function App() {
 
       return null;
     });
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
         {getRoutes(routes)}
         <Route path='*' element={<BridgestarsHome />} />
-        <Route path='/home2' element={<BridgestarsHome2 />} />
-        <Route path='/signup' element={<SignupForm />} />
-        <Route path='/signin' element={<SigninForm />} />
+        <Route path='/home_old' element={<BridgestarsHomeOld />} />
+        {/* <Route path='/signup' element={<SignupForm />} /> */}
+        {/* <Route path='/signin' element={<SigninForm />} /> */}
         <Route path='/betasignup' element={<BetaSignupForm />} />
         <Route path='/404.html' exact />
+        <Route path='/wip.html' exact />
       </Routes>
     </ThemeProvider>
   );

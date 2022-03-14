@@ -118,10 +118,10 @@ export default {
     <MKTypography variant='button' fontWeight='regular'>
       All rights reserved. Copyright &copy; {date} Bridgestars by{' '}
       <MKTypography
-        component='a'
-        href='https://material-ui.com/store/items/otis-kit-pro-material-kit-react/'
-        target='_blank'
-        rel='noreferrer'
+        //component='a'
+        //href='https://material-ui.com/store/items/otis-kit-pro-material-kit-react/'
+        //target='_blank'
+        //rel='noreferrer'
         variant='button'
         fontWeight='regular'
       >

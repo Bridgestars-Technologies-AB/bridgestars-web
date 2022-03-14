@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/static/js/main.18e89169.chunk.js",
-    "main.js.map": "/static/js/main.18e89169.chunk.js.map",
+    "main.js": "/static/js/main.1e78a831.chunk.js",
+    "main.js.map": "/static/js/main.1e78a831.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.470cc560.js",
     "runtime-main.js.map": "/static/js/runtime-main.470cc560.js.map",
     "static/css/2.3a9e18a4.chunk.css": "/static/css/2.3a9e18a4.chunk.css",
-    "static/js/2.08c111c3.chunk.js": "/static/js/2.08c111c3.chunk.js",
-    "static/js/2.08c111c3.chunk.js.map": "/static/js/2.08c111c3.chunk.js.map",
+    "static/js/2.522f79e4.chunk.js": "/static/js/2.522f79e4.chunk.js",
+    "static/js/2.522f79e4.chunk.js.map": "/static/js/2.522f79e4.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.3a9e18a4.chunk.css.map": "/static/css/2.3a9e18a4.chunk.css.map",
-    "static/js/2.08c111c3.chunk.js.LICENSE.txt": "/static/js/2.08c111c3.chunk.js.LICENSE.txt",
+    "static/js/2.522f79e4.chunk.js.LICENSE.txt": "/static/js/2.522f79e4.chunk.js.LICENSE.txt",
     "static/media/annie-spratt.a78c88c5.jpg": "/static/media/annie-spratt.a78c88c5.jpg",
     "static/media/bg-about-us.cf9a123e.jpg": "/static/media/bg-about-us.cf9a123e.jpg",
     "static/media/bg-coworking.06bccc47.jpeg": "/static/media/bg-coworking.06bccc47.jpeg",
@@ -95,7 +95,7 @@
   "entrypoints": [
     "static/js/runtime-main.470cc560.js",
     "static/css/2.3a9e18a4.chunk.css",
-    "static/js/2.08c111c3.chunk.js",
-    "static/js/main.18e89169.chunk.js"
+    "static/js/2.522f79e4.chunk.js",
+    "static/js/main.1e78a831.chunk.js"
   ]
 }

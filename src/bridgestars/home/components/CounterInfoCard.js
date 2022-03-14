@@ -40,10 +40,10 @@ function CounterInfoCard({ color, countUp, title, description, direction }) {
       alignItems={alignment}
       textAlign={direction}
       p={direction === 'center' ? 0 : 0}
-      mt={0}
+      mt={2}
       lineHeight={1}
     >
-      <MKTypography variant='h1' color={color} textGradient>
+      <MKTypography variant='h2' color={color} textGradient>
         <CountUp duration={1} {...countUp} />
       </MKTypography>
       <MKTypography

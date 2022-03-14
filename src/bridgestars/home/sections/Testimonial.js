@@ -23,7 +23,7 @@ import MKBox from 'components/MKBox';
 import MKTypography from 'components/MKTypography';
 import image from 'assets/images/bridgestars/black-gold-large.jpg';
 
-function Team() {
+export default function Testimonial() {
   return (
     <MKBox
       component='section'
@@ -76,7 +76,7 @@ function Team() {
               In a world of rapid technological advancements, the Bridge world
               has not been able to keep up. There is a lack of a clean and
               modern solution for playing Bridge online that is fun, easy, and
-              engaging. Our vision for the future contains an unified platform
+              engaging. Our vision for the future contains a unified platform
               for Bridge players on which they are able to play and watch Bridge
               as well as catch up with the latest news about Bridge. Bridgestars
               is an attempt of bringing that vision to life, in a way that is
@@ -85,7 +85,7 @@ function Team() {
             <MKTypography variant='button' fontWeight='bold' color='white'>
               Castor Mann -{' '}
               <MKTypography variant='caption' color='white'>
-                Bridgestars CEO and Junior World Champion 2018
+                Bridgestars CEO, Founder and Junior World Champion 2018
               </MKTypography>
             </MKTypography>
           </Grid>
@@ -106,7 +106,7 @@ function Team() {
               mt={{ xs: 6, xl: 0 }}
               mb={1}
             >
-              Continue reading
+              Learn more
             </MKTypography>
             <MKTypography
               component='p'
@@ -115,8 +115,8 @@ function Team() {
               opacity={0.8}
               mb={2}
             >
-              Take part of the story of how Bridgestars came to be and what
-              vision we strive to upfill.
+              Take part of the full story behind Bridgestars and the vision we
+              strive to achieve.
             </MKTypography>
             <MKTypography
               component='a'
@@ -142,7 +142,7 @@ function Team() {
                   },
               }}
             >
-              Read more
+              Click here to continue reading
               <Icon sx={{ fontWeight: 'bold' }}>arrow_forward</Icon>
             </MKTypography>
           </Grid>
@@ -151,5 +151,3 @@ function Team() {
     </MKBox>
   );
 }
-
-export default Team;

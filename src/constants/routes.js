@@ -100,14 +100,32 @@ import Toggles from 'layouts/sections/elements/toggles';
 import Typography from 'layouts/sections/elements/typography';
 
 const routes = [
+  // {
+  //   name: 'download',
+  //   icon: <Icon>download</Icon>,
+  //   route: '/download',
+  //   component: <SignupForm />,
+  // },
+  // {
+  //   name: 'account',
+  //   icon: <Icon>contacts</Icon>,
+  //   route: '/signin',
+  //   component: <SigninForm />,
+  // },
   {
-    name: 'download',
-    icon: <Icon>download</Icon>,
-    route: '/download',
-    component: <SignupForm />,
+    name: 'Contact',
+    icon: <Icon>contacts</Icon>,
+    route: '/signin',
+    component: <SigninForm />,
   },
   {
-    name: 'account',
+    name: 'FAQ',
+    icon: <Icon>contacts</Icon>,
+    route: '/signin',
+    component: <SigninForm />,
+  },
+  {
+    name: 'Policy',
     icon: <Icon>contacts</Icon>,
     route: '/signin',
     component: <SigninForm />,

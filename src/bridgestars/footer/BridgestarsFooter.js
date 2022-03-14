@@ -18,19 +18,19 @@ function BridgestarsFooter(props) {
   };
   const links = [
     {
-      href: '/404.html',
+      href: '/contact',
       name: 'Contact',
     },
     {
-      href: '/404.html',
+      href: '/faq',
       name: 'FAQ',
     },
+    // {
+    //   href: '/404.html',
+    //   name: 'Download',
+    // },
     {
-      href: '/404.html',
-      name: 'Download',
-    },
-    {
-      href: '/404.html',
+      href: '/policy',
       name: 'Policy',
     },
   ];
@@ -45,15 +45,11 @@ function BridgestarsFooter(props) {
     // },
     {
       icon: <i className='fab fa-discord' />,
-      link: '/404.html',
+      link: 'https://discord.gg/YhwRDgtSX2',
     },
     {
       icon: <MailRoundedIcon fontSize='small' />,
       link: 'mailto: bridgestarstechnologies@gmail.com',
-    },
-    {
-      icon: <GitHubIcon fontSize='small' />,
-      link: '/404.html',
     },
   ];
 

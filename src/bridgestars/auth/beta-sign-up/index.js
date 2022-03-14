@@ -132,7 +132,7 @@ function BetaSignupForm() {
             sign up
           </MKButton>
         </MKBox>
-        <MKBox mt={3} mb={1} textAlign='center'>
+        {/* <MKBox mt={3} mb={1} textAlign='center'>
           <MKTypography variant='button' color='text'>
             Already registered?{' '}
             <MKTypography
@@ -146,7 +146,7 @@ function BetaSignupForm() {
               See your status
             </MKTypography>
           </MKTypography>
-        </MKBox>
+        </MKBox> */}
       </MKBox>
     );
   };
