@@ -109,32 +109,55 @@ function BridgestarsHome() {
     if (typeNext == 1) {
       const typedJS2 = new Typed(typedSubHeaderRef.current, {
         strings: [
+<<<<<<< HEAD
           'Online Bridge platforms have become outdated. ^600\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^600for free.',
         ],
         typeSpeed: 20,
+=======
+          '`Online` `Bridge` `platforms` `have` `become` `outdated. `We are constantly working our hardest to',
+        ],
+        typeSpeed: 45,
+>>>>>>> 2cf15108ff20018dc66973be972439ec91bd5c7e
         backSpeed: 90,
         backDelay: 200,
         startDelay: 500,
         loop: false,
+<<<<<<< HEAD
         showCursor: false,
+=======
+        showCursor: true,
+>>>>>>> 2cf15108ff20018dc66973be972439ec91bd5c7e
         onStart: () => {
           setTypeNext(2);
         },
       });
     }
     //return () => typedJS.destroy();
+<<<<<<< HEAD
   }, [typeNext]);
+=======
+  }, []);
+>>>>>>> 2cf15108ff20018dc66973be972439ec91bd5c7e
 
   return (
     <>
       <DefaultNavbar
         routes={routes}
+<<<<<<< HEAD
         // action={{
         //   type: 'internal',
         //   route: '/signin',
         //   label: 'sign in',
         //   color: 'primary',
         // }}
+=======
+        action={{
+          type: 'internal',
+          route: '/signup',
+          label: 'sign up',
+          color: 'primary',
+        }}
+>>>>>>> 2cf15108ff20018dc66973be972439ec91bd5c7e
         transparent
         light
         brand='Bridgestars'
@@ -192,6 +215,7 @@ function BridgestarsHome() {
               opacity={0.8}
               mt={1}
               mb={3}
+<<<<<<< HEAD
             >
               <span ref={typedSubHeaderRef} />
             </MKTypography>
@@ -212,6 +236,18 @@ function BridgestarsHome() {
               sx={{ mt: { xs: 6, sm: 10 } }}
               mb={1}
             >
+=======
+            >
+              <span ref={typedSubHeaderRef} />
+            </MKTypography>
+            <MKButton
+              color='default'
+              sx={{ color: ({ palette: { dark } }) => dark.main }}
+            >
+              create account
+            </MKButton>
+            <MKTypography variant='h6' color='white' mt={10} mb={1}>
+>>>>>>> 2cf15108ff20018dc66973be972439ec91bd5c7e
               Find us on
             </MKTypography>
             <MKBox display='flex' justifyContent='center' alignItems='center'>
@@ -230,6 +266,7 @@ function BridgestarsHome() {
                 color='white'
                 href='https://discord.gg/YhwRDgtSX2'
                 mr={3}
+<<<<<<< HEAD
               >
                 <i className='fab fa-discord' />
               </MKTypography>
@@ -241,6 +278,19 @@ function BridgestarsHome() {
                 mr={0}
                 mt={1}
               >
+=======
+              >
+                <i className='fab fa-discord' />
+              </MKTypography>
+              <MKTypography
+                component='a'
+                variant='h4'
+                color='white'
+                href='mailto: bridgestarstechnologies@gmail.com'
+                mr={0}
+                mt={1}
+              >
+>>>>>>> 2cf15108ff20018dc66973be972439ec91bd5c7e
                 <Icon>email</Icon>
               </MKTypography>
             </MKBox>
