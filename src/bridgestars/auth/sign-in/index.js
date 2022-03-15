@@ -23,11 +23,39 @@ import bgImage from 'assets/images/illustrations/illustration-reset.jpg';
 import logo from 'assets/images/bridgestars/logo-trans-512px.png';
 import useValidator from 'bridgestars/auth/sign-in/validator.js';
 
+// Firebase
+import firebaseApp from 'firebase-config';
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth';
+
 function SigninForm() {
+  const auth = getAuth(firebaseApp);
+
   //Final submit function
-  const formLogin = () => {
+  const formLogin = ({ email, password }) => {
     //setTriedToSubmit(true);
-    //AUTH SIGNIN
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        const errorCodes = {
+          'auth/email-already-in-use': 'The provided email is already in use.',
+          'auth/email-already-exists': 'The provided email is already in use.',
+          'auth/invalid-email': 'The provided email is not valid',
+          'auth/invalid-password': 'Invalid password',
+        };
+        alert(errorCodes[errorCode] ? errorCodes[errorCode] : errorCode.split('/')[1]ace);
+      });
   };
   const [policy, setPolicy] = useState(false);
 

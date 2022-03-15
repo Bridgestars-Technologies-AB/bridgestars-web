@@ -104,7 +104,7 @@ const useValidator = (callback) => {
     if (event) event.preventDefault();
 
     if (Object.keys(errors).length === 0 && Object.keys(values).length === 5) {
-      callback();
+      callback({ email: values['email'], password: values['password'] });
     } else {
       if (Object.keys(errors).length === 0)
         alert("Don't forget to enter your information");

@@ -77,7 +77,7 @@ export default function App() {
         <Route path='*' element={<BridgestarsHome />} />
         <Route path='/home_old' element={<BridgestarsHomeOld />} />
         {/* <Route path='/signup' element={<SignupForm />} /> */}
-        {/* <Route path='/signin' element={<SigninForm />} /> */}
+        <Route path='/signin' element={<SigninForm />} />
         <Route path='/betasignup' element={<BetaSignupForm />} />
         <Route path='/404.html' exact />
         <Route path='/wip.html' exact />

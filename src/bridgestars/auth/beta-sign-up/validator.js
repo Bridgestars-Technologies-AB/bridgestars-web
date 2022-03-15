@@ -86,7 +86,7 @@ const useValidator = (callback) => {
 
     if (!new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/).test(pass)) {
       errorUpdate.password =
-        'Password should contains atleast 8 charaters and containing uppercase,lowercase and numbers';
+        'Password should contains atleast 8 characters and contain uppercase,lowercase and numbers';
     }
     setErrors(errorUpdate);
   };
@@ -95,7 +95,7 @@ const useValidator = (callback) => {
     if (event) event.preventDefault();
 
     if (Object.keys(errors).length === 0 && Object.keys(values).length === 4) {
-      callback();
+      callback({ email: values['email'], password: values['password'] });
     } else {
       if (Object.keys(errors).length === 0)
         alert("Don't forget to enter your information");

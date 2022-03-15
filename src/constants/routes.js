@@ -115,19 +115,19 @@ const routes = [
   {
     name: 'Contact',
     icon: <Icon>contacts</Icon>,
-    route: '/signin',
+    route: '/wip.html',
     component: <SigninForm />,
   },
   {
     name: 'FAQ',
     icon: <Icon>contacts</Icon>,
-    route: '/signin',
+    route: '/wip.html',
     component: <SigninForm />,
   },
   {
     name: 'Policy',
     icon: <Icon>contacts</Icon>,
-    route: '/signin',
+    route: '/wip.html',
     component: <SigninForm />,
   },
 ];
