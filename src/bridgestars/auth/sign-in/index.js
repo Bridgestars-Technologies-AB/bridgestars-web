@@ -76,6 +76,8 @@ function SigninForm() {
     useValidator(formLogin);
 
   onAuthStateChanged(auth, (user) => {
+    //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
+
     if (user) {
       setSignedIn(true);
       setTitle('You are registered for the closed beta');
@@ -148,7 +150,7 @@ function SigninForm() {
           Dont have an account?{' '}
           <MKTypography
             component={Link}
-            to='/signup'
+            to='/betasignup'
             variant='button'
             color='info'
             fontWeight='medium'
