@@ -36,7 +36,7 @@ function SigninForm() {
   const auth = getAuth(firebaseApp);
 
   //Final submit function
-  const formLogin = ({ email, password }) => {
+  const formLogin = ({ email, password, setErrors }) => {
     //setTriedToSubmit(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -54,13 +54,40 @@ function SigninForm() {
           'auth/invalid-email': 'The provided email is not valid',
           'auth/invalid-password': 'Invalid password',
         };
-        alert(errorCodes[errorCode] ? errorCodes[errorCode] : errorCode.split('/')[1]ace);
+        if (errorCode.includes('password')) {
+          setErrors({ password: 'Wrong password' });
+        }
+        alert(
+          errorCodes[errorCode]
+            ? errorCodes[errorCode]
+            : errorCode.split('/')[1].replaceAll('-', ' ')
+        );
       });
   };
+
   const [policy, setPolicy] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
+  const [title, setTitle] = useState('Sign in to your Bridgestars account');
+  const [description, setDescription] = useState(
+    'Enter your email and password'
+  );
 
   const { formDenied, values, errors, handleChange, handleSubmit } =
     useValidator(formLogin);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setSignedIn(true);
+      setTitle('You are registered for the closed beta');
+      setDescription(
+        'You will be notified at\n(' + user.email + ')\nwhen the beta is ready'
+      );
+    } else {
+      setSignedIn(false);
+      setTitle('Sign in to your Bridgestars account');
+      setDescription('Enter your email and password');
+    }
+  });
 
   const handleSetPolicy = (event) => {
     event.target.value = !policy;
@@ -70,15 +97,9 @@ function SigninForm() {
 
   const handleForget = () => {};
 
-  return (
-    <IllustrationLayout
-      logo={logo}
-      title='Sign in to your Bridgestars account'
-      description='Enter your email and password'
-      illustration={bgImage}
-    >
-      <MKBox component='form' role='form'>
-        {/* <MKBox mb={2}>
+  const form = (
+    <MKBox component='form' role='form'>
+      {/* <MKBox mb={2}>
           <MKInput
             name='username'
             label='Username'
@@ -88,71 +109,100 @@ function SigninForm() {
             onChange={handleChange}
           />
         </MKBox> */}
-        <MKBox mb={2}>
-          <MKInput
-            type='email'
-            name='email'
-            label='Email'
-            error={errors['email'] || formDenied}
-            success={values['email'] && !errors['email']}
-            fullWidth
-            onChange={handleChange}
-          />
-        </MKBox>
-        <MKBox mb={2}>
-          <MKInput
-            type='password'
-            name='password'
-            label='Password'
-            error={errors['password'] || formDenied}
-            success={values['password'] && !errors['password']}
-            fullWidth
-            onChange={handleChange}
-          />
-        </MKBox>
+      <MKBox mb={2}>
+        <MKInput
+          type='email'
+          name='email'
+          label='Email'
+          error={errors['email'] || formDenied}
+          success={values['email'] && !errors['email']}
+          fullWidth
+          onChange={handleChange}
+        />
+      </MKBox>
+      <MKBox mb={2}>
+        <MKInput
+          type='password'
+          name='password'
+          label='Password'
+          error={errors['password'] || formDenied}
+          success={values['password'] && !errors['password']}
+          fullWidth
+          onChange={handleChange}
+        />
+      </MKBox>
 
-        <MKBox mt={3} mb={1}>
-          <MKButton
-            onClick={handleSubmit}
-            variant='gradient'
+      <MKBox mt={3} mb={1}>
+        <MKButton
+          onClick={handleSubmit}
+          variant='gradient'
+          color='info'
+          size='large'
+          fullWidth
+        >
+          sign in
+        </MKButton>
+      </MKBox>
+      <MKBox mt={2} mb={1} textAlign='center'>
+        <MKTypography variant='button' color='text'>
+          Dont have an account?{' '}
+          <MKTypography
+            component={Link}
+            to='/signup'
+            variant='button'
             color='info'
-            size='large'
-            fullWidth
+            fontWeight='medium'
+            textGradient
           >
-            sign in
+            Sign Up
+          </MKTypography>
+        </MKTypography>
+      </MKBox>
+      {/* <MKBox mt={1} mb={0} textAlign='center'>
+        <MKTypography variant='button' color='text'>
+          <MKTypography
+            component={Link}
+            to='/signin'
+            variant='button'
+            color='info'
+            fontWeight='medium'
+            textGradient
+            onClick={handleForget}
+          >
+            Forgot your password?{' '}
+          </MKTypography>
+        </MKTypography>
+      </MKBox> */}
+    </MKBox>
+  );
+
+  return (
+    <IllustrationLayout
+      logo={logo}
+      title={title}
+      description={description}
+      illustration={bgImage}
+    >
+      {/* title='Sign in to your Bridgestars account'
+      description='Enter your email and password' */}
+      {!signedIn ? (
+        form
+      ) : (
+        <MKBox mt={1} mb={1}>
+          <MKButton
+            variant='gradient'
+            component={Link}
+            to='/'
+            size='medium'
+            fontSize='2vmin'
+            fullWidth
+            color='info'
+            //sx={{ color: ({ palette: { dark } }) => dark.main }}
+          >
+            home
           </MKButton>
         </MKBox>
-        <MKBox mt={2} mb={1} textAlign='center'>
-          <MKTypography variant='button' color='text'>
-            Dont have an account?{' '}
-            <MKTypography
-              component={Link}
-              to='/signup'
-              variant='button'
-              color='info'
-              fontWeight='medium'
-              textGradient
-            >
-              Sign Up
-            </MKTypography>
-          </MKTypography>
-        </MKBox>
-        <MKBox mt={1} mb={0} textAlign='center'>
-          <MKTypography variant='button' color='text'>
-            <MKTypography
-              component={Link}
-              to='/signin'
-              variant='button'
-              color='info'
-              fontWeight='medium'
-              textGradient
-              onClick={handleForget}
-            >
-              Forgot your password?{' '}
-            </MKTypography>
-          </MKTypography>
-        </MKBox>
-      </MKBox>
+      )}
     </IllustrationLayout>
   );
 }

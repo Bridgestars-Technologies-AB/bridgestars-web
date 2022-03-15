@@ -77,7 +77,11 @@ function BetaSignupForm() {
           'auth/invalid-password':
             'Password should contains atleast 8 characters and contain uppercase,lowercase and numbers',
         };
-        alert(errorCodes[errorCode] ? errorCodes[errorCode] : errorCode);
+        alert(
+          errorCodes[errorCode]
+            ? errorCodes[errorCode]
+            : errorCode.split('/')[1].replaceAll('-', ' ')
+        );
       });
   };
 
@@ -93,9 +97,7 @@ function BetaSignupForm() {
       setConfirmed(true);
       setTitle('You are now registered for the closed beta');
       setDescription(
-        'Keep an eye on your email inbox at\n' +
-          user.email +
-          '\nfor more information'
+        'You will be notified at\n(' + user.email + ')\nwhen the beta is ready'
       );
       // ...
     } else {
