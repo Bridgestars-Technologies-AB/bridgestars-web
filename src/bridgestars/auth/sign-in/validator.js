@@ -10,7 +10,7 @@ const useValidator = (callback) => {
   //Form values
   const [values, setValues] = useState({});
   //Errors
-  const [errors, setErrors] = useState({ email: 'Enter your email address' });
+  const [errors, setErrors] = useState({});
 
   //A method to handle form inputs
   const handleChange = (event) => {
