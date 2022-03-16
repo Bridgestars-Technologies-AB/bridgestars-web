@@ -7,55 +7,25 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 
 // Otis Kit PRO examples
-import CenteredFooter from 'examples/Footers/CenteredFooter';
+import CenteredFooter from './CenteredFooter';
+import MKBox from 'components/MKBox';
+import DiscordLogo from 'assets/images/logos/discord.png';
+import footerRoutes from 'constants/footer.routes';
 
-function BridgestarsFooter() {
-  const company = {
-    href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    name: 'Bridgestars Technologies AB',
-  };
-  const links = [
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'Contact',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'FAQ',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'Download',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'Policy',
-    },
-  ];
-  const socials = [
-    {
-      icon: <FacebookIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    },
-    // {
-    //   icon: <TwitterIcon fontSize='small' />,
-    //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    // },
-    // {
-    //   icon: <InstagramIcon fontSize='small' />,
-    //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    // },
-    {
-      icon: <MailRoundedIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    },
-    {
-      icon: <GitHubIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    },
-  ];
+function BridgestarsFooter(props) {
+  const company = footerRoutes.company;
+  const links = footerRoutes.links;
+  const socials = footerRoutes.socials;
 
-  return <CenteredFooter company={company} links={links} socials={socials} />;
+  return (
+    <CenteredFooter
+      company={company}
+      links={links}
+      socials={socials}
+      copyright={footerRoutes.copyright}
+      {...props}
+    />
+  );
 }
 
 export default BridgestarsFooter;

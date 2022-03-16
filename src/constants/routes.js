@@ -98,19 +98,38 @@ import SocialButtons from 'layouts/sections/elements/social-buttons';
 import Tables from 'layouts/sections/elements/tables';
 import Toggles from 'layouts/sections/elements/toggles';
 import Typography from 'layouts/sections/elements/typography';
+import About from 'bridgestars/about';
 
 const routes = [
+  // {
+  //   name: 'download',
+  //   icon: <Icon>download</Icon>,
+  //   route: '/download',
+  //   component: <SignupForm />,
+  // },
+  // {
+  //   name: 'account',
+  //   icon: <Icon>contacts</Icon>,
+  //   route: '/signin',
+  //   component: <SigninForm />,
+  // },
   {
-    name: 'download',
-    icon: <Icon>download</Icon>,
-    route: '/download',
-    component: <SignupForm />,
+    name: 'About us',
+    icon: <Icon>info</Icon>,
+    route: '/about',
+    //component: <About />,
   },
   {
-    name: 'account',
-    icon: <Icon>contacts</Icon>,
-    route: '/signin',
-    component: <SigninForm />,
+    name: 'FAQ',
+    icon: <Icon>help</Icon>,
+    route: '/wip',
+    //component: <SigninForm />,
+  },
+  {
+    name: 'Policy',
+    icon: <Icon>policy</Icon>,
+    route: '/wip',
+    //component: <SigninForm />,
   },
 ];
 

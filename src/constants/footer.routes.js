@@ -10,120 +10,70 @@ import MKTypography from 'components/MKTypography';
 // Images
 import logoCT from 'assets/images/bridgestars/logo-trans-256px.png';
 
+import Icon from '@mui/material/Icon';
+import MKBox from 'components/MKBox';
+
 const date = new Date().getFullYear();
+
+const socials = [
+  {
+    name: 'Facebook',
+    link: 'https://www.facebook.com/BridgestarsTechnologies',
+    icon: <i className='fab fa-facebook' />,
+  },
+  {
+    name: 'Instagram',
+    link: 'https://www.instagram.com/bridgestars/',
+    icon: <i className='fab fa-instagram' />,
+  },
+  {
+    name: 'Discord',
+    link: 'https://discord.gg/YhwRDgtSX2',
+    icon: <i className='fab fa-discord' />,
+  },
+  {
+    name: 'Mail',
+    link: 'mailto: bridgestarstechnologies@gmail.com',
+    icon: <Icon>email</Icon>,
+  },
+];
 
 export default {
   brand: {
-    name: 'Bridgestars Technologies AB',
+    name: 'Bridgestars Technologies Sweden AB',
     image: logoCT,
     route: '/',
   },
-  socials: [
+  socials: socials,
+  links: [
     // {
-    //   icon: <FacebookIcon />,
-    //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+    //   href: '/contact',
+    //   name: 'Contact',
     // },
-    // {
-    //   icon: <TwitterIcon />,
-    //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    // },
-    // {
-    //   icon: <GitHubIcon />,
-    //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    // },
-    // {
-    //   icon: <YouTubeIcon />,
-    //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    // },
-  ],
-  menus: [
     {
-      name: 'Company',
-      items: [
-        {
-          name: 'about us',
-          href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        },
-        // {
-        //   name: 'freebies',
-        //   href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        // },
-        // {
-        //   name: 'premium tools',
-        //   href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        // },
-        // {
-        //   name: 'blog',
-        //   href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        // },
-      ],
+      href: '/wip',
+      name: 'FAQ',
     },
     {
-      name: 'resources',
-      items: [
-        // {
-        //   name: 'illustrations',
-        //   href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        // },
-        // {
-        //   name: 'bits & snippets',
-        //   href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        // },
-        // {
-        //   name: 'affiliate program',
-        //   href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        // },
-      ],
+      href: '/about',
+      name: 'About',
     },
     {
-      name: 'help & support',
-      items: [
-        {
-          name: 'contact us',
-          href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        },
-        {
-          name: 'FAQ',
-          href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        },
-        // {
-        //   name: 'custom development',
-        //   href: 'https://services.creative-tim.com/',
-        // },
-        // {
-        //   name: 'sponsorships',
-        //   href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        // },
-      ],
-    },
-    {
-      name: 'legal',
-      items: [
-        {
-          name: 'terms & conditions',
-          href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        },
-        {
-          name: 'privacy policy',
-          href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        },
-        {
-          name: 'licenses (EULA)',
-          href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-        },
-      ],
+      href: '/wip',
+      name: 'Policy',
     },
   ],
   copyright: (
     <MKTypography variant='button' fontWeight='regular'>
       All rights reserved. Copyright &copy; {date} Bridgestars by{' '}
       <MKTypography
-        component='a'
-        href='https://material-ui.com/store/items/otis-kit-pro-material-kit-react/'
-        target='_blank'
-        rel='noreferrer'
+        //component='a'
+        //href='https://material-ui.com/store/items/otis-kit-pro-material-kit-react/'
+        //target='_blank'
+        //rel='noreferrer'
         variant='button'
         fontWeight='regular'
+        //color='info'
       >
         Bridgestars Technologies AB
       </MKTypography>

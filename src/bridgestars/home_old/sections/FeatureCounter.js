@@ -28,8 +28,7 @@ import image from "assets/images/examples/blog2.jpg";
 import React, { useState } from 'react';
 import { useRef } from 'react';
 
-function doNothing(){}
-
+ 
 function FeatureCounter() {
 
   return (

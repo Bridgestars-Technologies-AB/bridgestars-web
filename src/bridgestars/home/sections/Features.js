@@ -21,20 +21,50 @@ import CountUp from 'react-countup';
 
 // Otis Kit PRO components
 import MKBox from 'components/MKBox';
-import DefaultCounterCard from 'examples/Cards/CounterCards/DefaultCounterCard';
 
 // Otis Kit PRO examples
 import SimpleInfoCard from 'examples/Cards/InfoCards/SimpleInfoCard';
-import CounterInfoCard from 'examples/Cards/InfoCards/CounterInfoCard';
+import CounterInfoCard from '../components/CounterInfoCard.js';
 import MilitaryTechRoundedIcon from '@mui/icons-material/MilitaryTechRounded';
 import SchoolIcon from '@mui/icons-material/School';
 import CenteredBlogCard from 'examples/Cards/BlogCards/CenteredBlogCard';
 import unity from 'assets/images/logos/logo-unity.png';
+import MKBadge from 'components/MKBadge';
+import MKTypography from 'components/MKTypography';
 
 function Features(...rest) {
   return (
     <MKBox {...rest} component='section' py={{ xs: 6, md: 12 }}>
       <Container>
+        <Grid
+          container
+          item
+          flexDirection='column'
+          alignItems='center'
+          textAlign={'center'}
+          xs={12}
+          lg={8}
+          sx={{ textAlign: 'center', mx: 'auto' }}
+          mb={8}
+          mt={-2}
+        >
+          {/* <MKBadge
+            variant='contained'
+            color='primary'
+            badgeContent='Current'
+            container
+            circular
+            sx={{ mb: 1 }}
+          /> */}
+          <MKTypography variant='h2' mb={1}>
+            The platform you've always wanted{' '}
+          </MKTypography>
+          <MKTypography variant='body2' color='text'>
+            This is a selection of our current features. These are continuously
+            improved and expanded upon with ideas and comments from our
+            community.
+          </MKTypography>
+        </Grid>
         <Grid container item xs={12} justifyContent='space-evenly'>
           <Grid
             item
@@ -46,7 +76,7 @@ function Features(...rest) {
               mb: { xs: 4, md: 0 },
             }}
           >
-            <Stack spacing={{ xs: 4, md: 8 }}>
+            <Stack spacing={{ xs: 4, md: 8, lg: 11, xl: 11, xxl: 8 }}>
               <SimpleInfoCard
                 icon={
                   <MilitaryTechRoundedIcon fontSize='medium'></MilitaryTechRoundedIcon>
@@ -76,7 +106,7 @@ function Features(...rest) {
               mb: { xs: 4, md: 0 },
             }}
           >
-            <Stack spacing={{ xs: 5, md: 10 }}>
+            <Stack spacing={{ xs: 5, md: 16, lg: 13.5, xxl: 11 }}>
               <CounterInfoCard
                 countUp={{
                   end: 1000,

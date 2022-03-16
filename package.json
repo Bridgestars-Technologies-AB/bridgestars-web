@@ -21,7 +21,9 @@
     "@testing-library/react": "11.1.0",
     "@testing-library/user-event": "12.1.10",
     "chroma-js": "2.1.2",
+    "firebase": "^9.6.8",
     "flatpickr": "4.6.9",
+    "hastscript": "^7.0.2",
     "material-ui-image": "^3.3.2",
     "mui-image": "^1.0.4",
     "prop-types": "15.7.2",
@@ -42,7 +44,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
