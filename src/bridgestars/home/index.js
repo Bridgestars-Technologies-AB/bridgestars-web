@@ -189,6 +189,7 @@ function BridgestarsHome() {
             <MKTypography
               variant='body1'
               color='white'
+              fontSize='calc(6px + 1.5vh)'
               opacity={0.8}
               mt={1}
               mb={3}
