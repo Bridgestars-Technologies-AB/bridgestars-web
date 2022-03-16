@@ -127,18 +127,18 @@ function Discord() {
                   mb={2}
                   sx={{ fontSize: '1.125rem' }}
                 >
-                  We on the Bridgestars developer team are very keen to provide
-                  the best possible experience for our players. In order to
-                  accomplish this, we created a Discord server where you can
-                  talk to us directly. However, the Discord server is not only
-                  meant to keep us, the developers, busy with bugfixes and new
-                  creative ideas but also to let you seamlessly immerse into the
-                  Bridgestars community.
+                  We on the Bridgestars developer team are very keen on
+                  providing the best possible experience for our players. In
+                  order to accomplish this, we created a Discord server where
+                  you can talk to us directly. On this Discord server, you can
+                  not only let us know about bugs that we need to fix and
+                  features that you want to see added, but also immerse yourself
+                  in the Bridgestars community.
                 </MKTypography>
                 <MKTypography variant='button' fontWeight='bold' color='white'>
                   Theodor Lundqvist -{' '}
                   <MKTypography variant='caption' color='white'>
-                    Bridgestars CTO and Founder
+                    Bridgestars COO and Founder
                   </MKTypography>
                 </MKTypography>
               </Grid>

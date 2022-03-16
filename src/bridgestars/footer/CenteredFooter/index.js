@@ -17,7 +17,8 @@ Coded by www.creative-tim.com
 import PropTypes from 'prop-types';
 
 // @mui material components
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 
@@ -32,7 +33,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import MKBox from 'components/MKBox';
 import MKTypography from 'components/MKTypography';
 
-function CenteredFooter({ company, links, socials, light }) {
+function CenteredFooter({ company, links, socials, light, copyright }) {
   const { href, name } = company;
 
   const year = new Date().getFullYear();
@@ -41,7 +42,7 @@ function CenteredFooter({ company, links, socials, light }) {
     <MKTypography
       key={link.name}
       component={Link}
-      href={link.href}
+      to={link.href}
       variant='body2'
       color={light ? 'white' : 'secondary'}
       fontWeight='regular'
@@ -93,20 +94,7 @@ function CenteredFooter({ company, links, socials, light }) {
           </Stack>
         </Grid>
         <Grid item xs={12} lg={8} sx={{ textAlign: 'center' }}>
-          <MKTypography variant='body2' color={light ? 'white' : 'secondary'}>
-            Copyright &copy; {year} Material by{' '}
-            <MKTypography
-              component={Link}
-              href={href}
-              target='_blank'
-              rel='noreferrer'
-              variant='body2'
-              color={light ? 'white' : 'secondary'}
-            >
-              {name}
-            </MKTypography>
-            .
-          </MKTypography>
+          {copyright}
         </Grid>
       </Grid>
     </MKBox>

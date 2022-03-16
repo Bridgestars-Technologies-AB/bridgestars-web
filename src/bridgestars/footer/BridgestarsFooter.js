@@ -13,28 +13,8 @@ import DiscordLogo from 'assets/images/logos/discord.png';
 import footerRoutes from 'constants/footer.routes';
 
 function BridgestarsFooter(props) {
-  const company = {
-    href: '/404.html',
-    name: 'Bridgestars Technologies AB',
-  };
-  const links = [
-    {
-      href: '/contact',
-      name: 'Contact',
-    },
-    {
-      href: '/faq',
-      name: 'FAQ',
-    },
-    // {
-    //   href: '/404.html',
-    //   name: 'Download',
-    // },
-    {
-      href: '/policy',
-      name: 'Policy',
-    },
-  ];
+  const company = footerRoutes.company;
+  const links = footerRoutes.links;
   const socials = footerRoutes.socials;
 
   return (
@@ -42,6 +22,7 @@ function BridgestarsFooter(props) {
       company={company}
       links={links}
       socials={socials}
+      copyright={footerRoutes.copyright}
       {...props}
     />
   );

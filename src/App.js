@@ -41,6 +41,7 @@ import routes from 'constants/routes';
 import BridgestarsHomeOld from 'bridgestars/home_old';
 import BridgestarsHome from 'bridgestars/home';
 import About from 'bridgestars/about';
+import WIP from 'bridgestars/wip/wip';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -74,7 +75,6 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
-        {getRoutes(routes)}
         <Route path='*' element={<BridgestarsHome />} />
         <Route path='/home_old' element={<BridgestarsHomeOld />} />
         {/* <Route path='/signup' element={<SignupForm />} /> */}
@@ -82,7 +82,9 @@ export default function App() {
         <Route path='/signin' element={<SigninForm />} />
         <Route path='/betasignup' element={<BetaSignupForm />} />
         <Route path='/404.html' exact />
-        <Route path='/wip.html' exact />
+        {/* <Route path='/wip.html' exact /> */}
+        <Route path='/wip' element={<WIP />} />
+        {getRoutes(routes)}
       </Routes>
     </ThemeProvider>
   );

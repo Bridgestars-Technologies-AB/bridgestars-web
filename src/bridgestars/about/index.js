@@ -117,7 +117,7 @@ function About() {
               mr={{ xs: 0, sm: 6 }}
               pr={{ xs: 0, sm: 6 }}
             >
-              Read more about the Bridgestars saga
+              Read more about Bridgestars
             </MKTypography>
             <MKTypography variant='h5' color='white' mt={2} mb={1}>
               Connect with us on
@@ -141,21 +141,24 @@ function About() {
           </Grid>
         </Container>
       </MKBox>
-      <Card
-        sx={{
-          p: 2,
-          mx: { xs: 2, lg: 3 },
-          mt: -8,
-          mb: 4,
-          boxShadow: ({ boxShadows: { xxl } }) => xxl,
-        }}
-      >
-        <Information />
-        <Steps />
-        <OurEfforts />
-        <Features />
-        {/* <Posts /> */}
-      </Card>
+      <Grid container width='100%' justifyContent='center'>
+        <Card
+          sx={{
+            p: 2,
+            mx: { xs: 2, lg: 3 },
+            mt: -8,
+            mb: 4,
+            width: { xxl: 1600, xl: '100%' },
+            boxShadow: ({ boxShadows: { xxl } }) => xxl,
+          }}
+        >
+          <Information />
+          {/* <Steps /> */}
+          {/* <OurEfforts />
+          <Features /> */}
+          {/* <Posts /> */}
+        </Card>
+      </Grid>
       <MKBox pt={6} px={1} mt={6}>
         <BridgestarsFooter />
       </MKBox>
