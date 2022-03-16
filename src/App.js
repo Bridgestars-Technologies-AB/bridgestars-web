@@ -40,6 +40,7 @@ import routes from 'constants/routes';
 
 import BridgestarsHomeOld from 'bridgestars/home_old';
 import BridgestarsHome from 'bridgestars/home';
+import About from 'bridgestars/about';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -77,6 +78,7 @@ export default function App() {
         <Route path='*' element={<BridgestarsHome />} />
         <Route path='/home_old' element={<BridgestarsHomeOld />} />
         {/* <Route path='/signup' element={<SignupForm />} /> */}
+        <Route path='/about' element={<About />} />
         <Route path='/signin' element={<SigninForm />} />
         <Route path='/betasignup' element={<BetaSignupForm />} />
         <Route path='/404.html' exact />

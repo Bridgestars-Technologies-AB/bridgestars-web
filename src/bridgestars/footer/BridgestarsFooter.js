@@ -7,9 +7,10 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 
 // Otis Kit PRO examples
-import CenteredFooter from 'examples/Footers/CenteredFooter';
+import CenteredFooter from './CenteredFooter';
 import MKBox from 'components/MKBox';
 import DiscordLogo from 'assets/images/logos/discord.png';
+import footerRoutes from 'constants/footer.routes';
 
 function BridgestarsFooter(props) {
   const company = {
@@ -34,24 +35,7 @@ function BridgestarsFooter(props) {
       name: 'Policy',
     },
   ];
-  const socials = [
-    {
-      icon: <FacebookIcon fontSize='small' />,
-      link: '/404.html',
-    },
-    // {
-    //   icon: <TwitterIcon fontSize='small' />,
-    //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    // },
-    {
-      icon: <i className='fab fa-discord' />,
-      link: 'https://discord.gg/YhwRDgtSX2',
-    },
-    {
-      icon: <MailRoundedIcon fontSize='small' />,
-      link: 'mailto: bridgestarstechnologies@gmail.com',
-    },
-  ];
+  const socials = footerRoutes.socials;
 
   return (
     <CenteredFooter

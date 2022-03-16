@@ -32,7 +32,7 @@ import MKTypography from 'components/MKTypography';
 import MKButton from 'components/MKButton';
 
 // Otis Kit PRO examples
-import DefaultNavbar from 'bridgestars/navbar';
+import BridgestarsNavbar from 'bridgestars/navbar';
 import DefaultFooter from 'examples/Footers/DefaultFooter';
 
 // About Us page sections
@@ -72,6 +72,7 @@ import { HashLink } from 'react-router-hash-link';
 import { useState } from 'react';
 import { TramRounded } from '@mui/icons-material';
 import { Icon } from '@mui/material';
+import footerRoutes from 'constants/footer.routes';
 
 function BridgestarsHome() {
   const [typeNext, setTypeNext] = useState(0);
@@ -127,7 +128,7 @@ function BridgestarsHome() {
 
   return (
     <>
-      <DefaultNavbar
+      <BridgestarsNavbar
         routes={routes}
         action={{
           type: 'internal',
@@ -137,7 +138,6 @@ function BridgestarsHome() {
         }}
         transparent
         light
-        brand='Bridgestars'
       />
       <MKBox
         ref={headerRef}
@@ -215,34 +215,23 @@ function BridgestarsHome() {
               Find us on
             </MKTypography>
             <MKBox display='flex' justifyContent='center' alignItems='center'>
-              <MKTypography
-                component='a'
-                variant='body1'
-                color='white'
-                href='#'
-                mr={3}
-              >
-                <i className='fab fa-facebook' />
-              </MKTypography>
-              <MKTypography
-                component='a'
-                variant='body1'
-                color='white'
-                href='https://discord.gg/YhwRDgtSX2'
-                mr={3}
-              >
-                <i className='fab fa-discord' />
-              </MKTypography>
-              <MKTypography
-                component='a'
-                variant='h4'
-                color='white'
-                href='mailto: bridgestarstechnologies@gmail.com'
-                mr={0}
-                mt={1}
-              >
-                <Icon>email</Icon>
-              </MKTypography>
+              <MKBox display='flex' alignItems='center'>
+                {footerRoutes.socials.map((social) => (
+                  <MKTypography
+                    key={social.name}
+                    component='a'
+                    href={social.link}
+                    variant={social.name === 'Mail' ? 'h4' : 'body1'}
+                    color={'white'}
+                    fontWeight='regular'
+                    ml={1.5}
+                    mr={1.5}
+                    mt={social.name === 'Mail' ? 0.8 : 0}
+                  >
+                    {social.icon}
+                  </MKTypography>
+                ))}
+              </MKBox>
             </MKBox>
           </Grid>
         </Container>

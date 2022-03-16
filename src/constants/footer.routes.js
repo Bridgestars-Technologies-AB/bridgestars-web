@@ -10,7 +10,25 @@ import MKTypography from 'components/MKTypography';
 // Images
 import logoCT from 'assets/images/bridgestars/logo-trans-256px.png';
 
+import Icon from '@mui/material/Icon';
+import MKBox from 'components/MKBox';
+
 const date = new Date().getFullYear();
+
+const socials = [
+  { name: 'Facebook', link: '', icon: <i className='fab fa-facebook' /> },
+  { name: 'Instagram', link: '', icon: <i className='fab fa-instagram' /> },
+  {
+    name: 'Discord',
+    link: 'https://discord.gg/YhwRDgtSX2',
+    icon: <i className='fab fa-discord' />,
+  },
+  {
+    name: 'Mail',
+    link: 'mailto: bridgestarstechnologies@gmail.com',
+    icon: <Icon>email</Icon>,
+  },
+];
 
 export default {
   brand: {
@@ -18,24 +36,7 @@ export default {
     image: logoCT,
     route: '/',
   },
-  socials: [
-    // {
-    //   icon: <FacebookIcon />,
-    //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    // },
-    // {
-    //   icon: <TwitterIcon />,
-    //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    // },
-    // {
-    //   icon: <GitHubIcon />,
-    //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    // },
-    // {
-    //   icon: <YouTubeIcon />,
-    //   link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    // },
-  ],
+  socials: socials,
   menus: [
     {
       name: 'Company',
