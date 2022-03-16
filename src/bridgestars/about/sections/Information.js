@@ -150,7 +150,7 @@ function Information() {
             <MKTypography variant='body2' mr={1}>
               We at bridgestars want to provide both a casual and a competitive
               environment, allowing casual players to play as much as they want
-              in a non.competitive setting, while also allowing players who are
+              in a non competitive setting, while also allowing players who are
               interested in competitive bridge to be able to do so in a way that
               feels fun and rewarding. We are therefore introducing a new and
               improved ranking system that is a bit different from what some

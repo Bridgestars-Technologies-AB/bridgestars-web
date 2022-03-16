@@ -52,7 +52,7 @@ export default function WIP() {
         </h1>
         <p>
           The specified file was not found on this website. Please come back
-          again sooner.
+          again later.
         </p>
       </div>
     </div>
