@@ -128,7 +128,7 @@ const routes = [
   {
     name: 'Policy',
     icon: <Icon>policy</Icon>,
-    route: '/wip',
+    route: '/policy',
     //component: <SigninForm />,
   },
 ];

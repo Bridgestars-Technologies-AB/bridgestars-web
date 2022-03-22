@@ -42,6 +42,7 @@ import BridgestarsHomeOld from 'bridgestars/home_old';
 import BridgestarsHome from 'bridgestars/home';
 import About from 'bridgestars/about';
 import WIP from 'bridgestars/wip/wip';
+import Policy from 'bridgestars/help/Policy/index.js';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -81,6 +82,7 @@ export default function App() {
         <Route path='/about' element={<About />} />
         <Route path='/signin' element={<SigninForm />} />
         <Route path='/betasignup' element={<BetaSignupForm />} />
+        <Route path='/policy' element={<Policy />} />
         <Route path='/404.html' exact />
         {/* <Route path='/wip.html' exact /> */}
         <Route path='/wip' element={<WIP />} />
