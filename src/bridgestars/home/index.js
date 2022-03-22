@@ -32,7 +32,7 @@ import MKTypography from 'components/MKTypography';
 import MKButton from 'components/MKButton';
 
 // Otis Kit PRO examples
-import DefaultNavbar from 'bridgestars/navbar';
+import BridgestarsNavbar from 'bridgestars/navbar';
 import DefaultFooter from 'examples/Footers/DefaultFooter';
 
 // About Us page sections
@@ -72,6 +72,7 @@ import { HashLink } from 'react-router-hash-link';
 import { useState } from 'react';
 import { TramRounded } from '@mui/icons-material';
 import { Icon } from '@mui/material';
+import footerRoutes from 'constants/footer.routes';
 
 function BridgestarsHome() {
   const [typeNext, setTypeNext] = useState(0);
@@ -109,58 +110,34 @@ function BridgestarsHome() {
     if (typeNext == 1) {
       const typedJS2 = new Typed(typedSubHeaderRef.current, {
         strings: [
-<<<<<<< HEAD
           'Online Bridge platforms have become outdated. ^600\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^600for free.',
         ],
         typeSpeed: 20,
-=======
-          '`Online` `Bridge` `platforms` `have` `become` `outdated. `We are constantly working our hardest to',
-        ],
-        typeSpeed: 45,
->>>>>>> 2cf15108ff20018dc66973be972439ec91bd5c7e
         backSpeed: 90,
         backDelay: 200,
         startDelay: 500,
         loop: false,
-<<<<<<< HEAD
         showCursor: false,
-=======
-        showCursor: true,
->>>>>>> 2cf15108ff20018dc66973be972439ec91bd5c7e
         onStart: () => {
           setTypeNext(2);
         },
       });
     }
     //return () => typedJS.destroy();
-<<<<<<< HEAD
   }, [typeNext]);
-=======
-  }, []);
->>>>>>> 2cf15108ff20018dc66973be972439ec91bd5c7e
 
   return (
     <>
-      <DefaultNavbar
+      <BridgestarsNavbar
         routes={routes}
-<<<<<<< HEAD
-        // action={{
-        //   type: 'internal',
-        //   route: '/signin',
-        //   label: 'sign in',
-        //   color: 'primary',
-        // }}
-=======
         action={{
           type: 'internal',
-          route: '/signup',
-          label: 'sign up',
+          route: '/signin',
+          label: 'sign in',
           color: 'primary',
         }}
->>>>>>> 2cf15108ff20018dc66973be972439ec91bd5c7e
         transparent
         light
-        brand='Bridgestars'
       />
       <MKBox
         ref={headerRef}
@@ -212,10 +189,10 @@ function BridgestarsHome() {
             <MKTypography
               variant='body1'
               color='white'
+              fontSize='calc(6px + 1.5vh)'
               opacity={0.8}
               mt={1}
               mb={3}
-<<<<<<< HEAD
             >
               <span ref={typedSubHeaderRef} />
             </MKTypography>
@@ -236,63 +213,26 @@ function BridgestarsHome() {
               sx={{ mt: { xs: 6, sm: 10 } }}
               mb={1}
             >
-=======
-            >
-              <span ref={typedSubHeaderRef} />
-            </MKTypography>
-            <MKButton
-              color='default'
-              sx={{ color: ({ palette: { dark } }) => dark.main }}
-            >
-              create account
-            </MKButton>
-            <MKTypography variant='h6' color='white' mt={10} mb={1}>
->>>>>>> 2cf15108ff20018dc66973be972439ec91bd5c7e
               Find us on
             </MKTypography>
             <MKBox display='flex' justifyContent='center' alignItems='center'>
-              <MKTypography
-                component='a'
-                variant='body1'
-                color='white'
-                href='#'
-                mr={3}
-              >
-                <i className='fab fa-facebook' />
-              </MKTypography>
-              <MKTypography
-                component='a'
-                variant='body1'
-                color='white'
-                href='https://discord.gg/YhwRDgtSX2'
-                mr={3}
-<<<<<<< HEAD
-              >
-                <i className='fab fa-discord' />
-              </MKTypography>
-              <MKTypography
-                component='a'
-                variant='h4'
-                color='white'
-                href='mailto: bridgestarstechnologies@gmail.com'
-                mr={0}
-                mt={1}
-              >
-=======
-              >
-                <i className='fab fa-discord' />
-              </MKTypography>
-              <MKTypography
-                component='a'
-                variant='h4'
-                color='white'
-                href='mailto: bridgestarstechnologies@gmail.com'
-                mr={0}
-                mt={1}
-              >
->>>>>>> 2cf15108ff20018dc66973be972439ec91bd5c7e
-                <Icon>email</Icon>
-              </MKTypography>
+              <MKBox display='flex' alignItems='center'>
+                {footerRoutes.socials.map((social) => (
+                  <MKTypography
+                    key={social.name}
+                    component='a'
+                    href={social.link}
+                    variant={social.name === 'Mail' ? 'h4' : 'body1'}
+                    color={'white'}
+                    fontWeight='regular'
+                    ml={1.5}
+                    mr={1.5}
+                    mt={social.name === 'Mail' ? 0.8 : 0}
+                  >
+                    {social.icon}
+                  </MKTypography>
+                ))}
+              </MKBox>
             </MKBox>
           </Grid>
         </Container>

@@ -10,7 +10,7 @@ const useValidator = (callback) => {
   //Form values
   const [values, setValues] = useState({});
   //Errors
-  const [errors, setErrors] = useState({ policy: 'Policy must be accepted' });
+  const [errors, setErrors] = useState({});
 
   //A method to handle form inputs
   const handleChange = (event) => {
@@ -30,18 +30,18 @@ const useValidator = (callback) => {
 
   const validate = (event, name, value) => {
     switch (name) {
-      case 'username':
-        if (value.length <= 4)
-          setErrors({
-            ...errors,
-            username: 'Username needs to have atleast 5 letters',
-          });
-        else {
-          let newObj = omit(errors, 'username');
-          setErrors(newObj);
-        }
+      // case 'username':
+      //   if (value.length <= 4)
+      //     setErrors({
+      //       ...errors,
+      //       username: 'Username needs to have atleast 5 letters',
+      //     });
+      //   else {
+      //     let newObj = omit(errors, 'username');
+      //     setErrors(newObj);
+      //   }
 
-        break;
+      //   break;
 
       case 'email':
         if (
@@ -59,18 +59,13 @@ const useValidator = (callback) => {
         }
         break;
       case 'password':
-      case 'password-check':
-        handlePasswordCheck(name, value);
-        break;
-
-      case 'policy':
-        if (value === 'false') {
+        if (value.length < 6)
           setErrors({
             ...errors,
-            policy: 'Policy must be accepted',
+            password: 'Invalid password',
           });
-        } else {
-          let newObj = omit(errors, 'policy');
+        else {
+          let newObj = omit(errors, 'password');
           setErrors(newObj);
         }
         break;
@@ -79,32 +74,15 @@ const useValidator = (callback) => {
     }
   };
 
-  const handlePasswordCheck = (name, value) => {
-    let pass = values['password'];
-    let passCheck = values['password-check'];
-    if (name === 'password') {
-      pass = value;
-    } else passCheck = value;
-
-    let errorUpdate = omit(errors, 'password');
-    errorUpdate = omit(errorUpdate, 'password-check');
-
-    if (pass !== passCheck) {
-      errorUpdate['password-check'] = 'Password does not match';
-    }
-
-    if (!new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/).test(pass)) {
-      errorUpdate.password =
-        'Password should contains atleast 8 charaters and containing uppercase,lowercase and numbers';
-    }
-    setErrors(errorUpdate);
-  };
-
   const handleSubmit = (event) => {
     if (event) event.preventDefault();
 
-    if (Object.keys(errors).length === 0 && Object.keys(values).length === 5) {
-      callback();
+    if (Object.keys(errors).length === 0 && Object.keys(values).length === 2) {
+      callback({
+        email: values['email'],
+        password: values['password'],
+        setErrors: setErrors,
+      });
     } else {
       if (Object.keys(errors).length === 0)
         alert("Don't forget to enter your information");

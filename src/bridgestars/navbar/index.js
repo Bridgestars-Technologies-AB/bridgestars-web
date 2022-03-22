@@ -46,7 +46,7 @@ import breakpoints from 'assets/theme/base/breakpoints';
 import logo from 'assets/images/bridgestars/logo-trans-64px.png';
 import Image from 'material-ui-image';
 
-function DefaultNavbar({
+function BridgestarsNavbar({
   brand,
   routes,
   transparent,
@@ -607,8 +607,8 @@ function DefaultNavbar({
 }
 
 // Setting default values for the props of DefaultNavbar
-DefaultNavbar.defaultProps = {
-  brand: 'Otis Kit PRO',
+BridgestarsNavbar.defaultProps = {
+  brand: 'Bridgestars',
   transparent: false,
   light: false,
   action: false,
@@ -618,7 +618,7 @@ DefaultNavbar.defaultProps = {
 };
 
 // Typechecking props for the DefaultNavbar
-DefaultNavbar.propTypes = {
+BridgestarsNavbar.propTypes = {
   brand: PropTypes.string,
   routes: PropTypes.arrayOf(PropTypes.object).isRequired,
   transparent: PropTypes.bool,
@@ -648,4 +648,4 @@ DefaultNavbar.propTypes = {
   center: PropTypes.bool,
 };
 
-export default DefaultNavbar;
+export default BridgestarsNavbar;

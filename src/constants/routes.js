@@ -98,6 +98,7 @@ import SocialButtons from 'layouts/sections/elements/social-buttons';
 import Tables from 'layouts/sections/elements/tables';
 import Toggles from 'layouts/sections/elements/toggles';
 import Typography from 'layouts/sections/elements/typography';
+import About from 'bridgestars/about';
 
 const routes = [
   // {
@@ -113,22 +114,22 @@ const routes = [
   //   component: <SigninForm />,
   // },
   {
-    name: 'Contact',
-    icon: <Icon>contacts</Icon>,
-    route: '/signin',
-    component: <SigninForm />,
+    name: 'About us',
+    icon: <Icon>info</Icon>,
+    route: '/about',
+    //component: <About />,
   },
   {
     name: 'FAQ',
-    icon: <Icon>contacts</Icon>,
-    route: '/signin',
-    component: <SigninForm />,
+    icon: <Icon>help</Icon>,
+    route: '/wip',
+    //component: <SigninForm />,
   },
   {
     name: 'Policy',
-    icon: <Icon>contacts</Icon>,
-    route: '/signin',
-    component: <SigninForm />,
+    icon: <Icon>policy</Icon>,
+    route: '/wip',
+    //component: <SigninForm />,
   },
 ];
 

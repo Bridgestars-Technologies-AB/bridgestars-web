@@ -38,25 +38,82 @@ import bgImage from 'assets/images/illustrations/illustration-reset.jpg';
 import logo from 'assets/images/bridgestars/logo-trans-512px.png';
 import useValidator from 'bridgestars/auth/beta-sign-up/validator.js';
 
+// Firebase
+import firebaseApp from 'firebase-config';
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth';
+
 function BetaSignupForm() {
-  //Final submit function
-  const formLogin = () => {
-    //setTriedToSubmit(true);
-    //AUTH SIGNIN
-    setConfirmed(true);
-    setTitle('You are now registered for the closed beta');
-    setDescription('Check your email inbox for more information');
-  };
   const [confirmed, setConfirmed] = useState(false);
   const [title, setTitle] = useState('Gain access to the closed beta');
   const [description, setDescription] = useState(
     'Lets register by creating an account'
   );
 
+  const auth = getAuth(firebaseApp);
+
+  const formLogin = ({ email, password }) => {
+    //setTriedToSubmit(true);
+    //AUTH SIGNIN
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        const errorCodes = {
+          'auth/email-already-in-use': 'The provided email is already in use.',
+          'auth/email-already-exists': 'The provided email is already in use.',
+          'auth/invalid-email': 'The provided email is not valid',
+          'auth/invalid-password':
+            'Password should contains atleast 8 characters and contain uppercase,lowercase and numbers',
+        };
+        alert(
+          errorCodes[errorCode]
+            ? errorCodes[errorCode]
+            : errorCode.split('/')[1].replaceAll('-', ' ')
+        );
+      });
+  };
+
+  onAuthStateChanged(auth, (user) => {
+    // Check for user status
+    console.log(user);
+    //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      console.log('SIGNED IN');
+      setConfirmed(true);
+      setTitle('You are now registered for the closed beta');
+      setDescription(
+        'You will be notified at\n(' + user.email + ')\nwhen the beta is ready'
+      );
+      // ...
+    } else {
+      console.log('SIGNED OUT');
+      setConfirmed(false);
+      setTitle('Gain access to the closed beta');
+      setDescription('Lets register by creating an account');
+    }
+  });
+
   const [policy, setPolicy] = useState(false);
 
   const { formDenied, values, errors, handleChange, handleSubmit } =
     useValidator(formLogin);
+
+  //Final submit function
 
   const handleSetPolicy = (event) => {
     event.target.value = !policy;
@@ -132,12 +189,12 @@ function BetaSignupForm() {
             sign up
           </MKButton>
         </MKBox>
-        {/* <MKBox mt={3} mb={1} textAlign='center'>
+        <MKBox mt={3} mb={1} textAlign='center'>
           <MKTypography variant='button' color='text'>
             Already registered?{' '}
             <MKTypography
               component={Link}
-              to='/auth/beta-status'
+              to='/signin'
               variant='button'
               color='info'
               fontWeight='medium'
@@ -146,7 +203,7 @@ function BetaSignupForm() {
               See your status
             </MKTypography>
           </MKTypography>
-        </MKBox> */}
+        </MKBox>
       </MKBox>
     );
   };
@@ -158,7 +215,24 @@ function BetaSignupForm() {
       description={description}
       illustration={bgImage}
     >
-      {!confirmed ? form() : ''}
+      {!confirmed ? (
+        form()
+      ) : (
+        <MKBox mt={1} mb={1}>
+          <MKButton
+            variant='gradient'
+            component={Link}
+            to='/'
+            size='medium'
+            fontSize='2vmin'
+            fullWidth
+            color='info'
+            //sx={{ color: ({ palette: { dark } }) => dark.main }}
+          >
+            home
+          </MKButton>
+        </MKBox>
+      )}
     </IllustrationLayout>
   );
 }

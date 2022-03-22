@@ -22,6 +22,7 @@ import Icon from '@mui/material/Icon';
 import MKBox from 'components/MKBox';
 import MKTypography from 'components/MKTypography';
 import image from 'assets/images/bridgestars/black-gold-large.jpg';
+import { Link } from 'react-router-dom';
 
 export default function Testimonial() {
   return (
@@ -119,8 +120,8 @@ export default function Testimonial() {
               strive to achieve.
             </MKTypography>
             <MKTypography
-              component='a'
-              href='#'
+              component={Link}
+              to='/about'
               variant='button'
               color='white'
               fontWeight='regular'
