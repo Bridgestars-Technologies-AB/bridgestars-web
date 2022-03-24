@@ -541,7 +541,7 @@ function BridgestarsNavbar({
           >
             {renderNavbarItems}
           </MKBox>
-          <MKBox ml={{ xs: 'auto', lg: 0 }}>
+          <MKBox mt={transparent ? 0.2 : 0.25} ml={{ xs: 'auto', lg: 0 }}>
             {action &&
               (action.type === 'internal' ? (
                 <MKButton

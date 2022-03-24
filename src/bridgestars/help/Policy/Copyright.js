@@ -45,46 +45,118 @@ export default function Copyright() {
         mx={2}
       >
         <MKTypography variant='h3' color='white'>
-          Privacy & Policy
+          COPYRIGHT POLICY
         </MKTypography>
         <MKTypography variant='body2' color='white' opacity={0.8}>
-          Last modified: Sept 07 2021
+          Last modified: Mar 24 2022
         </MKTypography>
       </MKBox>
       <MKBox pb={6} px={6}>
+        <MKTypography variant='body2' color='text'>
+          <br />
+          <br />
+          Copyright © Bridgestars technologies Sweden AB. All Rights Reserved.
+          <br />
+          <br />
+          All files and information contained in this Website are copyright by
+          Bridgestars technologies Sweden AB. and may not be duplicated, copied,
+          modified or adapted, in any way without our written permission. Our
+          Website may contain our service marks or trademarks as well as those
+          of our affiliates or other companies, in the form of words, graphics,
+          and logos.
+          <br />
+          <br />
+          Your use of our Website, Blog or Services does not constitute any
+          right or license for you to use our service marks or trademarks,
+          without the prior written permission of Bridgestars technologies
+          Sweden AB.
+          <br />
+          <br />
+          Our Content, as found within our Website, Blog and Services, is
+          protected under copyrights. The copying, redistribution, use or
+          publication by you of any such Content, is strictly prohibited. Your
+          use of our Website and Services does not grant you any ownership
+          rights to our Content.
+        </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
-          Introduction
+          ACCEPTABLE USE
         </MKTypography>
         <MKTypography variant='body2' color='text'>
-          At Creative Tim, accessible{' '}
-          <MKTypography
-            variant='body2'
-            color='dark'
-            component='a'
-            href='https://www.creative-tim.com'
-            target='_blank'
-            rel='noreferrer'
-            sx={{
-              '&:hover': {
-                color: ({ palette: { info } }) => info.main,
-              },
-            }}
-          >
-            here
-          </MKTypography>
-          , one of our main priorities is the privacy of our visitors. This
-          Privacy Policy document contains types of information that is
-          collected and recorded by Website Name and how we use it.
+          <b>You must not:</b>
           <br />
           <br />
-          If you have additional questions or require more information about our
-          Privacy Policy, do not hesitate to contact us through email at
-          hello@creative-tim.com
+          <ol style={{ 'margin-left': 15 }} type='a'>
+            <li>
+              use our website in any way or take any action that causes, or may
+              cause, damage to the website or impairment of the performance,
+              availability or accessibility of the website;
+              <br />
+              <br />
+            </li>
+            <li>
+              use our website in any way that is unlawful, illegal, fraudulent
+              or harmful, or in connection with any unlawful, illegal,
+              fraudulent or harmful purpose or activity;
+              <br />
+              <br />
+            </li>
+            <li>
+              use our website to copy, store, host, transmit, send, use, publish
+              or distribute any material which consists of (or is linked to) any
+              spyware, computer virus, Trojan horse, worm, keystroke logger,
+              rootkit or other malicious computer software; or
+              <br />
+              <br />
+            </li>
+            <li>
+              conduct any systematic or automated data collection activities
+              (including without limitation scraping, data mining, data
+              extraction and data harvesting) on or in relation to our website
+              without our express written consent.
+              <br />
+              <br />
+            </li>
+          </ol>
+        </MKTypography>
+        <MKTypography variant='h5' mt={6} mb={3}>
+          REPORT ABUSE
+        </MKTypography>
+        <MKTypography variant='body2' color='text'>
+          {' '}
+          If you found any unlawful material or activity on our website, or any
+          material or activity that breaches this notice, please let us know.
           <br />
           <br />
-          This privacy policy applies only to our online activities and is valid
-          for visitors to our website with regards to the information that they
-          shared and/or collect in{' '}
+          You can let us know about any such material or activity by email us at{' '}
+          <a href='mailto: info@bridgestarstechnologies.com'>
+            info@bridgestarstechnologies.com
+          </a>
+          .
+        </MKTypography>
+        <MKTypography variant='h5' mt={6} mb={3}>
+          ENFORCEMENT OF COPYRIGHT
+        </MKTypography>
+        <MKTypography variant='body2' color='text'>
+          We take the protection of our copyright very seriously.
+          <br />
+          <br />
+          If we discover that you have used our copyright materials in
+          contravention of the license set out in this notice, we may bring
+          legal proceedings against you, seeking monetary damages and/or an
+          injunction to stop you using those materials. You could also be
+          ordered to pay legal costs.
+        </MKTypography>
+        <MKTypography variant='h5' mt={6} mb={3}>
+          PERMISSIONS
+        </MKTypography>
+        <MKTypography variant='body2' color='text'>
+          {' '}
+          You may request permission to use the copyright materials on our
+          website by email us at{' '}
+          <a href='mailto: info@bridgestarstechnologies.com'>
+            info@bridgestarstechnologies.com
+          </a>
+          .
         </MKTypography>
       </MKBox>
     </>

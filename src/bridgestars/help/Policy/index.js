@@ -9,7 +9,9 @@ import Tab from '@mui/material/Tab';
 import Icon from '@mui/material/Icon';
 import MKBox from 'components/MKBox';
 import footerRoutes from 'constants/footer.routes';
-import { Card } from '@mui/material';
+import { Button, Card } from '@mui/material';
+import { IconButton } from '@mui/material';
+import { Stack } from '@mui/material';
 
 //bridgestars
 import BridgestarsFooter from '../../footer/BridgestarsFooter';
@@ -21,6 +23,7 @@ import Terms from 'bridgestars/help/Policy/Terms';
 import Privacy from 'bridgestars/help/Policy/Privacy';
 import Disclaimer from 'bridgestars/help/Policy/Disclaimer';
 import Copyright from 'bridgestars/help/Policy/Copyright';
+import MKTypography from 'components/MKTypography';
 
 export default function Policy() {
   const [activeTab, setActiveTab] = useState(0);
@@ -35,32 +38,43 @@ export default function Policy() {
     setActiveTab(newValue);
   };
 
+  const ScrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <>
-      <BridgestarsNavbar
-        routes={routes}
-        action={{
-          type: 'internal',
-          route: '/signin',
-          label: 'sign in',
-          color: 'primary',
-        }}
-      />
-      <MKBox component='section' pt={12} pb={0}>
+      <MKBox mt={3}>
+        <BridgestarsNavbar
+          routes={routes.filter((r) => r.name != 'Policy')}
+          action={{
+            type: 'internal',
+            route: '/signin',
+            label: 'sign in',
+            color: 'primary',
+          }}
+          relative
+          floating
+        />
+      </MKBox>
+      <MKBox component='section' pt={4} pb={0}>
         <Container>
           <Grid container item justifyContent='center' xs={12} mx='auto'>
             <AppBar position='static'>
               <Tabs value={activeTab} onChange={handleTabType}>
-                <Tab label='Terms' icon={<Icon>person</Icon>} />
-                <Tab label='Privacy' icon={<Icon>dashboard</Icon>} />
-                <Tab label='Disclaimer' icon={<Icon>dashboard</Icon>} />
-                <Tab label='Copyright' icon={<Icon>dashboard</Icon>} />
+                <Tab label='Terms' icon={<Icon>gavel</Icon>} />
+                <Tab label='Privacy' icon={<Icon>health_and_safety</Icon>} />
+                <Tab label='Disclaimer' icon={<Icon>report_problem</Icon>} />
+                <Tab label='Copyright' icon={<Icon>copyright</Icon>} />
               </Tabs>
             </AppBar>
           </Grid>
         </Container>
       </MKBox>
-      <MKBox component='section' pt={12} pb={12}>
+      <MKBox component='section' pt={5}>
         <Container>
           <Grid container justifyContent='center'>
             <Grid item xs={12}>
@@ -69,7 +83,20 @@ export default function Policy() {
           </Grid>
         </Container>
       </MKBox>
-      <MKBox pt={6} px={1} mt={6}>
+      <Grid container xs={12} mt={6} justifyContent='center'>
+        <IconButton variant='outlined' color='dark' onClick={ScrollTop}>
+          <MKTypography fontSize={24}>
+            {
+              <Icon sx={{ transform: 'scale(2)', width: '100%' }}>
+                arrow_upward
+              </Icon>
+            }
+            <br />
+            to top
+          </MKTypography>
+        </IconButton>
+      </Grid>
+      <MKBox pt={2} px={1} mt={2}>
         <BridgestarsFooter content={footerRoutes} />
       </MKBox>
     </>

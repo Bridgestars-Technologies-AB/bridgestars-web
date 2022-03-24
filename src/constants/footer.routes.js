@@ -59,7 +59,7 @@ export default {
       name: 'About',
     },
     {
-      href: '/wip',
+      href: '/policy',
       name: 'Policy',
     },
   ],

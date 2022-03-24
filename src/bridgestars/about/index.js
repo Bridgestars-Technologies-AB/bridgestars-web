@@ -60,7 +60,7 @@ function About() {
   return (
     <>
       <BridgestarsNavbar
-        routes={routes}
+        routes={routes.filter((r) => r.name != 'About us')}
         action={{
           type: 'internal',
           route: '/signin',
