@@ -45,10 +45,10 @@ export default function Privacy() {
         mx={2}
       >
         <MKTypography variant='h3' color='white'>
-          PRIVACY POLICY
+          Privacy Policy
         </MKTypography>
         <MKTypography variant='body2' color='white' opacity={0.8}>
-          Last modified: March 22 2022
+          Last modified: 24th of March 2022
         </MKTypography>
       </MKBox>
       <MKBox pb={6} px={6}>

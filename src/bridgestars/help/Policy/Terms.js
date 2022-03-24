@@ -48,7 +48,7 @@ export default function Terms() {
           Terms & Conditions
         </MKTypography>
         <MKTypography variant='body2' color='white' opacity={0.8}>
-          Last modified: March 22 2022
+          Last modified: 24th of March 2022
         </MKTypography>
       </MKBox>
       <MKBox pb={6} px={6}>
@@ -56,12 +56,13 @@ export default function Terms() {
           Introduction
         </MKTypography>
         <MKTypography variant='body2' color='text'>
-          These are the terms and conditions governing the use of
-          https://bridgestars.se, (the Website) and the agreement that operates
-          between us and you (the Terms). The Website is owned and operated by
-          Bridgestars Technologies Sweden AB (us/our/we) and these Terms set out
-          the rights and obligations of all users (you/your) in relation to your
-          use of the Website.
+          These are the terms and conditions governing the use of{' '}
+          <a href='https://bridgestars.se'>https://bridgestars.se</a>, (the
+          Website) and the agreement that operates between us and you (the
+          Terms). The Website is owned and operated by{' '}
+          <b>Bridgestars Technologies Sweden AB</b> (us/our/we) and these Terms
+          set out the rights and obligations of all users (you/your) in relation
+          to your use of the Website.
           <br />
           <br />
           Please read carefully these Terms and our Privacy Statement. By using
@@ -73,7 +74,11 @@ export default function Terms() {
           <br />
           <br />
           If you have any questions about the Terms or the Privacy Statement,
-          please contact us through mail Info@bridgestarstechnologies.com.
+          please contact us through mail{' '}
+          <a href='mailto: info@bridgestarstechnologies.com'>
+            info@bridgestarstechnologies.com
+          </a>
+          .
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
           CONDUCT OF USE
@@ -88,13 +93,13 @@ export default function Terms() {
         </MKTypography>
         <MKTypography variant='body2' color='text'>
           The material contained within the Website is provided without any
-          guarantees, conditions or warranties as to its accuracy. Bridgestars
-          Technologies Sweden AB does not represent that information contained
-          on or available via the Website is accurate or complete and
-          accordingly, it should not be relied on as such. You should not rely
-          on any such information. Any arrangements made between you and any
-          other person, using or named on the Website are entirely at your sole
-          risk and responsibility.
+          guarantees, conditions or warranties as to its accuracy.{' '}
+          <b>Bridgestars Technologies Sweden AB</b> does not represent that
+          information contained on or available via the Website is accurate or
+          complete and accordingly, it should not be relied on as such. You
+          should not rely on any such information. Any arrangements made between
+          you and any other person, using or named on the Website are entirely
+          at your sole risk and responsibility.
           <br />
           <br />
           To the extent permitted by law, we, and third parties connected to us
@@ -247,10 +252,10 @@ export default function Terms() {
         <MKTypography variant='body2' color='text'>
           <ol style={{ 'margin-left': 10 }}>
             <li>
-              Bridgestars Technologies Sweden AB at this moment grants the User
-              a non-exclusive, non-transferable, limited right to access and use
-              the Service, under the conditions of these Terms & Conditions and
-              for the duration of the Agreement.
+              <b>Bridgestars Technologies Sweden AB</b> at this moment grants
+              the User a non-exclusive, non-transferable, limited right to
+              access and use the Service, under the conditions of these Terms &
+              Conditions and for the duration of the Agreement.
               <br></br>
               <br></br>
             </li>
@@ -265,11 +270,11 @@ export default function Terms() {
               <br></br>
             </li>
             <li>
-              Bridgestars Technologies Sweden AB will have the right (but not
-              the obligation), at its sole discretion, to review, edit, limit,
-              refuse or remove Content, or to limit or refuse the User access to
-              the Service. More specifically in the event the use of the
-              Service, according to us, violates these Terms of Use.
+              <b>Bridgestars Technologies Sweden AB</b> will have the right (but
+              not the obligation), at its sole discretion, to review, edit,
+              limit, refuse or remove Content, or to limit or refuse the User
+              access to the Service. More specifically in the event the use of
+              the Service, according to us, violates these Terms of Use.
               <br></br>
               <br></br>
             </li>
@@ -540,13 +545,13 @@ export default function Terms() {
           INDEMNIFICATION
         </MKTypography>
         <MKTypography variant='body2' color='text'>
-          You agree to indemnify, protect and hold harmless to Bridgestars
-          Technologies Sweden AB, subsidiaries, affiliates, partners, officers,
-          directors, agents, contractors, license, service providers,
-          subcontractors, suppliers, interns and employees, harmless from any
-          claim or demand, including reasonable attorney’s fees, made by any
-          third party due to or arising out of your breach of these Terms and
-          conditions or the documents they incorporate by reference or your
+          You agree to indemnify, protect and hold harmless to{' '}
+          <b>Bridgestars Technologies Sweden AB</b>, subsidiaries, affiliates,
+          partners, officers, directors, agents, contractors, license, service
+          providers, subcontractors, suppliers, interns and employees, harmless
+          from any claim or demand, including reasonable attorney’s fees, made
+          by any third party due to or arising out of your breach of these Terms
+          and conditions or the documents they incorporate by reference or your
           infringement of any law or the rights of a third-party.
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
@@ -588,7 +593,7 @@ export default function Terms() {
           want more information please contact us:
           <br />
           <br />
-          Email: bridgestarstechnologies@gmail.com
+          Email: info@bridgestarstechnologies.se
         </MKTypography>
       </MKBox>
     </>

@@ -45,10 +45,10 @@ export default function Copyright() {
         mx={2}
       >
         <MKTypography variant='h3' color='white'>
-          COPYRIGHT POLICY
+          Copyright Policy
         </MKTypography>
         <MKTypography variant='body2' color='white' opacity={0.8}>
-          Last modified: Mar 24 2022
+          Last modified: 24th of March 2022
         </MKTypography>
       </MKBox>
       <MKBox pb={6} px={6}>

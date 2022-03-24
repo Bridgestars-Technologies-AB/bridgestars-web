@@ -60,7 +60,7 @@ export default function Policy() {
           floating
         />
       </MKBox>
-      <MKBox component='section' pt={4} pb={0}>
+      <MKBox component='section' pt={4} pb={1}>
         <Container>
           <Grid container item justifyContent='center' xs={12} mx='auto'>
             <AppBar position='static'>
@@ -74,7 +74,7 @@ export default function Policy() {
           </Grid>
         </Container>
       </MKBox>
-      <MKBox component='section' pt={5}>
+      <MKBox component='section' pt={6}>
         <Container>
           <Grid container justifyContent='center'>
             <Grid item xs={12}>

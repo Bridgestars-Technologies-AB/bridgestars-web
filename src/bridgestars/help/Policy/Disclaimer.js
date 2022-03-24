@@ -45,16 +45,17 @@ export default function Disclaimer() {
         mx={2}
       >
         <MKTypography variant='h3' color='white'>
-          DISCLAIMER
+          Disclaimer
         </MKTypography>
         <MKTypography variant='body2' color='white' opacity={0.8}>
-          Last modified: Mar 24 2022
+          Last modified: 24th of March 2022
         </MKTypography>
       </MKBox>
       <MKBox pb={6} px={6}>
+        <MKTypography variant='h5' mt={6} mb={3}>
+          Introduction
+        </MKTypography>
         <MKTypography variant='body2' color='text'>
-          <br />
-          <br />
           If you require any more information or have any questions about our
           site's disclaimer, please feel free to contact us by email at{' '}
           <a href='mailto: info@bridgestarstechnologies.com'>
