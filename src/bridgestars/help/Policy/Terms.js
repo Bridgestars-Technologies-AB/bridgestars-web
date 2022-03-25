@@ -48,7 +48,7 @@ export default function Terms() {
           Terms & Conditions
         </MKTypography>
         <MKTypography variant='body2' color='white' opacity={0.8}>
-          Last modified: 24th of March 2022
+          Last modified: 25th of March 2022
         </MKTypography>
       </MKBox>
       <MKBox pb={6} px={6}>
@@ -57,34 +57,32 @@ export default function Terms() {
         </MKTypography>
         <MKTypography variant='body2' color='text'>
           These are the terms and conditions governing the use of{' '}
-          <a href='https://bridgestars.se'>https://bridgestars.se</a>, (the
-          Website) and the agreement that operates between us and you (the
-          Terms). The Website is owned and operated by{' '}
+          <a href='https://bridgestars.se'>https://bridgestars.se</a> and the
+          Bridgestars application (collectively referred to as the Platform) and
+          the agreement that operates between us and you (the Terms). The
+          Platform is owned and operated by{' '}
           <b>Bridgestars Technologies Sweden AB</b> (us/our/we) and these Terms
           set out the rights and obligations of all users (you/your) in relation
-          to your use of the Website.
+          to your use of the Platform.
           <br />
           <br />
           Please read carefully these Terms and our Privacy Statement. By using
-          the Website, you are consenting to be bound by the current Terms and
+          the Platform, you are consenting to be bound by the current Terms and
           our Privacy Statement. We may revise the Terms and information
-          contained on the Website at any time and without notice. If you do not
-          agree to these Terms or the Privacy Statement, please refrain from
-          using the Website.
+          contained on the Platform at any time and without notice. If you do
+          not agree to these Terms or the Privacy Statement, please refrain from
+          using the Platform.
           <br />
           <br />
           If you have any questions about the Terms or the Privacy Statement,
           please contact us through mail{' '}
-          <a href='mailto: info@bridgestarstechnologies.com'>
-            info@bridgestarstechnologies.com
-          </a>
-          .
+          <a href='mailto: info@bridgestars.se'>info@bridgestars.se</a>.
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
           CONDUCT OF USE
         </MKTypography>
         <MKTypography variant='body2' color='text'>
-          You are not allowed to use this website in any way that is unlawful,
+          You are not allowed to use this Platform in any way that is unlawful,
           abusive, threatening, harassing, obscene, libellous, hateful, or in
           any other way violating these terms and conditions.
         </MKTypography>
@@ -92,13 +90,13 @@ export default function Terms() {
           LIABILITY
         </MKTypography>
         <MKTypography variant='body2' color='text'>
-          The material contained within the Website is provided without any
+          The material contained on the Platform is provided without any
           guarantees, conditions or warranties as to its accuracy.{' '}
           <b>Bridgestars Technologies Sweden AB</b> does not represent that
-          information contained on or available via the Website is accurate or
+          information contained on or available via the Platform is accurate or
           complete and accordingly, it should not be relied on as such. You
           should not rely on any such information. Any arrangements made between
-          you and any other person, using or named on the Website are entirely
+          you and any other person, using or named on the Platform are entirely
           at your sole risk and responsibility.
           <br />
           <br />
@@ -116,7 +114,7 @@ export default function Terms() {
             <li>
               any liability for loss or damage incurred by any user in
               connection with the use, inability to use, or results of the use
-              of the Website, any websites linked to it and any material posted
+              of the Platform, any websites linked to it and any material posted
               on it;
               <br />
               <br />
@@ -128,10 +126,11 @@ export default function Terms() {
             </li>
             <li>
               any liability for any direct, special, indirect or consequential
-              loss or damage incurred by any user in connection with the Website
-              or in connection with the use, inability to use, or results of the
-              use of the Website, any websites linked to it and any materials
-              posted on it, including, without limitation any liability for:
+              loss or damage incurred by any user in connection with the
+              Platform or in connection with the use, inability to use, or
+              results of the use of the Platform, any websites linked to it and
+              any materials posted on it, including, without limitation any
+              liability for:
               <br />
               <br />
             </li>
@@ -188,8 +187,8 @@ export default function Terms() {
           LIMITS OF USE
         </MKTypography>
         <MKTypography variant='body2' color='text'>
-          You may use our Website only for lawful purposes. You may not use our
-          Website:
+          You may use the Platform only for lawful purposes. You may not use the
+          Platform:
           <br></br>
           <br></br>
           <ul style={{ 'margin-left': 10 }}>
@@ -217,12 +216,12 @@ export default function Terms() {
           <b>You also agree:</b>
           <ul style={{ 'margin-left': 10 }}>
             <li>
-              Not to reproduce, duplicate, copy or re-sell any part of our
-              website in contravention of the provisions of these Terms;
+              Not to reproduce, duplicate, copy or re-sell any part of the
+              Platform in contravention of the provisions of these Terms;
             </li>
             <li>Not to use ad-blocking software;</li>
             <li>
-              Not to reuse text or graphics from the Website or parts thereof.
+              Not to reuse text or graphics from the Platform or parts thereof.
             </li>
           </ul>
         </MKTypography>
@@ -230,7 +229,7 @@ export default function Terms() {
           CHANGES TO TERMS
         </MKTypography>
         <MKTypography variant='body2' color='text'>
-          We are committed to ensuring that our website is as useful and
+          We are committed to ensuring that the Platform is as useful and
           efficient as possible. For that reason, we reserve the right to make
           changes to the services, at any time. We will never charge you for any
           service without making it very clear to you precisely what you're
@@ -241,10 +240,10 @@ export default function Terms() {
           subject to this Terms and condition. You can always review the most
           current version of the Terms and conditions at any time on this page.
           We reserve the right to update, change or retrieve any part of these
-          Terms and conditions by posting updates and/or changes to our website.
-          It is your responsibility to check this page periodically for changes.
-          Your continued use of or access to the website following the posting
-          of any changes constitutes acceptance of those changes.
+          Terms and conditions by posting updates and/or changes to the
+          Platform. It is your responsibility to check this page periodically
+          for changes. Your continued use of or access to the Platform following
+          the posting of any changes constitutes acceptance of those changes.
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
           SERVICE TERMS
@@ -294,8 +293,8 @@ export default function Terms() {
           CHAT FORUM SAFETY
         </MKTypography>
         <MKTypography variant='body2' color='text'>
-          We do our best to keep Bridgestars.se safe, but we cannot guarantee
-          it. We need your help to keep Bridgestars.se safe, which includes the
+          We do our best to keep the Platform safe, but we cannot guarantee it.
+          We need your help to keep the Platform safe, which includes the
           following commitments by you:
           <br></br>
           <br></br>
@@ -308,14 +307,14 @@ export default function Terms() {
             </li>
             <li>
               You will not collect users' content or information, or otherwise
-              access Bridgestars.se, using automated means (such as harvesting
+              access the Platform, using automated means (such as harvesting
               bots, robots, spiders, or scrapers) without our prior permission.
               <br></br>
               <br></br>
             </li>
             <li>
               You will not engage in unlawful multi-level marketing, such as a
-              pyramid scheme, on Bridgestars.se.
+              pyramid scheme, on the Platform.
               <br></br>
               <br></br>
             </li>
@@ -351,16 +350,16 @@ export default function Terms() {
               <br></br>
             </li>
             <li>
-              You will not use Bridgestars.se to do anything unlawful,
-              misleading, malicious, or discriminatory.
+              You will not use the Platform to do anything unlawful, misleading,
+              malicious, or discriminatory.
               <br></br>
               <br></br>
             </li>
             <li>
               You will not do anything that could disable, overburden, or impair
-              the proper working or appearance of Bridgestars.se, such as a
-              denial of service attack or interference with page rendering or
-              other Bridgestars.se functionality.
+              the proper working or appearance of the Platform, such as a denial
+              of service attack or interference with page rendering or other the
+              Platform functionality.
               <br></br>
               <br></br>
             </li>
@@ -375,16 +374,15 @@ export default function Terms() {
           <br></br>
           <ol style={{ 'margin-left': 10 }}>
             <li>
-              You will not post content or take any action on Bridgestars.se
-              that infringes or violates someone else's rights or otherwise
-              violates the law.
+              You will not post content or take any action on the Platform that
+              infringes or violates someone else's rights or otherwise violates
+              the law.
               <br></br>
               <br></br>
             </li>
             <li>
-              We can remove any content or information you post on
-              Bridgestars.se if we believe that it violates this Statement or
-              our policies.
+              We can remove any content or information you post on the Platform
+              if we believe that it violates this Statement or our policies.
               <br></br>
               <br></br>
             </li>
@@ -417,7 +415,7 @@ export default function Terms() {
             </li>
             <li>
               If you collect information from users, you will: obtain their
-              consent, make it clear you (and not Bridgestars.se) are the one
+              consent, make it clear that you (and not the Platform) are the one
               collecting their information and post a privacy policy explaining
               what information you collect and how you will use it.
               <br></br>
@@ -425,7 +423,7 @@ export default function Terms() {
             </li>
             <li>
               You will not post anyone's identification documents or sensitive
-              financial information on Bridgestars.se.
+              financial information on the Platform.
               <br></br>
               <br></br>
             </li>
@@ -437,33 +435,33 @@ export default function Terms() {
         <MKTypography variant='body2' color='text'>
           You must pay in the currency in which the service price is quoted or
           is selected. If you do not hold an account in the relevant currency
-          you may pay by debit or credit card (or any other method that
-          Bridgestars.se may introduce from time to time) and your card company
-          should exchange the amount charged to the currency of your country at
-          their current rate.
+          you may pay by debit or credit card (or any other method that the
+          Platform may introduce from time to time) and your card company should
+          exchange the amount charged to the currency of your country at their
+          current rate.
           <br></br>
           <br></br>
           <ol style={{ 'margin-left': 10 }}>
             <li>
               Payment may be made by credit card. debit card or any other such
-              method as Bridgestars.se may introduce at its absolute discretion.
+              method as the Platform may introduce at its absolute discretion.
               <br></br>
               <br></br>
             </li>
             <li>
-              Bridgestars.se reserves the absolute right to accept or refuse any
+              The Platform reserves the absolute right to accept or refuse any
               payment made in any form.
               <br></br>
               <br></br>
             </li>
             <li>
-              Bridgestars.se cannot guarantee that a particular Services will
+              The Platform cannot guarantee that a particular Service will
               always be available.
               <br></br>
               <br></br>
             </li>
             <li>
-              To maximise security Bridgestars.se does not hold any credit/debit
+              To maximise security, the Platform does not hold any credit/debit
               card details. They are held by third party payment providers.
               <br></br>
               <br></br>
@@ -526,20 +524,12 @@ export default function Terms() {
           or expiration of this Agreement.
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
-          AGE CONSENT
-        </MKTypography>
-        <MKTypography variant='body2' color='text'>
-          Our Website is not intended for users under 18 years of age. Before
-          registration of your account or quote us for our services, your age
-          must be 18 and above.
-        </MKTypography>
-        <MKTypography variant='h5' mt={6} mb={3}>
           IFRAMES
         </MKTypography>
         <MKTypography variant='body2' color='text'>
           Without prior approval and written permission, you may not create
           frames around our Webpages that alter in any way the visual
-          presentation or appearance of our Website.
+          presentation or appearance of the Platform.
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
           INDEMNIFICATION
@@ -593,7 +583,7 @@ export default function Terms() {
           want more information please contact us:
           <br />
           <br />
-          Email: info@bridgestarstechnologies.se
+          Email: info@bridgestars.se
         </MKTypography>
       </MKBox>
     </>

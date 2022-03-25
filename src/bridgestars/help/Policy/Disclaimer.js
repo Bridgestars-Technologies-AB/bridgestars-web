@@ -48,7 +48,7 @@ export default function Disclaimer() {
           Disclaimer
         </MKTypography>
         <MKTypography variant='body2' color='white' opacity={0.8}>
-          Last modified: 24th of March 2022
+          Last modified: 25th of March 2022
         </MKTypography>
       </MKBox>
       <MKBox pb={6} px={6}>
@@ -56,35 +56,43 @@ export default function Disclaimer() {
           Introduction
         </MKTypography>
         <MKTypography variant='body2' color='text'>
-          If you require any more information or have any questions about our
-          site's disclaimer, please feel free to contact us by email at{' '}
-          <a href='mailto: info@bridgestarstechnologies.com'>
-            info@bridgestarstechnologies.com
-          </a>
+          This is the Disclaimer governing the use of{' '}
+          <a href='https://bridgestars.se'>https://bridgestars.se</a> and the
+          Bridgestars application (collectively referred to as the Platform) and
+          the agreement that operates between us and you (the Disclaimer). The
+          Platform is owned and operated by{' '}
+          <b>Bridgestars Technologies Sweden AB</b> (us/our/we) and these
+          Policies set out the rights and obligations of all users (you/your) in
+          relation to your use of the Platform.
+          <br />
+          <br />
+          If you require any more information or have any questions about the
+          Disclaimer, please feel free to contact us by email at{' '}
+          <a href='mailto: info@bridgestars.se'>info@bridgestars.se</a>
           .
           <br />
           <br />
-          All the information on this website -{' '}
-          <a href='https://bridgestars.se'>https://bridgestars.se</a> - is
-          published in good faith and for general information purpose only.
-          Bridgestars technologies Sweden AB does not make any warranties about
-          the completeness, reliability and accuracy of this information. Any
-          action you take upon the information you find on this website, is
+          All the information on the Platform is published in good faith and for
+          general information purpose only.
+          <b>Bridgestars technologies Sweden AB</b> does not make any warranties
+          about the completeness, reliability and accuracy of this information.
+          Any action you take upon the information you find on the Platform, is
           strictly at your own risk. Bridgestars technologies Sweden AB will not
           be liable for any losses and/or damages in connection with the use of
-          our website.
+          the Platform.
           <br />
           <br />
-          From our website, you can visit other websites by following hyperlinks
-          to such external sites. While we strive to provide only quality links
-          to useful and ethical websites, we have no control over the content
-          and nature of these sites. These links to other websites do not imply
-          a recommendation for all the content found on these sites. Site owners
-          and content may change without notice and may occur before we have the
-          opportunity to remove a link which may have gone 'bad'.
+          From the Platform, you can visit other websites by following
+          hyperlinks to such external sites. While we strive to provide only
+          quality links to useful and ethical websites, we have no control over
+          the content and nature of these sites. These links to other websites
+          do not imply a recommendation for all the content found on these
+          sites. Site owners and content may change without notice and may occur
+          before we have the opportunity to remove a link which may have gone
+          'bad'.
           <br />
           <br />
-          Please be also aware that when you leave our website, other sites may
+          Please be also aware that when you leave the Platform, other sites may
           have different privacy policies and terms which are beyond our
           control. Please be sure to check the Privacy Policies of these sites
           as well as their "Terms of Service" before engaging in any business or
@@ -94,7 +102,7 @@ export default function Disclaimer() {
           Consent
         </MKTypography>
         <MKTypography variant='body2' color='text'>
-          By using our website, you hereby consent to our disclaimer and agree
+          By using the Platform, you hereby consent to our disclaimer and agree
           to its terms.
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>

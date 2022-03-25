@@ -31,6 +31,7 @@ import routes from 'constants/routes';
 import footerRoutes from 'constants/footer.routes';
 import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter.js';
 import BridgestarsNavbar from 'bridgestars/navbar';
+import { Policy } from 'bridgestars/help/Policy/index.js';
 
 export default function Copyright() {
   return (
@@ -48,7 +49,7 @@ export default function Copyright() {
           Copyright Policy
         </MKTypography>
         <MKTypography variant='body2' color='white' opacity={0.8}>
-          Last modified: 24th of March 2022
+          Last modified: 25th of March 2022
         </MKTypography>
       </MKBox>
       <MKBox pb={6} px={6}>
@@ -56,27 +57,40 @@ export default function Copyright() {
           <br />
           <br />
           Copyright © Bridgestars technologies Sweden AB. All Rights Reserved.
+        </MKTypography>
+        <MKTypography variant='h5' mt={6} mb={3}>
+          Introduction
+        </MKTypography>
+        <MKTypography variant='body2' color='text'>
+          This is the Copyright Policy governing the use of{' '}
+          <a href='https://bridgestars.se'>https://bridgestars.se</a> and the
+          Bridgestars application (collectively referred to as the Platform) and
+          the agreement that operates between us and you (the Policy). The
+          Platform is owned and operated by{' '}
+          <b>Bridgestars Technologies Sweden AB</b> (us/our/we) and these
+          Policies set out the rights and obligations of all users (you/your) in
+          relation to your use of the Platform.
           <br />
           <br />
-          All files and information contained in this Website are copyright by
-          Bridgestars technologies Sweden AB. and may not be duplicated, copied,
-          modified or adapted, in any way without our written permission. Our
-          Website may contain our service marks or trademarks as well as those
+          All files and information contained on the Platform are copyrighted by
+          Bridgestars Technologies Sweden AB. and may not be duplicated, copied,
+          modified or adapted, in any way without our written permission. The
+          Platform may contain our service marks or trademarks as well as those
           of our affiliates or other companies, in the form of words, graphics,
           and logos.
           <br />
           <br />
-          Your use of our Website, Blog or Services does not constitute any
+          Your use of the Platform, Blog or Services does not constitute any
           right or license for you to use our service marks or trademarks,
-          without the prior written permission of Bridgestars technologies
+          without the prior written permission of Bridgestars Technologies
           Sweden AB.
           <br />
           <br />
-          Our Content, as found within our Website, Blog and Services, is
-          protected under copyrights. The copying, redistribution, use or
-          publication by you of any such Content, is strictly prohibited. Your
-          use of our Website and Services does not grant you any ownership
-          rights to our Content.
+          Our Content, as found on the Platform, Blog and Services, is protected
+          under copyrights. The copying, redistribution, use or publication by
+          you of any such Content, is strictly prohibited. Your use of the
+          Platform and Services does not grant you any ownership rights to our
+          Content.
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
           ACCEPTABLE USE
@@ -87,31 +101,31 @@ export default function Copyright() {
           <br />
           <ol style={{ 'margin-left': 15 }} type='a'>
             <li>
-              use our website in any way or take any action that causes, or may
-              cause, damage to the website or impairment of the performance,
-              availability or accessibility of the website;
+              use the Platform in any way or take any action that causes, or may
+              cause, damage to the Platform or impairment of the performance,
+              availability or accessibility of the Platform;
               <br />
               <br />
             </li>
             <li>
-              use our website in any way that is unlawful, illegal, fraudulent
+              use the Platform in any way that is unlawful, illegal, fraudulent
               or harmful, or in connection with any unlawful, illegal,
               fraudulent or harmful purpose or activity;
               <br />
               <br />
             </li>
             <li>
-              use our website to copy, store, host, transmit, send, use, publish
-              or distribute any material which consists of (or is linked to) any
-              spyware, computer virus, Trojan horse, worm, keystroke logger,
-              rootkit or other malicious computer software; or
+              use the Platform to copy, store, host, transmit, send, use,
+              publish or distribute any material which consists of (or is linked
+              to) any spyware, computer virus, Trojan horse, worm, keystroke
+              logger, rootkit or other malicious computer software; or
               <br />
               <br />
             </li>
             <li>
               conduct any systematic or automated data collection activities
               (including without limitation scraping, data mining, data
-              extraction and data harvesting) on or in relation to our website
+              extraction and data harvesting) on or in relation to the Platform
               without our express written consent.
               <br />
               <br />
@@ -123,15 +137,12 @@ export default function Copyright() {
         </MKTypography>
         <MKTypography variant='body2' color='text'>
           {' '}
-          If you found any unlawful material or activity on our website, or any
+          If you found any unlawful material or activity on the Platform, or any
           material or activity that breaches this notice, please let us know.
           <br />
           <br />
-          You can let us know about any such material or activity by email us at{' '}
-          <a href='mailto: info@bridgestarstechnologies.com'>
-            info@bridgestarstechnologies.com
-          </a>
-          .
+          You can let us know about any such material or activity by emailing us
+          at <a href='mailto: info@bridgestars.se'>info@bridgestars.se</a>.
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
           ENFORCEMENT OF COPYRIGHT
@@ -151,12 +162,9 @@ export default function Copyright() {
         </MKTypography>
         <MKTypography variant='body2' color='text'>
           {' '}
-          You may request permission to use the copyright materials on our
-          website by email us at{' '}
-          <a href='mailto: info@bridgestarstechnologies.com'>
-            info@bridgestarstechnologies.com
-          </a>
-          .
+          You may request permission to use the copyright materials on the
+          Platform by emailing us at{' '}
+          <a href='mailto: info@bridgestars.se'>info@bridgestars.se</a>.
         </MKTypography>
       </MKBox>
     </>
