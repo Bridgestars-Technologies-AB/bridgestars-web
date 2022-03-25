@@ -87,7 +87,7 @@ function BetaSignupForm() {
 
   onAuthStateChanged(auth, (user) => {
     // Check for user status
-    console.log(user);
+    // console.log(user);
     //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
     if (user) {
       // User is signed in, see docs for a list of available properties
