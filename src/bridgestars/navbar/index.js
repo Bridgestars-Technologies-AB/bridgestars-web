@@ -516,7 +516,7 @@ function BridgestarsNavbar({
             to='/'
             lineHeight={1}
             py={transparent ? 0.5 : 0.5}
-            pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
+            pl={{ xs: 0, sm: 0, md: 1 }}
             sx={{
               ml: -2,
             }}
