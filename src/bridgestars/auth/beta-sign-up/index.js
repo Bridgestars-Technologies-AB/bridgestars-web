@@ -169,7 +169,9 @@ function BetaSignupForm() {
           </MKTypography>
           <MKTypography
             component='a'
-            href='#'
+            href='/policy'
+            target='_blank'
+            rel='noopener noreferrer'
             variant='button'
             fontWeight='bold'
             color='info'
