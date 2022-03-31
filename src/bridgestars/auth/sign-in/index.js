@@ -105,7 +105,30 @@ function SigninForm() {
     clearForm();
   };
 
-  const handleForgot = () => {};
+  const handleForgot = () => {
+    if (!values['email']) {
+      alert('Please enter your email and try again');
+    } else if (errors['email']) {
+      alert(errors['email']);
+    } else {
+      sendPasswordResetEmail(auth, values['email'])
+        .then(() =>
+          alert(
+            'A password reset request has been sent to:\n' +
+              values['email'] +
+              '\nPlease check your inbox for further instructions'
+          )
+        )
+        .catch((e) => {
+          const message = e.code;
+          if (message === 'auth/user-not-found')
+            alert(
+              'Could not find any account with this email, please try again.'
+            );
+          else alert(message);
+        });
+    }
+  };
 
   const form = (
     <MKBox component='form' role='form'>
@@ -188,12 +211,8 @@ function SigninForm() {
 
   return (
     <>
-      <MKBox component='section' bgColor='white'>
-        <Breadcrumbs
-          routes={[{ label: 'Home', route: '/' }, { label: 'Sign in' }]}
-        />
-      </MKBox>
       <IllustrationLayout
+        name='Sign In'
         logo={logo}
         title={title}
         description={description}

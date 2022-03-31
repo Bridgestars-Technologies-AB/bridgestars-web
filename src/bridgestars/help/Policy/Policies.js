@@ -37,7 +37,13 @@ export default function Policies() {
         <Container>
           <Grid container item justifyContent='center' xs={12} mx='auto'>
             <AppBar position='static'>
-              <Tabs value={activeTab} onChange={handleTabType}>
+              <Tabs
+                value={activeTab}
+                orientation={
+                  window.innerWidth < 450 ? 'vertical' : 'horizontal'
+                }
+                onChange={handleTabType}
+              >
                 <Tab label='Terms' icon={<Icon>gavel</Icon>} />
                 <Tab label='Privacy' icon={<Icon>health_and_safety</Icon>} />
                 <Tab label='Disclaimer' icon={<Icon>report_problem</Icon>} />

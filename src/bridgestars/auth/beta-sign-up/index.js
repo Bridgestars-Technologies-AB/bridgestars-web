@@ -198,17 +198,18 @@ function BetaSignupForm() {
               sx={{ cursor: 'default', userSelect: 'none', ml: -1 }}
             >
               &nbsp;&nbsp;I agree with the&nbsp;
-            </MKTypography>
-            <MKTypography
-              //component='button'
-              variant='button'
-              fontWeight='bold'
-              color='info'
-              textGradient
-              onClick={handlePolicyClick}
-              sx={{ cursor: 'pointer' }}
-            >
-              Terms and Conditions
+              <MKTypography
+                //component='button'
+                variant='button'
+                fontWeight='bold'
+                color='info'
+                textGradient
+                onClick={handlePolicyClick}
+                ml={window.innerWidth < 340 ? 1 : 0}
+                sx={{ cursor: 'pointer' }}
+              >
+                Terms and Conditions
+              </MKTypography>
             </MKTypography>
           </MKBox>
         </Grid>
@@ -223,7 +224,7 @@ function BetaSignupForm() {
             sign up
           </MKButton>
         </MKBox>
-        <MKBox mt={3} mb={1} textAlign='center'>
+        <MKBox mt={2} mb={1} textAlign='center'>
           <MKTypography
             variant='button'
             color='text'
@@ -296,7 +297,8 @@ function BetaSignupForm() {
         </MKBox>
       </Modal>
       <IllustrationLayout
-        logo={logo}
+        name='Sign Up'
+        logo={window.innerHeight > 600 || confirmed ? logo : ''}
         title={title}
         description={description}
         illustration={bgImage}

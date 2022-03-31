@@ -27,6 +27,7 @@ import { Grow } from '@mui/material';
 import MKBox from 'components/MKBox';
 import MKButton from 'components/MKButton';
 import MKTypography from 'components/MKTypography';
+import Breadcrumbs from 'examples/Breadcrumbs';
 
 // Otis Kit PRO example components
 import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
@@ -36,6 +37,7 @@ import routes from 'constants/routes';
 import { Button } from '@mui/material';
 
 function IllustrationLayout({
+  name,
   logo,
   header,
   title,
@@ -45,15 +47,22 @@ function IllustrationLayout({
 }) {
   return (
     <MKBox width='100%' height='100%' bgColor='white'>
-      <MKBox position='absolute' width='100%' mt={1}>
-        {/* <DefaultNavbar
+      {/* <MKBox position='absolute' width='100%' mt={1}>
+        <DefaultNavbar
           routes={routes}
           brand='Bridgestars'
           //transparent={{ xs: false, md: true }}
-        /> */}
+        />
+      </MKBox> */}
+      <MKBox position='absolute' component='section' mt={2} ml={2}>
+        <Breadcrumbs
+          bgcolor='transparent'
+          textcolor='text'
+          routes={[{ label: 'Home', route: '/' }, { label: name }]}
+        />
       </MKBox>
       <Grid container>
-        <Grid item xs={12} lg={6}>
+        {/* <Grid item xs={12} lg={6}>
           <MKBox
             display={{ xs: 'none', lg: 'flex' }}
             width='calc(100% - 2rem)'
@@ -65,8 +74,17 @@ function IllustrationLayout({
               backgroundImage: `url(${illustration})`,
             }}
           />
-        </Grid>
-        <Grid item xs={11} sm={8} md={5} lg={4} xl={3} sx={{ mx: 'auto' }}>
+        </Grid> */}
+        <Grid
+          item
+          xs={11}
+          sm={8}
+          md={5}
+          lg={4}
+          xl={3}
+          sx={{ mx: 'auto' }}
+          mt={2}
+        >
           <MKBox
             display='flex'
             flexDirection='column'
@@ -80,8 +98,8 @@ function IllustrationLayout({
                   <MKBox margin='auto' mb={3} mt={0}>
                     <Image
                       src={logo}
-                      width='15vmin'
-                      height='15vmin'
+                      width='10vh'
+                      height='10vh'
                       shift='bottom'
                       distance='2rem'
                       shiftDuration={750}

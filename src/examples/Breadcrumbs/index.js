@@ -26,9 +26,15 @@ import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 import MKBox from 'components/MKBox';
 import MKTypography from 'components/MKTypography';
 
-function Breadcrumbs({ routes, ...rest }) {
+function Breadcrumbs({ routes, bgcolor, textcolor, ...rest }) {
   return (
-    <MKBox bgColor='light' borderRadius='md' py={1} px={2} width='100%'>
+    <MKBox
+      bgColor={bgcolor || 'light'}
+      borderRadius='md'
+      py={1}
+      px={2}
+      width='100%'
+    >
       <MuiBreadcrumbs {...rest}>
         {routes.map(({ label, route }) =>
           route ? (
@@ -37,9 +43,10 @@ function Breadcrumbs({ routes, ...rest }) {
               component={Link}
               to={route}
               variant='button'
-              color='text'
-              fontWeight='regular'
-              opacity={0.8}
+              color='info'
+              fontWeight='bold'
+              fontSize='3vmin'
+              opacity={1}
               sx={{
                 '&:hover, &:focus': {
                   color: ({ palette: { info } }) => info.main,
@@ -49,7 +56,14 @@ function Breadcrumbs({ routes, ...rest }) {
               {label}
             </MKTypography>
           ) : (
-            <MKTypography key={label} variant='button' fontWeight='regular'>
+            <MKTypography
+              key={label}
+              variant='button'
+              fontWeight='bold'
+              fontSize='3vmin'
+              color='text'
+              opcaity={0.8}
+            >
               {label}
             </MKTypography>
           )
