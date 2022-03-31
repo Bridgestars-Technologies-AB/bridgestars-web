@@ -103,7 +103,9 @@ function BridgestarsHome() {
         },
       });
     }
-    //return () => typedJS.destroy();
+    return () => {
+      const typedJS = 'BRIDGESTARS';
+    };
   }, []);
 
   useEffect(() => {
@@ -123,7 +125,10 @@ function BridgestarsHome() {
         },
       });
     }
-    //return () => typedJS.destroy();
+    return () => {
+      const typedJS2 =
+        'Online Bridge platforms have become outdated.\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^600for free.';
+    };
   }, [typeNext]);
 
   return (

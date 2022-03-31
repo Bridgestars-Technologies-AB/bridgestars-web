@@ -18,11 +18,15 @@ import Checkbox from '@mui/material/Checkbox';
 
 // react-router-dom components
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // @mui material components
 import Switch from '@mui/material/Switch';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Component } from 'react';
+import Modal from '@mui/material/Modal';
+import { Icon } from '@mui/material';
+import { Grid } from '@mui/material';
 
 // Otis Kit PRO components
 import MKBox from 'components/MKBox';
@@ -47,6 +51,9 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
+
+import Policies from 'bridgestars/help/Policy/Policies';
+import { Button } from '@mui/material';
 
 function BetaSignupForm() {
   const [confirmed, setConfirmed] = useState(false);
@@ -110,7 +117,7 @@ function BetaSignupForm() {
 
   const [policy, setPolicy] = useState(false);
 
-  const { formDenied, values, errors, handleChange, handleSubmit } =
+  const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
     useValidator(formLogin);
 
   //Final submit function
@@ -121,6 +128,22 @@ function BetaSignupForm() {
     handleChange(event);
   };
 
+  const [showPolicy, setShowPolicy] = useState(false);
+  const handlePolicyClick = () => {
+    setShowPolicy(true);
+  };
+  const handlePolicyClose = () => {
+    setShowPolicy(false);
+  };
+
+  const navigateTo = useNavigate();
+
+  const handleSignOut = () => {
+    signOut(auth);
+    clearForm();
+    navigateTo('/signin');
+  };
+
   const form = () => {
     return (
       <MKBox component='form' role='form'>
@@ -129,8 +152,8 @@ function BetaSignupForm() {
             type='email'
             name='email'
             label='Email'
-            error={errors['email'] || formDenied}
-            success={values['email'] && !errors['email']}
+            error={errors['email'] ? true : false || formDenied}
+            success={values['email'] && !errors['email'] ? true : false}
             fullWidth
             onChange={handleChange}
           />
@@ -140,8 +163,8 @@ function BetaSignupForm() {
             type='password'
             name='password'
             label='Password'
-            error={errors['password'] || formDenied}
-            success={values['password'] && !errors['password']}
+            error={errors['password'] ? true : false || formDenied}
+            success={values['password'] && !errors['password'] ? true : false}
             fullWidth
             onChange={handleChange}
           />
@@ -150,36 +173,45 @@ function BetaSignupForm() {
           <MKInput
             type='password'
             name='password-check'
-            error={errors['password-check'] || formDenied}
-            success={values['password-check'] && !errors['password-check']}
+            error={errors['password-check'] ? true : false || formDenied}
+            success={
+              values['password-check'] && !errors['password-check']
+                ? true
+                : false
+            }
             label='Confirm Password'
             fullWidth
             onChange={handleChange}
           />
         </MKBox>
-        <MKBox display='flex' alignItems='center' ml={-1}>
-          <Checkbox checked={policy} name='policy' onChange={handleSetPolicy} />
-          <MKTypography
-            variant='button'
-            fontWeight='regular'
-            color='text'
-            sx={{ cursor: 'pointer', userSelect: 'none', ml: -1 }}
-          >
-            &nbsp;&nbsp;I agree with the&nbsp;
-          </MKTypography>
-          <MKTypography
-            component='a'
-            href='/policy'
-            target='_blank'
-            rel='noopener noreferrer'
-            variant='button'
-            fontWeight='bold'
-            color='info'
-            textGradient
-          >
-            Terms and Conditions
-          </MKTypography>
-        </MKBox>
+        <Grid container item xs={12} mb={-1} justifyContent='center'>
+          <MKBox display='flex' alignItems='center' ml={-1} fullWidth>
+            <Checkbox
+              checked={policy}
+              name='policy'
+              onChange={handleSetPolicy}
+            />
+            <MKTypography
+              variant='button'
+              fontWeight='regular'
+              color='text'
+              sx={{ cursor: 'default', userSelect: 'none', ml: -1 }}
+            >
+              &nbsp;&nbsp;I agree with the&nbsp;
+            </MKTypography>
+            <MKTypography
+              //component='button'
+              variant='button'
+              fontWeight='bold'
+              color='info'
+              textGradient
+              onClick={handlePolicyClick}
+              sx={{ cursor: 'pointer' }}
+            >
+              Terms and Conditions
+            </MKTypography>
+          </MKBox>
+        </Grid>
         <MKBox mt={4} mb={1}>
           <MKButton
             onClick={handleSubmit}
@@ -192,7 +224,11 @@ function BetaSignupForm() {
           </MKButton>
         </MKBox>
         <MKBox mt={3} mb={1} textAlign='center'>
-          <MKTypography variant='button' color='text'>
+          <MKTypography
+            variant='button'
+            color='text'
+            sx={{ cursor: 'default' }}
+          >
             Already registered?{' '}
             <MKTypography
               component={Link}
@@ -201,6 +237,7 @@ function BetaSignupForm() {
               color='info'
               fontWeight='medium'
               textGradient
+              sx={{ cursor: 'pointer' }}
             >
               See your status
             </MKTypography>
@@ -209,33 +246,106 @@ function BetaSignupForm() {
       </MKBox>
     );
   };
-
+  const style = {
+    position: 'absolute',
+    //top: '20%',
+    //left: '50%',
+    //transform: 'translate(-50%, -50%)',
+    width: '100%',
+    height: '50%',
+    bgcolor: 'white',
+    border: '0px',
+    boxShadow: 24,
+    p: 4,
+  };
   return (
-    <IllustrationLayout
-      logo={logo}
-      title={title}
-      description={description}
-      illustration={bgImage}
-    >
-      {!confirmed ? (
-        form()
-      ) : (
-        <MKBox mt={1} mb={1}>
-          <MKButton
-            variant='gradient'
-            component={Link}
-            to='/'
-            size='medium'
-            fontSize='2vmin'
+    <>
+      <Modal
+        open={showPolicy}
+        onClose={handlePolicyClose}
+        style={{ overflow: 'scroll' }}
+      >
+        <MKBox
+          style={style}
+          mt={3}
+          //textAlign='center'
+          width={{ xs: '100%', sm: '100%', md: '70%' }}
+        >
+          <Button
+            mx='auto'
+            mb={-1}
+            width={{ xs: '100%', sm: '100%', md: '70%' }}
+            variant='contained'
             fullWidth
-            color='info'
-            //sx={{ color: ({ palette: { dark } }) => dark.main }}
+            size='large'
+            color='error'
+            onClick={handlePolicyClose}
           >
-            home
-          </MKButton>
+            Close <Icon>close</Icon>
+          </Button>
+          <Policies />
+          <Button
+            fullWidth
+            variant='contained'
+            size='large'
+            color='error'
+            onClick={handlePolicyClose}
+          >
+            Close <Icon>close</Icon>
+          </Button>
         </MKBox>
-      )}
-    </IllustrationLayout>
+      </Modal>
+      <IllustrationLayout
+        logo={logo}
+        title={title}
+        description={description}
+        illustration={bgImage}
+      >
+        {!confirmed ? (
+          form()
+        ) : (
+          <>
+            <MKBox mt={1} mb={1}>
+              <MKButton
+                variant='gradient'
+                component={Link}
+                to='/'
+                size='medium'
+                fontSize='2vmin'
+                fullWidth
+                color='info'
+                //sx={{ color: ({ palette: { dark } }) => dark.main }}
+              >
+                home
+              </MKButton>
+            </MKBox>
+            <Grid container item xs={12} justifyContent='center'>
+              <MKBox display='flex' alignItems='center' ml={-1} fullWidth>
+                <MKTypography
+                  variant='button'
+                  fontWeight='regular'
+                  color='text'
+                  sx={{ cursor: 'default', userSelect: 'none', ml: -1 }}
+                >
+                  Don't want to stay signed in?&nbsp;
+                </MKTypography>
+                <MKTypography
+                  //component='button'
+                  variant='button'
+                  fontWeight='bold'
+                  color='info'
+                  textGradient
+                  onClick={handleSignOut}
+                  sx={{ cursor: 'pointer' }}
+                >
+                  Sign Out
+                </MKTypography>
+              </MKBox>
+            </Grid>
+          </>
+        )}
+      </IllustrationLayout>
+    </>
   );
 }
 

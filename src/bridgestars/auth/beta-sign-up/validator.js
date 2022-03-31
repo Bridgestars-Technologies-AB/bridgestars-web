@@ -104,12 +104,19 @@ const useValidator = (callback) => {
     }
   };
 
+  const clearForm = () => {
+    setErrors({});
+    setValues({});
+    setFormDenied(false);
+  };
+
   return {
     values,
     errors,
     handleChange,
     handleSubmit,
     formDenied,
+    clearForm,
   };
 };
 

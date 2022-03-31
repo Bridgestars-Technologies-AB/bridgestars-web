@@ -8,12 +8,14 @@ import { Link } from 'react-router-dom';
 import Switch from '@mui/material/Switch';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Component } from 'react';
+import { Grid } from '@mui/material';
 
 // Otis Kit PRO components
 import MKBox from 'components/MKBox';
 import MKTypography from 'components/MKTypography';
 import MKInput from 'components/MKInput';
 import MKButton from 'components/MKButton';
+import Breadcrumbs from 'examples/Breadcrumbs';
 
 // Authentication layout components
 import IllustrationLayout from '../IllustrationLayout';
@@ -30,6 +32,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 
 function SigninForm() {
@@ -72,7 +75,7 @@ function SigninForm() {
     'Enter your email and password'
   );
 
-  const { formDenied, values, errors, handleChange, handleSubmit } =
+  const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
     useValidator(formLogin);
 
   onAuthStateChanged(auth, (user) => {
@@ -97,7 +100,12 @@ function SigninForm() {
     handleChange(event);
   };
 
-  const handleForget = () => {};
+  const handleSignOut = () => {
+    signOut(auth);
+    clearForm();
+  };
+
+  const handleForgot = () => {};
 
   const form = (
     <MKBox component='form' role='form'>
@@ -116,8 +124,8 @@ function SigninForm() {
           type='email'
           name='email'
           label='Email'
-          error={errors['email'] || formDenied}
-          success={values['email'] && !errors['email']}
+          error={errors['email'] ? true : false || formDenied}
+          success={values['email'] && !errors['email'] ? true : false}
           fullWidth
           onChange={handleChange}
         />
@@ -127,8 +135,8 @@ function SigninForm() {
           type='password'
           name='password'
           label='Password'
-          error={errors['password'] || formDenied}
-          success={values['password'] && !errors['password']}
+          error={errors['password'] ? true : false || formDenied}
+          success={values['password'] && !errors['password'] ? true : false}
           fullWidth
           onChange={handleChange}
         />
@@ -160,52 +168,85 @@ function SigninForm() {
           </MKTypography>
         </MKTypography>
       </MKBox>
-      {/* <MKBox mt={1} mb={0} textAlign='center'>
-        <MKTypography variant='button' color='text'>
+      <Grid container item xs={12} justifyContent='center'>
+        <MKBox display='flex' alignItems='center' ml={-1} fullWidth>
           <MKTypography
-            component={Link}
-            to='/signin'
+            //component='button'
             variant='button'
+            fontWeight='bold'
             color='info'
-            fontWeight='medium'
             textGradient
-            onClick={handleForget}
+            onClick={handleForgot}
+            sx={{ cursor: 'pointer' }}
           >
-            Forgot your password?{' '}
+            Forgot your password?
           </MKTypography>
-        </MKTypography>
-      </MKBox> */}
+        </MKBox>
+      </Grid>
     </MKBox>
   );
 
   return (
-    <IllustrationLayout
-      logo={logo}
-      title={title}
-      description={description}
-      illustration={bgImage}
-    >
-      {/* title='Sign in to your Bridgestars account'
+    <>
+      <MKBox component='section' bgColor='white'>
+        <Breadcrumbs
+          routes={[{ label: 'Home', route: '/' }, { label: 'Sign in' }]}
+        />
+      </MKBox>
+      <IllustrationLayout
+        logo={logo}
+        title={title}
+        description={description}
+        illustration={bgImage}
+      >
+        {/* title='Sign in to your Bridgestars account'
       description='Enter your email and password' */}
-      {!signedIn ? (
-        form
-      ) : (
-        <MKBox mt={1} mb={1}>
-          <MKButton
-            variant='gradient'
-            component={Link}
-            to='/'
-            size='medium'
-            fontSize='2vmin'
-            fullWidth
-            color='info'
-            //sx={{ color: ({ palette: { dark } }) => dark.main }}
-          >
-            home
-          </MKButton>
-        </MKBox>
-      )}
-    </IllustrationLayout>
+        {!signedIn ? (
+          form
+        ) : (
+          <>
+            {' '}
+            <MKBox mt={0} mb={2}>
+              <MKButton
+                variant='gradient'
+                component={Link}
+                to='/'
+                size='medium'
+                fontSize='2vmin'
+                fullWidth
+                color='info'
+                //sx={{ color: ({ palette: { dark } }) => dark.main }}
+              >
+                home
+              </MKButton>
+            </MKBox>
+            <Grid container item xs={12} justifyContent='center'>
+              <MKBox display='flex' alignItems='center' ml={-1} fullWidth>
+                <MKTypography
+                  variant='button'
+                  fontWeight='regular'
+                  color='text'
+                  sx={{ cursor: 'default', userSelect: 'none', ml: -1 }}
+                >
+                  Don't want to stay signed in?&nbsp;
+                </MKTypography>
+                <MKTypography
+                  //component='button'
+                  variant='button'
+                  fontWeight='bold'
+                  color='info'
+                  textGradient
+                  onClick={handleSignOut}
+                  sx={{ cursor: 'pointer' }}
+                >
+                  Sign Out
+                </MKTypography>
+              </MKBox>
+            </Grid>
+          </>
+        )}
+      </IllustrationLayout>
+    </>
   );
 }
 
