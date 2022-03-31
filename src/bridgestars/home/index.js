@@ -135,12 +135,16 @@ function BridgestarsHome() {
     <>
       <BridgestarsNavbar
         routes={routes}
-        action={{
-          type: 'internal',
-          route: '/signin',
-          label: 'sign in',
-          color: 'primary',
-        }}
+        action={
+          window.innerWidth > 370
+            ? {
+                type: 'internal',
+                route: '/signin',
+                label: 'sign in',
+                color: 'primary',
+              }
+            : false
+        }
         transparent
         light
       />
@@ -247,7 +251,7 @@ function BridgestarsHome() {
           sx={{
             p: 2,
             mx: { xs: 2, lg: 3 },
-            mt: -8,
+            mt: -4,
             mb: 4,
             width: { xxl: 1600, xl: '100%' },
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
