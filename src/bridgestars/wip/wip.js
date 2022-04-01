@@ -1,4 +1,7 @@
+import MKButton from 'components/MKButton';
+import { useNavigate } from 'react-router-dom';
 export default function WIP() {
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -13,22 +16,22 @@ export default function WIP() {
         id='message'
         style={{
           background: 'white',
-          'max-width': '360px',
+          maxWidth: '360px',
           margin: '100px auto 16px',
           padding: '32px 24px 16px',
-          'border-radius': '3px',
+          borderRadius: '3px',
         }}
       >
         <h2
           style={{
             background: 'white',
-            'max-width': '360px',
+            maxWidth: '360px',
             margin: '100px auto 16px',
             padding: '32px 24px 16px',
-            'border-radius': '3px',
+            borderRadius: '3px',
             color: '#ffa100',
-            'font-weight': 'bold',
-            'font-size': '16px',
+            fontWeight: 'bold',
+            fontSize: '16px',
             margin: '0 0 8px',
           }}
         >
@@ -37,22 +40,32 @@ export default function WIP() {
         <h1
           style={{
             background: 'white',
-            'max-width': '360px',
+            maxWidth: '360px',
             margin: '100px auto 16px',
             padding: '32px 24px 16px',
-            'border-radius': '3px',
+            borderRadius: '3px',
             color: '#ffa100',
-            'font-weight': 300,
-            'font-size': '22px',
+            fontWeight: 500,
+            fontSize: '22px',
             margin: '0 0 16px',
             color: 'rgba(0, 0, 0, 0.6)',
           }}
         >
-          This page has not yet been developed
+          This page is under construction, please come back in a while
         </h1>
         <p>
-          The specified file was not found on this website. Please come back
-          again later.
+          <MKButton
+            fullWidth
+            mt={2}
+            //fontSize='5vmin'
+            size='large'
+            variant='text'
+            color='dark'
+            sx={{ color: '#ffa100' }}
+            onClick={() => navigate('/', { replace: true })}
+          >
+            GO BACK
+          </MKButton>
         </p>
       </div>
     </div>

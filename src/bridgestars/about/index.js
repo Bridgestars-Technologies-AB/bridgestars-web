@@ -61,12 +61,16 @@ function About() {
     <>
       <BridgestarsNavbar
         routes={routes.filter((r) => r.name != 'About us')}
-        action={{
-          type: 'internal',
-          route: '/signin',
-          label: 'sign in',
-          color: 'primary',
-        }}
+        action={
+          window.innerWidth > 370
+            ? {
+                type: 'internal',
+                route: '/signin',
+                label: 'sign in',
+                color: 'primary',
+              }
+            : false
+        }
         transparent
         light
       />
@@ -95,6 +99,7 @@ function About() {
             item
             xs={12}
             lg={7}
+            ml={1}
             justifyContent='center'
             flexDirection='column'
           >

@@ -119,16 +119,22 @@ const routes = [
     route: '/about',
     //component: <About />,
   },
-  {
-    name: 'FAQ',
-    icon: <Icon>help</Icon>,
-    route: '/wip',
-    //component: <SigninForm />,
-  },
+  // {
+  //   name: 'FAQ',
+  //   icon: <Icon>help</Icon>,
+  //   route: '/wip',
+  //   //component: <SigninForm />,
+  // },
   {
     name: 'Policy',
     icon: <Icon>policy</Icon>,
     route: '/policy',
+    //component: <SigninForm />,
+  },
+  {
+    name: 'Sign In',
+    icon: <Icon>account_circle</Icon>,
+    route: '/signin',
     //component: <SigninForm />,
   },
 ];

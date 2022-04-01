@@ -190,7 +190,7 @@ function BridgestarsHome() {
               variant='h1'
               color='primary'
               align='center'
-              textGradient='true'
+              textGradient={true}
               fontSize='10vmin'
             >
               <span ref={typedHeaderRef} />

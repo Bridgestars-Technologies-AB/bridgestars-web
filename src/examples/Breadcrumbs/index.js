@@ -35,7 +35,10 @@ function Breadcrumbs({ routes, bgcolor, textcolor, ...rest }) {
       px={2}
       width='100%'
     >
-      <MuiBreadcrumbs {...rest}>
+      <MuiBreadcrumbs
+        separator={<MKTypography fontSize='3vmin'>/</MKTypography>}
+        {...rest}
+      >
         {routes.map(({ label, route }) =>
           route ? (
             <MKTypography
@@ -62,7 +65,7 @@ function Breadcrumbs({ routes, bgcolor, textcolor, ...rest }) {
               fontWeight='bold'
               fontSize='3vmin'
               color='text'
-              opcaity={0.8}
+              opacity={0.8}
             >
               {label}
             </MKTypography>
