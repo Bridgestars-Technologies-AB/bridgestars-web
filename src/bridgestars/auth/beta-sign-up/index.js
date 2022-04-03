@@ -43,7 +43,7 @@ import logo from 'assets/images/bridgestars/logo-trans-512px.png';
 import useValidator from 'bridgestars/auth/beta-sign-up/validator.js';
 
 // Firebase
-import firebaseApp from 'firebase-config';
+import { firebaseApp } from 'firebase-config';
 import {
   getAuth,
   onAuthStateChanged,
