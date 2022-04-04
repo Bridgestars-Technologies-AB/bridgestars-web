@@ -81,13 +81,13 @@ function BridgestarsHome() {
   const typedSubHeaderRef = useRef(null);
 
   // Setting up rellax
-  useEffect(() => {
-    const parallax = new Rellax(headerRef.current, {
-      speed: -6,
-    });
+  // useEffect(() => {
+  //   const parallax = new Rellax(headerRef.current, {
+  //     speed: -6,
+  //   });
 
-    return () => parallax.destroy();
-  }, []);
+  //   return () => parallax.destroy();
+  // }, []);
 
   // Setting up typedJS
   useEffect(() => {
