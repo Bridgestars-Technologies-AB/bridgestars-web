@@ -75,7 +75,7 @@ export default {
         fontWeight='regular'
         //color='info'
       >
-        Bridgestars Technologies AB
+        Bridgestars Technologies Sweden AB
       </MKTypography>
       .
     </MKTypography>
