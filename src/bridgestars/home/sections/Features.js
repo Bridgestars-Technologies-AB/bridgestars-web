@@ -32,10 +32,20 @@ import unity from 'assets/images/logos/logo-unity.png';
 import MKBadge from 'components/MKBadge';
 import MKTypography from 'components/MKTypography';
 
+import image from 'assets/images/bridgestars/home_page.png';
+
 function Features(...rest) {
   return (
-    <MKBox {...rest} component='section' py={{ xs: 6, md: 12 }}>
+    <MKBox {...rest} component='section' pb={{ xs: 6, md: 12 }}>
       <Container>
+        <Grid container item alignItems='center' flexDirection='column'>
+          <MKBox
+            mt={-2}
+            component='img'
+            src={image}
+            width={{ xs: '100%', sm: '80%', xl: '50%' }}
+          ></MKBox>
+        </Grid>
         <Grid
           container
           item
@@ -45,7 +55,7 @@ function Features(...rest) {
           xs={12}
           lg={8}
           sx={{ textAlign: 'center', mx: 'auto' }}
-          mb={8}
+          mb={6}
           mt={-2}
         >
           {/* <MKBadge
@@ -56,7 +66,7 @@ function Features(...rest) {
             circular
             sx={{ mb: 1 }}
           /> */}
-          <MKTypography variant='h2' mb={1}>
+          <MKTypography variant='h2' mb={1} fontSize='min(10vmin, 50px)'>
             The platform you've always wanted{' '}
           </MKTypography>
           <MKTypography variant='body2' color='text'>
@@ -65,6 +75,7 @@ function Features(...rest) {
             community.
           </MKTypography>
         </Grid>
+
         <Grid container item xs={12} justifyContent='space-evenly'>
           <Grid
             item

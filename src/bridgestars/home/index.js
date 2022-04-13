@@ -179,8 +179,10 @@ function BridgestarsHome() {
           <Grid
             container
             item
+            width='100%'
             xs={12}
-            lg={8}
+            lg={12}
+            py='auto'
             justifyContent='center'
             alignItems='center'
             flexDirection='column'
@@ -191,7 +193,7 @@ function BridgestarsHome() {
               color='primary'
               align='center'
               textGradient={true}
-              fontSize='10vmin'
+              fontSize='calc(10px + 8vmin)'
               mt={3}
             >
               <span ref={typedHeaderRef} />
@@ -199,7 +201,7 @@ function BridgestarsHome() {
             <MKTypography
               variant='body1'
               color='white'
-              fontSize='calc(6px + 1.5vh)'
+              fontSize='calc(6px + 1.25vh)'
               opacity={0.8}
               mt={1}
               mb={3}
