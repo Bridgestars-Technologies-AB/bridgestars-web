@@ -94,7 +94,7 @@ function BridgestarsHome() {
     if (typeNext == 0) {
       const typedJS = new Typed(typedHeaderRef.current, {
         strings: ['BRIDGESTARS'],
-        typeSpeed: 90,
+        typeSpeed: 70,
         startDelay: 150,
         loop: false,
         showCursor: false,
@@ -112,12 +112,12 @@ function BridgestarsHome() {
     if (typeNext == 1) {
       const typedJS2 = new Typed(typedSubHeaderRef.current, {
         strings: [
-          'Online Bridge platforms have become outdated. ^600\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^600for free.',
+          'Online Bridge platforms have become outdated. ^300\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^300for free.',
         ],
-        typeSpeed: 20,
+        typeSpeed: 15,
         backSpeed: 90,
         backDelay: 200,
-        startDelay: 500,
+        startDelay: 300,
         loop: false,
         showCursor: false,
         onStart: () => {
@@ -127,7 +127,7 @@ function BridgestarsHome() {
     }
     return () => {
       const typedJS2 =
-        'Online Bridge platforms have become outdated.\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^600for free.';
+        'Online Bridge platforms have become outdated.\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^300for free.';
     };
   }, [typeNext]);
 
@@ -203,49 +203,59 @@ function BridgestarsHome() {
               color='white'
               fontSize='calc(6px + 1.25vh)'
               opacity={0.8}
+              width={{ xs: '90%', md: '60%' }}
+              minHeight={'100px'}
               mt={1}
               mb={3}
             >
               <span ref={typedSubHeaderRef} />
             </MKTypography>
-            <MKButton
-              variant='gradient'
-              component={Link}
-              to='/betasignup'
-              size='medium'
-              fontSize='2vmin'
-              color='default'
-              sx={{ color: ({ palette: { dark } }) => dark.main }}
-            >
-              create account
-            </MKButton>
-            <MKTypography
-              variant='h6'
-              color='white'
-              sx={{ mt: { xs: 2, sm: 8 } }}
-              mb={0}
-            >
-              Find us on
-            </MKTypography>
-            <MKBox display='flex' justifyContent='center' alignItems='center'>
-              <MKBox display='flex' alignItems='center'>
-                {footerRoutes.socials.map((social) => (
-                  <MKTypography
-                    key={social.name}
-                    component='a'
-                    href={social.link}
-                    variant={social.name === 'Mail' ? 'h4' : 'body1'}
-                    color={'white'}
-                    fontWeight='regular'
-                    ml={1.5}
-                    mr={1.5}
-                    mt={social.name === 'Mail' ? 0.8 : 0}
-                  >
-                    {social.icon}
-                  </MKTypography>
-                ))}
-              </MKBox>
-            </MKBox>
+            <Fade in>
+              <Container>
+                <MKButton
+                  variant='gradient'
+                  component={Link}
+                  to='/betasignup'
+                  size='medium'
+                  fontSize='2vmin'
+                  color='default'
+                  sx={{ color: ({ palette: { dark } }) => dark.main }}
+                >
+                  create account
+                </MKButton>
+                <MKTypography
+                  variant='h6'
+                  color='white'
+                  sx={{ mt: { xs: 2, sm: 8 } }}
+                  mb={0}
+                >
+                  Find us on
+                </MKTypography>
+                <MKBox
+                  display='flex'
+                  justifyContent='center'
+                  alignItems='center'
+                >
+                  <MKBox display='flex' alignItems='center'>
+                    {footerRoutes.socials.map((social) => (
+                      <MKTypography
+                        key={social.name}
+                        component='a'
+                        href={social.link}
+                        variant={social.name === 'Mail' ? 'h4' : 'body1'}
+                        color={'white'}
+                        fontWeight='regular'
+                        ml={1.5}
+                        mr={1.5}
+                        mt={social.name === 'Mail' ? 0.8 : 0}
+                      >
+                        {social.icon}
+                      </MKTypography>
+                    ))}
+                  </MKBox>
+                </MKBox>
+              </Container>
+            </Fade>
           </Grid>
         </Container>
       </MKBox>
