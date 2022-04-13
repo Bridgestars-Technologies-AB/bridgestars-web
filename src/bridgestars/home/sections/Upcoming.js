@@ -30,6 +30,30 @@ import {
 function Upcoming() {
   const data = [
     {
+      icon: 'smart_toy',
+      title: 'Intelligent Computer Player',
+      items: [
+        'Knowledge of multiple bidding systems',
+        'Capable of advanced play',
+      ],
+      implemented: [false, false],
+    },
+    {
+      icon: 'credit_card',
+      title: 'Play with Real Money',
+      items: ['Tournament with prize pools', 'Versus with stakes'],
+      implemented: false,
+    },
+    {
+      icon: 'extension',
+      title: 'Puzzles & Problems',
+      items: [
+        'Suit combination puzzles and double dummy problems',
+        'Puzzles that challenge bidding and declaring skills',
+      ],
+      implemented: [false, false],
+    },
+    {
       icon: 'videocamera',
       title: 'Delayed Kibitzing',
       items: [
@@ -40,37 +64,13 @@ function Upcoming() {
     },
     {
       icon: 'devices',
-      title: 'Native device support',
+      title: 'Native Device Support',
       items: ['MacOS, Windows, Linux', 'Web and Mobile'],
       implemented: [true, false],
     },
     {
-      icon: 'smart_toy',
-      title: 'Intelligent computer player',
-      items: [
-        'Knowledge of multiple bidding systems',
-        'Capable of advanced play',
-      ],
-      implemented: [false, false],
-    },
-    {
-      icon: 'extension',
-      title: 'Puzzles that practice edge cases',
-      items: [
-        'Suit combination puzzles and dubbly dummy problems',
-        'Puzzles that challenge bidding and declaring skills',
-      ],
-      implemented: [false, false],
-    },
-    {
-      icon: 'credit_card',
-      title: 'Support for real money',
-      items: ['Tournament with prize pools', 'Versus with stakes'],
-      implemented: false,
-    },
-    {
       icon: 'emoji_events',
-      title: 'Global tournaments',
+      title: 'Global Tournaments',
       items: [
         'Competitive tournaments spanning days or weeks',
         'Let organizations host tournaments',
@@ -109,46 +109,72 @@ function Upcoming() {
             server.
           </MKTypography>
         </Grid>
-
-        <Grid container sx={{ mt: 6 }} textAlign='center'>
-          {data.map(({ icon, title, items, implemented }) => (
-            <Grid key={icon} item xs={12} md={6} lg={4} textAlign='center'>
-              <MKBox py={2} pr={2} mb={2}>
-                <MKTypography variant='h3' color='primary'>
-                  <Icon>{icon}</Icon>
-                </MKTypography>
-                <MKTypography variant='h5' mt={2} mb={2}>
-                  {title}
-                </MKTypography>
-                {items.map((item, index) => (
-                  <MKBox
-                    key={item}
-                    display='flex'
-                    lineHeight={1.25}
-                    sx={{ justifyContent: 'center' }}
-                  >
-                    <MKTypography variant='body1' color='primary'>
-                      <Icon sx={{ fontWeight: 'bold' }}>
-                        {implemented[index]
-                          ? 'task_alt'
-                          : 'radio_button_unchecked'}
-                      </Icon>
-                    </MKTypography>
-                    <MKBox pl={2}>
-                      <MKTypography
-                        variant='button'
-                        color='text'
-                        fontWeight='bold'
+        <MKBox sx={{ ml: { xs: 0, sm: 0, md: 10, xl: 20 }, mr: { xl: 10 } }}>
+          <Grid container sx={{ mt: 6 }}>
+            {data.map(({ icon, title, items, implemented }) => (
+              <Grid
+                key={icon}
+                item
+                xs={12}
+                md={6}
+                lg={4}
+                sx={{ textAlign: { xs: 'center', sm: 'center', md: 'left' } }}
+              >
+                <MKBox py={2} pr={2} mb={2}>
+                  <MKTypography variant='h3' color='primary'>
+                    <Icon>{icon}</Icon>
+                  </MKTypography>
+                  <MKTypography variant='h5' mt={2} mb={2}>
+                    {title}
+                  </MKTypography>
+                  {items.map((item, index) => (
+                    <MKBox
+                      key={item}
+                      display='flex'
+                      lineHeight={1.25}
+                      mx='auto'
+                      //sx={{ justifyContent: 'center' }}
+                      //textAlign='left'
+                      //textAlign='left'
+                    >
+                      <MKBox
+                        //textAlign='left'
+                        sx={{
+                          justifyContent: {
+                            xs: 'center',
+                            sm: 'center',
+                            md: 'left',
+                          },
+                          //ml: { xs: 0, sm: 5, md: 0 },
+                        }}
+                        display='flex'
+                        lineHeight={1.25}
+                        //mx='auto'
                       >
-                        {item}
-                      </MKTypography>
+                        <MKTypography variant='body1' color='primary'>
+                          <Icon sx={{ fontWeight: 'bold' }}>
+                            {implemented[index]
+                              ? 'task_alt'
+                              : 'radio_button_unchecked'}
+                          </Icon>
+                        </MKTypography>
+                        <MKBox pl={2}>
+                          <MKTypography
+                            variant='button'
+                            color='text'
+                            fontWeight='bold'
+                          >
+                            {item}
+                          </MKTypography>
+                        </MKBox>
+                      </MKBox>
                     </MKBox>
-                  </MKBox>
-                ))}
-              </MKBox>
-            </Grid>
-          ))}
-        </Grid>
+                  ))}
+                </MKBox>
+              </Grid>
+            ))}
+          </Grid>
+        </MKBox>
       </Container>
     </MKBox>
   );

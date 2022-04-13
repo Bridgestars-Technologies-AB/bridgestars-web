@@ -192,6 +192,7 @@ function BridgestarsHome() {
               align='center'
               textGradient={true}
               fontSize='10vmin'
+              mt={3}
             >
               <span ref={typedHeaderRef} />
             </MKTypography>
@@ -219,8 +220,8 @@ function BridgestarsHome() {
             <MKTypography
               variant='h6'
               color='white'
-              sx={{ mt: { xs: 6, sm: 10 } }}
-              mb={1}
+              sx={{ mt: { xs: 2, sm: 8 } }}
+              mb={0}
             >
               Find us on
             </MKTypography>

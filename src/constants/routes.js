@@ -131,12 +131,12 @@ const routes = [
     route: '/policy',
     //component: <SigninForm />,
   },
-  {
-    name: 'Sign In',
-    icon: <Icon>account_circle</Icon>,
-    route: '/signin',
-    //component: <SigninForm />,
-  },
+  // {
+  //   name: 'Sign In',
+  //   icon: <Icon>account_circle</Icon>,
+  //   route: '/signin',
+  //   //component: <SigninForm />,
+  // },
 ];
 
 // const routesOld = [
