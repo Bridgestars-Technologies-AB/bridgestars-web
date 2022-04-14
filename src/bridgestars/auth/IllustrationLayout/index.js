@@ -36,6 +36,8 @@ import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
 import routes from 'constants/routes';
 import { Button } from '@mui/material';
 
+import image from 'assets/images/bridgestars/sign_in.png';
+
 function IllustrationLayout({
   name,
   logo,
@@ -62,7 +64,7 @@ function IllustrationLayout({
         />
       </MKBox>
       <Grid container>
-        {/* <Grid item xs={12} lg={6}>
+        <Grid item xs={12} lg={6}>
           <MKBox
             display={{ xs: 'none', lg: 'flex' }}
             width='calc(100% - 2rem)'
@@ -71,10 +73,12 @@ function IllustrationLayout({
             ml={2}
             mt={2}
             sx={{
-              backgroundImage: `url(${illustration})`,
+              backgroundImage: `url(${image})`,
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
             }}
           />
-        </Grid> */}
+        </Grid>
         <Grid
           item
           xs={11}
