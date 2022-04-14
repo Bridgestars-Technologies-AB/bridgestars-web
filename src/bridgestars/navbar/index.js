@@ -55,6 +55,7 @@ function BridgestarsNavbar({
   sticky,
   relative,
   center,
+  shadow,
 }) {
   const [dropdown, setDropdown] = useState('');
   const [dropdownEl, setDropdownEl] = useState('');
@@ -495,7 +496,7 @@ function BridgestarsNavbar({
         mx={relative ? 0 : 3}
         width={relative ? '100%' : 'calc(100% - 48px)'}
         borderRadius='xl'
-        shadow={transparent ? 'none' : 'md'}
+        shadow={shadow ? 'md' : 'none'}
         color={light ? 'white' : 'dark'}
         position={relative ? 'relative' : 'absolute'}
         left={0}

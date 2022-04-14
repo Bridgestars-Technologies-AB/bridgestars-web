@@ -147,6 +147,7 @@ function BridgestarsHome() {
         }
         transparent
         light
+        shadow
       />
       <MKBox
         ref={headerRef}

@@ -41,7 +41,7 @@ import routes from 'constants/routes';
 import footerRoutes from 'constants/footer.routes';
 
 // Images
-import bgImage from 'assets/images/bg5.jpg';
+import bgImage from 'assets/images/bridgestars/about_us.png';
 import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
 import BridgestarsNavbar from 'bridgestars/navbar';
 
@@ -49,17 +49,17 @@ function About() {
   const headerRef = useRef(null);
 
   // Setting up rellax
-  useEffect(() => {
-    const parallax = new Rellax(headerRef.current, {
-      speed: -6,
-    });
+  // useEffect(() => {
+  //   const parallax = new Rellax(headerRef.current, {
+  //     speed: -6,
+  //   });
 
-    return () => parallax.destroy();
-  }, []);
+  //   return () => parallax.destroy();
+  // }, []);
 
   return (
     <>
-      <BridgestarsNavbar
+      {/* <BridgestarsNavbar
         routes={routes.filter((r) => r.name != 'About us')}
         action={
           window.innerWidth > 370
@@ -158,10 +158,46 @@ function About() {
           }}
         >
           <Information />
-          {/* <Steps /> */}
-          {/* <OurEfforts />
-          <Features /> */}
-          {/* <Posts /> */}
+
+        </Card>
+      </Grid> */}
+      <Grid container width='100%' justifyContent='center'>
+        <Card
+          sx={{
+            p: 2,
+            mx: { xs: 2, lg: 3 },
+            mt: 4,
+            mb: 4,
+            width: { xxl: 1600, xl: '100%' },
+            boxShadow: ({ boxShadows: { xxl } }) => xxl,
+          }}
+        >
+          <BridgestarsNavbar
+            routes={routes.filter((r) => r.name != 'About us')}
+            action={
+              window.innerWidth > 370
+                ? {
+                    type: 'internal',
+                    route: '/signin',
+                    label: 'sign in',
+                    color: 'primary',
+                  }
+                : false
+            }
+            sticky
+            dark
+            //transparent
+          />
+          <Grid container item alignItems='center' flexDirection='column'>
+            <MKBox
+              mt={5}
+              mb={-2}
+              component='img'
+              src={bgImage}
+              width={{ xs: '100%', sm: '80%', xl: '50%' }}
+            ></MKBox>
+          </Grid>
+          <Information />
         </Card>
       </Grid>
       <MKBox pt={6} px={1} mt={6}>
