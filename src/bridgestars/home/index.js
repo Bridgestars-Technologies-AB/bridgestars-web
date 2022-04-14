@@ -134,7 +134,7 @@ function BridgestarsHome() {
   return (
     <>
       <BridgestarsNavbar
-        routes={routes}
+        routes={routes.filter((r) => r.name != 'Home')}
         action={
           window.innerWidth > 370
             ? {

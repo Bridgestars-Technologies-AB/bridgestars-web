@@ -99,6 +99,7 @@ import Tables from 'layouts/sections/elements/tables';
 import Toggles from 'layouts/sections/elements/toggles';
 import Typography from 'layouts/sections/elements/typography';
 import About from 'bridgestars/about';
+import BridgestarsHome from 'bridgestars/home/index.js';
 
 const routes = [
   // {
@@ -113,6 +114,12 @@ const routes = [
   //   route: '/signin',
   //   component: <SigninForm />,
   // },
+  {
+    name: 'Home',
+    icon: <Icon>home</Icon>,
+    route: '/',
+    component: <BridgestarsHome />,
+  },
   {
     name: 'About us',
     icon: <Icon>info</Icon>,
