@@ -32,7 +32,7 @@ import unity from 'assets/images/logos/logo-unity.png';
 import MKBadge from 'components/MKBadge';
 import MKTypography from 'components/MKTypography';
 
-import image from 'assets/images/bridgestars/home_page.png';
+import image from 'assets/images/bridgestars/home_page.svg';
 
 function Features(...rest) {
   return (
@@ -40,7 +40,7 @@ function Features(...rest) {
       <Container>
         <Grid container item alignItems='center' flexDirection='column'>
           <MKBox
-            mt={-2}
+            my={3}
             component='img'
             src={image}
             width={{ xs: '100%', sm: '80%', xl: '50%' }}

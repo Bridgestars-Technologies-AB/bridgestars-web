@@ -36,7 +36,7 @@ import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
 import routes from 'constants/routes';
 import { Button } from '@mui/material';
 
-import image from 'assets/images/bridgestars/sign_in.png';
+import image from 'assets/images/bridgestars/sign_in.svg';
 
 function IllustrationLayout({
   name,

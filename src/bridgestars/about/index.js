@@ -41,7 +41,7 @@ import routes from 'constants/routes';
 import footerRoutes from 'constants/footer.routes';
 
 // Images
-import bgImage from 'assets/images/bridgestars/about_us.png';
+import bgImage from 'assets/images/bridgestars/about_us.svg';
 import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
 import BridgestarsNavbar from 'bridgestars/navbar';
 
@@ -186,11 +186,12 @@ function About() {
             }
             sticky
             dark
+            fullWidth
             //transparent
           />
           <Grid container item alignItems='center' flexDirection='column'>
             <MKBox
-              mt={5}
+              mt={10}
               mb={-2}
               component='img'
               src={bgImage}

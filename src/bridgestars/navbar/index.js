@@ -56,6 +56,7 @@ function BridgestarsNavbar({
   relative,
   center,
   shadow,
+  fullWidth,
 }) {
   const [dropdown, setDropdown] = useState('');
   const [dropdownEl, setDropdownEl] = useState('');
@@ -491,10 +492,14 @@ function BridgestarsNavbar({
     <Container sx={sticky ? { position: 'sticky', top: 0, zIndex: 10 } : null}>
       <MKBox
         py={1}
-        px={{ xs: 4, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}
+        px={{
+          xs: fullWidth ? 0 : 4,
+          sm: fullWidth ? 0 : transparent ? 2 : 3,
+          lg: fullWidth ? 0 : transparent ? 0 : 2,
+        }}
         my={relative ? 0 : 2}
-        mx={relative ? 0 : 3}
-        width={relative ? '100%' : 'calc(100% - 48px)'}
+        mx={fullWidth ? 0 : relative ? 0 : 3}
+        width={fullWidth ? '100%' : relative ? '100%' : 'calc(100% - 48px)'}
         borderRadius='xl'
         shadow={shadow ? 'md' : 'none'}
         color={light ? 'white' : 'dark'}
@@ -511,7 +516,12 @@ function BridgestarsNavbar({
           backdropFilter: transparent ? 'none' : `saturate(400%) blur(30px)`,
         })}
       >
-        <MKBox display='flex' justifyContent='space-between' alignItems='left'>
+        <MKBox
+          display='flex'
+          justifyContent='space-between'
+          alignItems='left'
+          mx={1}
+        >
           <MKBox
             component={Link}
             to='/'
