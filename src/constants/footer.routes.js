@@ -33,7 +33,7 @@ const socials = [
   },
   {
     name: 'Mail',
-    link: 'mailto: bridgestarstechnologies@gmail.com',
+    link: 'mailto: info@bridgestars.net',
     icon: <Icon>email</Icon>,
   },
 ];

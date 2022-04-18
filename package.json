@@ -2,10 +2,10 @@
   "name": "Bridgestars",
   "version": "2.0.0",
   "private": true,
-  "author": "Bridgestars Techonlogies AB",
-  "license": "See license in https://bridgestars.se/license",
+  "author": "Bridgestars Technologies Sweden AB",
+  "license": "See license in https://bridgestars.net/policy",
   "description": "Bridgestars",
-  "homepage": "https://bridgestars.se",
+  "homepage": "https://bridgestars.net",
   "engines": {
     "node": "14 || 15 || 16",
     "npm": ">=6"
@@ -28,6 +28,7 @@
     "mui-image": "^1.0.4",
     "prop-types": "15.7.2",
     "react": "17.0.2",
+    "react-cookie-consent": "^7.4.1",
     "react-copy-to-clipboard": "5.0.4",
     "react-countup": "6.1.0",
     "react-dom": "17.0.2",

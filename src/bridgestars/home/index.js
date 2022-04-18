@@ -74,6 +74,9 @@ import { TramRounded } from '@mui/icons-material';
 import { Icon } from '@mui/material';
 import footerRoutes from 'constants/footer.routes';
 
+//COOKIES
+import CookieConsent from 'react-cookie-consent';
+
 function BridgestarsHome() {
   const [typeNext, setTypeNext] = useState(0);
   const headerRef = useRef(null);

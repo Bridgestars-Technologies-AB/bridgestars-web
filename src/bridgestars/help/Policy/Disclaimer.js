@@ -57,7 +57,7 @@ export default function Disclaimer() {
         </MKTypography>
         <MKTypography variant='body2' color='text'>
           This is the Disclaimer governing the use of{' '}
-          <a href='https://bridgestars.se'>https://bridgestars.se</a> and the
+          <a href='https://bridgestars.net'>https://bridgestars.net</a> and the
           Bridgestars application (collectively referred to as the Platform) and
           the agreement that operates between us and you (the Disclaimer). The
           Platform is owned and operated by{' '}
@@ -68,7 +68,7 @@ export default function Disclaimer() {
           <br />
           If you require any more information or have any questions about the
           Disclaimer, please feel free to contact us by email at{' '}
-          <a href='mailto: info@bridgestars.se'>info@bridgestars.se</a>
+          <a href='mailto: info@bridgestars.net'>info@bridgestars.net</a>
           .
           <br />
           <br />

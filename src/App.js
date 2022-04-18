@@ -44,6 +44,8 @@ import About from 'bridgestars/about';
 import WIP from 'bridgestars/wip/wip';
 import Policy from 'bridgestars/help/Policy/index.js';
 
+import CookieConsent from 'react-cookie-consent';
+
 export default function App() {
   const { pathname } = useLocation();
 
@@ -88,6 +90,17 @@ export default function App() {
         <Route path='/wip' element={<WIP />} />
         {getRoutes(routes)}
       </Routes>
+      {/* <CookieConsent
+        location='bottom'
+        buttonText='Sure man!!'
+        cookieName='myAwesomeCookieName2'
+        style={{ background: '#2B373B' }}
+        buttonStyle={{ color: '#4e503b', fontSize: '13px' }}
+        expires={150}
+      >
+        This website uses cookies to enhance the user experience.{' '}
+        <span style={{ fontSize: '10px' }}>This bit of text is smaller :O</span>
+      </CookieConsent> */}
     </ThemeProvider>
   );
 }

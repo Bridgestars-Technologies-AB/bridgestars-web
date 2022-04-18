@@ -57,7 +57,7 @@ export default function Privacy() {
         </MKTypography>
         <MKTypography variant='body2' color='text'>
           This is the privacy policy governing the use of{' '}
-          <a href='https://bridgestars.se'>https://bridgestars.se</a> and the
+          <a href='https://bridgestars.net'>https://bridgestars.net</a> and the
           Bridgestars application (collectively referred to as the Platform) and
           the agreement that operates between us and you (the Policy). The
           Platform is owned and operated by{' '}
@@ -80,13 +80,13 @@ export default function Privacy() {
           following outlines our privacy policy.
           <br></br>
           <br></br>
-          Similar to other commercial websites, bridgestars.se utilizes a
+          Similar to other commercial websites, bridgestars.net utilizes a
           standard technology called ‘cookies’ (see our cookies policy section
           for more information) and server logs to collect information about how
-          bridgestars.se is used. Information gathered through cookies and
+          bridgestars.net is used. Information gathered through cookies and
           server logs may include the date and time of visits, the pages viewed,
-          time spent at bridgestars.se, and the websites visited just before and
-          just after our own, as well as your IP address.
+          time spent at bridgestars.net, and the websites visited just before
+          and just after our own, as well as your IP address.
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
           Content
@@ -276,7 +276,7 @@ export default function Privacy() {
           <br></br>
           <br></br>
           You may withdraw your consent at any time by instructing us (
-          <a href='mailto: info@bridgestars.se'>info@bridgestars.se</a>)
+          <a href='mailto: info@bridgestars.net'>info@bridgestars.net</a>)
           However, if you do so, you may not be able to use the Platform or our
           services further
         </MKTypography>
@@ -313,7 +313,7 @@ export default function Privacy() {
         </MKTypography>
         <MKTypography variant='body2' color='text'>
           Like any other website, our website -{' '}
-          <a href='https://bridgestars.se'>https://bridgestars.se</a> uses
+          <a href='https://bridgestars.net'>https://bridgestars.net</a> uses
           'cookies'. These cookies are used to store information including
           visitors' preferences, and the pages on the website that the visitor
           accessed or visited. The information is used to optimize the users'
@@ -465,10 +465,11 @@ export default function Privacy() {
           Sweden AB by contacting us here:
           <br></br>
           <br></br>
-          Web page: <a href='https://bridgestars.se'>https://bridgestars.se</a>
+          Web page:{' '}
+          <a href='https://bridgestars.net'>https://bridgestars.net</a>
           <br></br>
           <br></br>
-          Email: <a href='mailto: info@bridgestars.se'>info@bridgestars.se</a>
+          Email: <a href='mailto: info@bridgestars.net'>info@bridgestars.net</a>
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
           INTELLECTUAL PROPERTY RIGHTS
@@ -556,7 +557,7 @@ export default function Privacy() {
         <MKTypography variant='body2' color='text'>
           If you are not happy with our privacy policy or if you have any
           complaints, then you should tell us by email. Our e-mail address is{' '}
-          <a href='mailto: info@bridgestars.se'>info@bridgestars.se</a>
+          <a href='mailto: info@bridgestars.net'>info@bridgestars.net</a>
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
           REVIEW/MODIFICATION OF THIS PRIVACY POLICY
@@ -573,13 +574,14 @@ export default function Privacy() {
           us through:
           <br></br>
           <br></br>
-          E-mail: <a href='mailto: info@bridgestars.se'>info@bridgestars.se</a>
+          E-mail:{' '}
+          <a href='mailto: info@bridgestars.net'>info@bridgestars.net</a>
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
           COOKIES POLICY
         </MKTypography>
         <MKTypography variant='body2' color='text'>
-          https://bridgestars.se (the "Website") uses cookies. They are placed
+          https://bridgestars.net (the "Website") uses cookies. They are placed
           by the software that operates on our servers, and by software operated
           by third parties whose services we use. When you first visit the
           Website, we ask you whether you wish us to use cookies. If you choose
@@ -655,7 +657,7 @@ export default function Privacy() {
           names, access times and referring website addresses. This information
           is used for the operation of the service, to maintain quality of the
           service, and to provide general statistics regarding use of{' '}
-          <a href='https://bridgestars.se'>https://bridgestars.se</a> (the
+          <a href='https://bridgestars.net'>https://bridgestars.net</a> (the
           Website).
           <br></br>
           <br></br>
@@ -693,7 +695,8 @@ export default function Privacy() {
           want more information please contact us directly via:
           <br></br>
           <br></br>
-          Contact: <a href='mailto: info@bridgestars.se'>info@bridgestars.se</a>
+          Contact:{' '}
+          <a href='mailto: info@bridgestars.net'>info@bridgestars.net</a>
         </MKTypography>
       </MKBox>
     </>

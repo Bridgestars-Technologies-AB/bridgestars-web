@@ -63,7 +63,7 @@ export default function Copyright() {
         </MKTypography>
         <MKTypography variant='body2' color='text'>
           This is the Copyright Policy governing the use of{' '}
-          <a href='https://bridgestars.se'>https://bridgestars.se</a> and the
+          <a href='https://bridgestars.net'>https://bridgestars.net</a> and the
           Bridgestars application (collectively referred to as the Platform) and
           the agreement that operates between us and you (the Policy). The
           Platform is owned and operated by{' '}
@@ -142,7 +142,7 @@ export default function Copyright() {
           <br />
           <br />
           You can let us know about any such material or activity by emailing us
-          at <a href='mailto: info@bridgestars.se'>info@bridgestars.se</a>.
+          at <a href='mailto: info@bridgestars.net'>info@bridgestars.net</a>.
         </MKTypography>
         <MKTypography variant='h5' mt={6} mb={3}>
           ENFORCEMENT OF COPYRIGHT
@@ -164,7 +164,7 @@ export default function Copyright() {
           {' '}
           You may request permission to use the copyright materials on the
           Platform by emailing us at{' '}
-          <a href='mailto: info@bridgestars.se'>info@bridgestars.se</a>.
+          <a href='mailto: info@bridgestars.net'>info@bridgestars.net</a>.
         </MKTypography>
       </MKBox>
     </>
