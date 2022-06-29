@@ -30,11 +30,11 @@ import MKTypography from 'components/MKTypography';
 // Otis Kit PRO examples
 
 // About Us page sections
-import Information from './sections/Information';
-import Steps from './sections/Steps';
-import OurEfforts from './sections/OurEfforts';
-import Features from './sections/Features';
-import Posts from './sections/Posts';
+import Information from '../about/sections/Information';
+import Steps from '../about/sections/Steps';
+import OurEfforts from '../about/sections/OurEfforts';
+import Features from '../about/sections/Features';
+import Posts from '../about/sections/Posts';
 
 // Routes
 import routes from 'constants/routes';
@@ -174,16 +174,16 @@ function About() {
         >
           <BridgestarsNavbar
             routes={routes.filter((r) => r.name != 'About us')}
-            action={
-              window.innerWidth > 370
-                ? {
-                    type: 'internal',
-                    route: '/signin',
-                    label: 'sign in',
-                    color: 'primary',
-                  }
-                : false
-            }
+            // action={
+            //   window.innerWidth > 370
+            //     ? {
+            //         type: 'internal',
+            //         route: '/home',
+            //         label: 'back',
+            //         color: 'primary',
+            //       }
+            //     : false
+            // }
             sticky
             dark
             fullWidth

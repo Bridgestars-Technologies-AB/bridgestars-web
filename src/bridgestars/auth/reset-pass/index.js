@@ -44,85 +44,67 @@ import useValidator from 'bridgestars/auth/beta-sign-up/validator.js';
 
 // Firebase
 import { firebaseApp } from 'firebase-config';
+
 import {
   getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut,
+  verifyPasswordResetCode,
+  confirmPasswordReset,
 } from 'firebase/auth';
 
 import Policies from 'bridgestars/help/Policy/Policies';
 import { Button } from '@mui/material';
 
-function BetaSignupForm() {
+function ResetPasswordForm() {
   const [confirmed, setConfirmed] = useState(false);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState('Enter your new password');
   const [description, setDescription] = useState('');
 
   const auth = getAuth(firebaseApp);
 
-  const formLogin = ({ email, password }) => {
-    //setTriedToSubmit(true);
-    //AUTH SIGNIN
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        const errorCodes = {
-          'auth/email-already-in-use': 'The provided email is already in use.',
-          'auth/email-already-exists': 'The provided email is already in use.',
-          'auth/invalid-email': 'The provided email is not valid',
-          'auth/invalid-password':
-            'Password should contains atleast 8 characters and contain uppercase,lowercase and numbers',
-        };
-        alert(
-          errorCodes[errorCode]
-            ? errorCodes[errorCode]
-            : errorCode.split('/')[1].replaceAll('-', ' ')
-        );
-      });
-  };
-
-  onAuthStateChanged(auth, (user) => {
-    // Check for user status
-    // console.log(user);
-    //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      console.log('SIGNED IN');
-      setConfirmed(true);
-      setTitle('You are now registered for the Technical Preview');
-      setDescription(
-        'We will reach out to you at\n(' +
-          user.email +
-          ')\nwhen your account is ready'
-      );
-      // ...
-    } else {
-      console.log('SIGNED OUT');
-      setConfirmed(false);
-      setTitle('Become an early access member');
-      setDescription(
-        'Enter your desired email and password below and you will hear from us when we are ready to take you onboard.'
-      );
-    }
-  });
-
   const [policy, setPolicy] = useState(false);
 
   const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
-    useValidator(formLogin);
+    useValidator(submit);
 
   //Final submit function
+  function submit() {
+    ResetPassword(auth, this.props.location.query.oobCode, '', '');
+  }
+
+  function ResetPassword(auth, actionCode, continueUrl, lang) {
+    // Localize the UI to the selected language as determined by the lang
+    // parameter.
+
+    // Verify the password reset code is valid.
+    verifyPasswordResetCode(auth, actionCode)
+      .then((email) => {
+        const accountEmail = email;
+
+        // TODO: Show the reset screen with the user's email and ask the user for
+        // the new password.
+        const newPassword = values['password'];
+
+        // Save the new password.
+        confirmPasswordReset(auth, actionCode, newPassword)
+          .then((resp) => {
+            // Password reset has been confirmed and new password updated.
+            // TODO: Display a link back to the app, or sign-in the user directly
+            // if the page belongs to the same domain as the app:
+            // auth.signInWithEmailAndPassword(accountEmail, newPassword);
+            // TODO: If a continue URL is available, display a button which on
+            // click redirects the user back to the app via continueUrl with
+            // additional state determined from that URL's parameters.
+          })
+          .catch((error) => {
+            // Error occurred during confirmation. The code might have expired or the
+            // password is too weak.
+          });
+      })
+      .catch((error) => {
+        // Invalid or expired action code. Ask user to try to reset the password
+        // again.
+      });
+  }
 
   const handleSetPolicy = (event) => {
     event.target.value = !policy;
@@ -148,18 +130,7 @@ function BetaSignupForm() {
 
   const form = () => {
     return (
-      <MKBox component='form' role='form'>
-        <MKBox mb={2}>
-          <MKInput
-            type='email'
-            name='email'
-            label='Email'
-            error={errors['email'] ? true : false || formDenied}
-            success={values['email'] && !errors['email'] ? true : false}
-            fullWidth
-            onChange={handleChange}
-          />
-        </MKBox>
+      <MKBox>
         <MKBox mb={2}>
           <MKInput
             type='password'
@@ -169,6 +140,7 @@ function BetaSignupForm() {
             success={values['password'] && !errors['password'] ? true : false}
             fullWidth
             onChange={handleChange}
+            onKeyPressed={(e) => e.key === 'Enter' && handleSubmit}
           />
         </MKBox>
         <MKBox mb={2}>
@@ -184,37 +156,9 @@ function BetaSignupForm() {
             label='Confirm Password'
             fullWidth
             onChange={handleChange}
+            onKeyPressed={(e) => e.key === 'Enter' && handleSubmit}
           />
         </MKBox>
-        <Grid container item xs={12} mb={-1} justifyContent='center'>
-          <MKBox display='flex' alignItems='center' ml={-1} fullWidth>
-            <Checkbox
-              checked={policy}
-              name='policy'
-              onChange={handleSetPolicy}
-            />
-            <MKTypography
-              variant='button'
-              fontWeight='regular'
-              color='text'
-              sx={{ cursor: 'default', userSelect: 'none', ml: -1 }}
-            >
-              &nbsp;&nbsp;I agree with the&nbsp;
-              <MKTypography
-                //component='button'
-                variant='button'
-                fontWeight='bold'
-                color='info'
-                textGradient
-                onClick={handlePolicyClick}
-                ml={window.innerWidth < 340 ? 1 : 0}
-                sx={{ cursor: 'pointer' }}
-              >
-                Terms and Conditions
-              </MKTypography>
-            </MKTypography>
-          </MKBox>
-        </Grid>
         <MKBox mt={4} mb={1}>
           <MKButton
             onClick={handleSubmit}
@@ -299,7 +243,7 @@ function BetaSignupForm() {
         </MKBox>
       </Modal>
       <IllustrationLayout
-        name='Register'
+        name='Reset Password'
         logo={window.innerHeight > 500 || confirmed ? logo : ''}
         title={title}
         description={description}
@@ -323,7 +267,6 @@ function BetaSignupForm() {
                 home
               </MKButton>
             </MKBox>
-
             <Grid container item xs={12} justifyContent='center'>
               <MKBox display='flex' alignItems='center' ml={-1} fullWidth>
                 <MKTypography
@@ -354,4 +297,4 @@ function BetaSignupForm() {
   );
 }
 
-export default BetaSignupForm;
+export default ResetPasswordForm;

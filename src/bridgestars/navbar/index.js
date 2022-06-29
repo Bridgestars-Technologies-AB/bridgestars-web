@@ -497,7 +497,7 @@ function BridgestarsNavbar({
           sm: fullWidth ? 0 : transparent ? 2 : 3,
           lg: fullWidth ? 0 : transparent ? 0 : 2,
         }}
-        my={relative ? 0 : 2}
+        my={relative ? 0 : 0} //0:2
         mx={fullWidth ? 0 : relative ? 0 : 3}
         width={fullWidth ? '100%' : relative ? '100%' : 'calc(100% - 48px)'}
         borderRadius='xl'

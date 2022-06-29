@@ -83,9 +83,9 @@ function SigninForm() {
 
     if (user) {
       setSignedIn(true);
-      setTitle('You are registered for the closed beta');
+      setTitle('You are registered for the Technical Preview');
       setDescription(
-        'You will be notified at\n(' + user.email + ')\nwhen the beta is ready'
+        'You will be notified at\n(' + user.email + ')\nwhen the preview is ready'
       );
     } else {
       setSignedIn(false);

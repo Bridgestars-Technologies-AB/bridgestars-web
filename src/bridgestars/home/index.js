@@ -49,6 +49,7 @@ import routes from 'constants/routes';
 
 // @mui material components
 import Stack from '@mui/material/Stack';
+import { positions } from '@mui/system';
 
 // Otis Kit PRO examples
 
@@ -65,7 +66,7 @@ import { Link } from 'react-router-dom';
 import bgImage from 'assets/images/bridgestars/mockup-1_1-smoke.jpg';
 import linearHomepageGradient from 'assets/theme/functions/linearHomepageGradient';
 //import Zoom from '@mui/material/Zoom';
-import { Grow, Fade, Collapse, Slide } from '@mui/material';
+import { Grow, Fade, Collapse, Slide, Zoom } from '@mui/material';
 
 import CountUp from 'react-countup';
 import { HashLink } from 'react-router-hash-link';
@@ -81,7 +82,7 @@ function BridgestarsHome() {
   const [typeNext, setTypeNext] = useState(0);
   const headerRef = useRef(null);
   const typedHeaderRef = useRef(null);
-  const typedSubHeaderRef = useRef(null);
+  // const typedSubHeaderRef = useRef(null);
 
   // Setting up rellax
   // useEffect(() => {
@@ -111,43 +112,43 @@ function BridgestarsHome() {
     };
   }, []);
 
-  useEffect(() => {
-    if (typeNext == 1) {
-      const typedJS2 = new Typed(typedSubHeaderRef.current, {
-        strings: [
-          'Online Bridge platforms have become outdated. ^300\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^300for free.',
-        ],
-        typeSpeed: 15,
-        backSpeed: 90,
-        backDelay: 200,
-        startDelay: 300,
-        loop: false,
-        showCursor: false,
-        onStart: () => {
-          setTypeNext(2);
-        },
-      });
-    }
-    return () => {
-      const typedJS2 =
-        'Online Bridge platforms have become outdated.\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^300for free.';
-    };
-  }, [typeNext]);
+  // useEffect(() => {
+  //   if (typeNext == 1) {
+  //     const typedJS2 = new Typed(typedSubHeaderRef.current, {
+  //       strings: [
+  //         'Online Bridge platforms have become outdated. ^300\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^300for free.',
+  //       ],
+  //       typeSpeed: 15,
+  //       backSpeed: 90,
+  //       backDelay: 200,
+  //       startDelay: 300,
+  //       loop: false,
+  //       showCursor: false,
+  //       onStart: () => {
+  //         setTypeNext(2);
+  //       },
+  //     });
+  //   }
+  //   return () => {
+  //     const typedJS2 =
+  //       'Online Bridge platforms have become outdated.\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^300for free.';
+  //   };
+  // }, [typeNext]);
 
   return (
     <>
       <BridgestarsNavbar
         routes={routes.filter((r) => r.name != 'Home')}
-        action={
-          window.innerWidth > 370
-            ? {
-                type: 'internal',
-                route: '/signin',
-                label: 'sign in',
-                color: 'primary',
-              }
-            : false
-        }
+        // action={
+        //   window.innerWidth > 370
+        //     ? {
+        //         type: 'internal',
+        //         route: '/signin',
+        //         label: 'sign in',
+        //         color: 'primary',
+        //       }
+        //     : false
+        // }
         transparent
         light
         shadow
@@ -192,74 +193,65 @@ function BridgestarsHome() {
             flexDirection='column'
             sx={{ mx: 'auto', textAlign: 'center' }}
           >
-            <MKTypography
-              variant='h1'
-              color='primary'
-              align='center'
-              textGradient={true}
-              fontSize='calc(10px + 8vmin)'
-              mt={3}
-            >
-              <span ref={typedHeaderRef} />
-            </MKTypography>
-            <MKTypography
-              variant='body1'
-              color='white'
-              fontSize='calc(6px + 1.25vh)'
-              opacity={0.8}
-              width={{ xs: '90%', md: '60%' }}
-              minHeight={'100px'}
-              mt={1}
-              mb={3}
-            >
-              <span ref={typedSubHeaderRef} />
-            </MKTypography>
-            <Fade in>
+            <Zoom in={true} style={{ transitionDelay: `250ms` }} timeout={500}>
+              <MKTypography
+                variant='h1'
+                color='primary'
+                align='center'
+                textGradient={true}
+                fontSize='calc(10px + 8vmin)'
+                mt={3}
+              >
+                <span ref={typedHeaderRef} />
+              </MKTypography>
+            </Zoom>
+            <Zoom in={true} style={{ transitionDelay: `500ms` }} timeout={500}>
+              <MKTypography
+                variant='body1'
+                color='white'
+                fontSize='calc(6px + 1.25vh)'
+                opacity={0.8}
+                width={{ xs: '90%', md: '60%' }}
+                minHeight={'100px'}
+                mt={1}
+                mb={0}
+              >
+                Online Bridge platforms have become outdated. We developed a
+                modern platform for Bridge players all around the world to play
+                unlimited Bridge for free.
+                {/* <span ref={typedSubHeaderRef} /> */}
+              </MKTypography>
+            </Zoom>
+            <Zoom in={true} style={{ transitionDelay: `1000ms` }} timeout={500}>
               <Container>
+                <MKTypography
+                  variant='body1'
+                  fontSize='calc(10px + 2vmin)'
+                  color='white'
+                  sx={{ mt: { xs: 2, sm: 3 } }}
+                >
+                 Technical Preview available now!
+                </MKTypography>
                 <MKButton
                   variant='gradient'
                   component={Link}
                   to='/betasignup'
-                  size='medium'
-                  fontSize='2vmin'
                   color='default'
-                  sx={{ color: ({ palette: { dark } }) => dark.main }}
+                  style={{
+                    // maxWidth: 'calc(150px + 8vmin)',
+                    // maxHeight: 'calc(40px + 3vmin)',
+                    // minWidth: 'calc(150px + 8vmin)',
+                    // minHeight: 'calc(40px + 3vmin)',
+                    fontSize: 'calc(10px + 2vmin)',
+                  }}
+                  sx={{
+                    color: ({ palette: { dark } }) => dark.main,
+                  }}
                 >
-                  create account
+                  {'register'}
                 </MKButton>
-                <MKTypography
-                  variant='h6'
-                  color='white'
-                  sx={{ mt: { xs: 2, sm: 8 } }}
-                  mb={0}
-                >
-                  Find us on
-                </MKTypography>
-                <MKBox
-                  display='flex'
-                  justifyContent='center'
-                  alignItems='center'
-                >
-                  <MKBox display='flex' alignItems='center'>
-                    {footerRoutes.socials.map((social) => (
-                      <MKTypography
-                        key={social.name}
-                        component='a'
-                        href={social.link}
-                        variant={social.name === 'Mail' ? 'h4' : 'body1'}
-                        color={'white'}
-                        fontWeight='regular'
-                        ml={1.5}
-                        mr={1.5}
-                        mt={social.name === 'Mail' ? 0.8 : 0}
-                      >
-                        {social.icon}
-                      </MKTypography>
-                    ))}
-                  </MKBox>
-                </MKBox>
               </Container>
-            </Fade>
+            </Zoom>
           </Grid>
         </Container>
       </MKBox>
@@ -268,7 +260,7 @@ function BridgestarsHome() {
           sx={{
             p: 2,
             mx: { xs: 2, lg: 3 },
-            mt: -4,
+            mt: -6,
             mb: 4,
             width: { xxl: 1600, xl: '100%' },
             boxShadow: ({ boxShadows: { xxl } }) => xxl,

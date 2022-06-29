@@ -43,8 +43,11 @@ import BridgestarsHome from 'bridgestars/home';
 import About from 'bridgestars/about';
 import WIP from 'bridgestars/wip/wip';
 import Policy from 'bridgestars/help/Policy/index.js';
-
+import Download from 'bridgestars/download/index.js';
+import ForgotPass from 'bridgestars/auth/forgot-pass/index.js';
+import ResetPasswordForm from 'bridgestars/auth/reset-pass/index.js';
 import CookieConsent from 'react-cookie-consent';
+import VotingPage from 'bridgestars/voting';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -79,15 +82,18 @@ export default function App() {
       <CssBaseline />
       <Routes>
         <Route path='*' element={<BridgestarsHome />} />
-        <Route path='/home_old' element={<BridgestarsHomeOld />} />
+        {/* <Route path='/home_old' element={<BridgestarsHomeOld />} /> */}
         {/* <Route path='/signup' element={<SignupForm />} /> */}
         <Route path='/about' element={<About />} />
-        <Route path='/signin' element={<SigninForm />} />
+        {/* <Route path='/signin' element={<SigninForm />} /> */}
+        <Route path='/download' element={<Download />} />
+        <Route path='/voting' element={<VotingPage />} />
         <Route path='/betasignup' element={<BetaSignupForm />} />
         <Route path='/policy' element={<Policy />} />
         <Route path='/404.html' exact />
-        {/* <Route path='/wip.html' exact /> */}
+        <Route path='/forgot-pass' element={<ForgotPass />} />
         <Route path='/wip' element={<WIP />} />
+        {/* <Route path='/reset-pass' element={<ResetPasswordForm />} /> */}
         {getRoutes(routes)}
       </Routes>
       {/* <CookieConsent

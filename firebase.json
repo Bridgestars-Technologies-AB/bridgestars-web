@@ -4,6 +4,10 @@
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
+        "source": "/sendPasswordResetEmail",
+        "function": "sendPasswordResetEmail"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

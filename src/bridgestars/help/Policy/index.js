@@ -25,16 +25,16 @@ export default function Policy() {
       <MKBox mt={3}>
         <BridgestarsNavbar
           routes={routes.filter((r) => r.name != 'Policy')}
-          action={
-            window.innerWidth > 370
-              ? {
-                  type: 'internal',
-                  route: '/signin',
-                  label: 'sign in',
-                  color: 'primary',
-                }
-              : false
-          }
+          // action={
+          //   window.innerWidth > 370
+          //     ? {
+          //         type: 'internal',
+          //         route: '/download',
+          //         label: 'download',
+          //         color: 'primary',
+          //       }
+          //     : false
+          // }
           relative
           floating
         />

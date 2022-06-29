@@ -115,14 +115,22 @@ function IllustrationLayout({
                 )}
                 <Grow in timeout={750} style={{ transformOrigin: '0 1 0' }}>
                   <MKBox mb={1} textAlign='center'>
-                    <MKTypography variant='h4' fontWeight='bold'>
+                    <MKTypography
+                      variant='h4'
+                      fontSize='calc(10px + 1vh)'
+                      fontWeight='bold'
+                    >
                       {title}
                     </MKTypography>
                   </MKBox>
                 </Grow>
                 <Grow in timeout={750} style={{ transformOrigin: '0 1 0' }}>
                   <MKBox mb={1} textAlign='center'>
-                    <MKTypography variant='body2' color='text'>
+                    <MKTypography
+                      variant='body2'
+                      fontSize='calc(6px + 1vh)'
+                      color='text'
+                    >
                       {description}
                     </MKTypography>
                   </MKBox>

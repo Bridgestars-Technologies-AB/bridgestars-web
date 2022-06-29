@@ -20,3 +20,7 @@ const firebaseConfig = {
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(firebaseApp);
+export const sendPasswordResetEmailLink =
+  'https://us-central1-bridge-fcee8.cloudfunctions.net/sendPasswordResetEmail?apiKey=' +
+  firebaseConfig.apiKey +
+  '&';
