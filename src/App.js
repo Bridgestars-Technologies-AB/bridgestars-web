@@ -89,9 +89,12 @@ export default function App() {
         <Route path='/download' element={<Download />} />
         <Route path='/voting' element={<VotingPage />} />
         <Route path='/betasignup' element={<BetaSignupForm />} />
+        <Route path='/signin' element={<SigninForm />} />
+        <Route path='/signin/*' element={<SigninForm />} />
         <Route path='/policy' element={<Policy />} />
         <Route path='/404.html' exact />
         <Route path='/forgot-pass' element={<ForgotPass />} />
+        <Route path='/forgotpass' element={<ForgotPass />} />
         <Route path='/wip' element={<WIP />} />
         {/* <Route path='/reset-pass' element={<ResetPasswordForm />} /> */}
         {getRoutes(routes)}

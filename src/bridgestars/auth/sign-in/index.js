@@ -35,16 +35,23 @@ import {
   sendPasswordResetEmail,
 } from 'firebase/auth';
 
-function SigninForm() {
+import { useNavigate } from 'react-router-dom';
+
+import { useSearchParams } from 'react-router-dom';
+
+function SigninForm(modal) {
   const auth = getAuth(firebaseApp);
 
   //Final submit function
-  const formLogin = ({ email, password, setErrors }) => {
+  const formLogin = ({ username, password, setErrors }) => {
     //setTriedToSubmit(true);
-    signInWithEmailAndPassword(auth, email, password)
+    console.log(password)
+    console.log(username+".account@bridgestars.net");
+    signInWithEmailAndPassword(auth, username+".account@bridgestars.net", password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        if(searchParams.has('backlink')) navigateTo(searchParams.get('backlink'))
         // ...
       })
       .catch((error) => {
@@ -74,6 +81,9 @@ function SigninForm() {
   const [description, setDescription] = useState(
     'Enter your email and password'
   );
+  const [searchParams, setSearchParams] = useSearchParams()
+  const navigateTo = useNavigate();
+
 
   const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
     useValidator(formLogin);
@@ -83,9 +93,9 @@ function SigninForm() {
 
     if (user) {
       setSignedIn(true);
-      setTitle('You are registered for the Technical Preview');
+      setTitle('You are now signed in');
       setDescription(
-        'You will be notified at\n(' + user.email + ')\nwhen the preview is ready'
+        'You can now press the button to go back'
       );
     } else {
       setSignedIn(false);
@@ -105,34 +115,11 @@ function SigninForm() {
     clearForm();
   };
 
-  const handleForgot = () => {
-    if (!values['email']) {
-      alert('Please enter your email and try again');
-    } else if (errors['email']) {
-      alert(errors['email']);
-    } else {
-      sendPasswordResetEmail(auth, values['email'])
-        .then(() =>
-          alert(
-            'A password reset request has been sent to:\n' +
-              values['email'] +
-              '\nPlease check your inbox for further instructions'
-          )
-        )
-        .catch((e) => {
-          const message = e.code;
-          if (message === 'auth/user-not-found')
-            alert(
-              'Could not find any account with this email, please try again.'
-            );
-          else alert(message);
-        });
-    }
-  };
+
 
   const form = (
     <MKBox component='form' role='form'>
-      {/* <MKBox mb={2}>
+      <MKBox mb={2}>
           <MKInput
             name='username'
             label='Username'
@@ -141,8 +128,8 @@ function SigninForm() {
             fullWidth
             onChange={handleChange}
           />
-        </MKBox> */}
-      <MKBox mb={2}>
+        </MKBox>
+      {/* <MKBox mb={2}>
         <MKInput
           type='email'
           name='email'
@@ -152,7 +139,7 @@ function SigninForm() {
           fullWidth
           onChange={handleChange}
         />
-      </MKBox>
+      </MKBox> */}
       <MKBox mb={2}>
         <MKInput
           type='password'
@@ -199,7 +186,10 @@ function SigninForm() {
             fontWeight='bold'
             color='info'
             textGradient
-            onClick={handleForgot}
+            component={Link}
+            to={
+              '/forgotpass'
+            }
             sx={{ cursor: 'pointer' }}
           >
             Forgot your password?
@@ -217,6 +207,7 @@ function SigninForm() {
         title={title}
         description={description}
         illustration={bgImage}
+        modal={modal}
       >
         {/* title='Sign in to your Bridgestars account'
       description='Enter your email and password' */}
@@ -229,13 +220,16 @@ function SigninForm() {
               <MKButton
                 variant='gradient'
                 component={Link}
-                to='/'
+                to={
+                  '/'
+                  // '/'
+                }
                 size='medium'
                 fontSize='2vmin'
                 fullWidth
                 color='info'
                 //sx={{ color: ({ palette: { dark } }) => dark.main }}
-              >
+                >
                 home
               </MKButton>
             </MKBox>

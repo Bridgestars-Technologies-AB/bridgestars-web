@@ -45,6 +45,7 @@ function IllustrationLayout({
   title,
   description,
   illustration,
+  modal,
   children,
 }) {
   return (
@@ -56,13 +57,18 @@ function IllustrationLayout({
           //transparent={{ xs: false, md: true }}
         />
       </MKBox> */}
-      <MKBox position='absolute' component='section' mt={2} ml={2}>
-        <Breadcrumbs
-          bgcolor='transparent'
-          textcolor='text'
-          routes={[{ label: 'Home', route: '/' }, { label: name }]}
-        />
-      </MKBox>
+      {modal ? (
+        ''
+      ) : (
+        <MKBox position='absolute' component='section' mt={2} ml={2}>
+          <Breadcrumbs
+            bgcolor='transparent'
+            textcolor='text'
+            routes={[{ label: 'Home', route: '/' }, { label: name }]}
+          />
+        </MKBox>
+      )}
+
       <Grid container>
         <Grid item xs={12} lg={6}>
           <MKBox
@@ -162,6 +168,7 @@ IllustrationLayout.defaultProps = {
   title: '',
   description: '',
   illustration: '',
+  modal:false
 };
 
 // Typechecking props for the IllustrationLayout

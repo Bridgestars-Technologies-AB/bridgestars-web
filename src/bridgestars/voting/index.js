@@ -1,17 +1,4 @@
-/*
-=========================================================
-* Otis Kit PRO - v2.0.0
-=========================================================
 
-* Product Page: https://material-ui.com/store/items/otis-kit-pro-material-kit-react/
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 import { useEffect, useRef } from 'react';
 
@@ -42,7 +29,6 @@ import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
 import BridgestarsNavbar from 'bridgestars/navbar';
 import IssueCard from './sections/card';
 import React from 'react';
-import { Fragment } from 'react';
 import { firebaseApp } from 'firebase-config';
 import {
   getAuth,
@@ -55,12 +41,25 @@ import { useCollectionOnce } from 'react-firebase-hooks/firestore';
 
 import { collection, doc, setDoc, getDoc, getFirestore, query, getDocs, orderBy, limit } from 'firebase/firestore'
 
+import { useNavigate } from 'react-router-dom';
+import SigninForm from 'bridgestars/auth/sign-in';
+
+import { useState } from 'react';
+import { Modal } from '@mui/material';
+import { Button } from '@mui/material';
+import {Icon} from '@mui/material';
+import { Input } from '@mui/material';
+import { IconButton } from '@mui/material';
+
 function parseDate(ms) {
   const d = new Date();
   d.setTime(ms);
   const month = d.toLocaleString('default', { month: 'short' });
   return `${d.getDate()} ${month} ${d.getFullYear()}`; 
 }
+
+
+
 
 function VotingPage() {
 
@@ -69,12 +68,113 @@ function VotingPage() {
 
   const requestsRef = collection(db, "feedback/voting_app/requests")
   const commentsRef = collection(db, 'feedback/voting_app/comments')
+  const usersRef = collection(db, "feedback/voting_app/users")
   const q = query(requestsRef, orderBy("votes"), limit(10))
   const [value, loading, error] = useCollectionOnce(q)
+  const [votes, setVotes] = useState({ id: true });
+  const [userData, setUserData] = useState({})
+  const [signedIn, setSignedIn] = useState(false);
+  const [showSignin, setShowSignin] = useState(false)
+  const [loadedDocs, setLoadedDocs] = useState({})
+
+  async function handleVote(requestId) {
+    if (signedIn) {
+
+      // const docRef = doc(requestsRef, requestId);
+      // const doc = await getDoc(docRef)
+      // await setDoc(docRef, {
+      //   votes: doc.data().votes + 1
+      // })
+      // //await setDoc()
+      // setVotes({ requestId: true })
+    }
+    else {
+      setShowSignin(true)
+    }
+  }
+  async function handleNewRequest(requestId) {
+    if (signedIn) {
+      const docRef = doc(requestsRef, requestId);
+      const doc = await getDoc(docRef);
+      await setDoc(docRef, {
+        votes: doc.data().votes + 1,
+      });
+      //await setDoc()
+      setVotes({ requestId: true });
+    }
+    else {
+      setShowSignin(true)
+    }
+  }
 
 
+  onAuthStateChanged(auth, (user) => {
+    //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
+
+    if (!signedIn && user) {
+      console.log(user)
+      setUserData(user)
+      setSignedIn(true);
+      setShowSignin(false)
+      
+    } else if(!user) {
+      console.log("signed out")
+      setUserData(null)
+      setSignedIn(false);
+    }
+  });
+
+
+
+  const style = {
+    position: 'absolute',
+    //top: '20%',
+    //left: '50%',
+    //transform: 'translate(-50%, -50%)',
+    width: '100%',
+    height: '100%',
+    bgcolor: 'white',
+    border: '0px',
+    boxShadow: 24,
+    p: 4,
+  };
   return (
     <>
+      <Modal
+        open={showSignin}
+        onClose={() => setShowSignin(false)}
+        style={{ overflow: 'scroll' }}
+      >
+        <MKBox
+          style={style}
+          mt={3}
+          //textAlign='center'
+          width={{ xs: '100%', sm: '100%', md: '70%' }}
+        >
+          <Button
+            mx='auto'
+            mb={-1}
+            width={{ xs: '100%', sm: '100%', md: '70%' }}
+            variant='contained'
+            fullWidth
+            size='large'
+            color='error'
+            onClick={() => setShowSignin(false)}
+          >
+            Close <Icon>close</Icon>
+          </Button>
+          <SigninForm modal={true} />
+          {/* <Button
+            fullWidth
+            variant='contained'
+            size='large'
+            color='error'
+            onClick={() => setShowSignin(false)}
+          >
+            Close <Icon>close</Icon>
+          </Button> */}
+        </MKBox>
+      </Modal>
       <Grid container width='100%' justifyContent='center'>
         <Card
           sx={{
@@ -113,23 +213,28 @@ function VotingPage() {
               width={{ xs: '75%', sm: '45%', xl: '35%' }}
             ></MKBox>
           </Grid>
+          <Grid container item md={12} justifyContent={'space-between'}>
+            <Grid item md={3}>
+              <Button>new request</Button>
+            </Grid>
+          </Grid>
           <MKBox p={3}>
             {error && <strong>Error: {JSON.stringify(error)}</strong>}
             {loading && <span>Collection: Loading...</span>}
             {value &&
+              // setLoadedDocs(value.docs) &&
               value.docs.map((doc) => (
-                <span>
-                  {JSON.stringify(doc)}
-                  <IssueCard
-                    key={doc.id}
-                    mb={2}
-                    title={doc.data().title}
-                    description={doc.data().description}
-                    author={doc.data().author}
-                    status={doc.data().status}
-                    creationTime={parseDate(doc.data().creationTime)}
-                  ></IssueCard>
-                </span>
+                <IssueCard
+                  // voted={votes[doc.id]}
+                  key={doc.id}
+                  mb={2}
+                  title={doc.data().title}
+                  description={doc.data().description}
+                  author={doc.data().author}
+                  status={doc.data().status}
+                  creationTime={parseDate(doc.data().creationTime)}
+                  handleVote={() => handleVote(doc.id)}
+                ></IssueCard>
               ))}
           </MKBox>
         </Card>

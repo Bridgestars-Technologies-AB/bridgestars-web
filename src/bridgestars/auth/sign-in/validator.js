@@ -30,34 +30,34 @@ const useValidator = (callback) => {
 
   const validate = (event, name, value) => {
     switch (name) {
-      // case 'username':
-      //   if (value.length <= 4)
-      //     setErrors({
-      //       ...errors,
-      //       username: 'Username needs to have atleast 5 letters',
-      //     });
-      //   else {
-      //     let newObj = omit(errors, 'username');
-      //     setErrors(newObj);
-      //   }
-
-      //   break;
-
-      case 'email':
-        if (
-          !new RegExp(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          ).test(value)
-        ) {
+      case 'username':
+        if (value.length < 4)
           setErrors({
             ...errors,
-            email: 'Enter a valid email address',
+            username: 'Username needs to have atleast 4 letters',
           });
-        } else {
-          let newObj = omit(errors, 'email');
+        else {
+          let newObj = omit(errors, 'username');
           setErrors(newObj);
         }
+
         break;
+
+      // case 'email':
+        // if (
+        //   !new RegExp(
+        //     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        //   ).test(value)
+        // ) {
+        //   setErrors({
+        //     ...errors,
+        //     email: 'Enter a valid email address',
+        //   });
+        // } else {
+        //   let newObj = omit(errors, 'email');
+        //   setErrors(newObj);
+        // }
+        // break;
       case 'password':
         if (value.length < 6)
           setErrors({
@@ -79,7 +79,7 @@ const useValidator = (callback) => {
 
     if (Object.keys(errors).length === 0 && Object.keys(values).length === 2) {
       callback({
-        email: values['email'],
+        username: values['username'],
         password: values['password'],
         setErrors: setErrors,
       });

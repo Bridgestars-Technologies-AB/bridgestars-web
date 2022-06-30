@@ -29,7 +29,7 @@ import { borders } from '@mui/system';
 import Box from '@mui/material/Box';
 import bgImage from 'assets/images/bridgestars/circle-solid.svg'
 
-function IssueCard({ title, description, author, status, creationTime, ...rest }) {
+function IssueCard({ title, description, author, status, creationTime, handleVote, ...rest }) {
   return (
     <Card sx={{ width: '100%' }}>
       <Grid container>
@@ -59,7 +59,9 @@ function IssueCard({ title, description, author, status, creationTime, ...rest }
                   borderColor: 'grey.500',
                 }}
               >
-                <IconButton>
+                <IconButton
+                  onClick={handleVote}
+                >
                   <Icon>thumb_up</Icon>
                 </IconButton>
               </Box>
@@ -131,7 +133,7 @@ function IssueCard({ title, description, author, status, creationTime, ...rest }
                 bgColor='rgba(0,0,0,0.8)'
                 sx={{
                   display: 'inline-block',
-                  borderRadius: '10px 10px 10px 10px',
+                  borderRadius: '1vmin 1vmin 1vmin 1vmin',
                 }}
               ></MKBox>
               {creationTime}
