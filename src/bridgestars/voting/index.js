@@ -1,5 +1,3 @@
-
-
 import { useEffect, useRef } from 'react';
 
 // rellax
@@ -9,6 +7,7 @@ import Rellax from 'rellax';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
+import Box from '@mui/material/Box';
 
 // Otis Kit PRO components
 import MKBox from 'components/MKBox';
@@ -39,7 +38,21 @@ import {
 } from 'firebase/auth';
 import { useCollectionOnce } from 'react-firebase-hooks/firestore';
 
-import { collection, doc, setDoc, getDoc, getFirestore, query, getDocs, orderBy, limit } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  setDoc,
+  getDoc,
+  getFirestore,
+  query,
+  getDocs,
+  orderBy,
+  limit,
+  updateDoc,
+  increment,
+  arrayUnion,
+  arrayRemove,
+} from 'firebase/firestore';
 
 import { useNavigate } from 'react-router-dom';
 import SigninForm from 'bridgestars/auth/sign-in';
@@ -47,51 +60,108 @@ import SigninForm from 'bridgestars/auth/sign-in';
 import { useState } from 'react';
 import { Modal } from '@mui/material';
 import { Button } from '@mui/material';
-import {Icon} from '@mui/material';
+import { Icon } from '@mui/material';
 import { Input } from '@mui/material';
 import { IconButton } from '@mui/material';
+import { useId } from 'react';
 
 function parseDate(ms) {
   const d = new Date();
   d.setTime(ms);
   const month = d.toLocaleString('default', { month: 'short' });
-  return `${d.getDate()} ${month} ${d.getFullYear()}`; 
+  return `${d.getDate()} ${month} ${d.getFullYear()}`;
 }
 
-
-
-
 function VotingPage() {
+  const auth = getAuth(firebaseApp);
+  const db = getFirestore(firebaseApp);
 
-  const auth = getAuth(firebaseApp)
-  const db = getFirestore(firebaseApp)
+  const requestsRef = collection(db, 'feedback/voting_app/requests');
+  const commentsRef = collection(db, 'feedback/voting_app/comments');
+  const usersRef = collection(db, 'feedback/voting_app/users');
 
-  const requestsRef = collection(db, "feedback/voting_app/requests")
-  const commentsRef = collection(db, 'feedback/voting_app/comments')
-  const usersRef = collection(db, "feedback/voting_app/users")
-  const q = query(requestsRef, orderBy("votes"), limit(10))
-  const [value, loading, error] = useCollectionOnce(q)
-  const [votes, setVotes] = useState({ id: true });
-  const [userData, setUserData] = useState({})
+  
+
+  //TEMP
+  const q = query(requestsRef, orderBy('votes'), limit(10));
+  const [value, loading, error] = useCollectionOnce(q);
+  useEffect(() => {
+    if (value && !loading && !error) {
+      console.log(JSON.stringify(value.docs))
+      console.log(JSON.stringify(value.docs.map(doc => { return { id: doc.id, data: doc.data() } })))
+      setLoadedDocs(value.docs.map(doc => { doc.id, { ...doc.data() } }))
+    }
+  }, [value]);
+
+  const [votes, setVotes] = useState([]);
+  const [userData, setUserData] = useState({});
+
   const [signedIn, setSignedIn] = useState(false);
-  const [showSignin, setShowSignin] = useState(false)
-  const [loadedDocs, setLoadedDocs] = useState({})
+  const [showSignin, setShowSignin] = useState(false);
+
+  const [loadedDocs, setLoadedDocs] = useState([]);
+
+  let downloadedUserData = false;
+  async function downloadUserData(uid) {
+    //TRY?
+    console.log(1);
+    console.log(uid);
+    downloadedUserData = true;
+    const d = await getDoc(doc(usersRef, uid));
+    console.log(JSON.stringify(d.data()));
+    console.log(2);
+    //IF DOES NOT EXIST CREATE DOCUMENT
+    setVotes(d.data().votes);
+    console.log(3);
+  }
 
   async function handleVote(requestId) {
-    if (signedIn) {
+    const updateDoc = (doc) => {
+      doc.votes += 1;
+      return doc;
+    };
+    if (signedIn && votes != null) {
+      if (votes.includes(requestId)) {
+        //local
+        const v = votes.filter((x) => x != requestId);
+        setVotes(v);
 
-      // const docRef = doc(requestsRef, requestId);
-      // const doc = await getDoc(docRef)
-      // await setDoc(docRef, {
-      //   votes: doc.data().votes + 1
-      // })
-      // //await setDoc()
-      // setVotes({ requestId: true })
-    }
-    else {
-      setShowSignin(true)
+        // setLoadedDocs(
+        //   loadedDocs.map((doc) => doc.id == requestId ? updateDoc(doc) : doc)
+        // );
+
+        //remote
+        await Promise.all([
+          updateDoc(doc(requestsRef, requestId), {
+            votes: increment(-1),
+          }),
+          updateDoc(doc(usersRef, userData.uid), {
+            votes: arrayRemove(requestId),
+          }),
+        ]);
+        //console.log(votes.filter((x) => x != requestId));
+      } else {
+        //local
+        let v = [];
+        v.push(...votes);
+        v.push(requestId);
+        setVotes(v);
+
+        //remote
+        await Promise.all([
+          updateDoc(doc(requestsRef, requestId), {
+            votes: increment(1),
+          }),
+          updateDoc(doc(usersRef, userData.uid), {
+            votes: arrayUnion(requestId),
+          }),
+        ]);
+      }
+    } else {
+      setShowSignin(true);
     }
   }
+
   async function handleNewRequest(requestId) {
     if (signedIn) {
       const docRef = doc(requestsRef, requestId);
@@ -101,30 +171,27 @@ function VotingPage() {
       });
       //await setDoc()
       setVotes({ requestId: true });
-    }
-    else {
-      setShowSignin(true)
+    } else {
+      setShowSignin(true);
     }
   }
-
 
   onAuthStateChanged(auth, (user) => {
     //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
 
-    if (!signedIn && user) {
-      console.log(user)
-      setUserData(user)
+    if (!signedIn && user && !downloadedUserData) {
+      console.log(user);
+      setUserData(user);
       setSignedIn(true);
-      setShowSignin(false)
-      
-    } else if(!user) {
-      console.log("signed out")
-      setUserData(null)
+      setShowSignin(false);
+      console.log(user.uid);
+      downloadUserData(user.uid);
+    } else if (!user) {
+      console.log('signed out');
+      setUserData(null);
       setSignedIn(false);
     }
   });
-
-
 
   const style = {
     position: 'absolute',
@@ -178,8 +245,10 @@ function VotingPage() {
       <Grid container width='100%' justifyContent='center'>
         <Card
           sx={{
-            p: 2,
-            mx: { xs: 2, lg: 3 },
+            // px: { xs: 0, sm: 1, lg: 2 },
+            py: 2,
+            px: { xs: 0, sm: 1, lg: 3 },
+            mx: { xs: 0, sm: 1, md: 2, lg: 3 },
             mt: 4,
             mb: 4,
             width: { xxl: 1600, xl: '100%' },
@@ -187,7 +256,7 @@ function VotingPage() {
           }}
         >
           <BridgestarsNavbar
-            routes={routes.filter((r) => r.name != 'Download')}
+            routes={routes.filter((r) => r.name != 'Vote')}
             // action={
             //   window.innerWidth > 370
             //     ? {
@@ -201,42 +270,46 @@ function VotingPage() {
             sticky
             dark
             fullWidth
-            //relative
-            //transparent
+            // relative
+            // transparent
           />
-          <Grid container item alignItems='center' flexDirection='column'>
-            <MKBox
-              mt={10}
-              mb={-2}
-              component='img'
-              src={bgImage}
-              width={{ xs: '75%', sm: '45%', xl: '35%' }}
-            ></MKBox>
-          </Grid>
-          <Grid container item md={12} justifyContent={'space-between'}>
-            <Grid item md={3}>
-              <Button>new request</Button>
+          <Box>
+            <Grid container item alignItems='center' flexDirection='column'>
+              <MKBox
+                mt={10}
+                mb={-2}
+                component='img'
+                src={bgImage}
+                width={{ xs: '75%', sm: '45%', xl: '35%' }}
+              ></MKBox>
             </Grid>
-          </Grid>
-          <MKBox p={3}>
-            {error && <strong>Error: {JSON.stringify(error)}</strong>}
-            {loading && <span>Collection: Loading...</span>}
-            {value &&
-              // setLoadedDocs(value.docs) &&
-              value.docs.map((doc) => (
-                <IssueCard
-                  // voted={votes[doc.id]}
-                  key={doc.id}
-                  mb={2}
-                  title={doc.data().title}
-                  description={doc.data().description}
-                  author={doc.data().author}
-                  status={doc.data().status}
-                  creationTime={parseDate(doc.data().creationTime)}
-                  handleVote={() => handleVote(doc.id)}
-                ></IssueCard>
-              ))}
-          </MKBox>
+            <Grid container item md={12} justifyContent={'space-between'}>
+              <Grid item md={3}>
+                <Button>new request</Button>
+              </Grid>
+            </Grid>
+            <MKBox p={{ sx: 0, sm: 1, md: 2 }}>
+              {error && <strong>Error: {JSON.stringify(error)}</strong>}
+              {loading && <span>Collection: Loading...</span>}
+              {loadedDocs.length != 0 && 
+                loadedDocs.map((doc) => (
+                  <Box mb={3}>
+                    <IssueCard
+                      voted={votes.includes(doc.id)}
+                      nbrVotes={doc.data().votes}
+                      nbrComments={doc.data().comments}
+                      key={doc.id}
+                      title={doc.data().title}
+                      description={doc.data().description}
+                      author={doc.data().author}
+                      status={doc.data().status}
+                      creationTime={parseDate(doc.data().creationTime)}
+                      handleVote={() => handleVote(doc.id)}
+                    ></IssueCard>
+                  </Box>
+                ))}
+            </MKBox>
+          </Box>
         </Card>
       </Grid>
       <MKBox pt={6} px={1} mt={6}>

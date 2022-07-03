@@ -27,63 +27,90 @@ import { IconButton } from '@mui/material';
 import { Button } from '@mui/material';
 import { borders } from '@mui/system';
 import Box from '@mui/material/Box';
-import bgImage from 'assets/images/bridgestars/circle-solid.svg'
+import bgImage from 'assets/images/bridgestars/circle-solid.svg';
+import { Typography } from '@mui/material';
 
-function IssueCard({ title, description, author, status, creationTime, handleVote, ...rest }) {
+import commentIcon from 'assets/images/bridgestars/Comments.png';
+import userIcon from 'assets/images/bridgestars/User.png';
+
+function drawVote(voted, voteCount, handleVote) {
   return (
-    <Card sx={{ width: '100%' }}>
-      <Grid container>
-        <Grid container item md={2}>
-          <Box
-            mb={2}
-            width={'60%'}
-            textAlign='center'
-            sx={{
-              border: 1,
-              borderRadius: '15px 15px 15px 15px',
-              borderWidth: '2px',
-              borderColor: 'grey.500',
-            }}
-          >
-            <Grid
-              md={12}
-              item
-              alignItems='center' //vertikalt
-              justifyContent='center' //horisontellt
-            >
-              <Box
-                textAlign='center'
-                sx={{
-                  borderBottom: 1,
-                  borderWidth: '2px',
-                  borderColor: 'grey.500',
-                }}
-              >
-                <IconButton
-                  onClick={handleVote}
-                >
-                  <Icon>thumb_up</Icon>
-                </IconButton>
-              </Box>
+    <Grid
+      mt={1}
+      xs={12}
+      item
+      alignItems='center' //vertikalt
+      justifyContent='center' //horisontellt
+    >
+      <Box
+        mb={1}
+        mx={2}
+        py={1}
+        textAlign='center'
+        sx={{
+          border: 1,
+          borderRadius: '2px 2px 2px 2px',
+          borderWidth: '1.5px',
+          borderColor: voted ? 'success.main' : 'dark.main',
+        }}
+      >
+        <MKTypography
+          sx={{ fontSize: '4vmin' }}
+          color={voted ? 'success' : 'dark'}
+        >
+          {voteCount ? voteCount : '1,203'}
+        </MKTypography>
+      </Box>
 
-              <Box textAlign='center'>
-                <MKTypography variant='h4' sx={{ fontSize: '3vmin' }}>
-                  123
-                </MKTypography>
-              </Box>
-            </Grid>
-          </Box>
+      <Box
+        textAlign='center'
+        variant='button'
+        bgcolor={voted ? 'success.main' : 'dark.main'}
+        mx={3}
+        py={0.5}
+        px={0.5}
+        // width='61.8%'
+        sx={{
+          borderRadius: '2px 2px 2px 2px',
+        }}
+        onClick={handleVote}
+      >
+        <MKTypography sx={{ fontSize: '2.3vmin' }} color='white'>
+          {voted ? 'VOTED' : 'VOTE'}
+        </MKTypography>
+      </Box>
+    </Grid>
+  );
+}
+
+function IssueCard({
+  title,
+  description,
+  author,
+  status,
+  creationTime,
+  handleVote,
+  voted,
+  nbrVotes,
+  nbrComments,
+  ...rest
+}) {
+  return (
+    <Card sx={{ width: '100%' }} {...rest}>
+      <Grid container p={1}>
+        <Grid container item xs={4} sm={3} md={2} xl={1}>
+          {drawVote(voted, nbrVotes, handleVote)}
         </Grid>
 
-        <Grid item md={8}>
+        <Grid item xs={8} sm={9} md={10}>
           <Grid container item md={12}>
-            <MKTypography variant='h2' sx={{ fontSize: '4vmin' }}>
+            <MKTypography variant='h2' mt={1} sx={{ fontSize: '5vmin' }}>
               {title}
             </MKTypography>
           </Grid>
           <Grid container item md={12}>
             <Box
-              mb={1}
+              my={1}
               px={1}
               bgcolor='rgba(255,0,0,0.5)'
               sx={{
@@ -91,97 +118,78 @@ function IssueCard({ title, description, author, status, creationTime, handleVot
               }}
             >
               <MKTypography
-                sx={{ fontSize: '2vmin', color: 'rgba(255,0,0,1)' }}
+                sx={{ fontSize: '3vmin', color: 'rgba(255, 0, 0, 1)' }}
               >
                 {status}
               </MKTypography>
             </Box>
           </Grid>
-          <Grid container item md={12}>
-            <MKTypography>
-              {description.length > 100
-                ? description.substring(0, 100) + ' . . . '
-                : description}
-            </MKTypography>
-          </Grid>
         </Grid>
-        <Grid
-          container
-          item
-          spacing={0}
-          md={2}
-          alignItems='center' //vertikalt
-          justifyContent='center' //horisontellt
-        >
-          <Grid item>
-            <IconButton>
-              <Icon sx={{ transform: 'scale(2)' }}>comment</Icon>
-            </IconButton>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item md={12} mx={3} textAlign='right'>
-          <MKTypography variant='text2' sx={{ fontSize: '1.5vmin' }}>
-            <span>
-              {author.username}
-              <MKBox
-                mb={0.15}
-                mx={1}
-                width='0.8vmin'
-                height='0.8vmin'
-                bgColor='rgba(0,0,0,0.8)'
-                sx={{
-                  display: 'inline-block',
-                  borderRadius: '1vmin 1vmin 1vmin 1vmin',
-                }}
-              ></MKBox>
-              {creationTime}
-            </span>
+        <Grid container item md={12}>
+          <MKTypography>
+            {description.length > 200
+              ? description.substring(0, 190) + ' . . . '
+              : description}
           </MKTypography>
         </Grid>
+
+        <Grid
+          container
+          sx={{
+            flex: 1,
+            flexDirection: 'row',
+          }}
+          justifyContent='center'
+          alignItems='center'
+          p={1}
+        >
+          <Grid
+            container
+            item
+            sx={{
+              flex: 1,
+              flexDirection: 'row',
+            }}
+            alignItems='center'
+          >
+            <MKBox component='img' src={userIcon} width='6vmin'></MKBox>
+            <MKTypography
+              variant='h3'
+              sx={{ fontSize: '3vmin', color: '#1e2e4acc' }}
+              mx={1}
+            >
+              {author.username}
+            </MKTypography>
+            <MKBox
+              width='1.2vmin'
+              height='1.2vmin'
+              mt={0.3}
+              bgColor='#1e2e4acc'
+              sx={{
+                display: 'inline-block',
+                borderRadius: '1vmin 1vmin 1vmin 1vmin',
+              }}
+            ></MKBox>
+            <MKTypography
+              variant='h3'
+              sx={{ fontSize: '3vmin', color: '#1e2e4acc' }}
+              mx={1}
+            >
+              {creationTime}
+            </MKTypography>
+          </Grid>
+          <MKBox component='img' src={commentIcon} width='6vmin'></MKBox>
+          <MKTypography
+            variant='h3'
+            sx={{ fontSize: '3vmin', color: '#1e2e4acc' }}
+            ml={1}
+          >
+            {nbrComments ? nbrComments : 0}
+          </MKTypography>
+        </Grid>
+        
       </Grid>
     </Card>
-    // <Grid container item xs={12} lg={10} xl={8} xxl={8} mx={'auto'} {...rest}>
-    //   <Card sx={{ width: '100%' }}>
-    //     <Grid container alignItems='center'>
-    //       <Grid item xs={12} lg={8}>
-    //         <MKBox py={3} px={4}>
-    //           <MKTypography variant='h3' mb={1}>
-    //             {title}
-    //           </MKTypography>
-    //           <MKTypography variant='body2' color='text' fontWeight='regular'>
-    //             {description}
-    //           </MKTypography>
-    //         </MKBox>
-    //       </Grid>
-    //       <Grid item xs={12} lg={4}>
-    //         <MKBox p={3} textAlign='center'>
-    //           <MKTypography variant='h6' mt={{ xs: 0, sm: 3 }}></MKTypography>
-    //           <MKTypography variant='h1'>Free</MKTypography>
-    //           <MKButton
-    //             variant='gradient'
-    //             component='a'
-    //             href={link}
-    //             color='error'
-    //             size='large'
-    //             sx={{ my: 2 }}
-    //           >
-    //             Download
-    //           </MKButton>
-    //           <MKTypography
-    //             display='block'
-    //             variant='button'
-    //             color='text'
-    //             fontWeight='regular'
-    //           >
-    //             Download size ({size})
-    //           </MKTypography>
-    //         </MKBox>
-    //       </Grid>
-    //     </Grid>
-    //   </Card>
-    // </Grid>
   );
 }
 

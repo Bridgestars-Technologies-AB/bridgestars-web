@@ -62,8 +62,8 @@ export default {
   },
 
   success: {
-    main: '#4CAF50',
-    focus: '#67bb6a',
+    main: 'rgba(89, 186, 131, 1)',
+    focus: 'rgba(100, 200, 151, 1)',
   },
 
   warning: {
@@ -115,8 +115,8 @@ export default {
     },
 
     success: {
-      main: '#66BB6A',
-      state: '#43A047',
+      main: 'rgba(89, 186, 131, 1)',
+      state: 'rgba(89, 186, 131, 1)',
     },
 
     warning: {
@@ -219,8 +219,8 @@ export default {
     },
 
     success: {
-      background: '#bce2be',
-      text: '#339537',
+      background: 'rgba(89, 186, 131, 1)',
+      text: 'rgba(89, 186, 131, 1)',
     },
 
     warning: {

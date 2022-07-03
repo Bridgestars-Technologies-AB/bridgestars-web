@@ -489,13 +489,22 @@ function BridgestarsNavbar({
   );
 
   return (
-    <Container sx={sticky ? { position: 'sticky', top: 0, zIndex: 10 } : null}>
+    <MKBox
+      width='100%'
+      mx={0}
+      sx={sticky ? { position: 'sticky', top: 0, zIndex: 10 } : null}
+    >
       <MKBox
         py={1}
-        px={{
-          xs: fullWidth ? 0 : 4,
-          sm: fullWidth ? 0 : transparent ? 2 : 3,
-          lg: fullWidth ? 0 : transparent ? 0 : 2,
+        pr={{
+          xs: fullWidth ? 2 : 4,
+          sm: fullWidth ? 1 : transparent ? 2 : 3,
+          lg: fullWidth ? 1 : transparent ? 0 : 2,
+        }}
+        pl={{
+          xs: fullWidth ? 4 : 4,
+          sm: fullWidth ? 3 : transparent ? 2 : 3,
+          lg: fullWidth ? 3 : transparent ? 0 : 2,
         }}
         my={relative ? 0 : 0} //0:2
         mx={fullWidth ? 0 : relative ? 0 : 3}
@@ -506,15 +515,17 @@ function BridgestarsNavbar({
         position={relative ? 'relative' : 'absolute'}
         left={0}
         zIndex={3}
-        sx={({
-          palette: { transparent: transparentColor, white },
-          functions: { rgba },
-        }) => ({
-          backgroundColor: transparent
-            ? transparentColor.main
-            : rgba(white.main, 0.8),
-          backdropFilter: transparent ? 'none' : `saturate(400%) blur(30px)`,
-        })}
+        // sx={{width:'100%'}}        
+        sx={
+          ({
+            palette: { transparent: transparentColor, white },
+            functions: { rgba },
+          }) => ({
+            backgroundColor: transparent
+              ? transparentColor.main
+              : rgba(white.main, 0.8),
+            backdropFilter: transparent ? 'none' : `saturate(400%) blur(30px)`,
+          })}
       >
         <MKBox
           display='flex'
@@ -613,7 +624,7 @@ function BridgestarsNavbar({
       </MKBox>
       {dropdownMenu}
       {nestedDropdownMenu}
-    </Container>
+    </MKBox>
   );
 }
 

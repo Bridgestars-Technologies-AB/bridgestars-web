@@ -35,6 +35,7 @@ import {
   sendPasswordResetEmail,
 } from 'firebase/auth';
 
+
 import { useNavigate } from 'react-router-dom';
 
 import { useSearchParams } from 'react-router-dom';
@@ -83,6 +84,7 @@ function SigninForm(modal) {
   );
   const [searchParams, setSearchParams] = useSearchParams()
   const navigateTo = useNavigate();
+  
 
 
   const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
@@ -90,7 +92,7 @@ function SigninForm(modal) {
 
   onAuthStateChanged(auth, (user) => {
     //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
-
+    
     if (user) {
       setSignedIn(true);
       setTitle('You are now signed in');
