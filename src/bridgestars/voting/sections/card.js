@@ -45,7 +45,7 @@ function drawVote(voted, voteCount, handleVote) {
       <Box
         mb={1}
         mx={2}
-        py={1}
+        py={0.5}
         textAlign='center'
         sx={{
           border: 1,
@@ -55,7 +55,7 @@ function drawVote(voted, voteCount, handleVote) {
         }}
       >
         <MKTypography
-          sx={{ fontSize: '4vmin' }}
+          sx={{ fontSize: '4vw' }}
           color={voted ? 'success' : 'dark'}
         >
           {voteCount ? voteCount : '1,203'}
@@ -75,7 +75,7 @@ function drawVote(voted, voteCount, handleVote) {
         }}
         onClick={handleVote}
       >
-        <MKTypography sx={{ fontSize: '2.3vmin' }} color='white'>
+        <MKTypography sx={{ fontSize: '2.3vw' }} color='white'>
           {voted ? 'VOTED' : 'VOTE'}
         </MKTypography>
       </Box>
@@ -95,37 +95,37 @@ function IssueCard({
   nbrComments,
   ...rest
 }) {
+  const statusColor = () => {
+    switch (status) {
+      case "Reviewed":
+        return "0, 0, 255"
+      case "Planned":
+        return "255, 0, 255"
+      case "In Progress":
+        return '0, 255, 255'
+      case "In Beta":
+        return '0, 255, 128'
+      case "Already Exists":
+        return "255, 0, 0"
+      default: //0.1.1
+        return "0, 255, 0"
+    }
+  }
   return (
     <Card sx={{ width: '100%' }} {...rest}>
       <Grid container p={1}>
-        <Grid container item xs={4} sm={3} md={2} xl={1}>
+        <Grid container item pt={1} xs={3} sm={3} md={2} lg={2}>
           {drawVote(voted, nbrVotes, handleVote)}
         </Grid>
 
-        <Grid item xs={8} sm={9} md={10}>
+        <Grid item xs={9} sm={9} md={10} lg={10}>
           <Grid container item md={12}>
-            <MKTypography variant='h2' mt={1} sx={{ fontSize: '5vmin' }}>
+            <MKTypography variant='h2' mt={1} sx={{ fontSize: '4vw' }}>
               {title}
             </MKTypography>
           </Grid>
-          <Grid container item md={12}>
-            <Box
-              my={1}
-              px={1}
-              bgcolor='rgba(255,0,0,0.5)'
-              sx={{
-                borderRadius: '10px 10px 10px 10px',
-              }}
-            >
-              <MKTypography
-                sx={{ fontSize: '3vmin', color: 'rgba(255, 0, 0, 1)' }}
-              >
-                {status}
-              </MKTypography>
-            </Box>
-          </Grid>
         </Grid>
-        <Grid container item md={12}>
+        <Grid container item md={12} px={2} py={1}>
           <MKTypography>
             {description.length > 200
               ? description.substring(0, 190) + ' . . . '
@@ -152,42 +152,60 @@ function IssueCard({
             }}
             alignItems='center'
           >
-            <MKBox component='img' src={userIcon} width='6vmin'></MKBox>
+            <MKBox component='img' src={userIcon} width='6vw'></MKBox>
             <MKTypography
               variant='h3'
-              sx={{ fontSize: '3vmin', color: '#1e2e4acc' }}
+              sx={{ fontSize: '3vw', color: '#1e2e4acc' }}
               mx={1}
             >
               {author.username}
             </MKTypography>
             <MKBox
-              width='1.2vmin'
-              height='1.2vmin'
+              width='1.2vw'
+              height='1.2vw'
               mt={0.3}
               bgColor='#1e2e4acc'
               sx={{
                 display: 'inline-block',
-                borderRadius: '1vmin 1vmin 1vmin 1vmin',
+                borderRadius: '1vw 1vw 1vw 1vw',
               }}
             ></MKBox>
             <MKTypography
               variant='h3'
-              sx={{ fontSize: '3vmin', color: '#1e2e4acc' }}
+              sx={{ fontSize: '3vw', color: '#1e2e4acc' }}
               mx={1}
             >
               {creationTime}
             </MKTypography>
+            {status && (
+              <Box
+                mx={2}
+                px={1}
+                py={0.2}
+                bgcolor={`rgba(${statusColor()}, 0.5)`}
+                sx={{
+                  borderRadius: '3px',
+                }}
+              >
+                <MKTypography
+                  variant='h3'
+                  sx={{ fontSize: '3vw', opacity: 0.8 }}
+                >
+                  {status}
+                </MKTypography>
+              </Box>
+            )}
           </Grid>
-          <MKBox component='img' src={commentIcon} width='6vmin'></MKBox>
+
+          <MKBox component='img' src={commentIcon} width='6vw'></MKBox>
           <MKTypography
             variant='h3'
-            sx={{ fontSize: '3vmin', color: '#1e2e4acc' }}
+            sx={{ fontSize: '3vw', color: '#1e2e4acc' }}
             ml={1}
           >
             {nbrComments ? nbrComments : 0}
           </MKTypography>
         </Grid>
-        
       </Grid>
     </Card>
   );

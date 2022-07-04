@@ -87,9 +87,9 @@ function VotingPage() {
   const [value, loading, error] = useCollectionOnce(q);
   useEffect(() => {
     if (value && !loading && !error) {
-      console.log(JSON.stringify(value.docs))
-      console.log(JSON.stringify(value.docs.map(doc => { return { id: doc.id, data: doc.data() } })))
-      setLoadedDocs(value.docs.map(doc => { doc.id, { ...doc.data() } }))
+      setLoadedDocs(value.docs.map(doc => {
+        return { id: doc.id, ...doc.data() };
+      }))
     }
   }, [value]);
 
@@ -116,19 +116,24 @@ function VotingPage() {
   }
 
   async function handleVote(requestId) {
-    const updateDoc = (doc) => {
-      doc.votes += 1;
-      return doc;
+    const updateDocs = (inc) => {
+      const incr = (doc) => {
+        doc.votes += inc
+        return doc
+      }
+      setLoadedDocs(
+        loadedDocs.map((doc) =>
+          doc.id == requestId ? incr(doc) : doc
+        )
+      );
+      
     };
     if (signedIn && votes != null) {
       if (votes.includes(requestId)) {
         //local
         const v = votes.filter((x) => x != requestId);
         setVotes(v);
-
-        // setLoadedDocs(
-        //   loadedDocs.map((doc) => doc.id == requestId ? updateDoc(doc) : doc)
-        // );
+        updateDocs(-1)
 
         //remote
         await Promise.all([
@@ -146,6 +151,7 @@ function VotingPage() {
         v.push(...votes);
         v.push(requestId);
         setVotes(v);
+        updateDocs(1);
 
         //remote
         await Promise.all([
@@ -296,14 +302,14 @@ function VotingPage() {
                   <Box mb={3}>
                     <IssueCard
                       voted={votes.includes(doc.id)}
-                      nbrVotes={doc.data().votes}
-                      nbrComments={doc.data().comments}
+                      nbrVotes={doc.votes}
+                      nbrComments={doc.comments}
                       key={doc.id}
-                      title={doc.data().title}
-                      description={doc.data().description}
-                      author={doc.data().author}
-                      status={doc.data().status}
-                      creationTime={parseDate(doc.data().creationTime)}
+                      title={doc.title}
+                      description={doc.description}
+                      author={doc.author}
+                      status={doc.status}
+                      creationTime={parseDate(doc.creationTime)}
                       handleVote={() => handleVote(doc.id)}
                     ></IssueCard>
                   </Box>
