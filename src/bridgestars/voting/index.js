@@ -170,13 +170,7 @@ function VotingPage() {
 
   async function handleNewRequest(requestId) {
     if (signedIn) {
-      const docRef = doc(requestsRef, requestId);
-      const doc = await getDoc(docRef);
-      await setDoc(docRef, {
-        votes: doc.data().votes + 1,
-      });
-      //await setDoc()
-      setVotes({ requestId: true });
+      
     } else {
       setShowSignin(true);
     }
@@ -184,13 +178,10 @@ function VotingPage() {
 
   onAuthStateChanged(auth, (user) => {
     //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
-
     if (!signedIn && user && !downloadedUserData) {
-      console.log(user);
       setUserData(user);
       setSignedIn(true);
       setShowSignin(false);
-      console.log(user.uid);
       downloadUserData(user.uid);
     } else if (!user) {
       console.log('signed out');
@@ -294,27 +285,56 @@ function VotingPage() {
                 <Button>new request</Button>
               </Grid>
             </Grid>
-            <MKBox p={{ sx: 0, sm: 1, md: 2 }}>
-              {error && <strong>Error: {JSON.stringify(error)}</strong>}
-              {loading && <span>Collection: Loading...</span>}
-              {loadedDocs.length != 0 && 
-                loadedDocs.map((doc) => (
-                  <Box mb={3}>
-                    <IssueCard
-                      voted={votes.includes(doc.id)}
-                      nbrVotes={doc.votes}
-                      nbrComments={doc.comments}
-                      key={doc.id}
-                      title={doc.title}
-                      description={doc.description}
-                      author={doc.author}
-                      status={doc.status}
-                      creationTime={parseDate(doc.creationTime)}
-                      handleVote={() => handleVote(doc.id)}
-                    ></IssueCard>
-                  </Box>
-                ))}
-            </MKBox>
+            <Grid container>
+              <Grid item xs={12} sx={{ fontSize: '0.5vw' }}>
+                <MKBox p={{ sx: 0, sm: 1, md: 2 }}>
+                  {error && <strong>Error: {JSON.stringify(error)}</strong>}
+                  {loading && <span>Collection: Loading...</span>}
+                  {loadedDocs.length != 0 &&
+                    loadedDocs.map((doc) => (
+                      <Box mb={3}>
+                        <IssueCard
+                          voted={votes.includes(doc.id)}
+                          nbrVotes={doc.votes}
+                          nbrComments={doc.comments}
+                          key={doc.id}
+                          title={doc.title}
+                          description={doc.description}
+                          author={doc.author}
+                          status={doc.status}
+                          creationTime={parseDate(doc.creationTime)}
+                          handleVote={() => handleVote(doc.id)}
+                        ></IssueCard>
+                      </Box>
+                    ))}
+                </MKBox>
+              </Grid>
+            </Grid>
+            <Grid container>
+              <Grid item xs={7} sx={{ fontSize: '0.5vw' }}>
+                <MKBox p={{ sx: 0, sm: 1, md: 2 }}>
+                  {error && <strong>Error: {JSON.stringify(error)}</strong>}
+                  {loading && <span>Collection: Loading...</span>}
+                  {loadedDocs.length != 0 &&
+                    loadedDocs.map((doc) => (
+                      <Box mb={3}>
+                        <IssueCard
+                          voted={votes.includes(doc.id)}
+                          nbrVotes={doc.votes}
+                          nbrComments={doc.comments}
+                          key={doc.id}
+                          title={doc.title}
+                          description={doc.description}
+                          author={doc.author}
+                          status={doc.status}
+                          creationTime={parseDate(doc.creationTime)}
+                          handleVote={() => handleVote(doc.id)}
+                        ></IssueCard>
+                      </Box>
+                    ))}
+                </MKBox>
+              </Grid>
+            </Grid>
           </Box>
         </Card>
       </Grid>
