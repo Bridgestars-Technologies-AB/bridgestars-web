@@ -28,15 +28,16 @@ import useValidator from 'bridgestars/auth/sign-in/validator.js';
 // Firebase
 import { firebaseApp, sendPasswordResetEmailLink } from 'firebase-config';
 import { LineAxisOutlined } from '@mui/icons-material';
-
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function ForgotPasswordForm() {
+function ForgotPasswordForm({ modal, doneCallback, quitCallback}) {
   const [emailSent, setEmailSent] = useState(false);
   const [title, setTitle] = useState('Forgot your password?');
   const [description, setDescription] = useState(
     'Enter your email and we will send you a one time link to replace it.'
   );
+  const navigateTo = useNavigate()
 
   const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
     useValidator();
@@ -113,7 +114,6 @@ function ForgotPasswordForm() {
           fullWidth
           onChange={handleChange}
           onKeyDown={(e) => {
-            console.log(e.key + ' . ' + e.charCode);
             if (e.key === 'Enter') handleForgot();
           }}
         />
@@ -130,6 +130,27 @@ function ForgotPasswordForm() {
           reset password
         </MKButton>
       </MKBox>
+      <MKBox mt={2} mb={1} textAlign='center'>
+        <MKTypography variant='button' color='text'>
+          Don't want to reset your password?{' '}
+          <MKTypography
+            component={'span'}
+            // to='/betasignup'
+            onClick={(e) => {
+              if (modal) {
+                quitCallback();
+              } else navigateTo('/');
+            }}
+            variant='button'
+            color='info'
+            fontWeight='medium'
+            textGradient
+            sx={{ cursor: 'pointer' }}
+          >
+            Go Back
+          </MKTypography>
+        </MKTypography>
+      </MKBox>
     </MKBox>
   );
 
@@ -141,6 +162,7 @@ function ForgotPasswordForm() {
         title={title}
         description={description}
         illustration={bgImage}
+        modal={modal}
       >
         {/* title='Sign in to your Bridgestars account'
       description='Enter your email and password' */}
@@ -152,15 +174,21 @@ function ForgotPasswordForm() {
             <MKBox mt={0} mb={2}>
               <MKButton
                 variant='gradient'
-                component={Link}
-                to='/'
+                // component={Link}
+                // to='/'
+                onClick={() => {
+                  if (modal) {
+                    doneCallback()
+                  } 
+                  else navigateTo('/')
+                }}
                 size='medium'
                 fontSize='2vmin'
                 fullWidth
                 color='info'
                 //sx={{ color: ({ palette: { dark } }) => dark.main }}
               >
-                home
+                  {modal ? 'back' : 'home'}
               </MKButton>
             </MKBox>
           </>
@@ -169,5 +197,9 @@ function ForgotPasswordForm() {
     </>
   );
 }
+
+ForgotPasswordForm.defaultProps = {
+  modal: false,
+};
 
 export default ForgotPasswordForm;

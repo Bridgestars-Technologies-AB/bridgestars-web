@@ -36,32 +36,28 @@ import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
 import routes from 'constants/routes';
 import { Button } from '@mui/material';
 
-import image from 'assets/images/bridgestars/sign_in.svg';
-import IllustrationLayoutModal from './modal';
 
-function IllustrationLayout({
+function IllustrationLayoutModal({
   name,
   logo,
   header,
   title,
   description,
-  illustration,
-  modal,
   children,
+  modalExitCallback,
   ...rest
 }) {
-  if (modal)
-    return <IllustrationLayoutModal
-      name={name}
-      logo={logo}
-      header={header}
-      title={title}
-      description={description}
-      children={children}
-      {...rest}
-    />
   return (
-    <MKBox width='100%' height='100%' bgColor='white' {...rest}>
+    <MKBox
+      minWidth='275px'
+      maxWidth='400px'
+      width={{ xs: 'min-content', sm: '100%' }}
+      height='min-content'
+      bgColor='white'
+      py={1}
+      borderRadius= '5px'
+      {...rest}
+    >
       {/* <MKBox position='absolute' width='100%' mt={1}>
         <DefaultNavbar
           routes={routes}
@@ -69,49 +65,14 @@ function IllustrationLayout({
           //transparent={{ xs: false, md: true }}
         />
       </MKBox> */}
-      {modal ? (
-        ''
-      ) : (
-        <MKBox position='absolute' component='section' mt={2} ml={2}>
-          <Breadcrumbs
-            bgcolor='transparent'
-            textcolor='text'
-            routes={[{ label: 'Home', route: '/' }, { label: name }]}
-          />
-        </MKBox>
-      )}
 
       <Grid container>
-        <Grid item xs={12} lg={6}>
-          <MKBox
-            display={{ xs: 'none', lg: 'flex' }}
-            width='calc(100% - 2rem)'
-            height='calc(100vh - 2rem)'
-            borderRadius='lg'
-            ml={2}
-            mt={2}
-            sx={{
-              backgroundImage: `url(${image})`,
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
-          />
-        </Grid>
-        <Grid
-          item
-          xs={11}
-          sm={8}
-          md={5}
-          lg={4}
-          xl={3}
-          sx={{ mx: 'auto' }}
-          mt={2}
-        >
+        <Grid item xs={11} sx={{ mx: 'auto' }}>
           <MKBox
             display='flex'
             flexDirection='column'
             justifyContent='center'
-            height='100vh'
+            height='min-content'
           >
             {/* <Stack p={3} textAlign='center'> */}
             {!header ? (
@@ -120,10 +81,10 @@ function IllustrationLayout({
                   <MKBox margin='auto' mb={3} mt={0}>
                     <Image
                       src={logo}
-                      width='calc(40px + 4vh)'
-                      height='calc(40px + 4vh)'
+                      width='64px'
+                      height='64px'
                       shift='bottom'
-                      distance='2rem'
+                      distance='2em'
                       shiftDuration={750}
                       duration={0}
                     />
@@ -133,22 +94,14 @@ function IllustrationLayout({
                 )}
                 <Grow in timeout={750} style={{ transformOrigin: '0 1 0' }}>
                   <MKBox mb={1} textAlign='center'>
-                    <MKTypography
-                      variant='h4'
-                      fontSize='calc(10px + 1vh)'
-                      fontWeight='bold'
-                    >
+                    <MKTypography variant='h4' fontWeight='bold'>
                       {title}
                     </MKTypography>
                   </MKBox>
                 </Grow>
                 <Grow in timeout={750} style={{ transformOrigin: '0 1 0' }}>
                   <MKBox mb={1} textAlign='center'>
-                    <MKTypography
-                      variant='body2'
-                      fontSize='calc(6px + 1vh)'
-                      color='text'
-                    >
+                    <MKTypography variant='body2' color='text'>
                       {description}
                     </MKTypography>
                   </MKBox>
@@ -158,7 +111,7 @@ function IllustrationLayout({
               header
             )}
             {children ? (
-              <MKBox p={3}>
+              <MKBox py={1}>
                 <Grow in timeout={1000}>
                   {children}
                 </Grow>
@@ -174,22 +127,19 @@ function IllustrationLayout({
 }
 
 // Setting default values for the props of IllustrationLayout
-IllustrationLayout.defaultProps = {
+IllustrationLayoutModal.defaultProps = {
   header: '',
   logo: '',
   title: '',
   description: '',
-  illustration: '',
-  modal:false
 };
 
 // Typechecking props for the IllustrationLayout
-IllustrationLayout.propTypes = {
+IllustrationLayoutModal.propTypes = {
   header: PropTypes.node,
   title: PropTypes.string,
   description: PropTypes.string,
   children: PropTypes.node.isRequired,
-  illustration: PropTypes.string,
 };
 
-export default IllustrationLayout;
+export default IllustrationLayoutModal;

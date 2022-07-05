@@ -54,8 +54,12 @@ import {
 
 import Policies from 'bridgestars/help/Policy/Policies';
 import { Button } from '@mui/material';
+import SigninForm from '../sign-in';
 
-function BetaSignupForm() {
+function BetaSignupForm({ modal, modalExitCallback }) {
+  const [goToSignIn, setGoToSignIn] = useState(false);
+  if (goToSignIn) return <SigninForm modal={modal} />;
+
   const [confirmed, setConfirmed] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -143,7 +147,8 @@ function BetaSignupForm() {
   const handleSignOut = () => {
     signOut(auth);
     clearForm();
-    navigateTo('/signin');
+    if (modal) setGoToSignIn(true);
+    else navigateTo('/signin');
   };
 
   const form = () => {
@@ -304,6 +309,7 @@ function BetaSignupForm() {
         title={title}
         description={description}
         illustration={bgImage}
+        modal={modal}
       >
         {!confirmed ? (
           form()
@@ -312,15 +318,21 @@ function BetaSignupForm() {
             <MKBox mt={1} mb={1}>
               <MKButton
                 variant='gradient'
-                component={Link}
-                to='/'
+                // component={Link}
+                // to='/'
+                onClick={() => {
+                  if (modal) {
+                    modalExitCallback()
+                  }
+                  else navigateTo('/')
+                }}
                 size='medium'
                 fontSize='2vmin'
                 fullWidth
                 color='info'
                 //sx={{ color: ({ palette: { dark } }) => dark.main }}
               >
-                home
+                  {modal ? 'done' : 'home'}
               </MKButton>
             </MKBox>
 
@@ -353,5 +365,9 @@ function BetaSignupForm() {
     </>
   );
 }
+BetaSignupForm.defaultProps = {
+  modal: false,
+  modalExitCallback: () => {},
+};
 
 export default BetaSignupForm;

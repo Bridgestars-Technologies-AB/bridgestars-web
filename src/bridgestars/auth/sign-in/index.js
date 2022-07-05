@@ -39,30 +39,39 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 import { useSearchParams } from 'react-router-dom';
+import BetaSignupForm from 'bridgestars/auth/beta-sign-up';
+import ForgotPasswordForm from '../forgot-pass';
 
-function SigninForm(modal) {
+function SigninForm({ modal, modalExitCallback, header, ...rest }) {
   const auth = getAuth(firebaseApp);
+  const [goToSignUp, setGoToSignUp] = useState(false);
+  const [goToForgotPass, setGoToForgotPass] = useState(false);
 
   //Final submit function
   const formLogin = ({ username, password, setErrors }) => {
     //setTriedToSubmit(true);
-    console.log(password)
-    console.log(username+".account@bridgestars.net");
-    signInWithEmailAndPassword(auth, username+".account@bridgestars.net", password)
+    console.log(password);
+    console.log(username + '.account@bridgestars.net');
+    signInWithEmailAndPassword(
+      auth,
+      username + '.account@bridgestars.net',
+      password
+    )
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        if(searchParams.has('backlink')) navigateTo(searchParams.get('backlink'))
-        // ...
+        
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode);
         const errorCodes = {
-          'auth/email-already-in-use': 'The provided email is already in use.',
-          'auth/email-already-exists': 'The provided email is already in use.',
-          'auth/invalid-email': 'The provided email is not valid',
+          'auth/email-already-in-use':
+            'The provided username is already in use.',
+          'auth/email-already-exists':
+            'The provided username is already in use.',
+          'auth/invalid-email': 'The provided username is not valid',
           'auth/invalid-password': 'Invalid password',
         };
         if (errorCode.includes('password')) {
@@ -78,31 +87,28 @@ function SigninForm(modal) {
 
   const [policy, setPolicy] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
-  const [title, setTitle] = useState('Sign in to your Bridgestars account');
+  const firstTitle = header ? header : 'Sign in to your Bridgestars account';
+  const [title, setTitle] = useState(firstTitle);
   const [description, setDescription] = useState(
-    'Enter your email and password'
+    'Enter your username and password'
   );
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigateTo = useNavigate();
-  
-
 
   const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
     useValidator(formLogin);
 
   onAuthStateChanged(auth, (user) => {
     //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
-    
+
     if (user) {
       setSignedIn(true);
       setTitle('You are now signed in');
-      setDescription(
-        'You can now press the button to go back'
-      );
+      setDescription('You can now press the button to go back');
     } else {
       setSignedIn(false);
-      setTitle('Sign in to your Bridgestars account');
-      setDescription('Enter your email and password');
+      setTitle(firstTitle);
+      setDescription('Enter your username and password');
     }
   });
 
@@ -117,20 +123,18 @@ function SigninForm(modal) {
     clearForm();
   };
 
-
-
   const form = (
     <MKBox component='form' role='form'>
       <MKBox mb={2}>
-          <MKInput
-            name='username'
-            label='Username'
-            error={errors['username'] || formDenied}
-            success={values['username'] && !errors['username']}
-            fullWidth
-            onChange={handleChange}
-          />
-        </MKBox>
+        <MKInput
+          name='username'
+          label='Username'
+          error={errors['username'] || formDenied}
+          success={values['username'] && !errors['username']}
+          fullWidth
+          onChange={handleChange}
+        />
+      </MKBox>
       {/* <MKBox mb={2}>
         <MKInput
           type='email'
@@ -151,6 +155,9 @@ function SigninForm(modal) {
           success={values['password'] && !errors['password'] ? true : false}
           fullWidth
           onChange={handleChange}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') handleSubmit();
+          }}
         />
       </MKBox>
 
@@ -169,12 +176,20 @@ function SigninForm(modal) {
         <MKTypography variant='button' color='text'>
           Dont have an account?{' '}
           <MKTypography
-            component={Link}
-            to='/betasignup'
+            component={'span'}
+            // to='/betasignup'
+            onClick={(e) => {
+              if (modal) {
+                e.preventDefault();
+                console.log('asdasdasd');
+                setGoToSignUp(true);
+              } else navigateTo('/betasignup');
+            }}
             variant='button'
             color='info'
             fontWeight='medium'
             textGradient
+            sx={{ cursor: 'pointer' }}
           >
             Sign Up
           </MKTypography>
@@ -184,14 +199,17 @@ function SigninForm(modal) {
         <MKBox display='flex' alignItems='center' ml={-1} fullWidth>
           <MKTypography
             //component='button'
-            variant='button'
             fontWeight='bold'
             color='info'
             textGradient
-            component={Link}
-            to={
-              '/forgotpass'
-            }
+            variant={'button'}
+            component={'span'}
+            // to='/betasignup'
+            onClick={(e) => {
+              if (modal) {
+                setGoToForgotPass(true);
+              } else navigateTo('/forgotpass');
+            }}
             sx={{ cursor: 'pointer' }}
           >
             Forgot your password?
@@ -200,7 +218,15 @@ function SigninForm(modal) {
       </Grid>
     </MKBox>
   );
-
+  if (goToSignUp) return <BetaSignupForm modal={modal} />;
+  else if (goToForgotPass)
+    return (
+      <ForgotPasswordForm
+        modal={modal}
+        doneCallback={() => setGoToForgotPass(false)}
+        quitCallback={() => setGoToForgotPass(false)}
+      />
+    );
   return (
     <>
       <IllustrationLayout
@@ -210,6 +236,7 @@ function SigninForm(modal) {
         description={description}
         illustration={bgImage}
         modal={modal}
+        {...rest}
       >
         {/* title='Sign in to your Bridgestars account'
       description='Enter your email and password' */}
@@ -221,18 +248,22 @@ function SigninForm(modal) {
             <MKBox mt={0} mb={2}>
               <MKButton
                 variant='gradient'
-                component={Link}
-                to={
-                  '/'
-                  // '/'
-                }
+                // component={Link}
+                // to={
+                //   '/'
+                //   // '/'
+                // }
+                onClick={() => {
+                  if (modal) modalExitCallback()
+                  else navigateTo('/')
+                }}
                 size='medium'
                 fontSize='2vmin'
                 fullWidth
                 color='info'
                 //sx={{ color: ({ palette: { dark } }) => dark.main }}
-                >
-                home
+              >
+                {modal ? 'done' : 'home'}
               </MKButton>
             </MKBox>
             <Grid container item xs={12} justifyContent='center'>
@@ -264,5 +295,10 @@ function SigninForm(modal) {
     </>
   );
 }
+SigninForm.defaultProps = {
+  modal: false,
+  modalExitCallback: () => {},
+  header: 'Sign in to your Bridgestars account',
+};
 
 export default SigninForm;

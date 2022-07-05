@@ -73,7 +73,7 @@ function BridgestarsNavbar({
   useEffect(() => {
     // A function that sets the display state for the DefaultNavbarMobile.
     function displayMobileNavbar() {
-      if (window.innerWidth < breakpoints.values.lg) {
+      if (window.innerWidth < breakpoints.values.md) {
         setMobileView(true);
         setMobileNavbar(false);
       } else {
@@ -557,13 +557,13 @@ function BridgestarsNavbar({
 
           <MKBox
             color='inherit'
-            display={{ xs: 'none', lg: 'flex' }}
+            display={{ xs: 'none', md: 'flex' }}
             ml='auto'
             mr={center ? 'auto' : 0}
           >
             {renderNavbarItems}
           </MKBox>
-          <MKBox mt={transparent ? 0.2 : 0.25} ml={{ xs: 'auto', lg: 0 }}>
+          <MKBox mt={transparent ? 0.2 : 0.25} ml={{ xs: 'auto', md: 0 }}>
             {action &&
               (action.type === 'internal' ? (
                 <MKButton
@@ -599,7 +599,7 @@ function BridgestarsNavbar({
               ))}
           </MKBox>
           <MKBox
-            display={{ xs: 'inline-block', lg: 'none' }}
+            display={{ xs: 'inline-block', md: 'none' }}
             lineHeight={0}
             py={1.5}
             pl={1.5}

@@ -181,7 +181,6 @@ function VotingPage() {
     if (!signedIn && user && !downloadedUserData) {
       setUserData(user);
       setSignedIn(true);
-      setShowSignin(false);
       downloadUserData(user.uid);
     } else if (!user) {
       console.log('signed out');
@@ -190,54 +189,29 @@ function VotingPage() {
     }
   });
 
-  const style = {
-    position: 'absolute',
-    //top: '20%',
-    //left: '50%',
-    //transform: 'translate(-50%, -50%)',
-    width: '100%',
-    height: '100%',
-    bgcolor: 'white',
-    border: '0px',
-    boxShadow: 24,
-    p: 4,
-  };
   return (
     <>
       <Modal
         open={showSignin}
         onClose={() => setShowSignin(false)}
-        style={{ overflow: 'scroll' }}
+        sx={{
+          outline: 'none',
+          display:'flex',
+          alignItems: 'center',
+          justifyContent:'center'
+        }}
       >
-        <MKBox
-          style={style}
-          mt={3}
-          //textAlign='center'
-          width={{ xs: '100%', sm: '100%', md: '70%' }}
-        >
-          <Button
-            mx='auto'
-            mb={-1}
-            width={{ xs: '100%', sm: '100%', md: '70%' }}
-            variant='contained'
-            fullWidth
-            size='large'
-            color='error'
-            onClick={() => setShowSignin(false)}
-          >
-            Close <Icon>close</Icon>
-          </Button>
-          <SigninForm modal={true} />
-          {/* <Button
-            fullWidth
-            variant='contained'
-            size='large'
-            color='error'
-            onClick={() => setShowSignin(false)}
-          >
-            Close <Icon>close</Icon>
-          </Button> */}
-        </MKBox>
+        {/* <MKBox
+          sx={{
+            outline: 'none',
+          }}
+        > */}
+          <SigninForm
+            modal
+            modalExitCallback={() => setShowSignin(false)}
+            header='To vote, please sign in to your Bridgestars account'
+          />
+        {/* </MKBox> */}
       </Modal>
       <Grid container width='100%' justifyContent='center'>
         <Card
