@@ -5,7 +5,7 @@ function omit(obj, key) {
   return rest;
 }
 
-const useValidator = (callback) => {
+const useValidator = (successCallback, failCallback) => {
   const [formDenied, setFormDenied] = useState(false);
   //Form values
   const [values, setValues] = useState({});
@@ -95,8 +95,9 @@ const useValidator = (callback) => {
     if (event) event.preventDefault();
 
     if (Object.keys(errors).length === 0 && Object.keys(values).length === 4) {
-      callback({ email: values['email'], password: values['password'] });
+      successCallback({ email: values['email'], password: values['password'] });
     } else {
+      failCallback()
       if (Object.keys(errors).length === 0)
         alert("Don't forget to enter your information");
       else alert(errors[Object.keys(errors)[0]]);

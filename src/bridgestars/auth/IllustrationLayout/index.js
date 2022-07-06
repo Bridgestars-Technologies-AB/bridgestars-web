@@ -51,15 +51,17 @@ function IllustrationLayout({
   ...rest
 }) {
   if (modal)
-    return <IllustrationLayoutModal
-      name={name}
-      logo={logo}
-      header={header}
-      title={title}
-      description={description}
-      children={children}
-      {...rest}
-    />
+    return (
+      <IllustrationLayoutModal
+        name={name}
+        logo={logo}
+        header={header}
+        title={title}
+        description={description}
+        children={children}
+        {...rest}
+      />
+    );
   return (
     <MKBox width='100%' height='100%' bgColor='white' {...rest}>
       {/* <MKBox position='absolute' width='100%' mt={1}>

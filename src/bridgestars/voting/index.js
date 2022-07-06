@@ -93,29 +93,51 @@ function VotingPage() {
     }
   }, [value]);
 
+
+
   const [votes, setVotes] = useState([]);
   const [userData, setUserData] = useState({});
-
   const [signedIn, setSignedIn] = useState(false);
+    useEffect(() => {
+      if (signedIn) downloadUserDoc(userData.uid);
+    }, [signedIn]);
   const [showSignin, setShowSignin] = useState(false);
 
   const [loadedDocs, setLoadedDocs] = useState([]);
 
   let downloadedUserData = false;
-  async function downloadUserData(uid) {
+  async function downloadUserDoc(uid) {
     //TRY?
-    console.log(1);
-    console.log(uid);
-    downloadedUserData = true;
-    const d = await getDoc(doc(usersRef, uid));
-    console.log(JSON.stringify(d.data()));
-    console.log(2);
-    //IF DOES NOT EXIST CREATE DOCUMENT
-    setVotes(d.data().votes);
-    console.log(3);
+    try { 
+          console.log(1);
+          console.log(uid);
+          downloadedUserData = true;
+          const d = await getDoc(doc(usersRef, uid));
+          console.log(JSON.stringify(d.data()));
+          console.log(2);
+          //IF DOES NOT EXIST CREATE DOCUMENT
+          setVotes(d.data().votes);
+          console.log(3);
+    }
+    catch (e) {
+      if (e.code == 'permission-denied') {
+        alert('Permission denied. You are not signed in. If you just signed up the email might already be in use. In that case try to reset your password and sign in.')
+        signOut(auth);
+        setShowSignin(false)
+        setShowSignin(true);
+      }
+      else if (e.code == 'not-found') //IS THIS RIGHT?
+      {
+        //create document  
+      }
+      console.log(e)
+      console.log(JSON.stringify(e));
+    }
+
   }
 
   async function handleVote(requestId) {
+    
     const updateDocs = (inc) => {
       const incr = (doc) => {
         doc.votes += inc
@@ -181,7 +203,7 @@ function VotingPage() {
     if (!signedIn && user && !downloadedUserData) {
       setUserData(user);
       setSignedIn(true);
-      downloadUserData(user.uid);
+      
     } else if (!user) {
       console.log('signed out');
       setUserData(null);

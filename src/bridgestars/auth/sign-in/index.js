@@ -42,16 +42,16 @@ import { useSearchParams } from 'react-router-dom';
 import BetaSignupForm from 'bridgestars/auth/beta-sign-up';
 import ForgotPasswordForm from '../forgot-pass';
 
-function SigninForm({ modal, modalExitCallback, header, ...rest }) {
+import { PulseLoader } from 'react-spinners';
+
+function SigninForm({ modal, header, modalExitCallback, ...rest }) {
   const auth = getAuth(firebaseApp);
   const [goToSignUp, setGoToSignUp] = useState(false);
   const [goToForgotPass, setGoToForgotPass] = useState(false);
 
   //Final submit function
-  const formLogin = ({ username, password, setErrors }) => {
+  const formSuccess = ({ username, password, setErrors }) => {
     //setTriedToSubmit(true);
-    console.log(password);
-    console.log(username + '.account@bridgestars.net');
     signInWithEmailAndPassword(
       auth,
       username + '.account@bridgestars.net',
@@ -60,9 +60,10 @@ function SigninForm({ modal, modalExitCallback, header, ...rest }) {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        
+        setShowLoader(false);
       })
       .catch((error) => {
+        setShowLoader(false);
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode);
@@ -85,6 +86,12 @@ function SigninForm({ modal, modalExitCallback, header, ...rest }) {
       });
   };
 
+  const formFailure = () => {
+    setShowLoader(false)
+  }
+
+  const [showLoader, setShowLoader] = useState(false)
+
   const [policy, setPolicy] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const firstTitle = header ? header : 'Sign in to your Bridgestars account';
@@ -95,9 +102,15 @@ function SigninForm({ modal, modalExitCallback, header, ...rest }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigateTo = useNavigate();
 
-  const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
-    useValidator(formLogin);
+  const { formDenied, values, errors, handleChange, validatorHandleSubmit, clearForm } =
+    useValidator(formSuccess, formFailure);
 
+  
+  const handleSubmit = () => {
+    setShowLoader(true)
+    validatorHandleSubmit()
+  }
+  
   onAuthStateChanged(auth, (user) => {
     //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
 
@@ -169,7 +182,10 @@ function SigninForm({ modal, modalExitCallback, header, ...rest }) {
           size='large'
           fullWidth
         >
-          sign in
+          {showLoader ?
+            <PulseLoader color='white' speedMultiplier={1} size={8} /> :
+            'sign in'}
+          
         </MKButton>
       </MKBox>
       <MKBox mt={2} mb={1} textAlign='center'>
@@ -218,13 +234,21 @@ function SigninForm({ modal, modalExitCallback, header, ...rest }) {
       </Grid>
     </MKBox>
   );
-  if (goToSignUp) return <BetaSignupForm modal={modal} />;
+  if (goToSignUp) return (
+    <BetaSignupForm
+      modalExitCallback={modalExitCallback}
+      modal={modal}
+      {...rest}
+    />
+  );
   else if (goToForgotPass)
     return (
       <ForgotPasswordForm
         modal={modal}
+        modalExitCallback={modalExitCallback}
         doneCallback={() => setGoToForgotPass(false)}
         quitCallback={() => setGoToForgotPass(false)}
+        {...rest}
       />
     );
   return (
@@ -236,6 +260,7 @@ function SigninForm({ modal, modalExitCallback, header, ...rest }) {
         description={description}
         illustration={bgImage}
         modal={modal}
+        modalExitCallback={modalExitCallback}
         {...rest}
       >
         {/* title='Sign in to your Bridgestars account'
@@ -254,8 +279,8 @@ function SigninForm({ modal, modalExitCallback, header, ...rest }) {
                 //   // '/'
                 // }
                 onClick={() => {
-                  if (modal) modalExitCallback()
-                  else navigateTo('/')
+                  if (modal) modalExitCallback();
+                  else navigateTo('/');
                 }}
                 size='medium'
                 fontSize='2vmin'

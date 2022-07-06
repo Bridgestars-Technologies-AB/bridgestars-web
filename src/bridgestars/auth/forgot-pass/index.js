@@ -10,6 +10,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { Component } from 'react';
 import { Grid } from '@mui/material';
 
+
 // Otis Kit PRO components
 import MKBox from 'components/MKBox';
 import MKTypography from 'components/MKTypography';
@@ -31,7 +32,7 @@ import { LineAxisOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function ForgotPasswordForm({ modal, doneCallback, quitCallback}) {
+function ForgotPasswordForm({ modal, doneCallback, quitCallback, ...rest}) {
   const [emailSent, setEmailSent] = useState(false);
   const [title, setTitle] = useState('Forgot your password?');
   const [description, setDescription] = useState(
@@ -163,6 +164,7 @@ function ForgotPasswordForm({ modal, doneCallback, quitCallback}) {
         description={description}
         illustration={bgImage}
         modal={modal}
+        {...rest}
       >
         {/* title='Sign in to your Bridgestars account'
       description='Enter your email and password' */}
@@ -178,9 +180,8 @@ function ForgotPasswordForm({ modal, doneCallback, quitCallback}) {
                 // to='/'
                 onClick={() => {
                   if (modal) {
-                    doneCallback()
-                  } 
-                  else navigateTo('/')
+                    doneCallback();
+                  } else navigateTo('/');
                 }}
                 size='medium'
                 fontSize='2vmin'
@@ -188,7 +189,7 @@ function ForgotPasswordForm({ modal, doneCallback, quitCallback}) {
                 color='info'
                 //sx={{ color: ({ palette: { dark } }) => dark.main }}
               >
-                  {modal ? 'back' : 'home'}
+                {modal ? 'back' : 'home'}
               </MKButton>
             </MKBox>
           </>

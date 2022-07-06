@@ -42,6 +42,9 @@ import bgImage from 'assets/images/illustrations/illustration-reset.jpg';
 import logo from 'assets/images/bridgestars/logo-trans-512px.png';
 import useValidator from 'bridgestars/auth/beta-sign-up/validator.js';
 
+import { PulseLoader } from 'react-spinners';
+
+
 // Firebase
 import { firebaseApp } from 'firebase-config';
 import {
@@ -56,26 +59,27 @@ import Policies from 'bridgestars/help/Policy/Policies';
 import { Button } from '@mui/material';
 import SigninForm from '../sign-in';
 
-function BetaSignupForm({ modal, modalExitCallback }) {
+function BetaSignupForm({ modal, modalExitCallback, ...rest }) {
   const [goToSignIn, setGoToSignIn] = useState(false);
-  if (goToSignIn) return <SigninForm modal={modal} />;
 
   const [confirmed, setConfirmed] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-
+  const [showLoader, setShowLoader] = useState(false)
   const auth = getAuth(firebaseApp);
 
-  const formLogin = ({ email, password }) => {
+  const validateSuccessCallback = ({ email, password }) => {
     //setTriedToSubmit(true);
     //AUTH SIGNIN
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
+        setShowLoader(false)
         const user = userCredential.user;
         // ...
       })
       .catch((error) => {
+        setShowLoader(false);
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode);
@@ -112,7 +116,6 @@ function BetaSignupForm({ modal, modalExitCallback }) {
       );
       // ...
     } else {
-      console.log('SIGNED OUT');
       setConfirmed(false);
       setTitle('Become an early access member');
       setDescription(
@@ -121,10 +124,14 @@ function BetaSignupForm({ modal, modalExitCallback }) {
     }
   });
 
+  const validateFailCallback = () => {
+    setShowLoader(false)
+  }
+
   const [policy, setPolicy] = useState(false);
 
   const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
-    useValidator(formLogin);
+    useValidator(validateSuccessCallback, validateFailCallback);
 
   //Final submit function
 
@@ -188,6 +195,12 @@ function BetaSignupForm({ modal, modalExitCallback }) {
             }
             label='Confirm Password'
             fullWidth
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                setShowLoader(true)
+                handleSubmit();
+              }
+            }}
             onChange={handleChange}
           />
         </MKBox>
@@ -222,13 +235,20 @@ function BetaSignupForm({ modal, modalExitCallback }) {
         </Grid>
         <MKBox mt={4} mb={1}>
           <MKButton
-            onClick={handleSubmit}
+            onClick={() => {
+              setShowLoader(true);
+              handleSubmit();
+            }}
             variant='gradient'
             color='info'
             size='large'
             fullWidth
           >
-            register
+            {showLoader ? (
+              <PulseLoader color='white' speedMultiplier={1} size={8} />
+            ) : (
+              'register'
+            )}
           </MKButton>
         </MKBox>
         {/* <MKBox mt={2} mb={1} textAlign='center'>
@@ -266,6 +286,15 @@ function BetaSignupForm({ modal, modalExitCallback }) {
     boxShadow: 24,
     p: 4,
   };
+  if (goToSignIn)
+    return (
+      <SigninForm
+        modal={modal}
+        modalExitCallback={modalExitCallback}
+        {...rest}
+      />
+    );
+
   return (
     <>
       <Modal
@@ -310,6 +339,8 @@ function BetaSignupForm({ modal, modalExitCallback }) {
         description={description}
         illustration={bgImage}
         modal={modal}
+        modalExitCallback={modalExitCallback}
+        {...rest}
       >
         {!confirmed ? (
           form()

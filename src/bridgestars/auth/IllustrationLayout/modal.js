@@ -22,6 +22,8 @@ import { Stack } from '@mui/material';
 import Image from 'mui-image';
 import { Box } from '@mui/material';
 import { Grow } from '@mui/material';
+import { Icon } from '@mui/material'
+import { IconButton } from '@mui/material';
 
 // Otis Kit PRO components
 import MKBox from 'components/MKBox';
@@ -55,7 +57,7 @@ function IllustrationLayoutModal({
       height='min-content'
       bgColor='white'
       py={1}
-      borderRadius= '5px'
+      borderRadius='5px'
       {...rest}
     >
       {/* <MKBox position='absolute' width='100%' mt={1}>
@@ -65,7 +67,11 @@ function IllustrationLayoutModal({
           //transparent={{ xs: false, md: true }}
         />
       </MKBox> */}
-
+      <Box position='absolute' ml={1} onClick={() => { modalExitCallback() }}>
+        <IconButton >
+          <Icon sx={{ transform: 'scale(1.3)' }}>close</Icon>
+        </IconButton>
+      </Box>
       <Grid container>
         <Grid item xs={11} sx={{ mx: 'auto' }}>
           <MKBox
