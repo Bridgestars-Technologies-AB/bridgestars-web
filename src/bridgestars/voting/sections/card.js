@@ -51,10 +51,15 @@ function IssueCard({
   return (
     <Card sx={{ width: '100%', ...rest }}>
       <Grid container p={1}>
-        <Grid item md={2}>
-          <Box pt={1} width='min-content'>
-            {drawVote(voted, nbrVotes, handleVote)}
-          </Box>
+        <Grid
+          container
+          item
+          xs={12}
+          sm={2}
+          justifyContent={{ xs: 'left', sm: 'center' }}
+          alignItems={{ xs: 'center', sm: 'center' }}
+        >
+          {drawVote(voted, nbrVotes, handleVote)}
         </Grid>
 
         <Grid item md={8} px={2} py={1}>
@@ -93,12 +98,7 @@ function IssueCard({
           </Grid>
         </Grid>
         <Grid item md={2} justifyContent='center' alignItems='center'>
-          <MKBox
-            component='img'
-            src={commentIcon}
-            width='40px'
-            sx={{ }}
-          ></MKBox>
+          <MKBox component='img' src={commentIcon} width='40px' sx={{}}></MKBox>
           <MKTypography
             variant='h3'
             sx={{ fontSize: '9px', color: '#1e2e4acc' }}
@@ -118,19 +118,12 @@ export default IssueCard;
 
 function drawVote(voted, voteCount, handleVote) {
   return (
-    <Grid
-      mt={1}
-      xs={12}
-      container
-      item
-      alignItems='center' //vertikalt
-      justifyContent='center' //horisontellt
-    >
-      <Grid item md={12}>
+    <>
+      <Grid item xs={3} sm={12} mx={{ xs: 1, sm: 'auto' }}>
         <Box
-          mb={1}
-          mx={2}
           py={0.5}
+          minWidth='75px'
+          width='min-content'
           textAlign='center'
           sx={{
             border: 1,
@@ -140,7 +133,7 @@ function drawVote(voted, voteCount, handleVote) {
           }}
         >
           <MKTypography
-            sx={{ fontSize: '9px' }}
+            sx={{ fontSize: '20px' }}
             color={voted ? 'success' : 'dark'}
           >
             {voteCount ? voteCount : '1,203'}
@@ -148,12 +141,17 @@ function drawVote(voted, voteCount, handleVote) {
         </Box>
       </Grid>
 
-      <Grid item md={12}>
+      <Grid
+        item
+        xs={4}
+        sm={12}
+        mx={{ xs: 1, sm: 'auto' }}
+      >
         <Box
+          width='min-content'
           textAlign='center'
           variant='button'
           bgcolor={voted ? 'success.main' : 'dark.main'}
-          mx={3}
           py={0.5}
           px={1}
           // width='61.8%'
@@ -162,12 +160,12 @@ function drawVote(voted, voteCount, handleVote) {
           }}
           onClick={handleVote}
         >
-          <MKTypography sx={{ fontSize: '7px' }} color='white'>
+          <MKTypography sx={{ fontSize: '12px' }} color='white'>
             {voted ? 'VOTED' : 'VOTE'}
           </MKTypography>
         </Box>
       </Grid>
-    </Grid>
+    </>
   );
 }
 
@@ -225,24 +223,22 @@ function bottomRow(author, status, creationTime) {
         >
           {creationTime}
         </MKTypography>
+        {status && (
+          <Box
+            mx={2}
+            px={1}
+            py={0.2}
+            bgcolor={`rgba(${statusColor()}, 0.5)`}
+            sx={{
+              borderRadius: '3px',
+            }}
+          >
+            <MKTypography variant='h3' sx={{ fontSize: '9px', opacity: 0.8 }}>
+              {status}
+            </MKTypography>
+          </Box>
+        )}
       </Grid>
-
-      {status && (
-        <Box
-          mx={2}
-          px={1}
-          py={0.2}
-          bgcolor={`rgba(${statusColor()}, 0.5)`}
-          sx={{
-            borderRadius: '3px',
-          }}
-        >
-          <MKTypography variant='h3' sx={{ fontSize: '9px', opacity: 0.8 }}>
-            {status}
-          </MKTypography>
-        </Box>
-      )}
-
     </>
   );
 }

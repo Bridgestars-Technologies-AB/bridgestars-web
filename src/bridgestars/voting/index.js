@@ -218,9 +218,9 @@ function VotingPage() {
         onClose={() => setShowSignin(false)}
         sx={{
           outline: 'none',
-          display:'flex',
+          display: 'flex',
           alignItems: 'center',
-          justifyContent:'center'
+          justifyContent: 'center',
         }}
       >
         {/* <MKBox
@@ -228,11 +228,11 @@ function VotingPage() {
             outline: 'none',
           }}
         > */}
-          <SigninForm
-            modal
-            modalExitCallback={() => setShowSignin(false)}
-            header='To vote, please sign in to your Bridgestars account'
-          />
+        <SigninForm
+          modal
+          modalExitCallback={() => setShowSignin(false)}
+          header='To vote, please sign in to your Bridgestars account'
+        />
         {/* </MKBox> */}
       </Modal>
       <Grid container width='100%' justifyContent='center'>
@@ -242,8 +242,8 @@ function VotingPage() {
             py: 2,
             px: { xs: 0, sm: 1, lg: 3 },
             mx: { xs: 0, sm: 1, md: 2, lg: 3 },
-            mt: 4,
-            mb: 4,
+            mt: { xs: 0, sm: 1, md: 2, lg: 3 },
+            mb: { xs: 0, sm: 1, md: 2, lg: 3 },
             width: { xxl: 1600, xl: '100%' },
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
