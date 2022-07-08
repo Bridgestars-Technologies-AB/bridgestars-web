@@ -80,27 +80,25 @@ function VotingPage() {
   const commentsRef = collection(db, 'feedback/voting_app/comments');
   const usersRef = collection(db, 'feedback/voting_app/users');
 
-  
-
   //TEMP
   const q = query(requestsRef, orderBy('votes'), limit(10));
   const [value, loading, error] = useCollectionOnce(q);
   useEffect(() => {
     if (value && !loading && !error) {
-      setLoadedDocs(value.docs.map(doc => {
-        return { id: doc.id, ...doc.data() };
-      }))
+      setLoadedDocs(
+        value.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        })
+      );
     }
   }, [value]);
-
-
 
   const [votes, setVotes] = useState([]);
   const [userData, setUserData] = useState({});
   const [signedIn, setSignedIn] = useState(false);
-    useEffect(() => {
-      if (signedIn) downloadUserDoc(userData.uid);
-    }, [signedIn]);
+  useEffect(() => {
+    if (signedIn) downloadUserDoc(userData.uid);
+  }, [signedIn]);
   const [showSignin, setShowSignin] = useState(false);
 
   const [loadedDocs, setLoadedDocs] = useState([]);
@@ -108,54 +106,49 @@ function VotingPage() {
   let downloadedUserData = false;
   async function downloadUserDoc(uid) {
     //TRY?
-    try { 
-          console.log(1);
-          console.log(uid);
-          downloadedUserData = true;
-          const d = await getDoc(doc(usersRef, uid));
-          console.log(JSON.stringify(d.data()));
-          console.log(2);
-          //IF DOES NOT EXIST CREATE DOCUMENT
-          setVotes(d.data().votes);
-          console.log(3);
-    }
-    catch (e) {
+    try {
+      console.log(1);
+      console.log(uid);
+      downloadedUserData = true;
+      const d = await getDoc(doc(usersRef, uid));
+      console.log(JSON.stringify(d.data()));
+      console.log(2);
+      //IF DOES NOT EXIST CREATE DOCUMENT
+      setVotes(d.data().votes);
+      console.log(3);
+    } catch (e) {
       if (e.code == 'permission-denied') {
-        alert('Permission denied. You are not signed in. If you just signed up the email might already be in use. In that case try to reset your password and sign in.')
+        alert(
+          'Permission denied. You are not signed in. If you just signed up the email might already be in use. In that case try to reset your password and sign in.'
+        );
         signOut(auth);
-        setShowSignin(false)
+        setShowSignin(false);
         setShowSignin(true);
+      } else if (e.code == 'not-found') {
+        //IS THIS RIGHT?
+        //create document
       }
-      else if (e.code == 'not-found') //IS THIS RIGHT?
-      {
-        //create document  
-      }
-      console.log(e)
+      console.log(e);
       console.log(JSON.stringify(e));
     }
-
   }
 
   async function handleVote(requestId) {
-    
     const updateDocs = (inc) => {
       const incr = (doc) => {
-        doc.votes += inc
-        return doc
-      }
+        doc.votes += inc;
+        return doc;
+      };
       setLoadedDocs(
-        loadedDocs.map((doc) =>
-          doc.id == requestId ? incr(doc) : doc
-        )
+        loadedDocs.map((doc) => (doc.id == requestId ? incr(doc) : doc))
       );
-      
     };
     if (signedIn && votes != null) {
       if (votes.includes(requestId)) {
         //local
         const v = votes.filter((x) => x != requestId);
         setVotes(v);
-        updateDocs(-1)
+        updateDocs(-1);
 
         //remote
         await Promise.all([
@@ -192,7 +185,6 @@ function VotingPage() {
 
   async function handleNewRequest(requestId) {
     if (signedIn) {
-      
     } else {
       setShowSignin(true);
     }
@@ -203,7 +195,6 @@ function VotingPage() {
     if (!signedIn && user && !downloadedUserData) {
       setUserData(user);
       setSignedIn(true);
-      
     } else if (!user) {
       console.log('signed out');
       setUserData(null);
@@ -244,9 +235,11 @@ function VotingPage() {
             mx: { xs: 0, sm: 1, md: 2, lg: 3 },
             mt: { xs: 0, sm: 1, md: 2, lg: 3 },
             mb: { xs: 0, sm: 1, md: 2, lg: 3 },
-            width: { xxl: 1600, xl: '100%' },
+            width: '100%',
+            maxWidth:'1250px',
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
+          
         >
           <BridgestarsNavbar
             routes={routes.filter((r) => r.name != 'Vote')}
@@ -282,13 +275,20 @@ function VotingPage() {
               </Grid>
             </Grid>
             <Grid container>
-              <Grid item xs={12} sx={{ fontSize: '0.5vw' }}>
+              <Grid
+                item
+                xs={12}
+                sx={{ fontSize: '0.5vw' }}
+                justifyContent='center'
+                alignItems='center'
+                display='flex'
+              >
                 <MKBox p={{ sx: 0, sm: 1, md: 2 }}>
                   {error && <strong>Error: {JSON.stringify(error)}</strong>}
                   {loading && <span>Collection: Loading...</span>}
                   {loadedDocs.length != 0 &&
                     loadedDocs.map((doc) => (
-                      <Box mb={3}>
+                      <Box mb={1.5}>
                         <IssueCard
                           voted={votes.includes(doc.id)}
                           nbrVotes={doc.votes}
@@ -300,31 +300,7 @@ function VotingPage() {
                           status={doc.status}
                           creationTime={parseDate(doc.creationTime)}
                           handleVote={() => handleVote(doc.id)}
-                        ></IssueCard>
-                      </Box>
-                    ))}
-                </MKBox>
-              </Grid>
-            </Grid>
-            <Grid container>
-              <Grid item xs={7} sx={{ fontSize: '0.5vw' }}>
-                <MKBox p={{ sx: 0, sm: 1, md: 2 }}>
-                  {error && <strong>Error: {JSON.stringify(error)}</strong>}
-                  {loading && <span>Collection: Loading...</span>}
-                  {loadedDocs.length != 0 &&
-                    loadedDocs.map((doc) => (
-                      <Box mb={3}>
-                        <IssueCard
-                          voted={votes.includes(doc.id)}
-                          nbrVotes={doc.votes}
-                          nbrComments={doc.comments}
-                          key={doc.id}
-                          title={doc.title}
-                          description={doc.description}
-                          author={doc.author}
-                          status={doc.status}
-                          creationTime={parseDate(doc.creationTime)}
-                          handleVote={() => handleVote(doc.id)}
+                          maxWidth='850px'
                         ></IssueCard>
                       </Box>
                     ))}

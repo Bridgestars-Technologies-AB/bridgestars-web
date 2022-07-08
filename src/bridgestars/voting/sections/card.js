@@ -33,7 +33,7 @@ import { Typography } from '@mui/material';
 import commentIcon from 'assets/images/bridgestars/Comments.png';
 import userIcon from 'assets/images/bridgestars/User.png';
 
-
+import colors from 'assets/theme/base/colors';
 
 function IssueCard({
   title,
@@ -47,65 +47,81 @@ function IssueCard({
   nbrComments,
   ...rest
 }) {
-
   return (
-    <Card sx={{ width: '100%', ...rest }}>
-      <Grid container p={1}>
+    <Card
+      sx={{
+        width: '100%',
+        // horizontal, vertical, blur, spread?, color
+        // boxShadow: '2px 5px 15px rgba(0,0,0,0.22)',
+
+        '&:hover': {
+          // boxShadow: '0 0px 10px rgba(0,0,0,0.32)',
+          backgroundColor: 'rgba(0,0,0,0.010)',
+        },
+        ...rest,
+      }}
+    >
+      <Grid container pr={{ xs: 1.5, sm: 0 }}>
         <Grid
-          container
           item
-          xs={12}
-          sm={2}
-          justifyContent={{ xs: 'left', sm: 'center' }}
-          alignItems={{ xs: 'center', sm: 'center' }}
+          sm={2.5}
+          order={0}
+          justifyContent='center'
+          alignItems='center'
+          display={{ sm: 'flex', xs: 'none' }}
         >
           {drawVote(voted, nbrVotes, handleVote)}
         </Grid>
 
-        <Grid item md={8} px={2} py={1}>
-          <MKTypography
-            variant='h2'
-            pr={1.5}
-            pt={1.5}
-            sx={{
-              fontSize: '18px',
-              overflowWrap: 'break-word',
+        <Grid
+          item
+          xs={1.5}
+          order={0}
+          mt={2}
+          mx={0.25}
+          justifyContent='center'
+          alignItems='flex-start'
+          display={{ sm: 'none', xs: 'flex' }}
+        >
+          {drawXSVote(voted, nbrVotes, handleVote)}
+        </Grid>
 
-              flexWrap: 1,
-              flex: 1,
-            }}
-          >
-            {title}
-          </MKTypography>
-          <MKTypography variant='text2' sx={{ fontSize: '12px' }}>
-            {description.length > 200
-              ? description.substring(0, 190) + '...'
-              : description}
-          </MKTypography>
+        <Grid item xs={9.5} sm={7.5} order={1} mt={1.5} mb={{ xs: 1, sm: 0 }}>
+          {drawTitle({ title: title })}
+          {drawStatus({
+            status: status,
+            display: 'inline-block' ,
+          })}
+          {drawDescription({ description: description })}
+
           <Grid
-            md={12}
+            sm={12}
             container
             item
             sx={{
-              flex: 1,
               flexDirection: 'row',
             }}
-            justifyContent='center'
+            display='flex'
+            justifyContent='flex-left'
             alignItems='center'
             py={1}
           >
-            {bottomRow(author, status, creationTime)}
+            {drawAuthor(author, creationTime)}
+            <Box display={{ sm: 'none', xs: 'flex' }} mx={2} my='auto'>
+              {drawComment(nbrComments)}
+            </Box>
           </Grid>
         </Grid>
-        <Grid item md={2} justifyContent='center' alignItems='center'>
-          <MKBox component='img' src={commentIcon} width='40px' sx={{}}></MKBox>
-          <MKTypography
-            variant='h3'
-            sx={{ fontSize: '9px', color: '#1e2e4acc' }}
-            ml={1}
-          >
-            {nbrComments ? nbrComments : 0}
-          </MKTypography>
+        <Grid
+          item
+          sm={2}
+          order={3}
+          justifyContent='center'
+          alignItems='center'
+          ml={{ xs: 1, sm: 0 }}
+          display={{ sm: 'flex', xs: 'none' }}
+        >
+          {drawComment(nbrComments)}
         </Grid>
       </Grid>
     </Card>
@@ -114,12 +130,99 @@ function IssueCard({
 
 export default IssueCard;
 
+function handleCommentClick() {
+  //download commment document for the request uid
+}
 
+function drawComment(nbrComments) {
+  return (
+    <Box
+      position='relative'
+      width='min-content'
+      height='min-content'
+      variant='button'
+      onClick={handleCommentClick}
+      sx={{
+        opacity: 0.8,
+        '&:hover': {
+          opacity: 1,
+        },
+        cursor: 'pointer',
+      }}
+    >
+      <MKBox
+        component='img'
+        src={commentIcon}
+        width={{ sm: '40px', xs: '20px' }}
+      ></MKBox>
+      <MKBox
+        width='min-content'
+        height='min-content'
+        mt={0.3}
+        py={0.3}
+        px={{ sm: 0.9, xs: 0.75 }}
+        bgColor='primary'
+        sx={{
+          position: 'absolute',
+          left: { sm: '30px', xs: '15px' },
+          top: { sm: '-2px', xs: '-1.5px' },
+          zIndex: 1000,
+          borderRadius: '20px',
+        }}
+      >
+        <MKTypography
+          position='relative'
+          variant='h3'
+          color='white'
+          sx={{ fontSize: { sm: '12px', xs: '10px' } }}
+        >
+          {nbrComments ? nbrComments : 0}
+        </MKTypography>
+      </MKBox>
+    </Box>
+  );
+}
+
+function drawTitle({ title, ...rest }) {
+  return (
+    <MKTypography
+      {...rest}
+      variant='h2'
+      sx={{
+        fontSize: '18px',
+        overflowWrap: 'break-word',
+
+        flexWrap: 1,
+        flex: 1,
+      }}
+    >
+      {title}
+    </MKTypography>
+  );
+}
+
+function drawDescription({ description, ...rest }) {
+  return (
+    <MKTypography variant='text2' sx={{ fontSize: '14px' }} {...rest}>
+      {description.length > 220
+        ? description.substring(0, 220) + '...'
+        : description}
+    </MKTypography>
+  );
+}
 
 function drawVote(voted, voteCount, handleVote) {
   return (
-    <>
-      <Grid item xs={3} sm={12} mx={{ xs: 1, sm: 'auto' }}>
+    <Grid item container>
+      <Grid
+        item
+        xs={4}
+        sm={12}
+        mx={{ xs: 1, sm: 0 }}
+        width='min-content'
+        display='flex'
+        justifyContent='center'
+      >
         <Box
           py={0.5}
           minWidth='75px'
@@ -145,10 +248,14 @@ function drawVote(voted, voteCount, handleVote) {
         item
         xs={4}
         sm={12}
-        mx={{ xs: 1, sm: 'auto' }}
+        mx={{ xs: 1, sm: 0 }}
+        my={{ xs: 'auto', sm: 0.5 }}
+        width='min-content'
+        display='flex'
+        justifyContent='center'
       >
         <Box
-          width='min-content'
+          width='55px'
           textAlign='center'
           variant='button'
           bgcolor={voted ? 'success.main' : 'dark.main'}
@@ -157,6 +264,11 @@ function drawVote(voted, voteCount, handleVote) {
           // width='61.8%'
           sx={{
             borderRadius: '2px 2px 2px 2px',
+            opacity: 0.8,
+            '&:hover': {
+              opacity: 1,
+            },
+            cursor: 'pointer',
           }}
           onClick={handleVote}
         >
@@ -165,80 +277,193 @@ function drawVote(voted, voteCount, handleVote) {
           </MKTypography>
         </Box>
       </Grid>
-    </>
+    </Grid>
   );
 }
 
-function bottomRow(author, status, creationTime) {
+function drawXSVote(voted, voteCount, handleVote) {
+  return (
+    <Grid item container>
+      <Grid
+        item
+        xs={12}
+        width='min-content'
+        display='flex'
+        justifyContent='center'
+      >
+        <Box
+          sx={{
+            width: '25px',
+            height: 0,
+            borderLeft: '13px solid transparent',
+            borderRight: '13px solid transparent',
+            borderBottom:
+              '25px solid ' + (voted ? colors.success.main : colors.dark.main),
+            opacity: 0.8,
+            '&:hover': {
+              opacity: 1,
+            },
+            cursor: 'pointer',
+          }}
+          variant='button'
+          // width='61.8%'
+          onClick={handleVote}
+        ></Box>
+      </Grid>
+
+      <Grid
+        item
+        xs={4}
+        mt={1}
+        width='min-content'
+        mx={'auto'}
+        display='flex'
+        justifyContent='center'
+      >
+        <MKTypography
+          sx={{ fontSize: '18px' }}
+          variant='h3'
+          color={voted ? 'success' : 'dark'}
+        >
+          {voteCount ? voteCount : 0}
+        </MKTypography>
+      </Grid>
+      {/* <Box
+          py={0.5}
+          minWidth='75px'
+          width='min-content'
+          textAlign='center'
+          sx={{
+            border: 1,
+            borderRadius: '2px 2px 2px 2px',
+            borderWidth: '1.5px',
+            borderColor: voted ? 'success.main' : 'dark.main',
+          }}
+        >
+          <MKTypography
+            sx={{ fontSize: '20px' }}
+            color={voted ? 'success' : 'dark'}
+          >
+            {voteCount ? voteCount : '1,203'}
+          </MKTypography>
+        </Box>
+      </Grid>
+
+      <Grid
+        item
+        xs={4}
+        sm={12}
+        mx={{ xs: 1, sm: 0 }}
+        my={{ xs: 'auto', sm: 0.5 }}
+        width='min-content'
+        display='flex'
+        justifyContent='center'
+      >
+        <Box
+          width='55px'
+          textAlign='center'
+          variant='button'
+          bgcolor={voted ? 'success.main' : 'dark.main'}
+          py={0.5}
+          px={1}
+          // width='61.8%'
+          sx={{
+            borderRadius: '2px 2px 2px 2px',
+            opacity: 0.8,
+            '&:hover': {
+              opacity: 1,
+            },
+            cursor: 'pointer',
+          }}
+          onClick={handleVote}
+        >
+          <MKTypography sx={{ fontSize: '12px' }} color='white'>
+            {voted ? 'VOTED' : 'VOTE'}
+          </MKTypography>
+        </Box>*/}
+    </Grid>
+  );
+}
+
+function drawStatus({ status, ...rest }) {
   const statusColor = () => {
     switch (status) {
-      case 'Reemewed':
-        return '0, 0, 255'; //blue
+      case 'New':
+        return '200, 124, 247';
+      case 'Reviewed':
+        return '124, 150, 247';
       case 'Planned':
-        return '255, 0, 255'; //purple
+        return '111, 241, 220';
       case 'In Progress':
-        return '0, 255, 255'; //cyan
+        return '247, 241, 124';
       case 'In Beta':
-        return '0, 255, 128'; //more green
+        return '150, 247, 124';
       case 'Already Exists':
-        return '255, 0, 0'; //red
-      default:
-        //0.1.1
-        return '0, 255, 0'; //green
+        return '255, 100, 50';
+      default: //Live
+        return '58, 191, 43';
     }
   };
-  return (
-    <>
-      <Grid
-        container
-        item
+  if (status)
+    return (
+      <Box
+        {...rest}
+        ml={0}
+        mr={0.5}
+        px={0.6}
+        py={0.2}
+        mt={0.2}
+        bgcolor={`rgba(${statusColor()}, 0.5)`}
         sx={{
-          flex: 1,
-          flexDirection: 'row',
+          borderRadius: '3px',
         }}
-        alignItems='center'
       >
-        <MKBox component='img' src={userIcon} width='18px'></MKBox>
-        <MKTypography
-          variant='h3'
-          sx={{ fontSize: '9px', color: '#1e2e4acc' }}
-          mx={1}
-        >
-          {author.username}
+        <MKTypography variant='h3' sx={{ fontSize: '12px', opacity: 0.8 }}>
+          {/* Already Exists */}
+          {status}
         </MKTypography>
-        <MKBox
-          width='3.6px'
-          height='3.6px'
-          mt={0.3}
-          bgColor='#1e2e4acc'
-          sx={{
-            display: 'inline-block',
-            borderRadius: '2px 2px 2px 2px',
-          }}
-        ></MKBox>
-        <MKTypography
-          variant='h3'
-          sx={{ fontSize: '9px', color: '#1e2e4acc' }}
-          mx={1}
-        >
-          {creationTime}
-        </MKTypography>
-        {status && (
-          <Box
-            mx={2}
-            px={1}
-            py={0.2}
-            bgcolor={`rgba(${statusColor()}, 0.5)`}
-            sx={{
-              borderRadius: '3px',
-            }}
-          >
-            <MKTypography variant='h3' sx={{ fontSize: '9px', opacity: 0.8 }}>
-              {status}
-            </MKTypography>
-          </Box>
-        )}
-      </Grid>
-    </>
+      </Box>
+    );
+  return <></>;
+}
+
+function drawAuthor(author, creationTime) {
+  return (
+    <Box display='flex' justifyContent='flex-start' alignItems='center'>
+      <MKBox
+        component='img'
+        src={userIcon}
+        width='18px'
+        display='inline-block'
+      ></MKBox>
+      <MKTypography
+        variant='h3'
+        sx={{ fontSize: '12px', color: '#1e2e4acc' }}
+        mx={{ sm: 1, xs: 0.5 }}
+        display='inline-block'
+      >
+        {/* theotheotheotheo */}
+        {author.username}
+      </MKTypography>
+      <MKBox
+        width='4.5px'
+        height='4.5px'
+        mt={0.3}
+        mb={0}
+        bgColor='#1e2e4acc'
+        sx={{
+          borderRadius: '2px 2px 2px 2px',
+        }}
+        display='inline-block'
+      ></MKBox>
+      <MKTypography
+        variant='h3'
+        sx={{ fontSize: '12px', color: '#1e2e4acc' }}
+        mx={{ sm: 1, xs: 0.5 }}
+        display='inline-block'
+      >
+        {creationTime}
+      </MKTypography>
+    </Box>
   );
 }
