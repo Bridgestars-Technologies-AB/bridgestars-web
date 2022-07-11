@@ -18,22 +18,30 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Icon from '@mui/material/Icon';
+import TextField from '@mui/material/TextField';
+import { IconButton } from '@mui/material';
+import { Button } from '@mui/material';
+import { borders } from '@mui/system';
+import Box from '@mui/material/Box';
+import { Typography } from '@mui/material';
+
 
 // Otis Kit PRO components
 import MKBox from 'components/MKBox';
 import MKButton from 'components/MKButton';
 import MKTypography from 'components/MKTypography';
-import { IconButton } from '@mui/material';
-import { Button } from '@mui/material';
-import { borders } from '@mui/system';
-import Box from '@mui/material/Box';
-import bgImage from 'assets/images/bridgestars/circle-solid.svg';
-import { Typography } from '@mui/material';
 
 import commentIcon from 'assets/images/bridgestars/Comments.png';
 import userIcon from 'assets/images/bridgestars/User.png';
 
 import colors from 'assets/theme/base/colors';
+
+import { useState } from 'react';
+
+import TextEditor from './textEditor';
+
+import { useEffect } from 'react';
+
 
 function IssueCard({
   title,
@@ -45,8 +53,41 @@ function IssueCard({
   voted,
   nbrVotes,
   nbrComments,
+  getComments,
   ...rest
 }) {
+  const [expanded, setExpanded] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [commentText, setCommentText] = useState('');
+  const [charCount, setCharCount] = useState(0)
+  const updateCommentText = (html) => {
+    setCommentText(html)
+    var cont = html.replace(/<[^>]*>/g, ' ');
+    cont = cont.replace(/\s+/g, ' ');
+    cont = cont.trim();
+    var n = cont.length;
+    setCharCount(n)
+  }
+
+  useEffect(() => {
+    console.log(commentText)
+  }, [commentText])
+
+  async function handleCommentClick() {
+    if (expanded) return setExpanded(false);
+    if (comments.length != 0) {
+      console.log('comments already downloaded');
+      return setExpanded(true);
+    }
+    //download commment document for the request uid
+    console.log('clicked on commenticon');
+    const data = await getComments();
+    console.log(JSON.stringify(data));
+    if (data) {
+      setComments(data);
+      setExpanded(true);
+    } else console.log('Could not fetch comments');
+  }
   return (
     <Card
       sx={{
@@ -61,6 +102,12 @@ function IssueCard({
         ...rest,
       }}
     >
+      <TextEditor
+        placeholder={'comment'}
+        readOnly={true}
+        theme='bubble'
+        content='asdasdasd <b>dasd</b> a sd'
+      />
       <Grid container pr={{ xs: 1.5, sm: 0 }}>
         <Grid
           item
@@ -90,7 +137,7 @@ function IssueCard({
           {drawTitle({ title: title })}
           {drawStatus({
             status: status,
-            display: 'inline-block' ,
+            display: 'inline-block',
           })}
           {drawDescription({ description: description })}
 
@@ -108,7 +155,7 @@ function IssueCard({
           >
             {drawAuthor(author, creationTime)}
             <Box display={{ sm: 'none', xs: 'flex' }} mx={2} my='auto'>
-              {drawComment(nbrComments)}
+              {drawComment(nbrComments, handleCommentClick)}
             </Box>
           </Grid>
         </Grid>
@@ -121,20 +168,23 @@ function IssueCard({
           ml={{ xs: 1, sm: 0 }}
           display={{ sm: 'flex', xs: 'none' }}
         >
-          {drawComment(nbrComments)}
+          {drawComment(nbrComments, handleCommentClick)}
         </Grid>
       </Grid>
+      {expanded ? (
+        <Box overflow='scroll' maxHeight='90vh'>
+          {drawComments(comments, updateCommentText, charCount)}
+        </Box>
+      ) : (
+        <></>
+      )}
     </Card>
   );
 }
 
 export default IssueCard;
 
-function handleCommentClick() {
-  //download commment document for the request uid
-}
-
-function drawComment(nbrComments) {
+function drawComment(nbrComments, handleCommentClick) {
   return (
     <Box
       position='relative'
@@ -400,7 +450,8 @@ function drawStatus({ status, ...rest }) {
         return '150, 247, 124';
       case 'Already Exists':
         return '255, 100, 50';
-      default: //Live
+      default:
+        //Live
         return '58, 191, 43';
     }
   };
@@ -466,4 +517,45 @@ function drawAuthor(author, creationTime) {
       </MKTypography>
     </Box>
   );
+}
+
+
+
+function drawComments(comments, setValue, charCount) {
+
+    const modules = {
+    toolbar: [
+      [{ 'header': [1, 2, false] }],
+      ['bold', 'italic', 'underline','strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['clean']
+    ],
+  }
+
+  const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent'
+  ]
+  return (
+    <Box>
+      <Box>
+        <Typography>Your comment</Typography>
+        <TextEditor placeholder={'Add your own thoughts'} onChange={setValue}></TextEditor>
+        <Typography>character count: {charCount}</Typography>
+      </Box>
+      {comments.map((x) =>
+        drawCommentInstance(x.text, x.likes, x.author.username, x.creationTime)
+      )}
+    </Box>
+  );
+}
+
+function drawCommentInstance(text, likes, username, creationTime) {
+  return (<Box key={text}>
+    <Typography>{text}</Typography>
+    <Typography>{likes}</Typography>
+    <Typography>{username}</Typography>
+    <Typography>{creationTime}</Typography>
+  </Box>);
 }

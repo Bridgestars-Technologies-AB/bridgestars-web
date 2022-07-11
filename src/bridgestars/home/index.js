@@ -152,10 +152,12 @@ function BridgestarsHome() {
         transparent
         light
         shadow
+        fullWidth
       />
       <MKBox
         ref={headerRef}
         minHeight='75vh'
+        height='min-content'
         width='100%'
         sx={{
           backgroundImage: ({
@@ -178,6 +180,7 @@ function BridgestarsHome() {
           backgroundPosition: 'center',
           display: 'grid',
           placeItems: 'center',
+          
         }}
       >
         <Container>
@@ -187,10 +190,10 @@ function BridgestarsHome() {
             width='100%'
             xs={12}
             lg={12}
-            py='auto'
             justifyContent='center'
             alignItems='center'
-            flexDirection='column'
+
+            // flexDirection='column'
             sx={{ mx: 'auto', textAlign: 'center' }}
           >
             <Zoom in={true} style={{ transitionDelay: `250ms` }} timeout={500}>
@@ -209,10 +212,10 @@ function BridgestarsHome() {
               <MKTypography
                 variant='body1'
                 color='white'
-                fontSize='calc(6px + 1.25vh)'
+                fontSize='calc(12px + 1.5vmin)'
                 opacity={0.8}
                 width={{ xs: '90%', md: '60%' }}
-                minHeight={'100px'}
+                
                 mt={1}
                 mb={0}
               >
@@ -226,9 +229,9 @@ function BridgestarsHome() {
               <Container>
                 <MKTypography
                   variant='body1'
-                  fontSize='calc(10px + 2vmin)'
+                  fontSize='calc(11px + 2vmin)'
                   color='white'
-                  sx={{ mt: { xs: 2, sm: 3 } }}
+                  sx={{ mt: { xs: 1, sm: 3 } }}
                 >
                  Technical Preview available now!
                 </MKTypography>
@@ -258,9 +261,9 @@ function BridgestarsHome() {
       <Grid container width='100%' justifyContent='center'>
         <Card
           sx={{
-            p: 2,
-            mx: { xs: 2, lg: 3 },
-            mt: -6,
+            p: {xs:0.5, sm:2},
+            mx: { xs: 0, sm:2, lg: 3 },
+            mt: {xs:0, sm:-3, md:-4, lg:-6},
             mb: 4,
             width: { xxl: 1600, xl: '100%' },
             boxShadow: ({ boxShadows: { xxl } }) => xxl,

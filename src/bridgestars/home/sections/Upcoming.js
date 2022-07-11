@@ -145,7 +145,7 @@ function Upcoming() {
                             sm: 'center',
                             md: 'left',
                           },
-                          //ml: { xs: 0, sm: 5, md: 0 },
+                          // ml: { xs: 0, sm: 0, md: 0 },
                         }}
                         display='flex'
                         lineHeight={1.25}

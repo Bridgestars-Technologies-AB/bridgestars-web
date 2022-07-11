@@ -61,7 +61,7 @@ function CenteredFooter({ company, links, socials, light, copyright }) {
       fontWeight='regular'
       ml={1.5}
       mr={1.5}
-      mt={social.name === 'Mail' ? 0.5 : 0}
+      mt={social.name === 'Mail' ? 0.4 : 0}
     >
       {social.icon}
     </MKTypography>

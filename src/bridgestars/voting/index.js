@@ -190,6 +190,28 @@ function VotingPage() {
     }
   }
 
+  async function getComments(id) {
+    if (signedIn) {
+      try {
+        const res = await getDoc(doc(commentsRef, id));
+        console.log(JSON.stringify(res.data().comments))
+        return res.data().comments.map((x) => {
+          return {
+            likes: x.likes,
+            text: x.text,
+            author: x.author,
+            creationTime: parseDate(x.creationTime),
+          };
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      setShowSignin(true);
+    }
+    return null;
+  }
+
   onAuthStateChanged(auth, (user) => {
     //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
     if (!signedIn && user && !downloadedUserData) {
@@ -212,6 +234,7 @@ function VotingPage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          overflow: 'scroll',
         }}
       >
         {/* <MKBox
@@ -236,10 +259,9 @@ function VotingPage() {
             mt: { xs: 0, sm: 1, md: 2, lg: 3 },
             mb: { xs: 0, sm: 1, md: 2, lg: 3 },
             width: '100%',
-            maxWidth:'1250px',
+            maxWidth: '1250px',
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
-          
         >
           <BridgestarsNavbar
             routes={routes.filter((r) => r.name != 'Vote')}
@@ -288,12 +310,13 @@ function VotingPage() {
                   {loading && <span>Collection: Loading...</span>}
                   {loadedDocs.length != 0 &&
                     loadedDocs.map((doc) => (
-                      <Box mb={1.5}>
+                      <Box mb={1.5} key={doc.id.substring(0, 11)}>
                         <IssueCard
                           voted={votes.includes(doc.id)}
                           nbrVotes={doc.votes}
                           nbrComments={doc.comments}
-                          key={doc.id}
+                          key={doc.id.substring(0, 10)}
+                          getComments={() => getComments(doc.id)}
                           title={doc.title}
                           description={doc.description}
                           author={doc.author}
