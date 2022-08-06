@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
-import { Modal } from '@mui/material';
+import { IconButton, Icon, Modal } from '@mui/material';
 
 // Otis Kit PRO components
 import MKBox from 'components/MKBox';
@@ -38,6 +38,12 @@ function IssueCard({
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState('');
   const [charCount, setCharCount] = useState(0)
+
+  const handleVoteBtnPress = (e) => {
+    e.stopPropagation();
+    handleVote()
+  }
+
   const updateCommentText = (html) => {
     setCommentText(html)
     console.log(html)
@@ -52,7 +58,7 @@ function IssueCard({
     console.log(commentText)
   }, [commentText])
 
-  async function handleCommentClick() {
+  async function expandCard() {
     if (expanded) return setExpanded(false);
     setExpanded(true);
     if (comments.length != 0) {
@@ -71,8 +77,16 @@ function IssueCard({
   const drawCardContent = (modal) => {
     return (
       <Card
+        onClick={!modal ? expandCard : () => {}}
+        minWidth='275px'
+        maxWidth='400px'
+        width={{ xs: 'min-content', sm: '100%' }}
+        height='min-content'
         sx={{
-          width: '100%',
+          outline: 'none',
+          minHeight: modal ? '300px' : 0,
+          maxHeight: '100vh',
+          overflow: 'scroll',
           // horizontal, vertical, blur, spread?, color
           // boxShadow: '2px 5px 15px rgba(0,0,0,0.22)',
 
@@ -80,9 +94,32 @@ function IssueCard({
             // boxShadow: '0 0px 10px rgba(0,0,0,0.32)',
             backgroundColor: modal ? 'rgba' : 'rgba(0,0,0,0.010)',
           },
+
+          opacity: modal ? 1 : 0.9,
+          '&:hover': {
+            opacity: 1,
+          },
+          cursor: 'pointer',
+
           ...rest,
         }}
       >
+        {modal && (
+          <Box height='24px'>
+            <Box
+              position='absolute'
+              right='0px'
+              m={0.5}
+              onClick={() => {
+                setExpanded(false);
+              }}
+            >
+              <IconButton>
+                <Icon sx={{ transform: 'scale(1.3)' }}>close</Icon>
+              </IconButton>
+            </Box>
+          </Box>
+        )}
         <Grid container pr={{ xs: 1.5, sm: 0 }}>
           <Grid
             item
@@ -92,7 +129,7 @@ function IssueCard({
             alignItems='center'
             display={{ sm: 'flex', xs: 'none' }}
           >
-            {drawVoter(voted, nbrVotes, handleVote)}
+            {drawVoter(voted, nbrVotes, handleVoteBtnPress)}
           </Grid>
 
           <Grid
@@ -105,7 +142,7 @@ function IssueCard({
             alignItems='flex-start'
             display={{ sm: 'none', xs: 'flex' }}
           >
-            {drawXSVoter(voted, nbrVotes, handleVote)}
+            {drawXSVoter(voted, nbrVotes, handleVoteBtnPress)}
           </Grid>
 
           <Grid item xs={9.5} sm={7.5} order={1} mt={1.5} mb={{ xs: 1, sm: 0 }}>
@@ -114,7 +151,10 @@ function IssueCard({
               status: status,
               display: 'inline-block',
             })}
-            {drawDescription({ description: description })}
+            {drawDescription({
+              description: description,
+              limit: modal ? 5000 : 220,
+            })}
 
             <Grid
               sm={12}
@@ -130,7 +170,7 @@ function IssueCard({
             >
               {drawAuthor(author, creationTime)}
               <Box display={{ sm: 'none', xs: 'flex' }} mx={2} my='auto'>
-                {drawOpenCommentButton(nbrComments, handleCommentClick)}
+                {drawOpenCommentButton(nbrComments, expandCard)}
               </Box>
             </Grid>
           </Grid>
@@ -143,11 +183,14 @@ function IssueCard({
             ml={{ xs: 1, sm: 0 }}
             display={{ sm: 'flex', xs: 'none' }}
           >
-            {drawOpenCommentButton(nbrComments, handleCommentClick)}
+            {drawOpenCommentButton(nbrComments, expandCard)}
           </Grid>
         </Grid>
-        {modal ? (drawComments(comments, commentText, updateCommentText,
-          charCount)) : (<></>)}
+        {modal ? (
+          drawComments(comments, commentText, updateCommentText, charCount)
+        ) : (
+          <></>
+        )}
       </Card>
     );
   }
@@ -162,11 +205,11 @@ function IssueCard({
           open={expanded}
           onClose={() => setExpanded(false)}
           sx={{
-            outline: 'none',
+            p: {xs:2, sm:0},
+            // outline: 'none',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            overflow: 'scroll',
           }}
           style={{ content: editorStyle }}
         >
@@ -250,11 +293,11 @@ function drawTitle({ title, ...rest }) {
   );
 }
 
-function drawDescription({ description, ...rest }) {
+function drawDescription({ description, limit = 220,  ...rest }) {
   return (
     <MKTypography variant='text' sx={{ fontSize: '14px' }} {...rest}>
-      {description.length > 220
-        ? description.substring(0, 220) + '...'
+      {description.length > limit
+        ? description.substring(0, limit) + '...'
         : description}
     </MKTypography>
   );

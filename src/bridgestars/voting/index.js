@@ -135,6 +135,9 @@ function VotingPage() {
         //IS THIS RIGHT?
         //create document
       }
+      else if (e.toString().includes("offline")) {
+        alert("You are offline, please try again later.")
+      }
       console.log(e);
       console.log(JSON.stringify(e));
     }

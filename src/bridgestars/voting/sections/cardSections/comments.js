@@ -16,24 +16,30 @@ import { drawAuthor } from './author';
 
 export default function drawComments(comments, getValue, setValue, charCount) {
   return (
-    <Box p={1}>
-        <Box>
-          <MKTypography variant='h2'>Your comment</MKTypography>
+    <Box p={1.5}>
+      <Box>
+        <MKTypography variant='h2' sx={{ fontSize: '16px' }}>
+          Comments
+        </MKTypography>
+        <Box py={1}>
           <TextEditor
             placeholder={getValue ? getValue : 'Add your own thoughts'}
             onChange={setValue}
           ></TextEditor>
-          {charCount > 0 ? (
-            <Grid container justifyContent='flex-end'>
-              <MKTypography>character count: {charCount}</MKTypography>
-            </Grid>
-          ) : (
-            <></>
-          )}
         </Box>
+        {charCount > 0 ? (
+          <Grid container justifyContent='flex-end'>
+            <MKTypography>character count: {charCount}</MKTypography>
+          </Grid>
+        ) : (
+          <></>
+        )}
+      </Box>
+      <Box py={1}>
         {comments.map((x) =>
           drawCommentInstance(x.text, x.likes, x.author, x.creationTime)
         )}
+      </Box>
     </Box>
   );
 }

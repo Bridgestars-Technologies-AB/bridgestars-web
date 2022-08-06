@@ -67,8 +67,16 @@ function IllustrationLayoutModal({
           //transparent={{ xs: false, md: true }}
         />
       </MKBox> */}
-      <Box position='absolute' ml={1} onClick={() => { modalExitCallback() }}>
-        <IconButton >
+      <Box
+        position='absolute'
+        
+        right='0px'
+        mr={1}
+        onClick={() => {
+          modalExitCallback();
+        }}
+      >
+        <IconButton>
           <Icon sx={{ transform: 'scale(1.3)' }}>close</Icon>
         </IconButton>
       </Box>
