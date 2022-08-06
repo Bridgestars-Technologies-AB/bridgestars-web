@@ -1,0 +1,50 @@
+
+// @mui material components
+import Box from '@mui/material/Box';
+
+// Otis Kit PRO components
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
+import userIcon from 'assets/images/bridgestars/User.png';
+
+
+export function drawAuthor(author, creationTime) {
+  return (
+    <Box display='flex' justifyContent='flex-start' alignItems='center'>
+      <MKBox
+        component='img'
+        src={author.img ?? userIcon}
+        width='18px'
+        display='inline-block'
+      ></MKBox>
+      <MKTypography
+        variant='h3'
+        sx={{ fontSize: '12px', color: '#1e2e4acc' }}
+        mx={{ sm: 1, xs: 0.5 }}
+        display='inline-block'
+      >
+        {/* theotheotheotheo */}
+        {author.username}
+      </MKTypography>
+      <MKBox
+        width='4.5px'
+        height='4.5px'
+        mt={0.3}
+        mb={0}
+        bgColor='#1e2e4acc'
+        sx={{
+          borderRadius: '2px 2px 2px 2px',
+        }}
+        display='inline-block'
+      ></MKBox>
+      <MKTypography
+        variant='h3'
+        sx={{ fontSize: '12px', color: '#1e2e4acc' }}
+        mx={{ sm: 1, xs: 0.5 }}
+        display='inline-block'
+      >
+        {creationTime}
+      </MKTypography>
+    </Box>
+  );
+}

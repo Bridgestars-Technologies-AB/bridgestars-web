@@ -49,6 +49,9 @@ import ResetPasswordForm from 'bridgestars/auth/reset-pass/index.js';
 import CookieConsent from 'react-cookie-consent';
 import VotingPage from 'bridgestars/voting';
 
+import './style.css';
+
+
 export default function App() {
   const { pathname } = useLocation();
 

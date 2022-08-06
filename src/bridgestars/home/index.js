@@ -201,8 +201,9 @@ function BridgestarsHome() {
                 variant='h1'
                 color='primary'
                 align='center'
+                width='100%'
                 textGradient={true}
-                fontSize='calc(10px + 8vmin)'
+                fontSize='min(82px, calc(10px + 8vmin))'
                 mt={3}
               >
                 <span ref={typedHeaderRef} />
@@ -212,7 +213,7 @@ function BridgestarsHome() {
               <MKTypography
                 variant='body1'
                 color='white'
-                fontSize='calc(12px + 1.5vmin)'
+                fontSize='min(24px, calc(12px + 1.5vmin))'
                 opacity={0.8}
                 width={{ xs: '90%', md: '60%' }}
                 

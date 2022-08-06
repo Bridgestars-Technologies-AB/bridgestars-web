@@ -65,6 +65,14 @@ const typography = {
   fontWeightMedium: baseProperties.fontWeightMedium,
   fontWeightBold: baseProperties.fontWeightBold,
 
+  text: {
+    fontFamily: baseProperties.fontFamily,
+    fontSize: pxToRem(24),
+    lineHeight: 1.30,
+    color: dark.main,
+    fontWeight: baseProperties.fontWeightRegular,
+  },
+
   h1: {
     fontFamily: baseProperties.fontFamily2,
     fontSize: pxToRem(48),

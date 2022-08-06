@@ -1,19 +1,25 @@
+// react
 import { useEffect, useRef } from 'react';
-
-// rellax
-import Rellax from 'rellax';
+import { useState } from 'react';
+import { useId } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // @mui material components
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
+import { Modal } from '@mui/material';
+import { Button } from '@mui/material';
+import { Icon } from '@mui/material';
+import { Input } from '@mui/material';
+import { IconButton } from '@mui/material';
 
 // Otis Kit PRO components
 import MKBox from 'components/MKBox';
 import MKTypography from 'components/MKTypography';
 
-// Otis Kit PRO examples
 
 // About Us page sections
 import Information from '../download/sections/Information';
@@ -24,10 +30,17 @@ import footerRoutes from 'constants/footer.routes';
 
 // Images
 import bgImage from 'assets/images/bridgestars/home_page.svg';
+
+//BRIDGESTARS
 import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
 import BridgestarsNavbar from 'bridgestars/navbar';
 import IssueCard from './sections/card';
-import React from 'react';
+import SigninForm from 'bridgestars/auth/sign-in';
+
+//STYLE
+
+
+//DATABASE
 import { firebaseApp } from 'firebase-config';
 import {
   getAuth,
@@ -54,16 +67,10 @@ import {
   arrayRemove,
 } from 'firebase/firestore';
 
-import { useNavigate } from 'react-router-dom';
-import SigninForm from 'bridgestars/auth/sign-in';
 
-import { useState } from 'react';
-import { Modal } from '@mui/material';
-import { Button } from '@mui/material';
-import { Icon } from '@mui/material';
-import { Input } from '@mui/material';
-import { IconButton } from '@mui/material';
-import { useId } from 'react';
+
+
+
 
 function parseDate(ms) {
   const d = new Date();

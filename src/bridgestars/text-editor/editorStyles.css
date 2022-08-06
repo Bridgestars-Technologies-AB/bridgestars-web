@@ -6,13 +6,20 @@
 #root .ql-container {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  /* font-family:'"Roboto Slab", sans-serif'; */
   background: #fefcfc;
+
+  font-family: "Roboto","Helvetica","Arial", sans-serif;
+  line-height: 1.3;
+  font-weight: 400;
+  color: #344767;
+  font-size: 14px;
 }
 
-/* Snow Theme */
+/* Snow Theme eaecec */
 #root .ql-snow.ql-toolbar {
   display: block;
-  background: #eaecec;
+  background: #eaecec;  
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -20,5 +27,6 @@
 #root .ql-editor {
   min-height: 10px;
   height: min-content;
+
   word-break: break-all;
 }
