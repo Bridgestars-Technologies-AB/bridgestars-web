@@ -15,11 +15,10 @@ import colors from 'assets/theme/base/colors';
 
 //BRIDGESTARS
 import commentIcon from 'assets/images/bridgestars/Comments.png';
-import drawComments from './cardSections/comments';
+import drawCommentArea from './cardSections/comments';
 import { drawXSVoter, drawVoter } from './cardSections/voter';
 import { drawAuthor } from './cardSections/author';
 import { editorStyle } from 'bridgestars/text-editor/editorStyles.js';
-
 
 function IssueCard({
   title,
@@ -37,43 +36,47 @@ function IssueCard({
   const [expanded, setExpanded] = useState(false);
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState('');
-  const [charCount, setCharCount] = useState(0)
+  const [charCount, setCharCount] = useState(0);
 
   const handleVoteBtnPress = (e) => {
     e.stopPropagation();
-    handleVote()
-  }
+    handleVote();
+  };
 
   const updateCommentText = (html) => {
-    setCommentText(html)
-    console.log(html)
+    setCommentText(html);
+    console.log(html);
     var cont = html.replace(/<[^>]*>/g, ' ');
     cont = cont.replace(/\s+/g, ' ');
     cont = cont.trim();
     var n = cont.length;
-    setCharCount(n)
-  }
+    setCharCount(n);
+  };
 
   useEffect(() => {
-    console.log(commentText)
-  }, [commentText])
+    console.log(commentText);
+  }, [commentText]);
 
+  const [commentLoaderState, setCommentLoaderState] = useState("")
   async function expandCard() {
     if (expanded) return setExpanded(false);
+    setCommentLoaderState('loading');
     setExpanded(true);
     if (comments.length != 0) {
-      console.log('comments already downloaded');
+      setCommentLoaderState("cache")
       return;
     }
-    //download commment document for the request uid
-    console.log('clicked on commenticon');
     const data = await getComments();
     console.log(JSON.stringify(data));
     if (data) {
       setComments(data);
-    } else console.log('Could not fetch comments');
+      setCommentLoaderState('loaded');
+    } else {
+      setCommentLoaderState('no comments');
+      console.log('Could not fetch comments');
+    }
   }
-
+  const [cardHovered, setCardHovered] = useState(false);
   const drawCardContent = (modal) => {
     return (
       <Card
@@ -82,6 +85,8 @@ function IssueCard({
         maxWidth='400px'
         width={{ xs: 'min-content', sm: '100%' }}
         height='min-content'
+        onMouseEnter={() => setCardHovered(true)}
+        onMouseLeave={() => setCardHovered(false)}
         sx={{
           outline: 'none',
           minHeight: modal ? '300px' : 0,
@@ -145,8 +150,15 @@ function IssueCard({
             {drawXSVoter(voted, nbrVotes, handleVoteBtnPress)}
           </Grid>
 
-          <Grid item xs={9.5} sm={7.5} order={1} mt={1.5} mb={{ xs: 1, sm: 0 }}>
-            {drawTitle({ title: title })}
+          <Grid
+            item
+            xs={9.5}
+            sm={!expanded ? 7.5 : 8.5}
+            order={1}
+            mt={1.5}
+            mb={{ xs: 1, sm: 0 }}
+          >
+            {drawTitle({ title: title, selected: cardHovered && !expanded })}
             {drawStatus({
               status: status,
               display: 'inline-block',
@@ -169,33 +181,35 @@ function IssueCard({
               py={1}
             >
               {drawAuthor(author, creationTime)}
-              <Box display={{ sm: 'none', xs: 'flex' }} mx={2} my='auto'>
-                {drawOpenCommentButton(nbrComments, expandCard)}
-              </Box>
+              {!expanded && (
+                <Box display={{ sm: 'none', xs: 'flex' }} mx={2} my='auto'>
+                  {drawOpenCommentButton(nbrComments)}
+                </Box>
+              )}
             </Grid>
           </Grid>
-          <Grid
-            item
-            sm={2}
-            order={3}
-            justifyContent='center'
-            alignItems='center'
-            ml={{ xs: 1, sm: 0 }}
-            display={{ sm: 'flex', xs: 'none' }}
-          >
-            {drawOpenCommentButton(nbrComments, expandCard)}
-          </Grid>
+          {!expanded && (
+            <Grid
+              item
+              sm={2}
+              order={3}
+              justifyContent='center'
+              alignItems='center'
+              ml={{ xs: 1, sm: 0 }}
+              display={{ sm: 'flex', xs: 'none' }}
+            >
+              {drawOpenCommentButton(nbrComments)}
+            </Grid>
+          )}
         </Grid>
         {modal ? (
-          drawComments(comments, commentText, updateCommentText, charCount)
+          drawCommentArea(comments, commentText, updateCommentText, charCount, commentLoaderState)
         ) : (
           <></>
         )}
       </Card>
     );
-  }
-
-
+  };
 
   return (
     <>
@@ -205,7 +219,7 @@ function IssueCard({
           open={expanded}
           onClose={() => setExpanded(false)}
           sx={{
-            p: {xs:2, sm:0},
+            p: { xs: 2, sm: 0 },
             // outline: 'none',
             display: 'flex',
             alignItems: 'center',
@@ -224,16 +238,13 @@ function IssueCard({
 
 export default IssueCard;
 
-
-
-function drawOpenCommentButton(nbrComments, handleCommentClick) {
+function drawOpenCommentButton(nbrComments) {
   return (
     <Box
       position='relative'
       width='min-content'
       height='min-content'
       variant='button'
-      onClick={handleCommentClick}
       sx={{
         opacity: 0.8,
         '&:hover': {
@@ -275,25 +286,26 @@ function drawOpenCommentButton(nbrComments, handleCommentClick) {
   );
 }
 
-function drawTitle({ title, ...rest }) {
+function drawTitle({ title, selected, ...rest }) {
   return (
-    <MKTypography
-      {...rest}
-      variant='h2'
-      sx={{
-        fontSize: '18px',
-        overflowWrap: 'break-word',
+      <MKTypography
+        {...rest}
+        variant='h2'
+        sx={{
+          textDecoration: selected && 'underline',
+          fontSize: '18px',
+          overflowWrap: 'break-word',
 
-        flexWrap: 1,
-        flex: 1,
-      }}
-    >
-      {title}
-    </MKTypography>
+          flexWrap: 1,
+          flex: 1,
+        }}
+      >
+        {title}
+      </MKTypography>
   );
 }
 
-function drawDescription({ description, limit = 220,  ...rest }) {
+function drawDescription({ description, limit = 220, ...rest }) {
   return (
     <MKTypography variant='text' sx={{ fontSize: '14px' }} {...rest}>
       {description.length > limit
@@ -302,10 +314,6 @@ function drawDescription({ description, limit = 220,  ...rest }) {
     </MKTypography>
   );
 }
-
-
-
-
 
 function drawStatus({ status, ...rest }) {
   const statusColor = () => {
@@ -347,9 +355,6 @@ function drawStatus({ status, ...rest }) {
         </MKTypography>
       </Box>
     );
+
   return <></>;
 }
-
-
-
-

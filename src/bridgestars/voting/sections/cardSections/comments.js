@@ -14,7 +14,7 @@ import TextEditor from 'bridgestars/text-editor/textEditor';
 import { drawXSVoter } from './voter';
 import { drawAuthor } from './author';
 
-export default function drawComments(comments, getValue, setValue, charCount) {
+export default function drawComments(comments, getValue, setValue, charCount, commentLoaderState) {
   return (
     <Box p={1.5}>
       <Box>
@@ -36,9 +36,10 @@ export default function drawComments(comments, getValue, setValue, charCount) {
         )}
       </Box>
       <Box py={1}>
-        {comments.map((x) =>
-          drawCommentInstance(x.text, x.likes, x.author, x.creationTime)
-        )}
+        {commentLoaderState === "loading" ? <Loader/>
+          
+          : commentLoaderState === "done" ? comments.map((x) => drawCommentInstance(x.text, x.likes, x.author, x.creationTime))
+          : <MKTypography>No comments</MKTypography>}
       </Box>
     </Box>
   );
