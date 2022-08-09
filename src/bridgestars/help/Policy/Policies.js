@@ -7,7 +7,7 @@ import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Icon from '@mui/material/Icon';
-import MKBox from 'components/MKBox';
+import MKBox from 'otis/MKBox';
 import { Card } from '@mui/material';
 
 //bridgestars

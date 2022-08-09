@@ -20,17 +20,17 @@ import Stack from '@mui/material/Stack';
 import CountUp from 'react-countup';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
+import MKBox from 'otis/MKBox';
 
 // Otis Kit PRO examples
-import SimpleInfoCard from 'examples/Cards/InfoCards/SimpleInfoCard';
+import SimpleInfoCard from 'otis/Cards/InfoCards/SimpleInfoCard';
 import CounterInfoCard from '../components/CounterInfoCard.js';
 import MilitaryTechRoundedIcon from '@mui/icons-material/MilitaryTechRounded';
 import SchoolIcon from '@mui/icons-material/School';
-import CenteredBlogCard from 'examples/Cards/BlogCards/CenteredBlogCard';
+import CenteredBlogCard from 'otis/Cards/BlogCards/CenteredBlogCard';
 import unity from 'assets/images/logos/logo-unity.png';
-import MKBadge from 'components/MKBadge';
-import MKTypography from 'components/MKTypography';
+import MKBadge from 'otis/MKBadge';
+import MKTypography from 'otis/MKTypography';
 
 import image from 'assets/images/bridgestars/home_page.svg';
 

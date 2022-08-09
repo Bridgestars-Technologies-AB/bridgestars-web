@@ -5,13 +5,13 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 
 // Otis Kit PRO components
-import MKTypography from 'components/MKTypography';
+import MKTypography from 'otis/MKTypography';
 
 // Images
 import logoCT from 'assets/images/bridgestars/logo-trans-256px.png';
 
 import Icon from '@mui/material/Icon';
-import MKBox from 'components/MKBox';
+import MKBox from 'otis/MKBox';
 
 const date = new Date().getFullYear();
 

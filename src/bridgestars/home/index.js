@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { useEffect, useRef } from 'react';
 
 // rellax
-import Rellax from 'rellax';
+// import Rellax from 'rellax';
 
 // typed-js
 import * as Typed from 'typed.js';
@@ -27,19 +27,19 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
-import MKButton from 'components/MKButton';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
+import MKButton from 'otis/MKButton';
 
 // Otis Kit PRO examples
 import BridgestarsNavbar from 'bridgestars/navbar';
-import DefaultFooter from 'examples/Footers/DefaultFooter';
+// import DefaultFooter from 'otis/Footers/DefaultFooter';
 
 // About Us page sections
-import Information from 'pages/Company/AboutUs/sections/Information';
+// import Information from 'pages/Company/AboutUs/sections/Information';
 import Testimonials from './sections/Testimonial.js';
-import Featuring from 'pages/Company/AboutUs/sections/Featuring';
-import Newsletter from 'pages/Company/AboutUs/sections/Newsletter';
+// import Featuring from 'pages/Company/AboutUs/sections/Featuring';
+// import Newsletter from 'pages/Company/AboutUs/sections/Newsletter';
 
 // Routes
 import routes from 'constants/routes';

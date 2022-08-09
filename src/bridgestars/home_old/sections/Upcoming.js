@@ -19,9 +19,9 @@ import Grid from '@mui/material/Grid';
 import Icon from '@mui/material/Icon';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
-import MKBadge from 'components/MKBadge';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
+import MKBadge from 'otis/MKBadge';
 import {
   RadioButtonUncheckedIcon,
   CheckBoxOutlineBlankRounded,

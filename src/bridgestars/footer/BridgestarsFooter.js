@@ -8,7 +8,7 @@ import MailRoundedIcon from '@mui/icons-material/MailRounded';
 
 // Otis Kit PRO examples
 import CenteredFooter from './CenteredFooter';
-import MKBox from 'components/MKBox';
+import MKBox from 'otis/MKBox';
 import DiscordLogo from 'assets/images/logos/discord.png';
 import footerRoutes from 'constants/footer.routes';
 

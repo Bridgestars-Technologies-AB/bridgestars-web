@@ -23,13 +23,13 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
-import MKButton from 'components/MKButton';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
+import MKButton from 'otis/MKButton';
 
 // Otis Kit PRO examples
 import DefaultNavbar from 'bridgestars/navbar';
-import DefaultFooter from 'examples/Footers/DefaultFooter';
+import DefaultFooter from 'otis/Footers/DefaultFooter';
 
 // Coworking page sections
 import Features from 'bridgestars/home/sections/Features';

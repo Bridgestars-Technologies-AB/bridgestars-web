@@ -1,4 +1,4 @@
-import MKButton from 'components/MKButton';
+import MKButton from 'otis/MKButton';
 import { useNavigate } from 'react-router-dom';
 export default function WIP() {
   const navigate = useNavigate();

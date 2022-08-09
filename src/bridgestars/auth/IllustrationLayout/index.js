@@ -24,13 +24,13 @@ import { Box } from '@mui/material';
 import { Grow } from '@mui/material';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKButton from 'components/MKButton';
-import MKTypography from 'components/MKTypography';
-import Breadcrumbs from 'examples/Breadcrumbs';
+import MKBox from 'otis/MKBox';
+import MKButton from 'otis/MKButton';
+import MKTypography from 'otis/MKTypography';
+import Breadcrumbs from 'otis/Breadcrumbs';
 
 // Otis Kit PRO example components
-import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
+import DefaultNavbar from 'otis/Navbars/DefaultNavbar';
 
 // Otis Kit PRO page layout routes
 import routes from 'constants/routes';

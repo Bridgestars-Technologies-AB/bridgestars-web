@@ -19,8 +19,8 @@ import Icon from '@mui/material/Icon';
 // import Stack from "@mui/material/Stack";
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
 import image from 'assets/images/bridgestars/black-gold-large.jpg';
 import { Link } from 'react-router-dom';
 

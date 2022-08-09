@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
 // Otis Kit PRO components
-import MKTypography from 'components/MKTypography';
+import MKTypography from 'otis/MKTypography';
 import colors from 'assets/theme/base/colors';
 
 function drawVoter(voted, voteCount, handleVote) {

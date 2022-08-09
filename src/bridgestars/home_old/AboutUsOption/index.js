@@ -20,8 +20,8 @@ import PropTypes from 'prop-types';
 import Icon from '@mui/material/Icon';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
 
 function AboutUsOption({ icon, content }) {
   return (

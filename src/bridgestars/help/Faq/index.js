@@ -21,13 +21,13 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
 
 // Otis Kit PRO examples
-import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
-import SimpleFooter from 'examples/Footers/SimpleFooter';
-import SimpleInfoCard from 'examples/Cards/InfoCards/SimpleInfoCard';
+import DefaultNavbar from 'otis/Navbars/DefaultNavbar';
+import SimpleFooter from 'otis/Footers/SimpleFooter';
+import SimpleInfoCard from 'otis/Cards/InfoCards/SimpleInfoCard';
 
 // HelpCenter page components
 import FaqCollapse from 'pages/Support/Faq/components/FaqCollapse';

@@ -3,8 +3,8 @@
 import Box from '@mui/material/Box';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
 import userIcon from 'assets/images/bridgestars/User.png';
 
 

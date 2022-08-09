@@ -7,14 +7,16 @@ import { Box } from '@mui/material';
 import { Grid } from '@mui/material';
 
 //OTIS KIT
-import MKTypography from 'components/MKTypography';
+import MKTypography from 'otis/MKTypography';
 
 //BRIDGESTARS
 import TextEditor from 'bridgestars/text-editor/textEditor';
 import { drawXSVoter } from './voter';
 import { drawAuthor } from './author';
 
-export default function drawComments(comments, getValue, setValue, charCount, commentLoaderState) {
+import { PulseLoader } from 'react-spinners';
+
+export default function drawComments(comments, getValue, setValue, charCount, commentLoaderState, handleVote) {
   return (
     <Box p={1.5}>
       <Box>
@@ -23,33 +25,55 @@ export default function drawComments(comments, getValue, setValue, charCount, co
         </MKTypography>
         <Box py={1}>
           <TextEditor
-            placeholder={getValue ? getValue : 'Add your own thoughts'}
+            placeholder={'Add your own thoughts'}
+            content={getValue && getValue}
             onChange={setValue}
           ></TextEditor>
         </Box>
         {charCount > 0 ? (
           <Grid container justifyContent='flex-end'>
-            <MKTypography>character count: {charCount}</MKTypography>
+            <MKTypography
+              variant='text1'
+              color={charCount > 750 ? 'primary' : 'dark'}
+              fontSize='16px'
+            >
+              Character count: {charCount}/750
+            </MKTypography>
           </Grid>
         ) : (
           <></>
         )}
       </Box>
-      <Box py={1}>
-        {commentLoaderState === "loading" ? <Loader/>
-          
-          : commentLoaderState === "done" ? comments.map((x) => drawCommentInstance(x.text, x.likes, x.author, x.creationTime))
-          : <MKTypography>No comments</MKTypography>}
+      <Box
+        py={1}
+        justifyContent={commentLoaderState === 'loaded' ? '' : 'center'}
+        display='flex'
+      >
+        {commentLoaderState === 'loading' ? (
+          <PulseLoader color='black' speedMultiplier={1} size={8} />
+        ) : commentLoaderState === 'loaded' ? (
+          comments.map((x) =>
+            drawCommentInstance(
+              x.text,
+              x.likes,
+              x.author,
+              x.creationTime,
+              () => handleVote(x.uid)
+            )
+          )
+        ) : (
+          <MKTypography>{commentLoaderState}</MKTypography>
+        )}
       </Box>
     </Box>
   );
 }
 
-function drawCommentInstance(text, likes, author, creationTime) {
+function drawCommentInstance(text, likes, author, creationTime, handleVote) {
   return (
     <Box key={text} mx={1} display='flex'>
       <Box width='min-content' mt={0.3}>
-        {drawXSVoter(true, likes, () => {})}
+        {drawXSVoter(true, likes, handleVote)}
       </Box>
       <Box width='100%'>
         <TextEditor

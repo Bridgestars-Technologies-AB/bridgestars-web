@@ -25,16 +25,15 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { Component } from 'react';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
-import MKInput from 'components/MKInput';
-import MKButton from 'components/MKButton';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
+import MKInput from 'otis/MKInput';
+import MKButton from 'otis/MKButton';
 
 // Authentication layout components
 import IllustrationLayout from '../IllustrationLayout';
 
 // Image
-import bgImage from 'assets/images/illustrations/illustration-reset.jpg';
 import logo from 'assets/images/bridgestars/logo-trans-512px.png';
 import useValidator from 'bridgestars/auth/sign-up/validator.js';
 
@@ -61,7 +60,6 @@ function SignupForm() {
       logo={logo}
       title="Let's create an account for you"
       description='Enter your email and password to register'
-      illustration={bgImage}
     >
       <MKBox component='form' role='form'>
         <MKBox mb={2}>

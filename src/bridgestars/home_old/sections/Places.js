@@ -18,12 +18,12 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKBadge from 'components/MKBadge';
-import MKTypography from 'components/MKTypography';
+import MKBox from 'otis/MKBox';
+import MKBadge from 'otis/MKBadge';
+import MKTypography from 'otis/MKTypography';
 
 // Otis Kit PRO components
-import SimpleBlogCard from 'examples/Cards/BlogCards/SimpleBlogCard';
+import SimpleBlogCard from 'otis/Cards/BlogCards/SimpleBlogCard';
 
 function Places() {
   const actionProps = {

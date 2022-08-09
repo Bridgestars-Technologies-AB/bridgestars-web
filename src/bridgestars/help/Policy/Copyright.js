@@ -19,12 +19,12 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
 
 // Otis Kit PRO examples
-import DefaultNavbar from 'examples/Navbars/DefaultNavbar';
-import DefaultFooter from 'examples/Footers/DefaultFooter';
+import DefaultNavbar from 'otis/Navbars/DefaultNavbar';
+import DefaultFooter from 'otis/Footers/DefaultFooter';
 
 // Routes
 import routes from 'constants/routes';

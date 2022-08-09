@@ -17,8 +17,8 @@ import { Input } from '@mui/material';
 import { IconButton } from '@mui/material';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
 
 
 // About Us page sections
@@ -29,7 +29,7 @@ import routes from 'constants/routes';
 import footerRoutes from 'constants/footer.routes';
 
 // Images
-import bgImage from 'assets/images/bridgestars/home_page.svg';
+import bgImage from 'assets/images/bridgestars/vote.svg';
 
 //BRIDGESTARS
 import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
@@ -100,7 +100,8 @@ function VotingPage() {
     }
   }, [value]);
 
-  const [votes, setVotes] = useState([]);
+  const [votedIssues, setVotedIssues] = useState([]);
+  const [votedComments, setVotedComments] = useState([]);
   const [userData, setUserData] = useState({});
   const [signedIn, setSignedIn] = useState(false);
   useEffect(() => {
@@ -121,7 +122,8 @@ function VotingPage() {
       console.log(JSON.stringify(d.data()));
       console.log(2);
       //IF DOES NOT EXIST CREATE DOCUMENT
-      setVotes(d.data().votes);
+      setVotedIssues(d.data().votedIssues);
+      setVotedComments(d.data().votedComments);
       console.log(3);
     } catch (e) {
       if (e.code == 'permission-denied') {
@@ -153,11 +155,11 @@ function VotingPage() {
         loadedDocs.map((doc) => (doc.id == requestId ? incr(doc) : doc))
       );
     };
-    if (signedIn && votes != null) {
-      if (votes.includes(requestId)) {
+    if (signedIn && votedIssues != null) {
+      if (votedIssues.includes(requestId)) {
         //local
-        const v = votes.filter((x) => x != requestId);
-        setVotes(v);
+        const v = votedIssues.filter((x) => x != requestId);
+        setVotedIssues(v);
         updateDocs(-1);
 
         //remote
@@ -166,16 +168,16 @@ function VotingPage() {
             votes: increment(-1),
           }),
           updateDoc(doc(usersRef, userData.uid), {
-            votes: arrayRemove(requestId),
+            votedIssues: arrayRemove(requestId),
           }),
         ]);
         //console.log(votes.filter((x) => x != requestId));
       } else {
         //local
         let v = [];
-        v.push(...votes);
+        v.push(...votedIssues);
         v.push(requestId);
-        setVotes(v);
+        setVotedIssues(v);
         updateDocs(1);
 
         //remote
@@ -184,7 +186,58 @@ function VotingPage() {
             votes: increment(1),
           }),
           updateDoc(doc(usersRef, userData.uid), {
-            votes: arrayUnion(requestId),
+            votedIssues: arrayUnion(requestId),
+          }),
+        ]);
+      }
+    } else {
+      setShowSignin(true);
+    }
+  }
+
+  async function handleCommentVote(requestId, commentId) {
+    // const updateDocs = (inc) => {
+    //   const incr = (doc) => {
+    //     doc.votes += inc;
+    //     return doc;
+    //   };
+    //   setLoadedDocs(
+    //     loadedDocs.map((doc) => (doc.id == requestId ? incr(doc) : doc))
+    //   );
+    // };
+    const id = requestId+"/"+commentId
+    if (signedIn && votedComments != null) {
+      if (votedComments.includes(id)) {
+
+        //remove local
+        setVotedComments(votedComments.filter((x) => x != id));
+        // updateDocs(-1);
+
+        //remote
+        await Promise.all([
+          updateDoc(doc(commentsRef, requestId), {
+            votes: increment(-1),
+          }),
+          updateDoc(doc(usersRef, userData.uid), {
+            votedComments: arrayRemove(id),
+          }),
+        ]);
+        //console.log(votes.filter((x) => x != requestId));
+      } else {
+        //local
+        let v = [];
+        v.push(...votedIssues);
+        v.push(requestId);
+        setVotedIssues(v);
+        updateDocs(1);
+
+        //remote
+        await Promise.all([
+          updateDoc(doc(requestsRef, requestId), {
+            votes: increment(1),
+          }),
+          updateDoc(doc(usersRef, userData.uid), {
+            votedIssues: arrayUnion(requestId),
           }),
         ]);
       }
@@ -301,6 +354,35 @@ function VotingPage() {
                 width={{ xs: '75%', sm: '45%', xl: '35%' }}
               ></MKBox>
             </Grid>
+            <Grid
+              container
+              item
+              flexDirection='column'
+              alignItems='center'
+              textAlign={'center'}
+              xs={12}
+              lg={8}
+              sx={{ textAlign: 'center', mx: 'auto' }}
+              mb={6}
+              mt={4}
+            >
+              {/* <MKBadge
+            variant='contained'
+            color='primary'
+            badgeContent='Current'
+            container
+            circular
+            sx={{ mb: 1 }}
+          /> */}
+              <MKTypography variant='h2' mb={1} fontSize='min(10vmin, 50px)'>
+                Bridgestars is the players platform{' '}
+              </MKTypography>
+              <MKTypography variant='body2' color='text' px={1}>
+                This is a selection of our current features. These are
+                continuously improved and expanded upon with ideas and comments
+                from our community.
+              </MKTypography>
+            </Grid>
             <Grid container item md={12} justifyContent={'space-between'}>
               <Grid item md={3}>
                 <Button>new request</Button>
@@ -322,7 +404,7 @@ function VotingPage() {
                     loadedDocs.map((doc) => (
                       <Box mb={1.5} key={doc.id.substring(0, 11)}>
                         <IssueCard
-                          voted={votes.includes(doc.id)}
+                          voted={votedIssues.includes(doc.id)}
                           nbrVotes={doc.votes}
                           nbrComments={doc.comments}
                           key={doc.id.substring(0, 10)}
@@ -333,6 +415,7 @@ function VotingPage() {
                           status={doc.status}
                           creationTime={parseDate(doc.creationTime)}
                           handleVote={() => handleVote(doc.id)}
+                          handleCommentVote={handleCommentVote}
                           maxWidth='850px'
                         ></IssueCard>
                       </Box>

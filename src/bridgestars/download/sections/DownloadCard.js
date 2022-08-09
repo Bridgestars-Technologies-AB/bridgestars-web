@@ -20,9 +20,9 @@ import Card from '@mui/material/Card';
 import Icon from '@mui/material/Icon';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKButton from 'components/MKButton';
-import MKTypography from 'components/MKTypography';
+import MKBox from 'otis/MKBox';
+import MKButton from 'otis/MKButton';
+import MKTypography from 'otis/MKTypography';
 
 function DownloadCard({ title, description, link, size, ...rest }) {
   return (

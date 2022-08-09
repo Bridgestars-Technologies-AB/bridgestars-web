@@ -20,9 +20,9 @@ import Icon from '@mui/material/Icon';
 // import Stack from "@mui/material/Stack";
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
-import MKBadge from 'components/MKBadge';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
+import MKBadge from 'otis/MKBadge';
 import image from 'assets/images/bridgestars/black-gold-large.jpg';
 
 function Discord() {

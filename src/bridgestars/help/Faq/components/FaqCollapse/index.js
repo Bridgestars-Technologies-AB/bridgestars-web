@@ -21,8 +21,8 @@ import Icon from '@mui/material/Icon';
 import Collapse from '@mui/material/Collapse';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
 
 function FaqCollapse({ title, open, children, ...rest }) {
   return (

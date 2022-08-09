@@ -1,9 +1,9 @@
 // @mui material components
-import MKBox from 'components/MKBox';
+import MKBox from 'otis/MKBox';
 import footerRoutes from 'constants/footer.routes';
 import { Grid } from '@mui/material';
 import { IconButton } from '@mui/material';
-import MKTypography from 'components/MKTypography';
+import MKTypography from 'otis/MKTypography';
 import { Icon } from '@mui/material';
 //bridgestars
 import BridgestarsFooter from '../../footer/BridgestarsFooter';

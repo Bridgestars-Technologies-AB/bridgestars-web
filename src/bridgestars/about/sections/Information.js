@@ -18,8 +18,8 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
 import Steps from './Steps';
 import { Icon } from '@mui/material';
 

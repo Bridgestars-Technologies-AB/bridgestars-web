@@ -33,13 +33,13 @@ import { spacing } from '@mui/system';
 import MuiLink from '@mui/material/Link';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
-import MKButton from 'components/MKButton';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
+import MKButton from 'otis/MKButton';
 
 // Otis Kit PRO examples
-import DefaultNavbarDropdown from 'examples/Navbars/DefaultNavbar/DefaultNavbarDropdown';
-import DefaultNavbarMobile from 'examples/Navbars/DefaultNavbar/DefaultNavbarMobile';
+import DefaultNavbarDropdown from 'otis/Navbars/DefaultNavbar/DefaultNavbarDropdown';
+import DefaultNavbarMobile from 'otis/Navbars/DefaultNavbar/DefaultNavbarMobile';
 
 // Otis Kit PRO base styles
 import breakpoints from 'assets/theme/base/breakpoints';

@@ -24,17 +24,13 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
 
 // Otis Kit PRO examples
 
 // About Us page sections
 import Information from '../about/sections/Information';
-import Steps from '../about/sections/Steps';
-import OurEfforts from '../about/sections/OurEfforts';
-import Features from '../about/sections/Features';
-import Posts from '../about/sections/Posts';
 
 // Routes
 import routes from 'constants/routes';

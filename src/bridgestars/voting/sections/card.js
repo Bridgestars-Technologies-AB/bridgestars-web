@@ -9,8 +9,8 @@ import Box from '@mui/material/Box';
 import { IconButton, Icon, Modal } from '@mui/material';
 
 // Otis Kit PRO components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from 'otis/MKBox';
+import MKTypography from 'otis/MKTypography';
 import colors from 'assets/theme/base/colors';
 
 //BRIDGESTARS
@@ -31,6 +31,7 @@ function IssueCard({
   nbrVotes,
   nbrComments,
   getComments,
+  handleCommentVote,
   ...rest
 }) {
   const [expanded, setExpanded] = useState(false);
@@ -60,20 +61,20 @@ function IssueCard({
   const [commentLoaderState, setCommentLoaderState] = useState("")
   async function expandCard() {
     if (expanded) return setExpanded(false);
+
     setCommentLoaderState('loading');
     setExpanded(true);
+
     if (comments.length != 0) {
-      setCommentLoaderState("cache")
-      return;
+      setCommentLoaderState("loaded")
     }
+    //download comments
     const data = await getComments();
-    console.log(JSON.stringify(data));
     if (data) {
       setComments(data);
       setCommentLoaderState('loaded');
     } else {
       setCommentLoaderState('no comments');
-      console.log('Could not fetch comments');
     }
   }
   const [cardHovered, setCardHovered] = useState(false);
@@ -90,7 +91,7 @@ function IssueCard({
         sx={{
           outline: 'none',
           minHeight: modal ? '300px' : 0,
-          maxHeight: '100vh',
+          maxHeight: '100%',
           overflow: 'scroll',
           // horizontal, vertical, blur, spread?, color
           // boxShadow: '2px 5px 15px rgba(0,0,0,0.22)',
@@ -110,103 +111,112 @@ function IssueCard({
         }}
       >
         {modal && (
-          <Box height='24px'>
-            <Box
-              position='absolute'
-              right='0px'
-              m={0.5}
-              onClick={() => {
-                setExpanded(false);
-              }}
-            >
-              <IconButton>
-                <Icon sx={{ transform: 'scale(1.3)' }}>close</Icon>
-              </IconButton>
-            </Box>
+          <Box
+            pt='2px'
+            pb='5px'
+            pr='3px'
+            position='absolute'
+            right='0px'
+            height='40px'
+            onClick={() => {      
+              setExpanded(false);
+            }}
+            sx={{ fontSize: '30px' }}
+          >
+            <Icon>close</Icon>
           </Box>
         )}
-        <Grid container pr={{ xs: 1.5, sm: 0 }}>
-          <Grid
-            item
-            sm={2.5}
-            order={0}
-            justifyContent='center'
-            alignItems='center'
-            display={{ sm: 'flex', xs: 'none' }}
-          >
-            {drawVoter(voted, nbrVotes, handleVoteBtnPress)}
-          </Grid>
-
-          <Grid
-            item
-            xs={1.5}
-            order={0}
-            mt={2}
-            mx={0.25}
-            justifyContent='center'
-            alignItems='flex-start'
-            display={{ sm: 'none', xs: 'flex' }}
-          >
-            {drawXSVoter(voted, nbrVotes, handleVoteBtnPress)}
-          </Grid>
-
-          <Grid
-            item
-            xs={9.5}
-            sm={!expanded ? 7.5 : 8.5}
-            order={1}
-            mt={1.5}
-            mb={{ xs: 1, sm: 0 }}
-          >
-            {drawTitle({ title: title, selected: cardHovered && !expanded })}
-            {drawStatus({
-              status: status,
-              display: 'inline-block',
-            })}
-            {drawDescription({
-              description: description,
-              limit: modal ? 5000 : 220,
-            })}
-
-            <Grid
-              sm={12}
-              container
-              item
-              sx={{
-                flexDirection: 'row',
-              }}
-              display='flex'
-              justifyContent='flex-left'
-              alignItems='center'
-              py={1}
-            >
-              {drawAuthor(author, creationTime)}
-              {!expanded && (
-                <Box display={{ sm: 'none', xs: 'flex' }} mx={2} my='auto'>
-                  {drawOpenCommentButton(nbrComments)}
-                </Box>
-              )}
-            </Grid>
-          </Grid>
-          {!expanded && (
+        <Box overflow={modal && 'scroll'} mt='40px'>
+          <Grid container pr={{ xs: 1.5, sm: 0 }}>
             <Grid
               item
-              sm={2}
-              order={3}
+              sm={2.5}
+              order={0}
               justifyContent='center'
               alignItems='center'
-              ml={{ xs: 1, sm: 0 }}
               display={{ sm: 'flex', xs: 'none' }}
             >
-              {drawOpenCommentButton(nbrComments)}
+              {drawVoter(voted, nbrVotes, handleVoteBtnPress)}
             </Grid>
+
+            <Grid
+              item
+              xs={1.5}
+              order={0}
+              mt={2}
+              mx={0.25}
+              justifyContent='center'
+              alignItems='flex-start'
+              display={{ sm: 'none', xs: 'flex' }}
+            >
+              {drawXSVoter(voted, nbrVotes, handleVoteBtnPress)}
+            </Grid>
+
+            <Grid
+              item
+              xs={9.5}
+              sm={!modal ? 7.5 : 8.5}
+              order={1}
+              mt={1.5}
+              mb={{ xs: 1, sm: 0 }}
+            >
+              {drawTitle({ title: title, selected: cardHovered && !modal })}
+              {drawStatus({
+                status: status,
+                display: 'inline-block',
+              })}
+              {drawDescription({
+                description: description,
+                limit: modal ? 5000 : 220,
+              })}
+
+              <Grid
+                sm={12}
+                container
+                item
+                sx={{
+                  flexDirection: 'row',
+                }}
+                display='flex'
+                justifyContent='flex-left'
+                alignItems='center'
+                py={1}
+              >
+                {drawAuthor(author, creationTime)}
+                {!modal && (
+                  <Box display={{ sm: 'none', xs: 'flex' }} mx={2} my='auto'>
+                    {drawOpenCommentButton(nbrComments)}
+                  </Box>
+                )}
+              </Grid>
+            </Grid>
+            {!modal && (
+              <Grid
+                item
+                sm={2}
+                order={3}
+                justifyContent='center'
+                alignItems='center'
+                ml={{ xs: 1, sm: 0 }}
+                display={{ sm: 'flex', xs: 'none' }}
+              >
+                {drawOpenCommentButton(nbrComments)}
+              </Grid>
+            )}
+          </Grid>
+          {modal ? (
+            drawCommentArea(
+              comments,
+              commentText,
+              updateCommentText,
+              charCount,
+              commentLoaderState,
+              handleCommentVote
+            )
+          ) : (
+            <></>
           )}
-        </Grid>
-        {modal ? (
-          drawCommentArea(comments, commentText, updateCommentText, charCount, commentLoaderState)
-        ) : (
-          <></>
-        )}
+        </Box>
       </Card>
     );
   };
@@ -219,7 +229,7 @@ function IssueCard({
           open={expanded}
           onClose={() => setExpanded(false)}
           sx={{
-            p: { xs: 2, sm: 0 },
+            py: 1.5,
             // outline: 'none',
             display: 'flex',
             alignItems: 'center',
