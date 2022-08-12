@@ -24,6 +24,7 @@ import {
   MenuItem,
   FormControl,
   Typography,
+  InputBase
 } from '@mui/material';
 
 // Otis Kit PRO components
@@ -83,6 +84,7 @@ function parseDate(ms) {
   const month = d.toLocaleString('default', { month: 'short' });
   return `${d.getDate()} ${month} ${d.getFullYear()}`;
 }
+
 
 function VotingPage() {
   const auth = getAuth(firebaseApp);
@@ -434,6 +436,7 @@ function VotingPage() {
                       sx={{
                         height: '42px',
                         fontSize: '18px',
+                        backgroundColor: '#f8f9fa',
                         fontFamily: '"Roboto Slab", sans-serif',
                         minWidth: '130px',
                         color: dark.main,
@@ -459,10 +462,50 @@ function VotingPage() {
                   justifyContent={{ xs: 'center', sm: 'end' }}
                   display='flex'
                 >
-                  <Button display='inline-block'>Search</Button>
+                  {/* <Button display='inline-block'>Search</Button> */}
+                  <InputBase
+                    sx={{
+                      backgroundColor: '#f8f9fa',
+                      borderRadius: 3,
+                      px: `12px`,
+                      fontSize: '18px',
+                      fontWeight: 500,
+                      lineHeight: '14px',
+                      fontFamily: '"Roboto Slab", sans-serif',
+                      color: dark.main,
+                    }}
+                    // sx={{
+                    //   root: {},
+                    //   input: {
+                    //     fontSize: 16,
+                    //   },
+                    //   adornedStart: {
+                    //     '& > *:first-child': {
+                    //       // * is the icon at the beginning of input
+                    //       fontSize: 20,
+                    //       color: 'white',
+                    //       marginRight: '10px',
+                    //     },
+                    //   },
+                    // }}
+                    placeholder={'Search...'}
+                    endAdornment={
+                      <IconButton
+                        size='small'
+                        sx={{
+                          backgroundColor: '#e8e9ea',
+                          '&:hover': {
+                            backgroundColor: '#d8d9da',
+                          },
+                        }}
+                      >
+                        <Icon style={{ color: dark.main }}>search</Icon>
+                      </IconButton>
+                    }
+                  />
                 </Grid>
               </Grid>
-              <Grid container mt={0.5}>
+              <Grid container mt={1.5}>
                 <Grid
                   item
                   xs={12}
