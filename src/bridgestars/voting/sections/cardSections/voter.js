@@ -1,7 +1,6 @@
 
 // @mui material components
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import { Box, Grid, Skeleton } from '@mui/material';
 
 // Otis Kit PRO components
 import MKTypography from 'otis/MKTypography';

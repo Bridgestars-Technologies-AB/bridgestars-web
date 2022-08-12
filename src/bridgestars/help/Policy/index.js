@@ -6,7 +6,7 @@ import { IconButton } from '@mui/material';
 import MKTypography from 'otis/MKTypography';
 import { Icon } from '@mui/material';
 //bridgestars
-import BridgestarsFooter from '../../footer/BridgestarsFooter';
+import BridgestarsFooter from '../../components/footer/BridgestarsFooter';
 import BridgestarsNavbar from '../../navbar/index';
 import routes from 'constants/routes';
 

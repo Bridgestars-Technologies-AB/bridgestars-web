@@ -6,20 +6,31 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // @mui material components
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import Box from '@mui/material/Box';
-import { Modal } from '@mui/material';
-import { Button } from '@mui/material';
-import { Icon } from '@mui/material';
-import { Input } from '@mui/material';
-import { IconButton } from '@mui/material';
+import {
+  Modal,
+  Skeleton,
+  Box,
+  Card,
+  Grid,
+  Container,
+  Button,
+  Icon,
+  Input,
+  IconButton,
+  Tabs,
+  Tab,
+  Select,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Typography,
+} from '@mui/material';
 
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
-
+import colors from 'assets/theme/base/colors';
+const { dark } = colors;
 
 // About Us page sections
 import Information from '../download/sections/Information';
@@ -32,13 +43,12 @@ import footerRoutes from 'constants/footer.routes';
 import bgImage from 'assets/images/bridgestars/vote.svg';
 
 //BRIDGESTARS
-import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
+import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter';
 import BridgestarsNavbar from 'bridgestars/navbar';
 import IssueCard from './sections/card';
 import SigninForm from 'bridgestars/auth/sign-in';
 
 //STYLE
-
 
 //DATABASE
 import { firebaseApp } from 'firebase-config';
@@ -66,11 +76,6 @@ import {
   arrayUnion,
   arrayRemove,
 } from 'firebase/firestore';
-
-
-
-
-
 
 function parseDate(ms) {
   const d = new Date();
@@ -136,9 +141,8 @@ function VotingPage() {
       } else if (e.code == 'not-found') {
         //IS THIS RIGHT?
         //create document
-      }
-      else if (e.toString().includes("offline")) {
-        alert("You are offline, please try again later.")
+      } else if (e.toString().includes('offline')) {
+        alert('You are offline, please try again later.');
       }
       console.log(e);
       console.log(JSON.stringify(e));
@@ -205,10 +209,9 @@ function VotingPage() {
     //     loadedDocs.map((doc) => (doc.id == requestId ? incr(doc) : doc))
     //   );
     // };
-    const id = requestId+"/"+commentId
+    const id = requestId + '/' + commentId;
     if (signedIn && votedComments != null) {
       if (votedComments.includes(id)) {
-
         //remove local
         setVotedComments(votedComments.filter((x) => x != id));
         // updateDocs(-1);
@@ -257,7 +260,7 @@ function VotingPage() {
     if (signedIn) {
       try {
         const res = await getDoc(doc(commentsRef, id));
-        console.log(JSON.stringify(res.data().comments))
+        console.log(JSON.stringify(res.data().comments));
         return res.data().comments.map((x) => {
           return {
             likes: x.likes,
@@ -287,6 +290,8 @@ function VotingPage() {
     }
   });
 
+  const [sortBy, setSortBy] = useState(0);
+  const [filterBy, setFilterBy] = useState('');
   return (
     <>
       <Modal
@@ -317,7 +322,6 @@ function VotingPage() {
           sx={{
             // px: { xs: 0, sm: 1, lg: 2 },
             py: 2,
-            px: { xs: 0, sm: 1, lg: 3 },
             mx: { xs: 0, sm: 1, md: 2, lg: 3 },
             mt: { xs: 0, sm: 1, md: 2, lg: 3 },
             mb: { xs: 0, sm: 1, md: 2, lg: 3 },
@@ -328,27 +332,14 @@ function VotingPage() {
         >
           <BridgestarsNavbar
             routes={routes.filter((r) => r.name != 'Vote')}
-            // action={
-            //   window.innerWidth > 370
-            //     ? {
-            //         type: 'internal',
-            //         route: '/home',
-            //         label: 'back',
-            //         color: 'primary',
-            //       }
-            //     : false
-            // }
             sticky
             dark
             fullWidth
-            // relative
-            // transparent
           />
-          <Box>
+          <Box sx={{ px: { xs: 0, sm: 1, lg: 3 } }}>
             <Grid container item alignItems='center' flexDirection='column'>
               <MKBox
                 mt={10}
-                mb={-2}
                 component='img'
                 src={bgImage}
                 width={{ xs: '75%', sm: '45%', xl: '35%' }}
@@ -366,63 +357,151 @@ function VotingPage() {
               mb={6}
               mt={4}
             >
-              {/* <MKBadge
-            variant='contained'
-            color='primary'
-            badgeContent='Current'
-            container
-            circular
-            sx={{ mb: 1 }}
-          /> */}
-              <MKTypography variant='h2' mb={1} fontSize='min(10vmin, 50px)'>
-                Bridgestars is the players platform{' '}
+              <MKTypography variant='h2' mb={1} fontSize='40px'>
+                The platform where{' '}
+                <MKTypography
+                  variant='h2'
+                  display='inline-block'
+                  mb={1}
+                  fontSize='40px'
+                  style={{ textDecorationLine: 'underline' }}
+                >
+                  you
+                </MKTypography>{' '}
+                decide what's next{' '}
               </MKTypography>
               <MKTypography variant='body2' color='text' px={1}>
-                This is a selection of our current features. These are
-                continuously improved and expanded upon with ideas and comments
-                from our community.
+                This page is for you who want to contribute to the Bridgestars
+                platform. You can interact with existing requests or submit your
+                own. We read everything and will take great consideration to
+                this page when developing Bridgestars.
               </MKTypography>
             </Grid>
-            <Grid container item md={12} justifyContent={'space-between'}>
-              <Grid item md={3}>
-                <Button>new request</Button>
-              </Grid>
-            </Grid>
-            <Grid container>
+
+            <MKBox
+              p={{ sx: 0, sm: 1, md: 2 }}
+              sx={{ maxWidth: '800px' }}
+              mx='auto'
+            >
               <Grid
+                container
                 item
-                xs={12}
-                sx={{ fontSize: '0.5vw' }}
-                justifyContent='center'
-                alignItems='center'
-                display='flex'
+                md={12}
+                spacing={1.4}
+                justifyContent={'space-between'}
               >
-                <MKBox p={{ sx: 0, sm: 1, md: 2 }}>
-                  {error && <strong>Error: {JSON.stringify(error)}</strong>}
-                  {loading && <span>Collection: Loading...</span>}
-                  {loadedDocs.length != 0 &&
-                    loadedDocs.map((doc) => (
-                      <Box mb={1.5} key={doc.id.substring(0, 11)}>
-                        <IssueCard
-                          voted={votedIssues.includes(doc.id)}
-                          nbrVotes={doc.votes}
-                          nbrComments={doc.comments}
-                          key={doc.id.substring(0, 10)}
-                          getComments={() => getComments(doc.id)}
-                          title={doc.title}
-                          description={doc.description}
-                          author={doc.author}
-                          status={doc.status}
-                          creationTime={parseDate(doc.creationTime)}
-                          handleVote={() => handleVote(doc.id)}
-                          handleCommentVote={handleCommentVote}
-                          maxWidth='850px'
-                        ></IssueCard>
-                      </Box>
-                    ))}
-                </MKBox>
+                <Grid item sm={4} xs={12}>
+                  <Tabs
+                    value={sortBy}
+                    onChange={(e, n) => {
+                      setSortBy(n);
+                    }}
+                  >
+                    <Tab label='Recent' icon={<Icon>schedule</Icon>} />
+                    <Tab label='Popular' icon={<Icon>trending_up</Icon>} />
+                  </Tabs>
+                </Grid>
+                <Grid
+                  item
+                  sm={4}
+                  xs={12}
+                  justifyContent='center'
+                  display='flex'
+                >
+                  <FormControl fullWidth={false}>
+                    <InputLabel
+                      id='demo-simple-select-label'
+                      sx={{
+                        fontSize: '18px',
+                        fontWeight: 500,
+                        lineHeight: '14px',
+                        fontFamily: '"Roboto Slab", sans-serif',
+                        color: dark.main,
+                        // width:'100%',
+                        // verticalAlign:'middle',
+                        // textAlign:'center',
+                        // lineHeight:'100%'
+                      }}
+                    >
+                      Select Filter
+                      {/* <MKTypography  variant='h3' fontSize='18px'>Select Filter</MKTypography> */}
+                    </InputLabel>
+                    <Select
+                      labelId='demo-simple-select-label'
+                      value={filterBy}
+                      label='selectfilte'
+                      width='auto'
+                      sx={{
+                        height: '42px',
+                        fontSize: '18px',
+                        fontFamily: '"Roboto Slab", sans-serif',
+                        minWidth: '130px',
+                        color: dark.main,
+                        textAlign: 'center',
+                      }}
+                      onChange={(e) => setFilterBy(e.target.value)}
+                      onClose={() => {
+                        /*run query */
+                      }}
+                    >
+                      <MenuItem value={'all'}>All</MenuItem>
+                      <MenuItem value={'planned'}>Planned</MenuItem>
+                      <MenuItem value={3}>New</MenuItem>
+                      <MenuItem value={3}>MNEw axldasd asD </MenuItem>
+                    </Select>
+                  </FormControl>
+                  {/* <Select display='inline-block'>By Status</Select> */}
+                </Grid>
+                <Grid
+                  item
+                  sm={4}
+                  xs={12}
+                  justifyContent={{ xs: 'center', sm: 'end' }}
+                  display='flex'
+                >
+                  <Button display='inline-block'>Search</Button>
+                </Grid>
               </Grid>
-            </Grid>
+              <Grid container mt={0.5}>
+                <Grid
+                  item
+                  xs={12}
+                  sx={{ fontSize: '0.5vw' }}
+                  justifyContent='center'
+                  alignItems='center'
+                  display='flex'
+                >
+                  <MKBox>
+                    {error && <strong>Error: {JSON.stringify(error)}</strong>}
+                    {true &&
+                      [1, 2].map((k) => (
+                        <Box mb={1.5} key={k}>
+                          <IssueCard loading={true} key={k + '1'}></IssueCard>
+                        </Box>
+                      ))}
+                    {loadedDocs.length != 0 &&
+                      loadedDocs.map((doc) => (
+                        <Box mb={1.5} key={doc.id.substring(0, 11)}>
+                          <IssueCard
+                            voted={votedIssues.includes(doc.id)}
+                            nbrVotes={doc.votes}
+                            nbrComments={doc.comments}
+                            key={doc.id.substring(0, 10)}
+                            getComments={() => getComments(doc.id)}
+                            title={doc.title}
+                            description={doc.description}
+                            author={doc.author}
+                            status={doc.status}
+                            creationTime={parseDate(doc.creationTime)}
+                            handleVote={() => handleVote(doc.id)}
+                            handleCommentVote={handleCommentVote}
+                          ></IssueCard>
+                        </Box>
+                      ))}
+                  </MKBox>
+                </Grid>
+              </Grid>
+            </MKBox>
           </Box>
         </Card>
       </Grid>

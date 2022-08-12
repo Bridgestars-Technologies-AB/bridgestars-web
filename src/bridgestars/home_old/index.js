@@ -36,7 +36,7 @@ import Features from 'bridgestars/home/sections/Features';
 import Testimonials from 'bridgestars/home_old/sections/Testimonials';
 import Upcoming from 'bridgestars/home/sections/Upcoming';
 import Places from 'bridgestars/home_old/sections/Places';
-import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
+import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter';
 
 // Routes
 import routes from 'constants/routes';

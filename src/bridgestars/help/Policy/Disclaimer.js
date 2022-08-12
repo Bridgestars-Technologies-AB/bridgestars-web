@@ -29,7 +29,7 @@ import DefaultFooter from 'otis/Footers/DefaultFooter';
 // Routes
 import routes from 'constants/routes';
 import footerRoutes from 'constants/footer.routes';
-import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter.js';
+import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter.js';
 import BridgestarsNavbar from 'bridgestars/navbar';
 
 export default function Disclaimer() {

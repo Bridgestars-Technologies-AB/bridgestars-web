@@ -38,7 +38,7 @@ import footerRoutes from 'constants/footer.routes';
 
 // Images
 import bgImage from 'assets/images/bridgestars/home_page.svg';
-import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
+import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter';
 import BridgestarsNavbar from 'bridgestars/navbar';
 import DownloadCard from './sections/DownloadCard.js';
 

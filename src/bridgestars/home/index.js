@@ -56,7 +56,7 @@ import { positions } from '@mui/system';
 // Coworking page sections
 import Features from 'bridgestars/home/sections/Features';
 import Upcoming from 'bridgestars/home/sections/Upcoming';
-import BridgestarsFooter from 'bridgestars/footer/BridgestarsFooter';
+import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter';
 import Discord from './sections/Discord.js';
 
 // Routes

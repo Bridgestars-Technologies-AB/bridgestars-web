@@ -10,7 +10,7 @@ import { Grid } from '@mui/material';
 import MKTypography from 'otis/MKTypography';
 
 //BRIDGESTARS
-import TextEditor from 'bridgestars/text-editor/textEditor';
+import TextEditor from 'bridgestars/components/text-editor/textEditor';
 import { drawXSVoter } from './voter';
 import { drawAuthor } from './author';
 

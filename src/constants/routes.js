@@ -138,6 +138,12 @@ const routes = [
     route: '/policy',
     //component: <SigninForm />,
   },
+  {
+    name: 'Vote',
+    icon: <Icon>gavel</Icon>,
+    route: '/vote',
+    //component: <SigninForm />,
+  },
   // {
   //   name: 'Sign In',
   //   icon: <Icon>account_circle</Icon>,

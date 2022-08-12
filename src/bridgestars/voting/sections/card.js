@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
-import { IconButton, Icon, Modal } from '@mui/material';
+import { IconButton, Icon, Modal, Skeleton } from '@mui/material';
 
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
@@ -18,7 +18,7 @@ import commentIcon from 'assets/images/bridgestars/Comments.png';
 import drawCommentArea from './cardSections/comments';
 import { drawXSVoter, drawVoter } from './cardSections/voter';
 import { drawAuthor } from './cardSections/author';
-import { editorStyle } from 'bridgestars/text-editor/editorStyles.js';
+// import { editorStyle } from 'bridgestars/text-editor/editorStyles.js';
 
 function IssueCard({
   title,
@@ -32,6 +32,7 @@ function IssueCard({
   nbrComments,
   getComments,
   handleCommentVote,
+  loading,
   ...rest
 }) {
   const [expanded, setExpanded] = useState(false);
@@ -58,7 +59,7 @@ function IssueCard({
     console.log(commentText);
   }, [commentText]);
 
-  const [commentLoaderState, setCommentLoaderState] = useState("")
+  const [commentLoaderState, setCommentLoaderState] = useState('');
   async function expandCard() {
     if (expanded) return setExpanded(false);
 
@@ -66,7 +67,7 @@ function IssueCard({
     setExpanded(true);
 
     if (comments.length != 0) {
-      setCommentLoaderState("loaded")
+      setCommentLoaderState('loaded');
     }
     //download comments
     const data = await getComments();
@@ -78,20 +79,25 @@ function IssueCard({
     }
   }
   const [cardHovered, setCardHovered] = useState(false);
+  const cardSize = (modal = false) => {
+    return {
+      minHeight: modal ? '300px' : '0px',
+      maxHeight: '100%',
+      // minWidth: '300px',
+      maxWidth: '800px',
+      width: '100%' ,
+      height: 'min-content',
+    };
+  };
   const drawCardContent = (modal) => {
     return (
       <Card
         onClick={!modal ? expandCard : () => {}}
-        minWidth='275px'
-        maxWidth='400px'
-        width={{ xs: 'min-content', sm: '100%' }}
-        height='min-content'
         onMouseEnter={() => setCardHovered(true)}
         onMouseLeave={() => setCardHovered(false)}
         sx={{
           outline: 'none',
-          minHeight: modal ? '300px' : 0,
-          maxHeight: '100%',
+          ...cardSize(modal),
           overflow: 'scroll',
           // horizontal, vertical, blur, spread?, color
           // boxShadow: '2px 5px 15px rgba(0,0,0,0.22)',
@@ -105,7 +111,7 @@ function IssueCard({
           '&:hover': {
             opacity: 1,
           },
-          cursor: 'pointer',
+          cursor: !loading && !modal && 'pointer',
 
           ...rest,
         }}
@@ -118,15 +124,15 @@ function IssueCard({
             position='absolute'
             right='0px'
             height='40px'
-            onClick={() => {      
+            onClick={() => {
               setExpanded(false);
             }}
-            sx={{ fontSize: '30px' }}
+            sx={{ fontSize: '30px', cursor: 'pointer' }}
           >
             <Icon>close</Icon>
           </Box>
         )}
-        <Box overflow={modal && 'scroll'} mt='40px'>
+        <Box overflow={modal && 'scroll'}>
           <Grid container pr={{ xs: 1.5, sm: 0 }}>
             <Grid
               item
@@ -136,7 +142,11 @@ function IssueCard({
               alignItems='center'
               display={{ sm: 'flex', xs: 'none' }}
             >
-              {drawVoter(voted, nbrVotes, handleVoteBtnPress)}
+              {loading ? (
+                <Skeleton height='100px' width='75px' />
+              ) : (
+                drawVoter(voted, nbrVotes, handleVoteBtnPress)
+              )}
             </Grid>
 
             <Grid
@@ -149,7 +159,7 @@ function IssueCard({
               alignItems='flex-start'
               display={{ sm: 'none', xs: 'flex' }}
             >
-              {drawXSVoter(voted, nbrVotes, handleVoteBtnPress)}
+              {!loading && drawXSVoter(voted, nbrVotes, handleVoteBtnPress)}
             </Grid>
 
             <Grid
@@ -160,14 +170,20 @@ function IssueCard({
               mt={1.5}
               mb={{ xs: 1, sm: 0 }}
             >
-              {drawTitle({ title: title, selected: cardHovered && !modal })}
-              {drawStatus({
-                status: status,
-                display: 'inline-block',
+              {drawTitle({
+                title: title,
+                selected: cardHovered && !modal,
+                loading: loading,
               })}
+              {!loading &&
+                drawStatus({
+                  status: status,
+                  display: 'inline-block',
+                })}
               {drawDescription({
                 description: description,
                 limit: modal ? 5000 : 220,
+                loading: loading,
               })}
 
               <Grid
@@ -182,10 +198,10 @@ function IssueCard({
                 alignItems='center'
                 py={1}
               >
-                {drawAuthor(author, creationTime)}
+                {drawAuthor(author, creationTime, loading)}
                 {!modal && (
                   <Box display={{ sm: 'none', xs: 'flex' }} mx={2} my='auto'>
-                    {drawOpenCommentButton(nbrComments)}
+                    {drawOpenCommentButton(nbrComments, loading)}
                   </Box>
                 )}
               </Grid>
@@ -200,7 +216,7 @@ function IssueCard({
                 ml={{ xs: 1, sm: 0 }}
                 display={{ sm: 'flex', xs: 'none' }}
               >
-                {drawOpenCommentButton(nbrComments)}
+                {drawOpenCommentButton(nbrComments, loading)}
               </Grid>
             )}
           </Grid>
@@ -224,7 +240,7 @@ function IssueCard({
   return (
     <>
       {drawCardContent(false)}
-      {expanded ? (
+      {expanded && !loading ? (
         <Modal
           open={expanded}
           onClose={() => setExpanded(false)}
@@ -235,7 +251,7 @@ function IssueCard({
             alignItems: 'center',
             justifyContent: 'center',
           }}
-          style={{ content: editorStyle }}
+          // style={{ content: editorStyle }}
         >
           {drawCardContent(true)}
         </Modal>
@@ -248,80 +264,108 @@ function IssueCard({
 
 export default IssueCard;
 
-function drawOpenCommentButton(nbrComments) {
+function drawOpenCommentButton(nbrComments, loading) {
   return (
-    <Box
-      position='relative'
-      width='min-content'
-      height='min-content'
-      variant='button'
-      sx={{
-        opacity: 0.8,
-        '&:hover': {
-          opacity: 1,
-        },
-        cursor: 'pointer',
-      }}
-    >
-      <MKBox
-        component='img'
-        src={commentIcon}
-        width={{ sm: '40px', xs: '20px' }}
-      ></MKBox>
-      <MKBox
-        width='min-content'
-        height='min-content'
-        mt={0.3}
-        py={0.3}
-        px={{ sm: 0.9, xs: 0.75 }}
-        bgColor='primary'
-        sx={{
-          position: 'absolute',
-          left: { sm: '30px', xs: '15px' },
-          top: { sm: '-2px', xs: '-1.5px' },
-          zIndex: 1000,
-          borderRadius: '20px',
-        }}
-      >
-        <MKTypography
+    <>
+      {loading ? (
+        <Box position='relative' width='min-content' height='min-content'>
+          <Skeleton
+            variant='circular'
+            animation='wave'
+            width={'45px'}
+            height={'45px'}
+            sx={{ display: { sm: 'block', xs: 'none' } }}
+          />
+        </Box>
+      ) : (
+        <Box
           position='relative'
-          variant='h3'
-          color='white'
-          sx={{ fontSize: { sm: '12px', xs: '10px' } }}
+          width='min-content'
+          height='min-content'
+          variant='button'
+          sx={{
+            opacity: 0.8,
+            '&:hover': {
+              opacity: 1,
+            },
+            cursor: 'pointer',
+          }}
         >
-          {nbrComments ? nbrComments : 0}
+          <MKBox
+            component='img'
+            src={commentIcon}
+            width={{ sm: '40px', xs: '20px' }}
+            ></MKBox>
+            {nbrComments > 0 &&
+              <MKBox
+                width='min-content'
+                height='min-content'
+                mt={0.3}
+                pt={0.20}
+                pb={0.35}
+                px={{ sm: 0.9, xs: 0.75 }}
+                bgColor='primary'
+                sx={{
+                  position: 'absolute',
+                  left: { sm: '30px', xs: '15px' },
+                  top: { sm: '-2px', xs: '-1.5px' },
+                  zIndex: 1000,
+                  borderRadius: '20px',
+                }}
+              >
+                <MKTypography
+                  position='relative'
+                  variant='h3'
+                  color='white'
+                  sx={{ fontSize: { sm: '12px', xs: '10px' } }}
+                >
+                  {nbrComments}
+                </MKTypography>
+              </MKBox>}
+        </Box>
+      )}
+    </>
+  );
+}
+
+function drawTitle({ title, selected, loading, ...rest }) {
+  return (
+    <>
+      {loading ? (
+        <Skeleton height='25px' sx={{m:0, p:0}}></Skeleton>
+      ) : (
+        <MKTypography
+          {...rest}
+          variant='h2'
+          sx={{
+            textDecoration: selected && 'underline',
+            fontSize: '18px',
+            overflowWrap: 'break-word',
+
+            flexWrap: 1,
+            flex: 1,
+          }}
+        >
+          {title}
         </MKTypography>
-      </MKBox>
-    </Box>
+      )}
+    </>
   );
 }
 
-function drawTitle({ title, selected, ...rest }) {
+function drawDescription({ description, limit = 220, loading, ...rest }) {
   return (
-      <MKTypography
-        {...rest}
-        variant='h2'
-        sx={{
-          textDecoration: selected && 'underline',
-          fontSize: '18px',
-          overflowWrap: 'break-word',
-
-          flexWrap: 1,
-          flex: 1,
-        }}
-      >
-        {title}
-      </MKTypography>
-  );
-}
-
-function drawDescription({ description, limit = 220, ...rest }) {
-  return (
-    <MKTypography variant='text' sx={{ fontSize: '14px' }} {...rest}>
-      {description.length > limit
-        ? description.substring(0, limit) + '...'
-        : description}
-    </MKTypography>
+    <>
+      {loading ? (
+        <Skeleton height='50px' />
+      ) : (
+        <MKTypography variant='text' sx={{ fontSize: '14px' }} {...rest}>
+          {description.length > limit
+            ? description.substring(0, limit) + '...'
+            : description}
+        </MKTypography>
+      )}
+    </>
   );
 }
 
