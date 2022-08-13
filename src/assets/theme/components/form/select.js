@@ -25,11 +25,13 @@ export default {
   styleOverrides: {
     select: {
       display: 'grid',
+      // borderColor: 'red',
       alignItems: 'center',
       padding: `0 ${pxToRem(12)} !important`,
 
       '& .Mui-selected': {
         backgroundColor: transparent.main,
+        // borderColor: 'red',
       },
     },
 

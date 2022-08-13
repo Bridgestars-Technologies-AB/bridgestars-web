@@ -24,7 +24,8 @@ import {
   MenuItem,
   FormControl,
   Typography,
-  InputBase
+  InputBase,
+  ListItemText
 } from '@mui/material';
 
 // Otis Kit PRO components
@@ -77,6 +78,7 @@ import {
   arrayUnion,
   arrayRemove,
 } from 'firebase/firestore';
+import MKBadge from 'otis/MKBadge';
 
 function parseDate(ms) {
   const d = new Date();
@@ -434,9 +436,10 @@ function VotingPage() {
                       label='selectfilte'
                       width='auto'
                       sx={{
+                        borderRadius: '10px',
+                        backgroundColor: '#f8f9fa',
                         height: '42px',
                         fontSize: '18px',
-                        backgroundColor: '#f8f9fa',
                         fontFamily: '"Roboto Slab", sans-serif',
                         minWidth: '130px',
                         color: dark.main,
@@ -448,9 +451,25 @@ function VotingPage() {
                       }}
                     >
                       <MenuItem value={'all'}>All</MenuItem>
-                      <MenuItem value={'planned'}>Planned</MenuItem>
-                      <MenuItem value={3}>New</MenuItem>
-                      <MenuItem value={3}>MNEw axldasd asD </MenuItem>
+                      <MenuItem value={'Reviewed'}>Reviewed</MenuItem>
+                      <MenuItem value={'Planned'}>Planned</MenuItem>
+                      <MenuItem value={'In Progress'}>In Progress</MenuItem>
+                      <MenuItem value={'In Beta'}>In Beta</MenuItem>
+                      <MenuItem value={'Already Exists'}>
+                        Already Exists
+                      </MenuItem>
+                      <MenuItem value={'Live'}>
+                        Live
+                        <Box></Box>
+                        <MKBadge
+                          variant='contained'
+                          color='primary'
+                          badgeContent={10}
+                          container
+                          circular
+                          // sx={{ mb: 1 }}
+                        />
+                      </MenuItem>
                     </Select>
                   </FormControl>
                   {/* <Select display='inline-block'>By Status</Select> */}
