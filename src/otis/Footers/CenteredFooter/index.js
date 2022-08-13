@@ -112,58 +112,6 @@ function CenteredFooter({ company, links, socials, light }) {
 
 // Setting default values for the props of CenteredFooter
 CenteredFooter.defaultProps = {
-  company: {
-    href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    name: 'Creative Tim',
-  },
-  links: [
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'Company',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'About Us',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'Team',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'Products',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'Blog',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'License',
-    },
-  ],
-  socials: [
-    {
-      icon: <FacebookIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    },
-    {
-      icon: <TwitterIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    },
-    {
-      icon: <InstagramIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    },
-    {
-      icon: <PinterestIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    },
-    {
-      icon: <GitHubIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    },
-  ],
   light: false,
 };
 

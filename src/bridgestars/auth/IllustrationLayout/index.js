@@ -45,7 +45,6 @@ function IllustrationLayout({
   header,
   title,
   description,
-  illustration,
   modal,
   children,
   ...rest
@@ -181,7 +180,6 @@ IllustrationLayout.defaultProps = {
   logo: '',
   title: '',
   description: '',
-  illustration: '',
   modal:false
 };
 
@@ -191,7 +189,6 @@ IllustrationLayout.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   children: PropTypes.node.isRequired,
-  illustration: PropTypes.string,
 };
 
 export default IllustrationLayout;

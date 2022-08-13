@@ -56,12 +56,12 @@ function CenteredFooter({ company, links, socials, light, copyright }) {
       key={social.name}
       component='a'
       href={social.link}
-      variant={social.name === 'Mail' ? 'h4' : 'body1'}
+      fontSize='22px'
       color={'dark'}
       fontWeight='regular'
       ml={1.5}
       mr={1.5}
-      mt={social.name === 'Mail' ? 0.4 : 0}
+      mt={social.name === 'Mail' ? 0.1 : 0}
     >
       {social.icon}
     </MKTypography>
@@ -104,55 +104,19 @@ function CenteredFooter({ company, links, socials, light, copyright }) {
 // Setting default values for the props of CenteredFooter
 CenteredFooter.defaultProps = {
   company: {
-    href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    name: 'Creative Tim',
+    href: '',
+    name: '',
   },
   links: [
     {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'Company',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'About Us',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'Team',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'Products',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'Blog',
-    },
-    {
-      href: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-      name: 'License',
+      href: '',
+      name: '',
     },
   ],
   socials: [
     {
       icon: <FacebookIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    },
-    {
-      icon: <TwitterIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    },
-    {
-      icon: <InstagramIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    },
-    {
-      icon: <PinterestIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
-    },
-    {
-      icon: <GitHubIcon fontSize='small' />,
-      link: 'https://material-ui.com/store/items/otis-kit-pro-material-kit-react/',
+      link: '',
     },
   ],
   light: false,

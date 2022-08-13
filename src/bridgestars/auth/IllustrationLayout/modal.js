@@ -53,11 +53,12 @@ function IllustrationLayoutModal({
     <MKBox
       minWidth='275px'
       maxWidth='400px'
-      width={{ xs: 'min-content', sm: '100%' }}
+      width={{ xs: '85%', sm: '100%' }}
       height='min-content'
       bgColor='white'
       py={1}
       borderRadius='5px'
+      position='relative'
       {...rest}
     >
       {/* <MKBox position='absolute' width='100%' mt={1}>
@@ -69,7 +70,6 @@ function IllustrationLayoutModal({
       </MKBox> */}
       <Box
         position='absolute'
-        
         right='0px'
         mr={1}
         onClick={() => {

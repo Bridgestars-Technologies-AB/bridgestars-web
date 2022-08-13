@@ -13,28 +13,37 @@ import logoCT from 'assets/images/bridgestars/logo-trans-256px.png';
 import Icon from '@mui/material/Icon';
 import MKBox from 'otis/MKBox';
 
+import facebook from 'assets/images/logos/gray-logos/facebook-brands.svg';
+import discord from 'assets/images/logos/gray-logos/discord-brands.svg';
+import insta from 'assets/images/logos/gray-logos/instagram-brands.svg';
+
 const date = new Date().getFullYear();
 
 const socials = [
   {
     name: 'Facebook',
     link: 'https://www.facebook.com/BridgestarsTechnologies',
-    icon: <i className='fab fa-facebook' />,
+    // icon: <i className='fab fa-facebook' />,
+    icon: (
+      <MKBox component='img' src={facebook} width='20px' height='20x'></MKBox>
+    ),
   },
   {
     name: 'Instagram',
     link: 'https://www.instagram.com/bridgestars/',
-    icon: <i className='fab fa-instagram' />,
+    icon: <MKBox component='img' src={insta} width='20px' height='20x'></MKBox>,
   },
   {
     name: 'Discord',
     link: 'https://discord.gg/YhwRDgtSX2',
-    icon: <i className='fab fa-discord' />,
+    icon: (
+      <MKBox component='img' src={discord} width='20px' height='20x'></MKBox>
+    ),
   },
   {
     name: 'Mail',
     link: 'mailto: info@bridgestars.net',
-    icon: <Icon>email</Icon>,
+    icon: <Icon  sx={{color:'#42424a'}}>email</Icon>,
   },
 ];
 
@@ -65,19 +74,8 @@ export default {
   ],
   copyright: (
     <MKTypography variant='button' fontWeight='regular'>
-      All rights reserved. Copyright &copy; {date} Bridgestars by{' '}
-      <MKTypography
-        //component='a'
-        //href='https://material-ui.com/store/items/otis-kit-pro-material-kit-react/'
-        //target='_blank'
-        //rel='noreferrer'
-        variant='button'
-        fontWeight='regular'
-        //color='info'
-      >
-        Bridgestars Technologies Sweden AB
-      </MKTypography>
-      .
+      Copyright &copy; {date} Bridgestars by Bridgestars Technologies Sweden AB.
+      All rights reserved.
     </MKTypography>
   ),
 };

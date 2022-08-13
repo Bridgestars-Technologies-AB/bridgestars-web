@@ -49,6 +49,7 @@ import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter';
 import BridgestarsNavbar from 'bridgestars/navbar';
 import IssueCard from './sections/card';
 import SigninForm from 'bridgestars/auth/sign-in';
+import SearchBar from 'bridgestars/components/SearchBar';
 
 //STYLE
 
@@ -61,6 +62,7 @@ import {
   signOut,
   sendPasswordResetEmail,
 } from 'firebase/auth';
+
 import { useCollectionOnce } from 'react-firebase-hooks/firestore';
 
 import {
@@ -78,7 +80,7 @@ import {
   arrayUnion,
   arrayRemove,
 } from 'firebase/firestore';
-import MKBadge from 'otis/MKBadge';
+import MKButton from 'otis/MKButton';
 
 function parseDate(ms) {
   const d = new Date();
@@ -87,6 +89,36 @@ function parseDate(ms) {
   return `${d.getDate()} ${month} ${d.getFullYear()}`;
 }
 
+function drawCountBadge({ nbr, ...rest }) {
+  return (
+    <MKBox
+      width='min-content'
+      height='min-content'
+      mt={0.3}
+      pt={0.2}
+      pb={0.35}
+      px={{ sm: 0.9, xs: 0.75 }}
+      bgColor='primary'
+      sx={{
+        position: 'absolute',
+        left: { sm: '30px', xs: '15px' },
+        top: { sm: '-2px', xs: '-1.5px' },
+        zIndex: 1000,
+        borderRadius: '20px',
+        ...rest
+      }}
+    >
+      <MKTypography
+        position='relative'
+        variant='h3'
+        color='white'
+        sx={{ fontSize: { sm: '12px', xs: '10px' } }}
+      >
+        {nbr}
+      </MKTypography>
+    </MKBox>
+  );
+}
 
 function VotingPage() {
   const auth = getAuth(firebaseApp);
@@ -261,9 +293,10 @@ function VotingPage() {
   }
 
   async function getComments(id) {
-    if (signedIn) {
+    // if (signedIn) {
       try {
         const res = await getDoc(doc(commentsRef, id));
+        if(res)
         console.log(JSON.stringify(res.data().comments));
         return res.data().comments.map((x) => {
           return {
@@ -276,9 +309,9 @@ function VotingPage() {
       } catch (e) {
         console.log(e);
       }
-    } else {
-      setShowSignin(true);
-    }
+    // } else {
+    //   setShowSignin(true);
+    // }
     return null;
   }
 
@@ -381,6 +414,20 @@ function VotingPage() {
                 this page when developing Bridgestars.
               </MKTypography>
             </Grid>
+{/* 
+            <Grid textAlign='center'>
+              <MKTypography variant='h4'>Browse Requests</MKTypography>
+              <MKButton variant='gradient' color='info'>
+                New Request
+              </MKButton>
+            </Grid> */}
+
+            <Grid textAlign='center'>
+              <MKTypography variant='h2'>Browse Requests</MKTypography>
+              {/* <MKButton variant='gradient' color='info'>
+                New Request
+              </MKButton> */}
+            </Grid>
 
             <MKBox
               p={{ sx: 0, sm: 1, md: 2 }}
@@ -391,10 +438,10 @@ function VotingPage() {
                 container
                 item
                 md={12}
-                spacing={1.4}
+                spacing={1.1}
                 justifyContent={'space-between'}
               >
-                <Grid item sm={4} xs={12}>
+                <Grid item sm={4} xs={12} order={{ xs: 1, sm: 0 }}>
                   <Tabs
                     value={sortBy}
                     onChange={(e, n) => {
@@ -411,6 +458,7 @@ function VotingPage() {
                   xs={12}
                   justifyContent='center'
                   display='flex'
+                  order={{ xs: 2, sm: 1 }}
                 >
                   <FormControl fullWidth={false}>
                     <InputLabel
@@ -460,15 +508,7 @@ function VotingPage() {
                       </MenuItem>
                       <MenuItem value={'Live'}>
                         Live
-                        <Box></Box>
-                        <MKBadge
-                          variant='contained'
-                          color='primary'
-                          badgeContent={10}
-                          container
-                          circular
-                          // sx={{ mb: 1 }}
-                        />
+                        {drawCountBadge(3)}
                       </MenuItem>
                     </Select>
                   </FormControl>
@@ -480,48 +520,10 @@ function VotingPage() {
                   xs={12}
                   justifyContent={{ xs: 'center', sm: 'end' }}
                   display='flex'
+                  order={{ xs: 0, sm: 2 }}
                 >
                   {/* <Button display='inline-block'>Search</Button> */}
-                  <InputBase
-                    sx={{
-                      backgroundColor: '#f8f9fa',
-                      borderRadius: 3,
-                      px: `12px`,
-                      fontSize: '18px',
-                      fontWeight: 500,
-                      lineHeight: '14px',
-                      fontFamily: '"Roboto Slab", sans-serif',
-                      color: dark.main,
-                    }}
-                    // sx={{
-                    //   root: {},
-                    //   input: {
-                    //     fontSize: 16,
-                    //   },
-                    //   adornedStart: {
-                    //     '& > *:first-child': {
-                    //       // * is the icon at the beginning of input
-                    //       fontSize: 20,
-                    //       color: 'white',
-                    //       marginRight: '10px',
-                    //     },
-                    //   },
-                    // }}
-                    placeholder={'Search...'}
-                    endAdornment={
-                      <IconButton
-                        size='small'
-                        sx={{
-                          backgroundColor: '#e8e9ea',
-                          '&:hover': {
-                            backgroundColor: '#d8d9da',
-                          },
-                        }}
-                      >
-                        <Icon style={{ color: dark.main }}>search</Icon>
-                      </IconButton>
-                    }
-                  />
+                  <SearchBar onSubmit={() => {}} onClick={() => {}} />
                 </Grid>
               </Grid>
               <Grid container mt={1.5}>
@@ -533,9 +535,9 @@ function VotingPage() {
                   alignItems='center'
                   display='flex'
                 >
-                  <MKBox>
+                  <MKBox width='100%'>
                     {error && <strong>Error: {JSON.stringify(error)}</strong>}
-                    {true &&
+                    {loading &&
                       [1, 2].map((k) => (
                         <Box mb={1.5} key={k}>
                           <IssueCard loading={true} key={k + '1'}></IssueCard>

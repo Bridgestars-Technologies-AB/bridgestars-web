@@ -257,7 +257,6 @@ function SigninForm({ modal, header, modalExitCallback, ...rest }) {
         logo={logo}
         title={title}
         description={description}
-        illustration={bgImage}
         modal={modal}
         modalExitCallback={modalExitCallback}
         {...rest}
