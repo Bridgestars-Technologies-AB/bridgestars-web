@@ -25,6 +25,7 @@ import * as Typed from 'typed.js';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
+import Button from '@mui/material/Button';
 
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
@@ -64,6 +65,7 @@ import { Link } from 'react-router-dom';
 
 // Images
 import bgImage from 'assets/images/bridgestars/mockup-1_1-smoke.jpg';
+import bgVideo from 'assets/images/bridgestars/shortIntro-compressed.mp4';
 import linearHomepageGradient from 'assets/theme/functions/linearHomepageGradient';
 //import Zoom from '@mui/material/Zoom';
 import { Grow, Fade, Collapse, Slide, Zoom } from '@mui/material';
@@ -78,10 +80,15 @@ import footerRoutes from 'constants/footer.routes';
 //COOKIES
 import CookieConsent from 'react-cookie-consent';
 
+
+//style
+import './style.css';
+
 function BridgestarsHome() {
   const [typeNext, setTypeNext] = useState(0);
   const headerRef = useRef(null);
   const typedHeaderRef = useRef(null);
+  const [showUI, setShowUI] = useState(false);
   // const typedSubHeaderRef = useRef(null);
 
   // Setting up rellax
@@ -94,23 +101,23 @@ function BridgestarsHome() {
   // }, []);
 
   // Setting up typedJS
-  useEffect(() => {
-    if (typeNext == 0) {
-      const typedJS = new Typed(typedHeaderRef.current, {
-        strings: ['BRIDGESTARS'],
-        typeSpeed: 70,
-        startDelay: 150,
-        loop: false,
-        showCursor: false,
-        onComplete: (self) => {
-          setTypeNext(1);
-        },
-      });
-    }
-    return () => {
-      const typedJS = 'BRIDGESTARS';
-    };
-  }, []);
+  // useEffect(() => {
+  //   if (typeNext == 0) {
+  //     const typedJS = new Typed(typedHeaderRef.current, {
+  //       strings: ['BRIDGESTARS'],
+  //       typeSpeed: 70,
+  //       startDelay: 150,
+  //       loop: false,
+  //       showCursor: false,
+  //       onComplete: (self) => {
+  //         setTypeNext(1);
+  //       },
+  //     });
+  //   }
+  //   return () => {
+  //     const typedJS = 'BRIDGESTARS';
+  //   };
+  // }, []);
 
   // useEffect(() => {
   //   if (typeNext == 1) {
@@ -135,8 +142,21 @@ function BridgestarsHome() {
   //   };
   // }, [typeNext]);
 
+  useEffect(() => {
+    const element = document.getElementsByClassName('background')[0];
+    const col = element.style.backgroundColor;
+    if(!showUI) element.style.backgroundColor = 'rgba(20,0,20,1)';
+    setTimeout(() => {
+      setShowUI(true)
+      
+    }, 1000)
+    setTimeout(() => {
+      element.style.backgroundColor = col;
+    }, 2000)
+  });
+
   return (
-    <>
+    <div className='background'>
       <BridgestarsNavbar
         routes={routes.filter((r) => r.name != 'Home')}
         // action={
@@ -151,135 +171,113 @@ function BridgestarsHome() {
         // }
         transparent
         light
-        shadow
+        // shadow
         fullWidth
       />
-      <MKBox
-        ref={headerRef}
-        minHeight='75vh'
-        height='min-content'
-        width='100%'
-        sx={{
-          backgroundImage: ({
-            functions: { linearHomepageGradient, rgba },
-            palette: { gradients },
-          }) =>
-            `${linearHomepageGradient(
-              [
-                { color: `rgba(0, 0, 0, 0.6)`, percentage: 15 },
-                { color: `rgba(0, 0, 0, 0.6)`, percentage: 80 },
-                //{color: `rgba(255, 0, 0, 0.5)`, percentage: 0},
-                // {color: `rgba(0, 0, 0, 0.15)`, percentage: 35}
-              ],
-              90
-            )}
-            , url(${bgImage})`,
-          backgroundSize: 'contain',
-          backgroundColor: '#000000',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          display: 'grid',
-          placeItems: 'center',
-          
-        }}
-      >
-        <Container>
-          <Grid
-            container
-            item
-            width='100%'
-            xs={12}
-            lg={12}
-            justifyContent='center'
-            alignItems='center'
 
-            // flexDirection='column'
-            sx={{ mx: 'auto', textAlign: 'center' }}
-          >
-            <Zoom in={true} style={{ transitionDelay: `250ms` }} timeout={500}>
-              <MKTypography
-                variant='h1'
-                color='primary'
-                align='center'
-                width='100%'
-                textGradient={true}
-                fontSize='min(82px, calc(10px + 8vmin))'
-                mt={3}
-              >
-                <span ref={typedHeaderRef} />
-              </MKTypography>
-            </Zoom>
-            <Zoom in={true} style={{ transitionDelay: `500ms` }} timeout={500}>
-              <MKTypography
-                variant='body1'
-                color='white'
-                fontSize='min(24px, calc(12px + 1.5vmin))'
-                opacity={0.8}
-                width={{ xs: '90%', md: '60%' }}
-                
-                mt={1}
-                mb={0}
-              >
-                Online Bridge platforms have become outdated. We developed a
-                modern platform for Bridge players all around the world to play
-                unlimited Bridge for free.
-                {/* <span ref={typedSubHeaderRef} /> */}
-              </MKTypography>
-            </Zoom>
-            <Zoom in={true} style={{ transitionDelay: `1000ms` }} timeout={500}>
-              <Container>
-                <MKTypography
-                  variant='body1'
-                  fontSize='calc(11px + 2vmin)'
-                  color='white'
-                  sx={{ mt: { xs: 1, sm: 3 } }}
-                >
-                 Technical Preview available now!
-                </MKTypography>
-                <MKButton
-                  variant='gradient'
-                  component={Link}
-                  to='/betasignup'
-                  color='default'
-                  style={{
-                    // maxWidth: 'calc(150px + 8vmin)',
-                    // maxHeight: 'calc(40px + 3vmin)',
-                    // minWidth: 'calc(150px + 8vmin)',
-                    // minHeight: 'calc(40px + 3vmin)',
-                    fontSize: 'calc(10px + 2vmin)',
-                  }}
-                  sx={{
-                    color: ({ palette: { dark } }) => dark.main,
-                  }}
-                >
-                  {'register'}
-                </MKButton>
-              </Container>
-            </Zoom>
-          </Grid>
-        </Container>
-      </MKBox>
+      <video src={bgVideo} autoPlay muted></video>
+      <div className='bg-video-overlay'>
+        {/* <Grid
+          container
+          item
+          width='100%'
+          xs={12}
+          lg={12}
+          justifyContent='center'
+          alignItems='end'
+          // flexDirection='column'
+          sx={{ mx: 'auto', textAlign: 'center' }}
+        > */}
+        {/* <Zoom in={true} style={{ transitionDelay: `250ms` }} timeout={500}>
+            <MKTypography
+              variant='h1'
+              color='primary'
+              align='center'
+              width='100%'
+              textGradient={true}
+              fontSize='min(82px, calc(10px + 8vmin))'
+              mt={3}
+            >
+              <span ref={typedHeaderRef} />
+            </MKTypography>
+          </Zoom> */}
+        {/* <Zoom in={true} style={{ transitionDelay: `500ms` }} timeout={500}>
+            <MKTypography
+              variant='body1'
+              color='white'
+              fontSize='min(24px, calc(12px + 1.5vmin))'
+              opacity={0.8}
+              width={{ xs: '90%', md: '60%' }}
+              mt={1}
+              mb={0}
+            >
+              Online Bridge platforms have become outdated. We developed a
+              modern platform for Bridge players all around the world to play
+              unlimited Bridge for free.
+            </MKTypography>
+          </Zoom> */}
+        <Zoom in={showUI} timeout={1000}>
+          <Container>
+            <Button
+              component={Link}
+              to='/betasignup'
+              style={{
+                // maxWidth: 'calc(150px + 8vmin)',
+                // maxHeight: 'calc(40px + 3vmin)',
+                // minWidth: 'calc(150px + 8vmin)',
+                // minHeight: 'calc(40px + 3vmin)',
+                fontSize: 'calc(12px + 2vmin)',
+                borderRadius: '50px',
+                backgroundColor: '#ee6065',
+              }}
+              sx={{
+                color: '#ffffffee',
+                py: 'min(10px, 5vmin)',
+                px: 'min(20px, 7vmin)',
+                //when hover
+                '&:hover': {
+                  color: '#ffffffee',
+                  backgroundColor: 'rgba(255,255,255,1)',
+                },
+              }}
+            >
+              {'try it now'}
+            </Button>
+            <MKTypography
+              variant='h5'
+              fontSize='calc(11px + 2vmin)'
+              sx={{ mb: 1, mt:1, color: '#ffffffdd' }}
+            >
+              Technical Preview available
+            </MKTypography>
+          </Container>
+        </Zoom>
+        {/* </Grid> */}
+      </div>
+
       <Grid container width='100%' justifyContent='center'>
-        <Card
-          sx={{
-            p: {xs:0.5, sm:2},
-            mx: { xs: 0, sm:2, lg: 3 },
-            mt: {xs:0, sm:-3, md:-4, lg:-6},
-            mb: 4,
-            width: { xxl: 1600, xl: '100%' },
-            boxShadow: ({ boxShadows: { xxl } }) => xxl,
-          }}
-        >
-          <Features />
-          <Testimonials />
-          <Upcoming />
-        </Card>
+        <Zoom in={showUI} timeout={1000}>
+          <Card
+            sx={{
+              p: { xs: 0.5, sm: 2 },
+              mx: { xs: 0, sm: 2, lg: 3 },
+              mt: { xs: 0, sm: -3, md: -4, lg: -6 },
+              mb: 4,
+              width: { xxl: 1600, xl: '100%' },
+              boxShadow: ({ boxShadows: { xxl } }) => xxl,
+            }}
+          >
+            <Features />
+            <Testimonials />
+            <Upcoming />
+          </Card>
+        </Zoom>
         <Discord />
       </Grid>
       <MKBox pt={6} px={1} mt={6}>
         <BridgestarsFooter />
       </MKBox>
-    </>
+    </div>
   );
 }
 
