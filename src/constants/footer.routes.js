@@ -60,8 +60,16 @@ export default {
     //   name: 'Contact',
     // },
     {
-      href: '/wip',
-      name: 'FAQ',
+      href: '/',
+      name: 'Home',
+    },
+    {
+      href: '/signin',
+      name: 'Account',
+    },
+    {
+      href: '/vote',
+      name: 'Vote',
     },
     {
       href: '/about',

@@ -80,7 +80,6 @@ import footerRoutes from 'constants/footer.routes';
 //COOKIES
 import CookieConsent from 'react-cookie-consent';
 
-
 //style
 import './style.css';
 
@@ -143,20 +142,38 @@ function BridgestarsHome() {
   // }, [typeNext]);
 
   useEffect(() => {
-    const element = document.getElementsByClassName('background')[0];
-    const col = element.style.backgroundColor;
-    if(!showUI) element.style.backgroundColor = 'rgba(20,0,20,1)';
     setTimeout(() => {
-      setShowUI(true)
-      
-    }, 1000)
-    setTimeout(() => {
-      element.style.backgroundColor = col;
-    }, 2000)
-  });
+      setShowUI(true);
+      setTimeout(() => {
+        fadeOutEffect();
+      }, 1500);
+    }, 1000);
+  }, []);
+
+  function fadeOutEffect() {
+    const fadeTarget = document.getElementsByClassName('background')[0];
+
+    const steps = 100;
+    const s = 1;
+    const fadeEffect = setInterval(function () {
+      try {
+        if (!fadeTarget || !fadeTarget.style) clearInterval(fadeEffect);
+        if (!fadeTarget.style.opacity) {
+          fadeTarget.style.opacity = 1;
+        }
+        if (fadeTarget?.style?.opacity > 0) {
+          fadeTarget.style.opacity -= s / steps;
+        } else {
+          clearInterval(fadeEffect);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }, s / steps);
+  }
 
   return (
-    <div className='background'>
+    <>
       <BridgestarsNavbar
         routes={routes.filter((r) => r.name != 'Home')}
         // action={
@@ -175,9 +192,10 @@ function BridgestarsHome() {
         fullWidth
       />
 
-      <video src={bgVideo} autoPlay muted></video>
-      <div className='bg-video-overlay'>
-        {/* <Grid
+      <div style={{ backgroundColor: 'rgba(5,8,11,1)' }}>
+        <video src={bgVideo} autoPlay muted mb></video>
+        <div className='bg-video-overlay' mb>
+          {/* <Grid
           container
           item
           width='100%'
@@ -188,7 +206,7 @@ function BridgestarsHome() {
           // flexDirection='column'
           sx={{ mx: 'auto', textAlign: 'center' }}
         > */}
-        {/* <Zoom in={true} style={{ transitionDelay: `250ms` }} timeout={500}>
+          {/* <Zoom in={true} style={{ transitionDelay: `250ms` }} timeout={500}>
             <MKTypography
               variant='h1'
               color='primary'
@@ -201,7 +219,7 @@ function BridgestarsHome() {
               <span ref={typedHeaderRef} />
             </MKTypography>
           </Zoom> */}
-        {/* <Zoom in={true} style={{ transitionDelay: `500ms` }} timeout={500}>
+          {/* <Zoom in={true} style={{ transitionDelay: `500ms` }} timeout={500}>
             <MKTypography
               variant='body1'
               color='white'
@@ -216,68 +234,80 @@ function BridgestarsHome() {
               unlimited Bridge for free.
             </MKTypography>
           </Zoom> */}
-        <Zoom in={showUI} timeout={1000}>
-          <Container>
-            <Button
-              component={Link}
-              to='/betasignup'
-              style={{
-                // maxWidth: 'calc(150px + 8vmin)',
-                // maxHeight: 'calc(40px + 3vmin)',
-                // minWidth: 'calc(150px + 8vmin)',
-                // minHeight: 'calc(40px + 3vmin)',
-                fontSize: 'calc(12px + 2vmin)',
-                borderRadius: '50px',
-                backgroundColor: '#ee6065',
-              }}
-              sx={{
-                color: '#ffffffee',
-                py: 'min(10px, 5vmin)',
-                px: 'min(20px, 7vmin)',
-                //when hover
-                '&:hover': {
+          <Zoom in={showUI} timeout={1000}>
+            <Container sx={{ bottom: 0 }}>
+              <Button
+                component={Link}
+                to='/betasignup'
+                style={{
+                  // maxWidth: 'calc(150px + 8vmin)',
+                  // maxHeight: 'calc(40px + 3vmin)',
+                  // minWidth: 'calc(150px + 8vmin)',
+                  // minHeight: 'calc(40px + 3vmin)',
+                  fontSize: 'calc(9px + 2vh)',
+                  borderRadius: '1000px',
+                  backgroundColor: '#ee6065',
+                }}
+                sx={{
                   color: '#ffffffee',
-                  backgroundColor: 'rgba(255,255,255,1)',
-                },
-              }}
-            >
-              {'try it now'}
-            </Button>
-            <MKTypography
-              variant='h5'
-              fontSize='calc(11px + 2vmin)'
-              sx={{ mb: 1, mt:1, color: '#ffffffdd' }}
-            >
-              Technical Preview available
-            </MKTypography>
-          </Container>
-        </Zoom>
-        {/* </Grid> */}
+                  py: 'calc(5px + 1vh)',
+                  px: 'calc(10px + 1vh)',
+                  //when hover
+                  '&:hover': {
+                    color: '#ffffff55',
+                    backgroundColor: 'rgba(255,255,255,1)',
+                  },
+                }}
+              >
+                {'try it now'}
+              </Button>
+              <MKTypography
+                variant='h5'
+                fontSize='calc(9px + 2vh)'
+                sx={{ mb: 0, mt: 'calc(5px + 0.5vh)', color: '#ffffffdd' }}
+              >
+                Technical Preview available
+              </MKTypography>
+            </Container>
+          </Zoom>
+          {/* </Grid> */}
+        </div>
       </div>
+      <div style={{ backgroundColor: 'rgb(15,0,15)' }} className='background' />
 
       <Grid container width='100%' justifyContent='center'>
-        <Zoom in={showUI} timeout={1000}>
-          <Card
-            sx={{
-              p: { xs: 0.5, sm: 2 },
-              mx: { xs: 0, sm: 2, lg: 3 },
-              mt: { xs: 0, sm: -3, md: -4, lg: -6 },
-              mb: 4,
-              width: { xxl: 1600, xl: '100%' },
-              boxShadow: ({ boxShadows: { xxl } }) => xxl,
-            }}
-          >
-            <Features />
-            <Testimonials />
-            <Upcoming />
-          </Card>
-        </Zoom>
-        <Discord />
+        <Grid
+          container
+          item
+          xs={12}
+          lg={12}
+          justifyContent='center'
+        >
+          <Fade in={showUI} timeout={1000}>
+            <Card
+              sx={{
+                p: { xs: 0.5, sm: 2 },
+                mx: { xs: 0, sm: 2, lg: 3 },
+                mt: { xs: 0, sm: -3, md: -3.5, lg: -3.5 },
+                mb: 4,
+                width: { xxl: 1600, xl: '100%' },
+                boxShadow: ({ boxShadows: { xxl } }) => xxl,
+              }}
+            >
+              <Features />
+              <Testimonials />
+              <Upcoming />
+            </Card>
+          </Fade>
+        </Grid>
+        <Grid item xs={12} lg={12}>
+          <Discord />
+        </Grid>
       </Grid>
       <MKBox pt={6} px={1} mt={6}>
         <BridgestarsFooter />
       </MKBox>
-    </div>
+    </>
   );
 }
 
