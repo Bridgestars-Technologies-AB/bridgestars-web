@@ -17,7 +17,7 @@ export function drawAuthor(author, creationTime, loading) {
         <Box display='flex' justifyContent='flex-start' alignItems='center'>
           <MKBox
             component='img'
-            src={author.img ?? userIcon}
+            src={author.get("img") ?? userIcon}
             width='18px'
             display='inline-block'
           ></MKBox>
@@ -28,7 +28,7 @@ export function drawAuthor(author, creationTime, loading) {
             display='inline-block'
           >
             {/* theotheotheotheo */}
-            {author.username}
+            {author.get("dispName")}
           </MKTypography>
           <MKBox
             width='4.5px'

@@ -34,9 +34,9 @@ import MKTypography from 'otis/MKTypography';
 
 import image from 'assets/images/bridgestars/home_page.svg';
 
-function Features(...rest) {
+function Features() {
   return (
-    <MKBox {...rest} component='section' pb={{ xs: 6, md: 12 }}>
+    <MKBox component='section' pb={{ xs: 6, md: 12 }}>
       <Container>
         <Grid container item alignItems='center' flexDirection='column'>
           <MKBox

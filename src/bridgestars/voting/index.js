@@ -25,7 +25,8 @@ import {
   FormControl,
   Typography,
   InputBase,
-  ListItemText
+  ListItemText,
+  paperClasses
 } from '@mui/material';
 
 // Otis Kit PRO components
@@ -54,32 +55,33 @@ import SearchBar from 'bridgestars/components/SearchBar';
 //STYLE
 
 //DATABASE
-import { firebaseApp } from 'firebase-config';
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-  sendPasswordResetEmail,
-} from 'firebase/auth';
+// import { firebaseApp } from 'firebase-config';
+// import {
+//   getAuth,
+//   onAuthStateChanged,
+//   signInWithEmailAndPassword,
+//   signOut,
+//   sendPasswordResetEmail,
+// } from 'firebase/auth';
+import Parse from 'parse';
+import { useParseQuery } from '@parse/react';
+// import { useCollectionOnce } from 'react-firebase-hooks/firestore';
 
-import { useCollectionOnce } from 'react-firebase-hooks/firestore';
-
-import {
-  collection,
-  doc,
-  setDoc,
-  getDoc,
-  getFirestore,
-  query,
-  getDocs,
-  orderBy,
-  limit,
-  updateDoc,
-  increment,
-  arrayUnion,
-  arrayRemove,
-} from 'firebase/firestore';
+// import {
+//   collection,
+//   doc,
+//   setDoc,
+//   getDoc,
+//   getFirestore,
+//   query,
+//   getDocs,
+//   orderBy,
+//   limit,
+//   updateDoc,
+//   increment,
+//   arrayUnion,
+//   arrayRemove,
+// } from 'firebase/firestore';
 import MKButton from 'otis/MKButton';
 
 function parseDate(ms) {
@@ -121,57 +123,112 @@ function drawCountBadge({ nbr, ...rest }) {
 }
 
 function VotingPage() {
-  const auth = getAuth(firebaseApp);
-  const db = getFirestore(firebaseApp);
+  // const auth = getAuth(firebaseApp);
+  // const db = getFirestore(firebaseApp);
 
-  const requestsRef = collection(db, 'feedback/voting_app/requests');
-  const commentsRef = collection(db, 'feedback/voting_app/comments');
-  const usersRef = collection(db, 'feedback/voting_app/users');
+  // const requestsRef = collection(db, 'feedback/voting_app/requests');
+  // const commentsRef = collection(db, 'feedback/voting_app/comments');
+  // const usersRef = collection(db, 'feedback/voting_app/users');
 
   //TEMP
-  const q = query(requestsRef, orderBy('votes'), limit(10));
-  const [value, loading, error] = useCollectionOnce(q);
-  useEffect(() => {
-    if (value && !loading && !error) {
-      setLoadedDocs(
-        value.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() };
-        })
-      );
+  // const q = query(requestsRef, orderBy('votes'), limit(10));
+  const parseQuery = new Parse.Query('Post')
+  .equalTo('type', 0)
+  .select(
+    'title', 
+    'author', 
+    'votes', 
+    'comments', 
+    'author', 
+    'text',
+    'upvotes'
+  )
+  .include('author')
+  .select('author.img', 'author.dispName');
+
+  const {
+    isLive, // Indicates that Parse Live Query is connected
+    isLoading, // Indicates that the initial load is being processed
+    isSyncing, // Indicates that the library is getting the latest data from Parse Server
+    results, // Stores the current results in an array of Parse Objects
+    count, // Stores the current results count
+    error, // Stores any error
+    reload // Function that can be used to reload the data
+  } = useParseQuery(
+    parseQuery, // The Parse Query to be used
+    {
+      enabled: true, // Enables the parse query (default: true)
+      enableLocalDatastore: true, // Enables cache in local datastore (default: true)
+      enableLiveQuery: false // Enables live query for real-time update (default: true)
     }
-  }, [value]);
+  );
+
+  useEffect(() => {
+    console.log('isLoading: ' + isLoading);
+    console.log('isLive: ' + isLive);
+    console.log('isSyncing: ' + isSyncing);
+
+  }, [isLoading, isLive, isSyncing]);
+
+  useEffect(() => {
+    if (results && !isLoading && !error) {
+      console.log(JSON.stringify(results))
+      setLoadedDocs(results);
+    }
+  }, [results]);
 
   const [votedIssues, setVotedIssues] = useState([]);
   const [votedComments, setVotedComments] = useState([]);
   const [userData, setUserData] = useState({});
   const [signedIn, setSignedIn] = useState(false);
+
   useEffect(() => {
-    if (signedIn) downloadUserDoc(userData.uid);
+    if(Parse.User.current()){
+      setSignedIn(true);
+      setUserData(Parse.User.current());
+    }
+  }, [])
+
+
+  useEffect(() => {
+    if (Parse.User.current()) downloadUserDoc(userData.uid);
   }, [signedIn]);
+
   const [showSignin, setShowSignin] = useState(false);
 
   const [loadedDocs, setLoadedDocs] = useState([]);
+
+  async function getUserVotes(uid){
+    const votes = await new Parse.Query('PostVotes').equalTo('user', uid).find(); //find posts which this user has voted
+    const posts = votes.map(vote => vote.get('post'));
+    setVotedIssues(posts);
+    //TODO load comments when opening issue, query specifaclly for that issue
+    // setVotedComments(votes.get("comments"));
+  }
+
+  // onAuthStateChanged(auth, (user) => {
+    //   //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
+    //   if (!signedIn && user && !downloadedUserData) {
+    //     setUserData(user);
+    //     setSignedIn(true);
+    //   } else if (!user) {
+    //     console.log('signed out');
+    //     setUserData(null);
+    //     setSignedIn(false);
+    //   }
+    // });
 
   let downloadedUserData = false;
   async function downloadUserDoc(uid) {
     //TRY?
     try {
-      console.log(1);
-      console.log(uid);
-      downloadedUserData = true;
-      const d = await getDoc(doc(usersRef, uid));
-      console.log(JSON.stringify(d.data()));
-      console.log(2);
-      //IF DOES NOT EXIST CREATE DOCUMENT
-      setVotedIssues(d.data().votedIssues);
-      setVotedComments(d.data().votedComments);
-      console.log(3);
+      getUserVotes(uid)
     } catch (e) {
       if (e.code == 'permission-denied') {
         alert(
           'Permission denied. You are not signed in. If you just signed up the email might already be in use. In that case try to reset your password and sign in.'
         );
-        signOut(auth);
+        await userData.logOut();
         setShowSignin(false);
         setShowSignin(true);
       } else if (e.code == 'not-found') {
@@ -180,55 +237,59 @@ function VotingPage() {
       } else if (e.toString().includes('offline')) {
         alert('You are offline, please try again later.');
       }
-      console.log(e);
+      else{
+        alert(e.message);
+      }
       console.log(JSON.stringify(e));
     }
   }
 
-  async function handleVote(requestId) {
-    const updateDocs = (inc) => {
+  async function handleVote(post) {
+    const postid = post.id;
+    const updateDocs = async (inc) => {
       const incr = (doc) => {
         doc.votes += inc;
         return doc;
       };
       setLoadedDocs(
-        loadedDocs.map((doc) => (doc.id == requestId ? incr(doc) : doc))
+        loadedDocs.map((doc) => (doc.id == postid ? incr(doc) : doc))
       );
+      await post.increment('upvotes', inc).save().then(() => console.log('vote saved.'));
     };
     if (signedIn && votedIssues != null) {
-      if (votedIssues.includes(requestId)) {
+      if (votedIssues.includes(postid)) {
         //local
-        const v = votedIssues.filter((x) => x != requestId);
+        const v = votedIssues.filter((x) => x != postid);
         setVotedIssues(v);
         updateDocs(-1);
 
         //remote
-        await Promise.all([
-          updateDoc(doc(requestsRef, requestId), {
-            votes: increment(-1),
-          }),
-          updateDoc(doc(usersRef, userData.uid), {
-            votedIssues: arrayRemove(requestId),
-          }),
-        ]);
+        // await Promise.all([
+        //   updateDoc(doc(requestsRef, requestId), {
+        //     votes: increment(-1),
+        //   }),
+        //   updateDoc(doc(usersRef, userData.uid), {
+        //     votedIssues: arrayRemove(requestId),
+        //   }),
+        // ]);
         //console.log(votes.filter((x) => x != requestId));
       } else {
         //local
         let v = [];
         v.push(...votedIssues);
-        v.push(requestId);
+        v.push(postid);
         setVotedIssues(v);
         updateDocs(1);
 
         //remote
-        await Promise.all([
-          updateDoc(doc(requestsRef, requestId), {
-            votes: increment(1),
-          }),
-          updateDoc(doc(usersRef, userData.uid), {
-            votedIssues: arrayUnion(requestId),
-          }),
-        ]);
+        // await Promise.all([
+        //   updateDoc(doc(requestsRef, requestId), {
+        //     votes: increment(1),
+        //   }),
+        //   updateDoc(doc(usersRef, userData.uid), {
+        //     votedIssues: arrayUnion(requestId),
+        //   }),
+        // ]);
       }
     } else {
       setShowSignin(true);
@@ -253,14 +314,14 @@ function VotingPage() {
         // updateDocs(-1);
 
         //remote
-        await Promise.all([
-          updateDoc(doc(commentsRef, requestId), {
-            votes: increment(-1),
-          }),
-          updateDoc(doc(usersRef, userData.uid), {
-            votedComments: arrayRemove(id),
-          }),
-        ]);
+        // await Promise.all([
+        //   updateDoc(doc(commentsRef, requestId), {
+        //     votes: increment(-1),
+        //   }),
+        //   updateDoc(doc(usersRef, userData.uid), {
+        //     votedComments: arrayRemove(id),
+        //   }),
+        // ]);
         //console.log(votes.filter((x) => x != requestId));
       } else {
         //local
@@ -268,17 +329,17 @@ function VotingPage() {
         v.push(...votedIssues);
         v.push(requestId);
         setVotedIssues(v);
-        updateDocs(1);
+        // updateDocs(1);
 
         //remote
-        await Promise.all([
-          updateDoc(doc(requestsRef, requestId), {
-            votes: increment(1),
-          }),
-          updateDoc(doc(usersRef, userData.uid), {
-            votedIssues: arrayUnion(requestId),
-          }),
-        ]);
+        // await Promise.all([
+        //   updateDoc(doc(requestsRef, requestId), {
+        //     votes: increment(1),
+        //   }),
+        //   updateDoc(doc(usersRef, userData.uid), {
+        //     votedIssues: arrayUnion(requestId),
+        //   }),
+        // ]);
       }
     } else {
       setShowSignin(true);
@@ -295,17 +356,17 @@ function VotingPage() {
   async function getComments(id) {
     // if (signedIn) {
       try {
-        const res = await getDoc(doc(commentsRef, id));
-        if(res)
-        console.log(JSON.stringify(res.data().comments));
-        return res.data().comments.map((x) => {
-          return {
-            likes: x.likes,
-            text: x.text,
-            author: x.author,
-            creationTime: parseDate(x.creationTime),
-          };
-        });
+        // const res = await getDoc(doc(commentsRef, id));
+        // if(res)
+        // console.log(JSON.stringify(res.data().comments));
+        // return res.data().comments.map((x) => {
+        //   return {
+        //     likes: x.likes,
+        //     text: x.text,
+        //     author: x.author,
+        //     creationTime: parseDate(x.creationTime),
+        //   };
+        // });
       } catch (e) {
         console.log(e);
       }
@@ -315,17 +376,7 @@ function VotingPage() {
     return null;
   }
 
-  onAuthStateChanged(auth, (user) => {
-    //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
-    if (!signedIn && user && !downloadedUserData) {
-      setUserData(user);
-      setSignedIn(true);
-    } else if (!user) {
-      console.log('signed out');
-      setUserData(null);
-      setSignedIn(false);
-    }
-  });
+  // 
 
   const [sortBy, setSortBy] = useState(0);
   const [filterBy, setFilterBy] = useState('');
@@ -335,30 +386,36 @@ function VotingPage() {
         open={showSignin}
         onClose={() => setShowSignin(false)}
         sx={{
-          outline: 'none',
+          // outline: 'none',
+          outline: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'scroll',
         }}
+        // style={{
+        //   outline: 0
+        // }}
       >
         {/* <MKBox
           sx={{
             outline: 'none',
           }}
         > */}
+        <Box sx={{outline: 0}}>
         <SigninForm
           modal
-          modalExitCallback={() => setShowSignin(false)}
+          modalexitcallback={() => setShowSignin(false)}
           header='To vote, please sign in to your Bridgestars account'
-        />
+          />
+        </Box>
         {/* </MKBox> */}
       </Modal>
       <Grid container width='100%' justifyContent='center'>
         <Card
           sx={{
             // px: { xs: 0, sm: 1, lg: 2 },
-            py: 2,
+            pt: 2,
             mx: { xs: 0, sm: 1, md: 2, lg: 3 },
             mt: { xs: 0, sm: 1, md: 2, lg: 3 },
             mb: { xs: 0, sm: 1, md: 2, lg: 3 },
@@ -399,6 +456,7 @@ function VotingPage() {
                 <MKTypography
                   variant='h2'
                   display='inline-block'
+                  // color='primary'
                   mb={1}
                   fontSize='40px'
                   style={{ textDecorationLine: 'underline' }}
@@ -537,8 +595,8 @@ function VotingPage() {
                 >
                   <MKBox width='100%'>
                     {error && <strong>Error: {JSON.stringify(error)}</strong>}
-                    {loading &&
-                      [1, 2].map((k) => (
+                    {loadedDocs.length == 0 && count != 0 &&
+                      [1, 2, 3].map((k) => (
                         <Box mb={1.5} key={k}>
                           <IssueCard loading={true} key={k + '1'}></IssueCard>
                         </Box>
@@ -548,20 +606,27 @@ function VotingPage() {
                         <Box mb={1.5} key={doc.id.substring(0, 11)}>
                           <IssueCard
                             voted={votedIssues.includes(doc.id)}
-                            nbrVotes={doc.votes}
-                            nbrComments={doc.comments}
+                            nbrVotes={doc.get("upvotes")}
+                            nbrComments={doc.get("comments")}
                             key={doc.id.substring(0, 10)}
                             getComments={() => getComments(doc.id)}
-                            title={doc.title}
-                            description={doc.description}
-                            author={doc.author}
-                            status={doc.status}
-                            creationTime={parseDate(doc.creationTime)}
-                            handleVote={() => handleVote(doc.id)}
+                            title={doc.get("title")}
+                            description={doc.get("text")}
+                            author={doc.get("author")}
+                            status={doc.get("status")}
+                            creationTime={parseDate(doc.createdAt)}
+                            handleVote={() => handleVote(doc)}
                             handleCommentVote={handleCommentVote}
                           ></IssueCard>
                         </Box>
                       ))}
+                      {count == 0 && 
+                        <Box
+                          textAlign='center'
+                        >
+                          <MKTypography my={2} variant='h4'>No results found</MKTypography>
+                        </Box>
+                      }
                   </MKBox>
                 </Grid>
               </Grid>

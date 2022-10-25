@@ -50,6 +50,7 @@ import CookieConsent from 'react-cookie-consent';
 import VotingPage from 'bridgestars/voting';
 
 import './style.css';
+import 'parse-config';
 
 
 export default function App() {

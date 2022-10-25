@@ -46,7 +46,7 @@ function IllustrationLayoutModal({
   title,
   description,
   children,
-  modalExitCallback,
+  modalexitcallback,
   ...rest
 }) {
   return (
@@ -73,7 +73,7 @@ function IllustrationLayoutModal({
         right='0px'
         mr={1}
         onClick={() => {
-          modalExitCallback();
+          modalexitcallback();
         }}
       >
         <IconButton>

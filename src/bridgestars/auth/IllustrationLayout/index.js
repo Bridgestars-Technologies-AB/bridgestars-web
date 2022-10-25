@@ -147,7 +147,7 @@ function IllustrationLayout({
                   <MKBox mb={1} textAlign='center'>
                     <MKTypography
                       variant='body2'
-                      fontSize='calc(6px + 1vh)'
+                      fontSize='calc(8px + 1vh)'
                       color='text'
                     >
                       {description}

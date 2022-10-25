@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 
 // react-router-dom components
@@ -24,10 +24,10 @@ import IllustrationLayout from '../IllustrationLayout';
 // Image
 import bgImage from 'assets/images/bridgestars/sign_in.svg';
 import logo from 'assets/images/bridgestars/logo-trans-512px.png';
-import useValidator from 'bridgestars/auth/sign-in/validator.js';
+import useValidator from 'bridgestars/auth/forgot-pass/validator.js';
 
 // Firebase
-import { firebaseApp, sendPasswordResetEmailLink } from 'firebase-config';
+// import { firebaseApp, sendPasswordResetEmailLink } from 'firebase-config';
 import { LineAxisOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -43,33 +43,6 @@ function ForgotPasswordForm({ modal, doneCallback, quitCallback, ...rest}) {
   const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
     useValidator();
 
-  // onAuthStateChanged(auth, (user) => {
-  //   //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
-
-  //   if (user) {
-  //     setSignedIn(true);
-  //     setTitle('You are registered for the closed beta');
-  //     setDescription(
-  //       'You will be notified at\n(' + user.email + ')\nwhen the beta is ready'
-  //     );
-  //   } else {
-  //     setSignedIn(false);
-  //     setTitle('Sign in to your Bridgestars account');
-  //     setDescription('Enter your email and password');
-  //   }
-  // });
-
-  // const handleSetPolicy = (event) => {
-  //   event.target.value = !policy;
-  //   setPolicy(!policy);
-  //   handleChange(event);
-  // };
-
-  // const handleSignOut = () => {
-  //   signOut(auth);
-  //   clearForm();
-  // };
-
   const handleForgot = () => {
     if (!values['email']) {
       alert('Please enter your email and try again');
@@ -77,16 +50,11 @@ function ForgotPasswordForm({ modal, doneCallback, quitCallback, ...rest}) {
       alert(errors['email']);
     } else {
       console.log('sending password reset email');
-      console.log(sendPasswordResetEmailLink + 'email=' + values['email']);
-      fetch(sendPasswordResetEmailLink + 'email=' + values['email'])
-        .then((e) => {
-          console.log('no error?');
-          throw 'create eror';
-        })
-        .catch((response) => {
-          throw 'OK';
-        });
-      //this will always reject due to cors but will work anyways.
+      // console.log(sendPasswordResetEmailLink + 'email=' + values['email']);
+      Parse.User.requestPasswordReset(values['email'])
+        .then(() => console.log("email sent"))
+        .catch((error) => {alert(error)})
+      //TODO: send email
       setEmailSent(true);
       setTitle('Email has been sent');
       setDescription('Please check your inbox at ' + values['email']);
@@ -138,7 +106,7 @@ function ForgotPasswordForm({ modal, doneCallback, quitCallback, ...rest}) {
             component={'span'}
             // to='/betasignup'
             onClick={(e) => {
-              if (modal) {
+              if (modal || quitCallback) {
                 quitCallback();
               } else navigateTo('/');
             }}
@@ -179,7 +147,7 @@ function ForgotPasswordForm({ modal, doneCallback, quitCallback, ...rest}) {
                 // component={Link}
                 // to='/'
                 onClick={() => {
-                  if (modal) {
+                  if (modal || doneCallback) {
                     doneCallback();
                   } else navigateTo('/');
                 }}
@@ -189,7 +157,7 @@ function ForgotPasswordForm({ modal, doneCallback, quitCallback, ...rest}) {
                 color='info'
                 //sx={{ color: ({ palette: { dark } }) => dark.main }}
               >
-                {modal ? 'back' : 'home'}
+                {modal || quitCallback || doneCallback ? 'back' : 'home'}
               </MKButton>
             </MKBox>
           </>

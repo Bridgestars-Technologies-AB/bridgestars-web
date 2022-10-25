@@ -193,8 +193,8 @@ function BridgestarsHome() {
       />
 
       <div style={{ backgroundColor: 'rgba(5,8,11,1)' }}>
-        <video src={bgVideo} autoPlay muted mb></video>
-        <div className='bg-video-overlay' mb>
+        <video src={bgVideo} autoPlay muted></video>
+        <div className='bg-video-overlay'>
           {/* <Grid
           container
           item

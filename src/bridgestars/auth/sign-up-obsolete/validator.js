@@ -31,10 +31,10 @@ const useValidator = (callback) => {
   const validate = (event, name, value) => {
     switch (name) {
       case 'username':
-        if (value.length <= 4)
+        if (value.length <= 2)
           setErrors({
             ...errors,
-            username: 'Username needs to have atleast 5 letters',
+            username: 'Username needs to have atleast 3 letters',
           });
         else {
           let newObj = omit(errors, 'username');

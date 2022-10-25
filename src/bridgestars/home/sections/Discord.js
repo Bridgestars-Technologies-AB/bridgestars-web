@@ -98,8 +98,10 @@ function Discord() {
                     src='https://discord.com/widget?id=944310683141541948&theme=light'
                     width='100%'
                     height='450'
+                    style={{
+                      border: 'none',
+                    }}
                     allowtransparency='true'
-                    frameborder='0'
                     sandbox='allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts'
                   ></iframe>
                 </MKBox>

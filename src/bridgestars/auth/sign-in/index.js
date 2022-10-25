@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
+
 import Checkbox from '@mui/material/Checkbox';
 
 // react-router-dom components
@@ -25,14 +27,16 @@ import logo from 'assets/images/bridgestars/logo-trans-512px.png';
 import useValidator from 'bridgestars/auth/sign-in/validator.js';
 
 // Firebase
-import { firebaseApp } from 'firebase-config';
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-  sendPasswordResetEmail,
-} from 'firebase/auth';
+
+// import { firebaseApp } from 'firebase-config';
+// import {
+//   getAuth,
+//   onAuthStateChanged,
+//   signInWithEmailAndPassword,
+//   signOut,
+//   sendPasswordResetEmail,
+// } from 'firebase/auth';
+import Parse from 'parse'
 
 
 import { useNavigate } from 'react-router-dom';
@@ -43,44 +47,63 @@ import ForgotPasswordForm from '../forgot-pass';
 
 import { PulseLoader } from 'react-spinners';
 
-function SigninForm({ modal, header, modalExitCallback, ...rest }) {
-  const auth = getAuth(firebaseApp);
+function SigninForm({ modal, header, modalexitcallback, ...rest }) {
+  // const auth = getAuth(firebaseApp);
   const [goToSignUp, setGoToSignUp] = useState(false);
   const [goToForgotPass, setGoToForgotPass] = useState(false);
+
+  useEffect(() => {
+    onAuthStateChanged()
+  }, [])
+
+
+  function onAuthStateChanged(){
+    const user = Parse.User.current();
+    if (user) {
+      setSignedIn(true);
+      setTitle('You are already signed in.');
+      setDescription('Press the button to go back');
+    } else {
+      setSignedIn(false);
+      setTitle(firstTitle);
+      setDescription('Enter your username and password');
+    }
+  }
 
   //Final submit function
   const formSuccess = ({ username, password, setErrors }) => {
     //setTriedToSubmit(true);
-    signInWithEmailAndPassword(
-      auth,
-      username + '.account@bridgestars.net',
-      password
-    )
-      .then((userCredential) => {
+
+    Parse.User.logIn(username, password)
+      .then((user) => {
         // Signed in
-        const user = userCredential.user;
         setShowLoader(false);
+        setSignedIn(true);
+        setTitle('You are now signed in');
+        if(!modal) setDescription('The button below will take you back.');  
+        else setDescription('Press to button to continue.');
       })
       .catch((error) => {
         setShowLoader(false);
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        const errorCodes = {
-          'auth/email-already-in-use':
-            'The provided username is already in use.',
-          'auth/email-already-exists':
-            'The provided username is already in use.',
-          'auth/invalid-email': 'The provided username is not valid',
-          'auth/invalid-password': 'Invalid password',
-        };
-        if (errorCode.includes('password')) {
-          setErrors({ password: 'Wrong password' });
-        }
-        alert(
-          errorCodes[errorCode]
-            ? errorCodes[errorCode]
-            : errorCode.split('/')[1].replaceAll('-', ' ')
+        console.log(JSON.stringify(error));
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // console.log(errorCode);
+        // const errorCodes = {
+        //   'auth/email-already-in-use':
+        //     'The provided username is already in use.',
+        //   'auth/email-already-exists':
+        //     'The provided username is already in use.',
+        //   'auth/invalid-email': 'The provided username is not valid',
+        //   'auth/invalid-password': 'Invalid password',
+        // };
+        // if (errorCode.includes('password')) {
+        //   setErrors({ password: 'Wrong password' });
+        // }
+        alert(error.message
+          // errorCodes[errorCode]
+          //   ? errorCodes[errorCode]
+          //   : errorCode.split('/')[1].replaceAll('-', ' ')
         );
       });
   };
@@ -110,19 +133,20 @@ function SigninForm({ modal, header, modalExitCallback, ...rest }) {
     validatorHandleSubmit()
   }
   
-  onAuthStateChanged(auth, (user) => {
-    //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
+  //TODO
+  // onAuthStateChanged(auth, (user) => {
+  //   //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
 
-    if (user) {
-      setSignedIn(true);
-      setTitle('You are now signed in');
-      setDescription('You can now press the button to go back');
-    } else {
-      setSignedIn(false);
-      setTitle(firstTitle);
-      setDescription('Enter your username and password');
-    }
-  });
+  //   if (user) {
+  //     setSignedIn(true);
+  //     setTitle('You are now signed in');
+  //     setDescription('You can now press the button to go back');
+  //   } else {
+  //     setSignedIn(false);
+  //     setTitle(firstTitle);
+  //     setDescription('Enter your username and password');
+  //   }
+  // });
 
   const handleSetPolicy = (event) => {
     event.target.value = !policy;
@@ -130,9 +154,10 @@ function SigninForm({ modal, header, modalExitCallback, ...rest }) {
     handleChange(event);
   };
 
-  const handleSignOut = () => {
-    signOut(auth);
+  const handleSignOut = async () => {
     clearForm();
+    await Parse.User.logOut();
+    onAuthStateChanged();
   };
 
   const form = (
@@ -211,7 +236,7 @@ function SigninForm({ modal, header, modalExitCallback, ...rest }) {
         </MKTypography>
       </MKBox>
       <Grid container item xs={12} justifyContent='center'>
-        <MKBox display='flex' alignItems='center' ml={-1} fullWidth>
+        <MKBox display='flex' alignItems='center' ml={-1}>
           <MKTypography
             //component='button'
             fontWeight='bold'
@@ -221,9 +246,9 @@ function SigninForm({ modal, header, modalExitCallback, ...rest }) {
             component={'span'}
             // to='/betasignup'
             onClick={(e) => {
-              if (modal) {
-                setGoToForgotPass(true);
-              } else navigateTo('/forgotpass');
+              setGoToForgotPass(true);
+              // if (modal) {
+              // } else navigateTo('/forgotpass');
             }}
             sx={{ cursor: 'pointer' }}
           >
@@ -235,7 +260,7 @@ function SigninForm({ modal, header, modalExitCallback, ...rest }) {
   );
   if (goToSignUp) return (
     <BetaSignupForm
-      modalExitCallback={modalExitCallback}
+      modalexitcallback={modal ? modalexitcallback : null}
       modal={modal}
       {...rest}
     />
@@ -244,7 +269,7 @@ function SigninForm({ modal, header, modalExitCallback, ...rest }) {
     return (
       <ForgotPasswordForm
         modal={modal}
-        modalExitCallback={modalExitCallback}
+        modalexitcallback={modal ? modalexitcallback : () => {setGoToForgotPass(false)}}
         doneCallback={() => setGoToForgotPass(false)}
         quitCallback={() => setGoToForgotPass(false)}
         {...rest}
@@ -258,7 +283,7 @@ function SigninForm({ modal, header, modalExitCallback, ...rest }) {
         title={title}
         description={description}
         modal={modal}
-        modalExitCallback={modalExitCallback}
+        modalexitcallback={modal ? modalexitcallback : null}
         {...rest}
       >
         {/* title='Sign in to your Bridgestars account'
@@ -277,7 +302,7 @@ function SigninForm({ modal, header, modalExitCallback, ...rest }) {
                 //   // '/'
                 // }
                 onClick={() => {
-                  if (modal) modalExitCallback();
+                  if (modal) modalexitcallback();
                   else navigateTo('/');
                 }}
                 size='medium'
@@ -290,7 +315,7 @@ function SigninForm({ modal, header, modalExitCallback, ...rest }) {
               </MKButton>
             </MKBox>
             <Grid container item xs={12} justifyContent='center'>
-              <MKBox display='flex' alignItems='center' ml={-1} fullWidth>
+              <MKBox display='flex' alignItems='center' ml={-1}>
                 <MKTypography
                   variant='button'
                   fontWeight='regular'
@@ -320,7 +345,7 @@ function SigninForm({ modal, header, modalExitCallback, ...rest }) {
 }
 SigninForm.defaultProps = {
   modal: false,
-  modalExitCallback: () => {},
+  modalexitcallback: () => {},
   header: 'Sign in to your Bridgestars account',
 };
 

@@ -5,12 +5,15 @@ function omit(obj, key) {
   return rest;
 }
 
-const useValidator = (callback, failCallback) => {
+const useValidator = (successCallback, failCallback) => {
   const [formDenied, setFormDenied] = useState(false);
   //Form values
   const [values, setValues] = useState({});
   //Errors
-  const [errors, setErrors] = useState({ policy: 'Policy must be accepted' });
+  const [errors, setErrors] = useState({
+    policy:
+      "You can't create an account without accepting the Terms and Conditions",
+  });
 
   //A method to handle form inputs
   const handleChange = (event) => {
@@ -30,19 +33,6 @@ const useValidator = (callback, failCallback) => {
 
   const validate = (event, name, value) => {
     switch (name) {
-      case 'username':
-        if (value.length <= 2)
-          setErrors({
-            ...errors,
-            username: 'Username needs to have atleast 3 letters',
-          });
-        else {
-          let newObj = omit(errors, 'username');
-          setErrors(newObj);
-        }
-
-        break;
-
       case 'email':
         if (
           !new RegExp(
@@ -67,7 +57,8 @@ const useValidator = (callback, failCallback) => {
         if (value === 'false') {
           setErrors({
             ...errors,
-            policy: 'Policy must be accepted',
+            policy:
+              "You can't create an account without accepting the Terms and Conditions",
           });
         } else {
           let newObj = omit(errors, 'policy');
@@ -95,7 +86,7 @@ const useValidator = (callback, failCallback) => {
 
     if (!new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/).test(pass)) {
       errorUpdate.password =
-        'Password should contains atleast 8 charaters and containing uppercase,lowercase and numbers';
+        'Password should consist of atleast 8 characters and contain uppercase,lowercase and numbers';
     }
     setErrors(errorUpdate);
   };
@@ -103,16 +94,17 @@ const useValidator = (callback, failCallback) => {
   const handleSubmit = (event) => {
     if (event) event.preventDefault();
 
-    if (Object.keys(errors).length === 0 && Object.keys(values).length === 5) {
-      callback(values);
+    if (Object.keys(errors).length === 0 && Object.keys(values).length === 4) {
+      successCallback({ email: values['email'], password: values['password'] });
     } else {
+      failCallback()
       if (Object.keys(errors).length === 0)
         alert("Don't forget to enter your information");
       else alert(errors[Object.keys(errors)[0]]);
       setFormDenied(true);
-      failCallback();
     }
   };
+
   const clearForm = () => {
     setErrors({});
     setValues({});
