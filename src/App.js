@@ -31,7 +31,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 // Otis Kit PRO themes
 import theme from 'assets/theme';
 // import Presentation from 'layouts/pages/presentation';
-import SignupForm from 'bridgestars/auth/sign-up';
+// import SignupForm from 'bridgestars/auth/sign-up';
 import SigninForm from 'bridgestars/auth/sign-in';
 import BetaSignupForm from 'bridgestars/auth/beta-sign-up';
 

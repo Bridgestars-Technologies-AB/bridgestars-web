@@ -57,7 +57,7 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
   }, [])
 
 
-  function onAuthStateChanged(){
+  function onAuthStateChanged() {
     const user = Parse.User.current();
     if (user) {
       setSignedIn(true);
@@ -80,7 +80,7 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
         setShowLoader(false);
         setSignedIn(true);
         setTitle('You are now signed in');
-        if(!modal) setDescription('The button below will take you back.');  
+        if (!modal) setDescription('The button below will take you back.');
         else setDescription('Press to button to continue.');
       })
       .catch((error) => {
@@ -127,12 +127,12 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
   const { formDenied, values, errors, handleChange, validatorHandleSubmit, clearForm } =
     useValidator(formSuccess, formFailure);
 
-  
+
   const handleSubmit = () => {
     setShowLoader(true)
     validatorHandleSubmit()
   }
-  
+
   //TODO
   // onAuthStateChanged(auth, (user) => {
   //   //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
@@ -165,7 +165,7 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
       <MKBox mb={2}>
         <MKInput
           name='username'
-          label='Username'
+          label='Username/Email'
           error={errors['username'] || formDenied}
           success={values['username'] && !errors['username']}
           fullWidth
@@ -209,7 +209,7 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
           {showLoader ?
             <PulseLoader color='white' speedMultiplier={1} size={8} /> :
             'sign in'}
-          
+
         </MKButton>
       </MKBox>
       <MKBox mt={2} mb={1} textAlign='center'>
@@ -269,7 +269,7 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
     return (
       <ForgotPasswordForm
         modal={modal}
-        modalexitcallback={modal ? modalexitcallback : () => {setGoToForgotPass(false)}}
+        modalexitcallback={modal ? modalexitcallback : () => { setGoToForgotPass(false) }}
         doneCallback={() => setGoToForgotPass(false)}
         quitCallback={() => setGoToForgotPass(false)}
         {...rest}
@@ -309,7 +309,7 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
                 fontSize='2vmin'
                 fullWidth
                 color='info'
-                //sx={{ color: ({ palette: { dark } }) => dark.main }}
+              //sx={{ color: ({ palette: { dark } }) => dark.main }}
               >
                 {modal ? 'done' : 'home'}
               </MKButton>
@@ -345,7 +345,7 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
 }
 SigninForm.defaultProps = {
   modal: false,
-  modalexitcallback: () => {},
+  modalexitcallback: () => { },
   header: 'Sign in to your Bridgestars account',
 };
 

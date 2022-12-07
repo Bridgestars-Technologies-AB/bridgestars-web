@@ -34,7 +34,7 @@ function drawVoter(voted, voteCount, handleVote) {
             sx={{ fontSize: '20px' }}
             color={voted ? 'success' : 'dark'}
           >
-            {voteCount ? voteCount : '1,203'}
+            {voteCount ? voteCount : 0}
           </MKTypography>
         </Box>
       </Grid>

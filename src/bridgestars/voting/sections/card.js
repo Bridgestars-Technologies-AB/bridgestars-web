@@ -85,14 +85,14 @@ function IssueCard({
       maxHeight: '100%',
       // minWidth: '300px',
       maxWidth: '800px',
-      width: '100%' ,
+      width: '100%',
       height: 'min-content',
     };
   };
   const drawCardContent = (modal) => {
     return (
       <Card
-        onClick={!modal ? expandCard : () => {}}
+        onClick={!modal ? expandCard : () => { }}
         onMouseEnter={() => setCardHovered(true)}
         onMouseLeave={() => setCardHovered(false)}
         sx={{
@@ -132,7 +132,7 @@ function IssueCard({
             <Icon>close</Icon>
           </Box>
         )}
-        <Box overflow={modal && 'scroll'}>
+        <Box overflow={modal && 'scroll'} pt={modal ? '15px' : '5px'} pb={modal ? '15px' : '5px'}>
           <Grid container pr={{ xs: 1.5, sm: 0 }}>
             <Grid
               item
@@ -251,7 +251,7 @@ function IssueCard({
             alignItems: 'center',
             justifyContent: 'center',
           }}
-          // style={{ content: editorStyle }}
+        // style={{ content: editorStyle }}
         >
           {drawCardContent(true)}
         </Modal>
@@ -295,33 +295,33 @@ function drawOpenCommentButton(nbrComments, loading) {
             component='img'
             src={commentIcon}
             width={{ sm: '40px', xs: '20px' }}
-            ></MKBox>
-            {nbrComments > 0 &&
-              <MKBox
-                width='min-content'
-                height='min-content'
-                mt={0.3}
-                pt={0.20}
-                pb={0.35}
-                px={{ sm: 0.9, xs: 0.75 }}
-                bgColor='primary'
-                sx={{
-                  position: 'absolute',
-                  left: { sm: '30px', xs: '15px' },
-                  top: { sm: '-2px', xs: '-1.5px' },
-                  zIndex: 1000,
-                  borderRadius: '20px',
-                }}
+          ></MKBox>
+          {nbrComments > 0 &&
+            <MKBox
+              width='min-content'
+              height='min-content'
+              mt={0.3}
+              pt={0.20}
+              pb={0.35}
+              px={{ sm: 0.9, xs: 0.75 }}
+              bgColor='primary'
+              sx={{
+                position: 'absolute',
+                left: { sm: '30px', xs: '15px' },
+                top: { sm: '-2px', xs: '-1.5px' },
+                zIndex: 1000,
+                borderRadius: '20px',
+              }}
+            >
+              <MKTypography
+                position='relative'
+                variant='h3'
+                color='white'
+                sx={{ fontSize: { sm: '12px', xs: '10px' } }}
               >
-                <MKTypography
-                  position='relative'
-                  variant='h3'
-                  color='white'
-                  sx={{ fontSize: { sm: '12px', xs: '10px' } }}
-                >
-                  {nbrComments}
-                </MKTypography>
-              </MKBox>}
+                {nbrComments}
+              </MKTypography>
+            </MKBox>}
         </Box>
       )}
     </>
@@ -332,7 +332,7 @@ function drawTitle({ title, selected, loading, ...rest }) {
   return (
     <>
       {loading ? (
-        <Skeleton height='25px' sx={{m:0, p:0}}></Skeleton>
+        <Skeleton height='25px' sx={{ m: 0, p: 0 }}></Skeleton>
       ) : (
         <MKTypography
           {...rest}
@@ -360,8 +360,8 @@ function drawDescription({ description, limit = 220, loading, ...rest }) {
         <Skeleton height='50px' />
       ) : (
         <MKTypography variant='text' sx={{ fontSize: '14px' }} {...rest}>
-          {description.length > limit
-            ? description.substring(0, limit) + '...'
+          {description?.length > limit
+            ? description?.substring(0, limit) + '...'
             : description}
         </MKTypography>
       )}

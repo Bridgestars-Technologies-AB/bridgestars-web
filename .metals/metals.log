@@ -25,3 +25,9 @@
 2022.09.11 15:45:38 INFO  time: code lens generation in 4.96s
 2022.09.11 15:45:39 WARN  no build target for: /Users/theo/Documents/courses/current/EDAN26-multicore/labs/lab1/preflow.scala
 2022.09.11 18:03:10 INFO  shutting down Metals
+2022.12.04 16:56:25 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /Users/theo/Documents/bridgestars/lib/bridgestars-web/.metals/lsp.trace.json or /Users/theo/Library/Caches/org.scalameta.metals/lsp.trace.json
+2022.12.04 16:56:25 INFO  logging to file /Users/theo/Documents/bridgestars/lib/bridgestars-web/.metals/metals.log
+2022.12.04 16:56:25 INFO  Started: Metals version 0.11.9 in workspace '/Users/theo/Documents/bridgestars/lib/bridgestars-web' for client Visual Studio Code 1.73.1.
+2022.12.04 16:56:27 INFO  time: initialize in 1.73s
+2022.12.04 16:56:29 WARN  Build server is not auto-connectable.
+2022.12.04 16:56:29 WARN  no build tool detected in workspace '/Users/theo/Documents/bridgestars/lib/bridgestars-web'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 

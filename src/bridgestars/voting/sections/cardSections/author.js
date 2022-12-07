@@ -11,13 +11,13 @@ export function drawAuthor(author, creationTime, loading) {
     <>
       {loading ? (
         <Box display='flex' justifyContent='flex-start' alignItems='center'>
-            <Skeleton width='130px' height='18px'/>
+          <Skeleton width='130px' height='18px' />
         </Box>
       ) : (
         <Box display='flex' justifyContent='flex-start' alignItems='center'>
           <MKBox
             component='img'
-            src={author.get("img") ?? userIcon}
+            src={author?.get("img") ?? userIcon}
             width='18px'
             display='inline-block'
           ></MKBox>
@@ -28,7 +28,7 @@ export function drawAuthor(author, creationTime, loading) {
             display='inline-block'
           >
             {/* theotheotheotheo */}
-            {author.get("dispName")}
+            {author?.get("dispName") ?? "Anonymous"}
           </MKTypography>
           <MKBox
             width='4.5px'

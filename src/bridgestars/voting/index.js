@@ -133,18 +133,17 @@ function VotingPage() {
   //TEMP
   // const q = query(requestsRef, orderBy('votes'), limit(10));
   const parseQuery = new Parse.Query('Post')
-  .equalTo('type', 0)
-  .select(
-    'title', 
-    'author', 
-    'votes', 
-    'comments', 
-    'author', 
-    'text',
-    'upvotes'
-  )
-  .include('author')
-  .select('author.img', 'author.dispName');
+    .equalTo('type', 1)
+    .select(
+      'title',
+      'votes',
+      'comments',
+      'author',
+      'data',
+      'reactions'
+    )
+    .include('author')
+    .select('author.img', 'author.dispName');
 
   const {
     isLive, // Indicates that Parse Live Query is connected
@@ -167,13 +166,17 @@ function VotingPage() {
     console.log('isLoading: ' + isLoading);
     console.log('isLive: ' + isLive);
     console.log('isSyncing: ' + isSyncing);
+    console.log('count: ' + count);
+    console.log('error: ' + error);
+    console.log("...")
 
-  }, [isLoading, isLive, isSyncing]);
+  }, [isLoading, isLive, isSyncing, count, error]);
 
   useEffect(() => {
     if (results && !isLoading && !error) {
       console.log(JSON.stringify(results))
-      setLoadedDocs(results);
+      setLoadedDocs(results.map(r => { return { obj: r, votes: r.get("reactions")["1"] ?? 0, id: r.id } }));
+      getUserVotes(Parse.User.current().id, results.map(r => r.id))
     }
   }, [results]);
 
@@ -183,7 +186,7 @@ function VotingPage() {
   const [signedIn, setSignedIn] = useState(false);
 
   useEffect(() => {
-    if(Parse.User.current()){
+    if (Parse.User.current()) {
       setSignedIn(true);
       setUserData(Parse.User.current());
     }
@@ -198,31 +201,33 @@ function VotingPage() {
 
   const [loadedDocs, setLoadedDocs] = useState([]);
 
-  async function getUserVotes(uid){
-    const votes = await new Parse.Query('PostVotes').equalTo('user', uid).find(); //find posts which this user has voted
-    const posts = votes.map(vote => vote.get('post'));
-    setVotedIssues(posts);
+  async function getUserVotes(uid, postIds) {
+    const votes = await new Parse.Query('Reaction').equalTo('user', uid).equalTo("type", 1).containedIn("target", postIds).find(); //find posts which this user has voted
+    console.log("FETCHED VOTED ISSUES: " + JSON.stringify(votes))
+    console.log("contained in " + JSON.stringify(postIds))
+    const posts = votes.map(vote => vote.get('target'));
+    setVotedIssues([...posts, ...votedIssues]);
     //TODO load comments when opening issue, query specifaclly for that issue
     // setVotedComments(votes.get("comments"));
   }
 
   // onAuthStateChanged(auth, (user) => {
-    //   //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
-    //   if (!signedIn && user && !downloadedUserData) {
-    //     setUserData(user);
-    //     setSignedIn(true);
-    //   } else if (!user) {
-    //     console.log('signed out');
-    //     setUserData(null);
-    //     setSignedIn(false);
-    //   }
-    // });
+  //   //signOut(auth); //RELOAD WITH THIS TO SIGN OUT
+  //   if (!signedIn && user && !downloadedUserData) {
+  //     setUserData(user);
+  //     setSignedIn(true);
+  //   } else if (!user) {
+  //     console.log('signed out');
+  //     setUserData(null);
+  //     setSignedIn(false);
+  //   }
+  // });
 
   let downloadedUserData = false;
   async function downloadUserDoc(uid) {
     //TRY?
     try {
-      getUserVotes(uid)
+      //not needed I guess
     } catch (e) {
       if (e.code == 'permission-denied') {
         alert(
@@ -237,7 +242,7 @@ function VotingPage() {
       } else if (e.toString().includes('offline')) {
         alert('You are offline, please try again later.');
       }
-      else{
+      else {
         alert(e.message);
       }
       console.log(JSON.stringify(e));
@@ -246,7 +251,7 @@ function VotingPage() {
 
   async function handleVote(post) {
     const postid = post.id;
-    const updateDocs = async (inc) => {
+    const updateDocLocal = async (inc) => {
       const incr = (doc) => {
         doc.votes += inc;
         return doc;
@@ -254,33 +259,28 @@ function VotingPage() {
       setLoadedDocs(
         loadedDocs.map((doc) => (doc.id == postid ? incr(doc) : doc))
       );
-      await post.increment('upvotes', inc).save().then(() => console.log('vote saved.'));
     };
+    console.log("signedin:" + signedIn)
     if (signedIn && votedIssues != null) {
       if (votedIssues.includes(postid)) {
         //local
         const v = votedIssues.filter((x) => x != postid);
         setVotedIssues(v);
-        updateDocs(-1);
-
-        //remote
-        // await Promise.all([
-        //   updateDoc(doc(requestsRef, requestId), {
-        //     votes: increment(-1),
-        //   }),
-        //   updateDoc(doc(usersRef, userData.uid), {
-        //     votedIssues: arrayRemove(requestId),
-        //   }),
-        // ]);
-        //console.log(votes.filter((x) => x != requestId));
+        updateDocLocal(-1)
+        var reactions = await new Parse.Query("Reaction")
+          .equalTo("type", 1)
+          .equalTo("target", postid)
+          .equalTo("user", Parse.User.current().id)
+          .find()
+        if (reactions) await Parse.Object.destroyAll(reactions)
       } else {
         //local
         let v = [];
         v.push(...votedIssues);
         v.push(postid);
         setVotedIssues(v);
-        updateDocs(1);
-
+        updateDocLocal(1)
+        await new Parse.Object("Reaction", { data: 1, type: 1, target: postid }).save()
         //remote
         // await Promise.all([
         //   updateDoc(doc(requestsRef, requestId), {
@@ -355,28 +355,27 @@ function VotingPage() {
 
   async function getComments(id) {
     // if (signedIn) {
-      try {
-        // const res = await getDoc(doc(commentsRef, id));
-        // if(res)
-        // console.log(JSON.stringify(res.data().comments));
-        // return res.data().comments.map((x) => {
-        //   return {
-        //     likes: x.likes,
-        //     text: x.text,
-        //     author: x.author,
-        //     creationTime: parseDate(x.creationTime),
-        //   };
-        // });
-      } catch (e) {
-        console.log(e);
-      }
+    try {
+      // const res = await getDoc(doc(commentsRef, id));
+      // if(res)
+      // console.log(JSON.stringify(res.data().comments));
+      // return res.data().comments.map((x) => {
+      //   return {
+      //     likes: x.likes,
+      //     text: x.text,
+      //     author: x.author,
+      //     creationTime: parseDate(x.creationTime),
+      //   };
+      // });
+    } catch (e) {
+      console.log(e);
+    }
     // } else {
     //   setShowSignin(true);
     // }
     return null;
   }
 
-  // 
 
   const [sortBy, setSortBy] = useState(0);
   const [filterBy, setFilterBy] = useState('');
@@ -393,20 +392,20 @@ function VotingPage() {
           justifyContent: 'center',
           overflow: 'scroll',
         }}
-        // style={{
-        //   outline: 0
-        // }}
+      // style={{
+      //   outline: 0
+      // }}
       >
         {/* <MKBox
           sx={{
             outline: 'none',
           }}
         > */}
-        <Box sx={{outline: 0}}>
-        <SigninForm
-          modal
-          modalexitcallback={() => setShowSignin(false)}
-          header='To vote, please sign in to your Bridgestars account'
+        <Box sx={{ outline: 0 }}>
+          <SigninForm
+            modal
+            modalexitcallback={() => setShowSignin(false)}
+            header='To vote, please sign in to your Bridgestars account'
           />
         </Box>
         {/* </MKBox> */}
@@ -472,7 +471,7 @@ function VotingPage() {
                 this page when developing Bridgestars.
               </MKTypography>
             </Grid>
-{/* 
+            {/* 
             <Grid textAlign='center'>
               <MKTypography variant='h4'>Browse Requests</MKTypography>
               <MKButton variant='gradient' color='info'>
@@ -581,7 +580,7 @@ function VotingPage() {
                   order={{ xs: 0, sm: 2 }}
                 >
                   {/* <Button display='inline-block'>Search</Button> */}
-                  <SearchBar onSubmit={() => {}} onClick={() => {}} />
+                  <SearchBar onSubmit={() => { }} onClick={() => { }} />
                 </Grid>
               </Grid>
               <Grid container mt={1.5}>
@@ -606,27 +605,27 @@ function VotingPage() {
                         <Box mb={1.5} key={doc.id.substring(0, 11)}>
                           <IssueCard
                             voted={votedIssues.includes(doc.id)}
-                            nbrVotes={doc.get("upvotes")}
-                            nbrComments={doc.get("comments")}
+                            nbrVotes={doc.votes}
+                            nbrComments={doc.obj.get("num_comments")}
                             key={doc.id.substring(0, 10)}
                             getComments={() => getComments(doc.id)}
-                            title={doc.get("title")}
-                            description={doc.get("text")}
-                            author={doc.get("author")}
-                            status={doc.get("status")}
-                            creationTime={parseDate(doc.createdAt)}
+                            title={doc.obj.get("title")}
+                            description={doc.obj.get("data")}
+                            author={doc.obj.get("author")}
+                            status={doc.obj.get("status")}
+                            creationTime={parseDate(doc.obj.createdAt)}
                             handleVote={() => handleVote(doc)}
                             handleCommentVote={handleCommentVote}
                           ></IssueCard>
                         </Box>
                       ))}
-                      {count == 0 && 
-                        <Box
-                          textAlign='center'
-                        >
-                          <MKTypography my={2} variant='h4'>No results found</MKTypography>
-                        </Box>
-                      }
+                    {count == 0 &&
+                      <Box
+                        textAlign='center'
+                      >
+                        <MKTypography my={2} variant='h4'>No results found</MKTypography>
+                      </Box>
+                    }
                   </MKBox>
                 </Grid>
               </Grid>
