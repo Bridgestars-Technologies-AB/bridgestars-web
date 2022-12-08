@@ -38,7 +38,7 @@ export default {
       border: `${borderWidth[0]} solid ${rgba(black.main, 0.125)}`,
       borderRadius: borderRadius.xl,
       boxShadow: md,
-      overflow: 'visible',
+      overflow: 'hidden',
     },
   },
 };

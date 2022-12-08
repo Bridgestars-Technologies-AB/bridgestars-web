@@ -140,7 +140,8 @@ function VotingPage() {
       'comments',
       'author',
       'data',
-      'reactions'
+      'reactions',
+      'chat'
     )
     .include('author')
     .select('author.img', 'author.dispName');
@@ -176,12 +177,11 @@ function VotingPage() {
     if (results && !isLoading && !error) {
       console.log(JSON.stringify(results))
       setLoadedDocs(results.map(r => { return { obj: r, votes: r.get("reactions")["1"] ?? 0, id: r.id } }));
-      getUserVotes(Parse.User.current().id, results.map(r => r.id))
+      getUserVotes(userData?.id, results.map(r => r.id))
     }
   }, [results]);
 
   const [votedIssues, setVotedIssues] = useState([]);
-  const [votedComments, setVotedComments] = useState([]);
   const [userData, setUserData] = useState({});
   const [signedIn, setSignedIn] = useState(false);
 
@@ -270,7 +270,7 @@ function VotingPage() {
         var reactions = await new Parse.Query("Reaction")
           .equalTo("type", 1)
           .equalTo("target", postid)
-          .equalTo("user", Parse.User.current().id)
+          .equalTo("user", userData?.id)
           .find()
         if (reactions) await Parse.Object.destroyAll(reactions)
       } else {
@@ -281,70 +281,13 @@ function VotingPage() {
         setVotedIssues(v);
         updateDocLocal(1)
         await new Parse.Object("Reaction", { data: 1, type: 1, target: postid }).save()
-        //remote
-        // await Promise.all([
-        //   updateDoc(doc(requestsRef, requestId), {
-        //     votes: increment(1),
-        //   }),
-        //   updateDoc(doc(usersRef, userData.uid), {
-        //     votedIssues: arrayUnion(requestId),
-        //   }),
-        // ]);
       }
     } else {
       setShowSignin(true);
     }
   }
 
-  async function handleCommentVote(requestId, commentId) {
-    // const updateDocs = (inc) => {
-    //   const incr = (doc) => {
-    //     doc.votes += inc;
-    //     return doc;
-    //   };
-    //   setLoadedDocs(
-    //     loadedDocs.map((doc) => (doc.id == requestId ? incr(doc) : doc))
-    //   );
-    // };
-    const id = requestId + '/' + commentId;
-    if (signedIn && votedComments != null) {
-      if (votedComments.includes(id)) {
-        //remove local
-        setVotedComments(votedComments.filter((x) => x != id));
-        // updateDocs(-1);
 
-        //remote
-        // await Promise.all([
-        //   updateDoc(doc(commentsRef, requestId), {
-        //     votes: increment(-1),
-        //   }),
-        //   updateDoc(doc(usersRef, userData.uid), {
-        //     votedComments: arrayRemove(id),
-        //   }),
-        // ]);
-        //console.log(votes.filter((x) => x != requestId));
-      } else {
-        //local
-        let v = [];
-        v.push(...votedIssues);
-        v.push(requestId);
-        setVotedIssues(v);
-        // updateDocs(1);
-
-        //remote
-        // await Promise.all([
-        //   updateDoc(doc(requestsRef, requestId), {
-        //     votes: increment(1),
-        //   }),
-        //   updateDoc(doc(usersRef, userData.uid), {
-        //     votedIssues: arrayUnion(requestId),
-        //   }),
-        // ]);
-      }
-    } else {
-      setShowSignin(true);
-    }
-  }
 
   async function handleNewRequest(requestId) {
     if (signedIn) {
@@ -353,26 +296,50 @@ function VotingPage() {
     }
   }
 
-  async function getComments(id) {
-    // if (signedIn) {
-    try {
-      // const res = await getDoc(doc(commentsRef, id));
-      // if(res)
-      // console.log(JSON.stringify(res.data().comments));
-      // return res.data().comments.map((x) => {
-      //   return {
-      //     likes: x.likes,
-      //     text: x.text,
-      //     author: x.author,
-      //     creationTime: parseDate(x.creationTime),
-      //   };
-      // });
-    } catch (e) {
-      console.log(e);
+  async function getComments(doc) {
+    if (signedIn) {
+      try {
+        const chat = doc.obj.get("chat")
+        if (chat) {
+          const messages = await new Parse.Query("Message")
+            .equalTo("chat", chat)
+            .select("text", "reactions", "sender")
+            .find()
+          console.log("messages:" + JSON.stringify(messages.map(m => m.get("text"))))
+          const authors = await new Parse.Query("_User")
+            .containedIn("objectId", messages.map(m => m.get("sender")))
+            .select("dispName", "img")
+            .find();
+          // console.log("authors:" + JSON.stringify(authors))
+
+          const votes = await new Parse.Query("Reaction")
+            .equalTo("user", userData?.id)
+            .containedIn("target", messages.map(m => m.id))
+            .equalTo("type", 2)
+            .select("target")
+            .find();
+
+          console.log("voted:" + JSON.stringify(votes.map(v => v.get("target"))))
+          if (messages && authors) {
+            const comments = messages.map((m, i) => {
+              return {
+                likes: m.get("reactions")["1"] ?? 0,
+                text: m.get("text"),
+                author: authors.find(a => a.id == m.get("sender")),
+                creationTime: parseDate(m.createdAt),
+                voted: votes.filter(v => v.get("target") == m.id).length > 0,
+                id: m.id
+              }
+            })
+            return comments
+          }
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      setShowSignin(true);
     }
-    // } else {
-    //   setShowSignin(true);
-    // }
     return null;
   }
 
@@ -390,7 +357,7 @@ function VotingPage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          overflow: 'scroll',
+          overflow: 'hidden',
         }}
       // style={{
       //   outline: 0
@@ -606,16 +573,15 @@ function VotingPage() {
                           <IssueCard
                             voted={votedIssues.includes(doc.id)}
                             nbrVotes={doc.votes}
-                            nbrComments={doc.obj.get("num_comments")}
+                            nbrComments={doc.obj.get("comments")}
                             key={doc.id.substring(0, 10)}
-                            getComments={() => getComments(doc.id)}
+                            getComments={() => getComments(doc)}
                             title={doc.obj.get("title")}
                             description={doc.obj.get("data")}
                             author={doc.obj.get("author")}
                             status={doc.obj.get("status")}
                             creationTime={parseDate(doc.obj.createdAt)}
                             handleVote={() => handleVote(doc)}
-                            handleCommentVote={handleCommentVote}
                           ></IssueCard>
                         </Box>
                       ))}

@@ -58,7 +58,8 @@ export default function drawComments(comments, getValue, setValue, charCount, co
               x.likes,
               x.author,
               x.creationTime,
-              () => handleVote(x.uid)
+              x.voted,
+              () => handleVote(x.id)
             )
           )
         ) : (
@@ -69,11 +70,11 @@ export default function drawComments(comments, getValue, setValue, charCount, co
   );
 }
 
-function drawCommentInstance(text, likes, author, creationTime, handleVote) {
+function drawCommentInstance(text, likes, author, creationTime, voted, handleVote) {
   return (
     <Box key={text} mx={1} display='flex'>
       <Box width='min-content' mt={0.3}>
-        {drawXSVoter(true, likes, handleVote)}
+        {drawXSVoter(voted, likes, handleVote)}
       </Box>
       <Box width='100%'>
         <TextEditor

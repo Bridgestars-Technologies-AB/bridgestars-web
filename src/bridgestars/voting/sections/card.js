@@ -31,12 +31,13 @@ function IssueCard({
   nbrVotes,
   nbrComments,
   getComments,
-  handleCommentVote,
   loading,
   ...rest
 }) {
   const [expanded, setExpanded] = useState(false);
+
   const [comments, setComments] = useState([]);
+
   const [commentText, setCommentText] = useState('');
   const [charCount, setCharCount] = useState(0);
 
@@ -44,6 +45,42 @@ function IssueCard({
     e.stopPropagation();
     handleVote();
   };
+
+  async function handleCommentVote(commentId) {
+    const updateDocLocal = async (inc) => {
+      const incr = (doc) => {
+        doc.votes += inc;
+        return doc;
+      };
+      setComments(
+        comments.map((doc) => (doc.id == commentId ? incr(doc) : doc))
+      );
+    };
+    if (Parse.User.current() && comments != null) {
+      const comment = comments.find((c) => c.id == commentId);
+      if (!comment) throw new Error("Comment not found");
+      if (comment.voted) {
+        //local
+        updateDocLocal(-1)
+        console.log("remove vote: " + commentId)
+        console.log("local state: " + JSON.stringify(comments))
+        var reactions = await new Parse.Query("Reaction")
+          .equalTo("type", 2)
+          .equalTo("target", commentId)
+          .equalTo("user", Parse.User.current().id)
+          .find()
+        if (reactions) await Parse.Object.destroyAll(reactions)
+      } else {
+        //local
+        updateDocLocal(1)
+        console.log("add vote: " + commentId)
+        console.log("local state: " + JSON.stringify(comments))
+        await new Parse.Object("Reaction", { data: 1, type: 2, target: commentId }).save()
+      }
+    } else {
+      setShowSignin(true);
+    }
+  }
 
   const updateCommentText = (html) => {
     setCommentText(html);
@@ -98,7 +135,7 @@ function IssueCard({
         sx={{
           outline: 'none',
           ...cardSize(modal),
-          overflow: 'scroll',
+          overflow: 'hidden',
           // horizontal, vertical, blur, spread?, color
           // boxShadow: '2px 5px 15px rgba(0,0,0,0.22)',
 
@@ -132,7 +169,7 @@ function IssueCard({
             <Icon>close</Icon>
           </Box>
         )}
-        <Box overflow={modal && 'scroll'} pt={modal ? '15px' : '5px'} pb={modal ? '15px' : '5px'}>
+        <Box overflow={modal && 'hidden'} pt={modal ? '15px' : '5px'} pb={modal ? '15px' : '5px'}>
           <Grid container pr={{ xs: 1.5, sm: 0 }}>
             <Grid
               item
