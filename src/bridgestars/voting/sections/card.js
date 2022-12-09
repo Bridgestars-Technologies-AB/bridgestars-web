@@ -1,6 +1,4 @@
-//REACT
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // @mui material components
 import Grid from '@mui/material/Grid';
@@ -15,7 +13,7 @@ import colors from 'assets/theme/base/colors';
 
 //BRIDGESTARS
 import commentIcon from 'assets/images/bridgestars/Comments.png';
-import drawCommentArea from './cardSections/comments';
+import Comments from './cardSections/comments';
 import { drawXSVoter, drawVoter } from './cardSections/voter';
 import { drawAuthor } from './cardSections/author';
 // import { editorStyle } from 'bridgestars/text-editor/editorStyles.js';
@@ -30,91 +28,29 @@ function IssueCard({
   voted,
   nbrVotes,
   nbrComments,
-  getComments,
+  post,
   loading,
   ...rest
 }) {
   const [expanded, setExpanded] = useState(false);
-
-  const [comments, setComments] = useState([]);
-
-  const [commentText, setCommentText] = useState('');
-  const [charCount, setCharCount] = useState(0);
+  const [commentState, setCommentState] = useState(null);
 
   const handleVoteBtnPress = (e) => {
     e.stopPropagation();
     handleVote();
   };
 
-  async function handleCommentVote(commentId) {
-    const updateDocLocal = async (inc) => {
-      const incr = (doc) => {
-        doc.votes += inc;
-        return doc;
-      };
-      setComments(
-        comments.map((doc) => (doc.id == commentId ? incr(doc) : doc))
-      );
-    };
-    if (Parse.User.current() && comments != null) {
-      const comment = comments.find((c) => c.id == commentId);
-      if (!comment) throw new Error("Comment not found");
-      if (comment.voted) {
-        //local
-        updateDocLocal(-1)
-        console.log("remove vote: " + commentId)
-        console.log("local state: " + JSON.stringify(comments))
-        var reactions = await new Parse.Query("Reaction")
-          .equalTo("type", 2)
-          .equalTo("target", commentId)
-          .equalTo("user", Parse.User.current().id)
-          .find()
-        if (reactions) await Parse.Object.destroyAll(reactions)
-      } else {
-        //local
-        updateDocLocal(1)
-        console.log("add vote: " + commentId)
-        console.log("local state: " + JSON.stringify(comments))
-        await new Parse.Object("Reaction", { data: 1, type: 2, target: commentId }).save()
-      }
-    } else {
-      setShowSignin(true);
-    }
-  }
 
-  const updateCommentText = (html) => {
-    setCommentText(html);
-    console.log(html);
-    var cont = html.replace(/<[^>]*>/g, ' ');
-    cont = cont.replace(/\s+/g, ' ');
-    cont = cont.trim();
-    var n = cont.length;
-    setCharCount(n);
-  };
 
-  useEffect(() => {
-    console.log(commentText);
-  }, [commentText]);
 
-  const [commentLoaderState, setCommentLoaderState] = useState('');
+
+
+
   async function expandCard() {
     if (expanded) return setExpanded(false);
-
-    setCommentLoaderState('loading');
     setExpanded(true);
-
-    if (comments.length != 0) {
-      setCommentLoaderState('loaded');
-    }
-    //download comments
-    const data = await getComments();
-    if (data) {
-      setComments(data);
-      setCommentLoaderState('loaded');
-    } else {
-      setCommentLoaderState('no comments');
-    }
   }
+
   const [cardHovered, setCardHovered] = useState(false);
   const cardSize = (modal = false) => {
     return {
@@ -214,7 +150,7 @@ function IssueCard({
               })}
               {!loading &&
                 drawStatus({
-                  status: status,
+                  statusInt: status,
                   display: 'inline-block',
                 })}
               {drawDescription({
@@ -257,18 +193,13 @@ function IssueCard({
               </Grid>
             )}
           </Grid>
-          {modal ? (
-            drawCommentArea(
-              comments,
-              commentText,
-              updateCommentText,
-              charCount,
-              commentLoaderState,
-              handleCommentVote
-            )
-          ) : (
-            <></>
-          )}
+          <Comments
+            post={post}
+            show={expanded}
+            outerState={commentState}
+            setOuterState={setCommentState}
+
+          />
         </Box>
       </Card>
     );
@@ -406,9 +337,33 @@ function drawDescription({ description, limit = 220, loading, ...rest }) {
   );
 }
 
-function drawStatus({ status, ...rest }) {
+function drawStatus({ statusInt, ...rest }) {
+  console.log("statusInt", statusInt)
+  const statusText = () => {
+    switch (statusInt) {
+      case 0:
+        return 'Unknown';
+      case 1:
+        return 'New';
+      case 2:
+        return 'Reviewed';
+      case 3:
+        return 'Planned';
+      case 4:
+        return 'In Progress';
+      case 5:
+        return 'In Beta';
+      case 6:
+        return 'Already Exists';
+      default:
+        return 'Live';
+    }
+  }
+  const status = statusText(statusInt);
   const statusColor = () => {
     switch (status) {
+      case 'Unknown':
+        return '150, 150, 150';
       case 'New':
         return '200, 124, 247';
       case 'Reviewed':

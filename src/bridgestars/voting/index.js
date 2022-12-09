@@ -84,12 +84,7 @@ import { useParseQuery } from '@parse/react';
 // } from 'firebase/firestore';
 import MKButton from 'otis/MKButton';
 
-function parseDate(ms) {
-  const d = new Date();
-  d.setTime(ms);
-  const month = d.toLocaleString('default', { month: 'short' });
-  return `${d.getDate()} ${month} ${d.getFullYear()}`;
-}
+
 
 function drawCountBadge({ nbr, ...rest }) {
   return (
@@ -141,7 +136,8 @@ function VotingPage() {
       'author',
       'data',
       'reactions',
-      'chat'
+      'chat',
+      'subtype'
     )
     .include('author')
     .select('author.img', 'author.dispName');
@@ -295,54 +291,6 @@ function VotingPage() {
       setShowSignin(true);
     }
   }
-
-  async function getComments(doc) {
-    if (signedIn) {
-      try {
-        const chat = doc.obj.get("chat")
-        if (chat) {
-          const messages = await new Parse.Query("Message")
-            .equalTo("chat", chat)
-            .select("text", "reactions", "sender")
-            .find()
-          console.log("messages:" + JSON.stringify(messages.map(m => m.get("text"))))
-          const authors = await new Parse.Query("_User")
-            .containedIn("objectId", messages.map(m => m.get("sender")))
-            .select("dispName", "img")
-            .find();
-          // console.log("authors:" + JSON.stringify(authors))
-
-          const votes = await new Parse.Query("Reaction")
-            .equalTo("user", userData?.id)
-            .containedIn("target", messages.map(m => m.id))
-            .equalTo("type", 2)
-            .select("target")
-            .find();
-
-          console.log("voted:" + JSON.stringify(votes.map(v => v.get("target"))))
-          if (messages && authors) {
-            const comments = messages.map((m, i) => {
-              return {
-                likes: m.get("reactions")["1"] ?? 0,
-                text: m.get("text"),
-                author: authors.find(a => a.id == m.get("sender")),
-                creationTime: parseDate(m.createdAt),
-                voted: votes.filter(v => v.get("target") == m.id).length > 0,
-                id: m.id
-              }
-            })
-            return comments
-          }
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    } else {
-      setShowSignin(true);
-    }
-    return null;
-  }
-
 
   const [sortBy, setSortBy] = useState(0);
   const [filterBy, setFilterBy] = useState('');
@@ -575,12 +523,12 @@ function VotingPage() {
                             nbrVotes={doc.votes}
                             nbrComments={doc.obj.get("comments")}
                             key={doc.id.substring(0, 10)}
-                            getComments={() => getComments(doc)}
+                            post={doc.obj}
                             title={doc.obj.get("title")}
                             description={doc.obj.get("data")}
                             author={doc.obj.get("author")}
-                            status={doc.obj.get("status")}
-                            creationTime={parseDate(doc.obj.createdAt)}
+                            status={doc.obj.get("subtype")}
+                            creationTime={doc.obj.createdAt}
                             handleVote={() => handleVote(doc)}
                           ></IssueCard>
                         </Box>

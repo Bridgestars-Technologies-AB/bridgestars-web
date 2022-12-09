@@ -6,6 +6,15 @@ import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
 import userIcon from 'assets/images/bridgestars/User.png';
 
+
+function parseDate(ms) {
+  const d = new Date();
+  d.setTime(ms);
+  const month = d.toLocaleString('default', { month: 'short' });
+  return `${d.getDate()} ${month} ${d.getFullYear()}`;
+}
+
+
 export function drawAuthor(author, creationTime, loading) {
   return (
     <>
@@ -33,9 +42,8 @@ export function drawAuthor(author, creationTime, loading) {
           <MKBox
             width='4.5px'
             height='4.5px'
-            mt={0.3}
-            mb={0}
             bgColor='#1e2e4acc'
+            my='auto'
             sx={{
               borderRadius: '2px 2px 2px 2px',
             }}
@@ -47,7 +55,7 @@ export function drawAuthor(author, creationTime, loading) {
             mx={{ sm: 1, xs: 0.5 }}
             display='inline-block'
           >
-            {creationTime}
+            {parseDate(creationTime)}
           </MKTypography>
         </Box>
       )}
