@@ -206,12 +206,10 @@ function IssueCard({
   };
   const style = {
     position: 'absolute',
-    //top: '20%',
     //left: '50%',
-    //transform: 'translate(-50%, -50%)',
     width: '100%',
     height: '50%',
-    outline: 'none'
+    outline: 'none',
 
   };
   return (
@@ -349,7 +347,6 @@ function drawDescription({ description, limit = 220, loading, ...rest }) {
 }
 
 function drawStatus({ statusInt, ...rest }) {
-  console.log("statusInt", statusInt)
   const statusText = () => {
     switch (statusInt) {
       case 0:

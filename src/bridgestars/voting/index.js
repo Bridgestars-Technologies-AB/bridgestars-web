@@ -5,6 +5,7 @@ import { useId } from 'react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { Link } from 'react-router-dom'
 // @mui material components
 import {
   Modal,
@@ -17,6 +18,7 @@ import {
   Icon,
   Input,
   IconButton,
+  Dialog,
   Tabs,
   Tab,
   Select,
@@ -29,12 +31,18 @@ import {
   paperClasses
 } from '@mui/material';
 
+import TextField from '@mui/material/TextField';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
 import colors from 'assets/theme/base/colors';
 const { dark } = colors;
-
+import MKInput from 'otis/MKInput';
 // About Us page sections
 import Information from '../download/sections/Information';
 
@@ -51,18 +59,10 @@ import BridgestarsNavbar from 'bridgestars/navbar';
 import IssueCard from './sections/card';
 import SigninForm from 'bridgestars/auth/sign-in';
 import SearchBar from 'bridgestars/components/SearchBar';
-
+import DrawNewRequestDialog from 'bridgestars/voting/newRequest';
 //STYLE
 
 //DATABASE
-// import { firebaseApp } from 'firebase-config';
-// import {
-//   getAuth,
-//   onAuthStateChanged,
-//   signInWithEmailAndPassword,
-//   signOut,
-//   sendPasswordResetEmail,
-// } from 'firebase/auth';
 import Parse from 'parse';
 import { useParseQuery } from '@parse/react';
 // import { useCollectionOnce } from 'react-firebase-hooks/firestore';
@@ -81,8 +81,8 @@ import { useParseQuery } from '@parse/react';
 //   increment,
 //   arrayUnion,
 //   arrayRemove,
-// } from 'firebase/firestore';
-import MKButton from 'otis/MKButton';
+// } from 'firebase/firestore';';
+import MKButton from 'otis/MKButton'
 
 
 
@@ -180,7 +180,7 @@ function VotingPage() {
   const [votedIssues, setVotedIssues] = useState([]);
   const [userData, setUserData] = useState({});
   const [signedIn, setSignedIn] = useState(false);
-
+  const [showNewRequest, setShowNewRequest] = useState(false);
   useEffect(() => {
     if (Parse.User.current()) {
       setSignedIn(true);
@@ -333,6 +333,9 @@ function VotingPage() {
         </Box>
         {/* </MKBox> */}
       </Modal>
+
+      {DrawNewRequestDialog(showNewRequest, setShowNewRequest)}
+
       <Grid container width='100%' justifyContent='center'>
         <Card
           sx={{
@@ -407,6 +410,18 @@ function VotingPage() {
               {/* <MKButton variant='gradient' color='info'>
                 New Request
               </MKButton> */}
+              <MKTypography
+                variant='body2'
+
+                onClick={() => setShowNewRequest(true)}
+                color='info'
+                fontWeight='medium'
+                textGradient
+                style={{ textDecorationLine: 'underline' }}
+                sx={{ cursor: 'pointer' }}
+              >
+                or create one here
+              </MKTypography>
             </Grid>
 
             <MKBox

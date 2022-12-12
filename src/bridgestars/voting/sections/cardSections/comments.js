@@ -99,11 +99,11 @@ export default class Comments extends Component {
     if (this.state.commentText == '') return alert("No text entered")
     if (!Parse.User.current()) return this.setShowSignin(true)
     try {
-      await new Parse.Object("Message", { text: this.state.commentText, chat: this.post.get("chat") })
+      const obj = await new Parse.Object("Message", { text: this.state.commentText, chat: this.post.get("chat") })
         .save()
       this.setState({
         comments: [{
-          text: this.state.commentText, author: Parse.User.current(), creationTime: new Date(), likes: 0, voted: false, id: "temp"
+          text: this.state.commentText, author: Parse.User.current(), creationTime: new Date(), likes: 0, voted: false, id: obj.id
         }, ...this.state.comments]
       })
       this.setState({ commentText: '' });
@@ -335,7 +335,7 @@ export default class Comments extends Component {
           {this.state.loadingState === 'loading' ? (
             <PulseLoader color='black' speedMultiplier={1} size={8} />
           ) : this.state.loadingState === 'loaded' ? (
-            this.state.comments.map((x, i) =>
+            this.state.comments && this.state.comments.length > 0 ? this.state.comments.map((x, i) =>
               this.drawCommentInstance(
                 i + 1,
                 x.id,
@@ -346,7 +346,7 @@ export default class Comments extends Component {
                 x.voted,
                 () => this.handleVote(x.id)
               )
-            )
+            ) : <Box width='100%' sx={{ textAlign: 'center' }}> <strong>No comments yet</strong> </Box>
           ) : (
             <MKTypography>{this.state.loadingState}</MKTypography>
           )}
