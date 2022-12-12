@@ -532,12 +532,16 @@ function VotingPage() {
                 >
                   <MKBox width='100%'>
                     {error && <strong>Error: {error.message}</strong>}
-                    {!error && loadedDocs.length == 0 && count != 0 &&
+                    {!error && isLoading && loadedDocs.length == 0 && count != 0 &&
                       [1, 2, 3].map((k) => (
                         <Box mb={1.5} key={k}>
                           <IssueCard loading={true} key={k + '1'}></IssueCard>
                         </Box>
                       ))}
+                    {!isLoading && !error && !count &&
+                      <Box my={1.5} px='auto' sx={{ textAlign: 'center' }}>
+                        <MKTypography variant="h3">No posts found</MKTypography>
+                      </Box>}
                     {loadedDocs.length != 0 &&
                       loadedDocs.map((doc) => (
                         <Box mb={1.5} key={doc.id.substring(0, 11)}>
