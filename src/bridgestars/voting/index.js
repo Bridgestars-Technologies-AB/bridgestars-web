@@ -265,8 +265,10 @@ function VotingPage() {
       );
     };
     console.log("signedin:" + signedIn)
-    if (signedIn && votedIssues != null) {
+    if (Parse.User.current()) {
+      if (votedIssues == null) setVotedIssues([])
       if (votedIssues.includes(postid)) {
+
         //local
         const v = votedIssues.filter((x) => x != postid);
         setVotedIssues(v);
@@ -538,7 +540,7 @@ function VotingPage() {
                           <IssueCard loading={true} key={k + '1'}></IssueCard>
                         </Box>
                       ))}
-                    {!isLoading && !error && !count &&
+                    {!isLoading && !error && loadedDocs.length == 0 &&
                       <Box my={1.5} px='auto' sx={{ textAlign: 'center' }}>
                         <MKTypography variant="h3">No posts found</MKTypography>
                       </Box>}

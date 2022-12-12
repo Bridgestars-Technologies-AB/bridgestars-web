@@ -51,7 +51,7 @@ export default class Comments extends Component {
   }
   async getComments() {
     const chat = this.post.get("chat")
-    if (chat) {
+    if (chat && Parse.User.current()) {
       try {
         const messages = await new Parse.Query("Message")
           .equalTo("chat", chat)
@@ -86,9 +86,10 @@ export default class Comments extends Component {
           return comments
         }
       } catch (e) {
-        if (error.message.includes("Unable to connect to the Parse API"))
-          alert("Could not connect, please check your internet connection.")
-
+        if (e.message.includes("Unable to connect to the Parse API"))
+          return alert("Could not connect, please check your internet connection.")
+        alert(e.message)
+        console.log(e)
       }
     }
 
@@ -111,8 +112,9 @@ export default class Comments extends Component {
       this.setState({ reloadEditor: !this.state.reloadEditor })
     } catch (error) {
       if (error.message.includes("Unable to connect to the Parse API"))
-        alert("Could not connect, please check your internet connection.")
-      else alert(error.message)
+        return alert("Could not connect, please check your internet connection.")
+      alert(error.message)
+      console.log(error)
     }
     // this.loadComments();
   }
