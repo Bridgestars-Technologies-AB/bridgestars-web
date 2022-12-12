@@ -53,7 +53,7 @@ export default function Policies() {
           </Grid>
         </Container>
       </MKBox>
-      <MKBox component='section' pt={6}>
+      <MKBox component='section' pt={3}>
         <Container>
           <Grid container justifyContent='center'>
             <Grid item xs={12}>

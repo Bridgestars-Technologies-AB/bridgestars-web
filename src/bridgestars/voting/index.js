@@ -198,11 +198,19 @@ function VotingPage() {
   const [loadedDocs, setLoadedDocs] = useState([]);
 
   async function getUserVotes(uid, postIds) {
-    const votes = await new Parse.Query('Reaction').equalTo('user', uid).equalTo("type", 1).containedIn("target", postIds).find(); //find posts which this user has voted
-    console.log("FETCHED VOTED ISSUES: " + JSON.stringify(votes))
-    console.log("contained in " + JSON.stringify(postIds))
-    const posts = votes.map(vote => vote.get('target'));
-    setVotedIssues([...posts, ...votedIssues]);
+    try {
+
+      const votes = await new Parse.Query('Reaction').equalTo('user', uid).equalTo("type", 1).containedIn("target", postIds).find(); //find posts which this user has voted
+      console.log("FETCHED VOTED ISSUES: " + JSON.stringify(votes))
+      console.log("contained in " + JSON.stringify(postIds))
+      const posts = votes.map(vote => vote.get('target'));
+      setVotedIssues([...posts, ...votedIssues]);
+    } catch (error) {
+      if (error.message.includes("Unable to connect to the Parse API"))
+        alert("Could not connect, please check your internet connection.")
+
+      else alert(error.message)
+    }
     //TODO load comments when opening issue, query specifaclly for that issue
     // setVotedComments(votes.get("comments"));
   }
@@ -368,7 +376,7 @@ function VotingPage() {
               <MKTypography variant='h2' mb={1} fontSize='40px'>
                 The platform where{' '}
                 <MKTypography
-                  variant='h2'
+                  variant='inherit'
                   display='inline-block'
                   // color='primary'
                   mb={1}
@@ -508,8 +516,8 @@ function VotingPage() {
                   display='flex'
                 >
                   <MKBox width='100%'>
-                    {error && <strong>Error: {JSON.stringify(error)}</strong>}
-                    {loadedDocs.length == 0 && count != 0 &&
+                    {error && <strong>Error: {error.message}</strong>}
+                    {!error && loadedDocs.length == 0 && count != 0 &&
                       [1, 2, 3].map((k) => (
                         <Box mb={1.5} key={k}>
                           <IssueCard loading={true} key={k + '1'}></IssueCard>
@@ -530,6 +538,7 @@ function VotingPage() {
                             status={doc.obj.get("subtype")}
                             creationTime={doc.obj.createdAt}
                             handleVote={() => handleVote(doc)}
+                            setShowSignin={setShowSignin}
                           ></IssueCard>
                         </Box>
                       ))}

@@ -42,7 +42,7 @@ export default function Copyright() {
         borderRadius='lg'
         coloredShadow='dark'
         p={3}
-        mt={-3}
+        mt={1}
         mx={2}
       >
         <MKTypography variant='h3' color='white'>

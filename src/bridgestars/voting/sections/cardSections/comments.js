@@ -1,13 +1,12 @@
-// SCROLLBAR
 
-
+import React from 'react';
 import { Component } from 'react';
 //MUI
-import { Box, Card, Grid } from '@mui/material';
-
+import { IconButton, Menu, MenuItem, Button, Box, Card, Grid } from '@mui/material';
+import { MoreVert, Send, Delete, ThirtyFpsSelect } from '@mui/icons-material'
 //OTIS KIT
 import MKTypography from 'otis/MKTypography';
-
+import MKBox from 'otis/MKBox';
 //BRIDGESTARS
 import TextEditor from 'bridgestars/components/text-editor/textEditor';
 import { drawXSVoter } from './voter';
@@ -24,21 +23,25 @@ export default class Comments extends Component {
     charCount: 0,
     comments: [],
     loadingState: 'loading',
+    sortBy: '',
+    showCommentBtn: []
   }
 
-  constructor({ post, show, outerState, setOuterState }) {
-    super()
-    this.post = post
-    this.show = show
-    if (outerState && outerState != {}) {
-      this.state = outerState
+  constructor(props) {
+    super(props)
+    this.post = props.post
+    this.maxLength = props.maxLength ?? 1000
+    this.show = props.show
+    this.setShowSignin = props.setShowSignin
+    if (props.outerState && props.outerState != {}) {
+      this.state = props.outerState
     }
-    this.setOuterState = setOuterState
+    this.setOuterState = props.setOuterState
   }
 
   //on mount metthod
   componentDidMount() {
-    if (this.state.loadingState != 'loaded') {
+    if (this.state.loadingState != 'loaded' && this.post) {
       console.log("loading comments")
       this.loadComments();
     }
@@ -47,14 +50,15 @@ export default class Comments extends Component {
     this.setOuterState(this.state)
   }
   async getComments() {
-    try {
-      const chat = this.post.get("chat")
-      if (chat) {
+    const chat = this.post.get("chat")
+    if (chat) {
+      try {
         const messages = await new Parse.Query("Message")
           .equalTo("chat", chat)
           .select("text", "reactions", "sender")
+          .descending("createdAt")
           .find()
-        console.log("messages:" + JSON.stringify(messages.map(m => m.get("text"))))
+
         const authors = await new Parse.Query("_User")
           .containedIn("objectId", messages.map(m => m.get("sender")))
           .select("dispName", "img")
@@ -81,14 +85,37 @@ export default class Comments extends Component {
           })
           return comments
         }
+      } catch (e) {
+        if (error.message.includes("Unable to connect to the Parse API"))
+          alert("Could not connect, please check your internet connection.")
+
       }
-    } catch (e) {
-      console.log(e);
     }
+
     return null;
   }
 
-
+  sendComment = async () => {
+    if (this.state.commentText == '') return alert("No text entered")
+    if (!Parse.User.current()) return this.setShowSignin(true)
+    try {
+      await new Parse.Object("Message", { text: this.state.commentText, chat: this.post.get("chat") })
+        .save()
+      this.setState({
+        comments: [{
+          text: this.state.commentText, author: Parse.User.current(), creationTime: new Date(), likes: 0, voted: false, id: "temp"
+        }, ...this.state.comments]
+      })
+      this.setState({ commentText: '' });
+      this.setState({ charCount: 0 });
+      this.setState({ reloadEditor: !this.state.reloadEditor })
+    } catch (error) {
+      if (error.message.includes("Unable to connect to the Parse API"))
+        alert("Could not connect, please check your internet connection.")
+      else alert(error.message)
+    }
+    // this.loadComments();
+  }
   loadComments = async () => {
     this.setState({ loadingState: 'loading' });
 
@@ -143,11 +170,129 @@ export default class Comments extends Component {
         await new Parse.Object("Reaction", { data: 1, type: 2, target: commentId }).save()
       }
     } else {
-      setShowSignin(true);
+      this.setShowSignin(true);
+    }
+  }
+  async deleteMessage(id) {
+    try {
+
+      console.log(this.state.comments.map(c => c.id))
+      await new Parse.Object("Message", { id: id }).destroy()
+      this.setState({ comments: this.state.comments?.filter(c => c.id != id) })
+      console.log(this.state.comments.map(c => c.id))
+      this.setState({ reloadEditor: !this.state.reloadEditor })
+    } catch (error) {
+      if (error.message.includes("Unable to connect to the Parse API"))
+        alert("Could not connect, please check your internet connection.")
+
+      alert(error.message)
     }
   }
 
+  commentMenu({ deleteMessage }) {
 
+    const ITEM_HEIGHT = 48;
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = async (option) => {
+      setAnchorEl(null);
+      if (option == 'Delete') {
+        //TODO nice alert like in dashboard
+        deleteMessage()
+      }
+    };
+    const options = [
+      'Delete',
+      // 'Edit'
+    ];
+    return (
+      <div>
+        <IconButton
+          aria-label="more"
+          id="long-button"
+          aria-controls={open ? 'long-menu' : undefined}
+          aria-expanded={open ? 'true' : undefined}
+          aria-haspopup="true"
+          onClick={handleClick}
+        >
+          <MoreVert />
+        </IconButton>
+        <Menu
+          id="long-menu"
+          MenuListProps={{
+            'aria-labelledby': 'long-button',
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          PaperProps={{
+            style: {
+              maxHeight: ITEM_HEIGHT * 4.5,
+              width: '20ch',
+            },
+          }}
+        >
+          {options.map((option) => (
+            <MenuItem key={option} selected={option === 'Pyxis'} onClick={() => handleClose(option)}>
+              {option}
+            </MenuItem>
+          ))}
+        </Menu>
+      </div>
+    );
+  }
+
+  drawCommentInstance(key, id, text, likes, author, creationTime, voted, handleVote) {
+    return (
+      <Box key={key}
+        onMouseEnter={() => {
+          console.log(this.state.showCommentBtn)
+          this.setState({ showCommentBtn: [key] })
+        }}
+        onMouseLeave={() => {
+          console.log(this.state.showCommentBtn)
+          this.setState({ showCommentBtn: this.state.showCommentBtn?.filter((c) => c != key) })
+        }}
+      >
+        <Box mx={1} display='flex'>
+          <Box width='min-content' pt='12px'>
+            {drawXSVoter(voted, likes, handleVote)}
+          </Box>
+          <Box width='100%' key={this.state.reloadEditor}>
+            <TextEditor
+              placeholder={'This comment could not be loaded.'}
+              readOnly={true}
+              theme='bubble'
+              content={text}
+            />
+            <Box mx={1.5} mt={0.5}>
+              {drawAuthor(author, creationTime)}
+            </Box>
+          </Box>
+          <Box display={this.state.showCommentBtn?.find((c) => c == key) ? 'block' : 'none'}
+          >
+            {author.id == Parse.User.current()?.id && <this.commentMenu deleteMessage={() => this.deleteMessage(id)} />}
+            {/* <IconButton variant="contained" sx={{ width: '32px', height: '32px' }} color="white" >
+            <DeleteIcon />
+          </IconButton> */}
+          </Box>
+        </Box>
+        <MKBox
+          width='100%'
+          height='1.0px'
+          bgColor='#1e2e4a44'
+          my='auto'
+          sx={{
+
+          }}
+          display='inline-block'
+        ></MKBox>
+      </Box>
+    );
+  }
   render() {
     return (
       <Box p={1.5} display={this.show ? 'true' : 'none'}>
@@ -155,41 +300,45 @@ export default class Comments extends Component {
           <MKTypography variant='h2' sx={{ fontSize: '16px' }}>
             {'Comments'}
           </MKTypography>
-          <Box py={1}>
-            {!this.state.writeOpen ?
-              <TextEditor
-                placeholder={'Add your own thoughts'}
-                content={this.state.commentText}
-                onChange={(html) => this.updateCommentText(html)}
-              ></TextEditor>
-              :
-              <></>
-            }
+          <Box py={1} key={this.state.reloadEditor}>
+
+            <TextEditor
+              placeholder={'Add your own thoughts'}
+              hideToolbar={true}
+              onShowToolbar={() => this.setState({ writeOpen: true })}
+              content={this.state.commentText}
+              onChange={(html) => this.updateCommentText(html)}
+            ></TextEditor>
           </Box>
-          {this.state.charCount > 0 ? (
-            <Grid container justifyContent='flex-end'>
+          <Grid container justifyContent='space-between'>
+            {this.state.charCount > this.maxLength * 0.5 ?
               <MKTypography
+                pl={1}
                 variant='text1'
-                color={this.state.charCount > 750 ? 'primary' : 'dark'}
+                color={this.state.charCount > this.maxLength ? 'primary' : 'dark'}
                 fontSize='16px'
               >
-                {'Character count: ' + this.state.charCount + '/750'}
-              </MKTypography>
-            </Grid>
-          ) : (
-            <></>
-          )}
+                {(this.maxLength - this.state.charCount)}
+              </MKTypography> : <Box />}
+            {this.state.writeOpen &&
+              <Button onClick={this.sendComment} sx={{ borderRadius: '15px' }} variant="contained" endIcon={<Send />} color='white'>
+                Send
+              </Button>
+            }
+          </Grid>
         </Box>
         <Box
           py={1}
           justifyContent={this.state.loadingState === 'loaded' ? '' : 'center'}
-          display='flex'
+          display={this.state.loadingState === 'loaded' ? 'block' : 'flex'}
         >
           {this.state.loadingState === 'loading' ? (
             <PulseLoader color='black' speedMultiplier={1} size={8} />
           ) : this.state.loadingState === 'loaded' ? (
-            this.state.comments.map((x) =>
-              drawCommentInstance(
+            this.state.comments.map((x, i) =>
+              this.drawCommentInstance(
+                i + 1,
+                x.id,
                 x.text,
                 x.likes,
                 x.author,
@@ -211,23 +360,12 @@ export default class Comments extends Component {
 
 
 
-function drawCommentInstance(text, likes, author, creationTime, voted, handleVote) {
-  return (
-    <Box key={text} mx={1} display='flex'>
-      <Box width='min-content' mt={0.3}>
-        {drawXSVoter(voted, likes, handleVote)}
-      </Box>
-      <Box width='100%'>
-        <TextEditor
-          placeholder={'comment'}
-          readOnly={true}
-          theme='bubble'
-          content={text}
-        />
-        <Box mx={1.5} mt={0.5}>
-          {drawAuthor(author, creationTime)}
-        </Box>
-      </Box>
-    </Box>
-  );
-}
+
+
+
+
+
+
+
+
+

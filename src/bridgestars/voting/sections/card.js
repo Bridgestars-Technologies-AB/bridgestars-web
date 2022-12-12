@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
 // @mui material components
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
@@ -30,6 +29,7 @@ function IssueCard({
   nbrComments,
   post,
   loading,
+  setShowSignin,
   ...rest
 }) {
   const [expanded, setExpanded] = useState(false);
@@ -194,17 +194,26 @@ function IssueCard({
             )}
           </Grid>
           <Comments
+            setShowSignin={setShowSignin}
             post={post}
             show={expanded}
             outerState={commentState}
             setOuterState={setCommentState}
-
           />
         </Box>
       </Card>
     );
   };
+  const style = {
+    position: 'absolute',
+    //top: '20%',
+    //left: '50%',
+    //transform: 'translate(-50%, -50%)',
+    width: '100%',
+    height: '50%',
+    outline: 'none'
 
+  };
   return (
     <>
       {drawCardContent(false)}
@@ -212,16 +221,18 @@ function IssueCard({
         <Modal
           open={expanded}
           onClose={() => setExpanded(false)}
-          sx={{
-            py: 1.5,
-            // outline: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          style={{ overflow: 'scroll' }}
         // style={{ content: editorStyle }}
         >
-          {drawCardContent(true)}
+          <Box style={{ style }} sx={{
+            py: 1.5,
+            outline: 'none',
+            alignItems: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+            {drawCardContent(true)}
+          </Box>
         </Modal>
       ) : (
         <></>

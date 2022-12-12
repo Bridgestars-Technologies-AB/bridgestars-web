@@ -101,10 +101,10 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
     onAuthStateChanged();
   }, [])
 
-  function onAuthStateChanged(){
+  function onAuthStateChanged() {
     if (Parse.User.current()) {
       console.log('SIGNED IN');
-      if(formSuccess){
+      if (formSuccess) {
 
         setConfirmed(true);
         setTitle('Welcome to the Bridgestars community!');
@@ -112,16 +112,16 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
           'We will reach out to you at\n(' +
           Parse.User.current().get("email") +
           ')\nwith a download link for the Bridgestars App.'
-          );
-      }else {
+        );
+      } else {
         setConfirmed(true);
         setTitle('You are already signed in!');
         setDescription(
           'Check your email for a download link for the Bridgestars App.'
-          );
+        );
       }
       // ...
-    } else{
+    } else {
       setConfirmed(false);
       setTitle('Become a Bridgestars Beta Tester');
       setDescription(
@@ -343,7 +343,7 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
       >
         <MKBox
           style={style}
-          mt={3}
+          mt={0}
           //textAlign='center'
           width={{ xs: '100%', sm: '100%', md: '70%' }}
         >
@@ -352,7 +352,7 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
             mb={-1}
             width={{ xs: '100%', sm: '100%', md: '70%' }}
             variant='contained'
-            // //fullWidth
+            fullWidth
             size='large'
             color='error'
             onClick={handlePolicyClose}
@@ -400,9 +400,9 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
                 fontSize='2vmin'
                 fullWidth
                 color='info'
-                //sx={{ color: ({ palette: { dark } }) => dark.main }}
+              //sx={{ color: ({ palette: { dark } }) => dark.main }}
               >
-                  {modal ? 'done' : 'home'}
+                {modal ? 'done' : 'home'}
               </MKButton>
             </MKBox>
 
@@ -428,7 +428,7 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
                   Sign Out
                 </MKTypography>
               </MKBox>
-              
+
             </Grid>
           </>
         )}
@@ -438,7 +438,7 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
 }
 BetaSignupForm.defaultProps = {
   modal: false,
-  modalexitcallback: () => {},
+  modalexitcallback: () => { },
 };
 
 export default BetaSignupForm;
