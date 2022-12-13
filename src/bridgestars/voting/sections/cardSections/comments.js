@@ -41,7 +41,7 @@ export default class Comments extends Component {
 
   //on mount metthod
   componentDidMount() {
-    if (this.state.loadingState != 'loaded' && this.post) {
+    if (this.state.loadingState != 'loaded' && this.post && this.show) {
       console.log("loading comments")
       this.loadComments();
     }
@@ -51,7 +51,7 @@ export default class Comments extends Component {
   }
   async getComments() {
     const chat = this.post.get("chat")
-    if (chat && Parse.User.current()) {
+    if (chat) {
       try {
         const messages = await new Parse.Query("Message")
           .equalTo("chat", chat)
@@ -145,34 +145,41 @@ export default class Comments extends Component {
   }
 
   async handleVote(commentId) {
-    const comments = this.state.comments;
-    const updateDocLocal = async (inc) => {
-      const incr = (doc) => {
-        doc.likes += inc;
-        doc.voted = !doc.voted;
-        return doc;
+    try {
+      const comments = this.state.comments;
+      const updateDocLocal = async (inc) => {
+        const incr = (doc) => {
+          doc.likes += inc;
+          doc.voted = !doc.voted;
+          return doc;
+        };
+        this.setState({ comments: comments.map((doc) => (doc.id == commentId ? incr(doc) : doc)) });
       };
-      this.setState({ comments: comments.map((doc) => (doc.id == commentId ? incr(doc) : doc)) });
-    };
-    if (Parse.User.current() && comments != null) {
-      const comment = comments.find((c) => c.id == commentId);
-      if (!comment) throw new Error("Comment not found");
-      if (comment.voted) {
-        //local
-        updateDocLocal(-1)
-        var reactions = await new Parse.Query("Reaction")
-          .equalTo("type", 2)
-          .equalTo("target", commentId)
-          .equalTo("user", Parse.User.current().id)
-          .find()
-        if (reactions) await Parse.Object.destroyAll(reactions)
+      if (Parse.User.current() && comments != null) {
+        const comment = comments.find((c) => c.id == commentId);
+        if (!comment) throw new Error("Comment not found");
+        if (comment.voted) {
+          //local
+          updateDocLocal(-1)
+          var reactions = await new Parse.Query("Reaction")
+            .equalTo("type", 2)
+            .equalTo("target", commentId)
+            .equalTo("user", Parse.User.current().id)
+            .find()
+          if (reactions) await Parse.Object.destroyAll(reactions)
+        } else {
+          //local
+          updateDocLocal(1)
+          await new Parse.Object("Reaction", { data: 1, type: 2, target: commentId }).save()
+        }
       } else {
-        //local
-        updateDocLocal(1)
-        await new Parse.Object("Reaction", { data: 1, type: 2, target: commentId }).save()
+        this.setShowSignin(true);
       }
-    } else {
-      this.setShowSignin(true);
+    } catch (error) {
+      console.log(error)
+      if (error.message.includes("Unable to connect to the Parse API"))
+        return alert("Could not connect, please check your internet connection.")
+      alert(error.message)
     }
   }
   async deleteMessage(id) {
@@ -184,9 +191,9 @@ export default class Comments extends Component {
       console.log(this.state.comments.map(c => c.id))
       this.setState({ reloadEditor: !this.state.reloadEditor })
     } catch (error) {
+      console.log(error)
       if (error.message.includes("Unable to connect to the Parse API"))
-        alert("Could not connect, please check your internet connection.")
-
+        return alert("Could not connect, please check your internet connection.")
       alert(error.message)
     }
   }
@@ -250,6 +257,10 @@ export default class Comments extends Component {
   drawCommentInstance(key, id, text, likes, author, creationTime, voted, handleVote) {
     return (
       <Box key={key}
+        onClick={() => {
+          console.log(this.state.showCommentBtn)
+          this.setState({ showCommentBtn: [key] })
+        }}
         onMouseEnter={() => {
           console.log(this.state.showCommentBtn)
           this.setState({ showCommentBtn: [key] })

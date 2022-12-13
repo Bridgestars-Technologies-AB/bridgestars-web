@@ -51,6 +51,7 @@ export default function DrawNewRequestDialog(show, setShow) {
           }
         })
       } catch (e) {
+        console.log(e)
         return alert(e.message)
       }
       setShow(false);

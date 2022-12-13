@@ -1,54 +1,33 @@
 // react
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
-import { useId } from 'react';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { Link } from 'react-router-dom'
 // @mui material components
 import {
   Modal,
-  Skeleton,
   Box,
   Card,
   Grid,
-  Container,
-  Button,
   Icon,
-  Input,
-  IconButton,
-  Dialog,
   Tabs,
   Tab,
   Select,
   InputLabel,
   MenuItem,
-  FormControl,
-  Typography,
-  InputBase,
-  ListItemText,
-  paperClasses
+  FormControl
 } from '@mui/material';
 
-import TextField from '@mui/material/TextField';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
 import colors from 'assets/theme/base/colors';
 const { dark } = colors;
-import MKInput from 'otis/MKInput';
 // About Us page sections
-import Information from '../download/sections/Information';
 
 // Routes
 import routes from 'constants/routes';
-import footerRoutes from 'constants/footer.routes';
 
 // Images
 import bgImage from 'assets/images/bridgestars/vote.svg';
@@ -59,31 +38,13 @@ import BridgestarsNavbar from 'bridgestars/navbar';
 import IssueCard from './sections/card';
 import SigninForm from 'bridgestars/auth/sign-in';
 import SearchBar from 'bridgestars/components/SearchBar';
+import handleInvalidSession from 'bridgestars/tools/handleInvalidSession';
 import DrawNewRequestDialog from 'bridgestars/voting/newRequest';
 //STYLE
 
 //DATABASE
 import Parse from 'parse';
 import { useParseQuery } from '@parse/react';
-// import { useCollectionOnce } from 'react-firebase-hooks/firestore';
-
-// import {
-//   collection,
-//   doc,
-//   setDoc,
-//   getDoc,
-//   getFirestore,
-//   query,
-//   getDocs,
-//   orderBy,
-//   limit,
-//   updateDoc,
-//   increment,
-//   arrayUnion,
-//   arrayRemove,
-// } from 'firebase/firestore';';
-import MKButton from 'otis/MKButton'
-
 
 
 function drawCountBadge({ nbr, ...rest }) {
@@ -118,15 +79,6 @@ function drawCountBadge({ nbr, ...rest }) {
 }
 
 function VotingPage() {
-  // const auth = getAuth(firebaseApp);
-  // const db = getFirestore(firebaseApp);
-
-  // const requestsRef = collection(db, 'feedback/voting_app/requests');
-  // const commentsRef = collection(db, 'feedback/voting_app/comments');
-  // const usersRef = collection(db, 'feedback/voting_app/users');
-
-  //TEMP
-  // const q = query(requestsRef, orderBy('votes'), limit(10));
   const parseQuery = new Parse.Query('Post')
     .equalTo('type', 1)
     .select(
@@ -142,7 +94,7 @@ function VotingPage() {
     .include('author')
     .select('author.img', 'author.dispName');
 
-  const {
+  let {
     isLive, // Indicates that Parse Live Query is connected
     isLoading, // Indicates that the initial load is being processed
     isSyncing, // Indicates that the library is getting the latest data from Parse Server
@@ -159,6 +111,21 @@ function VotingPage() {
     }
   );
 
+  async function onSignedOut() {
+    console.log(error)
+    if (signedIn) {
+
+      // if (Parse.User.current() && error.message.includes("Invalid session token")) reload()
+      setSignedIn(false);
+      try {
+        await Parse.User.logOut();
+      } catch (e) {
+
+        console.log(e)
+      }
+    }
+  }
+
   useEffect(() => {
     console.log('isLoading: ' + isLoading);
     console.log('isLive: ' + isLive);
@@ -166,6 +133,8 @@ function VotingPage() {
     console.log('count: ' + count);
     console.log('error: ' + error);
     console.log("...")
+    if (error?.message?.includes("Invalid session token")) onSignedOut();
+    // handleInvalidSession(error, onSignedOut)
 
   }, [isLoading, isLive, isSyncing, count, error]);
 
@@ -173,45 +142,60 @@ function VotingPage() {
     if (results && !isLoading && !error) {
       console.log(JSON.stringify(results))
       setLoadedDocs(results.map(r => { return { obj: r, votes: r.get("reactions")["1"] ?? 0, id: r.id } }));
-      getUserVotes(userData?.id, results.map(r => r.id))
+      if (Parse.User.current()) getUserVotes(userData?.id, results.map(r => r.id))
     }
   }, [results]);
+
+
 
   const [votedIssues, setVotedIssues] = useState([]);
   const [userData, setUserData] = useState({});
   const [signedIn, setSignedIn] = useState(false);
   const [showNewRequest, setShowNewRequest] = useState(false);
+  const [showSignin, setShowSignin] = useState(false);
+  const [loadedDocs, setLoadedDocs] = useState([]);
   useEffect(() => {
     if (Parse.User.current()) {
-      setSignedIn(true);
+      if (Parse.User.current())
+        setSignedIn(true);
       setUserData(Parse.User.current());
     }
-  }, [])
-
+  }, [showSignin])
 
   useEffect(() => {
-    if (Parse.User.current()) downloadUserDoc(userData.uid);
+    if (signedIn && results && !isLoading && !error && votedIssues.length == 0) {
+      getUserVotes(userData?.id, loadedDocs.map(r => r.id))
+    }
   }, [signedIn]);
 
-  const [showSignin, setShowSignin] = useState(false);
+  useEffect(() => {
+    console.log("signedIn: " + signedIn)
+  }, [signedIn]);
 
-  const [loadedDocs, setLoadedDocs] = useState([]);
+
 
   async function getUserVotes(uid, postIds) {
-    try {
+    if (postIds.length > 0 && Parse.User.current()) {
+      try {
+        const votes = await new Parse.Query('Reaction')
+          .equalTo('user', uid)
+          .equalTo("type", 1)
+          .containedIn("target", postIds).find(); //find posts which this user has voted
+        console.log("FETCHED VOTED ISSUES: " + JSON.stringify(votes))
+        console.log("contained in " + JSON.stringify(postIds))
+        const posts = votes.map(vote => vote.get('target'));
+        setVotedIssues([...posts, ...votedIssues]);
+      } catch (error) {
+        // if (!handleInvalidSession(error, onSignedOut)) {
 
-      const votes = await new Parse.Query('Reaction').equalTo('user', uid).equalTo("type", 1).containedIn("target", postIds).find(); //find posts which this user has voted
-      console.log("FETCHED VOTED ISSUES: " + JSON.stringify(votes))
-      console.log("contained in " + JSON.stringify(postIds))
-      const posts = votes.map(vote => vote.get('target'));
-      setVotedIssues([...posts, ...votedIssues]);
-    } catch (error) {
-      if (error.message.includes("Unable to connect to the Parse API"))
-        alert("Could not connect, please check your internet connection.")
-
-      else alert(error.message)
+        if (error?.message?.includes("Invalid session token")) return onSignedOut();
+        console.log(error)
+        if (error.message.includes("Unable to connect to the Parse API"))
+          alert("Could not connect, please check your internet connection.")
+        else alert(error.message)
+      }
+      // }
     }
-    //TODO load comments when opening issue, query specifaclly for that issue
     // setVotedComments(votes.get("comments"));
   }
 
@@ -227,70 +211,79 @@ function VotingPage() {
   //   }
   // });
 
-  let downloadedUserData = false;
-  async function downloadUserDoc(uid) {
-    //TRY?
-    try {
-      //not needed I guess
-    } catch (e) {
-      if (e.code == 'permission-denied') {
-        alert(
-          'Permission denied. You are not signed in. If you just signed up the email might already be in use. In that case try to reset your password and sign in.'
-        );
-        await userData.logOut();
-        setShowSignin(false);
-        setShowSignin(true);
-      } else if (e.code == 'not-found') {
-        //IS THIS RIGHT?
-        //create document
-      } else if (e.toString().includes('offline')) {
-        alert('You are offline, please try again later.');
-      }
-      else {
-        alert(e.message);
-      }
-      console.log(JSON.stringify(e));
-    }
-  }
+  // let downloadedUserData = false;
+  // async function downloadUserDoc(uid) {
+  //   //TRY?
+  //   try {
+  //     //not needed I guess
+  //   } catch (e) {
+  //     if (e.code == 'permission-denied') {
+  //       alert(
+  //         'Permission denied. You are not signed in. If you just signed up the email might already be in use. In that case try to reset your password and sign in.'
+  //       );
+  //       await userData.logOut();
+  //       setShowSignin(false);
+  //       setShowSignin(true);
+  //     } else if (e.code == 'not-found') {
+  //       //IS THIS RIGHT?
+  //       //create document
+  //     } else if (e.toString().includes('offline')) {
+  //       alert('You are offline, please try again later.');
+  //     }
+  //     else {
+  //       alert(e.message);
+  //     }
+  //     console.log(JSON.stringify(e));
+  //   }
+  // }
 
   async function handleVote(post) {
-    const postid = post.id;
-    const updateDocLocal = async (inc) => {
-      const incr = (doc) => {
-        doc.votes += inc;
-        return doc;
+    try {
+      const postid = post.id;
+      const updateDocLocal = async (inc) => {
+        const incr = (doc) => {
+          doc.votes += inc;
+          return doc;
+        };
+        setLoadedDocs(
+          loadedDocs.map((doc) => (doc.id == postid ? incr(doc) : doc))
+        );
       };
-      setLoadedDocs(
-        loadedDocs.map((doc) => (doc.id == postid ? incr(doc) : doc))
-      );
-    };
-    console.log("signedin:" + signedIn)
-    if (Parse.User.current()) {
-      if (votedIssues == null) setVotedIssues([])
-      if (votedIssues.includes(postid)) {
+      console.log("signedin:" + signedIn)
+      if (Parse.User.current()) {
+        if (votedIssues == null) setVotedIssues([])
+        if (votedIssues.includes(postid)) {
 
-        //local
-        const v = votedIssues.filter((x) => x != postid);
-        setVotedIssues(v);
-        updateDocLocal(-1)
-        var reactions = await new Parse.Query("Reaction")
-          .equalTo("type", 1)
-          .equalTo("target", postid)
-          .equalTo("user", userData?.id)
-          .find()
-        if (reactions) await Parse.Object.destroyAll(reactions)
+          //local
+          const v = votedIssues.filter((x) => x != postid);
+          setVotedIssues(v);
+          updateDocLocal(-1)
+          var reactions = await new Parse.Query("Reaction")
+            .equalTo("type", 1)
+            .equalTo("target", postid)
+            .equalTo("user", userData?.id)
+            .find()
+          if (reactions) await Parse.Object.destroyAll(reactions)
+        } else {
+          //local
+          let v = [];
+          v.push(...votedIssues);
+          v.push(postid);
+          setVotedIssues(v);
+          updateDocLocal(1)
+          await new Parse.Object("Reaction", { data: 1, type: 1, target: postid }).save()
+        }
       } else {
-        //local
-        let v = [];
-        v.push(...votedIssues);
-        v.push(postid);
-        setVotedIssues(v);
-        updateDocLocal(1)
-        await new Parse.Object("Reaction", { data: 1, type: 1, target: postid }).save()
+        setShowSignin(true);
       }
-    } else {
-      setShowSignin(true);
+    } catch (error) {
+      // if (!handleInvalidSession(error, onSignedOut)) {
+      console.log(error)
+      if (error.message.includes("Unable to connect to the Parse API"))
+        return alert("Could not connect, please check your internet connection.")
+      alert(error.message)
     }
+    // }
   }
 
 
@@ -415,7 +408,7 @@ function VotingPage() {
               <MKTypography
                 variant='body2'
 
-                onClick={() => setShowNewRequest(true)}
+                onClick={() => Parse.User.current() ? setShowNewRequest(true) : setShowSignin(true)}
                 color='info'
                 fontWeight='medium'
                 textGradient
@@ -533,7 +526,9 @@ function VotingPage() {
                   display='flex'
                 >
                   <MKBox width='100%'>
-                    {error && <strong>Error: {error.message}</strong>}
+                    {error && <Box my={1.5} px='auto' sx={{ textAlign: 'center' }}>
+                      <MKTypography variant="h3">{error.message}</MKTypography>
+                    </Box>}
                     {!error && isLoading && loadedDocs.length == 0 && count != 0 &&
                       [1, 2, 3].map((k) => (
                         <Box mb={1.5} key={k}>
