@@ -38,7 +38,8 @@ import MKTypography from 'otis/MKTypography';
 import MKButton from 'otis/MKButton';
 
 // Otis Kit PRO examples
-import DefaultNavbarDropdown from 'otis/Navbars/DefaultNavbar/DefaultNavbarDropdown';
+// import DefaultNavbarDropdown from 'otis/Navbars/DefaultNavbar/DefaultNavbarDropdown';
+import DefaultNavbarDropdown from 'bridgestars/navbar/DefaultNavbarDropdown';
 import DefaultNavbarMobile from 'otis/Navbars/DefaultNavbar/DefaultNavbarMobile';
 
 // Otis Kit PRO base styles

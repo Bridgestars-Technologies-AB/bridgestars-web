@@ -50,6 +50,11 @@ function DefaultNavbarDropdown({
     to: route,
   };
 
+  const isSignInElement = name === 'Sign In';
+  const displayName = isSignInElement ? (Parse.User.current() ? Parse.User.current().get("dispName") : "Sign In") : name;
+  const defaultColor = light ? 'white' : 'dark'
+  const color = isSignInElement ? (Parse.User.current() ? "success" : defaultColor) : defaultColor;
+
   return (
     <>
       <MKBox
@@ -58,7 +63,7 @@ function DefaultNavbarDropdown({
         p={1}
         display='flex'
         alignItems='baseline'
-        color={light ? 'white' : 'dark'}
+        color={defaultColor}
         opacity={light ? 1 : 0.6}
         sx={{ cursor: 'pointer', userSelect: 'none' }}
         {...(route && routeComponent)}
@@ -67,7 +72,7 @@ function DefaultNavbarDropdown({
         <MKTypography
           variant='body2'
           lineHeight={1}
-          color='inherit'
+          color={color}
           sx={{ alignSelf: 'center', '& *': { verticalAlign: 'middle' } }}
         >
           {icon}
@@ -76,10 +81,10 @@ function DefaultNavbarDropdown({
           variant='button'
           fontWeight='regular'
           textTransform='capitalize'
-          color={light ? 'white' : 'dark'}
+          color={color}
           sx={{ fontWeight: '100%', ml: 1, mr: 0.25 }}
         >
-          {name}
+          {displayName}
         </MKTypography>
         <MKTypography
           variant='body2'

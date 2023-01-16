@@ -252,6 +252,7 @@ function BridgestarsHome() {
                   color: '#ffffffee',
                   py: 'calc(5px + 1vh)',
                   px: 'calc(10px + 1vh)',
+                  mb: 'calc(calc(5px + 0.5vh) + calc(9px + 2vh))',
                   //when hover
                   '&:hover': {
                     color: '#ffffff55',
@@ -259,15 +260,15 @@ function BridgestarsHome() {
                   },
                 }}
               >
-                {'try it now'}
+                {'SIGN UP NOW'}
               </Button>
-              <MKTypography
+              {/* <MKTypography
                 variant='h5'
                 fontSize='calc(9px + 2vh)'
-                sx={{ mb: 0, mt: 'calc(5px + 0.5vh)', color: '#ffffffdd' }}
+                sx={{ mb: 0,  color: '#ffffffdd' }}
               >
                 Technical Preview available
-              </MKTypography>
+              </MKTypography> */}
             </Container>
           </Zoom>
           {/* </Grid> */}
