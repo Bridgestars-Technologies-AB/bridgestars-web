@@ -48,6 +48,11 @@ import ForgotPass from 'bridgestars/auth/forgot-pass/index.js';
 import ResetPasswordForm from 'bridgestars/auth/reset-pass/index.js';
 import CookieConsent from 'react-cookie-consent';
 import VotingPage from 'bridgestars/voting';
+import Success from 'bridgestars/info/stripe/paymentSuccess';
+import Failure from 'bridgestars/info/stripe/paymentFailure';
+import Back from 'bridgestars/info/stripe/back';
+
+
 
 import './style.css';
 import 'parse-config';
@@ -91,7 +96,7 @@ export default function App() {
         <Route path='/about' element={<About />} />
         {/* <Route path='/signin' element={<SigninForm />} /> */}
         <Route path='/download' element={<Download />} />
-        <Route path='/vote' element={<VotingPage />} />
+        {/* <Route path='/vote' element={<VotingPage />} /> */}
         <Route path='/betasignup' element={<BetaSignupForm />} />
         <Route path='/signin' element={<SigninForm />} />
         <Route path='/signin/*' element={<SigninForm />} />
@@ -100,6 +105,9 @@ export default function App() {
         <Route path='/forgot-pass' element={<ForgotPass />} />
         <Route path='/forgotpass' element={<ForgotPass />} />
         <Route path='/wip' element={<WIP />} />
+        <Route path='/success' element={<Success />} />
+        <Route path='/failure' element={<Failure />} />
+        <Route path='/back' element={<Back />} />
         {/* <Route path='/reset-pass' element={<ResetPasswordForm />} /> */}
         {getRoutes(routes)}
       </Routes>

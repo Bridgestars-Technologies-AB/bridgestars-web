@@ -273,7 +273,7 @@ function BridgestarsHome() {
           {/* </Grid> */}
         </div>
       </div>
-      <div style={{ backgroundColor: 'rgb(15,0,15)' }} className='background' />
+      <div style={{ backgroundColor: 'rgb(5,0,5)' }} className='background' />
 
       <Grid container width='100%' justifyContent='center'>
         <Grid

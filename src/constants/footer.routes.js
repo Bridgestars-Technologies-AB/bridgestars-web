@@ -67,10 +67,10 @@ export default {
       href: '/signin',
       name: 'Account',
     },
-    {
-      href: '/vote',
-      name: 'Vote',
-    },
+    // {
+    //   href: '/vote',
+    //   name: 'Vote',
+    // },
     {
       href: '/about',
       name: 'About',
