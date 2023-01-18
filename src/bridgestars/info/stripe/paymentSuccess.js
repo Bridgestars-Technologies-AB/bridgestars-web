@@ -6,7 +6,7 @@ import image from 'assets/images/bridgestars/about_us.svg';
 import BridgestarsFooter from '../../components/footer/BridgestarsFooter';
 import Message from './message'
 
-export default function paymentSuccess() {
+export default function draw() {
     return (
         <Message
                         title='Thank you for choosing Bridgestars!'

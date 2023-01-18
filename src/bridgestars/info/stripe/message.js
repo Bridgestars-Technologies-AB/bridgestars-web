@@ -27,7 +27,8 @@ export default function drawMessage({ title, description, description2, image })
                             my={3}
                             component='img'
                             src={image}
-                            width={{ xs: '100%', sm: '80%', xl: '50%' }}
+                            width={{ xs: '70%', sm: '60%', xl: '50%' }}
+                            // height='20%'
                         ></MKBox>
                     </Grid>
                     <Box>
