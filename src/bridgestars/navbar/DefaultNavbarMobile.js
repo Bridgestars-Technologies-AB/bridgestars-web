@@ -39,6 +39,7 @@ function DefaultNavbarMobile({ routes, open }) {
     collapse === name ? setCollapse(false) : setCollapse(name);
 
 
+
   const renderNavbarItems = routes.map(
     ({
       name,

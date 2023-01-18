@@ -54,7 +54,6 @@ function DefaultNavbarDropdown({
   const displayName = isSignInElement ? (Parse.User.current() ? Parse.User.current().get("dispName") : "Sign In") : name;
   const defaultColor = light ? 'white' : 'dark'
   const color = isSignInElement ? (Parse.User.current() ? "success" : defaultColor) : defaultColor;
-  console.log("DefaultNavbarDropdown render with name and color: ", name, color, " and dispName: ", Parse.User.current() ? Parse.User.current().get("dispName") : "undefined");
 
   return (
     <>
