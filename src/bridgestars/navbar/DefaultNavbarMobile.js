@@ -30,13 +30,14 @@ import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
 
 // Otis Kit PRO examples
-import DefaultNavbarDropdown from 'otis/Navbars/DefaultNavbar/DefaultNavbarDropdown';
+import DefaultNavbarDropdown from 'bridgestars/navbar/DefaultNavbarDropdown';
 
 function DefaultNavbarMobile({ routes, open }) {
   const [collapse, setCollapse] = useState('');
 
   const handleSetCollapse = (name) =>
     collapse === name ? setCollapse(false) : setCollapse(name);
+
 
   const renderNavbarItems = routes.map(
     ({

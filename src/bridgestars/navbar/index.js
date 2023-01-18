@@ -40,7 +40,7 @@ import MKButton from 'otis/MKButton';
 // Otis Kit PRO examples
 // import DefaultNavbarDropdown from 'otis/Navbars/DefaultNavbar/DefaultNavbarDropdown';
 import DefaultNavbarDropdown from 'bridgestars/navbar/DefaultNavbarDropdown';
-import DefaultNavbarMobile from 'otis/Navbars/DefaultNavbar/DefaultNavbarMobile';
+import DefaultNavbarMobile from 'bridgestars/navbar/DefaultNavbarMobile';
 
 // Otis Kit PRO base styles
 import breakpoints from 'assets/theme/base/breakpoints';
@@ -611,6 +611,20 @@ function BridgestarsNavbar({
           >
             <Icon fontSize='default'>{mobileNavbar ? 'close' : 'menu'}</Icon>
           </MKBox>
+            {mobileView && Parse.User.current() && (
+          <MKBox
+            display={{ xs: 'inline-block', md: 'none' }}
+            lineHeight={0}
+            py={1.5}
+            pl={1.5}
+            color={"success"}
+            sx={{ cursor: 'pointer' }}
+            onClick={openMobileNavbar}
+            mt={-0.5}
+          >
+              <Icon fontSize='default'>account_circle</Icon>
+          </MKBox>
+            )}
         </MKBox>
         <MKBox
           bgColor={transparent ? 'white' : 'transparent'}

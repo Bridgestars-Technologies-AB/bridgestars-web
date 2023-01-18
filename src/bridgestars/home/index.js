@@ -174,23 +174,25 @@ function BridgestarsHome() {
 
   return (
     <>
-      <BridgestarsNavbar
-        routes={routes.filter((r) => r.name != 'Home')}
-        // action={
-        //   window.innerWidth > 370
-        //     ? {
-        //         type: 'internal',
-        //         route: '/signin',
-        //         label: 'sign in',
-        //         color: 'primary',
-        //       }
-        //     : false
-        // }
-        transparent
-        light
-        // shadow
-        fullWidth
-      />
+      {showUI &&
+        <BridgestarsNavbar
+          routes={routes.filter((r) => r.name != 'Home')}
+          // action={
+          //   window.innerWidth > 370
+          //     ? {
+          //         type: 'internal',
+          //         route: '/signin',
+          //         label: 'sign in',
+          //         color: 'primary',
+          //       }
+          //     : false
+          // }
+          transparent
+          light
+          // shadow
+          fullWidth
+        />
+      }
 
       <div style={{ backgroundColor: 'rgba(5,8,11,1)' }}>
         <video src={bgVideo} muted autoPlay={true} playsInline={true}></video>
