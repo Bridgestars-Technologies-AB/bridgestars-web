@@ -40,12 +40,6 @@ function IssueCard({
     handleVote();
   };
 
-
-
-
-
-
-
   async function expandCard() {
     if (expanded) return setExpanded(false);
     setExpanded(true);
@@ -65,7 +59,7 @@ function IssueCard({
   const drawCardContent = (modal) => {
     return (
       <Card
-        onClick={!modal ? expandCard : () => { }}
+        onClick={!modal ? expandCard : () => {}}
         onMouseEnter={() => setCardHovered(true)}
         onMouseLeave={() => setCardHovered(false)}
         sx={{
@@ -105,7 +99,11 @@ function IssueCard({
             <Icon>close</Icon>
           </Box>
         )}
-        <Box overflow={modal && 'hidden'} pt={modal ? '15px' : '5px'} pb={modal ? '15px' : '5px'}>
+        <Box
+          overflow={modal && 'hidden'}
+          pt={modal ? '15px' : '5px'}
+          pb={modal ? '15px' : '5px'}
+        >
           <Grid container pr={{ xs: 1.5, sm: 0 }}>
             <Grid
               item
@@ -210,7 +208,6 @@ function IssueCard({
     width: '100%',
     height: '50%',
     outline: 'none',
-
   };
   return (
     <>
@@ -219,17 +216,23 @@ function IssueCard({
         <Modal
           open={expanded}
           onClose={() => setExpanded(false)}
-          style={{ overflow: 'scroll' }}
-        // style={{ content: editorStyle }}
+          style={{ overflow: 'scroll', width: '100%', height: '100%' }}
+          // style={{ content: editorStyle }}
         >
-          <Box style={{ style }} sx={{
-            py: 1.5,
-            outline: 'none',
-            alignItems: 'center',
-            display: 'flex',
-            flexDirection: 'column',
-          }}>
-            {drawCardContent(true)}
+          <Box
+            display='flex'
+            width='100%'
+            height='100%'
+            // style={{ style }}
+            sx={{
+              p: 'auto',
+              outline: 'none',
+              //   alignItems: 'center',
+              //   display: 'flex',
+              //   flexDirection: 'row',
+            }}
+          >
+            <Box m='auto'>{drawCardContent(true)}</Box>
           </Box>
         </Modal>
       ) : (
@@ -273,12 +276,12 @@ function drawOpenCommentButton(nbrComments, loading) {
             src={commentIcon}
             width={{ sm: '40px', xs: '20px' }}
           ></MKBox>
-          {nbrComments > 0 &&
+          {nbrComments > 0 && (
             <MKBox
               width='min-content'
               height='min-content'
               mt={0.3}
-              pt={0.20}
+              pt={0.2}
               pb={0.35}
               px={{ sm: 0.9, xs: 0.75 }}
               bgColor='primary'
@@ -298,7 +301,8 @@ function drawOpenCommentButton(nbrComments, loading) {
               >
                 {nbrComments}
               </MKTypography>
-            </MKBox>}
+            </MKBox>
+          )}
         </Box>
       )}
     </>
@@ -366,7 +370,7 @@ function drawStatus({ statusInt, ...rest }) {
       default:
         return 'Live';
     }
-  }
+  };
   const status = statusText(statusInt);
   const statusColor = () => {
     switch (status) {

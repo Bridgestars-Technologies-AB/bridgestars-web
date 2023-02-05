@@ -52,11 +52,8 @@ import Success from 'bridgestars/info/stripe/paymentSuccess';
 import Failure from 'bridgestars/info/stripe/paymentFailure';
 import Back from 'bridgestars/info/stripe/back';
 
-
-
 import './style.css';
 import 'parse-config';
-
 
 export default function App() {
   const { pathname } = useLocation();
@@ -75,12 +72,7 @@ export default function App() {
 
       if (route.route) {
         return (
-          <Route
-            exact
-            path={route.route}
-            element={route.component}
-            key={i}
-          />
+          <Route exact path={route.route} element={route.component} key={i} />
         );
       }
 
@@ -96,7 +88,7 @@ export default function App() {
         <Route path='/about' element={<About />} />
         {/* <Route path='/signin' element={<SigninForm />} /> */}
         <Route path='/download' element={<Download />} />
-        {/* <Route path='/vote' element={<VotingPage />} /> */}
+        <Route path='/vote' element={<VotingPage />} />
         <Route path='/betasignup' element={<BetaSignupForm />} />
         <Route path='/signin' element={<SigninForm />} />
         <Route path='/signin/*' element={<SigninForm />} />

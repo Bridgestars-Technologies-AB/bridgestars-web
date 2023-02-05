@@ -59,7 +59,8 @@ import Icon from '@mui/material/Icon';
 // import SignInIllustration from 'layouts/authentication/sign-in/illustration';
 // import SignInSimplePage from 'layouts/authentication/sign-in/simple';
 // import SignupForm from 'bridgestars/auth/sign-up';
-// import SigninForm from 'bridgestars/auth/sign-in';
+import SigninForm from 'bridgestars/auth/sign-in';
+import SigninModal from 'bridgestars/components/modal';
 // import ResetPasswordPage from 'layouts/authentication/reset-password/cover';
 
 // Sections
@@ -138,17 +139,17 @@ const routes = [
     route: '/policy',
     //component: <SigninForm />,
   },
-  // {
-  //   name: 'Vote',
-  //   icon: <Icon>gavel</Icon>,
-  //   route: '/vote',
-  //   //component: <SigninForm />,
-  // },
+  {
+    name: 'Vote',
+    icon: <Icon>gavel</Icon>,
+    route: '/vote',
+    //component: <SigninForm />,
+  },
   {
     name: 'Sign In',
     icon: <Icon>account_circle</Icon>,
     route: '/signin',
-    //component: <SigninForm />,
+    //component: <SigninForm modal />,
   },
 ];
 

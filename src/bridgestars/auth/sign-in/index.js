@@ -36,8 +36,7 @@ import useValidator from 'bridgestars/auth/sign-in/validator.js';
 //   signOut,
 //   sendPasswordResetEmail,
 // } from 'firebase/auth';
-import Parse from 'parse'
-
+import Parse from 'parse';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -53,9 +52,8 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
   const [goToForgotPass, setGoToForgotPass] = useState(false);
 
   useEffect(() => {
-    onAuthStateChanged()
-  }, [])
-
+    onAuthStateChanged();
+  }, []);
 
   function onAuthStateChanged() {
     const user = Parse.User.current();
@@ -100,7 +98,8 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
         // if (errorCode.includes('password')) {
         //   setErrors({ password: 'Wrong password' });
         // }
-        alert(error.message
+        alert(
+          error.message
           // errorCodes[errorCode]
           //   ? errorCodes[errorCode]
           //   : errorCode.split('/')[1].replaceAll('-', ' ')
@@ -109,11 +108,11 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
   };
 
   const formFailure = () => {
-    setShowLoader(false)
-  }
+    setShowLoader(false);
+  };
 
-  const [showLoader, setShowLoader] = useState(false)
-
+  const [showLoader, setShowLoader] = useState(false);
+  const navigate = useNavigate();
   const [policy, setPolicy] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const firstTitle = header ? header : 'Sign in to your Bridgestars account';
@@ -124,14 +123,19 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigateTo = useNavigate();
 
-  const { formDenied, values, errors, handleChange, validatorHandleSubmit, clearForm } =
-    useValidator(formSuccess, formFailure);
-
+  const {
+    formDenied,
+    values,
+    errors,
+    handleChange,
+    validatorHandleSubmit,
+    clearForm,
+  } = useValidator(formSuccess, formFailure);
 
   const handleSubmit = () => {
-    setShowLoader(true)
-    validatorHandleSubmit()
-  }
+    setShowLoader(true);
+    validatorHandleSubmit();
+  };
 
   //TODO
   // onAuthStateChanged(auth, (user) => {
@@ -206,10 +210,11 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
           size='large'
           fullWidth
         >
-          {showLoader ?
-            <PulseLoader color='white' speedMultiplier={1} size={8} /> :
-            'sign in'}
-
+          {showLoader ? (
+            <PulseLoader color='white' speedMultiplier={1} size={8} />
+          ) : (
+            'sign in'
+          )}
         </MKButton>
       </MKBox>
       <MKBox mt={2} mb={1} textAlign='center'>
@@ -258,18 +263,25 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
       </Grid>
     </MKBox>
   );
-  if (goToSignUp) return (
-    <BetaSignupForm
-      modalexitcallback={modal ? modalexitcallback : null}
-      modal={modal}
-      {...rest}
-    />
-  );
+  if (goToSignUp)
+    return (
+      <BetaSignupForm
+        modalexitcallback={modal ? modalexitcallback : null}
+        modal={modal}
+        {...rest}
+      />
+    );
   else if (goToForgotPass)
     return (
       <ForgotPasswordForm
         modal={modal}
-        modalexitcallback={modal ? modalexitcallback : () => { setGoToForgotPass(false) }}
+        modalexitcallback={
+          modal
+            ? modalexitcallback
+            : () => {
+                setGoToForgotPass(false);
+              }
+        }
         doneCallback={() => setGoToForgotPass(false)}
         quitCallback={() => setGoToForgotPass(false)}
         {...rest}
@@ -303,15 +315,16 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
                 // }
                 onClick={() => {
                   if (modal) modalexitcallback();
-                  else navigateTo('/');
+                  else navigate(-1);
+                  // else navigateTo('/');
                 }}
                 size='medium'
                 fontSize='2vmin'
                 fullWidth
                 color='info'
-              //sx={{ color: ({ palette: { dark } }) => dark.main }}
+                //sx={{ color: ({ palette: { dark } }) => dark.main }}
               >
-                {modal ? 'done' : 'home'}
+                {modal ? 'done' : 'back'}
               </MKButton>
             </MKBox>
             <Grid container item xs={12} justifyContent='center'>
@@ -345,7 +358,7 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
 }
 SigninForm.defaultProps = {
   modal: false,
-  modalexitcallback: () => { },
+  modalexitcallback: () => {},
   header: 'Sign in to your Bridgestars account',
 };
 

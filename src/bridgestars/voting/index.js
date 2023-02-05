@@ -15,9 +15,8 @@ import {
   Select,
   InputLabel,
   MenuItem,
-  FormControl
+  FormControl,
 } from '@mui/material';
-
 
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
@@ -40,12 +39,12 @@ import SigninForm from 'bridgestars/auth/sign-in';
 import SearchBar from 'bridgestars/components/SearchBar';
 import handleInvalidSession from 'bridgestars/tools/handleInvalidSession';
 import DrawNewRequestDialog from 'bridgestars/voting/newRequest';
+import SigninModal from 'bridgestars/components/modal';
 //STYLE
 
 //DATABASE
 import Parse from 'parse';
 import { useParseQuery } from '@parse/react';
-
 
 function drawCountBadge({ nbr, ...rest }) {
   return (
@@ -63,7 +62,7 @@ function drawCountBadge({ nbr, ...rest }) {
         top: { sm: '-2px', xs: '-1.5px' },
         zIndex: 1000,
         borderRadius: '20px',
-        ...rest
+        ...rest,
       }}
     >
       <MKTypography
@@ -101,27 +100,25 @@ function VotingPage() {
     results, // Stores the current results in an array of Parse Objects
     count, // Stores the current results count
     error, // Stores any error
-    reload // Function that can be used to reload the data
+    reload, // Function that can be used to reload the data
   } = useParseQuery(
     parseQuery, // The Parse Query to be used
     {
       enabled: true, // Enables the parse query (default: true)
-      enableLocalDatastore: true, // Enables cache in local datastore (default: true)
-      enableLiveQuery: false // Enables live query for real-time update (default: true)
+      enableLocalDatastore: false, // Enables cache in local datastore (default: true)
+      enableLiveQuery: false, // Enables live query for real-time update (default: true)
     }
   );
 
   async function onSignedOut() {
-    console.log(error)
+    console.log(error);
     if (signedIn) {
-
       // if (Parse.User.current() && error.message.includes("Invalid session token")) reload()
       setSignedIn(false);
       try {
         await Parse.User.logOut();
       } catch (e) {
-
-        console.log(e)
+        console.log(e);
       }
     }
   }
@@ -132,21 +129,26 @@ function VotingPage() {
     console.log('isSyncing: ' + isSyncing);
     console.log('count: ' + count);
     console.log('error: ' + error);
-    console.log("...")
-    if (error?.message?.includes("Invalid session token")) onSignedOut();
+    console.log('...');
+    // if (error?.message?.includes('Invalid session token')) onSignedOut();
     // handleInvalidSession(error, onSignedOut)
-
   }, [isLoading, isLive, isSyncing, count, error]);
 
   useEffect(() => {
     if (results && !isLoading && !error) {
-      console.log(JSON.stringify(results))
-      setLoadedDocs(results.map(r => { return { obj: r, votes: r.get("reactions")["1"] ?? 0, id: r.id } }));
-      if (Parse.User.current()) getUserVotes(userData?.id, results.map(r => r.id))
+      console.log(JSON.stringify(results));
+      setLoadedDocs(
+        results.map((r) => {
+          return { obj: r, votes: r.get('reactions')['1'] ?? 0, id: r.id };
+        })
+      );
+      if (Parse.User.current())
+        getUserVotes(
+          Parse.User.current().id,
+          results.map((r) => r.id)
+        );
     }
   }, [results]);
-
-
 
   const [votedIssues, setVotedIssues] = useState([]);
   const [userData, setUserData] = useState({});
@@ -155,44 +157,55 @@ function VotingPage() {
   const [showSignin, setShowSignin] = useState(false);
   const [loadedDocs, setLoadedDocs] = useState([]);
   useEffect(() => {
-    if (Parse.User.current()) {
-      if (Parse.User.current())
-        setSignedIn(true);
-      setUserData(Parse.User.current());
-    }
-  }, [showSignin])
+    // if (Parse.User.current()) {
+    if (Parse.User.current()) setSignedIn(true);
+    setUserData(Parse.User.current());
+    // }
+  }, [showSignin]);
 
   useEffect(() => {
-    if (signedIn && results && !isLoading && !error && votedIssues.length == 0) {
-      getUserVotes(userData?.id, loadedDocs.map(r => r.id))
+    if (
+      signedIn &&
+      results &&
+      !isLoading &&
+      !error &&
+      votedIssues.length == 0
+    ) {
+      // getUserVotes(
+      //   userData?.id,
+      //   loadedDocs.map((r) => r.id)
+      // );
     }
   }, [signedIn]);
 
   useEffect(() => {
-    console.log("signedIn: " + signedIn)
+    console.log('signedIn: ' + signedIn);
+    console.log('Parse.user.current(): ' + !!Parse.User.current());
   }, [signedIn]);
-
-
 
   async function getUserVotes(uid, postIds) {
     if (postIds.length > 0 && Parse.User.current()) {
       try {
         const votes = await new Parse.Query('Reaction')
           .equalTo('user', uid)
-          .equalTo("type", 1)
-          .containedIn("target", postIds).find(); //find posts which this user has voted
-        console.log("FETCHED VOTED ISSUES: " + JSON.stringify(votes))
-        console.log("contained in " + JSON.stringify(postIds))
-        const posts = votes.map(vote => vote.get('target'));
+          .equalTo('type', 1)
+          .containedIn('target', postIds)
+          .find(); //find posts which this user has voted
+        console.log('FETCHED VOTED ISSUES: ' + JSON.stringify(votes));
+        console.log('contained in ' + JSON.stringify(postIds));
+        const posts = votes.map((vote) => vote.get('target'));
         setVotedIssues([...posts, ...votedIssues]);
       } catch (error) {
         // if (!handleInvalidSession(error, onSignedOut)) {
-
-        if (error?.message?.includes("Invalid session token")) return onSignedOut();
-        console.log(error)
-        if (error.message.includes("Unable to connect to the Parse API"))
-          alert("Could not connect, please check your internet connection.")
-        else alert(error.message)
+        if (error?.message?.includes('Invalid session token')) {
+          console.log('invalid session token when getting user votes');
+          console.log('sessionid: ' + Parse.User.current().getSessionToken());
+          return onSignedOut();
+        }
+        console.log(error);
+        if (error.message.includes('Unable to connect to the Parse API'))
+          alert('Could not connect, please check your internet connection.');
+        else alert(error.message);
       }
       // }
     }
@@ -249,44 +262,47 @@ function VotingPage() {
           loadedDocs.map((doc) => (doc.id == postid ? incr(doc) : doc))
         );
       };
-      console.log("signedin:" + signedIn)
+      console.log('signedin:' + signedIn);
       if (Parse.User.current()) {
-        if (votedIssues == null) setVotedIssues([])
+        if (votedIssues == null) setVotedIssues([]);
         if (votedIssues.includes(postid)) {
-
           //local
           const v = votedIssues.filter((x) => x != postid);
           setVotedIssues(v);
-          updateDocLocal(-1)
-          var reactions = await new Parse.Query("Reaction")
-            .equalTo("type", 1)
-            .equalTo("target", postid)
-            .equalTo("user", userData?.id)
-            .find()
-          if (reactions) await Parse.Object.destroyAll(reactions)
+          updateDocLocal(-1);
+          var reactions = await new Parse.Query('Reaction')
+            .equalTo('type', 1)
+            .equalTo('target', postid)
+            .equalTo('user', userData?.id)
+            .find();
+          if (reactions) await Parse.Object.destroyAll(reactions);
         } else {
           //local
           let v = [];
           v.push(...votedIssues);
           v.push(postid);
           setVotedIssues(v);
-          updateDocLocal(1)
-          await new Parse.Object("Reaction", { data: 1, type: 1, target: postid }).save()
+          updateDocLocal(1);
+          await new Parse.Object('Reaction', {
+            data: 1,
+            type: 1,
+            target: postid,
+          }).save();
         }
       } else {
         setShowSignin(true);
       }
     } catch (error) {
       // if (!handleInvalidSession(error, onSignedOut)) {
-      console.log(error)
-      if (error.message.includes("Unable to connect to the Parse API"))
-        return alert("Could not connect, please check your internet connection.")
-      alert(error.message)
+      console.log(error);
+      if (error.message.includes('Unable to connect to the Parse API'))
+        return alert(
+          'Could not connect, please check your internet connection.'
+        );
+      alert(error.message);
     }
     // }
   }
-
-
 
   async function handleNewRequest(requestId) {
     if (signedIn) {
@@ -299,36 +315,14 @@ function VotingPage() {
   const [filterBy, setFilterBy] = useState('');
   return (
     <>
-      <Modal
-        open={showSignin}
-        onClose={() => setShowSignin(false)}
-        sx={{
-          // outline: 'none',
-          outline: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          overflow: 'hidden',
-        }}
-      // style={{
-      //   outline: 0
-      // }}
-      >
-        {/* <MKBox
-          sx={{
-            outline: 'none',
-          }}
-        > */}
-        <Box sx={{ outline: 0 }}>
-          <SigninForm
-            modal
-            modalexitcallback={() => setShowSignin(false)}
-            header='To vote, please sign in to your Bridgestars account'
-          />
-        </Box>
-        {/* </MKBox> */}
-      </Modal>
-
+      <SigninModal open={showSignin} onClose={() => setShowSignin(false)}>
+        <SigninForm
+          open={showSignin}
+          modal
+          modalexitcallback={() => setShowSignin(false)}
+          header='To vote, please sign in to your Bridgestars account'
+        />
+      </SigninModal>
       {DrawNewRequestDialog(showNewRequest, setShowNewRequest)}
 
       <Grid container width='100%' justifyContent='center'>
@@ -407,8 +401,11 @@ function VotingPage() {
               </MKButton> */}
               <MKTypography
                 variant='body2'
-
-                onClick={() => Parse.User.current() ? setShowNewRequest(true) : setShowSignin(true)}
+                onClick={() =>
+                  Parse.User.current()
+                    ? setShowNewRequest(true)
+                    : setShowSignin(true)
+                }
                 color='info'
                 fontWeight='medium'
                 textGradient
@@ -513,7 +510,7 @@ function VotingPage() {
                   order={{ xs: 0, sm: 2 }}
                 >
                   {/* <Button display='inline-block'>Search</Button> */}
-                  <SearchBar onSubmit={() => { }} onClick={() => { }} />
+                  <SearchBar onSubmit={() => {}} onClick={() => {}} />
                 </Grid>
               </Grid>
               <Grid container mt={1.5}>
@@ -526,45 +523,53 @@ function VotingPage() {
                   display='flex'
                 >
                   <MKBox width='100%'>
-                    {error && <Box my={1.5} px='auto' sx={{ textAlign: 'center' }}>
-                      <MKTypography variant="h3">{error.message}</MKTypography>
-                    </Box>}
-                    {!error && isLoading && loadedDocs.length == 0 && count != 0 &&
+                    {error && (
+                      <Box my={1.5} px='auto' sx={{ textAlign: 'center' }}>
+                        <MKTypography variant='h3'>
+                          {error.message}
+                        </MKTypography>
+                      </Box>
+                    )}
+                    {!error &&
+                      isLoading &&
+                      loadedDocs.length == 0 &&
+                      count != 0 &&
                       [1, 2, 3].map((k) => (
                         <Box mb={1.5} key={k}>
                           <IssueCard loading={true} key={k + '1'}></IssueCard>
                         </Box>
                       ))}
-                    {!isLoading && !error && loadedDocs.length == 0 &&
+                    {!isLoading && !error && loadedDocs.length == 0 && (
                       <Box my={1.5} px='auto' sx={{ textAlign: 'center' }}>
-                        <MKTypography variant="h3">No posts found</MKTypography>
-                      </Box>}
+                        <MKTypography variant='h3'>No posts found</MKTypography>
+                      </Box>
+                    )}
                     {loadedDocs.length != 0 &&
                       loadedDocs.map((doc) => (
                         <Box mb={1.5} key={doc.id.substring(0, 11)}>
                           <IssueCard
                             voted={votedIssues.includes(doc.id)}
                             nbrVotes={doc.votes}
-                            nbrComments={doc.obj.get("comments")}
+                            nbrComments={doc.obj.get('comments')}
                             key={doc.id.substring(0, 10)}
                             post={doc.obj}
-                            title={doc.obj.get("title")}
-                            description={doc.obj.get("data")}
-                            author={doc.obj.get("author")}
-                            status={doc.obj.get("subtype")}
+                            title={doc.obj.get('title')}
+                            description={doc.obj.get('data')}
+                            author={doc.obj.get('author')}
+                            status={doc.obj.get('subtype')}
                             creationTime={doc.obj.createdAt}
                             handleVote={() => handleVote(doc)}
                             setShowSignin={setShowSignin}
                           ></IssueCard>
                         </Box>
                       ))}
-                    {count == 0 &&
-                      <Box
-                        textAlign='center'
-                      >
-                        <MKTypography my={2} variant='h4'>No results found</MKTypography>
+                    {count == 0 && (
+                      <Box textAlign='center'>
+                        <MKTypography my={2} variant='h4'>
+                          No results found
+                        </MKTypography>
                       </Box>
-                    }
+                    )}
                   </MKBox>
                 </Grid>
               </Grid>

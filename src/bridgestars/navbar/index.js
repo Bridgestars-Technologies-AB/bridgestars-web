@@ -113,6 +113,7 @@ function BridgestarsNavbar({
           }
         }}
         onMouseLeave={() => collapse && setDropdown(null)}
+        // onClick={() => }
         light={light}
       />
     )
@@ -516,17 +517,16 @@ function BridgestarsNavbar({
         position={relative ? 'relative' : 'absolute'}
         left={0}
         zIndex={3}
-        // sx={{width:'100%'}}        
-        sx={
-          ({
-            palette: { transparent: transparentColor, white },
-            functions: { rgba },
-          }) => ({
-            backgroundColor: transparent
-              ? transparentColor.main
-              : rgba(white.main, 0.8),
-            backdropFilter: transparent ? 'none' : `saturate(400%) blur(30px)`,
-          })}
+        // sx={{width:'100%'}}
+        sx={({
+          palette: { transparent: transparentColor, white },
+          functions: { rgba },
+        }) => ({
+          backgroundColor: transparent
+            ? transparentColor.main
+            : rgba(white.main, 0.8),
+          backdropFilter: transparent ? 'none' : `saturate(400%) blur(30px)`,
+        })}
       >
         <MKBox
           display='flex'
@@ -611,20 +611,20 @@ function BridgestarsNavbar({
           >
             <Icon fontSize='default'>{mobileNavbar ? 'close' : 'menu'}</Icon>
           </MKBox>
-            {mobileView && Parse.User.current() && (
-          <MKBox
-            display={{ xs: 'inline-block', md: 'none' }}
-            lineHeight={0}
-            py={1.5}
-            pl={1.5}
-            color={"success"}
-            sx={{ cursor: 'pointer' }}
-            onClick={openMobileNavbar}
-            mt={-0.5}
-          >
+          {mobileView && Parse.User.current() && (
+            <MKBox
+              display={{ xs: 'inline-block', md: 'none' }}
+              lineHeight={0}
+              py={1.5}
+              pl={1.5}
+              color={'success'}
+              sx={{ cursor: 'pointer' }}
+              onClick={openMobileNavbar}
+              mt={-0.5}
+            >
               <Icon fontSize='default'>account_circle</Icon>
-          </MKBox>
-            )}
+            </MKBox>
+          )}
         </MKBox>
         <MKBox
           bgColor={transparent ? 'white' : 'transparent'}
