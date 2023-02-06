@@ -59,7 +59,7 @@ function IssueCard({
   const drawCardContent = (modal) => {
     return (
       <Card
-        onClick={!modal ? expandCard : () => {}}
+        onClick={!modal ? expandCard : (e) => e.stopPropagation()}
         onMouseEnter={() => setCardHovered(true)}
         onMouseLeave={() => setCardHovered(false)}
         sx={{
@@ -216,8 +216,14 @@ function IssueCard({
         <Modal
           open={expanded}
           onClose={() => setExpanded(false)}
-          style={{ overflow: 'scroll', width: '100%', height: '100%' }}
-          // style={{ content: editorStyle }}
+          onClick={() => setExpanded(false)}
+          py='auto'
+          style={{
+            overflow: 'scroll',
+            // width: 'min-content',
+            // height: 'min-content',
+          }}
+        // style={{ content: editorStyle }}
         >
           <Box
             display='flex'
@@ -232,7 +238,9 @@ function IssueCard({
               //   flexDirection: 'row',
             }}
           >
-            <Box m='auto'>{drawCardContent(true)}</Box>
+            <Box m='auto' minWidth={{ xs: '90%', sm: '450px' }}>
+              {drawCardContent(true)}
+            </Box>
           </Box>
         </Modal>
       ) : (
