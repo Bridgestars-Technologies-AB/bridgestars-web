@@ -4,7 +4,8 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import { IconButton, Icon, Modal, Skeleton } from '@mui/material';
-
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
@@ -176,6 +177,53 @@ function IssueCard({
                   </Box>
                 )}
               </Grid>
+              {modal &&
+                (author.get('dispName') === 'admin' ||
+                  Parse.User.current().id === author.id) && (
+                  <Grid
+                    sm={12}
+                    container
+                    item
+                    sx={{
+                      flexDirection: 'row',
+                    }}
+                    display='flex'
+                    justifyContent='flex-left'
+                    alignItems='center'
+                    py={0}
+                  >
+                    <IconButton
+                      aria-label='more'
+                      id='long-button'
+                      aria-controls={open ? 'long-menu' : undefined}
+                      aria-expanded={open ? 'true' : undefined}
+                      aria-haspopup='true'
+                    // onClick={handleClick}
+                    >
+                      <EditIcon />{' '}
+                      <MKTypography ml={0.6} variant='h6'>
+                        Edit
+                      </MKTypography>
+                    </IconButton>
+                    <IconButton
+                      aria-label='more'
+                      id='long-button'
+                      aria-controls={open ? 'long-menu' : undefined}
+                      aria-expanded={open ? 'true' : undefined}
+                      aria-haspopup='true'
+                      onClick={() => {
+                        if ((voted && nbrVotes < 2) || nbrVotes < 1) {
+                          //TODO
+                        }
+                      }}
+                    >
+                      <DeleteIcon />{' '}
+                      <MKTypography ml={0.6} variant='h6'>
+                        Archive
+                      </MKTypography>
+                    </IconButton>
+                  </Grid>
+                )}
             </Grid>
             {!modal && (
               <Grid
