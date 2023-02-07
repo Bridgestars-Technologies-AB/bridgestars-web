@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
-import { IconButton, Icon, Modal, Skeleton } from '@mui/material';
+import { Button, IconButton, Icon, Modal, Skeleton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+//
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
@@ -16,6 +17,8 @@ import commentIcon from 'assets/images/bridgestars/Comments.png';
 import Comments from './cardSections/comments';
 import { drawXSVoter, drawVoter } from './cardSections/voter';
 import { drawAuthor } from './cardSections/author';
+import { useSnackbar } from 'notistack';
+import { useConfirm } from 'material-ui-confirm';
 // import { editorStyle } from 'bridgestars/text-editor/editorStyles.js';
 
 function IssueCard({
@@ -35,6 +38,9 @@ function IssueCard({
 }) {
   const [expanded, setExpanded] = useState(false);
   const [commentState, setCommentState] = useState(null);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const confirm = useConfirm();
+  const [archived, setArchived] = useState(false);
 
   const handleVoteBtnPress = (e) => {
     e.stopPropagation();
@@ -212,9 +218,39 @@ function IssueCard({
                       aria-expanded={open ? 'true' : undefined}
                       aria-haspopup='true'
                       onClick={() => {
-                        if ((voted && nbrVotes < 2) || nbrVotes < 1) {
-                          //TODO
-                        }
+                        confirm({ description: 'This action is permanent!' })
+                          .then(async () => {
+                            if ((voted && nbrVotes < 2) || nbrVotes < 1) {
+                              //TODO
+                              try {
+                                console.log('DESTORYING OBJET');
+                                console.log(JSON.stringify(post));
+                                await post.destroy();
+                                enqueueSnackbar('Request has been archived.', {
+                                  variant: 'success',
+                                });
+                                setArchived(true);
+                              } catch (e) {
+                                console.log(e.message);
+                                if (
+                                  e.message === 'Object not found for delete.'
+                                )
+                                  enqueueSnackbar(
+                                    'You do not have permission to archive this request.',
+                                    { variant: 'error' }
+                                  );
+                                else
+                                  enqueueSnackbar(e.message, {
+                                    variant: 'error',
+                                  });
+                              }
+                            } else
+                              enqueueSnackbar(
+                                "This request can't be archived since it has already been voted for.",
+                                { variant: 'error' }
+                              );
+                          })
+                          .catch(() => { });
                       }}
                     >
                       <DeleteIcon />{' '}
@@ -250,13 +286,13 @@ function IssueCard({
       </Card>
     );
   };
-  const style = {
-    position: 'absolute',
-    //left: '50%',
-    width: '100%',
-    height: '50%',
-    outline: 'none',
-  };
+  // const style = {
+  //   position: 'absolute',
+  //   //left: '50%',
+  //   width: '100%',
+  //   height: '50%',
+  //   outline: 'none',
+  // };
   return (
     <>
       {drawCardContent(false)}

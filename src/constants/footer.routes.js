@@ -43,7 +43,7 @@ const socials = [
   {
     name: 'Mail',
     link: 'mailto: info@bridgestars.net',
-    icon: <Icon  sx={{color:'#42424a'}}>email</Icon>,
+    icon: <Icon sx={{ color: '#42424a' }}>email</Icon>,
   },
 ];
 
@@ -67,10 +67,10 @@ export default {
       href: '/signin',
       name: 'Account',
     },
-    // {
-    //   href: '/vote',
-    //   name: 'Vote',
-    // },
+    {
+      href: '/vote',
+      name: 'Vote',
+    },
     {
       href: '/about',
       name: 'About',

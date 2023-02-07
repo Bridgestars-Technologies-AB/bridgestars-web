@@ -323,7 +323,7 @@ function VotingPage() {
           header='To vote, please sign in to your Bridgestars account'
         />
       </SigninModal>
-      {DrawNewRequestDialog(showNewRequest, setShowNewRequest)}
+      {DrawNewRequestDialog(showNewRequest, setShowNewRequest, reload)}
 
       <Grid container width='100%' justifyContent='center'>
         <Card
@@ -510,7 +510,7 @@ function VotingPage() {
                   order={{ xs: 0, sm: 2 }}
                 >
                   {/* <Button display='inline-block'>Search</Button> */}
-                  <SearchBar onSubmit={() => {}} onClick={() => {}} />
+                  <SearchBar onSubmit={() => { }} onClick={() => { }} />
                 </Grid>
               </Grid>
               <Grid container mt={1.5}>

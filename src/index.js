@@ -17,10 +17,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from 'App';
+import { SnackbarProvider } from 'notistack';
+import { ConfirmProvider } from 'material-ui-confirm';
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <SnackbarProvider maxSnack={3} preventDuplicate>
+      <ConfirmProvider>
+        <App />
+      </ConfirmProvider>
+    </SnackbarProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );

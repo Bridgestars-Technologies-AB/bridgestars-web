@@ -26,9 +26,12 @@ import MKInput from 'otis/MKInput';
 
 import { PulseLoader } from 'react-spinners';
 
-export default function DrawNewRequestDialog(show, setShow) {
+import { useSnackbar } from 'notistack';
+
+export default function DrawNewRequestDialog(show, setShow, createdCallback) {
   const [pageNbr, setPageNbr] = useState(1);
   const [state, setState] = useState({});
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   async function next() {
     if (pageNbr == 2) {
@@ -45,6 +48,8 @@ export default function DrawNewRequestDialog(show, setShow) {
           },
         });
         setPageNbr(4);
+        enqueueSnackbar('Request has been posted', { variant: 'success' });
+        createdCallback();
       } catch (e) {
         setPageNbr(2);
         console.log(e);
