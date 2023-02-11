@@ -27,29 +27,58 @@ import MKInput from 'otis/MKInput';
 import { PulseLoader } from 'react-spinners';
 
 import { useSnackbar } from 'notistack';
+import { useEffect } from 'react';
 
-export default function DrawNewRequestDialog(show, setShow, createdCallback) {
+export default function DrawNewRequestDialog(
+  show,
+  setShow,
+  createdCallback,
+  editDoc,
+  setEditDoc
+) {
   const [pageNbr, setPageNbr] = useState(1);
   const [state, setState] = useState({});
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
+  if (Object.keys(state).length === 0) {
+    if (editDoc && editDoc.id) {
+      setState({
+        title: editDoc.get('title'),
+        description: editDoc.get('data'),
+        // selectedCategory: editDoc.get('info')?.category,
+        // selectedType: editDoc.get('info')?.type,
+      });
+    }
+  }
   async function next() {
     if (pageNbr == 2) {
       try {
         setPageNbr(3);
-        await new Parse.Object('Post').save({
-          type: 1, //Post
-          subtype: 1, //New
-          title: state.title,
-          data: state.description,
-          info: {
+        if (editDoc && editDoc.id) {
+          editDoc.set('title', state.title);
+          editDoc.set('data', state.description);
+          editDoc.set('info', {
             category: state.selectedCategory,
             type: state.selectedType,
-          },
-        });
+          });
+          await editDoc.save();
+        } else
+          await new Parse.Object('Post').save({
+            type: 1, //Post
+            subtype: 1, //New
+            title: state.title,
+            data: state.description,
+            info: {
+              category: state.selectedCategory,
+              type: state.selectedType,
+            },
+          });
         setPageNbr(4);
         enqueueSnackbar('Request has been posted', { variant: 'success' });
         createdCallback();
+        setEditDoc((_) => undefined);
+        setPageNbr(1);
+        setState({});
       } catch (e) {
         setPageNbr(2);
         console.log(e);
@@ -80,10 +109,13 @@ export default function DrawNewRequestDialog(show, setShow, createdCallback) {
             type='text'
             fullWidth
             error={state.titleError}
-            defaultValue={state.title || ''}
+            value={state.title || ''}
             placeholder="e.g. 'In game messaging'"
             InputLabelProps={{ shrink: true }}
-            onChange={(e) => setState({ ...state, title: e.target.value })}
+            onChange={(e) => {
+              if (state.title !== e.target.value)
+                setState({ ...state, title: e.target.value });
+            }}
             helperText='* Should be a short descriptive sentence that summarizes your request.'
           />
           {/* <Box px={1}>
@@ -95,15 +127,16 @@ export default function DrawNewRequestDialog(show, setShow, createdCallback) {
             label='Description'
             error={state.descError}
             type='text'
-            defaultValue={state.description || ''}
+            value={state.description || ''}
             fullWidth
             multiline
             InputLabelProps={{ shrink: Boolean(state.description) }}
             rows={5}
             helperText='* Should be a very detailed description of the reasoning behind the request.'
-            onChange={(e) =>
-              setState({ ...state, description: e.target.value })
-            }
+            onChange={(e) => {
+              if (state.description !== e.target.value)
+                setState({ ...state, description: e.target.value });
+            }}
           />
           {/* <Box px={1}>
             <MKTypography variant='text2' style={{ fontSize: '14px', color: '#666' }}>* Should be a very detailed description of the reasoning behind the request. </MKTypography>

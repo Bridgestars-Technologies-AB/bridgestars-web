@@ -34,13 +34,14 @@ function IssueCard({
   post,
   loading,
   setShowSignin,
+  archive,
+  edit,
   ...rest
 }) {
   const [expanded, setExpanded] = useState(false);
   const [commentState, setCommentState] = useState(null);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const confirm = useConfirm();
-  const [archived, setArchived] = useState(false);
 
   const handleVoteBtnPress = (e) => {
     e.stopPropagation();
@@ -204,7 +205,7 @@ function IssueCard({
                       aria-controls={open ? 'long-menu' : undefined}
                       aria-expanded={open ? 'true' : undefined}
                       aria-haspopup='true'
-                    // onClick={handleClick}
+                      onClick={() => edit()}
                     >
                       <EditIcon />{' '}
                       <MKTypography ml={0.6} variant='h6'>
@@ -218,9 +219,9 @@ function IssueCard({
                       aria-expanded={open ? 'true' : undefined}
                       aria-haspopup='true'
                       onClick={() => {
-                        confirm({ description: 'This action is permanent!' })
-                          .then(async () => {
-                            if ((voted && nbrVotes < 2) || nbrVotes < 1) {
+                        if ((voted && nbrVotes < 2) || nbrVotes < 1) {
+                          confirm({ description: 'This action is permanent!' })
+                            .then(async () => {
                               //TODO
                               try {
                                 console.log('DESTORYING OBJET');
@@ -229,7 +230,7 @@ function IssueCard({
                                 enqueueSnackbar('Request has been archived.', {
                                   variant: 'success',
                                 });
-                                setArchived(true);
+                                archive();
                               } catch (e) {
                                 console.log(e.message);
                                 if (
@@ -244,13 +245,13 @@ function IssueCard({
                                     variant: 'error',
                                   });
                               }
-                            } else
-                              enqueueSnackbar(
-                                "This request can't be archived since it has already been voted for.",
-                                { variant: 'error' }
-                              );
-                          })
-                          .catch(() => { });
+                            })
+                            .catch(() => { });
+                        } else
+                          enqueueSnackbar(
+                            "This request can't be archived since it has already been voted for.",
+                            { variant: 'error' }
+                          );
                       }}
                     >
                       <DeleteIcon />{' '}

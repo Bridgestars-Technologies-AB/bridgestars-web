@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import React from 'react';
-
+ 
 // @mui material components
 import {
   Modal,
@@ -313,6 +313,7 @@ function VotingPage() {
 
   const [sortBy, setSortBy] = useState(0);
   const [filterBy, setFilterBy] = useState('');
+  const [editDoc, setEditDoc] = useState(undefined);
   return (
     <>
       <SigninModal open={showSignin} onClose={() => setShowSignin(false)}>
@@ -323,7 +324,13 @@ function VotingPage() {
           header='To vote, please sign in to your Bridgestars account'
         />
       </SigninModal>
-      {DrawNewRequestDialog(showNewRequest, setShowNewRequest, reload)}
+      {DrawNewRequestDialog(
+        showNewRequest,
+        setShowNewRequest,
+        reload,
+        editDoc,
+        setEditDoc
+      )}
 
       <Grid container width='100%' justifyContent='center'>
         <Card
@@ -560,6 +567,15 @@ function VotingPage() {
                             creationTime={doc.obj.createdAt}
                             handleVote={() => handleVote(doc)}
                             setShowSignin={setShowSignin}
+                            archive={() =>
+                              setLoadedDocs((docs) =>
+                                docs.filter((x) => x.id != doc.id)
+                              )
+                            }
+                            edit={() => {
+                              setEditDoc((_) => doc.obj);
+                              setShowNewRequest((_) => true);
+                            }}
                           ></IssueCard>
                         </Box>
                       ))}
