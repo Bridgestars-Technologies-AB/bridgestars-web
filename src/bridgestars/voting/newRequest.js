@@ -45,11 +45,20 @@ export default function DrawNewRequestDialog(
       setState({
         title: editDoc.get('title'),
         description: editDoc.get('data'),
-        // selectedCategory: editDoc.get('info')?.category,
-        // selectedType: editDoc.get('info')?.type,
+        selectedCategory: editDoc.get('info')?.category,
+        selectedType: editDoc.get('info')?.type,
       });
     }
   }
+
+  const reset = async () => {
+    setShow(false);
+    setEditDoc(undefined);
+    setState({});
+    await new Promise((r) => setTimeout(r, 500));
+    setPageNbr(1);
+  };
+
   async function next() {
     if (pageNbr == 2) {
       try {
@@ -76,9 +85,6 @@ export default function DrawNewRequestDialog(
         setPageNbr(4);
         enqueueSnackbar('Request has been posted', { variant: 'success' });
         createdCallback();
-        setEditDoc((_) => undefined);
-        setPageNbr(1);
-        setState({});
       } catch (e) {
         setPageNbr(2);
         console.log(e);
@@ -143,7 +149,7 @@ export default function DrawNewRequestDialog(
           </Box> */}
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setShow(false)}>Cancel</Button>
+          <Button onClick={reset}>Cancel</Button>
           <Button onClick={next}>Next</Button>
         </DialogActions>
       </>
@@ -294,9 +300,7 @@ export default function DrawNewRequestDialog(
                 mx='auto'
               />
             )}
-            {pageNbr == 4 && (
-              <Button onClick={() => setShow(false)}>okay</Button>
-            )}
+            {pageNbr == 4 && <Button onClick={reset}>okay</Button>}
           </Box>
         </Box>
       </DialogContent>

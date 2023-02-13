@@ -226,11 +226,25 @@ function IssueCard({
                               try {
                                 console.log('DESTORYING OBJET');
                                 console.log(JSON.stringify(post));
-                                await post.destroy();
-                                enqueueSnackbar('Request has been archived.', {
-                                  variant: 'success',
-                                });
-                                archive();
+                                try {
+                                  await Parse.Cloud.run('archivePost', {
+                                    uid: post.id,
+                                  });
+                                  enqueueSnackbar(
+                                    'Request has been archived.',
+                                    {
+                                      variant: 'success',
+                                    }
+                                  );
+                                  archive();
+                                } catch (e) {
+                                  enqueueSnackbar(
+                                    'Request could not be archived.',
+                                    {
+                                      variant: 'failure',
+                                    }
+                                  );
+                                }
                               } catch (e) {
                                 console.log(e.message);
                                 if (

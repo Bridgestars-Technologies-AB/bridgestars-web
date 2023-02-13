@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import React from 'react';
- 
+
 // @mui material components
 import {
   Modal,
@@ -78,8 +78,12 @@ function drawCountBadge({ nbr, ...rest }) {
 }
 
 function VotingPage() {
-  const parseQuery = new Parse.Query('Post')
+  //search filter etc
+  const [searchVal, setSearchVal] = useState(undefined);
+
+  const queryDefault = new Parse.Query('Post')
     .equalTo('type', 1)
+    .equalTo('archived', false)
     .select(
       'title',
       'votes',
@@ -88,10 +92,21 @@ function VotingPage() {
       'data',
       'reactions',
       'chat',
-      'subtype'
-    )
-    .include('author')
-    .select('author.img', 'author.dispName');
+      'subtype',
+      'info'
+    );
+
+  const [parseQuery, setParseQuery] = useState(queryDefault);
+
+  useEffect(() => {
+    console.log('usesEffect search');
+    if (searchVal) {
+      setParseQuery((p) => {
+        return p.fullText('title', searchVal);
+      });
+      reload();
+    } else setParseQuery((_) => queryDefault);
+  }, [searchVal]);
 
   let {
     isLive, // Indicates that Parse Live Query is connected
@@ -102,7 +117,9 @@ function VotingPage() {
     error, // Stores any error
     reload, // Function that can be used to reload the data
   } = useParseQuery(
-    parseQuery, // The Parse Query to be used
+    parseQuery // The Parse Query to be used
+      .include('author')
+      .select('author.img', 'author.dispName'),
     {
       enabled: true, // Enables the parse query (default: true)
       enableLocalDatastore: false, // Enables cache in local datastore (default: true)
@@ -156,6 +173,7 @@ function VotingPage() {
   const [showNewRequest, setShowNewRequest] = useState(false);
   const [showSignin, setShowSignin] = useState(false);
   const [loadedDocs, setLoadedDocs] = useState([]);
+
   useEffect(() => {
     // if (Parse.User.current()) {
     if (Parse.User.current()) setSignedIn(true);
@@ -517,7 +535,13 @@ function VotingPage() {
                   order={{ xs: 0, sm: 2 }}
                 >
                   {/* <Button display='inline-block'>Search</Button> */}
-                  <SearchBar onSubmit={() => { }} onClick={() => { }} />
+                  <SearchBar
+                    onSubmit={(val) => {
+                      console.log('Searching for: ' + val);
+                      setSearchVal(val);
+                    }}
+                    onClick={() => { }}
+                  />
                 </Grid>
               </Grid>
               <Grid container mt={1.5}>
