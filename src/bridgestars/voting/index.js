@@ -79,14 +79,12 @@ function drawCountBadge({ nbr, ...rest }) {
 
 function VotingPage() {
   //search filter etc
-  const [searchVal, setSearchVal] = useState(undefined);
 
   const queryDefault = new Parse.Query('Post')
     .equalTo('type', 1)
     .equalTo('archived', false)
     .select(
       'title',
-      'votes',
       'comments',
       'author',
       'data',
@@ -98,34 +96,54 @@ function VotingPage() {
 
   const [parseQuery, setParseQuery] = useState(queryDefault);
 
-  useEffect(() => {
-    console.log('usesEffect search');
-    if (searchVal) {
-      setParseQuery((p) => {
-        return p.fullText('title', searchVal);
-      });
-      reload();
-    } else setParseQuery((_) => queryDefault);
-  }, [searchVal]);
+  const [results, setResults] = useState();
+  const [isLoading, setIsLoading] = useState();
+  const [count, setCount] = useState();
+  const [error, setError] = useState();
+  const [reload, setReload] = useState(loadQuery);
 
-  let {
-    isLive, // Indicates that Parse Live Query is connected
-    isLoading, // Indicates that the initial load is being processed
-    isSyncing, // Indicates that the library is getting the latest data from Parse Server
-    results, // Stores the current results in an array of Parse Objects
-    count, // Stores the current results count
-    error, // Stores any error
-    reload, // Function that can be used to reload the data
-  } = useParseQuery(
-    parseQuery // The Parse Query to be used
+  const [searchVal, setSearchVal] = useState(undefined);
+  const [filterVal, setFilterVal] = useState(undefined);
+  const [sortVal, setSortVal] = useState(0);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setLoadedDocs([]);
+    console.log('usesEffect search');
+    setParseQuery((_) => {
+      let q = queryDefault;
+      if (searchVal) {
+        // q = Parse.Query.or(
+        // q.fullText('title', searchVal),
+        q = q.fullText('data', searchVal);
+        // );
+      }
+      if (filterVal && filterVal != 'All') {
+        q = q.equalTo('subtype', filterVal);
+      }
+      if (sortVal) {
+        if (sortVal === 0) q = q.descending('createdAt');
+        if (sortVal === 1) q = q.descending('reactions.1');
+      }
+      loadQuery(q);
+      return q;
+    });
+  }, [searchVal, filterVal, sortVal]);
+
+  function loadQuery(q) {
+    (q || parseQuery)
       .include('author')
-      .select('author.img', 'author.dispName'),
-    {
-      enabled: true, // Enables the parse query (default: true)
-      enableLocalDatastore: false, // Enables cache in local datastore (default: true)
-      enableLiveQuery: false, // Enables live query for real-time update (default: true)
-    }
-  );
+      .select('author.img', 'author.dispName')
+      .find()
+      .then((res) => {
+        setIsLoading(false);
+        setCount(res.length);
+        setResults(res);
+      })
+      .catch((e) => {
+        setError(e);
+      });
+  }
 
   async function onSignedOut() {
     console.log(error);
@@ -142,18 +160,21 @@ function VotingPage() {
 
   useEffect(() => {
     console.log('isLoading: ' + isLoading);
-    console.log('isLive: ' + isLive);
-    console.log('isSyncing: ' + isSyncing);
     console.log('count: ' + count);
     console.log('error: ' + error);
+    console.log('results: ', results);
     console.log('...');
     // if (error?.message?.includes('Invalid session token')) onSignedOut();
     // handleInvalidSession(error, onSignedOut)
-  }, [isLoading, isLive, isSyncing, count, error]);
+  }, [isLoading, count, error, results]);
 
   useEffect(() => {
+    console.log('updating loadedDocs');
+    console.log(Boolean(results));
+    console.log(Boolean(!isLoading));
+    console.log(Boolean(!error));
     if (results && !isLoading && !error) {
-      console.log(JSON.stringify(results));
+      console.log('updating loadedDocs');
       setLoadedDocs(
         results.map((r) => {
           return { obj: r, votes: r.get('reactions')['1'] ?? 0, id: r.id };
@@ -164,6 +185,8 @@ function VotingPage() {
           Parse.User.current().id,
           results.map((r) => r.id)
         );
+    } else {
+      console.log('results where updated but query has errors??');
     }
   }, [results]);
 
@@ -329,8 +352,6 @@ function VotingPage() {
     }
   }
 
-  const [sortBy, setSortBy] = useState(0);
-  const [filterBy, setFilterBy] = useState('');
   const [editDoc, setEditDoc] = useState(undefined);
   return (
     <>
@@ -455,9 +476,9 @@ function VotingPage() {
               >
                 <Grid item sm={4} xs={12} order={{ xs: 1, sm: 0 }}>
                   <Tabs
-                    value={sortBy}
+                    value={sortVal}
                     onChange={(e, n) => {
-                      setSortBy(n);
+                      setSortVal(n);
                     }}
                   >
                     <Tab label='Recent' icon={<Icon>schedule</Icon>} />
@@ -492,7 +513,7 @@ function VotingPage() {
                     </InputLabel>
                     <Select
                       labelId='demo-simple-select-label'
-                      value={filterBy}
+                      value={filterVal}
                       label='selectfilte'
                       width='auto'
                       sx={{
@@ -505,7 +526,7 @@ function VotingPage() {
                         color: dark.main,
                         textAlign: 'center',
                       }}
-                      onChange={(e) => setFilterBy(e.target.value)}
+                      onChange={(e) => setFilterVal(e.target.value)}
                       onClose={() => {
                         /*run query */
                       }}
@@ -561,10 +582,7 @@ function VotingPage() {
                         </MKTypography>
                       </Box>
                     )}
-                    {!error &&
-                      isLoading &&
-                      loadedDocs.length == 0 &&
-                      count != 0 &&
+                    {isLoading &&
                       [1, 2, 3].map((k) => (
                         <Box mb={1.5} key={k}>
                           <IssueCard loading={true} key={k + '1'}></IssueCard>
@@ -603,13 +621,6 @@ function VotingPage() {
                           ></IssueCard>
                         </Box>
                       ))}
-                    {count == 0 && (
-                      <Box textAlign='center'>
-                        <MKTypography my={2} variant='h4'>
-                          No results found
-                        </MKTypography>
-                      </Box>
-                    )}
                   </MKBox>
                 </Grid>
               </Grid>
