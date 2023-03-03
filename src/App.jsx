@@ -30,11 +30,11 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 // Otis Kit PRO themes
-import theme from 'assets/theme';
+import theme from './assets/theme';
 // import Presentation from 'layouts/pages/presentation';
 // import SignupForm from 'bridgestars/auth/sign-up';
-import SigninForm from 'bridgestars/auth/sign-in';
-import BetaSignupForm from 'bridgestars/auth/beta-sign-up';
+import SigninForm from './bridgestars/auth/sign-in';
+import BetaSignupForm from './bridgestars/auth/beta-sign-up';
 
 // Otis Kit PRO routes
 import routes from 'constants/routes';
@@ -54,7 +54,7 @@ import Failure from 'bridgestars/info/stripe/paymentFailure';
 import Back from 'bridgestars/info/stripe/back';
 
 import './style.css';
-import 'parse-config';
+import './parse-config';
 
 export default function App() {
   const { pathname } = useLocation();
