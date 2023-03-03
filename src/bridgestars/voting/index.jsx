@@ -43,37 +43,7 @@ import SigninModal from 'bridgestars/components/modal';
 //STYLE
 
 //DATABASE
-
-function drawCountBadge({ nbr, ...rest }) {
-  return (
-    <MKBox
-      width='min-content'
-      height='min-content'
-      mt={0.3}
-      pt={0.2}
-      pb={0.35}
-      px={{ sm: 0.9, xs: 0.75 }}
-      bgColor='primary'
-      sx={{
-        position: 'absolute',
-        left: { sm: '30px', xs: '15px' },
-        top: { sm: '-2px', xs: '-1.5px' },
-        zIndex: 1000,
-        borderRadius: '20px',
-        ...rest,
-      }}
-    >
-      <MKTypography
-        position='relative'
-        variant='h3'
-        color='white'
-        sx={{ fontSize: { sm: '12px', xs: '10px' } }}
-      >
-        {nbr}
-      </MKTypography>
-    </MKBox>
-  );
-}
+import {generateMenuItems} from 'bridgestars/voting/status'
 
 function VotingPage() {
   //search filter etc
@@ -98,6 +68,7 @@ function VotingPage() {
   const [results, setResults] = useState();
   const [isLoading, setIsLoading] = useState();
   const [count, setCount] = useState();
+  const [counts, setCounts] = useState();
   const [error, setError] = useState();
   const [reload, setReload] = useState(loadQuery);
 
@@ -549,20 +520,7 @@ function VotingPage() {
                         /*run query */
                       }}
                     >
-                      <MenuItem value={'all'}>All</MenuItem>
-                      <MenuItem value={'new'}>New</MenuItem>
-                      <MenuItem value={'reviewed'}>Reviewed</MenuItem>
-                      <MenuItem value={'planned'}>Planned</MenuItem>
-                      <MenuItem value={'in progress'}>In Progress</MenuItem>
-                      <MenuItem value={'in beta'}>In Beta</MenuItem>
-                      <MenuItem value={'done'}>Done</MenuItem>
-                      <MenuItem value={'already exists'}>
-                        Already Exists
-                      </MenuItem>
-                      <MenuItem value={'live'}>
-                        Live
-                        {drawCountBadge(3)}
-                      </MenuItem>
+                    {generateMenuItems(filterVal, counts)}
                     </Select>
                   </FormControl>
                   {/* <Select display='inline-block'>By Status</Select> */}

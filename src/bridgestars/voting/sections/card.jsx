@@ -19,6 +19,8 @@ import { drawXSVoter, drawVoter } from './cardSections/voter';
 import { drawAuthor } from './cardSections/author';
 import { useSnackbar } from 'notistack';
 import { useConfirm } from 'material-ui-confirm';
+
+import { statusColor, statusText } from 'bridgestars/voting/status';
 // import { editorStyle } from 'bridgestars/text-editor/editorStyles.js';
 
 function IssueCard({
@@ -456,48 +458,7 @@ function drawDescription({ description, limit = 220, loading, ...rest }) {
 }
 
 function drawStatus({ statusInt, ...rest }) {
-  const statusText = () => {
-    switch (statusInt) {
-      case 0:
-        return 'Unknown';
-      case 1:
-        return 'New';
-      case 2:
-        return 'Reviewed';
-      case 3:
-        return 'Planned';
-      case 4:
-        return 'In Progress';
-      case 5:
-        return 'In Beta';
-      case 6:
-        return 'Already Exists';
-      default:
-        return 'Live';
-    }
-  };
   const status = statusText(statusInt);
-  const statusColor = () => {
-    switch (status) {
-      case 'Unknown':
-        return '150, 150, 150';
-      case 'New':
-        return '200, 124, 247';
-      case 'Reviewed':
-        return '124, 150, 247';
-      case 'Planned':
-        return '111, 241, 220';
-      case 'In Progress':
-        return '247, 241, 124';
-      case 'In Beta':
-        return '150, 247, 124';
-      case 'Already Exists':
-        return '255, 100, 50';
-      default:
-        //Live
-        return '58, 191, 43';
-    }
-  };
   if (status)
     return (
       <Box
@@ -507,7 +468,7 @@ function drawStatus({ statusInt, ...rest }) {
         px={0.6}
         py={0.2}
         mt={0.2}
-        bgcolor={`rgba(${statusColor()}, 0.5)`}
+        bgcolor={`rgba(${statusColor(status)}, 0.5)`}
         sx={{
           borderRadius: '3px',
         }}
