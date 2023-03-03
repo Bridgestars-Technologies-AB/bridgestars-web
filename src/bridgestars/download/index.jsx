@@ -40,12 +40,11 @@ import footerRoutes from 'constants/footer.routes';
 import bgImage from 'assets/images/bridgestars/home_page.svg';
 import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter';
 import BridgestarsNavbar from 'bridgestars/navbar';
-import DownloadCard from './sections/DownloadCard.js';
+import DownloadCard from './sections/DownloadCard';
 
 function DownloadPage() {
   return (
     <>
-      
       <Grid container width='100%' justifyContent='center'>
         <Card
           sx={{
@@ -72,8 +71,8 @@ function DownloadPage() {
             sticky
             dark
             fullWidth
-            //relative
-            //transparent
+          //relative
+          //transparent
           />
           <Grid container item alignItems='center' flexDirection='column'>
             <MKBox

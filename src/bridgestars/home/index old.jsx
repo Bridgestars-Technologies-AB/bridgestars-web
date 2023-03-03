@@ -18,8 +18,8 @@ import { useEffect, useRef } from 'react';
 // rellax
 // import Rellax from 'rellax';
 
-// typed-js
-import * as Typed from 'typed.js';
+// typed
+import * as Typed from 'typed';
 
 // @mui material components
 import Container from '@mui/material/Container';
@@ -37,7 +37,7 @@ import BridgestarsNavbar from 'bridgestars/navbar';
 
 // About Us page sections
 // import Information from 'pages/Company/AboutUs/sections/Information';
-import Testimonials from './sections/Testimonial.js';
+import Testimonials from './sections/Testimonial';
 // import Featuring from 'pages/Company/AboutUs/sections/Featuring';
 // import Newsletter from 'pages/Company/AboutUs/sections/Newsletter';
 
@@ -57,7 +57,7 @@ import { positions } from '@mui/system';
 import Features from 'bridgestars/home/sections/Features';
 import Upcoming from 'bridgestars/home/sections/Upcoming';
 import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter';
-import Discord from './sections/Discord.js';
+import Discord from './sections/Discord';
 
 // Routes
 import { Link } from 'react-router-dom';
@@ -93,10 +93,10 @@ function BridgestarsHome() {
   //   return () => parallax.destroy();
   // }, []);
 
-  // Setting up typedJS
+  // Setting up type
   useEffect(() => {
     if (typeNext == 0) {
-      const typedJS = new Typed(typedHeaderRef.current, {
+      const type = new Typed(typedHeaderRef.current, {
         strings: ['BRIDGESTARS'],
         typeSpeed: 70,
         startDelay: 150,
@@ -108,13 +108,13 @@ function BridgestarsHome() {
       });
     }
     return () => {
-      const typedJS = 'BRIDGESTARS';
+      const type = 'BRIDGESTARS';
     };
   }, []);
 
   // useEffect(() => {
   //   if (typeNext == 1) {
-  //     const typedJS2 = new Typed(typedSubHeaderRef.current, {
+  //     const type2 = new Typed(typedSubHeaderRef.current, {
   //       strings: [
   //         'Online Bridge platforms have become outdated. ^300\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^300for free.',
   //       ],
@@ -130,7 +130,7 @@ function BridgestarsHome() {
   //     });
   //   }
   //   return () => {
-  //     const typedJS2 =
+  //     const type2 =
   //       'Online Bridge platforms have become outdated.\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^300for free.';
   //   };
   // }, [typeNext]);
@@ -180,7 +180,6 @@ function BridgestarsHome() {
           backgroundPosition: 'center',
           display: 'grid',
           placeItems: 'center',
-          
         }}
       >
         <Container>
@@ -192,7 +191,6 @@ function BridgestarsHome() {
             lg={12}
             justifyContent='center'
             alignItems='center'
-
             // flexDirection='column'
             sx={{ mx: 'auto', textAlign: 'center' }}
           >
@@ -216,7 +214,6 @@ function BridgestarsHome() {
                 fontSize='min(24px, calc(12px + 1.5vmin))'
                 opacity={0.8}
                 width={{ xs: '90%', md: '60%' }}
-                
                 mt={1}
                 mb={0}
               >
@@ -234,7 +231,7 @@ function BridgestarsHome() {
                   color='white'
                   sx={{ mt: { xs: 1, sm: 3 } }}
                 >
-                 Technical Preview available now!
+                  Technical Preview available now!
                 </MKTypography>
                 <MKButton
                   variant='gradient'
@@ -262,9 +259,9 @@ function BridgestarsHome() {
       <Grid container width='100%' justifyContent='center'>
         <Card
           sx={{
-            p: {xs:0.5, sm:2},
-            mx: { xs: 0, sm:2, lg: 3 },
-            mt: {xs:0, sm:-3, md:-4, lg:-6},
+            p: { xs: 0.5, sm: 2 },
+            mx: { xs: 0, sm: 2, lg: 3 },
+            mt: { xs: 0, sm: -3, md: -4, lg: -6 },
             mb: 4,
             width: { xxl: 1600, xl: '100%' },
             boxShadow: ({ boxShadows: { xxl } }) => xxl,

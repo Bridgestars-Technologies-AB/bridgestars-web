@@ -19,11 +19,10 @@ import PropTypes from 'prop-types';
 import SwiperCore, { Autoplay, Navigation } from 'swiper';
 
 // SwiperJS react components
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // SwiperJS styles
 import 'swiper/swiper.min.css';
-import 'swiper/modules/navigation/navigation.min.css';
 
 // @mui material components
 import Container from '@mui/material/Container';

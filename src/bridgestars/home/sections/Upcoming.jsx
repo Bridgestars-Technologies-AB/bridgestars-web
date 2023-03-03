@@ -22,10 +22,6 @@ import Icon from '@mui/material/Icon';
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
 import MKBadge from 'otis/MKBadge';
-import {
-  RadioButtonUncheckedIcon,
-  CheckBoxOutlineBlankRounded,
-} from '@mui/icons-material';
 
 function Upcoming() {
   const data = [
@@ -133,9 +129,9 @@ function Upcoming() {
                       display='flex'
                       lineHeight={1.25}
                       mx='auto'
-                      //sx={{ justifyContent: 'center' }}
-                      //textAlign='left'
-                      //textAlign='left'
+                    //sx={{ justifyContent: 'center' }}
+                    //textAlign='left'
+                    //textAlign='left'
                     >
                       <MKBox
                         //textAlign='left'
@@ -149,7 +145,7 @@ function Upcoming() {
                         }}
                         display='flex'
                         lineHeight={1.25}
-                        //mx='auto'
+                      //mx='auto'
                       >
                         <MKTypography variant='body1' color='primary'>
                           <Icon sx={{ fontWeight: 'bold' }}>

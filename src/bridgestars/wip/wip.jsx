@@ -32,7 +32,6 @@ export default function WIP() {
             color: '#ffa100',
             fontWeight: 'bold',
             fontSize: '16px',
-            margin: '0 0 8px',
           }}
         >
           Work In Progress
@@ -47,8 +46,6 @@ export default function WIP() {
             color: '#ffa100',
             fontWeight: 500,
             fontSize: '22px',
-            margin: '0 0 16px',
-            color: 'rgba(0, 0, 0, 0.6)',
           }}
         >
           This page is under construction, please come back in a while

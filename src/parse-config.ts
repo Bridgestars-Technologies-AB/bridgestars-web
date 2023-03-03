@@ -25,10 +25,18 @@
 //   firebaseConfig.apiKey +
 //   '&';
 
+import Parse from 'parse/dist/parse.min.js';
+globalThis.Parse = Parse;
 
-import { initializeParse } from '@parse/react';
+const initializeParse = (serverURL, applicationId, javascriptKey) => {
+  Parse.serverURL = serverURL;
+  Parse.initialize(applicationId, javascriptKey);
+  //Parse.enableLocalDatastore();
+};
 
 initializeParse(
   'https://aws.lb.bridgestars.net/rest',
-  'k4PTFS2R8tSYoZC8UNXzvplbZ38jOmViOkJxJEyE',
+  'k4PTFS2R8tSYoZC8UNXzvplbZ38jOmViOkJxJEyE'
 );
+
+//

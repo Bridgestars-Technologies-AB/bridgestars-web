@@ -43,8 +43,6 @@ import SigninModal from 'bridgestars/components/modal';
 //STYLE
 
 //DATABASE
-import Parse from 'parse';
-import { useParseQuery } from '@parse/react';
 
 function drawCountBadge({ nbr, ...rest }) {
   return (

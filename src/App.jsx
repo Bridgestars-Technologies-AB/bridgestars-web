@@ -43,10 +43,10 @@ import BridgestarsHomeOld from 'bridgestars/home_old';
 import BridgestarsHome from 'bridgestars/home';
 import About from 'bridgestars/about';
 import WIP from 'bridgestars/wip/wip';
-import Policy from 'bridgestars/help/Policy/index.js';
-import Download from 'bridgestars/download/index.js';
-import ForgotPass from 'bridgestars/auth/forgot-pass/index.js';
-import ResetPasswordForm from 'bridgestars/auth/reset-pass/index.js';
+import Policy from 'bridgestars/help/Policy/index';
+import Download from 'bridgestars/download/index';
+import ForgotPass from 'bridgestars/auth/forgot-pass/index';
+import ResetPasswordForm from 'bridgestars/auth/reset-pass/index';
 import CookieConsent from 'react-cookie-consent';
 import VotingPage from 'bridgestars/voting';
 import Success from 'bridgestars/info/stripe/paymentSuccess';
@@ -54,7 +54,7 @@ import Failure from 'bridgestars/info/stripe/paymentFailure';
 import Back from 'bridgestars/info/stripe/back';
 
 import './style.css';
-import './parse-config';
+import './parse-config'
 
 export default function App() {
   const { pathname } = useLocation();

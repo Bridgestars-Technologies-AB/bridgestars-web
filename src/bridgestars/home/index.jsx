@@ -18,7 +18,7 @@ import { useEffect, useRef } from 'react';
 // rellax
 // import Rellax from 'rellax';
 
-// typed-js
+// typed
 import * as Typed from 'typed.js';
 
 // @mui material components
@@ -38,7 +38,7 @@ import BridgestarsNavbar from 'bridgestars/navbar';
 
 // About Us page sections
 // import Information from 'pages/Company/AboutUs/sections/Information';
-import Testimonials from './sections/Testimonial.js';
+import Testimonials from './sections/Testimonial';
 // import Featuring from 'pages/Company/AboutUs/sections/Featuring';
 // import Newsletter from 'pages/Company/AboutUs/sections/Newsletter';
 
@@ -58,7 +58,7 @@ import { positions } from '@mui/system';
 import Features from 'bridgestars/home/sections/Features';
 import Upcoming from 'bridgestars/home/sections/Upcoming';
 import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter';
-import Discord from './sections/Discord.js';
+import Discord from './sections/Discord';
 
 // Routes
 import { Link } from 'react-router-dom';
@@ -99,10 +99,10 @@ function BridgestarsHome() {
   //   return () => parallax.destroy();
   // }, []);
 
-  // Setting up typedJS
+  // Setting up type
   // useEffect(() => {
   //   if (typeNext == 0) {
-  //     const typedJS = new Typed(typedHeaderRef.current, {
+  //     const type = new Typed(typedHeaderRef.current, {
   //       strings: ['BRIDGESTARS'],
   //       typeSpeed: 70,
   //       startDelay: 150,
@@ -114,13 +114,13 @@ function BridgestarsHome() {
   //     });
   //   }
   //   return () => {
-  //     const typedJS = 'BRIDGESTARS';
+  //     const type = 'BRIDGESTARS';
   //   };
   // }, []);
 
   // useEffect(() => {
   //   if (typeNext == 1) {
-  //     const typedJS2 = new Typed(typedSubHeaderRef.current, {
+  //     const type2 = new Typed(typedSubHeaderRef.current, {
   //       strings: [
   //         'Online Bridge platforms have become outdated. ^300\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^300for free.',
   //       ],
@@ -136,7 +136,7 @@ function BridgestarsHome() {
   //     });
   //   }
   //   return () => {
-  //     const typedJS2 =
+  //     const type2 =
   //       'Online Bridge platforms have become outdated.\nWe developed a modern platform for Bridge players all around the world to play unlimited Bridge ^300for free.';
   //   };
   // }, [typeNext]);
@@ -155,7 +155,7 @@ function BridgestarsHome() {
 
     const steps = 100;
     const s = 1;
-    const fadeEffect = setInterval(function () {
+    const fadeEffect = setInterval(function() {
       try {
         if (!fadeTarget || !fadeTarget.style) clearInterval(fadeEffect);
         if (!fadeTarget.style.opacity) {
@@ -174,7 +174,7 @@ function BridgestarsHome() {
 
   return (
     <>
-      {showUI &&
+      {showUI && (
         <BridgestarsNavbar
           routes={routes.filter((r) => r.name != 'Home')}
           // action={
@@ -192,7 +192,7 @@ function BridgestarsHome() {
           // shadow
           fullWidth
         />
-      }
+      )}
 
       <div style={{ backgroundColor: 'rgba(5,8,11,1)' }}>
         <video src={bgVideo} muted autoPlay={true} playsInline={true}></video>
@@ -279,13 +279,7 @@ function BridgestarsHome() {
       <div style={{ backgroundColor: 'rgb(5,0,5)' }} className='background' />
 
       <Grid container width='100%' justifyContent='center'>
-        <Grid
-          container
-          item
-          xs={12}
-          lg={12}
-          justifyContent='center'
-        >
+        <Grid container item xs={12} lg={12} justifyContent='center'>
           <Fade in={showUI} timeout={1000}>
             <Card
               sx={{

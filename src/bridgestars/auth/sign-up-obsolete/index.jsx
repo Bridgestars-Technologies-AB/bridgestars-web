@@ -35,7 +35,7 @@ import IllustrationLayout from '../IllustrationLayout';
 
 // Image
 import logo from 'assets/images/bridgestars/logo-trans-512px.png';
-import useValidator from 'bridgestars/auth/sign-up/validator.js';
+import useValidator from 'bridgestars/auth/sign-up/validator';
 
 function SignupForm() {
   //Final submit function

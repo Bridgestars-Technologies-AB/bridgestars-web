@@ -10,7 +10,6 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { Component } from 'react';
 import { Grid } from '@mui/material';
 
-
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
@@ -24,7 +23,7 @@ import IllustrationLayout from '../IllustrationLayout';
 // Image
 import bgImage from 'assets/images/bridgestars/sign_in.svg';
 import logo from 'assets/images/bridgestars/logo-trans-512px.png';
-import useValidator from 'bridgestars/auth/forgot-pass/validator.js';
+import useValidator from 'bridgestars/auth/forgot-pass/validator';
 
 // Firebase
 // import { firebaseApp, sendPasswordResetEmailLink } from 'firebase-config';
@@ -32,13 +31,13 @@ import { LineAxisOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function ForgotPasswordForm({ modal, doneCallback, quitCallback, ...rest}) {
+function ForgotPasswordForm({ modal, doneCallback, quitCallback, ...rest }) {
   const [emailSent, setEmailSent] = useState(false);
   const [title, setTitle] = useState('Forgot your password?');
   const [description, setDescription] = useState(
     'Enter your email and we will send you a one time link to replace it.'
   );
-  const navigateTo = useNavigate()
+  const navigateTo = useNavigate();
 
   const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
     useValidator();
@@ -52,8 +51,10 @@ function ForgotPasswordForm({ modal, doneCallback, quitCallback, ...rest}) {
       console.log('sending password reset email');
       // console.log(sendPasswordResetEmailLink + 'email=' + values['email']);
       Parse.User.requestPasswordReset(values['email'])
-        .then(() => console.log("email sent"))
-        .catch((error) => {alert(error)})
+        .then(() => console.log('email sent'))
+        .catch((error) => {
+          alert(error);
+        });
       //TODO: send email
       setEmailSent(true);
       setTitle('Email has been sent');
@@ -155,7 +156,7 @@ function ForgotPasswordForm({ modal, doneCallback, quitCallback, ...rest}) {
                 fontSize='2vmin'
                 fullWidth
                 color='info'
-                //sx={{ color: ({ palette: { dark } }) => dark.main }}
+              //sx={{ color: ({ palette: { dark } }) => dark.main }}
               >
                 {modal || quitCallback || doneCallback ? 'back' : 'home'}
               </MKButton>

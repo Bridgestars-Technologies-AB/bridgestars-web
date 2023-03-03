@@ -29,9 +29,9 @@ import DefaultFooter from 'otis/Footers/DefaultFooter';
 // Routes
 import routes from 'constants/routes';
 import footerRoutes from 'constants/footer.routes';
-import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter.js';
+import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter';
 import BridgestarsNavbar from 'bridgestars/navbar';
-import { Policy } from 'bridgestars/help/Policy/index.js';
+import Policy from 'bridgestars/help/Policy/index';
 
 export default function Copyright() {
   return (

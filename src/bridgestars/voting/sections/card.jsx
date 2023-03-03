@@ -80,12 +80,10 @@ function IssueCard({
           '&:hover': {
             // boxShadow: '0 0px 10px rgba(0,0,0,0.32)',
             backgroundColor: modal ? 'rgba' : 'rgba(0,0,0,0.010)',
+            opacity: 1,
           },
 
           opacity: modal ? 1 : 0.9,
-          '&:hover': {
-            opacity: 1,
-          },
           cursor: !loading && !modal && 'pointer',
 
           ...rest,

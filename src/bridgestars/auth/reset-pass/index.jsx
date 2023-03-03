@@ -14,7 +14,6 @@ Coded by www.creative-tim.com
 */
 
 import { useState } from 'react';
-import { useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 
 // react-router-dom components
@@ -41,101 +40,67 @@ import IllustrationLayout from '../IllustrationLayout';
 // Image
 import bgImage from 'assets/images/bridgestars/sign_in.svg';
 import logo from 'assets/images/bridgestars/logo-trans-512px.png';
-import useValidator from 'bridgestars/auth/beta-sign-up/validator.js';
-
-import { PulseLoader } from 'react-spinners';
+import useValidator from 'bridgestars/auth/beta-sign-up/validator';
 
 // Firebase
 // import { firebaseApp } from 'firebase-config';
+
 // import {
 //   getAuth,
-//   onAuthStateChanged,
-//   signInWithEmailAndPassword,
-//   createUserWithEmailAndPassword,
-//   signOut,
+//   verifyPasswordResetCode,
+//   confirmPasswordReset,
 // } from 'firebase/auth';
 
 import Policies from 'bridgestars/help/Policy/Policies';
 import { Button } from '@mui/material';
-import SigninForm from '../sign-in';
-import { onAuthStateChanged } from 'firebase/auth';
 
-function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
-  const [goToSignIn, setGoToSignIn] = useState(false);
-
+function ResetPasswordForm() {
   const [confirmed, setConfirmed] = useState(false);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState('Enter your new password');
   const [description, setDescription] = useState('');
-  const [showLoader, setShowLoader] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(false);
-  // const auth = getAuth(firebaseApp);
-
-  const validateSuccessCallback = ({ username, email, password }) => {
-    //setTriedToSubmit(true);
-    //AUTH SIGNIN
-    //TODO
-    Parse.User.signUp(username, password, { email: email })
-      .then((user) => {
-        // Signed in
-        setShowLoader(false);
-        setFormSuccess(true);
-        onAuthStateChanged();
-      })
-      .catch((error) => {
-        setShowLoader(false);
-        // const errorCodes = {
-        //   'auth/email-already-in-use': 'The provided email is already in use.',
-        //   'auth/email-already-exists': 'The provided email is already in use.',
-        //   'auth/invalid-email': 'The provided email is not valid',
-        //   'auth/invalid-password':
-        //     'Password should contains atleast 8 characters and contain uppercase,lowercase and numbers',
-        // };
-        alert(error.message);
-      });
-  };
-
-  useEffect(() => {
-    onAuthStateChanged();
-  }, []);
-
-  function onAuthStateChanged() {
-    if (Parse.User.current()) {
-      console.log('SIGNED IN');
-      if (formSuccess) {
-        setConfirmed(true);
-        setTitle('Welcome to the Bridgestars community!');
-        setDescription(
-          'We will reach out to you at\n(' +
-            Parse.User.current().get('email') +
-            ')\nwith a download link for the Bridgestars App.'
-        );
-      } else {
-        setConfirmed(true);
-        setTitle('You are already signed in!');
-        setDescription(
-          'Check your email for a download link for the Bridgestars App.'
-        );
-      }
-      // ...
-    } else {
-      setConfirmed(false);
-      setTitle('Become a Bridgestars Beta Tester');
-      setDescription(
-        'Enter your desired email and password below and we will send you a download link.'
-      );
-    }
-  }
-
-  const validateFailCallback = () => {
-    setShowLoader(false);
-  };
 
   const [policy, setPolicy] = useState(false);
 
   const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
-    useValidator(validateSuccessCallback, validateFailCallback);
+    useValidator(submit);
 
   //Final submit function
+  function submit() {
+    ResetPassword(auth, this.props.location.query.oobCode, '', '');
+  }
+
+  function ResetPassword(auth, actionCode, continueUrl, lang) {
+    // Localize the UI to the selected language as determined by the lang
+    // parameter.
+    // Verify the password reset code is valid.
+    //TODO
+    // verifyPasswordResetCode(auth, actionCode)
+    //   .then((email) => {
+    //     const accountEmail = email;
+    //     // TODO: Show the reset screen with the user's email and ask the user for
+    //     // the new password.
+    //     const newPassword = values['password'];
+    //     // Save the new password.
+    //     confirmPasswordReset(auth, actionCode, newPassword)
+    //       .then((resp) => {
+    //         // Password reset has been confirmed and new password updated.
+    //         // TODO: Display a link back to the app, or sign-in the user directly
+    //         // if the page belongs to the same domain as the app:
+    //         // auth.signInWithEmailAndPassword(accountEmail, newPassword);
+    //         // TODO: If a continue URL is available, display a button which on
+    //         // click redirects the user back to the app via continueUrl with
+    //         // additional state determined from that URL's parameters.
+    //       })
+    //       .catch((error) => {
+    //         // Error occurred during confirmation. The code might have expired or the
+    //         // password is too weak.
+    //       });
+    //   })
+    //   .catch((error) => {
+    //     // Invalid or expired action code. Ask user to try to reset the password
+    //     // again.
+    //   });
+  }
 
   const handleSetPolicy = (event) => {
     event.target.value = !policy;
@@ -153,39 +118,15 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
 
   const navigateTo = useNavigate();
 
-  const handleSignOut = async () => {
+  const handleSignOut = () => {
+    signOut(auth);
     clearForm();
-    await Parse.User.logOut();
-    onAuthStateChanged();
-    if (modal) setGoToSignIn(true);
-    else navigateTo('/signin');
+    navigateTo('/signin');
   };
 
   const form = () => {
     return (
-      <MKBox component='form' role='form'>
-        <MKBox mb={2}>
-          <MKInput
-            type='username'
-            name='username'
-            label='Username'
-            error={errors['username'] ? true : false || formDenied}
-            success={values['username'] && !errors['username'] ? true : false}
-            fullWidth
-            onChange={handleChange}
-          />
-        </MKBox>
-        <MKBox mb={2}>
-          <MKInput
-            type='email'
-            name='email'
-            label='Email'
-            error={errors['email'] ? true : false || formDenied}
-            success={values['email'] && !errors['email'] ? true : false}
-            fullWidth
-            onChange={handleChange}
-          />
-        </MKBox>
+      <MKBox>
         <MKBox mb={2}>
           <MKInput
             type='password'
@@ -195,6 +136,7 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
             success={values['password'] && !errors['password'] ? true : false}
             fullWidth
             onChange={handleChange}
+            onKeyPressed={(e) => e.key === 'Enter' && handleSubmit}
           />
         </MKBox>
         <MKBox mb={2}>
@@ -209,81 +151,20 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
             }
             label='Confirm Password'
             fullWidth
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                setShowLoader(true);
-                handleSubmit();
-              }
-            }}
             onChange={handleChange}
+            onKeyPressed={(e) => e.key === 'Enter' && handleSubmit}
           />
         </MKBox>
-        <Grid container item xs={12} mb={-1} justifyContent='center'>
-          <MKBox display='flex' alignItems='center' ml={-1}>
-            <Checkbox
-              checked={policy}
-              name='policy'
-              onChange={handleSetPolicy}
-            />
-            <MKTypography
-              variant='button'
-              fontWeight='regular'
-              color='text'
-              sx={{ cursor: 'default', userSelect: 'none', ml: -1 }}
-            >
-              &nbsp;&nbsp;I agree with the&nbsp;
-              <MKTypography
-                //component='button'
-                variant='button'
-                fontWeight='bold'
-                color='info'
-                textGradient
-                onClick={handlePolicyClick}
-                ml={window.innerWidth < 340 ? 1 : 0}
-                sx={{ cursor: 'pointer' }}
-              >
-                Terms and Conditions
-              </MKTypography>
-            </MKTypography>
-          </MKBox>
-        </Grid>
         <MKBox mt={4} mb={1}>
           <MKButton
-            onClick={() => {
-              setShowLoader(true);
-              handleSubmit();
-            }}
+            onClick={handleSubmit}
             variant='gradient'
             color='info'
             size='large'
             fullWidth
           >
-            {showLoader ? (
-              <PulseLoader color='white' speedMultiplier={1} size={8} />
-            ) : (
-              'register'
-            )}
+            register
           </MKButton>
-          <MKBox mt={3} mb={1} textAlign='center'>
-            <MKTypography variant='button' color='text'>
-              Already have an account?{' '}
-              <MKTypography
-                // component={Link}
-                // to='/signin'
-                variant='button'
-                color='info'
-                fontWeight='medium'
-                textGradient
-                sx={{ cursor: 'pointer' }}
-                onClick={() => {
-                  if (modal) setGoToSignIn(true);
-                  else navigateTo('/signin');
-                }}
-              >
-                Sign In
-              </MKTypography>
-            </MKTypography>
-          </MKBox>
         </MKBox>
         {/* <MKBox mt={2} mb={1} textAlign='center'>
           <MKTypography
@@ -320,15 +201,6 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
     boxShadow: 24,
     p: 4,
   };
-  if (goToSignIn)
-    return (
-      <SigninForm
-        modal={modal}
-        modalexitcallback={modal ? modalexitcallback : null}
-        {...rest}
-      />
-    );
-
   return (
     <>
       <Modal
@@ -338,7 +210,7 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
       >
         <MKBox
           style={style}
-          mt={0}
+          mt={3}
           //textAlign='center'
           width={{ xs: '100%', sm: '100%', md: '70%' }}
         >
@@ -367,14 +239,11 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
         </MKBox>
       </Modal>
       <IllustrationLayout
-        name='Register'
+        name='Reset Password'
         logo={window.innerHeight > 500 || confirmed ? logo : ''}
         title={title}
         description={description}
         illustration={bgImage}
-        modal={modal}
-        modalexitcallback={modal ? modalexitcallback : null}
-        {...rest}
       >
         {!confirmed ? (
           form()
@@ -383,25 +252,19 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
             <MKBox mt={1} mb={1}>
               <MKButton
                 variant='gradient'
-                // component={Link}
-                // to='/'
-                onClick={() => {
-                  if (modal) {
-                    modalexitcallback();
-                  } else navigateTo(-1);
-                }}
+                component={Link}
+                to='/'
                 size='medium'
                 fontSize='2vmin'
                 fullWidth
                 color='info'
-                //sx={{ color: ({ palette: { dark } }) => dark.main }}
+              //sx={{ color: ({ palette: { dark } }) => dark.main }}
               >
-                {modal ? 'done' : 'back'}
+                home
               </MKButton>
             </MKBox>
-
             <Grid container item xs={12} justifyContent='center'>
-              <MKBox display='flex' alignItems='center' ml={-1} /*fullWidth*/>
+              <MKBox display='flex' alignItems='center' ml={-1} fullWidth>
                 <MKTypography
                   variant='button'
                   fontWeight='regular'
@@ -429,9 +292,5 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
     </>
   );
 }
-BetaSignupForm.defaultProps = {
-  modal: false,
-  modalexitcallback: () => {},
-};
 
-export default BetaSignupForm;
+export default ResetPasswordForm;

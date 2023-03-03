@@ -100,7 +100,7 @@ import SigninModal from 'bridgestars/components/modal';
 // import Toggles from 'layouts/sections/elements/toggles';
 // import Typography from 'layouts/sections/elements/typography';
 // import About from 'bridgestars/about';
-import BridgestarsHome from 'bridgestars/home/index.js';
+import BridgestarsHome from 'bridgestars/home/index';
 
 const routes = [
   // {

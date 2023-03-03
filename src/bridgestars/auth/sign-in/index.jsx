@@ -24,7 +24,7 @@ import IllustrationLayout from '../IllustrationLayout';
 
 // Image
 import logo from 'assets/images/bridgestars/logo-trans-512px.png';
-import useValidator from 'bridgestars/auth/sign-in/validator.js';
+import useValidator from 'bridgestars/auth/sign-in/validator';
 
 // Firebase
 
@@ -36,7 +36,7 @@ import useValidator from 'bridgestars/auth/sign-in/validator.js';
 //   signOut,
 //   sendPasswordResetEmail,
 // } from 'firebase/auth';
-import Parse from 'parse';
+// import Parse from 'src/parse-config';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -279,8 +279,8 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
           modal
             ? modalexitcallback
             : () => {
-                setGoToForgotPass(false);
-              }
+              setGoToForgotPass(false);
+            }
         }
         doneCallback={() => setGoToForgotPass(false)}
         quitCallback={() => setGoToForgotPass(false)}
@@ -322,7 +322,7 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
                 fontSize='2vmin'
                 fullWidth
                 color='info'
-                //sx={{ color: ({ palette: { dark } }) => dark.main }}
+              //sx={{ color: ({ palette: { dark } }) => dark.main }}
               >
                 {modal ? 'done' : 'back'}
               </MKButton>
@@ -358,7 +358,7 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
 }
 SigninForm.defaultProps = {
   modal: false,
-  modalexitcallback: () => {},
+  modalexitcallback: () => { },
   header: 'Sign in to your Bridgestars account',
 };
 

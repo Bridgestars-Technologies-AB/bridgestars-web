@@ -24,7 +24,7 @@ import MKBox from 'otis/MKBox';
 
 // Otis Kit PRO examples
 import SimpleInfoCard from 'otis/Cards/InfoCards/SimpleInfoCard';
-import CounterInfoCard from '../components/CounterInfoCard.js';
+import CounterInfoCard from '../components/CounterInfoCard';
 import MilitaryTechRoundedIcon from '@mui/icons-material/MilitaryTechRounded';
 import SchoolIcon from '@mui/icons-material/School';
 import CenteredBlogCard from 'otis/Cards/BlogCards/CenteredBlogCard';

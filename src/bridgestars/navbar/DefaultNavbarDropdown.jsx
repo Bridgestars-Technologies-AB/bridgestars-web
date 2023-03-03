@@ -27,6 +27,8 @@ import Icon from '@mui/material/Icon';
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
 
+// import Parse from 'parse/dist/parse.min.js';
+
 function DefaultNavbarDropdown({
   name,
   icon,
@@ -51,9 +53,17 @@ function DefaultNavbarDropdown({
   };
 
   const isSignInElement = name === 'Sign In';
-  const displayName = isSignInElement ? (Parse.User.current() ? Parse.User.current().get("dispName") : "Sign In") : name;
-  const defaultColor = light ? 'white' : 'dark'
-  const color = isSignInElement ? (Parse.User.current() ? "success" : defaultColor) : defaultColor;
+  const displayName = isSignInElement
+    ? Parse.User.current()
+      ? Parse.User.current().get('dispName')
+      : 'Sign In'
+    : name;
+  const defaultColor = light ? 'white' : 'dark';
+  const color = isSignInElement
+    ? Parse.User.current()
+      ? 'success'
+      : defaultColor
+    : defaultColor;
 
   return (
     <>
