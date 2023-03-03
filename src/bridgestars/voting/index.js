@@ -79,22 +79,23 @@ function drawCountBadge({ nbr, ...rest }) {
 
 function VotingPage() {
   //search filter etc
+  function getDefaultQuery() {
+    return new Parse.Query('Post')
+      .equalTo('type', 1)
+      .equalTo('archived', false)
+      .select(
+        'title',
+        'comments',
+        'author',
+        'data',
+        'reactions',
+        'chat',
+        'subtype',
+        'info'
+      );
+  }
 
-  const queryDefault = new Parse.Query('Post')
-    .equalTo('type', 1)
-    .equalTo('archived', false)
-    .select(
-      'title',
-      'comments',
-      'author',
-      'data',
-      'reactions',
-      'chat',
-      'subtype',
-      'info'
-    );
-
-  const [parseQuery, setParseQuery] = useState(queryDefault);
+  const [parseQuery, setParseQuery] = useState(getDefaultQuery());
 
   const [results, setResults] = useState();
   const [isLoading, setIsLoading] = useState();
@@ -109,21 +110,34 @@ function VotingPage() {
   useEffect(() => {
     setIsLoading(true);
     setLoadedDocs([]);
-    console.log('usesEffect search');
     setParseQuery((_) => {
-      let q = queryDefault;
+      let q;
       if (searchVal) {
-        // q = Parse.Query.or(
-        // q.fullText('title', searchVal),
-        q = q.fullText('data', searchVal);
-        // );
-      }
-      if (filterVal && filterVal != 'All') {
-        q = q.equalTo('subtype', filterVal);
+        q = Parse.Query.or(
+          getDefaultQuery().contains('title', searchVal),
+          // getDefaultQuery().fullText('title', searchVal),
+          // getDefaultQuery().fullText('title', searchVal),
+          getDefaultQuery().contains('data', searchVal)
+        );
+      } else q = getDefaultQuery();
+      if (filterVal && filterVal !== 'all') {
+        const types = {
+          unknown: 0,
+          new: 1,
+          reviewed: 2,
+          planned: 3,
+          'in progress': 4,
+          'in beta': 5,
+          done: 6,
+          'already exists': 7,
+          live: 8,
+        };
+
+        q.equalTo('subtype', types[filterVal]);
       }
       if (sortVal) {
-        if (sortVal === 0) q = q.descending('createdAt');
-        if (sortVal === 1) q = q.descending('reactions.1');
+        if (sortVal === 0) q.descending('createdAt');
+        if (sortVal === 1) q.descending('reactions.1');
       }
       loadQuery(q);
       return q;
@@ -131,14 +145,20 @@ function VotingPage() {
   }, [searchVal, filterVal, sortVal]);
 
   function loadQuery(q) {
+    setIsLoading(true);
+    setCount(0);
+    setResults(undefined);
     (q || parseQuery)
       .include('author')
       .select('author.img', 'author.dispName')
       .find()
       .then((res) => {
-        setIsLoading(false);
-        setCount(res.length);
-        setResults(res);
+        setResults(() => {
+          //makes erverything load at the same time! much nicer
+          setCount(res.length);
+          setIsLoading(false);
+          return res;
+        });
       })
       .catch((e) => {
         setError(e);
@@ -171,8 +191,8 @@ function VotingPage() {
   useEffect(() => {
     console.log('updating loadedDocs');
     console.log(Boolean(results));
-    console.log(Boolean(!isLoading));
-    console.log(Boolean(!error));
+    console.log(Boolean(isLoading));
+    console.log(Boolean(error));
     if (results && !isLoading && !error) {
       console.log('updating loadedDocs');
       setLoadedDocs(
@@ -532,14 +552,16 @@ function VotingPage() {
                       }}
                     >
                       <MenuItem value={'all'}>All</MenuItem>
-                      <MenuItem value={'Reviewed'}>Reviewed</MenuItem>
-                      <MenuItem value={'Planned'}>Planned</MenuItem>
-                      <MenuItem value={'In Progress'}>In Progress</MenuItem>
-                      <MenuItem value={'In Beta'}>In Beta</MenuItem>
-                      <MenuItem value={'Already Exists'}>
+                      <MenuItem value={'new'}>New</MenuItem>
+                      <MenuItem value={'reviewed'}>Reviewed</MenuItem>
+                      <MenuItem value={'planned'}>Planned</MenuItem>
+                      <MenuItem value={'in progress'}>In Progress</MenuItem>
+                      <MenuItem value={'in beta'}>In Beta</MenuItem>
+                      <MenuItem value={'done'}>Done</MenuItem>
+                      <MenuItem value={'already exists'}>
                         Already Exists
                       </MenuItem>
-                      <MenuItem value={'Live'}>
+                      <MenuItem value={'live'}>
                         Live
                         {drawCountBadge(3)}
                       </MenuItem>
@@ -577,8 +599,8 @@ function VotingPage() {
                   <MKBox width='100%'>
                     {error && (
                       <Box my={1.5} px='auto' sx={{ textAlign: 'center' }}>
-                        <MKTypography variant='h3'>
-                          {error.message}
+                        <MKTypography variant='h4'>
+                          {JSON.stringify(error)}
                         </MKTypography>
                       </Box>
                     )}

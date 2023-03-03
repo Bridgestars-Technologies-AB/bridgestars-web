@@ -86,7 +86,7 @@ export default function DrawNewRequestDialog(
         enqueueSnackbar('Request has been posted', { variant: 'success' });
         createdCallback();
       } catch (e) {
-        setPageNbr(2);
+        setPageNbr(1);
         console.log(e);
         return alert(e.message);
       }

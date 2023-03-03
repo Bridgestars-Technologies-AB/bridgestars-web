@@ -109,7 +109,7 @@ function IssueCard({
         )}
         <Box
           overflow={modal && 'hidden'}
-          pt={modal ? '15px' : '5px'}
+          pt={loading ? '0px' : modal ? '15px' : '5px'}
           pb={modal ? '15px' : '5px'}
         >
           <Grid container pr={{ xs: 1.5, sm: 0 }}>
@@ -122,7 +122,7 @@ function IssueCard({
               display={{ sm: 'flex', xs: 'none' }}
             >
               {loading ? (
-                <Skeleton height='100px' width='75px' />
+                <Skeleton height='70px' width='75px' />
               ) : (
                 drawVoter(voted, nbrVotes, handleVoteBtnPress)
               )}
