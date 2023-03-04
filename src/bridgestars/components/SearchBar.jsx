@@ -1,15 +1,15 @@
-import { InputBase, Icon, IconButton } from '@mui/material'
+import { InputBase, Icon, IconButton } from '@mui/material';
 import colors from 'assets/theme/base/colors';
 const { dark } = colors;
 import { useState } from 'react';
 
 export default function SearchBar({
   placeholder = 'Search...',
-  onSubmit = (value) => {},
-  onChange = (value) => {},
+  onSubmit = (value) => { },
+  onChange = (value) => { },
   ...rest
 }) {
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState('');
   return (
     <InputBase
       sx={{
@@ -28,10 +28,10 @@ export default function SearchBar({
       onKeyPress={(e) => {
         if (e.code === 'Enter') {
           onSubmit(value);
-        } 
+        }
       }}
       onChange={(e) => {
-        e.stopPropagation()
+        e.stopPropagation();
         setValue(e.target.value);
         onChange(e.target.value);
       }}

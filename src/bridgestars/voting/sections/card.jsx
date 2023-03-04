@@ -33,6 +33,7 @@ function IssueCard({
   voted,
   nbrVotes,
   nbrComments,
+  setNbrComments,
   post,
   loading,
   setShowSignin,
@@ -41,7 +42,6 @@ function IssueCard({
   ...rest
 }) {
   const [expanded, setExpanded] = useState(false);
-  const [commentState, setCommentState] = useState(null);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const confirm = useConfirm();
 
@@ -186,7 +186,7 @@ function IssueCard({
               </Grid>
               {modal &&
                 (author.get('dispName') === 'admin' ||
-                  Parse.User.current().id === author.id) && (
+                  Parse.User.current()?.id === author.id) && (
                   <Grid
                     sm={12}
                     container
@@ -294,8 +294,7 @@ function IssueCard({
             setShowSignin={setShowSignin}
             post={post}
             show={expanded}
-            outerState={commentState}
-            setOuterState={setCommentState}
+            setNbrComments={setNbrComments}
           />
         </Box>
       </Card>

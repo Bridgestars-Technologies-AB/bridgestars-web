@@ -38,10 +38,7 @@ export default class Comments extends Component {
     this.maxLength = props.maxLength ?? 1000;
     this.show = props.show;
     this.setShowSignin = props.setShowSignin;
-    if (props.outerState && props.outerState != {}) {
-      this.state = props.outerState;
-    }
-    this.setOuterState = props.setOuterState;
+    this.setNbrComments = props.setNbrComments;
   }
 
   //on mount metthod
@@ -52,7 +49,7 @@ export default class Comments extends Component {
     }
   }
   componentWillUnmount() {
-    this.setOuterState(this.state);
+    //this.setNbrComments(this.state.comments.count);
   }
   async getComments() {
     const chat = this.post.get('chat');
@@ -111,7 +108,7 @@ export default class Comments extends Component {
 
   sendComment = async () => {
     if (this.state.commentText == '') return alert('No text entered');
-    if (!Parse.User.current()) return this.setShowSignin(true);
+    if (!Parse.User.current()) return this.setShowSignin('comment');
     try {
       const obj = await new Parse.Object('Message', {
         text: this.state.commentText,
@@ -133,6 +130,7 @@ export default class Comments extends Component {
       this.setState({ commentText: '' });
       this.setState({ charCount: 0 });
       this.setState({ reloadEditor: !this.state.reloadEditor });
+      this.setNbrComments(this.state.comments.count);
     } catch (error) {
       if (
         error?.message?.includes('Unable to connect to the Parse API') ||
@@ -209,7 +207,7 @@ export default class Comments extends Component {
           }).save();
         }
       } else {
-        this.setShowSignin(true);
+        this.setShowSignin('vote');
       }
     } catch (error) {
       console.log(error);
@@ -358,14 +356,6 @@ export default class Comments extends Component {
           </IconButton> */}
           </Box>
         </Box>
-        <MKBox
-          width='100%'
-          height='1.0px'
-          bgColor='#1e2e4a44'
-          my='auto'
-          sx={{}}
-          display='inline-block'
-        ></MKBox>
       </Box>
     );
   }
@@ -422,18 +412,29 @@ export default class Comments extends Component {
             <PulseLoader color='black' speedMultiplier={1} size={8} />
           ) : this.state.loadingState === 'loaded' ? (
             this.state.comments && this.state.comments.length > 0 ? (
-              this.state.comments.map((x, i) =>
-                this.drawCommentInstance(
-                  i + 1,
-                  x.id,
-                  x.text,
-                  x.likes,
-                  x.author,
-                  x.creationTime,
-                  x.voted,
-                  () => this.handleVote(x.id)
-                )
-              )
+              this.state.comments
+                .map((x, i) => [
+                  this.drawCommentInstance(
+                    i + 1,
+                    x.id,
+                    x.text,
+                    x.likes,
+                    x.author,
+                    x.creationTime,
+                    x.voted,
+                    () => this.handleVote(x.id)
+                  ),
+                ])
+                .join([
+                  <MKBox
+                    width='100%'
+                    height='1.0px'
+                    bgColor='#1e2e4a44'
+                    my='auto'
+                    sx={{}}
+                    display='inline-block'
+                  ></MKBox>,
+                ])
             ) : (
               <Box width='100%' sx={{ textAlign: 'center' }}>
                 {' '}

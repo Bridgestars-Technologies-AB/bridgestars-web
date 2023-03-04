@@ -4,8 +4,8 @@ import { Box, MenuItem } from '@mui/material';
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
 
-function getAllSubtypes() {
-  return [0, 1, 2, 3, 4, 5, 6, 7];
+function getAllSubTypes() {
+  return [0, 1, 2, 3, 4, 5, 7, 6];
 }
 
 function statusColor(status) {
@@ -21,11 +21,11 @@ function statusColor(status) {
     case 'Planned':
       return '111, 241, 220';
     case 'In Progress':
-      return '247, 241, 124';
+      return '255, 200, 114';
     case 'In Beta':
       return '150, 247, 124';
     case 'Already Exists':
-      return '255, 100, 50';
+      return '255, 60, 50';
     default:
       //Live
       return '58, 191, 43';
@@ -59,13 +59,11 @@ function generateMenuItems(filterVal, counts) {
     return (
       <MenuItem value={key}>
         {text}
-        {filterVal != key &&
-          count > 0 &&
-          drawCountBadge(count, statusColor(text))}
+        {filterVal != key && drawCountBadge(count, statusColor(text))}
       </MenuItem>
     );
   };
-  return getAllSubtypes().map((x) => {
+  return getAllSubTypes().map((x) => {
     const count = (counts && counts[x]) || 0;
     if (x === 0) return item('All', count);
     return item(statusText(x), count);
@@ -101,4 +99,4 @@ function drawCountBadge(nbr, color) {
     </Box>
   );
 }
-export { generateMenuItems, statusColor, statusText };
+export { generateMenuItems, statusColor, statusText, getAllSubTypes };

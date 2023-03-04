@@ -38,12 +38,12 @@ import IssueCard from './sections/card';
 import SigninForm from 'bridgestars/auth/sign-in';
 import SearchBar from 'bridgestars/components/SearchBar';
 import handleInvalidSession from 'bridgestars/tools/handleInvalidSession';
-import DrawNewRequestDialog from 'bridgestars/voting/newRequest';
+import NewRequestDialog from 'bridgestars/voting/newRequest';
 import SigninModal from 'bridgestars/components/modal';
 //STYLE
 
 //DATABASE
-import {generateMenuItems} from 'bridgestars/voting/status'
+import * as STATUS from 'bridgestars/voting/status';
 
 function VotingPage() {
   //search filter etc
@@ -70,50 +70,65 @@ function VotingPage() {
   const [count, setCount] = useState();
   const [counts, setCounts] = useState();
   const [error, setError] = useState();
-  const [reload, setReload] = useState(loadQuery);
 
   const [searchVal, setSearchVal] = useState(undefined);
-  const [filterVal, setFilterVal] = useState(undefined);
+  const [filterVal, setFilterVal] = useState('');
   const [sortVal, setSortVal] = useState(0);
 
+  function getFilteredQuery(props) {
+    let q;
+    if (searchVal) {
+      q = Parse.Query.or(
+        getDefaultQuery().contains('title', searchVal),
+        // getDefaultQuery().fullText('title', searchVal),
+        // getDefaultQuery().fullText('title', searchVal),
+        getDefaultQuery().contains('data', searchVal)
+      );
+    } else q = getDefaultQuery();
+    if (
+      (filterVal && filterVal !== 'all') ||
+      (props?.subType && props?.subType !== 'all')
+    ) {
+      const types = {
+        unknown: 0,
+        new: 1,
+        reviewed: 2,
+        planned: 3,
+        'in progress': 4,
+        'in beta': 5,
+        done: 6,
+        'already exists': 7,
+        live: 8,
+      };
+
+      q.equalTo('subtype', types[props?.subType || filterVal]);
+    }
+    if (sortVal) {
+      if (sortVal === 0) q.descending('createdAt');
+      if (sortVal === 1) q.descending('reactions.1');
+    }
+    return q;
+  }
   useEffect(() => {
     setIsLoading(true);
     setLoadedDocs([]);
     setParseQuery((_) => {
-      let q;
-      if (searchVal) {
-        q = Parse.Query.or(
-          getDefaultQuery().contains('title', searchVal),
-          // getDefaultQuery().fullText('title', searchVal),
-          // getDefaultQuery().fullText('title', searchVal),
-          getDefaultQuery().contains('data', searchVal)
-        );
-      } else q = getDefaultQuery();
-      if (filterVal && filterVal !== 'all') {
-        const types = {
-          unknown: 0,
-          new: 1,
-          reviewed: 2,
-          planned: 3,
-          'in progress': 4,
-          'in beta': 5,
-          done: 6,
-          'already exists': 7,
-          live: 8,
-        };
-
-        q.equalTo('subtype', types[filterVal]);
-      }
-      if (sortVal) {
-        if (sortVal === 0) q.descending('createdAt');
-        if (sortVal === 1) q.descending('reactions.1');
-      }
+      const q = getFilteredQuery();
       loadQuery(q);
+      getNewCounts();
       return q;
     });
   }, [searchVal, filterVal, sortVal]);
 
-  function loadQuery(q) {
+  const getNewCounts = () => {
+    Promise.all(
+      ['all', ...STATUS.getAllSubTypes()].map((x) =>
+        getFilteredQuery({ subType: x }).count()
+      )
+    ).then(setCounts);
+  };
+  const loadQuery = (q) => {
+    console.log('Fetching requests');
     setIsLoading(true);
     setCount(0);
     setResults(undefined);
@@ -132,7 +147,9 @@ function VotingPage() {
       .catch((e) => {
         setError(e);
       });
-  }
+  };
+
+  const [reload, setReload] = useState(loadQuery);
 
   async function onSignedOut() {
     console.log(error);
@@ -148,22 +165,22 @@ function VotingPage() {
   }
 
   useEffect(() => {
-    console.log('isLoading: ' + isLoading);
-    console.log('count: ' + count);
-    console.log('error: ' + error);
-    console.log('results: ', results);
-    console.log('...');
+    // console.log('isLoading: ' + isLoading);
+    // console.log('count: ' + count);
+    // console.log('error: ' + error);
+    // console.log('results: ', results);
+    // console.log('...');
     // if (error?.message?.includes('Invalid session token')) onSignedOut();
     // handleInvalidSession(error, onSignedOut)
   }, [isLoading, count, error, results]);
 
   useEffect(() => {
-    console.log('updating loadedDocs');
-    console.log(Boolean(results));
-    console.log(Boolean(isLoading));
-    console.log(Boolean(error));
+    // console.log('updating loadedDocs');
+    // console.log(Boolean(results));
+    // console.log(Boolean(isLoading));
+    // console.log(Boolean(error));
     if (results && !isLoading && !error) {
-      console.log('updating loadedDocs');
+      // console.log('updating loadedDocs');
       setLoadedDocs(
         results.map((r) => {
           return { obj: r, votes: r.get('reactions')['1'] ?? 0, id: r.id };
@@ -210,7 +227,7 @@ function VotingPage() {
 
   useEffect(() => {
     console.log('signedIn: ' + signedIn);
-    console.log('Parse.user.current(): ' + !!Parse.User.current());
+    // console.log('Parse.user.current(): ' + !!Parse.User.current());
   }, [signedIn]);
 
   async function getUserVotes(uid, postIds) {
@@ -221,8 +238,6 @@ function VotingPage() {
           .equalTo('type', 1)
           .containedIn('target', postIds)
           .find(); //find posts which this user has voted
-        console.log('FETCHED VOTED ISSUES: ' + JSON.stringify(votes));
-        console.log('contained in ' + JSON.stringify(postIds));
         const posts = votes.map((vote) => vote.get('target'));
         setVotedIssues([...posts, ...votedIssues]);
       } catch (error) {
@@ -320,7 +335,7 @@ function VotingPage() {
           }).save();
         }
       } else {
-        setShowSignin(true);
+        setShowSignin('vote');
       }
     } catch (error) {
       // if (!handleInvalidSession(error, onSignedOut)) {
@@ -349,16 +364,16 @@ function VotingPage() {
           open={showSignin}
           modal
           modalexitcallback={() => setShowSignin(false)}
-          header='To vote, please sign in to your Bridgestars account'
+          header={`To ${showSignin}, please sign in to your Bridgestars account`}
         />
       </SigninModal>
-      {DrawNewRequestDialog(
-        showNewRequest,
-        setShowNewRequest,
-        reload,
-        editDoc,
-        setEditDoc
-      )}
+      <NewRequestDialog
+        show={showNewRequest}
+        setShow={setShowNewRequest}
+        createdCallback={loadQuery}
+        editDoc={editDoc}
+        setEditDoc={setEditDoc}
+      />
 
       <Grid container width='100%' justifyContent='center'>
         <Card
@@ -439,13 +454,14 @@ function VotingPage() {
                 onClick={() =>
                   Parse.User.current()
                     ? setShowNewRequest(true)
-                    : setShowSignin(true)
+                    : setShowSignin('add a request')
                 }
                 color='info'
                 fontWeight='medium'
                 textGradient
                 style={{ textDecorationLine: 'underline' }}
                 sx={{ cursor: 'pointer' }}
+                pb='8px'
               >
                 or create one here
               </MKTypography>
@@ -520,7 +536,7 @@ function VotingPage() {
                         /*run query */
                       }}
                     >
-                    {generateMenuItems(filterVal, counts)}
+                      {STATUS.generateMenuItems(filterVal, counts)}
                     </Select>
                   </FormControl>
                   {/* <Select display='inline-block'>By Status</Select> */}
@@ -538,6 +554,9 @@ function VotingPage() {
                     onSubmit={(val) => {
                       console.log('Searching for: ' + val);
                       setSearchVal(val);
+                    }}
+                    onChange={(val) => {
+                      if (!val && searchVal) setSearchVal('');
                     }}
                     onClick={() => { }}
                   />
@@ -578,6 +597,7 @@ function VotingPage() {
                             voted={votedIssues.includes(doc.id)}
                             nbrVotes={doc.votes}
                             nbrComments={doc.obj.get('comments')}
+                            setNbrComments={(x) => doc.obj.set('comments', x)}
                             key={doc.id.substring(0, 10)}
                             post={doc.obj}
                             title={doc.obj.get('title')}

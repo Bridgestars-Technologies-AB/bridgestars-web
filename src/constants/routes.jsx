@@ -133,12 +133,12 @@ const routes = [
   //   route: '/wip',
   //   //component: <SigninForm />,
   // },
-  {
-    name: 'Policy',
-    icon: <Icon>policy</Icon>,
-    route: '/policy',
-    //component: <SigninForm />,
-  },
+  // {
+  //   name: 'Policy',
+  //   icon: <Icon>policy</Icon>,
+  //   route: '/policy',
+  //   //component: <SigninForm />,
+  // },
   {
     name: 'Vote',
     icon: <Icon>gavel</Icon>,

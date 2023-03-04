@@ -29,13 +29,13 @@ import { PulseLoader } from 'react-spinners';
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
 
-export default function DrawNewRequestDialog(
+export default function NewRequestDialog({
   show,
   setShow,
   createdCallback,
   editDoc,
-  setEditDoc
-) {
+  setEditDoc,
+}) {
   const [pageNbr, setPageNbr] = useState(1);
   const [state, setState] = useState({});
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -88,7 +88,14 @@ export default function DrawNewRequestDialog(
       } catch (e) {
         setPageNbr(1);
         console.log(e);
-        return alert(e.message);
+        if (e.message.includes('[title]') || e.message.includes('[data]')) {
+          let field = e.message.split('[')[1].split(']')[0];
+          if (field === 'data') field = 'description';
+          return enqueueSnackbar(`The ${field} ${e.message.split(']')[1]}`, {
+            variant: 'error',
+          });
+        }
+        return enqueueSnackbar(e.message);
       }
       //upload
     } else {
@@ -99,9 +106,11 @@ export default function DrawNewRequestDialog(
   function pageOne() {
     return (
       <>
-        <DialogTitle>Create new request</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
+        <DialogTitle textAlign='center' style={{ fontSize: '25px' }}>
+          New Request
+        </DialogTitle>
+        <DialogContent sx={{ p: '20px' }}>
+          <DialogContentText textAlign='left'>
             To create a new request, please first check if something similar has
             already been proposed. If not, please describe your request as
             detailed as possible.
@@ -165,7 +174,7 @@ export default function DrawNewRequestDialog(
               Just one more thing
             </MKTypography>
             <MKTypography variant='text2'>
-              Please specify matching categorisation, this is for internal use.
+              Please specify matching categorization, this is for internal use.
             </MKTypography>
           </Box>
           <br></br>
