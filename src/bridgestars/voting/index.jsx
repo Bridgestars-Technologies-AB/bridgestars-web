@@ -466,15 +466,17 @@ function VotingPage() {
                 fontWeight='medium'
                 textGradient
                 // sx={{ textDecoration: 'underline' }}
-                sx={{ cursor: 'pointer', whiteSpace: 'nowrap' }}
+                sx={{ cursor: 'pointer' }}
                 style={{
                   display: 'inline-flex',
-                  textDecorationLine: 'underline',
                 }}
               >
-                or create one here{' '}
-                <Box pl='4px' mt='4px' style={{ fontSize: '17px' }}>
+                <Box pr='4px' mt='6px' style={{ fontSize: '15px' }}>
                   {'⇒'}
+                </Box>
+                or create one here{' '}
+                <Box pl='4px' mt='5px' style={{ fontSize: '15px' }}>
+                  {'⇐'}
                 </Box>
               </MKTypography>
             </Grid>
@@ -612,12 +614,14 @@ function VotingPage() {
                           fontWeight='medium'
                           textGradient
                           // sx={{ textDecoration: 'underline' }}
-                          sx={{ cursor: 'pointer', display: 'inline' }}
-                          pb='8px'
+                          sx={{ cursor: 'pointer' }}
+                          style={{
+                            display: 'inline-flex',
+                          }}
                         >
                           reset filters
-                          <Box pl='4px' mt='1px'>
-                            {'↻a'}
+                          <Box pl='8px' mt='-5px' style={{ fontSize: '25px' }}>
+                            {'↻'}
                           </Box>
                         </MKTypography>
                       </Box>
