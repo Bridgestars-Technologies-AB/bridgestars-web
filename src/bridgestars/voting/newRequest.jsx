@@ -38,11 +38,12 @@ export default function NewRequestDialog({
 }) {
   const [pageNbr, setPageNbr] = useState(1);
   const [state, setState] = useState({});
+  const [docId, setDocId] = useState('');
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  if (Object.keys(state).length === 0) {
-    if (editDoc && editDoc.id) {
-      console.log(JSON.stringify(editDoc));
+  if (editDoc && editDoc.id) {
+    if (show !== 'view' && editDoc.id != docId) {
+      setDocId(editDoc.id);
       setState({
         title: editDoc.get('title'),
         description: editDoc.get('data'),
@@ -52,26 +53,44 @@ export default function NewRequestDialog({
     }
   }
 
+  if (
+    editDoc !== undefined &&
+    show == 'view' &&
+    Object.keys(state).length > 0
+  ) {
+    setState({});
+    setEditDoc(undefined);
+    setDocId('');
+  }
   const reset = async () => {
     setShow(false);
-    setEditDoc(undefined);
-    setState({});
     await new Promise((r) => setTimeout(r, 500));
     setPageNbr(1);
   };
-
   async function next() {
     if (pageNbr == 2) {
       try {
         setPageNbr(3);
         if (editDoc && editDoc.id) {
-          editDoc.set('title', state.title);
-          editDoc.set('data', state.description);
-          editDoc.set('info', {
-            category: state.selectedCategory,
-            type: state.selectedType,
-          });
-          await editDoc.save();
+          let hasChanged = false;
+          if (editDoc.get('title') !== state.title) {
+            editDoc.set('title', state.title);
+            hasChanged = true;
+          }
+          if (editDoc.get('data') !== state.description) {
+            editDoc.set('data', state.description);
+            hasChanged = true;
+          }
+          if (editDoc.get('info')?.category !== state.selectedCategory) {
+            editDoc.set('info.category', state.selectedCategory);
+            hasChanged = true;
+          }
+          if (editDoc.get('info')?.type !== state.selectedType) {
+            editDoc.set('info.type', state.selectedType);
+            hasChanged = true;
+          }
+          if (hasChanged) await editDoc.save();
+          else throw new Error('Request did not change, awaiting changes...');
         } else
           await new Parse.Object('Post').save({
             type: 1, //Post
@@ -96,7 +115,7 @@ export default function NewRequestDialog({
             variant: 'error',
           });
         }
-        return enqueueSnackbar(e.message);
+        return enqueueSnackbar(e.message, { variant: 'error' });
       }
       //upload
     } else {
@@ -179,103 +198,28 @@ export default function NewRequestDialog({
             </MKTypography>
           </Box>
           <br></br>
-          <FormControl fullWidth>
-            <InputLabel
-              id='new-request-category-label1'
-              sx={{
-                fontSize: '18px',
-                fontWeight: 500,
-                lineHeight: '20px',
-                fontFamily: '"Roboto Slab", sans-serif',
-                color: dark.main,
-                // width:'100%',
-                // verticalAlign:'middle',
-                // textAlign:'center',
-                // lineHeight:'100%'
-              }}
-            >
-              {/* <MKTypography  variant='h3' fontSize='18px'>Select Filter</MKTypography> */}
-              Select Type
-            </InputLabel>
-            <Select
-              labelId='new-request-category-label1'
-              input={<OutlinedInput label='Select Ty' />}
-              value={state.selectedType || ''}
-              fullWidth
-              width='auto'
-              sx={{
-                borderRadius: '10px',
-                backgroundColor: '#f8f9fa',
-                height: '42px',
-                fontSize: '18px',
-                lineHeight: '18px',
-                fontFamily: '"Roboto Slab", sans-serif',
-                minWidth: '130px',
-                color: dark.main,
-                textAlign: 'center',
-              }}
-              onChange={(e) =>
-                setState({ ...state, selectedType: e.target.value })
-              }
-              onClose={() => {
-                /*run query */
-              }}
-            >
-              <MenuItem value={'Feature'}>Feature</MenuItem>
-              <MenuItem value={'Fix'}>Fix</MenuItem>
-              {/* <MenuItem value={''}>UI</MenuItem> */}
-            </Select>
-          </FormControl>
+          <SelectComponent
+            placeholder='Select Type'
+            onChange={(e) =>
+              setState({ ...state, selectedType: e.target.value })
+            }
+            items={['Feature', 'Fix']}
+            id='1'
+            cutout='Select Ty'
+            value={state.selectedType}
+          ></SelectComponent>
           <br></br>
           <br></br>
-          <FormControl fullWidth>
-            <InputLabel
-              id='new-request-category-label2'
-              sx={{
-                fontSize: '18px',
-                fontWeight: 500,
-                lineHeight: '20px',
-                fontFamily: '"Roboto Slab", sans-serif',
-                color: dark.main,
-                // width:'100%',
-                // verticalAlign:'middle',
-                // textAlign:'center',
-                // lineHeight:'100%'
-              }}
-            >
-              Select Category
-              {/* <MKTypography  variant='h3' fontSize='18px'>Select Filter</MKTypography> */}
-            </InputLabel>
-            <Select
-              labelId='new-request-category-label2'
-              value={state.selectedCategory || ''}
-              input={<OutlinedInput label='Select Catego' />}
-              fullWidth
-              width='auto'
-              sx={{
-                borderRadius: '10px',
-                backgroundColor: '#f8f9fa',
-                height: '42px',
-                fontSize: '18px',
-                fontFamily: '"Roboto Slab", sans-serif',
-                minWidth: '130px',
-                color: dark.main,
-                textAlign: 'center',
-              }}
-              onChange={(e) =>
-                setState({ ...state, selectedCategory: e.target.value })
-              }
-              onClose={() => {
-                /*run query */
-              }}
-            >
-              <MenuItem value={'UI'}>UI</MenuItem>
-              <MenuItem value={'Gameplay'}>Gameplay</MenuItem>
-              <MenuItem value={'Install'}>Installation</MenuItem>
-              <MenuItem value={'Account'}>Account</MenuItem>
-              <MenuItem value={'Other'}>Other</MenuItem>
-            </Select>
-          </FormControl>
+          <SelectComponent
+            placeholder='Select Category'
+            onChange={(e) =>
+              setState({ ...state, selectedCategory: e.target.value })
+            }
+            items={['UI', 'Gameplay', 'Installation', 'Account', 'Other']}
+            id='2'
+            cutout='Select Catego'
+            value={state.selectedCategory}
+          ></SelectComponent>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setPageNbr(pageNbr - 1)}>Back</Button>
@@ -317,10 +261,59 @@ export default function NewRequestDialog({
     );
   }
   return (
-    <Dialog open={show} onClose={setShow}>
+    <Dialog open={Boolean(show)} onClose={setShow}>
       {pageNbr == 1 && pageOne()}
       {pageNbr == 2 && pageTwo()}
       {pageNbr > 2 && pageThree()}
     </Dialog>
+  );
+}
+
+function SelectComponent({ placeholder, onChange, items, cutout, id, value }) {
+  return (
+    <FormControl fullWidth>
+      <InputLabel
+        id={id}
+        sx={{
+          fontSize: '18px',
+          fontWeight: 500,
+          lineHeight: '20px',
+          fontFamily: '"Roboto Slab", sans-serif',
+          color: dark.main,
+          // width:'100%',
+          // verticalAlign:'middle',
+          // textAlign:'center',
+          // lineHeight:'100%'
+        }}
+      >
+        {placeholder}
+        {/* <MKTypography  variant='h3' fontSize='18px'>Select Filter</MKTypography> */}
+      </InputLabel>
+      <Select
+        labelId={id}
+        value={value || ''}
+        input={<OutlinedInput label={cutout} />}
+        fullWidth
+        width='auto'
+        sx={{
+          borderRadius: '10px',
+          backgroundColor: '#f8f9fa',
+          height: '42px',
+          fontSize: '18px',
+          fontFamily: '"Roboto Slab", sans-serif',
+          minWidth: '130px',
+          color: dark.main,
+          textAlign: 'center',
+        }}
+        onChange={onChange}
+        onClose={() => {
+          /*run query */
+        }}
+      >
+        {items.map((x) => (
+          <MenuItem value={x}>{x}</MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 }

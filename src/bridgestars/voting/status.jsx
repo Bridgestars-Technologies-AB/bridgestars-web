@@ -57,7 +57,7 @@ function generateMenuItems(filterVal, counts) {
   const item = (text, count) => {
     const key = text.toLowerCase().replace(' ', '');
     return (
-      <MenuItem value={key}>
+      <MenuItem key={key} value={key}>
         {text}
 
         {filterVal != key &&

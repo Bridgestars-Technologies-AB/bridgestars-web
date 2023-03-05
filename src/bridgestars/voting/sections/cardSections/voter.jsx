@@ -49,6 +49,7 @@ function drawVoter(voted, voteCount, handleVote) {
         justifyContent='center'
       >
         <Box
+          maxHeight='35px'
           width='55px'
           textAlign='center'
           variant='button'
@@ -68,7 +69,6 @@ function drawVoter(voted, voteCount, handleVote) {
         >
           <MKTypography
             sx={{ fontSize: '12px', fontWeight: 500 }}
-            variant=''
             color='white'
           >
             {voted ? 'VOTED' : 'VOTE'}

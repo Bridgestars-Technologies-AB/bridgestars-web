@@ -224,8 +224,6 @@ function IssueCard({
                             .then(async () => {
                               //TODO
                               try {
-                                console.log('DESTORYING OBJET');
-                                console.log(JSON.stringify(post));
                                 try {
                                   await Parse.Cloud.run('archivePost', {
                                     uid: post.id,

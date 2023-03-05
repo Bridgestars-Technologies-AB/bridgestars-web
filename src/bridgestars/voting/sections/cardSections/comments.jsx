@@ -44,7 +44,6 @@ export default class Comments extends Component {
   //on mount metthod
   componentDidMount() {
     if (this.state.loadingState != 'loaded' && this.post && this.show) {
-      console.log('loading comments');
       this.loadComments();
     }
   }
@@ -68,7 +67,6 @@ export default class Comments extends Component {
           )
           .select('dispName', 'img')
           .find();
-        // console.log("authors:" + JSON.stringify(authors))
 
         const votes = await new Parse.Query('Reaction')
           .equalTo('user', Parse.User.current()?.id)
@@ -162,7 +160,6 @@ export default class Comments extends Component {
 
   updateCommentText(html) {
     this.setState({ commentText: html });
-    console.log(html);
     var cont = html.replace(/<[^>]*>/g, ' ');
     cont = cont.replace(/\s+/g, ' ');
     cont = cont.trim();
@@ -220,15 +217,12 @@ export default class Comments extends Component {
   }
   async deleteMessage(id) {
     try {
-      console.log(this.state.comments.map((c) => c.id));
       await new Parse.Object('Message', { id: id }).destroy();
       this.setState({
         comments: this.state.comments?.filter((c) => c.id != id),
       });
-      console.log(this.state.comments.map((c) => c.id));
       this.setState({ reloadEditor: !this.state.reloadEditor });
     } catch (error) {
-      console.log(error);
       if (error.message?.includes('Unable to connect to the Parse API'))
         return alert(
           'Could not connect, please check your internet connection.'
@@ -310,15 +304,12 @@ export default class Comments extends Component {
       <Box
         key={key}
         onClick={() => {
-          console.log(this.state.showCommentBtn);
           this.setState({ showCommentBtn: [{ key, clicked: true }] });
         }}
         onMouseEnter={() => {
-          console.log(this.state.showCommentBtn);
           this.setState({ showCommentBtn: [{ key }] });
         }}
         onMouseLeave={() => {
-          console.log(this.state.showCommentBtn);
           this.setState({
             showCommentBtn: this.state.showCommentBtn?.filter(
               (c) => c.key != key && !c.clicked

@@ -5,6 +5,7 @@ import React from 'react';
 
 // @mui material components
 import {
+  Button,
   Modal,
   Box,
   Card,
@@ -21,6 +22,7 @@ import {
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
+import MKButton from 'otis/MKButton';
 import colors from 'assets/theme/base/colors';
 const { dark } = colors;
 // About Us page sections
@@ -104,7 +106,7 @@ function VotingPage() {
 
       q.equalTo('subtype', types[props?.subType || filterVal]);
     }
-    if (sortVal) {
+    if (sortVal === 0 || sortVal === 1) {
       if (sortVal === 0) q.descending('createdAt');
       if (sortVal === 1) q.descending('reactions.1');
     }
@@ -143,7 +145,6 @@ function VotingPage() {
       .select('author.img', 'author.dispName')
       .find()
       .then((res) => {
-        console.log(res.map((x) => x.get('info')));
         setResults(() => {
           //makes erverything load at the same time! much nicer
           setCount(res.length);
@@ -159,7 +160,6 @@ function VotingPage() {
   // const [reload, setReload] = useState(loadQuery);
 
   async function onSignedOut() {
-    console.log(error);
     if (signedIn) {
       // if (Parse.User.current() && error.message.includes("Invalid session token")) reload()
       setSignedIn(false);
@@ -199,7 +199,7 @@ function VotingPage() {
           results.map((r) => r.id)
         );
     } else {
-      console.log('results where updated but query has errors??');
+      //console.log('results where updated but query has errors??');
     }
   }, [results]);
 
@@ -314,7 +314,6 @@ function VotingPage() {
           loadedDocs.map((doc) => (doc.id == postid ? incr(doc) : doc))
         );
       };
-      console.log('signedin:' + signedIn);
       if (Parse.User.current()) {
         if (votedIssues == null) setVotedIssues([]);
         if (votedIssues.includes(postid)) {
@@ -451,7 +450,7 @@ function VotingPage() {
               </MKButton>
             </Grid> */}
 
-            <Grid textAlign='center'>
+            <Grid textAlign='center' mt='85px' mb='15px'>
               <MKTypography variant='h2'>Browse Requests</MKTypography>
               {/* <MKButton variant='gradient' color='info'>
                 New Request
@@ -460,17 +459,23 @@ function VotingPage() {
                 variant='body1'
                 onClick={() =>
                   Parse.User.current()
-                    ? setShowNewRequest(true)
+                    ? setShowNewRequest('view')
                     : setShowSignin('add a request')
                 }
                 color='bluegreen'
                 fontWeight='medium'
                 textGradient
-                sx={{ textDecoration: 'underline' }}
-                // sx={{ cursor: 'pointer' }}
-                pb='8px'
+                // sx={{ textDecoration: 'underline' }}
+                sx={{ cursor: 'pointer', whiteSpace: 'nowrap' }}
+                style={{
+                  display: 'inline-flex',
+                  textDecorationLine: 'underline',
+                }}
               >
-                or create one here
+                or create one here{' '}
+                <Box pl='4px' mt='4px' style={{ fontSize: '17px' }}>
+                  {'⇒'}
+                </Box>
               </MKTypography>
             </Grid>
 
@@ -559,7 +564,6 @@ function VotingPage() {
                   {/* <Button display='inline-block'>Search</Button> */}
                   <SearchBar
                     onSubmit={(val) => {
-                      console.log('Searching for: ' + val);
                       setSearchVal(val);
                     }}
                     onChange={(val) => {
@@ -571,7 +575,7 @@ function VotingPage() {
                   />
                 </Grid>
               </Grid>
-              <Grid container mt={1.5}>
+              <Grid container mt={2.5}>
                 <Grid
                   item
                   xs={12}
@@ -598,7 +602,7 @@ function VotingPage() {
                       <Box my={5} px='auto' sx={{ textAlign: 'center' }}>
                         <MKTypography variant='h3'>No posts found</MKTypography>
                         <MKTypography
-                          variant='body2'
+                          variant='body1'
                           onClick={() => {
                             setFilterVal('');
                             setSearchBarText('');
@@ -607,11 +611,14 @@ function VotingPage() {
                           color='bluegreen'
                           fontWeight='medium'
                           textGradient
-                          sx={{ textDecoration: 'underline' }}
-                          // sx={{ cursor: 'pointer', display: 'inline' }}
+                          // sx={{ textDecoration: 'underline' }}
+                          sx={{ cursor: 'pointer', display: 'inline' }}
                           pb='8px'
                         >
-                          Click here to reset filters
+                          reset filters
+                          <Box pl='4px' mt='1px'>
+                            {'↻a'}
+                          </Box>
                         </MKTypography>
                       </Box>
                     )}
@@ -638,7 +645,6 @@ function VotingPage() {
                               )
                             }
                             edit={() => {
-                              console.log({ info: doc.obj.get('info') });
                               setEditDoc((_) => doc.obj);
                               setShowNewRequest((_) => true);
                             }}
