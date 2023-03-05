@@ -21,6 +21,7 @@ import { useSnackbar } from 'notistack';
 import { useConfirm } from 'material-ui-confirm';
 
 import { statusColor, statusText } from 'bridgestars/voting/status';
+import { useParams } from 'react-router-dom';
 // import { editorStyle } from 'bridgestars/text-editor/editorStyles.js';
 
 function IssueCard({
@@ -39,9 +40,14 @@ function IssueCard({
   setShowSignin,
   archive,
   edit,
+  expanded: controlledExpanded,
+  setExpanded: controlledSetExpanded,
   ...rest
 }) {
-  const [expanded, setExpanded] = useState(false);
+  const [innerExpanded, innerSetExpanded] = useState(false);
+  const expanded = controlledExpanded || innerExpanded;
+  const setExpanded = controlledSetExpanded || innerSetExpanded;
+
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const confirm = useConfirm();
 

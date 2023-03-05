@@ -30,6 +30,7 @@ const { dark } = colors;
 // Routes
 import routes from 'constants/routes';
 
+import { useSearchParams } from 'react-router-dom';
 // Images
 import bgImage from 'assets/images/bridgestars/vote.svg';
 
@@ -44,6 +45,7 @@ import NewRequestDialog from 'bridgestars/voting/newRequest';
 import SigninModal from 'bridgestars/components/modal';
 //STYLE
 
+import { useSnackbar } from 'notistack';
 //DATABASE
 import * as STATUS from 'bridgestars/voting/status';
 
@@ -64,6 +66,8 @@ function VotingPage() {
         'subtype'
       );
   }
+
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const [parseQuery, setParseQuery] = useState(getDefaultQuery());
 
@@ -170,6 +174,26 @@ function VotingPage() {
       }
     }
   }
+
+  const [urlParams, setUrlParams] = useSearchParams();
+  const [linkedPost, setLinkedPost] = useState(undefined);
+  useEffect(() => {
+    if (urlParams.get('post')) {
+      console.log('trying to find post');
+      getDefaultQuery()
+        .equalTo('objectId', urlParams.get('post'))
+        .find()
+        .then((x) => {
+          if (x.length === 0) throw new Error('Linked post could not be found');
+          enqueueSnackbar('Opening linked post...', { variant: 'success' });
+          setLinkedPost({ doc: x[0], expanded: true });
+        })
+        .catch((e) => enqueueSnackbar(e.message, { variant: 'error' }));
+    }
+    // if (request) {
+    //   alert('tring to fetch requset: ', request);
+    // }
+  }, []);
 
   useEffect(() => {
     // console.log('isLoading: ' + isLoading);
@@ -471,6 +495,13 @@ function VotingPage() {
                   display: 'inline-flex',
                 }}
               >
+                {/* <Box pr='4px' mt='-4px' style={{ fontSize: '25px' }}> */}
+                {/*   {'>'} */}
+                {/* </Box> */}
+                {/* or create one here{' '} */}
+                {/* <Box pl='4px' mt='-4px' style={{ fontSize: '25px' }}> */}
+                {/*   {'<'} */}
+                {/* </Box> */}
                 <Box pr='4px' mt='6px' style={{ fontSize: '15px' }}>
                   {'⇒'}
                 </Box>
@@ -625,6 +656,40 @@ function VotingPage() {
                           </Box>
                         </MKTypography>
                       </Box>
+                    )}
+                    {linkedPost && linkedPost.doc && (
+                      <IssueCard
+                        voted={votedIssues.includes(linkedPost.doc.id)}
+                        nbrVotes={linkedPost.doc.get('reactions')?.['1']}
+                        nbrComments={linkedPost.doc.get('comments')}
+                        setNbrComments={(x) =>
+                          linkedPost.doc.set('comments', x)
+                        }
+                        key={linkedPost.doc.id.substring(0, 10)}
+                        post={linkedPost.doc}
+                        title={linkedPost.doc.get('title')}
+                        description={linkedPost.doc.get('data')}
+                        author={linkedPost.doc.get('author')}
+                        status={linkedPost.doc.get('subtype')}
+                        creationTime={linkedPost.doc.createdAt}
+                        handleVote={() => handleVote(doc)}
+                        setShowSignin={setShowSignin}
+                        archive={() =>
+                          setLoadedDocs((docs) =>
+                            docs.filter((x) => x.id != doc.id)
+                          )
+                        }
+                        edit={() => {
+                          setEditDoc((_) => linkedPost.doc);
+                          setShowNewRequest((_) => true);
+                        }}
+                        expanded={linkedPost.expanded}
+                        setExpanded={(t) => {
+                          const post = linkedPost;
+                          post.expanded = t;
+                          setLinkedPost(post);
+                        }}
+                      ></IssueCard>
                     )}
                     {loadedDocs.length != 0 &&
                       loadedDocs.map((doc) => (
