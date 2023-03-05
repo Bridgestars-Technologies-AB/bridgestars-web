@@ -1,4 +1,3 @@
-
 // @mui material components
 import { Box, Grid, Skeleton } from '@mui/material';
 
@@ -67,7 +66,11 @@ function drawVoter(voted, voteCount, handleVote) {
           }}
           onClick={handleVote}
         >
-          <MKTypography sx={{ fontSize: '12px' }} color='white'>
+          <MKTypography
+            sx={{ fontSize: '12px', fontWeight: 500 }}
+            variant=''
+            color='white'
+          >
             {voted ? 'VOTED' : 'VOTE'}
           </MKTypography>
         </Box>

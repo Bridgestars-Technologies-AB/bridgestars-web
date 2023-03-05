@@ -42,6 +42,7 @@ export default function NewRequestDialog({
 
   if (Object.keys(state).length === 0) {
     if (editDoc && editDoc.id) {
+      console.log(JSON.stringify(editDoc));
       setState({
         title: editDoc.get('title'),
         description: editDoc.get('data'),

@@ -413,7 +413,7 @@ export default class Comments extends Component {
           ) : this.state.loadingState === 'loaded' ? (
             this.state.comments && this.state.comments.length > 0 ? (
               this.state.comments
-                .map((x, i) => [
+                .map((x, i) =>
                   this.drawCommentInstance(
                     i + 1,
                     x.id,
@@ -423,18 +423,23 @@ export default class Comments extends Component {
                     x.creationTime,
                     x.voted,
                     () => this.handleVote(x.id)
-                  ),
-                ])
-                .join([
-                  <MKBox
-                    width='100%'
-                    height='1.0px'
-                    bgColor='#1e2e4a44'
-                    my='auto'
-                    sx={{}}
-                    display='inline-block'
-                  ></MKBox>,
-                ])
+                  )
+                )
+                .flatMap((val, i, arr) =>
+                  arr.length - 1 !== i
+                    ? [
+                      val,
+                      <MKBox
+                        width='100%'
+                        height='1.0px'
+                        bgColor='#1e2e4a44'
+                        my='auto'
+                        sx={{}}
+                        display='inline-block'
+                      ></MKBox>,
+                    ]
+                    : val
+                )
             ) : (
               <Box width='100%' sx={{ textAlign: 'center' }}>
                 {' '}

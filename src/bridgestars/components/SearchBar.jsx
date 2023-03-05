@@ -7,9 +7,9 @@ export default function SearchBar({
   placeholder = 'Search...',
   onSubmit = (value) => { },
   onChange = (value) => { },
+  value,
   ...rest
 }) {
-  const [value, setValue] = useState('');
   return (
     <InputBase
       sx={{
@@ -32,10 +32,10 @@ export default function SearchBar({
       }}
       onChange={(e) => {
         e.stopPropagation();
-        setValue(e.target.value);
         onChange(e.target.value);
       }}
       placeholder={'Search...'}
+      value={value || ''}
       endAdornment={
         <IconButton
           size='small'

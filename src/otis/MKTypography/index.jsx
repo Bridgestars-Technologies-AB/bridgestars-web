@@ -76,6 +76,7 @@ MKTypography.propTypes = {
     'dark',
     'text',
     'white',
+    'bluegreen',
   ]),
   fontWeight: PropTypes.oneOf([false, 'light', 'regular', 'medium', 'bold']),
   textTransform: PropTypes.oneOf([

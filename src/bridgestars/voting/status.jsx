@@ -59,7 +59,10 @@ function generateMenuItems(filterVal, counts) {
     return (
       <MenuItem value={key}>
         {text}
-        {filterVal != key && drawCountBadge(count, statusColor(text))}
+
+        {filterVal != key &&
+          count > 0 &&
+          drawCountBadge(count, statusColor(text))}
       </MenuItem>
     );
   };

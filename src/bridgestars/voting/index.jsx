@@ -52,14 +52,14 @@ function VotingPage() {
       .equalTo('type', 1)
       .equalTo('archived', false)
       .select(
+        'info',
         'title',
         'comments',
         'author',
         'data',
         'reactions',
         'chat',
-        'subtype',
-        'info'
+        'subtype'
       );
   }
 
@@ -71,6 +71,7 @@ function VotingPage() {
   const [counts, setCounts] = useState();
   const [error, setError] = useState();
 
+  const [searchBarText, setSearchBarText] = useState('');
   const [searchVal, setSearchVal] = useState(undefined);
   const [filterVal, setFilterVal] = useState('');
   const [sortVal, setSortVal] = useState(0);
@@ -109,6 +110,7 @@ function VotingPage() {
     }
     return q;
   }
+
   useEffect(() => {
     setIsLoading(true);
     setLoadedDocs([]);
@@ -119,6 +121,10 @@ function VotingPage() {
       return q;
     });
   }, [searchVal, filterVal, sortVal]);
+
+  useEffect(() => {
+    setSearchBarText(searchVal);
+  }, [searchVal]);
 
   const getNewCounts = () => {
     Promise.all(
@@ -137,6 +143,7 @@ function VotingPage() {
       .select('author.img', 'author.dispName')
       .find()
       .then((res) => {
+        console.log(res.map((x) => x.get('info')));
         setResults(() => {
           //makes erverything load at the same time! much nicer
           setCount(res.length);
@@ -149,7 +156,7 @@ function VotingPage() {
       });
   };
 
-  const [reload, setReload] = useState(loadQuery);
+  // const [reload, setReload] = useState(loadQuery);
 
   async function onSignedOut() {
     console.log(error);
@@ -450,17 +457,17 @@ function VotingPage() {
                 New Request
               </MKButton> */}
               <MKTypography
-                variant='body2'
+                variant='body1'
                 onClick={() =>
                   Parse.User.current()
                     ? setShowNewRequest(true)
                     : setShowSignin('add a request')
                 }
-                color='info'
+                color='bluegreen'
                 fontWeight='medium'
                 textGradient
-                style={{ textDecorationLine: 'underline' }}
-                sx={{ cursor: 'pointer' }}
+                sx={{ textDecoration: 'underline' }}
+                // sx={{ cursor: 'pointer' }}
                 pb='8px'
               >
                 or create one here
@@ -556,9 +563,11 @@ function VotingPage() {
                       setSearchVal(val);
                     }}
                     onChange={(val) => {
+                      setSearchBarText(val);
                       if (!val && searchVal) setSearchVal('');
                     }}
                     onClick={() => { }}
+                    value={searchBarText}
                   />
                 </Grid>
               </Grid>
@@ -586,8 +595,24 @@ function VotingPage() {
                         </Box>
                       ))}
                     {!isLoading && !error && loadedDocs.length == 0 && (
-                      <Box my={1.5} px='auto' sx={{ textAlign: 'center' }}>
+                      <Box my={5} px='auto' sx={{ textAlign: 'center' }}>
                         <MKTypography variant='h3'>No posts found</MKTypography>
+                        <MKTypography
+                          variant='body2'
+                          onClick={() => {
+                            setFilterVal('');
+                            setSearchBarText('');
+                            setSearchVal('');
+                          }}
+                          color='bluegreen'
+                          fontWeight='medium'
+                          textGradient
+                          sx={{ textDecoration: 'underline' }}
+                          // sx={{ cursor: 'pointer', display: 'inline' }}
+                          pb='8px'
+                        >
+                          Click here to reset filters
+                        </MKTypography>
                       </Box>
                     )}
                     {loadedDocs.length != 0 &&
@@ -613,6 +638,7 @@ function VotingPage() {
                               )
                             }
                             edit={() => {
+                              console.log({ info: doc.obj.get('info') });
                               setEditDoc((_) => doc.obj);
                               setShowNewRequest((_) => true);
                             }}

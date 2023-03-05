@@ -103,7 +103,10 @@ export default {
       main: '#49a3f1',
       state: '#1A73E8',
     },
-
+    bluegreen: {
+      main: '#20e0a0',
+      state: '#1A73E8',
+    },
     secondary: {
       main: '#482c4d',
       state: '#232032',
