@@ -22,10 +22,12 @@ import Icon from '@mui/material/Icon';
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
-import MKBadge from 'otis/MKBadge';
-import image from 'assets/images/bridgestars/black-gold-large.jpg';
+import MKButton from 'otis/MKButton';
+import discord_blur from 'assets/images/bridgestars/discord_blur.jpg';
+import { useState } from 'react';
 
 function Discord() {
+  const [accepted, setAccepted] = useState(false);
   return (
     <MKBox component='section' position='relative' py={2} mt={5}>
       <Container
@@ -94,16 +96,33 @@ function Discord() {
                     mt: { xxl: 5, xl: 10, lg: 6, xs: 6 },
                   }}
                 >
-                  <iframe
-                    src='https://discord.com/widget?id=944310683141541948&theme=light'
-                    width='100%'
-                    height='450'
-                    style={{
-                      border: 'none',
-                    }}
-                    allowtransparency='true'
-                    sandbox='allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts'
-                  ></iframe>
+                  {accepted && (
+                    <iframe
+                      src='https://discord.com/widget?id=944310683141541948&theme=light'
+                      width='100%'
+                      height='450'
+                      style={{
+                        border: 'none',
+                      }}
+                      allowtransparency='true'
+                      sandbox='allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts'
+                    ></iframe>
+                  )}
+                  {!accepted && (
+                    <>
+                      <MKBox
+                        width='100%'
+                        height='450'
+                        style={{
+                          borderRadius: '10px',
+                          filter: 'brightness(50%)',
+                        }}
+                        component='img'
+                        src={discord_blur}
+                      ></MKBox>
+                      <MKButton position='relative'>test</MKButton>
+                    </>
+                  )}
                 </MKBox>
               </Grid>
               <Grid

@@ -46,6 +46,7 @@ import SigninModal from 'bridgestars/components/modal';
 //STYLE
 
 import { useSnackbar } from 'notistack';
+// import { balancer } from 'react-wrap-balancer';
 //DATABASE
 import * as STATUS from 'bridgestars/voting/status';
 
@@ -178,6 +179,7 @@ function VotingPage() {
   const [urlParams, setUrlParams] = useSearchParams();
   const [linkedPost, setLinkedPost] = useState(undefined);
   useEffect(() => {
+    // balanceText();
     if (urlParams.get('post')) {
       console.log('trying to find post');
       getDefaultQuery()
@@ -445,6 +447,7 @@ function VotingPage() {
               mb={6}
               mt={4}
             >
+              {/* <Balancer> */}
               <MKTypography variant='h2' mb={1} fontSize='40px'>
                 The platform where{' '}
                 <MKTypography
@@ -465,6 +468,7 @@ function VotingPage() {
                 own. We read everything and will take great consideration to
                 this page when developing Bridgestars.
               </MKTypography>
+              {/* </Balancer> */}
             </Grid>
             {/* 
             <Grid textAlign='center'>

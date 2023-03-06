@@ -101,21 +101,12 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
   function onAuthStateChanged() {
     if (Parse.User.current()) {
       console.log('SIGNED IN');
-      if (formSuccess) {
-        setConfirmed(true);
-        setTitle('Welcome to the Bridgestars community!');
-        setDescription(
-          'We will reach out to you at\n(' +
-          Parse.User.current().get('email') +
-          ')\nwith a download link for the Bridgestars App.'
-        );
-      } else {
-        setConfirmed(true);
-        setTitle('You are already signed in!');
-        setDescription(
-          'Check your email for a download link for the Bridgestars App.'
-        );
-      }
+      setConfirmed(true);
+      setConfirmed(true);
+      setTitle('Welcome to Bridgestars!');
+      setDescription(
+        'Check your email for a download link for the Bridgestars App.'
+      );
       // ...
     } else {
       setConfirmed(false);
@@ -388,7 +379,7 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
                 onClick={() => {
                   if (modal) {
                     modalexitcallback();
-                  } else navigateTo(-1);
+                  } else navigateTo(-2);
                 }}
                 size='medium'
                 fontSize='2vmin'
