@@ -56,8 +56,11 @@ import Back from 'bridgestars/info/stripe/back';
 import './style.css';
 import './parse-config';
 
+import { useState } from 'react';
+
 export default function App() {
   const { pathname } = useLocation();
+  const [firstTime, setFirstTime] = useState(true);
 
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
@@ -83,7 +86,15 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
-        <Route path='*' element={<BridgestarsHome />} />
+        <Route
+          path='*'
+          element={
+            <BridgestarsHome
+              setFirstTime={setFirstTime}
+              firstTime={firstTime}
+            />
+          }
+        />
         {/* <Route path='/home_old' element={<BridgestarsHomeOld />} /> */}
         {/* <Route path='/signup' element={<SignupForm />} /> */}
         <Route path='/about' element={<About />} />

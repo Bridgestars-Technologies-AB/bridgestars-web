@@ -19,7 +19,7 @@ import { useEffect, useRef } from 'react';
 // import Rellax from 'rellax';
 
 // typed
-import * as Typed from 'typed.js';
+// import * as Typed from 'typed.js';
 
 // @mui material components
 import Container from '@mui/material/Container';
@@ -29,8 +29,8 @@ import Button from '@mui/material/Button';
 
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
-import MKTypography from 'otis/MKTypography';
-import MKButton from 'otis/MKButton';
+// import MKTypography from 'otis/MKTypography';
+// import MKButton from 'otis/MKButton';
 
 // Otis Kit PRO examples
 import BridgestarsNavbar from 'bridgestars/navbar';
@@ -49,8 +49,8 @@ import routes from 'constants/routes';
 // React
 
 // @mui material components
-import Stack from '@mui/material/Stack';
-import { positions } from '@mui/system';
+// import Stack from '@mui/material/Stack';
+// import { positions } from '@mui/system';
 
 // Otis Kit PRO examples
 
@@ -64,30 +64,30 @@ import Discord from './sections/Discord';
 import { Link } from 'react-router-dom';
 
 // Images
-import bgImage from 'assets/images/bridgestars/mockup-1_1-smoke.jpg';
+// import bgImage from 'assets/images/bridgestars/mockup-1_1-smoke.jpg';
 import bgVideo from 'assets/images/bridgestars/shortIntro-compressed.mp4';
-import linearHomepageGradient from 'assets/theme/functions/linearHomepageGradient';
+// import linearHomepageGradient from 'assets/theme/functions/linearHomepageGradient';
 //import Zoom from '@mui/material/Zoom';
 import { Grow, Fade, Collapse, Slide, Zoom } from '@mui/material';
 
-import CountUp from 'react-countup';
-import { HashLink } from 'react-router-hash-link';
+// import CountUp from 'react-countup';
+// import { HashLink } from 'react-router-hash-link';
 import { useState } from 'react';
-import { TramRounded } from '@mui/icons-material';
-import { Icon } from '@mui/material';
-import footerRoutes from 'constants/footer.routes';
+// import { TramRounded } from '@mui/icons-material';
+// import { Icon } from '@mui/material';
+// import footerRoutes from 'constants/footer.routes';
 
 //COOKIES
-import CookieConsent from 'react-cookie-consent';
+// import CookieConsent from 'react-cookie-consent';
 
 //style
 import './style.css';
 
-function BridgestarsHome() {
-  const [typeNext, setTypeNext] = useState(0);
-  const headerRef = useRef(null);
-  const typedHeaderRef = useRef(null);
-  const [showUI, setShowUI] = useState(false);
+function BridgestarsHome({ firstTime, setFirstTime }) {
+  // const [typeNext, setTypeNext] = useState(0);
+  // const headerRef = useRef(null);
+  // const typedHeaderRef = useRef(null);
+  const [showUI, setShowUI] = useState(Boolean(firstTime));
   // const typedSubHeaderRef = useRef(null);
 
   // Setting up rellax
@@ -144,6 +144,7 @@ function BridgestarsHome() {
   useEffect(() => {
     setTimeout(() => {
       setShowUI(true);
+      setFirstTime(false);
       setTimeout(() => {
         fadeOutEffect();
       }, 1500);

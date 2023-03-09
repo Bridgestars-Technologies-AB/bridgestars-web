@@ -111,9 +111,10 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
       // ...
     } else {
       setConfirmed(false);
-      setTitle('Become a Bridgestars Beta Tester');
+      setTitle('Join the Bridgestars Waiting List');
+      // setTitle('Become a Bridgestars Beta Tester');
       setDescription(
-        'Enter your desired email and password below and we will send you a download link.'
+        'Enter your desired email and password below to create an account.'
       );
     }
   }
@@ -253,7 +254,7 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
             {showLoader ? (
               <PulseLoader color='white' speedMultiplier={1} size={8} />
             ) : (
-              'register'
+              'join'
             )}
           </MKButton>
           <MKBox mt={3} mb={1} textAlign='center'>
