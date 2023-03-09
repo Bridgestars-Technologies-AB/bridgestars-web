@@ -105,7 +105,8 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
       setConfirmed(true);
       setTitle('Welcome to Bridgestars!');
       setDescription(
-        'Check your email for a download link for the Bridgestars App.'
+        // 'Check your email for a download link for the Bridgestars App.'
+        'We will reach out to your email address once Bridgestars becomes available.'
       );
       // ...
     } else {

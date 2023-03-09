@@ -24,10 +24,12 @@ import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
 import MKButton from 'otis/MKButton';
 import discord_blur from 'assets/images/bridgestars/discord_blur.jpg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Discord() {
   const [accepted, setAccepted] = useState(false);
+
   return (
     <MKBox component='section' position='relative' py={2} mt={5}>
       <Container
@@ -109,10 +111,10 @@ function Discord() {
                     ></iframe>
                   )}
                   {!accepted && (
-                    <>
+                    <div position='relative'>
                       <MKBox
                         width='100%'
-                        height='450'
+                        height='100%'
                         style={{
                           borderRadius: '10px',
                           filter: 'brightness(50%)',
@@ -120,8 +122,43 @@ function Discord() {
                         component='img'
                         src={discord_blur}
                       ></MKBox>
-                      <MKButton position='relative'>test</MKButton>
-                    </>
+                      <div
+                        style={{
+                          top: '50%',
+                          transform: 'translate(-50%, -50%)',
+                          position: 'absolute',
+                          left: '50%',
+                          width: '100%',
+                          textAlign: 'center',
+                        }}
+                      >
+                        <MKButton
+                          size='large'
+                          onClick={() => setAccepted(true)}
+                        >
+                          Accept Cookies
+                        </MKButton>
+                        <MKTypography
+                          variant='body2'
+                          mt='4px'
+                          mx={{ sx: '15px', sm: '20px', md: '40px' }}
+                          color='white'
+                        >
+                          By clicking you accept that we store cookies related
+                          to this extension. Read more in our{' '}
+                          <MKTypography
+                            variant='body2'
+                            fontWeight='bold'
+                            color='info'
+                            sx={{ cursor: 'pointer' }}
+                            component={Link}
+                            to='/policy'
+                          >
+                            policy.
+                          </MKTypography>
+                        </MKTypography>
+                      </div>
+                    </div>
                   )}
                 </MKBox>
               </Grid>

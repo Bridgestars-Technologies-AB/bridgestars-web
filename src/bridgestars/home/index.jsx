@@ -262,7 +262,8 @@ function BridgestarsHome() {
                   },
                 }}
               >
-                {'SIGN UP NOW'}
+                {'JOIN THE WAITING LIST'}
+                {/* {'SIGN UP NOW'} */}
               </Button>
               {/* <MKTypography
                 variant='h5'
