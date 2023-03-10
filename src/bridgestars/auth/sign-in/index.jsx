@@ -72,8 +72,10 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
   const formSuccess = ({ username, password, setErrors }) => {
     //setTriedToSubmit(true);
 
-    Parse.User.logIn(username, password)
+    Parse.Cloud.run('signIn', { username, password })
+      .then(() => Parse.User.logIn(username, password))
       .then((user) => {
+        // console.log('SIGNED IN USING FIREBASE MIGRATION');
         // Signed in
         setShowLoader(false);
         setSignedIn(true);

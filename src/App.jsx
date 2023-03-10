@@ -88,12 +88,12 @@ export default function App() {
       <Routes>
         <Route
           path='*'
-          element={
+          element={() => (
             <BridgestarsHome
               setFirstTime={setFirstTime}
               firstTime={firstTime}
             />
-          }
+          )}
         />
         {/* <Route path='/home_old' element={<BridgestarsHomeOld />} /> */}
         {/* <Route path='/signup' element={<SignupForm />} /> */}

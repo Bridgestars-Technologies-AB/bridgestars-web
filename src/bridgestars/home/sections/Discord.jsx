@@ -136,11 +136,11 @@ function Discord() {
                           size='large'
                           onClick={() => setAccepted(true)}
                         >
-                          Accept Cookies
+                          Show preview
                         </MKButton>
                         <MKTypography
                           variant='body2'
-                          mt='4px'
+                          mt='7px'
                           mx={{ sx: '15px', sm: '20px', md: '40px' }}
                           color='white'
                         >
