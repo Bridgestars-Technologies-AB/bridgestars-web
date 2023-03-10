@@ -451,6 +451,7 @@ function VotingPage() {
               <MKTypography variant='h2' mb={1} fontSize='40px'>
                 The platform where{' '}
                 <MKTypography
+                  // component={'span'}
                   variant='inherit'
                   display='inline-block'
                   // color='primary'
@@ -499,13 +500,6 @@ function VotingPage() {
                   display: 'inline-flex',
                 }}
               >
-                {/* <Box pr='4px' mt='-4px' style={{ fontSize: '25px' }}> */}
-                {/*   {'>'} */}
-                {/* </Box> */}
-                {/* or create one here{' '} */}
-                {/* <Box pl='4px' mt='-4px' style={{ fontSize: '25px' }}> */}
-                {/*   {'<'} */}
-                {/* </Box> */}
                 <Box pr='4px' mt='6px' style={{ fontSize: '15px' }}>
                   {'⇒'}
                 </Box>
@@ -514,6 +508,13 @@ function VotingPage() {
                   {'⇐'}
                 </Box>
               </MKTypography>
+              {/* <Box pr='4px' mt='-4px' style={{ fontSize: '25px' }}> */}
+              {/*   {'>'} */}
+              {/* </Box> */}
+              {/* or create one here{' '} */}
+              {/* <Box pl='4px' mt='-4px' style={{ fontSize: '25px' }}> */}
+              {/*   {'<'} */}
+              {/* </Box> */}
             </Grid>
 
             <MKBox
