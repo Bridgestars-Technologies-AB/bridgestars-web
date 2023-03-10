@@ -65,6 +65,14 @@ export default function App() {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
+  // useEffect(() => {
+  //   const ele = document.getElementById('ipl-progress-indicator');
+  //   if (ele) {
+  //     // fade out
+  //     ele.classList.add('available');
+  //     ele.outerHTML = '';
+  //   }
+  // }, []);
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route, i) => {
