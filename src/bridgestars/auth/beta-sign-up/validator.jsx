@@ -5,7 +5,7 @@ function omit(obj, key) {
   return rest;
 }
 
-const useValidator = (callback, failCallback) => {
+const useValidator = (enqueueSnackbar, callback, failCallback) => {
   const [formDenied, setFormDenied] = useState(false);
   //Form values
   const [values, setValues] = useState({});
@@ -33,8 +33,8 @@ const useValidator = (callback, failCallback) => {
       case 'username':
         if (value.length <= 2)
           setErrors({
-            ...errors,
             username: 'Username needs to have atleast 3 letters',
+            ...errors,
           });
         else {
           let newObj = omit(errors, 'username');
@@ -50,8 +50,8 @@ const useValidator = (callback, failCallback) => {
           ).test(value)
         ) {
           setErrors({
-            ...errors,
             email: 'Enter a valid email address',
+            ...errors,
           });
         } else {
           let newObj = omit(errors, 'email');
@@ -107,8 +107,11 @@ const useValidator = (callback, failCallback) => {
       callback(values);
     } else {
       if (Object.keys(errors).length === 0)
-        alert("Don't forget to enter your information");
-      else alert(errors[Object.keys(errors)[0]]);
+        enqueueSnackbar("Don't forget to enter your information", {
+          variant: 'error',
+        });
+      else
+        enqueueSnackbar(errors[Object.keys(errors)[0]], { variant: 'error' });
       setFormDenied(true);
       failCallback();
     }

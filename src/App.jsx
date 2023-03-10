@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // react-router components
 import {
@@ -56,8 +56,6 @@ import Back from 'bridgestars/info/stripe/back';
 import './style.css';
 import './parse-config';
 
-import { useState } from 'react';
-
 export default function App() {
   const { pathname } = useLocation();
   const [firstTime, setFirstTime] = useState(true);
@@ -88,13 +86,14 @@ export default function App() {
       <Routes>
         <Route
           path='*'
-          element={() => (
+          element={
             <BridgestarsHome
-              setFirstTime={setFirstTime}
               firstTime={firstTime}
+              setFirstTime={setFirstTime}
             />
-          )}
+          }
         />
+
         {/* <Route path='/home_old' element={<BridgestarsHomeOld />} /> */}
         {/* <Route path='/signup' element={<SignupForm />} /> */}
         <Route path='/about' element={<About />} />
@@ -113,7 +112,7 @@ export default function App() {
         <Route path='/failure' element={<Failure />} />
         <Route path='/back' element={<Back />} />
         {/* <Route path='/reset-pass' element={<ResetPasswordForm />} /> */}
-        {getRoutes(routes)}
+        {/* {getRoutes(routes)} */}
       </Routes>
       {/* <CookieConsent
         location='bottom'

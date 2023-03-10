@@ -27,6 +27,7 @@ import MKInput from 'otis/MKInput';
 import { PulseLoader } from 'react-spinners';
 
 import { useSnackbar } from 'notistack';
+// const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 import { useEffect } from 'react';
 
 export default function NewRequestDialog({

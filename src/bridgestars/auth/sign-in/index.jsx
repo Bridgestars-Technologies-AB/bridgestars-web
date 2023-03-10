@@ -22,6 +22,7 @@ import Breadcrumbs from 'otis/Breadcrumbs';
 // Authentication layout components
 import IllustrationLayout from '../IllustrationLayout';
 
+import { useSnackbar } from 'notistack';
 // Image
 import logo from 'assets/images/bridgestars/logo-trans-512px.png';
 import useValidator from 'bridgestars/auth/sign-in/validator';
@@ -51,6 +52,8 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
   const [goToSignUp, setGoToSignUp] = useState(false);
   const [goToForgotPass, setGoToForgotPass] = useState(false);
 
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
   useEffect(() => {
     onAuthStateChanged();
   }, []);
@@ -73,6 +76,7 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
     //setTriedToSubmit(true);
 
     Parse.Cloud.run('signIn', { username, password })
+      .catch(() => { })
       .then(() => Parse.User.logIn(username, password))
       .then((user) => {
         // console.log('SIGNED IN USING FIREBASE MIGRATION');
@@ -100,8 +104,9 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
         // if (errorCode.includes('password')) {
         //   setErrors({ password: 'Wrong password' });
         // }
-        alert(
-          error.message
+        enqueueSnackbar(
+          error.message,
+          { variant: 'error' }
           // errorCodes[errorCode]
           //   ? errorCodes[errorCode]
           //   : errorCode.split('/')[1].replaceAll('-', ' ')
@@ -132,7 +137,7 @@ function SigninForm({ modal, header, modalexitcallback, ...rest }) {
     handleChange,
     validatorHandleSubmit,
     clearForm,
-  } = useValidator(formSuccess, formFailure);
+  } = useValidator(enqueueSnackbar, formSuccess, formFailure);
 
   const handleSubmit = () => {
     setShowLoader(true);

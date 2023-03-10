@@ -5,7 +5,7 @@ function omit(obj, key) {
   return rest;
 }
 
-const useValidator = (successCallback, failCallback) => {
+const useValidator = (enqueueSnackbar, successCallback, failCallback) => {
   const [formDenied, setFormDenied] = useState(false);
   //Form values
   const [values, setValues] = useState({});
@@ -44,20 +44,20 @@ const useValidator = (successCallback, failCallback) => {
         break;
 
       // case 'email':
-        // if (
-        //   !new RegExp(
-        //     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        //   ).test(value)
-        // ) {
-        //   setErrors({
-        //     ...errors,
-        //     email: 'Enter a valid email address',
-        //   });
-        // } else {
-        //   let newObj = omit(errors, 'email');
-        //   setErrors(newObj);
-        // }
-        // break;
+      // if (
+      //   !new RegExp(
+      //     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      //   ).test(value)
+      // ) {
+      //   setErrors({
+      //     ...errors,
+      //     email: 'Enter a valid email address',
+      //   });
+      // } else {
+      //   let newObj = omit(errors, 'email');
+      //   setErrors(newObj);
+      // }
+      // break;
       case 'password':
         if (value.length < 6)
           setErrors({
@@ -84,10 +84,13 @@ const useValidator = (successCallback, failCallback) => {
         setErrors: setErrors,
       });
     } else {
-      failCallback()
+      failCallback();
       if (Object.keys(errors).length === 0)
-        alert("Don't forget to enter your information");
-      else alert(errors[Object.keys(errors)[0]]);
+        enqueueSnackbar("Don't forget to enter your information", {
+          variant: 'error',
+        });
+      else
+        enqueueSnackbar(errors[Object.keys(errors)[0]], { variant: 'error' });
       setFormDenied(true);
     }
   };

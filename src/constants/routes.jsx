@@ -119,7 +119,6 @@ const routes = [
     name: 'Home',
     icon: <Icon>home</Icon>,
     route: '/',
-    component: <BridgestarsHome />,
   },
   {
     name: 'About us',

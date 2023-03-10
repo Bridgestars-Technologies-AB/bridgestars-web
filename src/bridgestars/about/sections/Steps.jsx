@@ -77,74 +77,76 @@ function Steps({ slides, steps }) {
           allowTouchMove={false}
           loop
         >
-          {slides.map(({ image, content, label, title, description }) => (
-            <SwiperSlide key={label}>
-              <Grid
-                container
-                spacing={3}
-                alignItems='center'
-                sx={{ mb: { xs: 6, md: 0 } }}
-              >
-                <Grid item xs={12} md={5} ml={{ xs: 0, lg: 'auto' }}>
-                  <MKBox p={2}>
-                    {image ? (
-                      <MKBox
-                        component='img'
-                        src={image}
-                        alt={title}
-                        width='100%'
-                        borderRadius='xl'
-                        maxHeight='37.5rem'
-                      />
-                    ) : (
-                      <MKBox
-                        width='100%'
-                        borderRadius='xl'
-                        //my={40}
-                        //pt={-40}
-                        sx={{ my: { xs: 4 } }}
-                        maxHeight='37.5rem'
-                      >
-                        {content}
-                      </MKBox>
-                    )}
-                  </MKBox>
-                </Grid>
+          {slides.map(
+            ({ image, content, label, title, description }, index) => (
+              <SwiperSlide key={index}>
                 <Grid
-                  item
-                  xs={12}
-                  md={5}
-                  mr={{ xs: 0, lg: 'auto' }}
-                  position='relative'
+                  container
+                  spacing={3}
+                  alignItems='center'
+                  sx={{ mb: { xs: 6, md: 0 } }}
                 >
-                  <MKTypography
-                    component='h6'
-                    variant='button'
-                    opacity={0.7}
-                    textTransform='uppercase'
-                    fontWeight='bold'
+                  <Grid item xs={12} md={5} ml={{ xs: 0, lg: 'auto' }}>
+                    <MKBox p={2}>
+                      {image ? (
+                        <MKBox
+                          component='img'
+                          src={image}
+                          alt={title}
+                          width='100%'
+                          borderRadius='xl'
+                          maxHeight='37.5rem'
+                        />
+                      ) : (
+                        <MKBox
+                          width='100%'
+                          borderRadius='xl'
+                          //my={40}
+                          //pt={-40}
+                          sx={{ my: { xs: 4 } }}
+                          maxHeight='37.5rem'
+                        >
+                          {content}
+                        </MKBox>
+                      )}
+                    </MKBox>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    md={5}
+                    mr={{ xs: 0, lg: 'auto' }}
+                    position='relative'
                   >
-                    {label}
-                  </MKTypography>
-                  <MKTypography
-                    variant='h1'
-                    fontWeight='bold'
-                    sx={{
-                      fontSize: ({ typography: { d3, d4 } }) => ({
-                        xs: d4.fontSize,
-                        lg: d3.fontSize,
-                      }),
-                    }}
-                  >
-                    {title}
-                  </MKTypography>
-                  <MKTypography variant='body1' my={3}>
-                    {description}
-                  </MKTypography>
+                    <MKTypography
+                      component='h6'
+                      variant='button'
+                      opacity={0.7}
+                      textTransform='uppercase'
+                      fontWeight='bold'
+                    >
+                      {label}
+                    </MKTypography>
+                    <MKTypography
+                      variant='h1'
+                      fontWeight='bold'
+                      sx={{
+                        fontSize: ({ typography: { d3, d4 } }) => ({
+                          xs: d4.fontSize,
+                          lg: d3.fontSize,
+                        }),
+                      }}
+                    >
+                      {title}
+                    </MKTypography>
+                    <MKTypography variant='body1' my={3}>
+                      {description}
+                    </MKTypography>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </SwiperSlide>
-          ))}
+              </SwiperSlide>
+            )
+          )}
           <MKBox
             display={{ xs: 'flex', md: 'none' }}
             position='absolute'
@@ -173,7 +175,7 @@ function Steps({ slides, steps }) {
         </Swiper>
         <Grid container mt={16}>
           {steps.map(({ number, label }, index) => (
-            <Grid key={label} item xs={6} lg={6} textAlign='center'>
+            <Grid key={index} item xs={6} lg={6} textAlign='center'>
               <MKTypography
                 variant='body1'
                 color='success'

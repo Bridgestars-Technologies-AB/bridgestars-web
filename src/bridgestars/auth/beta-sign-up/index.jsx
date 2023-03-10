@@ -60,6 +60,8 @@ import { Button } from '@mui/material';
 import SigninForm from '../sign-in';
 import { onAuthStateChanged } from 'firebase/auth';
 
+import { useSnackbar } from 'notistack';
+
 function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
   const [goToSignIn, setGoToSignIn] = useState(false);
 
@@ -68,6 +70,8 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
   const [description, setDescription] = useState('');
   const [showLoader, setShowLoader] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
+
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   // const auth = getAuth(firebaseApp);
 
   const validateSuccessCallback = ({ username, email, password }) => {
@@ -90,7 +94,7 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
         //   'auth/invalid-password':
         //     'Password should contains atleast 8 characters and contain uppercase,lowercase and numbers',
         // };
-        alert(error.message);
+        enqueueSnackbar(error.message, { variant: 'error' });
       });
   };
 
@@ -126,7 +130,11 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
   const [policy, setPolicy] = useState(false);
 
   const { formDenied, values, errors, handleChange, handleSubmit, clearForm } =
-    useValidator(validateSuccessCallback, validateFailCallback);
+    useValidator(
+      enqueueSnackbar,
+      validateSuccessCallback,
+      validateFailCallback
+    );
 
   //Final submit function
 
@@ -360,7 +368,7 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
         </MKBox>
       </Modal>
       <IllustrationLayout
-        name='Register'
+        name='Sign Up'
         logo={window.innerHeight > 500 || confirmed ? logo : ''}
         title={title}
         description={description}

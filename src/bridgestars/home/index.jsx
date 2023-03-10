@@ -72,7 +72,8 @@ import { Grow, Fade, Collapse, Slide, Zoom } from '@mui/material';
 
 // import CountUp from 'react-countup';
 // import { HashLink } from 'react-router-hash-link';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { HomeFirstTime } from 'src/AppContext.js';
 // import { TramRounded } from '@mui/icons-material';
 // import { Icon } from '@mui/material';
 // import footerRoutes from 'constants/footer.routes';
@@ -87,7 +88,9 @@ function BridgestarsHome({ firstTime, setFirstTime }) {
   // const [typeNext, setTypeNext] = useState(0);
   // const headerRef = useRef(null);
   // const typedHeaderRef = useRef(null);
-  const [showUI, setShowUI] = useState(Boolean(firstTime));
+  // const firstTime = useCOntext()
+  console.log(firstTime);
+  const [showUI, setShowUI] = useState(!Boolean(firstTime));
   // const typedSubHeaderRef = useRef(null);
 
   // Setting up rellax
