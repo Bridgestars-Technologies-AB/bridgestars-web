@@ -5,8 +5,8 @@ build/*
 .firebase/*
 package-lock.json
 .idea/
-
-
+dist/*
+.metals/
 
 
 

@@ -1,6 +1,6 @@
 # Bridgestars website repo
 
-## [Live page (bridgestars.se)](https://bridgestars.se)
+## [Live page (bridgestars.net)](https://bridgestars.net)
 
 ## [Beta preview](https://bridge-fcee8--bridgestars-dev-yx23h1er.web.app)
 
@@ -29,7 +29,7 @@
 # deploy to dev
 > firebase hosting:channel:deploy bridgestars-dev
 
-# deploy to bridgestars.se
+# deploy to bridgestars.net
 > firebase deploy
 ```
 
