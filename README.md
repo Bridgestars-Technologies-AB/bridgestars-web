@@ -11,7 +11,6 @@
 ```
 > npm install
 > firebase signin
-> firebase init hosting
 ```
 
 ### Serve locally
@@ -27,10 +26,10 @@
 > npm run build
 
 # deploy to dev
-> firebase hosting:channel:deploy bridgestars-dev
+> npm run deploy_dev
 
 # deploy to bridgestars.net
-> firebase deploy
+> npm run deploy
 ```
 
 #### Special thanks
