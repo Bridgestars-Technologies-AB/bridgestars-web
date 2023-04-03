@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // rellax
 import Rellax from 'rellax';
@@ -22,11 +22,14 @@ import Rellax from 'rellax';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-
+import Icon from '@mui/material/Icon';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 // Otis Kit PRO components
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
 
+import MKButton from 'otis/MKButton';
 // Otis Kit PRO examples
 
 // About Us page sections
@@ -40,9 +43,21 @@ import footerRoutes from 'constants/footer.routes';
 import bgImage from 'assets/images/bridgestars/home_page.svg';
 import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter';
 import BridgestarsNavbar from 'bridgestars/navbar';
-import DownloadCard from './sections/DownloadCard';
+import * as CARD from './sections/DownloadCard';
 
 function DownloadPage() {
+  console.log(navigator.userAgent);
+  const platform = navigator.platform;
+  const isMobile = /Android|iPhone/i.test(navigator.userAgent);
+  const isMac = navigator.platform.includes('Mac');
+  const isWindows = navigator.platform.includes('Win');
+  const [lang, setLang] = useState(
+    (navigator.language || navigator.userLanguage).includes('sv') ? 'sv' : 'en'
+  );
+  const sv = lang.includes('sv');
+
+  const [showAllOptions, setShowAllOptions] = useState(false);
+
   return (
     <>
       <Grid container width='100%' justifyContent='center'>
@@ -83,62 +98,65 @@ function DownloadPage() {
               width={{ xs: '75%', sm: '45%', xl: '35%' }}
             ></MKBox>
           </Grid>
-          <MKBox p={3}>
-            <Information />
+          <MKBox px={3} pt={6} mt={6}>
+            <Tabs
+              value={lang}
+              orientation={window.innerWidth < 450 ? 'vertical' : 'horizontal'}
+              onChange={(e, val) => setLang(val)}
+            >
+              <Tab label='sv_test' value={'sv'} icon={<Icon>gavel</Icon>} />
+              <Tab
+                label='eng_test'
+                value={'en'}
+                icon={<Icon>health_and_safety</Icon>}
+              />
+            </Tabs>
+            <Information sv={sv} />
             <MKBox
               component='section'
               pt={{ xs: 6, lg: 9 }}
               pb={{ xs: 3, xl: 4 }}
             >
               <Container>
-                {/* <Grid
-                  container
-                  item
-                  xs={12}
-                  md={6}
-                  justifyContent='center'
-                  sx={{ mx: 'auto', mb: 8, textAlign: 'center' }}
-                >
-                  <MKTypography variant='h2' mb={1}>
-                    Best no-tricks pricing
-                  </MKTypography>
-                  <MKTypography variant='body1' color='text'>
-                    Bridgestars is and always will be free.
-                  </MKTypography>
-                </Grid> */}
-                <DownloadCard
-                  mb={2}
-                  title={'Windows Installer (.exe)'}
-                  size={'47 MB'}
-                  link={
-                    'https://drive.google.com/u/1/uc?id=10arbRMdKwd8ZDLxr0qsx_umT32RStdW-&export=download&confirm=t'
-                  }
-                  description={
-                    'This is an installer for Windows, it will make sure that everything is installed correctly and add a shortcut to your desktop.'
-                  }
-                />
-                <DownloadCard
-                  mb={2}
-                  title={'Mac OS Installer (.pkg)'}
-                  size={'36 MB'}
-                  link={
-                    'https://drive.google.com/u/0/uc?id=1oHFbxVL6RGKOkRuChhvDckS_wIZ5s503&export=download&confirm=t'
-                  }
-                  description={
-                    'This is an installer for Mac OS, it will make sure that the application makes it to your application folder and will ask if you want an shortcut on your desktop.'
-                  }
-                />
-                <DownloadCard
-                  title={'Mac OS Raw (.app)'}
-                  size={'36 MB'}
-                  link={
-                    'https://drive.google.com/u/0/uc?id=1Sic22mCxGTW6ygcWojL4WZcZ3PANi8Qc&export=download&confirm=t'
-                  }
-                  description={
-                    'This download does only contain the application package, the application will be runnable directly from the downloads folder. We recommend that you put it in the Applications folder.'
-                  }
-                />
+                {!showAllOptions && (
+                  <>
+                    {isWindows && <CARD.DownloadCardWindows sv={sv} />}
+                    {isMac && <CARD.DownloadCardMacInstaller sv={sv} />}
+                    {isMobile && (
+                      <MKTypography variant='h4'>
+                        {sv
+                          ? 'Bridgestars fungerar inte ännu på telefonen utan kräver en dator, vänligen öppna denna hemsidan på din dator för att installera Bridgestars.'
+                          : 'Bridgestars is not yet available on mobile, please return to this page on your computer to install Bridgestars.'}
+                      </MKTypography>
+                    )}
+                    {!isMac && !isWindows && !isMobile && (
+                      <MKTypography variant='h4'>
+                        {sv
+                          ? 'Bridgestars fungerar inte ännu på denna platform utan kräver en dator med Windows eller MacOS, hör gärna av dig till oss om detta.'
+                          : 'Bridgestars is not yet available on this platform. Windows or MacOS is required.'}
+                      </MKTypography>
+                    )}
+                    <MKButton
+                      variant=''
+                      onClick={(e) => {
+                        setShowAllOptions(true);
+                      }}
+                      color='info'
+                      size='large'
+                      sx={{ my: 2 }}
+                    >
+                      {sv ? 'Visa Andra alternativ' : 'Show All Alternatives'}
+                    </MKButton>
+                  </>
+                )}
               </Container>
+              {showAllOptions && (
+                <Container>
+                  <CARD.DownloadCardWindows sv={sv} />
+                  <CARD.DownloadCardMacInstaller sv={sv} />
+                  <CARD.DownloadCardMacRaw sv={sv} />
+                </Container>
+              )}
             </MKBox>
           </MKBox>
         </Card>

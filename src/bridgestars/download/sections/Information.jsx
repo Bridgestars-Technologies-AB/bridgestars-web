@@ -21,13 +21,13 @@ import Grid from '@mui/material/Grid';
 import MKBox from 'otis/MKBox';
 import MKTypography from 'otis/MKTypography';
 import { Icon } from '@mui/material';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import footerRoutes from 'constants/footer.routes';
 
-function Information() {
+function Information({ sv }) {
   return (
     <>
-      <MKBox component='section' pt={6} mt={6}>
+      <MKBox component='section'>
         <Container>
           <Grid container item xs={12} lg={8} mx='auto'>
             <Grid item xs={12} mx={0}>
@@ -38,31 +38,36 @@ function Information() {
                 textTransform='uppercase'
                 fontWeight='bold'
               >
-                You rock
+                {sv ? 'heja dig' : 'You rock'}
               </MKTypography>
             </Grid>
             <MKTypography variant='h4' mb={3}>
-              Thank you for joining our Technical Preview!
+              {sv
+                ? 'Tack för att du vill testa Bridgestars!'
+                : 'Thank you for joining our Technical Preview!'}
             </MKTypography>
             <MKTypography variant='body2' mr={1}>
-              Bridgestars is now available for early access members on Windows and Mac OS. To get
-              started, download the software below and enter the email and
-              password you registered with. If you forgot your password you can
-              apply for a new one{' '}
-              <MKTypography
-                variant='body2'
-                component={Link}
-                to='/forgot-pass'
-                color='info'
-                fontWeight='medium'
-                textGradient
-                style={{ textDecorationLine: 'underline' }}
-                sx={{ cursor: 'pointer' }}
-              >
-                here.
-              </MKTypography>
+              {sv
+                ? 'Bridgestars finns nu tillgängligt till några utvalda medlemmar. För att komma igång, ladda ner programvaran nedan på din stationära eller bärbara dator.'
+                : 'Bridgestars is now available for choosen members on Windows and Mac OS. To get started, download the software below and sign in or create an account. If you forgot your password you can apply for a new one'}{' '}
+              {!sv && (
+                <MKTypography
+                  variant='body2'
+                  component={Link}
+                  to='/forgot-pass'
+                  color='info'
+                  fontWeight='medium'
+                  textGradient
+                  style={{ textDecorationLine: 'underline' }}
+                  sx={{ cursor: 'pointer' }}
+                >
+                  here.
+                </MKTypography>
+              )}
               <br /> <br />
-              We appreciate all your feedback. Please reach out to us via{' '}
+              {sv
+                ? 'Vi uppskattar all positiv och negativ återkoppling om vårt program. Vi tar gärna emot kommentarer på '
+                : 'We appreciate all your feedback. Please reach out to us via'}{' '}
               <MKTypography
                 variant='body2'
                 component='a'
@@ -75,7 +80,7 @@ function Information() {
               >
                 Discord
               </MKTypography>{' '}
-              or{' '}
+              {sv ? 'eller' : 'or'}{' '}
               <MKTypography
                 variant='body2'
                 component='a'
@@ -88,16 +93,17 @@ function Information() {
               >
                 email
               </MKTypography>{' '}
-              if you encounter any problems with the app. You are also welcome
-              to submit any feature requests.
+              {sv
+                ? 'om du stöter på några problem. Du är också välkommen att föreslå nya funktioner.'
+                : 'if you encounter any problems with the app. You are also welcome to submit any feature requests.'}
               <br /> <br />
-              The app will require at most 1 GB of disk space. Make sure to have
-              some space left on your computer.
+              {sv
+                ? 'Programmet kräver som mest 1 GB utrymme.'
+                : 'The app will require at most 1 GB of disk space. Make sure to have some space left on your computer.'}
               <br /> <br />
-              The Windows installer may trigger some antivirus programs, this
-              will change when Microsoft acknowledge our application. The same
-              goes for the Mac OS Raw version. We recommend the Installer
-              version which is already trusted by Apple.
+              {sv
+                ? ''
+                : ' The Windows installer may trigger Windows Smart Screen which may warn you about the application, there is nothing that can be done about this.'}
             </MKTypography>
           </Grid>
         </Container>
