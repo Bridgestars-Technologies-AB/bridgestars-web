@@ -46,13 +46,12 @@ import BridgestarsNavbar from 'bridgestars/navbar';
 import * as CARD from './sections/DownloadCard';
 
 function DownloadPage() {
-  console.log(navigator.userAgent);
   const platform = navigator.platform;
   const isMobile = /Android|iPhone/i.test(navigator.userAgent);
   const isMac = navigator.platform.includes('Mac');
   const isWindows = navigator.platform.includes('Win');
   const [lang, setLang] = useState(
-    (navigator.language || navigator.userLanguage).includes('sv') ? 'sv' : 'en'
+    navigator.language || navigator.userLanguage
   );
   const sv = lang.includes('sv');
 
@@ -89,6 +88,7 @@ function DownloadPage() {
           //relative
           //transparent
           />
+          {/* IMAGE */}
           <Grid container item alignItems='center' flexDirection='column'>
             <MKBox
               mt={10}
@@ -98,67 +98,78 @@ function DownloadPage() {
               width={{ xs: '75%', sm: '45%', xl: '35%' }}
             ></MKBox>
           </Grid>
-          <MKBox px={3} pt={6} mt={6}>
-            <Tabs
-              value={lang}
-              orientation={window.innerWidth < 450 ? 'vertical' : 'horizontal'}
-              onChange={(e, val) => setLang(val)}
-            >
-              <Tab label='sv_test' value={'sv'} icon={<Icon>gavel</Icon>} />
-              <Tab
-                label='eng_test'
-                value={'en'}
-                icon={<Icon>health_and_safety</Icon>}
-              />
-            </Tabs>
-            <Information sv={sv} />
-            <MKBox
-              component='section'
-              pt={{ xs: 6, lg: 9 }}
-              pb={{ xs: 3, xl: 4 }}
-            >
-              <Container>
+
+          <Grid container item xs={12} lg={8} xl={7} xxl={6} mx='auto'>
+            {/* LANGUAGE TEST */}
+            <MKBox px={3} pt={6} mt={6}>
+              {/*  TEXT  */}
+              <Information sv={sv} lang={lang} setLang={setLang} />
+              {/* DOWNLOAD CARDS AND INFO */}
+              <MKBox
+                component='section'
+                pt={{ xs: 2, lg: 2 }}
+                pb={{ xs: 2, xl: 2 }}
+                justifyContent='center'
+              >
+                {/* <Container mb={4}> */}
+                {isMobile && (
+                  <MKTypography variant='h4'>
+                    {sv
+                      ? 'Bridgestars har ännu inte släppts till telefon utan kräver en dator. Vänligen öppna denna hemsida på din dator för att installera Bridgestars.'
+                      : 'Bridgestars is not yet available on mobile. Please return to this page on your computer to install Bridgestars.'}
+                  </MKTypography>
+                )}
+                {!isMac && !isWindows && !isMobile && (
+                  <MKTypography variant='h4'>
+                    {sv
+                      ? 'Bridgestars har ännu inte släppts till denna platform utan kräver en dator med Windows eller MacOS, hör gärna av dig till oss om detta.'
+                      : 'Bridgestars is not yet available on this platform. Windows or MacOS is required.'}
+                  </MKTypography>
+                )}
+                {/* </Container> */}
                 {!showAllOptions && (
                   <>
                     {isWindows && <CARD.DownloadCardWindows sv={sv} />}
                     {isMac && <CARD.DownloadCardMacInstaller sv={sv} />}
-                    {isMobile && (
-                      <MKTypography variant='h4'>
-                        {sv
-                          ? 'Bridgestars fungerar inte ännu på telefonen utan kräver en dator, vänligen öppna denna hemsidan på din dator för att installera Bridgestars.'
-                          : 'Bridgestars is not yet available on mobile, please return to this page on your computer to install Bridgestars.'}
-                      </MKTypography>
-                    )}
-                    {!isMac && !isWindows && !isMobile && (
-                      <MKTypography variant='h4'>
-                        {sv
-                          ? 'Bridgestars fungerar inte ännu på denna platform utan kräver en dator med Windows eller MacOS, hör gärna av dig till oss om detta.'
-                          : 'Bridgestars is not yet available on this platform. Windows or MacOS is required.'}
-                      </MKTypography>
-                    )}
-                    <MKButton
-                      variant=''
-                      onClick={(e) => {
-                        setShowAllOptions(true);
-                      }}
-                      color='info'
-                      size='large'
-                      sx={{ my: 2 }}
+                    <Grid
+                      container
+                      item
+                      alignItems='center'
+                      flexDirection='column'
                     >
-                      {sv ? 'Visa Andra alternativ' : 'Show All Alternatives'}
-                    </MKButton>
+                      <MKButton
+                        variant=''
+                        onClick={(e) => {
+                          setShowAllOptions(true);
+                        }}
+                        color='info'
+                        size='large'
+                        sx={{ my: 2 }}
+                      >
+                        {sv ? 'Visa Andra alternativ' : 'Show All Alternatives'}
+                      </MKButton>
+                    </Grid>
                   </>
                 )}
-              </Container>
-              {showAllOptions && (
-                <Container>
-                  <CARD.DownloadCardWindows sv={sv} />
-                  <CARD.DownloadCardMacInstaller sv={sv} />
-                  <CARD.DownloadCardMacRaw sv={sv} />
-                </Container>
-              )}
+                {showAllOptions && (
+                  <>
+                    {isMac ? (
+                      <CARD.DownloadCardMacInstaller sv={sv} />
+                    ) : (
+                      <CARD.DownloadCardWindows sv={sv} />
+                    )}
+
+                    {!isMac ? (
+                      <CARD.DownloadCardMacInstaller sv={sv} />
+                    ) : (
+                      <CARD.DownloadCardWindows sv={sv} />
+                    )}
+                    <CARD.DownloadCardMacRaw sv={sv} />
+                  </>
+                )}
+              </MKBox>
             </MKBox>
-          </MKBox>
+          </Grid>
         </Card>
       </Grid>
       <MKBox pt={6} px={1} mt={6}>

@@ -36,6 +36,7 @@
     "axios": "^0.27.2",
     "chroma-js": "2.1.2",
     "firebase": "^9.6.8",
+    "flag-icons": "^6.6.6",
     "flatpickr": "4.6.9",
     "hastscript": "^7.0.2",
     "material-ui-confirm": "^3.0.8",
