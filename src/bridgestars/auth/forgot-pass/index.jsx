@@ -109,7 +109,7 @@ function ForgotPasswordForm({ modal, doneCallback, quitCallback, ...rest }) {
             onClick={(e) => {
               if (modal || quitCallback) {
                 quitCallback();
-              } else navigateTo('/');
+              } else navigateTo(-1);
             }}
             variant='button'
             color='info'
