@@ -58,7 +58,6 @@ import { PulseLoader } from 'react-spinners';
 import Policies from 'bridgestars/help/Policy/Policies';
 import { Button } from '@mui/material';
 import SigninForm from '../sign-in';
-import { onAuthStateChanged } from 'firebase/auth';
 
 import { useSnackbar } from 'notistack';
 
@@ -432,7 +431,7 @@ function BetaSignupForm({ modal, modalexitcallback, ...rest }) {
 }
 BetaSignupForm.defaultProps = {
   modal: false,
-  modalexitcallback: () => { },
+  modalexitcallback: () => { }, 
 };
 
 export default BetaSignupForm;
