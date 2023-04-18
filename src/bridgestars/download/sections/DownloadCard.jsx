@@ -24,10 +24,10 @@ import MKButton from 'otis/MKButton';
 import MKTypography from 'otis/MKTypography';
 import { useSnackbar } from 'notistack';
 
-function DownloadCard({ sv, title, description, link, size, ...rest }) {
+function DownloadCard({ sv, title, description, link, size, free, ...rest }) {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   return (
-    <Card sx={{ width: '100%', mt: 3, py: '10px' }} {...rest}>
+    <Card sx={{ width: '100%', mt: 2, mb: 1, py: '10px' }} {...rest}>
       <Grid container alignItems='center'>
         <Grid item xs={12} sm={8} lg={8}>
           <MKBox px={4}>
@@ -42,7 +42,11 @@ function DownloadCard({ sv, title, description, link, size, ...rest }) {
         <Grid item xs={12} sm={4} lg={4}>
           <MKBox pb={3} textAlign='center'>
             <MKTypography variant='h6' mt={{ xs: 0, sm: 3 }}></MKTypography>
-            <MKTypography variant='h2'>{sv ? 'Gratis*' : 'Free*'}</MKTypography>
+            {free && (
+              <MKTypography variant='h2'>
+                {sv ? 'Gratis*' : 'Free*'}
+              </MKTypography>
+            )}
             <MKButton
               variant='gradient'
               component='a'
@@ -76,7 +80,7 @@ function DownloadCard({ sv, title, description, link, size, ...rest }) {
   );
 }
 
-function DownloadCardWindows({ sv }) {
+function DownloadCardWindows({ sv, ...rest }) {
   return (
     <DownloadCard
       sv={sv}
@@ -92,10 +96,11 @@ function DownloadCardWindows({ sv }) {
           ? 'Denna programvara är till Windows, den hjälper dig att installera allt på ett korrekt sätt.'
           : 'This is an installer for Windows, it will make sure that everything is installed correctly and add a shortcut to your desktop.'
       }
+      {...rest}
     />
   );
 }
-function DownloadCardMacInstaller({ sv }) {
+function DownloadCardMacInstaller({ sv, ...rest }) {
   return (
     <DownloadCard
       sv={sv}
@@ -111,10 +116,11 @@ function DownloadCardMacInstaller({ sv }) {
           ? 'Denna programvara är till Mac OS (Apple), den hjälper dig att installera allt på ett korrekt sätt.'
           : 'This is an installer for Mac OS, it will make sure that the application makes it to your application folder and will ask if you want an shortcut on your desktop.'
       }
+      {...rest}
     />
   );
 }
-function DownloadCardMacRaw({ sv }) {
+function DownloadCardMacRaw({ sv, ...rest }) {
   return <div></div>;
   return (
     <DownloadCard
@@ -130,6 +136,7 @@ function DownloadCardMacRaw({ sv }) {
           ? 'Detta är den fristående programvaran, den kommer inte att installera sig själv men går att starta direkt från dina nedladdningar.'
           : 'This download does only contain the application package, the application will be runnable directly from the downloads folder. We recommend that you put it in the Applications folder.'
       }
+      {...rest}
     />
   );
 }

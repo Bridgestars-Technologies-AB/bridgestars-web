@@ -33,7 +33,7 @@ import MKButton from 'otis/MKButton';
 // Otis Kit PRO examples
 
 // About Us page sections
-import Information from '../download/sections/Information';
+import Information from '../skola/sections/Information';
 
 // Routes
 import routes from 'constants/routes';
@@ -43,9 +43,9 @@ import footerRoutes from 'constants/footer.routes';
 import bgImage from 'assets/images/bridgestars/home_page.svg';
 import BridgestarsFooter from 'bridgestars/components/footer/BridgestarsFooter';
 import BridgestarsNavbar from 'bridgestars/navbar';
-import * as CARD from './sections/DownloadCard';
+import * as CARD from '../download/sections/DownloadCard';
 
-function DownloadPage() {
+function SkolaPage() {
   const platform = navigator.platform;
   const isMobile = /Android|iPhone/i.test(navigator.userAgent);
   const isMac = navigator.platform.includes('Mac');
@@ -129,8 +129,8 @@ function DownloadPage() {
                 {/* </Container> */}
                 {!showAllOptions && (
                   <>
-                    {isWindows && <CARD.DownloadCardWindows sv={sv} free />}
-                    {isMac && <CARD.DownloadCardMacInstaller sv={sv} free />}
+                    {isWindows && <CARD.DownloadCardWindows sv={sv} />}
+                    {isMac && <CARD.DownloadCardMacInstaller sv={sv} />}
                     <Grid
                       container
                       item
@@ -154,25 +154,18 @@ function DownloadPage() {
                 {showAllOptions && (
                   <>
                     {isMac ? (
-                      <CARD.DownloadCardMacInstaller sv={sv} free />
+                      <CARD.DownloadCardMacInstaller sv={sv} />
                     ) : (
-                      <CARD.DownloadCardWindows sv={sv} free />
+                      <CARD.DownloadCardWindows sv={sv} />
                     )}
 
                     {!isMac ? (
-                      <CARD.DownloadCardMacInstaller sv={sv} free />
+                      <CARD.DownloadCardMacInstaller sv={sv} />
                     ) : (
-                      <CARD.DownloadCardWindows sv={sv} free />
+                      <CARD.DownloadCardWindows sv={sv} />
                     )}
                   </>
                 )}
-                <Grid container item alignItems='center' flexDirection='column'>
-                  <MKTypography variant='body2'>
-                    {sv
-                      ? '*Gratis att ladda ner, innehåller unikt innehåll som går att köpa från appen.'
-                      : '*Free to download, contains in app purchases to access unique content.'}
-                  </MKTypography>
-                </Grid>
               </MKBox>
             </MKBox>
           </Grid>
@@ -185,4 +178,4 @@ function DownloadPage() {
   );
 }
 
-export default DownloadPage;
+export default SkolaPage;
