@@ -13,11 +13,7 @@ export default function draw() {
     const sv = lang.includes('sv');
     return (
         <Message
-            title={
-                sv
-                    ? 'Tack för att du väljer Bridgestars'
-                    : 'Thank you for choosing Bridgestars!'
-            }
+            title={sv ? 'Välkommen till familjen!' : 'Welcome to the family!'}
             description={
                 sv
                     ? 'Din betalning har mottagits och hanterats. Du kan nu stänga denna hemsidan och återvända till Bridgestars Appen.'
