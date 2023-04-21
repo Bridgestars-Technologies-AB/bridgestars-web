@@ -45,6 +45,7 @@ import About from 'bridgestars/about';
 import WIP from 'bridgestars/wip/wip';
 import Policy from 'bridgestars/help/Policy/index';
 import Download from 'bridgestars/download/index';
+import Skola from 'bridgestars/skola/index';
 import ForgotPass from 'bridgestars/auth/forgot-pass/index';
 import ResetPasswordForm from 'bridgestars/auth/reset-pass/index';
 import CookieConsent from 'react-cookie-consent';
@@ -106,8 +107,9 @@ export default function App() {
         {/* <Route path='/signup' element={<SignupForm />} /> */}
         <Route path='/about' element={<About />} />
         {/* <Route path='/signin' element={<SigninForm />} /> */}
-        {/* <Route path='/download' element={<Download />} /> */}
-        {/* <Route path='/vote' element={<VotingPage />} /> */}
+        <Route path='/download' element={<Download />} />
+        <Route path='/skola' element={<Skola />} />
+        <Route path='/vote' element={<VotingPage />} />
         <Route path='/betasignup' element={<BetaSignupForm />} />
         <Route path='/signin' element={<SigninForm />} />
         <Route path='/signin/*' element={<SigninForm />} />

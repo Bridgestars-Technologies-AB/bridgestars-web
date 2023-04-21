@@ -51,14 +51,12 @@ function Information({ sv, lang, setLang }) {
         })}
 
         <MKTypography variant='h4' mb={2} mt={1}>
-          {sv
-            ? 'Tack för att du vill testa Bridgestars!'
-            : 'Thank you for your interest in Bridgestars!'}{' '}
+          {sv ? 'Välkommen till Bridgestars!' : 'Welcome to Bridgestars!'}{' '}
         </MKTypography>
         <MKTypography variant='body2' mr={1}>
           {sv
-            ? 'Bridgestars finns nu tillgängligt för några utvalda medlemmar. För att komma igång, ladda ner programvaran nedan på din stationära eller bärbara dator.'
-            : 'Bridgestars is now available for choosen members on Windows and Mac OS. To get started, download the software below and sign in or create an account. If you forgot your password you can apply for a new one'}{' '}
+            ? 'Bridgestars finns nu tillgängligt för några utvalda medlemmar. För att komma igång, ladda ner programvaran nedan på din stationära eller bärbara dator så kommer vi guida dig igenom processen att börja använda Bridgestars.'
+            : 'Bridgestars is now available for choosen members on Windows and Mac OS. To get started, download the software below and let us guide you through the process of becoming one of our trusted users. If anytime, you forget your password, then just apply for a new one'}{' '}
           {!sv && (
             <MKTypography
               variant='body2'
