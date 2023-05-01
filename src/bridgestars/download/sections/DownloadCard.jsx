@@ -85,15 +85,15 @@ function DownloadCardWindows({ sv, ...rest }) {
     <DownloadCard
       sv={sv}
       mb={2}
-      title={'Windows Installer (.exe)'}
+      title={'Windows Launcher (.exe)'}
       size={'47 MB'}
       link={
-        'https://bridgestars-static-host.s3.eu-north-1.amazonaws.com/Bridgestars_installer.exe'
+        'https://bridgestars-static-host.s3.eu-north-1.amazonaws.com/launcher/win/Setup.exe'
         // 'https://drive.google.com/u/1/uc?id=10arbRMdKwd8ZDLxr0qsx_umT32RStdW-&export=download&confirm=t'
       }
       description={
         sv
-          ? 'Denna programvara är till Windows, den hjälper dig att installera allt på ett korrekt sätt.'
+          ? 'Denna programvara är till Windows, den hjälper dig att se till att du alltid har den senaste uppdateringen av Bridgestars redo.'
           : 'This is an installer for Windows, it will make sure that everything is installed correctly and add a shortcut to your desktop.'
       }
       {...rest}

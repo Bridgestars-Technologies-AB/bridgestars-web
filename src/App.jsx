@@ -107,8 +107,9 @@ export default function App() {
         {/* <Route path='/signup' element={<SignupForm />} /> */}
         <Route path='/about' element={<About />} />
         {/* <Route path='/signin' element={<SigninForm />} /> */}
-        <Route path='/download' element={<Download />} />
-        <Route path='/skola' element={<Skola />} />
+        {/* <Route path='/download' element={<Download />} /> */}
+        {/* <Route path='/skola' element={<Skola />} /> */}
+        <Route path='/hidden-test' element={<Skola />} />
         <Route path='/vote' element={<VotingPage />} />
         <Route path='/betasignup' element={<BetaSignupForm />} />
         <Route path='/signin' element={<SigninForm />} />

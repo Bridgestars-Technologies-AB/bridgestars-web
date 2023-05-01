@@ -13,7 +13,7 @@ export default function draw() {
     const sv = lang.includes('sv');
     return (
         <Message
-            title={sv ? 'Välkommen till familjen!' : 'Welcome to the family!'}
+            title={sv ? 'Välkommen!' : 'Welcome!'}
             description={
                 sv
                     ? 'Din betalning har mottagits och hanterats. Du kan nu stänga denna hemsidan och återvända till Bridgestars Appen.'
