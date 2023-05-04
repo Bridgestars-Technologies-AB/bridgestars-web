@@ -85,7 +85,11 @@ function DownloadCardWindows({ sv, ...rest }) {
     <DownloadCard
       sv={sv}
       mb={2}
-      title={'Windows Launcher (.exe)'}
+      title={
+        sv
+          ? 'Bridgestars till Windows (.exe)'
+          : 'Bridgestars for Windows (.exe)'
+      }
       size={'47 MB'}
       link={
         'https://bridgestars-static-host.s3.eu-north-1.amazonaws.com/launcher/win/Setup.exe'
@@ -93,8 +97,8 @@ function DownloadCardWindows({ sv, ...rest }) {
       }
       description={
         sv
-          ? 'Denna programvara är till Windows, den hjälper dig att se till att du alltid har den senaste uppdateringen av Bridgestars redo.'
-          : 'This is an installer for Windows, it will make sure that everything is installed correctly and add a shortcut to your desktop.'
+          ? 'Denna programvara är till Windows (PC). När du har laddat ner den, starta applikationen direkt från dina nedladdningar så kommer en genväg att skapas på hemskärmen.'
+          : 'This version is for Windows (PC). Once downloaded, start the application directly from your downloads. This will automatically create a shortcut on your desktop.'
       }
       {...rest}
     />
@@ -105,45 +109,22 @@ function DownloadCardMacInstaller({ sv, ...rest }) {
     <DownloadCard
       sv={sv}
       mb={2}
-      title={sv ? 'Mac OS Installer (.pkg)' : 'Mac OS Installer (.pkg)'}
-      size={'36 MB'}
+      title={
+        sv ? 'Bridgestars till Mac OS (.app)' : 'Bridgestars for Mac OS (.app)'
+      }
+      size={'60 MB'}
       link={
-        'https://bridgestars-static-host.s3.eu-north-1.amazonaws.com/Bridgestars+Installer.pkg'
+        'https://bridgestars-static-host.s3.eu-north-1.amazonaws.com/launcher/mac/bridgestars-macos-1.1.7.zip'
         // 'https://drive.google.com/u/0/uc?id=1oHFbxVL6RGKOkRuChhvDckS_wIZ5s503&export=download&confirm=t'
       }
       description={
         sv
-          ? 'Denna programvara är till Mac OS (Apple), den hjälper dig att installera allt på ett korrekt sätt.'
-          : 'This is an installer for Mac OS, it will make sure that the application makes it to your application folder and will ask if you want an shortcut on your desktop.'
-      }
-      {...rest}
-    />
-  );
-}
-function DownloadCardMacRaw({ sv, ...rest }) {
-  return <div></div>;
-  return (
-    <DownloadCard
-      sv={sv}
-      title={sv ? 'Fristående app till Mac OS (.app)' : 'Mac OS Raw (.app)'}
-      size={'36 MB'}
-      link={
-        'https://bridgestars-static-host.s3.eu-north-1.amazonaws.com/Bridgestars+For+Mac.zip'
-        // 'https://drive.google.com/u/0/uc?id=1Sic22mCxGTW6ygcWojL4WZcZ3PANi8Qc&export=download&confirm=t'
-      }
-      description={
-        sv
-          ? 'Detta är den fristående programvaran, den kommer inte att installera sig själv men går att starta direkt från dina nedladdningar.'
-          : 'This download does only contain the application package, the application will be runnable directly from the downloads folder. We recommend that you put it in the Applications folder.'
+          ? 'Denna programvara är till Mac OS (Apple). När du har laddat ner den, dra applikationen från dina nedladdningar till hemskärmen eller dit den är lättast tillgänglig.'
+          : 'This version is for Mac OS (Apple). Once downloaded, drag and drop the application on the desktop or wherever it is most accessible.'
       }
       {...rest}
     />
   );
 }
 
-export {
-  DownloadCard,
-  DownloadCardWindows,
-  DownloadCardMacRaw,
-  DownloadCardMacInstaller,
-};
+export { DownloadCard, DownloadCardWindows, DownloadCardMacInstaller };
