@@ -114,13 +114,13 @@ function DownloadCardMacInstaller({ sv, ...rest }) {
       }
       size={'60 MB'}
       link={
-        'https://bridgestars-static-host.s3.eu-north-1.amazonaws.com/launcher/mac/bridgestars-macos-1.1.7.zip'
+        'https://bridgestars-static-host.s3.eu-north-1.amazonaws.com/launcher/mac/bridgestars-macos-1.1.8.zip'
         // 'https://drive.google.com/u/0/uc?id=1oHFbxVL6RGKOkRuChhvDckS_wIZ5s503&export=download&confirm=t'
       }
       description={
         sv
-          ? 'Denna programvara är till Mac OS (Apple). När du har laddat ner den, dra applikationen från dina nedladdningar till hemskärmen eller dit den är lättast tillgänglig.'
-          : 'This version is for Mac OS (Apple). Once downloaded, drag and drop the application on the desktop or wherever it is most accessible.'
+          ? 'Denna programvara är till Mac OS (Apple). När du startar den för första gången kommer den fråga om du vill ha en genväg på skrivbordet.'
+          : 'This version is for Mac OS (Apple). Once downloaded and started, it will ask wether you want a shortcut on your desktop.'
       }
       {...rest}
     />
