@@ -1,4 +1,15 @@
+<script setup></script>
+
 <template>
+  <!-- <AuthForm -->
+  <!--   :title="Do you want to sign in?" -->
+  <!--   :subtitle="Enter your username and password" -->
+  <!-- > -->
+  <!--   <UsernameEmailField /> -->
+  <!--   <PasswordField /> -->
+  <!--   <div class="btn" /> -->
+  <!-- </AuthForm> -->
+
   <form class="signInForm" action="">
     <div class="form-group">
       <input
