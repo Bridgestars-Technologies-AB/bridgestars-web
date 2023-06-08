@@ -1,3 +1,9 @@
+<script setup>
+definePageMeta({
+  layout: "sign-in",
+});
+</script>
+
 <template>
-  <div>Welcome to sign in</div>
+  <SignIn></SignIn>
 </template>
