@@ -8,7 +8,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  components: [{ path: "~/components/fields" }, "~/components"],
+  components: [{ path: "~/components/base" }, "~/components"],
   modules: [
     [
       "@nuxtjs/i18n",

@@ -10,7 +10,7 @@
   <!--   <div class="btn" /> -->
   <!-- </AuthForm> -->
   <form class="signInForm" action="">
-    <TextInput placeholder="Username" />
+    <TextInput placeholder="Username" autofocus />
     <TextInput placeholder="Password" type="password" />
     <div class="form-group">
       <input
