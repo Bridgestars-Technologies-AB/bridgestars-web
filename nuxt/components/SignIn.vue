@@ -10,6 +10,8 @@
   <!--   <div class="btn" /> -->
   <!-- </AuthForm> -->
   <form class="signInForm" action="">
+    <TextInput placeholder="Username" />
+    <TextInput placeholder="Password" type="password" />
     <div class="form-group">
       <input
         class="userInp"
