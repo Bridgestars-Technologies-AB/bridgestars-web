@@ -1,5 +1,5 @@
 <script setup></script>
 
 <template>
-  <TextfieldBase placeholder="Username" type="username" />
+  <TextInput placeholder="Username" type="username" />
 </template>
