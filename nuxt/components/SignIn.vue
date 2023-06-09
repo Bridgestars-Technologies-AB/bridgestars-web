@@ -1,19 +1,16 @@
 <script setup></script>
 
 <template>
-  <AuthForm>
-    <TextInputField placeholder="Username/Email" id="usernameEmail" />
-    <TextInputField placeholder="Password" type="password" id="password" />
-    <button type="submit">SIGN IN</button>
+  <AuthForm
+    title="Sign in to your Bridgestars account"
+    subtitle="Enter your username and password"
+  >
+    <div class="flex flex-col items-center">
+      <TextInputField placeholder="Username/Email" id="usernameEmail" />
+      <TextInputField placeholder="Password" type="password" id="password" />
+      <button type="submit">SIGN IN</button>
+    </div>
   </AuthForm>
 </template>
 
-<style>
-/*.signInForm {
-  background-color: gray;
-  padding: 1px;
-  text-align: left;
-  margin: auto;
-  display: table;
-}*/
-</style>
+<style></style>

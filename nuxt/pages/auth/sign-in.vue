@@ -1,8 +1,4 @@
-<script setup>
-definePageMeta({
-  layout: "sign-in",
-});
-</script>
+<script setup></script>
 
 <template>
   <SignIn></SignIn>
