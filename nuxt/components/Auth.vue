@@ -12,9 +12,6 @@ fields = ['username', 'password']
   <div>
    <h1>{title}</h1> 
    <h2>{subtitle}</h1> 
-    <EmailField v-if="fields.includes('email')"/>
-    <UsernameField v-if="fields.includes('username')"/>
-    <PasswordField v-if="fields.includes('password')"/>
     <div class="btn" @click="submit"/>
    <slot></slot>
   </div>
