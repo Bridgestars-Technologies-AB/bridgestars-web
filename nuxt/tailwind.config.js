@@ -11,6 +11,10 @@ module.exports = {
   plugins: [require("daisyui")],
   theme: {
     extend: {},
+    colors:{
+      bridgeBlue:'rgb(52, 71, 103)',
+      bridgeGray: 'rgb(52, 71, 103)'
+    },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };

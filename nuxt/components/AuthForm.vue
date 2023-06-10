@@ -22,8 +22,10 @@ onMounted(() => {
   <div>
     <header class="flex flex-col items-center">
       <img src="~/assets/bridgestars/logo/logo-trans-64px.png" alt="hej" />
-      <h1>{{ props.title }}</h1>
-      <h2>{{ props.subtitle }}</h2>
+      <h1 class="text-bridgeBlue text-opacity-100 font-bold">
+        {{ props.title }}
+      </h1>
+      <h2 class="text-bridgeGray">{{ props.subtitle }}</h2>
     </header>
 
     <form name="auth-form" ref="formRef">
