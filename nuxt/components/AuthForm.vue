@@ -24,8 +24,8 @@ onMounted(() => {
       class="flex flex-col justify-center items-center content-center w-screen h-screen"
     >
       <img
-        class="w-[77px] h-[77px] mt-5 mb-5"
-        src="~/assets/bridgestars/logo/logo-trans-64px.png"
+        class="w-[64px] h-[64px] mt-5 mb-5"
+        src="~/assets/bridgestars/logo/logo-trans-512px.png"
         alt="hej"
       />
       <h1 class="text-bridgeBlue text-opacity-100 font-bold mb-2">

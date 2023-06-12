@@ -22,7 +22,12 @@ module.exports = {
       warning: "#fb8c00", //orange
       error: "#F44335", //röd
       bridgeBlue:'rgb(52, 71, 103)',
-      bridgeGray: 'rgb(52, 71, 103)'
+      bridgeGray: 'rgb(52, 71, 103)',
+      dark: "#344767", //dark text
+    },
+    fontFamily:{
+      family: '"Roboto", "Helvetica", "Arial", sans-serif',
+      family2: '"Roboto Slab", sans-serif',
     },
     extend: {},
   },

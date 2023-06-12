@@ -28,7 +28,6 @@ div.input-block input {
   color: #495055;
   padding: 5px 15px;
   width: 100%;
-  margin: 5px;
   border-radius: 12px;
   border: 1.5px solid #d9d9d9;
   outline: none;
@@ -64,7 +63,7 @@ div.input-block.success span.placeholder {
 
 div.input-block span.placeholder {
   position: absolute;
-  margin: 11px 0;
+  margin: 6px 0;
   padding: 0 4px;
   font-family: Roboto, sans-serif; /*  */
   color: #6c757d;

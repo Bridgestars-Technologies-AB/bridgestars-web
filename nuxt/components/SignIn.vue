@@ -7,13 +7,13 @@
     subtitle="Enter your username and password"
   >
     <TextInputField
-      wrapperClass="w-1/2 max-w-[250px]"
+      wrapperClass="w-1/2 max-w-[250px] mb-3"
       placeholder="Username/Email"
       class="animate-fade-up animate-ease-in-out"
       id="usernameEmail"
     />
     <TextInputField
-      wrapperClass="w-1/2 max-w-[250px]"
+      wrapperClass="w-1/2 max-w-[250px] mb-3"
       placeholder="Password"
       type="password"
       class="animate-fade-up animate-ease-in-out animate-delay-100"
