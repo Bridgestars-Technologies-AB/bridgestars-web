@@ -8,12 +8,14 @@ const props = defineProps(["placeholder", "id", "wrapperClass"]);
 onMounted(() => {
   //autoAnimate(inputBlock.value); // thats it!
 });
+
+
 </script>
 
 <template>
   <div :class="'input-block ' + wrapperClass">
-    <input v-bind="$attrs" placeholder=" " :id="id" />
-    <span class="placeholder"> {{ placeholder }} </span>
+    <input class="py-1.5" v-bind="$attrs" placeholder=" " :id="id" />
+    <span class="placeholder text2 !font-light !text-[14px]"> {{ placeholder }} </span>
     <small class="info"></small>
   </div>
 </template>
@@ -23,12 +25,9 @@ div.input-block {
   position: relative;
 }
 div.input-block input {
-  font-weight: 500;
-  font-size: 1.1rem;
   color: #495055;
-  padding: 5px 15px;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 6px;
   border: 1.5px solid #d9d9d9;
   outline: none;
 }
@@ -63,15 +62,13 @@ div.input-block.success span.placeholder {
 
 div.input-block span.placeholder {
   position: absolute;
-  margin: 6px 0;
-  padding: 0 4px;
-  font-family: Roboto, sans-serif; /*  */
-  color: #6c757d;
+  margin: 7px 0;
+  color: 'rgb(0,0,0,0.87)';
+  letter-spacing: 1px;
   display: flex;
   align-items: center;
-  font-size: 1.1rem;
   top: 0;
-  left: 17px;
+  left: 15px;
   transition: all 0.2s;
   transform-origin: 0% 0%;
   background: none;

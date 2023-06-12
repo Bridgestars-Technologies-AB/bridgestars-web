@@ -28,10 +28,10 @@ onMounted(() => {
         src="~/assets/bridgestars/logo/logo-trans-512px.png"
         alt="hej"
       />
-      <h1 class="text-bridgeBlue text-opacity-100 font-bold mb-2">
+      <h6 class="text-bridgeBlue text-opacity-100 font-bold mb-1">
         {{ props.title }}
-      </h1>
-      <h2 class="text-bridgeGray mb-3">{{ props.subtitle }}</h2>
+      </h6>
+      <span class="text2 mb-5 !text-[14px]">{{ props.subtitle }}</span>
 
       <slot></slot>
     </div>
