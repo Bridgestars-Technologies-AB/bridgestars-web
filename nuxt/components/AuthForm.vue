@@ -34,6 +34,29 @@ onMounted(() => {
       <span class="text2 mb-5 !text-[14px]">{{ props.subtitle }}</span>
 
       <slot></slot>
+      <div class="mt-5">
+        <span class="text2">Don't have an account? </span>
+        <button class="textButton buttonText normal-case">Sign Up</button>
+      </div>
+      <div>
+        <button class="textButton mt-2 buttonText normal-case">
+          Forgot your password?
+        </button>
+      </div>
     </div>
   </form>
 </template>
+
+<style scoped>
+.textButton {
+  background-clip: text;
+  cursor: pointer;
+  margin: 0;
+  background-image: linear-gradient(
+    195deg,
+    rgb(73, 163, 241),
+    rgb(26, 115, 232)
+  );
+  -webkit-text-fill-color: transparent;
+}
+</style>

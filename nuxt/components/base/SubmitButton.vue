@@ -1,0 +1,33 @@
+<script setup>
+const props = defineProps(["wrapperClass"]);
+</script>
+
+<template>
+  <div :class="'buttonDiv ' + wrapperClass">
+    <button
+      class="submit-btn font-family py-[12px] px-[28px] rounded-[12px] h-[35px] btn"
+      type="submit"
+      v-bind="$attrs"
+    >
+      SIGN IN
+    </button>
+  </div>
+</template>
+
+<style scoped>
+.submit-btn {
+  width: 100%;
+  color: white;
+  outline: 0px;
+  border: 0px;
+  margin: 0px;
+  background-image: linear-gradient(
+    195deg,
+    rgb(73, 163, 241),
+    rgb(26, 115, 232)
+  );
+  box-shadow: rgb(73 163 241 / 15%) 0rem 0.1875rem 0.1875rem 0rem,
+    rgb(73 163 241 / 20%) 0rem 0.1875rem 0.0625rem -0.125rem,
+    rgb(73 163 241 / 15%) 0rem 0.0625rem 0.3125rem 0rem;
+}
+</style>

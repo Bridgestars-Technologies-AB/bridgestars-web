@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <AuthForm
@@ -7,25 +6,24 @@
     subtitle="Enter your username and password"
   >
     <TextInputField
-      wrapperClass="w-1/2 max-w-[250px] mb-3"
+      wrapperClass="w-[70%] sm:w-[50%] md:w-[40%] lg:w-[35%] xl:w-[30%] max-w-[450px] mb-3"
       placeholder="Username/Email"
       class="animate-fade-up animate-ease-in-out"
       id="usernameEmail"
     />
     <TextInputField
-      wrapperClass="w-1/2 max-w-[250px] mb-3"
+      wrapperClass="w-[70%] sm:w-[50%] md:w-[40%] lg:w-[35%] xl:w-[30%] max-w-[450px] mb-3"
       placeholder="Password"
       type="password"
       class="animate-fade-up animate-ease-in-out animate-delay-100"
       id="password"
     />
-    <button
-      class="w-1/2 max-w-[250px] rounded-[12px] h-[35px] px-8 btn btn-active btn-primary 
-      animate-fade-up animate-ease-in-out animate-delay-200"
-      type="submit"
-    >
-      SIGN IN
-    </button>
+
+    <SubmitButton
+      wrapperClass="w-[70%] sm:w-[50%] md:w-[40%] lg:w-[35%] xl:w-[30%] max-w-[450px]"
+      class="animate-fade-up animate-ease-in-out animate-delay-200"
+      id="submit"
+    ></SubmitButton>
   </AuthForm>
 </template>
 
