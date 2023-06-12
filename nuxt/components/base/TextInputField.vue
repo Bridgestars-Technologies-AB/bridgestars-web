@@ -14,8 +14,8 @@ onMounted(() => {
 
 <template>
   <div :class="'input-block ' + wrapperClass">
-    <input class="py-1.5 px-3.5" v-bind="$attrs" placeholder=" " :id="id" />
-    <span class="placeholder text2 !font-light !text-[14px]"> {{ placeholder }} </span>
+    <input class="py-2.5 px-3.5" v-bind="$attrs" placeholder=" " :id="id" />
+    <span class="placeholder text2 !font-light !text-[14px] !tracking-[2px]"> {{ placeholder }} </span>
     <small class="info"></small>
   </div>
 </template>
@@ -62,7 +62,7 @@ div.input-block.success span.placeholder {
 
 div.input-block span.placeholder {
   position: absolute;
-  margin: 7px 0px;
+  margin: 11px 0px;
   padding: 0px 5px;  
   color: 'rgb(0,0,0,0.87)';
   letter-spacing: 1px;
@@ -77,13 +77,13 @@ div.input-block span.placeholder {
 }
 div.input-block input:not(:placeholder-shown) + span.placeholder,
 div.input-block input:focus + span.placeholder {
-  transform: scale(0.85) translateY(-19px);
+  transform: scale(0.85) translateY(-23px);
   background: #fff;
 }
 div.input-block input:focus {
-  color: #284b63;
-  border-color: #284b63;
-  border: 2px solid;
+  border-color: 'rgb(0,0,0,0.6)';
+  color: 'rgb(0,0,0,0.6)';
+  border: 1.5px solid;
 }
 div.input-block input:focus + span.placeholder {
   color: #284b63;

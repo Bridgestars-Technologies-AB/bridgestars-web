@@ -1,21 +1,20 @@
 <script setup>
-const props = defineProps(["wrapperClass"]);
+const props = defineProps(["wrapperClass", "text"]);
 </script>
 
 <template>
   <div :class="'buttonDiv ' + wrapperClass">
     <button
-      class="submit-btn font-family py-[12px] px-[28px] rounded-[12px] h-[35px] btn"
-      type="submit"
+      class="font-family py-[12px] px-[28px] rounded-[12px] h-[35px] btn tracking-[2px]"
       v-bind="$attrs"
     >
-      SIGN IN
+    {{text ||  "SUBMIT"}}
     </button>
   </div>
 </template>
 
 <style scoped>
-.submit-btn {
+button {
   width: 100%;
   color: white;
   outline: 0px;
