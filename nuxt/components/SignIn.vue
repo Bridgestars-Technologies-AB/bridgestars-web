@@ -7,20 +7,20 @@
     subtitle="Enter your username and password"
   >
     <TextInputField
-      wrapperClass="w-1/2 max-w-[250px] mb-3"
+      wrapperClass="w-[70%] max-w-[350px] mb-4"
       placeholder="Username/Email"
       class="animate-fade-up animate-ease-in-out"
       id="usernameEmail"
     />
     <TextInputField
-      wrapperClass="w-1/2 max-w-[250px] mb-3"
+      wrapperClass="w-[70%] max-w-[350px] mb-5"
       placeholder="Password"
       type="password"
       class="animate-fade-up animate-ease-in-out animate-delay-100"
       id="password"
     />
     <button
-      class="w-1/2 max-w-[250px] rounded-[12px] h-[35px] px-8 btn btn-active btn-primary 
+      class="w-[70%] max-w-[350px] rounded-[6px] h-[30px] px-8 tracking-[1.5px] btn btn-active btn-primary 
       animate-fade-up animate-ease-in-out animate-delay-200"
       type="submit"
     >
