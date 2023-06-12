@@ -2,34 +2,35 @@
 </script>
 
 <template>
-  <AuthForm>
+  <AuthForm
+    title="Sign in to your Bridgestars account"
+    subtitle="Enter your username and password"
+  >
     <TextInputField
+      wrapperClass="w-1/2 max-w-[250px]"
       placeholder="Username/Email"
-      id="usernameEmail"
       class="animate-fade-up animate-ease-in-out"
+      id="usernameEmail"
     />
     <TextInputField
+      wrapperClass="w-1/2 max-w-[250px]"
       placeholder="Password"
       type="password"
-      id="password"
       class="animate-fade-up animate-ease-in-out animate-delay-100"
+      id="password"
     />
     <button
-      type="submit"
-      class="rounded-[12px] h-[35px] px-8 bg-infoabc
+      class="w-1/2 max-w-[250px] rounded-[12px] h-[35px] px-8 btn btn-active btn-primary 
       animate-fade-up animate-ease-in-out animate-delay-200"
+      type="submit"
     >
-      Sign In
+      SIGN IN
     </button>
   </AuthForm>
 </template>
 
 <style>
-/*.signInForm {
-  background-color: gray;
-  padding: 1px;
-  text-align: left;
-  margin: auto;
-  display: table;
+/* .input-field input {
+  width: 80%; 
 }*/
 </style>

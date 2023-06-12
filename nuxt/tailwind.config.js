@@ -16,12 +16,15 @@ module.exports = {
   ],
   theme: {
     colors: {
-      primary: "#f74040",
-      secondary: "#2e294e",
-      infoabc: "#49a3f1",
-      success: "#59BA83",
-      warning: "#fb8c00",
-      error: "#F44335",
+      primary: "#f74040", //röd
+      secondary: "#2e294e", //lila
+      info: "#49a3f1", //blå
+      success: "#59BA83", //grön
+      warning: "#fb8c00", //orange
+      error: "#F44335", //röd
+      bridgeBlue:'rgb(52, 71, 103)',
+      bridgeGray: 'rgb(52, 71, 103)'
     },
+    extend: {},
   },
 };

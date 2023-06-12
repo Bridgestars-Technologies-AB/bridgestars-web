@@ -2,7 +2,7 @@
 //import InitValidation from "~/util/validator2.js";
 //import "~/util/validator.js";
 
-const props = defineProps(["title", "subtitle", "fields"]);
+const props = defineProps(["title", "subtitle", "footer"]);
 defineEmits(["submit"]);
 
 ///import autoAnimate from "../js/autoAnimate.ts";
@@ -19,11 +19,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <h1>{{ props.title }}</h1>
-    <h2>{{ props.subtitle }}</h2>
-    <form name="auth-form" ref="formRef">
-      <slot></slot>
-    </form>
+  <div
+    class="flex flex-col justify-center items-center content-center w-screen h-screen"
+  >
+    <img
+      class="w-[77px] h-[77px]"
+      src="~/assets/bridgestars/logo/logo-trans-64px.png"
+      alt="hej"
+    />
+    <h1 class="text-bridgeBlue text-opacity-100 font-bold">
+      {{ props.title }}
+    </h1>
+    <h2 class="text-bridgeGray">{{ props.subtitle }}</h2>
+    <slot></slot>
   </div>
 </template>
