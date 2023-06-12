@@ -1,8 +1,8 @@
 <script setup>
-  const router = useRouter();
-  function submit(res){
-    console.log(res)
-  }
+const router = useRouter();
+function submit(res) {
+  console.log(res);
+}
 </script>
 
 <template>
@@ -44,13 +44,18 @@
     ></SubmitButton>
 
     <div class="!mt-6">
-        <span class="text2">Already have an account? </span>
-        <button @click="router.push({path:'/auth/sign-in'})" class="textButton buttonText normal-case">Sign In</button>
-      </div>
+      <span class="text2">Already have an account? </span>
+      <button
+        @click="router.push({ path: '/auth/sign-in' })"
+        class="textButton buttonText normal-case"
+      >
+        Sign In
+      </button>
+    </div>
     <!-- <div> -->
-      <!-- <button class="textButton buttonText normal-case translate-y-[-12px]"> -->
-      <!--   Forgot your password? -->
-      <!-- </button> -->
+    <!-- <button class="textButton buttonText normal-case translate-y-[-12px]"> -->
+    <!--   Forgot your password? -->
+    <!-- </button> -->
     <!-- </div> -->
   </AuthForm>
 </template>

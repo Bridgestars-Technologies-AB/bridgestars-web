@@ -1,11 +1,16 @@
 <script setup>
-  const router = useRouter();
-  function submit(res){
-    console.log(res)
-  }
+const router = useRouter();
+function submit(res) {
+  console.log(res);
+}
 </script>
 
 <template>
+  <img
+    class="md:"
+    src="~/assets/bridgestars/art/sign_in.png"
+    alt="Bridgestars sign-in image"
+  />
   <AuthForm
     title="Sign in to your Bridgestars account"
     subtitle="Enter your username and password"
@@ -30,9 +35,14 @@
     ></SubmitButton>
 
     <div class="!mt-6">
-        <span class="text2">Don't have an account? </span>
-        <button @click="router.push({path:'/auth/sign-up'})" class="textButton buttonText normal-case">Sign Up</button>
-      </div>
+      <span class="text2">Don't have an account? </span>
+      <button
+        @click="router.push({ path: '/auth/sign-up' })"
+        class="textButton buttonText normal-case"
+      >
+        Sign Up
+      </button>
+    </div>
     <div>
       <button class="textButton buttonText normal-case translate-y-[-12px]">
         Forgot your password?
@@ -42,7 +52,12 @@
 </template>
 
 <style>
-/* .input-field input {
-  width: 80%; 
-}*/
+img {
+  display: block;
+}
+@media (max-width: 992px) {
+  img {
+    display: none;
+  }
+}
 </style>

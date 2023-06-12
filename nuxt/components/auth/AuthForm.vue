@@ -2,8 +2,8 @@
 //import InitValidation from "~/util/validator2.js";
 //import "~/util/validator.js";
 
- defineProps(["title", "subtitle", "footer"]);
- const emit = defineEmits(["submit"]);
+defineProps(["title", "subtitle", "footer"]);
+const emit = defineEmits(["submit"]);
 
 ///import autoAnimate from "../js/autoAnimate.ts";
 //const formRef = ref(); // we need a DOM node
@@ -12,7 +12,7 @@ onMounted(() => {
   const form = document.querySelector("form[name=auth-form]");
   //autoAnimate(formRef.value); // thats it!
   useValidateAuthForm(form, (err, res) => {
-    emit("submit",res); //res is undefined right now but that could be changed in validator script
+    emit("submit", res); //res is undefined right now but that could be changed in validator script
     return res;
   });
 });
@@ -26,14 +26,16 @@ onMounted(() => {
       <img
         class="w-[64px] h-[64px] mt-5 mb-5"
         src="~/assets/bridgestars/logo/logo-trans-512px.png"
-        alt="hej"
+        alt="Bridgestars logo"
       />
       <h6 class="zoomIn text-bridgeBlue text-opacity-100 font-bold mb-1">
         {{ title }}
       </h6>
       <span class="zoomIn text2 mb-6 !text-[14px]">{{ subtitle }}</span>
 
-      <div class="zoomIn flex flex-col space-y-4 items-center sm:w-[50%] md:w-[40%] lg:w-[35%] xl:w-[30%] max-w-[400px]">
+      <div
+        class="zoomIn flex flex-col space-y-4 items-center sm:w-[50%] md:w-[40%] lg:w-[35%] xl:w-[30%] max-w-[400px]"
+      >
         <slot></slot>
       </div>
     </div>
@@ -43,7 +45,6 @@ onMounted(() => {
   <!--           transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; -->
 </template>
 <style scoped>
-
 img {
   animation: anim-bounce-in 1000ms ease-out 0ms;
 }
