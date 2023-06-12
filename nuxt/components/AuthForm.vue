@@ -19,18 +19,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    class="flex flex-col justify-center items-center content-center w-screen h-screen"
-  >
-    <img
-      class="w-[77px] h-[77px]"
-      src="~/assets/bridgestars/logo/logo-trans-64px.png"
-      alt="hej"
-    />
-    <h1 class="text-bridgeBlue text-opacity-100 font-bold">
-      {{ props.title }}
-    </h1>
-    <h2 class="text-bridgeGray">{{ props.subtitle }}</h2>
-    <slot></slot>
-  </div>
+  <form name="auth-form">
+    <div
+      class="flex flex-col justify-center items-center content-center w-screen h-screen"
+    >
+      <img
+        class="w-[77px] h-[77px] mt-5 mb-5"
+        src="~/assets/bridgestars/logo/logo-trans-64px.png"
+        alt="hej"
+      />
+      <h1 class="text-bridgeBlue text-opacity-100 font-bold mb-2">
+        {{ props.title }}
+      </h1>
+      <h2 class="text-bridgeGray mb-3">{{ props.subtitle }}</h2>
+
+      <slot></slot>
+    </div>
+  </form>
 </template>
