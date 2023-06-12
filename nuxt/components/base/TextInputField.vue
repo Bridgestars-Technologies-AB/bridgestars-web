@@ -3,10 +3,10 @@ const props = defineProps(["placeholder", "id"]);
 
 //import autoAnimate from "../../js/autoAnimate.ts";
 //import autoAnimate from "@formkit/auto-animate";
-const inputBlock = ref(); // we need a DOM node
+//const inputBlock = ref(); // we need a DOM node
 
 onMounted(() => {
-  // autoAnimate(inputBlock.value); // thats it!
+  //autoAnimate(inputBlock.value); // thats it!
 });
 </script>
 

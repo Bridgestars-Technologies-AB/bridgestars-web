@@ -5,12 +5,12 @@
 const props = defineProps(["title", "subtitle", "fields"]);
 defineEmits(["submit"]);
 
-//import autoAnimate from "@formkit/auto-animate";
+///import autoAnimate from "../js/autoAnimate.ts";
 //const formRef = ref(); // we need a DOM node
 
 onMounted(() => {
   const form = document.querySelector("form[name=auth-form]");
-  // autoAnimate(formRef.value); // thats it!
+  //autoAnimate(formRef.value); // thats it!
   useValidateAuthForm(form, (err, res) => {
     alert("OK");
     return res;
