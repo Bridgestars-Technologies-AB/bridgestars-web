@@ -19,6 +19,7 @@
       class="animate-fade-up animate-ease-in-out animate-delay-100"
       id="password"
     />
+
     <button
       class="w-[70%] max-w-[350px] rounded-[6px] h-[30px] px-8 tracking-[1.5px] btn btn-active btn-primary 
       animate-fade-up animate-ease-in-out animate-delay-200"
