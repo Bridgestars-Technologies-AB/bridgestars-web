@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps(["placeholder", "id"]);
+const props = defineProps(["placeholder", "id", "wrapperClass"]);
 
 //import autoAnimate from "../../js/autoAnimate.ts";
 //import autoAnimate from "@formkit/auto-animate";
@@ -11,7 +11,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="input-block">
+  <div :class="'input-block ' + wrapperClass">
     <input v-bind="$attrs" placeholder=" " :id="id" />
     <span class="placeholder"> {{ placeholder }} </span>
     <small class="info"></small>
@@ -26,8 +26,8 @@ div.input-block input {
   font-weight: 500;
   font-size: 1.1rem;
   color: #495055;
-  width: 250px;
   padding: 5px 15px;
+  width: 100%;
   margin: 5px;
   border-radius: 12px;
   border: 1.5px solid #d9d9d9;

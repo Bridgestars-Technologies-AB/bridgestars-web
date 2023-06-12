@@ -5,21 +5,28 @@
     title="Sign in to your Bridgestars account"
     subtitle="Enter your username and password"
   >
-    <div class="flex flex-col items-center w-screen h-screen">
-      <TextInputField
-        class=""
-        placeholder="Username/Email"
-        id="usernameEmail"
-      />
-      <TextInputField placeholder="Password" type="password" id="password" />
-      <button class="btn btn-active btn-primary" type="submit">SIGN IN</button>
-    </div>
+    <TextInputField
+      wrapperClass="w-1/2 max-w-[250px]"
+      placeholder="Username/Email"
+      id="usernameEmail"
+    />
+    <TextInputField
+      wrapperClass="w-1/2 max-w-[250px]"
+      placeholder="Password"
+      type="password"
+      id="password"
+    />
+    <button
+      class="w-1/2 max-w-[250px] btn btn-active btn-primary"
+      type="submit"
+    >
+      SIGN IN
+    </button>
   </AuthForm>
 </template>
 
 <style>
-.btn {
-  padding: 5px 15px;
-  margin: 5px;
-}
+/* .input-field input {
+  width: 80%; 
+}*/
 </style>
