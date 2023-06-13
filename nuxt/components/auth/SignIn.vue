@@ -4,6 +4,7 @@ const toast = useToast();
 toast("hjej");
 
 function submit(res) {
+//test
   /*Parse.User.logIn(res.usernameEmail, res.password)
     .then((user) => console.log(user))
     .catch((e) => console.log(e))*/
