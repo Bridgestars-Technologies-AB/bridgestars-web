@@ -24,8 +24,7 @@ module.exports = {
       bridgeBlue:'rgb(52, 71, 103)',
       bridgeGray: 'rgb(52, 71, 103)',
       dark: "#344767", //dark text
-      lightDark:"#7b809a", 
-      buttonBlue: "#49A3F1"
+      lightDark:"#7b809a"
     },
     fontFamily:{
       family: '"Roboto", "Helvetica", "Arial", sans-serif',

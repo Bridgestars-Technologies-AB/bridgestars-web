@@ -44,7 +44,7 @@ function submit(res) {
       text="SIGN IN"
     ></SubmitButton>
 
-    <div class="!mt-6">
+    <div class="!mt-6 whitespace-nowrap">
       <span class="text2">Don't have an account? </span>
       <button
         @click="router.push({ path: '/auth/sign-up' })"
