@@ -1,13 +1,26 @@
 <script setup lang="ts">
 const router = useRouter();
 const toast = useToast();
-toast("hjej");
+
+
+
+onMounted(() => {
+  if(Parse.User.current()){
+    toast("dev: You are already signed in, signing out")
+    Parse.User.logOut();
+    //router.push({ path: '/profile' })
+  }
+})
 
 function submit(res) {
-//test
-  /*Parse.User.logIn(res.usernameEmail, res.password)
-    .then((user) => console.log(user))
-    .catch((e) => console.log(e))*/
+  Parse.User.logIn(res.usernameEmail, res.password)
+    .then((user) => {
+
+      toast.success("You are signed in!")
+      router.push({ path: '/profile' })
+    })
+    .catch((e) => toast.error(e.message))
+
   /*Parse.Cloud.run('signIn', { res.usernameEmail, res.password})
     .catch(() => { })
     .then(() => Parse.User.logIn(res.usernameEmail, res.password))
