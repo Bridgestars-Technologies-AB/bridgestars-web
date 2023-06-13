@@ -1,11 +1,14 @@
 <script setup lang="ts">
 const router = useRouter();
+const toast = useToast();
+toast("hjej")
+
 
 function submit(res) {
-
-  Parse.User.logIn(res.usernameEmail, res.password)
+  /*Parse.User.logIn(res.usernameEmail, res.password)
     .then((user) => console.log(user))
-    .catch((e) => console.log(e))
+    .catch((e) => console.log(e))*/
+
   /*Parse.Cloud.run('signIn', { res.usernameEmail, res.password})
     .catch(() => { })
     .then(() => Parse.User.logIn(res.usernameEmail, res.password))
