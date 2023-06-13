@@ -4,7 +4,7 @@
 
 defineProps(["title", "subtitle", "footer"]);
 const emit = defineEmits(["submit"]);
-
+//hej
 ///import autoAnimate from "../js/autoAnimate.ts";
 //const formRef = ref(); // we need a DOM node
 
