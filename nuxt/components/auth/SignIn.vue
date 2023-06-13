@@ -6,11 +6,6 @@ function submit(res) {
 </script>
 
 <template>
-  <img
-    class="md:"
-    src="~/assets/bridgestars/art/sign_in.png"
-    alt="Bridgestars sign-in image"
-  />
   <AuthForm
     title="Sign in to your Bridgestars account"
     subtitle="Enter your username and password"
@@ -51,13 +46,8 @@ function submit(res) {
   </AuthForm>
 </template>
 
-<style>
-img {
-  display: block;
-}
-@media (max-width: 992px) {
-  img {
-    display: none;
-  }
+<style scoped>
+@media (min-width: 992px) {
+  /* Change sizes of elements to fit with picture!*/
 }
 </style>

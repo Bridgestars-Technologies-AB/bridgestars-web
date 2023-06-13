@@ -20,23 +20,34 @@ onMounted(() => {
 
 <template>
   <form name="auth-form">
-    <div
-      class="flex flex-col justify-center items-center content-center w-screen h-screen"
-    >
-      <img
-        class="w-[64px] h-[64px] mt-5 mb-5"
-        src="~/assets/bridgestars/logo/logo-trans-512px.png"
-        alt="Bridgestars logo"
-      />
-      <h6 class="zoomIn text-bridgeBlue text-opacity-100 font-bold mb-1">
-        {{ title }}
-      </h6>
-      <span class="zoomIn text2 mb-6 !text-[14px]">{{ subtitle }}</span>
+    <div class="authGrid">
+      <div class="flex flex-col justify-center items-center content-center">
+        <img
+          class=""
+          id="sign-in-image"
+          src="~/assets/bridgestars/art/sign_in.png"
+          alt="Bridgestars sign-in image"
+        />
+      </div>
 
       <div
-        class="zoomIn flex flex-col space-y-4 items-center sm:w-[50%] md:w-[40%] lg:w-[35%] xl:w-[30%] max-w-[400px]"
+        class="authFlex flex flex-col justify-center items-center content-center w-screen h-screen"
       >
-        <slot></slot>
+        <img
+          class="w-[64px] h-[64px] mt-5 mb-5"
+          src="~/assets/bridgestars/logo/logo-trans-512px.png"
+          alt="Bridgestars logo"
+        />
+        <h6 class="zoomIn text-bridgeBlue text-opacity-100 font-bold mb-1">
+          {{ title }}
+        </h6>
+        <span class="zoomIn text2 mb-6 !text-[14px]">{{ subtitle }}</span>
+
+        <div
+          class="zoomIn flex flex-col space-y-4 items-center sm:w-[50%] md:w-[40%] lg:w-[35%] xl:w-[30%] max-w-[400px]"
+        >
+          <slot></slot>
+        </div>
       </div>
     </div>
   </form>
@@ -48,6 +59,13 @@ onMounted(() => {
 img {
   animation: anim-bounce-in 1000ms ease-out 0ms;
 }
+
+@media (min-width: 992px) {
+  .authFlex {
+    @apply inline-flex justify-end content-end w-[50%] h-[100%];
+  }
+}
+
 .zoomIn {
   animation: anim-zoom 500ms ease-in-out 0ms;
 }
@@ -88,5 +106,22 @@ button {
     rgb(73, 163, 241),
     rgb(26, 115, 232)
   );
+}
+
+#sign-in-image {
+  display: none;
+}
+@media (min-width: 992px) {
+  .authGrid {
+    @apply grid grid-cols-2;
+  }
+  .authFlex {
+    width: 100%;
+    height: 100%;
+  }
+
+  #sign-in-image {
+    display: block;
+  }
 }
 </style>
