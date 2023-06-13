@@ -27,7 +27,7 @@ div.input-block {
 div.input-block input {
   color: #495055;
   width: 100%;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1.5px solid #d9d9d9;
   outline: none;
 }
