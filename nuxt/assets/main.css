@@ -42,7 +42,7 @@ h6 {
 }
 
 .buttonText {
-  @apply font-family text-[14px] leading-[1.5] font-semibold text-buttonBlue opacity-100  
+  @apply font-family text-[14px] leading-[1.5] font-semibold text-info opacity-100  
 }
 
 button {

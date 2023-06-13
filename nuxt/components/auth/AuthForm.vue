@@ -21,11 +21,13 @@ onMounted(() => {
 <template>
   <form name="auth-form">
     <div class="authGrid">
-      <div class="flex flex-col justify-center items-center content-center">
+      <div
+        class="pt-[20px] flex flex-col justify-center items-center content-center"
+      >
         <img
-          class=""
+          class="pt-[10px] w-[50%] h-[80%]"
           id="sign-in-image"
-          src="~/assets/bridgestars/art/sign_in.png"
+          src="~/assets/bridgestars/art/sign_in.svg"
           alt="Bridgestars sign-in image"
         />
       </div>
@@ -44,7 +46,7 @@ onMounted(() => {
         <span class="zoomIn text2 mb-6 !text-[14px]">{{ subtitle }}</span>
 
         <div
-          class="zoomIn flex flex-col space-y-4 items-center sm:w-[50%] md:w-[40%] lg:w-[35%] xl:w-[30%] max-w-[400px]"
+          class="zoomIn inputDiv flex flex-col space-y-4 items-center sm:w-[50%] md:w-[40%] lg:w-[35%] xl:w-[30%] max-w-[400px]"
         >
           <slot></slot>
         </div>
@@ -58,12 +60,6 @@ onMounted(() => {
 <style scoped>
 img {
   animation: anim-bounce-in 1000ms ease-out 0ms;
-}
-
-@media (min-width: 992px) {
-  .authFlex {
-    @apply inline-flex justify-end content-end w-[50%] h-[100%];
-  }
 }
 
 .zoomIn {
@@ -115,9 +111,12 @@ button {
   .authGrid {
     @apply grid grid-cols-2;
   }
+
   .authFlex {
-    width: 100%;
-    height: 100%;
+    @apply inline-flex justify-end content-end w-[100%] h-[100%];
+  }
+  .inputDiv {
+    @apply lg:w-[50%];
   }
 
   #sign-in-image {
