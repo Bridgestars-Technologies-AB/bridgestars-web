@@ -1,7 +1,20 @@
 <script setup>
 const router = useRouter();
+
+//implement sign out logic on mounted
+
 function submit(res) {
   console.log(res);
+  //not sure if this is the function, copilot suggested it
+  Parse.User.signUp(res.username, res.password, { email: res.email })
+    .then((user) => {
+      //make toast appear on buttom left, maybe best to change in config in: plugins/...
+      toast.success("You are signed up!")
+      // disable profile since it does not exist
+      //router.push({ path: '/profile' })
+    })
+    //error
+    .catch((e) => toast.error(e.message)) 
 }
 </script>
 
