@@ -7,8 +7,8 @@ function submit(res) {
 
 <template>
   <AuthForm
-    title="Sign in to your Bridgestars account"
-    subtitle="Enter your username and password"
+    title="Join the Bridgestars waiting list"
+    subtitle="Enter your disired username below to create an account."
     @submit="submit"
   >
     <TextInputField

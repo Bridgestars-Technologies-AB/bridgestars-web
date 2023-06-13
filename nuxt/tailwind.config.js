@@ -17,7 +17,7 @@ module.exports = {
     colors: {
       primary: "#f74040", //röd
       secondary: "#2e294e", //lila
-      info: "#49a3f1", //blå
+      info: "#2590ee", //"#49a3f1", //blå
       success: "#59BA83", //grön
       warning: "#fb8c00", //orange
       error: "#F44335", //röd

@@ -1,7 +1,22 @@
-<script setup>
+<script setup lang="ts">
 const router = useRouter();
+
 function submit(res) {
-  console.log(res);
+
+  Parse.User.logIn(res.usernameEmail, res.password)
+    .then((user) => console.log(user))
+    .catch((e) => console.log(e))
+  /*Parse.Cloud.run('signIn', { res.usernameEmail, res.password})
+    .catch(() => { })
+    .then(() => Parse.User.logIn(res.usernameEmail, res.password))
+    .then((user) => {
+      // console.log('SIGNED IN USING FIREBASE MIGRATION');
+      // Signed in
+      alert("you are signed in")
+    })
+    .catch((error) => {
+       console.log(error)
+    })*/
 }
 </script>
 
@@ -20,7 +35,7 @@ function submit(res) {
       wrapperClass="w-[100%]"
       placeholder="Password"
       type="password"
-      id="password"
+      id="password-signin"
     />
 
     <SubmitButton

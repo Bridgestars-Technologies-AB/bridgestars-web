@@ -15,7 +15,7 @@ onMounted(() => {
 <template>
   <div :class="'input-block ' + wrapperClass">
     <input class="py-2.5 px-3.5" v-bind="$attrs" placeholder=" " :id="id" />
-    <span class="placeholder text2 !font-light !text-[14px] !tracking-[2px]"> {{ placeholder }} </span>
+    <span class="placeholder text2 !font-light !text-[14px] !tracking-[1.2px]"> {{ placeholder }} </span>
     <small class="info"></small>
   </div>
 </template>
@@ -81,11 +81,9 @@ div.input-block input:focus + span.placeholder {
   background: #fff;
 }
 div.input-block input:focus {
-  border-color: 'rgb(0,0,0,0.6)';
-  color: 'rgb(0,0,0,0.6)';
-  border: 1.5px solid;
+  @apply border-info
 }
 div.input-block input:focus + span.placeholder {
-  color: #284b63;
+   @apply text-info !font-medium
 }
 </style>
