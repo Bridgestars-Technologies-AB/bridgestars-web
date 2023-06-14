@@ -2,7 +2,9 @@
 //import InitValidation from "~/util/validator2.js";
 //import "~/util/validator.js";
 
-defineProps(["title", "subtitle", "footer"]);
+const router = useRouter();
+
+defineProps(["header", "title", "subtitle", "footer"]);
 const emit = defineEmits(["submit"]);
 //hej
 ///import autoAnimate from "../js/autoAnimate.ts";
@@ -19,6 +21,15 @@ onMounted(() => {
 </script>
 
 <template>
+  <div class="whitespace-nowrap pt-[30px] pl-[30px]">
+    <button
+      @click="router.push({ path: '/' })"
+      class="authHeader normal-case text-home"
+    >
+      Home
+    </button>
+    <span class="authHeader text-signIn !opacity-80">{{ header }}</span>
+  </div>
   <form name="auth-form">
     <div class="authGrid">
       <div
@@ -96,13 +107,13 @@ img {
   }
 }
 
-button {
+/* button {
   background-image: linear-gradient(
     195deg,
     rgb(73, 163, 241),
     rgb(26, 115, 232)
   );
-}
+} */
 
 #sign-in-image {
   display: none;

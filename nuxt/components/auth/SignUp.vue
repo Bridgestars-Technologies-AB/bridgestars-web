@@ -18,6 +18,7 @@ function submit(res) {
 
 <template>
   <AuthForm
+    header=" / Sign Up"
     title="Join the Bridgestars waiting list"
     subtitle="Enter your disired username below to create an account."
     @submit="submit"

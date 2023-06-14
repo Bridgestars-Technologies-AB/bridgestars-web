@@ -39,6 +39,7 @@ function submit(res) {
 
 <template>
   <AuthForm
+    header=" / Sign In"
     title="Sign in to your Bridgestars account"
     subtitle="Enter your username and password"
     @submit="submit"
