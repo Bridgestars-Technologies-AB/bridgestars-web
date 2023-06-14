@@ -5,10 +5,9 @@ const toast = useToast();
 onMounted(() => {
   if (Parse.User.current()) {
     //temp
-    toast("dev: You are already signed in, signing out");
-    Parse.User.logOut();
+    toast("dev: You are already signed in, sign out at profile page");
     //go directly to profile page or temp. show: you are signed in, sign out?
-    //router.push({ path: '/profile' })
+    router.push({ path: "/profile" });
   }
 });
 
@@ -16,10 +15,9 @@ function submit(res) {
   Parse.User.logIn(res.usernameEmail, res.password)
     //success
     .then((user) => {
-      //make toast appear on buttom left, maybe best to change in config in: plugins/...
       toast.success("You are signed in!");
       // disable profile since it does not exist
-      //router.push({ path: '/profile' })
+      router.push({ path: "/profile" });
     })
     //error
     .catch((e) => toast.error(e.message));
@@ -41,6 +39,7 @@ function submit(res) {
 
 <template>
   <AuthForm
+    header=" / Sign In"
     title="Sign in to your Bridgestars account"
     subtitle="Enter your username and password"
     @submit="submit"

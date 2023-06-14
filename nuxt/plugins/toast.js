@@ -1,9 +1,11 @@
-import Toast from "vue-toastification";
+import Toast, { POSITION } from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
 const options = {
     // You can set your default options here
+    position: POSITION.BOTTOM_LEFT
 };
+
 
 export default defineNuxtPlugin(nuxtApp => {
   nuxtApp.vueApp.use(Toast, options)

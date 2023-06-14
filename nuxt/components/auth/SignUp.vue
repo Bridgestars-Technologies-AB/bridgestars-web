@@ -8,18 +8,17 @@ function submit(res) {
   //not sure if this is the function, copilot suggested it
   Parse.User.signUp(res.username, res.password, { email: res.email })
     .then((user) => {
-      //make toast appear on buttom left, maybe best to change in config in: plugins/...
-      toast.success("You are signed up!")
-      // disable profile since it does not exist
-      //router.push({ path: '/profile' })
+      toast.success("You are signed up!");
+      router.push({ path: "/profile" });
     })
     //error
-    .catch((e) => toast.error(e.message)) 
+    .catch((e) => toast.error(e.message));
 }
 </script>
 
 <template>
   <AuthForm
+    header=" / Sign Up"
     title="Join the Bridgestars waiting list"
     subtitle="Enter your disired username below to create an account."
     @submit="submit"

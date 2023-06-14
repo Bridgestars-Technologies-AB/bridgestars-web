@@ -23,6 +23,8 @@ module.exports = {
       error: "#F44335", //röd
       bridgeBlue:'rgb(52, 71, 103)',
       bridgeGray: 'rgb(52, 71, 103)',
+      home: 'rgb(73, 163, 241)',
+      signIn: 'rgb(123, 128, 154)',
       dark: "#344767", //dark text
       lightDark:"#7b809a"
     },
