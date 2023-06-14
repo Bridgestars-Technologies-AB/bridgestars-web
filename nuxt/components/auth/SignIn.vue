@@ -2,29 +2,27 @@
 const router = useRouter();
 const toast = useToast();
 
-
-
 onMounted(() => {
-  if(Parse.User.current()){
+  if (Parse.User.current()) {
     //temp
-    toast("dev: You are already signed in, signing out")
+    toast("dev: You are already signed in, signing out");
     Parse.User.logOut();
     //go directly to profile page or temp. show: you are signed in, sign out?
     //router.push({ path: '/profile' })
   }
-})
+});
 
 function submit(res) {
   Parse.User.logIn(res.usernameEmail, res.password)
     //success
     .then((user) => {
       //make toast appear on buttom left, maybe best to change in config in: plugins/...
-      toast.success("You are signed in!")
+      toast.success("You are signed in!");
       // disable profile since it does not exist
       //router.push({ path: '/profile' })
     })
     //error
-    .catch((e) => toast.error(e.message))
+    .catch((e) => toast.error(e.message));
 
   //firebase migration, this will be needed later
   /*Parse.Cloud.run('signIn', { res.usernameEmail, res.password})
@@ -82,8 +80,4 @@ function submit(res) {
   </AuthForm>
 </template>
 
-<style scoped>
-@media (min-width: 992px) {
-  /* Change sizes of elements to fit with picture!*/
-}
-</style>
+<style scoped></style>
