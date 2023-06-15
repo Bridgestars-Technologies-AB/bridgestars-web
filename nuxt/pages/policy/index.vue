@@ -1,3 +1,3 @@
 <template>
-  <div>Welcome to policy</div>
+  <Policy></Policy>
 </template>
