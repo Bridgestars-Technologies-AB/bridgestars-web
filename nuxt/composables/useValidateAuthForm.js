@@ -13,19 +13,17 @@ export default function InitAuthFormValidation(form, callback) {
   //
   //
   const checkUsernameEmail = () => {
-    if(!usernameEmailEl) return false;
+    if (!usernameEmailEl) return false;
     const username = usernameEmailEl.value.trim();
 
     if (!isRequired(username)) {
-
       showError(usernameEmailEl, "Username/Email cannot be blank.");
       return false;
-    }
-    else {
+    } else {
       showSuccess(usernameEmailEl);
       return true;
     }
-  }
+  };
 
   const checkUsername = () => {
     if (!usernameEl) return false;
@@ -42,7 +40,7 @@ export default function InitAuthFormValidation(form, callback) {
     } else if (!isBetween(username.length, min, max)) {
       showError(
         usernameEl,
-        `Username must be between ${min} and ${max} characters.`
+        `Username must be between ${min} and ${max} characters.`,
       );
     } else {
       showSuccess(usernameEl);
@@ -86,10 +84,9 @@ export default function InitAuthFormValidation(form, callback) {
     if (!isRequired(password)) {
       showError(passwordEl, "Password cannot be blank.");
     } else if (!isPasswordSecure(password)) {
-      
       showError(
         passwordEl,
-        "Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters and 1 number"
+        "Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters and 1 number",
       );
     } else {
       showSuccess(passwordEl);
@@ -158,43 +155,53 @@ export default function InitAuthFormValidation(form, callback) {
     error.textContent = "";
   };
 
-  form.addEventListener("submit", function(e) {
+  form.addEventListener("submit", function (e) {
     // prevent the form from submitting
     e.preventDefault();
     // validate fields
-    const 
-      isUsernameEmailValid = checkUsernameEmail(),
+    const isUsernameEmailValid = checkUsernameEmail(),
       isPasswordSignInValid = checkPasswordSignIn(),
-
       isUsernameValid = checkUsername(),
       isEmailValid = checkEmail(),
       isPasswordValid = checkPassword(),
       isConfirmPasswordValid = checkConfirmPassword();
 
-
-    let isSignUpValid =
-      isUsernameValid &&
+    let isSignUpValid = isUsernameValid &&
       isEmailValid &&
       isPasswordValid &&
-      isConfirmPasswordValid;
+      isConfirmPasswordValid &&
+      usernameEmailEl == null &&
+      passwordSignInEl == null;
 
-    let isSignInValid = isUsernameEmailValid && isPasswordSignInValid;
+    let isSignInValid = isUsernameEmailValid &&
+      isPasswordSignInValid &&
+      emailEl == null &&
+      passwordConfirmEl == null &&
+      usernameEl == null;
 
-    let isFormValid = isSignUpValid || isSignInValid;
+    let isResetValid = isEmailValid && passwordEl == null &&
+      confirmPasswordEl == null && usernameEl == null &&
+      usernameEmailEl == null;
+
+    let isFormValid = isSignUpValid || isSignInValid || isResetValid;
 
     // submit to the server if the form is valid
     if (isSignInValid) {
       callback({
         usernameEmail: usernameEmailEl.value,
         password: passwordSignInEl.value,
-      })
-    }
-    else if(isSignUpValid){
+      });
+    } else if (isSignUpValid) {
       callback({
         username: usernameEl.value,
         email: emailEl.value,
         password: passwordEl.value,
         confirmPassword: confirmPasswordEl.value,
+      });
+    }
+    else if (isResetValid){
+     callback({ 
+        email: emailEl.value,
       });
     }
   });
@@ -215,7 +222,7 @@ export default function InitAuthFormValidation(form, callback) {
 
   form.addEventListener(
     "input",
-    debounce(function(e) {
+    debounce(function (e) {
       switch (e.target.id) {
         case "username":
           checkUsername();
@@ -230,6 +237,6 @@ export default function InitAuthFormValidation(form, callback) {
           checkConfirmPassword();
           break;
       }
-    })
+    }),
   );
 }

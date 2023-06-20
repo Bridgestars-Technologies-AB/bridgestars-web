@@ -1,14 +1,24 @@
 <script setup lang="ts">
 const router = useRouter();
+const route = useRoute();
+
 const toast = useToast();
+const email = ref(""); 
 
 onMounted(() => {
+  if(route.params.email) {
+    email.value = route.params.email;
+    console.log("FOUND EMAIL IN QUERY")
+  }
   if (Parse.User.current()) {
     //temp
     toast("dev: You are already signed in, sign out at profile page");
     //go directly to profile page or temp. show: you are signed in, sign out?
     router.push({ path: "/profile" });
   }
+});
+watch(email, () => {
+  console.log("email changed", email);
 });
 
 function submit(res) {
@@ -47,6 +57,7 @@ function submit(res) {
     <TextInputField
       wrapperClass="w-[100%]"
       placeholder="Username/Email"
+      v-model="email"
       id="usernameEmail"
     />
     <TextInputField
@@ -72,7 +83,7 @@ function submit(res) {
       </button>
     </div>
     <div>
-      <button class="textButton buttonText normal-case translate-y-[-12px]">
+      <button @click="router.push({path:'/auth/reset'})" class="textButton buttonText normal-case translate-y-[-12px]">
         Forgot your password?
       </button>
     </div>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const props = defineProps(["placeholder", "id", "wrapperClass"]);
+const props = defineProps(["placeholder", "id", "wrapperClass", "modelValue"]);
+defineEmits(["update:modelValue"]);
 
 //import autoAnimate from "../../js/autoAnimate.ts";
 //import autoAnimate from "@formkit/auto-animate";
@@ -14,7 +15,15 @@ onMounted(() => {
 
 <template>
   <div :class="'input-block ' + wrapperClass">
-    <input class="py-2.5 px-3.5" v-bind="$attrs" placeholder=" " :id="id" />
+    <input 
+      class="py-2.5 px-3.5" 
+      v-bind="$attrs" 
+      placeholder=" " 
+      :id="id" 
+      :value="modelValue" 
+      @input="$emit('update:modelValue', $event.target.value)" 
+    />
+<!--  above is solution for using v-model on this custom inputfield -->
     <span class="placeholder text2 !font-light !text-[14px] !tracking-[1.2px]"> {{ placeholder }} </span>
     <small class="info"></small>
   </div>
