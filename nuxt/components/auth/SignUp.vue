@@ -20,7 +20,7 @@ function submit(res) {
   <AuthForm
     header=" / Sign Up"
     title="Join the Bridgestars waiting list"
-    subtitle="Enter your disired username below to create an account."
+    subtitle="Enter your desired details below to create an account."
     @submit="submit"
   >
     <TextInputField
@@ -60,6 +60,7 @@ function submit(res) {
       <button
         @click="router.push({ path: '/auth/sign-in' })"
         class="textButton buttonText normal-case"
+        type="button"
       >
         Sign In
       </button>
