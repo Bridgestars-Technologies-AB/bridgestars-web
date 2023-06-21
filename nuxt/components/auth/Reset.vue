@@ -1,10 +1,15 @@
 <script setup lang="ts">
   const router = useRouter();
   const toast = useToast();
+  
+  const route = useRoute();
+  const email = ref("");
 
   onMounted(() => {
-
-
+    if(route.params.email) {
+      email.value = route.params.email;
+      console.log("FOUND EMAIL IN QUERY")
+    }
   })
 
 
@@ -12,7 +17,7 @@
     //Parse.User.requestPasswordReset(res.email)
         //.then(() => {
           toast.success("Your password has been reset. Please check your email.");
-          router.push({ path: "/auth/sign-in", query: { email: res.email } });
+          router.push({ path: "/auth/sign-in-"+res.email});
       //})
       //error
       //.catch((e) => toast.error(e.message));
@@ -42,6 +47,7 @@
     <TextInputField
       wrapperClass="w-[100%]"
       placeholder="Email" 
+      v-model="email"
       id="email"
     />
 

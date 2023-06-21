@@ -8,7 +8,7 @@ export default function InitAuthFormValidation(form, callback) {
   const emailEl = form.querySelector("#email");
   const passwordEl = form.querySelector("#password");
   const passwordSignInEl = form.querySelector("#password-signin");
-  const confirmPasswordEl = form.querySelector("#password-confirm");
+  const passwordConfirmEl = form.querySelector("#password-confirm");
   //
   //
   //
@@ -97,18 +97,18 @@ export default function InitAuthFormValidation(form, callback) {
   };
 
   const checkConfirmPassword = () => {
-    if (!confirmPasswordEl) return false;
+    if (!passwordConfirmEl) return false;
     let valid = false;
     // check confirm password
-    const confirmPassword = confirmPasswordEl.value.trim();
+    const passwordConfirm = passwordConfirmEl.value.trim();
     const password = passwordEl.value.trim();
 
-    if (!isRequired(confirmPassword)) {
-      showError(confirmPasswordEl, "Please enter the password again");
-    } else if (password !== confirmPassword) {
-      showError(confirmPasswordEl, "The password does not match");
+    if (!isRequired(passwordConfirm)) {
+      showError(passwordConfirmEl, "Please enter the password again");
+    } else if (password !== passwordConfirm) {
+      showError(passwordConfirmEl, "The password does not match");
     } else {
-      showSuccess(confirmPasswordEl);
+      showSuccess(passwordConfirmEl);
       valid = true;
     }
 
@@ -175,12 +175,12 @@ export default function InitAuthFormValidation(form, callback) {
 
     let isSignInValid = isUsernameEmailValid &&
       isPasswordSignInValid &&
-      emailEl == null &&
-      passwordConfirmEl == null &&
-      usernameEl == null;
+      !emailEl &&
+      !passwordConfirmEl  &&
+      !usernameEl;
 
     let isResetValid = isEmailValid && passwordEl == null &&
-      confirmPasswordEl == null && usernameEl == null &&
+      passwordConfirmEl == null && usernameEl == null &&
       usernameEmailEl == null;
 
     let isFormValid = isSignUpValid || isSignInValid || isResetValid;
@@ -196,7 +196,7 @@ export default function InitAuthFormValidation(form, callback) {
         username: usernameEl.value,
         email: emailEl.value,
         password: passwordEl.value,
-        confirmPassword: confirmPasswordEl.value,
+        confirmPassword: passwordConfirmEl.value,
       });
     }
     else if (isResetValid){

@@ -83,7 +83,7 @@ function submit(res) {
       </button>
     </div>
     <div>
-      <button @click="router.push({path:'/auth/reset'})" class="textButton buttonText normal-case translate-y-[-12px]">
+      <button @click="router.push({path:'/auth/reset'+email})" class="textButton buttonText normal-case translate-y-[-12px]">
         Forgot your password?
       </button>
     </div>
