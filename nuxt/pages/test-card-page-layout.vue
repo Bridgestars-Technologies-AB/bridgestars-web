@@ -1,0 +1,5 @@
+<template>
+  <CardPageLayout>
+    
+  </CardPageLayout>
+</template>

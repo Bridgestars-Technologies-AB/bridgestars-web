@@ -30,7 +30,7 @@
     <div class="bg-video-overlay"></div>
   </div>
   <div class='background' />
-
+  <CardPageLayout/>
 </template>
 
 
