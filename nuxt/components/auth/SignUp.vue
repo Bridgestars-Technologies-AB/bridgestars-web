@@ -19,7 +19,7 @@ function submit(res) {
 
 <template>
   <AuthForm
-    header=" / Sign Up"
+    header="Sign Up"
     title="Join the Bridgestars waiting list"
     subtitle="Enter your desired details below to create an account."
     @submit="submit"
@@ -49,22 +49,24 @@ function submit(res) {
       id="password-confirm"
     />
     <SubmitButton
-      wrapperClass="w-[100%] !mt-6"
+      wrapperClass="w-[100%] xs:!mt-3 sm:!mt-6"
       id="submit"
       type="submit"
       text="SIGN UP"
       @submit="submit"
     ></SubmitButton>
 
-    <div class="!mt-6">
+    <div class="flex text-center">
+    <div class="xs:!mt-1 sm:!mt-6 xs:!mb-3">
       <span class="text2">Already have an account? </span>
       <button
         @click="router.push({ path: '/auth/sign-in' })"
-        class="textButton buttonText normal-case"
+        class="buttonText normal-case text-blue font-bold normal-case tracking-[0.5px]"
         type="button"
       >
         Sign In
       </button>
+    </div>
     </div>
     <!-- <div> -->
     <!-- <button class="textButton buttonText normal-case translate-y-[-12px]"> -->

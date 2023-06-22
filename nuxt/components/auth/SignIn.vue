@@ -44,7 +44,7 @@ function submit(res) {
 
 <template>
   <AuthForm
-    header=" / Sign In"
+    header="Sign In"
     title="Sign in to your Bridgestars account"
     subtitle="Enter your username and password"
     @submit="submit"
@@ -73,14 +73,14 @@ function submit(res) {
       <button
           type="button"
         @click="router.push({ path: '/auth/sign-up' })"
-        class="textButton buttonText normal-case"
+        class="normal-case text-blue font-bold normal-case tracking-[0.5px]"
       >
         Sign Up
       </button>
     </div>
     <div>
 <!-- path below is a little bit shady, nuxt reads the param perfectly fine but url looks a little bit wierd "/resettheodor@mail.com" -->
-      <button @click="router.push({path:'/auth/reset'+email})" class="textButton buttonText normal-case translate-y-[-12px]" type="button">
+<button @click="router.push({path:'/auth/reset'+email})" class="text-blue font-bold normal-case tracking-[0.5px] translate-y-[-12px]" type="button">
         Forgot your password?
       </button>
     </div>

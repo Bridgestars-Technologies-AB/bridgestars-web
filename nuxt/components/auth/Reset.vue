@@ -39,7 +39,7 @@
 
 <template>
   <AuthForm
-    header=" / Reset Password"
+    header="Reset Password"
     title="Reset your Bridgestars password"
     subtitle="Enter your email address to reset your password"
     @submit="submit"
@@ -64,7 +64,7 @@
       <button
         @click="router.go(-1)"
         type="button" 
-        class="textButton buttonText !text-[16px] normal-case"
+        class="!text-[16px] normal-case text-blue font-bold normal-case tracking-[0.5px]"
       >
        Go Back 
       </button>
