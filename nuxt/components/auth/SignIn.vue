@@ -53,7 +53,7 @@ function submit(res) {
       wrapperClass="w-[100%]"
       placeholder="Username/Email"
       v-model="email"
-      id="usernameEmail"
+      id="username-email"
     />
     <TextInputField
       wrapperClass="w-[100%]"

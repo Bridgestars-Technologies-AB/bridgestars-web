@@ -1,5 +1,6 @@
 <script setup>
 const router = useRouter();
+const toast = useToast();
 
 //implement sign out logic on mounted
 
@@ -45,7 +46,7 @@ function submit(res) {
       wrapperClass="w-[100%]"
       placeholder="Confirm password"
       type="password"
-      id="confirm-password"
+      id="password-confirm"
     />
     <SubmitButton
       wrapperClass="w-[100%] !mt-6"

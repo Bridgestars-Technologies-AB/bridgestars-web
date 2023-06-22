@@ -20,6 +20,7 @@ onMounted(() => {
       v-bind="$attrs" 
       placeholder=" " 
       :id="id" 
+
       :value="modelValue" 
       @input="$emit('update:modelValue', $event.target.value)" 
     />
@@ -75,7 +76,7 @@ div.input-block span.placeholder {
   padding: 0px 5px;  
   color: 'rgb(0,0,0,0.87)';
   letter-spacing: 1px;
-  display: flex;
+  display: block;
   align-items: center;
   top: 0;
   left: 15px;

@@ -21,9 +21,7 @@ module.exports = {
       success: "#59BA83", //grön
       warning: "#fb8c00", //orange
       error: "#F44335", //röd
-      bridgeBlue:'rgb(52, 71, 103)',
-      bridgeGray: 'rgb(52, 71, 103)',
-      home: 'rgb(73, 163, 241)',
+      blue:'rgb(73, 163, 241)',
       signIn: 'rgb(123, 128, 154)',
       dark: "#344767", //dark text
       lightDark:"#7b809a"
@@ -33,6 +31,8 @@ module.exports = {
       family2: '"Roboto Slab", sans-serif',
     },
     screens: { 
+      'xs': '0px',
+      // => @media (min-width: 0px) { ... } //everything smaller than 576px
       'sm': '576px',
       // => @media (min-width: 640px) { ... }
 
