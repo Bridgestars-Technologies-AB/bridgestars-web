@@ -7,8 +7,8 @@ const email = ref("");
 
 onMounted(() => {
   if(route.params.email) {
+    //get email from url param
     email.value = route.params.email;
-    console.log("FOUND EMAIL IN QUERY")
   }
   if (Parse.User.current()) {
     //temp
@@ -17,12 +17,19 @@ onMounted(() => {
     router.push({ path: "/profile" });
   }
 });
+
 watch(email, () => {
-  console.log("email changed", email);
+//for debugging to see if email is updated when changed in field
 });
 
 function submit(res) {
-  Parse.User.logIn(res.usernameEmail, res.password)
+  //try sign in server side first to migrate from firebase if sign in is not successfull
+  Parse.Cloud.run('signIn', { email:res.usernameEmail, password:res.password})
+    .catch(() => { 
+    //could not sign in server side, ignore and try client side to get error
+    })
+    //sign in client side
+    .then(() => Parse.User.logIn(res.usernameEmail, res.password))
     //success
     .then((user) => {
       toast.success("You are signed in!");
@@ -31,25 +38,13 @@ function submit(res) {
     })
     //error
     .catch((e) => toast.error(e.message));
-
-  //firebase migration, this will be needed later
-  /*Parse.Cloud.run('signIn', { res.usernameEmail, res.password})
-    .catch(() => { })
-    .then(() => Parse.User.logIn(res.usernameEmail, res.password))
-    .then((user) => {
-      // console.log('SIGNED IN USING FIREBASE MIGRATION');
-      // Signed in
-      alert("you are signed in")
-    })
-    .catch((error) => {
-       console.log(error)
-    })*/
 }
+
 </script>
 
 <template>
   <AuthForm
-    header=" / Sign In"
+    header="Sign In"
     title="Sign in to your Bridgestars account"
     subtitle="Enter your username and password"
     @submit="submit"
@@ -58,7 +53,7 @@ function submit(res) {
       wrapperClass="w-[100%]"
       placeholder="Username/Email"
       v-model="email"
-      id="usernameEmail"
+      id="username-email"
     />
     <TextInputField
       wrapperClass="w-[100%]"
@@ -76,14 +71,16 @@ function submit(res) {
     <div class="!mt-6 whitespace-nowrap">
       <span class="text2">Don't have an account? </span>
       <button
+          type="button"
         @click="router.push({ path: '/auth/sign-up' })"
-        class="textButton buttonText normal-case"
+        class="normal-case text-blue font-bold normal-case tracking-[0.5px]"
       >
         Sign Up
       </button>
     </div>
     <div>
-      <button @click="router.push({path:'/auth/reset'})" class="textButton buttonText normal-case translate-y-[-12px]">
+<!-- path below is a little bit shady, nuxt reads the param perfectly fine but url looks a little bit wierd "/resettheodor@mail.com" -->
+<button @click="router.push({path:'/auth/reset'+email})" class="text-blue font-bold normal-case tracking-[0.5px] translate-y-[-12px]" type="button">
         Forgot your password?
       </button>
     </div>

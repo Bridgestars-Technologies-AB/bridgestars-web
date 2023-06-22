@@ -4,11 +4,11 @@
 // const confirmPasswordEl = document.querySelector('#confirm-password');
 export default function InitAuthFormValidation(form, callback) {
   const usernameEl = form.querySelector("#username");
-  const usernameEmailEl = form.querySelector("#usernameEmail");
+  const usernameEmailEl = form.querySelector("#username-email");
   const emailEl = form.querySelector("#email");
   const passwordEl = form.querySelector("#password");
   const passwordSignInEl = form.querySelector("#password-signin");
-  const confirmPasswordEl = form.querySelector("#password-confirm");
+  const passwordConfirmEl = form.querySelector("#password-confirm");
   //
   //
   //
@@ -83,12 +83,20 @@ export default function InitAuthFormValidation(form, callback) {
 
     if (!isRequired(password)) {
       showError(passwordEl, "Password cannot be blank.");
-    } else if (!isPasswordSecure(password)) {
-      showError(
-        passwordEl,
-        "Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters and 1 number",
-      );
-    } else {
+    } 
+    else if(password.length < 8){
+      showError(passwordEl, "Password must be at least 8 characters");
+    }
+    else if(password.search(/[a-z]/) < 0){
+      showError(passwordEl, "Password must contain at least one lowercase letter.");
+    }
+    else if(password.search(/[A-Z]/) < 0){
+      showError(passwordEl, "Password must contain at least one uppercase letter.");
+    }
+    else if(password.search(/[0-9]/) < 0){
+      showError(passwordEl, "Password must contain at least one digit.");
+    }
+    else {
       showSuccess(passwordEl);
       valid = true;
     }
@@ -97,18 +105,18 @@ export default function InitAuthFormValidation(form, callback) {
   };
 
   const checkConfirmPassword = () => {
-    if (!confirmPasswordEl) return false;
+    if (!passwordConfirmEl) return false;
     let valid = false;
     // check confirm password
-    const confirmPassword = confirmPasswordEl.value.trim();
+    const passwordConfirm = passwordConfirmEl.value.trim();
     const password = passwordEl.value.trim();
 
-    if (!isRequired(confirmPassword)) {
-      showError(confirmPasswordEl, "Please enter the password again");
-    } else if (password !== confirmPassword) {
-      showError(confirmPasswordEl, "The password does not match");
+    if (!isRequired(passwordConfirm)) {
+      showError(passwordConfirmEl, "Please enter the password again");
+    } else if (password !== passwordConfirm) {
+      showError(passwordConfirmEl, "The password does not match");
     } else {
-      showSuccess(confirmPasswordEl);
+      showSuccess(passwordConfirmEl);
       valid = true;
     }
 
@@ -170,18 +178,18 @@ export default function InitAuthFormValidation(form, callback) {
       isEmailValid &&
       isPasswordValid &&
       isConfirmPasswordValid &&
-      usernameEmailEl == null &&
-      passwordSignInEl == null;
+      !usernameEmailEl &&
+      !passwordSignInEl;
 
     let isSignInValid = isUsernameEmailValid &&
       isPasswordSignInValid &&
-      emailEl == null &&
-      passwordConfirmEl == null &&
-      usernameEl == null;
+      !emailEl &&
+      !passwordConfirmEl  &&
+      !usernameEl;
 
-    let isResetValid = isEmailValid && passwordEl == null &&
-      confirmPasswordEl == null && usernameEl == null &&
-      usernameEmailEl == null;
+    let isResetValid = isEmailValid && !passwordEl &&
+      !passwordConfirmEl && !usernameEl &&
+      !usernameEmailEl;
 
     let isFormValid = isSignUpValid || isSignInValid || isResetValid;
 
@@ -196,13 +204,27 @@ export default function InitAuthFormValidation(form, callback) {
         username: usernameEl.value,
         email: emailEl.value,
         password: passwordEl.value,
-        confirmPassword: confirmPasswordEl.value,
+        confirmPassword: passwordConfirmEl.value,
       });
     }
     else if (isResetValid){
      callback({ 
         email: emailEl.value,
       });
+    }
+    else {
+      console.error("Invalid Form:", {
+        isSignUpValid,
+        isSignInValid,
+        isResetValid,
+        isFormValid,
+        usernameEl,
+        emailEl,
+        passwordEl,
+        passwordConfirmEl,
+        usernameEmailEl,
+        passwordSignInEl,
+     });
     }
   });
 
@@ -233,8 +255,14 @@ export default function InitAuthFormValidation(form, callback) {
         case "password":
           checkPassword();
           break;
-        case "confirm-password":
+        case "password-confirm":
           checkConfirmPassword();
+          break;
+        case "username-email":
+          checkUsernameEmail();
+          break;
+        case "password-signin":
+          checkPasswordSignIn();
           break;
       }
     }),
