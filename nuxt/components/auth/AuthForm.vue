@@ -31,8 +31,8 @@ onMounted(() => {
       >
         Home
       </button>
-      <span class="authHeader  text-dark opacity-80 mx-2"> / </span>
-      <span class="authHeader  text-dark opacity-80">{{ header }}</span>
+      <span class="authHeader  text-lightDark opacity-80 mx-2"> / </span>
+      <span class="authHeader  text-lightDark opacity-80">{{ header }}</span>
     </div>
 
     <!-- form -->
