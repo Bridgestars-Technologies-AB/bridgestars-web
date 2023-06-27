@@ -13,6 +13,9 @@ module.exports = {
     require("daisyui"),
     require("tailwindcss-animated"),
   ],
+  daisui: {
+    prefix:"daisy-"
+  },
   theme: {
     colors: {
       primary: "#f74040", //röd
@@ -25,6 +28,7 @@ module.exports = {
       signIn: "rgb(123, 128, 154)",
       dark: "#344767", //dark text
       lightDark: "#7b809a",
+      white: "#ffffff",
     },
     fontFamily: {
       family: '"Roboto", "Helvetica", "Arial", sans-serif',

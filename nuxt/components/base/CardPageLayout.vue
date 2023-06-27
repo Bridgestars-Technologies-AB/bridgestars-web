@@ -1,10 +1,22 @@
+<script setup lang="ts">
+const props = defineProps(['imgSrc'])
+const imgWithDefault = props.imgSrc || "../assets/bridgestars/art/about_us.svg"
+</script>
+
 <template>
   <div class="backdrop">
     <div class="foreground">
       <!-- navbar -->
-<img src="~/assets/bridgestars/art/about_us.svg" alt="logo" class="w-[150px] h-[150px]">
-      <h1>Card Page Layout</h1>
-      
+      <Navbar ></Navbar>
+
+      <!-- title -->
+      <img :src="imgWithDefault"
+        class="mb-5 xs:w-[100%] sm:w-[80%] xl:w-[50%]">
+
+
+      <!-- content -->
+      <slot class="p-[16px]"></slot> 
+
     </div>
   </div>
 </template>
@@ -13,6 +25,6 @@
   @apply h-[100vh] w-screen bg-[#F0F2F5] px-[16px] py-[32px];
 }
 .foreground{
-  @apply p-[16px] rounded-2xl shadow-xl bg-[#FFFFFF] flex flex-col text-center;
+  @apply rounded-2xl shadow-xl bg-[#FFFFFF] flex flex-col text-center items-center;
 }
 </style>

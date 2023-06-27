@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import Icons from "unplugin-icons/vite";
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/main.css"],
@@ -31,12 +33,24 @@ export default defineNuxtConfig({
           },
         ],
         baseUrl: "https://bridgestars.net",
-
+        strategy: "no_prefix",
         langDir: "localization/lang",
         defaultLocale: "en",
         lazy: true,
         /*options*/
       },
     ],
+    ["unplugin-icons/nuxt",{}],
   ],
+  // below is for icon autoimport
+  vite: {
+    plugins: [
+      Icons({
+        autoInstall: true,
+      }),
+    ],
+  },
+  tailwindcss: {
+    exposeConfig:true
+  }
 });
