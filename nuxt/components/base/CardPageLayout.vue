@@ -1,13 +1,13 @@
 <script setup lang="ts">
-const props = defineProps(['imgSrc'])
+const props = defineProps(['imgSrc', "hideNavbar", "class"])
 const imgWithDefault = props.imgSrc || "../assets/bridgestars/art/about_us.svg"
 </script>
 
 <template>
   <div class="backdrop">
-    <div class="foreground">
+    <div :class="'foreground ' + props.class">
       <!-- navbar -->
-      <Navbar ></Navbar>
+      <Navbar v-if="!hideNavbar"></Navbar>
 
       <!-- title -->
       <img :src="imgWithDefault"
@@ -22,7 +22,7 @@ const imgWithDefault = props.imgSrc || "../assets/bridgestars/art/about_us.svg"
 </template>
 <style scoped>
 .backdrop{
-  @apply h-[100vh] w-screen bg-[#F0F2F5] px-[16px] py-[32px];
+  @apply h-[100vh] w-[100wh] bg-[#F0F2F5] px-[16px] py-[32px];
 }
 .foreground{
   @apply rounded-2xl shadow-xl bg-[#FFFFFF] flex flex-col text-center items-center;

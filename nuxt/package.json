@@ -24,6 +24,8 @@
     "tailwindcss": "^3.3.2"
   },
   "dependencies": {
+    "@fontsource/roboto": "^5.0.3",
+    "@fontsource/roboto-slab": "^5.0.3",
     "@formkit/auto-animate": "^1.0.0-beta.6",
     "parse": "^4.1.0",
     "tailwindcss-animated": "^1.0.1",

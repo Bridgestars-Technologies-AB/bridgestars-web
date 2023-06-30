@@ -40,7 +40,7 @@ export default defineNuxtConfig({
         /*options*/
       },
     ],
-    ["unplugin-icons/nuxt",{}],
+    ["unplugin-icons/nuxt", {}],
   ],
   // below is for icon autoimport
   vite: {
@@ -51,6 +51,25 @@ export default defineNuxtConfig({
     ],
   },
   tailwindcss: {
-    exposeConfig:true
-  }
+    exposeConfig: true,
+  },
+  app: {
+    head: {
+      script: [{
+        src:
+          "https://cdnjs.cloudflare.com/ajax/libs/balance-text/3.3.1/balancetext.min.js",
+      }],
+      title: "Bridgestars",
+      meta: [
+        {
+          name: "description",
+          content: "Bridgestars provides custom IT solutions.",
+        },
+        {
+          name: "viewport",
+          content: "width=device-width, height=device-height, initial-scale=1",
+        },
+      ],
+    },
+  },
 });
