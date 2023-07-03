@@ -4,6 +4,15 @@
   const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
 
   onMounted(() => {
+    const video = document.getElementById('video');
+    video.play().then(() => {
+      console.log("video played")
+    }).catch((e) => {
+      console.error("video play error: ", e)
+      //TODO replace video with image!
+      // video will not be allowed to play on IOS safari when battery save mode is turned on.
+
+    });
     balanceText();
     if(showUI) fadeInUI();
     setTimeout(() => {
@@ -39,40 +48,64 @@
 <template>
 
 <div><!-- video container with overlay  -->
-  <video src="~/assets/bridgestars/video/shortIntro-compressed.mp4" class="muted w-sreen" muted autoPlay playsInline=true></video>
+  <video id="video" src="~/assets/bridgestars/video/shortIntro-compressed.mp4" class="w-sreen" muted autoPlay playsInline></video>
     <div class="bg-video-overlay fadeIn">
-        <button class="bg-[#EE6065] rounded-full px-5 py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px]">JOIN THE WAITING LIST</button>
+      <button class="bg-[#EE6065] rounded-full px-5 py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px]">
+        {{"click here to play"}}
+      </button>
     </div>
     <div class="absolute top-0 w-full fadeIn">
       <navbar transparent=true />
     </div>
 </div>
-
-  <div class='background' />
+<div class='background' />
 
   <div class="fadeIn">
   <CardPageLayout hideNavbar=true class="pt-5 translate-y-[-70px]" imgSrc="../assets/bridgestars/art/home_page.svg">
-      <div class="px-5">
+    <div class="px-5">
 
-    <h1 class="balance-text xs:text-[27px] xs:leading-[29px] sm:text-[40px] sm:leading-[44px]"> {{"Revolutionizing the Bridge Learning Experience"}}  </h1>
+      <h1 class="mb-4
+        balance-text xs:text-[27px] xs:leading-[29px]
+        sm:text-[40px] sm:leading-[44px]"> 
+        {{"Revolutionizing the Bridge Learning Experience"}}  </h1>
       
-      <span class="text2 pt-3 px-3 !text-[18px]"> {{"With Bridgestars we aim to stimulate a shift away from obsolete IT-solutions in favor of more integrated modern solutions. "}} </span>
+      <span class="text2 px-3 !text-[18px] !leading-[18px]"> 
+        {{"With Bridgestars we aim to stimulate a shift away from obsolete IT-solutions in favor of more integrated and modern solutions. "}} </span>
+    </div>
+
+
+    <!-- quote -->
+    <div class="flex flex-wrap p-1 quote-bg w-full mt-[75px]">
+
+      <div class="sm:py-3 px-3 sm:w-[40%] flex justify-center items-center">
+        <img class="bg-dark xs:w-[75%] object-scale-down rounded-2xl xs:translate-y-[-50px] sm:translate-y-0" src="~/assets/bridgestars/images/castor.png"/>
       </div>
 
+      <div class="xs:w-full sm:w-1/2 flex justify-center items-center">
+        <div class="opacity-80 w-full">
+          <MaterialSymbolsFormatQuoteRounded class="translate-y-1" style="color:white;height:40px;width:40px;"/>
+          <span class="text-white text-[18px] leading-[18px] px-3"> 
+            {{"In a world of rapid technological advancements, the Bridge world has not been able to keep up. There is a lack of a clean and modern solution for playing Bridge online that is fun, easy, and engaging. Our vision for the future contains a unified platform for Bridge players on which they are able to play and watch Bridge as well as catch up with the latest news about Bridge. Bridgestars is an attempt of bringing that vision to life, in a way that is free and accessible for everyone. "}} 
+          </span>
+          <!--   <div class="flex justify-end"> -->
+          <!-- <MaterialSymbolsFormatQuoteRounded style="color:white;height:40px;width:40px;"/> -->
+          <!--   </div> -->
+          <div class="mt-3">
+            <span class="text-white !font-family2 !font-bold">Castor Mann </span>
+            <span class="text-white !font-family2">
+  - Bridgestars CEO, Founder and Junior World Champion 2018
+            </span>
+          </div>
 
-      <!-- quote -->
-      <div class="flex flex-wrap quote-bg h-80 w-full mt-[75px]">
-
-        <img class="absolute w-[35%] min-w-[200px] translate-y-[-50px] translate-x-[25px] rounded-2xl" src="~/assets/bridgestars/images/castor.png"/>
-
-        <div class="flex p-5 min-w-[200px]">
-          <MaterialSymbolsFormatQuoteRounded style="color:white;"/>
         </div>
-
       </div>
+    </div>
+
+  <!-- text or other quote -->
+
 
   </CardPageLayout>
-  </div>
+    </div>
 
 <!-- footer -->
 </template>
