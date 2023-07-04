@@ -16,10 +16,17 @@
     "download": "Ladda ner",
     "size": "Storlek ({size})",
     "isMobile": "Vi jobbar på att göra Bridgestars tillgängligt på din mobila enhet. Så länge, gå in från din dator istället!",
-    "isOtherOS": "Vi jobbar på att göra Bridgestars tillgängligt på din enhet. Så länge, gå in från din Windows eller Mac dator istället!",
+    "isOtherOS": "Vi jobbar på att göra Bridgestars tillgängligt på din enhet. Så länge, gå in från din Windows- eller Macdator istället!",
     "showOptions": "Visa alla nedladdningsalternativ"
   },
   "w": {
-    "here": "här"
+    "here": "här",
+    "home": "hem",
+    "profile": "profil",
+    "policy": "villkor"
+  },
+  "misc": {
+    "copyright": "Copyright © {year} Bridgestars by Bridgestars Technologies Sweden AB. All rights reserved."
+
   }
 }

@@ -21,6 +21,12 @@
     "showOptions": "Show all download options"
   },
   "w": {
-    "here": "here"
+    "here": "here",
+    "home": "home",
+    "profile": "profile",
+    "policy": "policy"
+  },
+  "misc": {
+    "copyright": "Copyright © {year} Bridgestars by Bridgestars Technologies Sweden AB. All rights reserved."
   }
 }

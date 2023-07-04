@@ -23,7 +23,7 @@ const signedIn = ref(false)
 const bgColor = props.transparent ? "bg-[#FFFFFF00]" : "bg-white";
 const textColor = props.transparent ? "!text-white" : "!text-dark";
 const menuIconColor = props.transparent ? "bg-white" : "bg-dark";
-const iconColor = props.transparent ? "bg-color-[#FFFFFF]" : "bg-color-[rgb(120,120,120)]";
+const iconColor = props.transparent ? "#FFFFFF" : "rgb(120,120,120)";
 
 onMounted(() => {
   if(Parse.User.current()){
@@ -55,7 +55,8 @@ onMounted(() => {
 <!-- Open Menu Button -->
       <div class="flex items-center md:hidden mr-2">
         <HamburgerMenuButton @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" :innerClass="menuIconColor"/>
-        <span v-if="signedIn" class="i-ic-baseline-account-circle !scale-[1.3]" :style="'color: '+success" @click="isOpen = !isOpen"/>
+        <span v-if="signedIn" class="i-ic-baseline-account-circle !scale-[1.35]" :style="'color: '+success" @click="isOpen = !isOpen"/>
+        <!-- <NavbarLangSwitcher/> -->
       </div>
 
       <!-- Menu -->

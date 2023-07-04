@@ -23,7 +23,7 @@ const imgWithDefault = props.imgSrc || "../assets/bridgestars/art/about_us.svg"
 </template>
 <style scoped>
 .backdrop{
-  @apply h-fit w-[100wh] bg-[#F0F2F5] px-[16px] py-[32px];
+  @apply h-fit w-[100wh] bg-[#F0F2F5] xs:px-[0px] sm:px-[16px] py-[32px];
 }
 .foreground{
   @apply rounded-2xl shadow-xl bg-[#FFFFFF] flex flex-col text-center items-center;

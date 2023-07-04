@@ -5,12 +5,14 @@ const downloads = ref([])
 
 function update(){
   downloads.value = [{
+    platform: "mac",
     title: nuxtApp.$i18n.t("download.mac.title"),
     description: nuxtApp.$i18n.t("download.mac.description"),
     size: "60MB",
     link: "https://bridgestars-static-host.s3.eu-north-1.amazonaws.com/launcher/mac/bridgestars-macos-1.1.8.zip"
   },
   {
+    platform: "win",
     title: nuxtApp.$i18n.t("download.win.title"),
     description: nuxtApp.$i18n.t("download.win.description"),
     size: "60MB",
@@ -34,9 +36,6 @@ onMounted(()=>{
   if(platform.isWindows){
     downloads.value.reverse()
   }
-  platform.isMac=false;
-  platform.isWindows=false;
-  platform.isMobile=false;
 })
 </script>
 
@@ -45,7 +44,7 @@ onMounted(()=>{
     <div class="flex flex-col text-justify sm:p-8 xs:p-3">
       <LangSwitcher class="mb-4" @switched="update"/>
 
-      <h3>{{$t("download.title")}}</h3> 
+      <h3 class="text-start">{{$t("download.title")}}</h3> 
       <i18n-t tag="span" keypath="download.desc1" class="text2 mt-2">
         <template #here>
           <NuxtLink to="/auth/reset" class="text-blue font-normal underline">{{$t("w.here")}}</NuxtLink> 
@@ -74,19 +73,28 @@ onMounted(()=>{
         {{$t("download.desc4")}}
       </span>
 
-      <div v-if="platform.isMac || platform.isWindows || showOptions" v-for="d in downloads" class="px-6 py-4 mt-10 rounded-3xl shadow-2xl bg-[#FFFFFF]  text-start flex items-center">
-        <div class="flex flex-col pr-6">
-          <h3>{{d.title}}</h3>
-          <span class="text2 mt-2">{{d.description}}</span>
-        </div>
+      <!-- cards -->
+      <div v-if="platform.isMac || platform.isWindows || showOptions" 
+        v-for="(d, i) in downloads" 
+        :key="i">
+        <div 
+          v-if="showOptions || (!showOptions && i == 0)"
+          class="px-6 py-4 mt-10 rounded-3xl shadow-2xl bg-[#FFFFFF]  text-start flex items-center">
 
-        <div class="flex flex-col text-center">
-          <a :href="d.link" class="bg-[#EE6065] rounded-full px-4 py-4 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[20px] leading-[20px] whitespace-nowrap">
-            {{$t("download.download")}}
-          </a>
-          <span class="text2 !text-[14px] mt-1 whitespace-nowrap">{{$t("download.size", {size:d.size})}}</span>
+          <div class="flex flex-col pr-6">
+            <h3>{{d.title}}</h3>
+            <span class="text2 mt-2">{{d.description}}</span>
+          </div>
+
+          <div class="flex flex-col text-center">
+            <a :href="d.link" class="bg-[#EE6065] rounded-full px-4 py-4 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[20px] leading-[20px] whitespace-nowrap">
+              {{$t("download.download")}}
+            </a>
+            <span class="text2 !text-[14px] mt-1 whitespace-nowrap">{{$t("download.size", {size:d.size})}}</span>
+          </div>
         </div>
       </div>
+
       <div v-else-if="platform.isMobile" class="text-center py-8">
         <h3>{{$t("download.isMobile")}}</h3>
       </div>
@@ -98,7 +106,7 @@ onMounted(()=>{
         v-if="!showOptions"
         @click="showOptions=true"
         type="button" 
-        class="!text-[16px] normal-case text-blue font-bold normal-case tracking-[0.5px]"
+        class="mt-10 !text-[16px] text-blue font-bold normal-case tracking-[0.5px]"
       >
         {{$t("download.showOptions")}} 
       </button>
