@@ -41,7 +41,7 @@ onMounted(()=>{
 
 <template>
   <CardPageLayout>
-    <div class="flex flex-col text-justify sm:p-8 xs:p-3">
+    <div class="max-w-[800px] flex flex-col text-justify sm:p-8 xs:p-3">
       <LangSwitcher class="mb-4" @switched="update"/>
 
       <h3 class="text-start">{{$t("download.title")}}</h3> 
@@ -76,7 +76,8 @@ onMounted(()=>{
       <!-- cards -->
       <div v-if="platform.isMac || platform.isWindows || showOptions" 
         v-for="(d, i) in downloads" 
-        :key="i">
+        :key="i"
+      >
         <div 
           v-if="showOptions || (!showOptions && i == 0)"
           class="px-6 py-4 mt-10 rounded-3xl shadow-2xl bg-[#FFFFFF]  text-start flex items-center">
