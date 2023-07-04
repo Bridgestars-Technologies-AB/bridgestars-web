@@ -15,9 +15,12 @@
     "win": {
       "title": "Bridgestars for Windows (.exe)",
       "description": "This version is for Windows (PC). Once downloaded, start the application directly from your downloads. This will automatically create a shortcut on your desktop."
-    }
+    },
+    "isMobile": "We are working on making Bridgestars available on your mobile device. In the meantime, please return to this page on your computer!",
+    "isOtherOS": "We are working on making Bridgestars available on your device. In the meantime, please return to this page on your Windows or Mac computer!",
+    "showOptions": "Show all download options"
   },
-  "w":{
+  "w": {
     "here": "here"
   }
 }

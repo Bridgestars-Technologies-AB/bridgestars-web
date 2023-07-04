@@ -19,6 +19,25 @@ function update(){
 }
 
 update();
+
+const platform = reactive({
+  isMac: false,
+  isWindows: false,
+  isMobile: false
+})
+const showOptions = ref(false)
+
+onMounted(()=>{
+  platform.isMobile = /Android|iPhone/i.test(navigator.userAgent);
+  platform.isMac = navigator.platform.includes('Mac');
+  platform.isWindows = navigator.platform.includes('Win');
+  if(platform.isWindows){
+    downloads.value.reverse()
+  }
+  platform.isMac=false;
+  platform.isWindows=false;
+  platform.isMobile=false;
+})
 </script>
 
 <template>
@@ -55,7 +74,7 @@ update();
         {{$t("download.desc4")}}
       </span>
 
-      <div v-for="d in downloads" class="px-6 py-4 mt-10 rounded-3xl shadow-2xl bg-[#FFFFFF]  text-start flex items-center">
+      <div v-if="platform.isMac || platform.isWindows || showOptions" v-for="d in downloads" class="px-6 py-4 mt-10 rounded-3xl shadow-2xl bg-[#FFFFFF]  text-start flex items-center">
         <div class="flex flex-col pr-6">
           <h3>{{d.title}}</h3>
           <span class="text2 mt-2">{{d.description}}</span>
@@ -68,6 +87,21 @@ update();
           <span class="text2 !text-[14px] mt-1 whitespace-nowrap">{{$t("download.size", {size:d.size})}}</span>
         </div>
       </div>
+      <div v-else-if="platform.isMobile" class="text-center py-8">
+        <h3>{{$t("download.isMobile")}}</h3>
+      </div>
+      <div v-else  class="text-center py-8">
+        <h3>{{$t("download.isOtherOS")}}</h3>
+      </div>
+
+      <button
+        v-if="!showOptions"
+        @click="showOptions=true"
+        type="button" 
+        class="!text-[16px] normal-case text-blue font-bold normal-case tracking-[0.5px]"
+      >
+        {{$t("download.showOptions")}} 
+      </button>
 
     </div>
   </CardPageLayout>

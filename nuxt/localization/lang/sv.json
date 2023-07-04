@@ -14,9 +14,12 @@
     "desc3": "Programmet kräver som mest 1 GB utrymme.",
     "desc4": "",
     "download": "Ladda ner",
-    "size": "Storlek ({size})"
+    "size": "Storlek ({size})",
+    "isMobile": "Vi jobbar på att göra Bridgestars tillgängligt på din mobila enhet. Så länge, gå in från din dator istället!",
+    "isOtherOS": "Vi jobbar på att göra Bridgestars tillgängligt på din enhet. Så länge, gå in från din Windows eller Mac dator istället!",
+    "showOptions": "Visa alla nedladdningsalternativ"
   },
-  "w":{
+  "w": {
     "here": "här"
   }
 }
