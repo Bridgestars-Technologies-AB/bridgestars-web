@@ -1,5 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import Icons from "unplugin-icons/vite";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -17,38 +16,40 @@ export default defineNuxtConfig({
   ],
   modules: [
     [
-      "@nuxtjs/i18n",
+      "@nuxtjs/i18n",{}
+    ],
+  ],
+  i18n: {
+    vueI18n: "./localization/i18n.config.ts",
+    locales: [
       {
-        vueI18n: "./localization/i18n.config.ts",
-        locales: [
-          {
-            code: "en",
-            file: "en-US.json",
-            iso: "en-US",
-          },
-          {
-            code: "sv",
-            file: "sv-SE.json",
-            iso: "sv-SE",
-          },
-        ],
-        baseUrl: "https://bridgestars.net",
-        strategy: "no_prefix",
-        langDir: "localization/lang",
-        defaultLocale: "en",
-        lazy: true,
-        /*options*/
+        name: "English",
+        code: "en",
+        file: "en.json",
+        iso: "en-US",
+        flag: "i-circle-flags-gb",
+      },
+      {
+        name: "Svenska",
+        code: "sv",
+        file: "sv.json",
+        iso: "sv-SE",
+        flag: "i-circle-flags-se",
       },
     ],
-    ["unplugin-icons/nuxt", {}],
-  ],
+    baseUrl: "https://bridgestars.net",
+    strategy: "no_prefix",
+    langDir: "localization/lang",
+    defaultLocale: "en",
+    lazy: true,
+    detectBrowserLanguage: {
+      useCookie: false
+    }
+    /*options*/
+  },
   // below is for icon autoimport
   vite: {
-    plugins: [
-      Icons({
-        autoInstall: true,
-      }),
-    ],
+    plugins: [ ],
   },
   tailwindcss: {
     exposeConfig: true,

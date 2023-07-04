@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import MaterialSymbolsFormatQuoteRounded from '~icons/material-symbols/format-quote-rounded'
   const firstTime = inject("first_time_at_home");
   const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
 
@@ -83,7 +82,7 @@
 
       <div class="xs:w-full sm:w-1/2 flex justify-center items-center">
         <div class="opacity-80 w-full">
-          <MaterialSymbolsFormatQuoteRounded class="translate-y-1" style="color:white;height:40px;width:40px;"/>
+          <span class="i-material-symbols-quoute-rounded translate-y-1" style="color:white;height:40px;width:40px;"/>
           <span class="text-white text-[18px] leading-[18px] px-3"> 
             {{"In a world of rapid technological advancements, the Bridge world has not been able to keep up. There is a lack of a clean and modern solution for playing Bridge online that is fun, easy, and engaging. Our vision for the future contains a unified platform for Bridge players on which they are able to play and watch Bridge as well as catch up with the latest news about Bridge. Bridgestars is an attempt of bringing that vision to life, in a way that is free and accessible for everyone. "}} 
           </span>
@@ -113,7 +112,7 @@
 
 <style scoped>
 .quote-bg{
-background: linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25));
+  background: linear-gradient(195deg, rgb(90, 90, 100), rgb(25, 25, 25));
 }
 video{
 

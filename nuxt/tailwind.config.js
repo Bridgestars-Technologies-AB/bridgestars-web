@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const {iconsPlugin, getIconCollections} = require("@egoist/tailwindcss-icons");
+
 module.exports = {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -11,7 +13,11 @@ module.exports = {
   ],
   plugins: [
     require("daisyui"),
-    require("tailwindcss-animated"),
+    //require("tailwindcss-animated"),
+    iconsPlugin({
+      collections: getIconCollections(["ic", "material-symbols", "mdi", "circle-flags"]), 
+      //tailwindcss chooses which icons to include based on usage 
+    })
   ],
   daisui: {
     prefix:"daisy-"
@@ -55,5 +61,5 @@ module.exports = {
     },
 
     extend: {},
-  },
+  }
 };

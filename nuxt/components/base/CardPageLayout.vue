@@ -18,11 +18,12 @@ const imgWithDefault = props.imgSrc || "../assets/bridgestars/art/about_us.svg"
       <slot class="p-[16px]"></slot> 
 
     </div>
+    <Footer/>
   </div>
 </template>
 <style scoped>
 .backdrop{
-  @apply h-[100vh] w-[100wh] bg-[#F0F2F5] px-[16px] py-[32px];
+  @apply h-fit w-[100wh] bg-[#F0F2F5] px-[16px] py-[32px];
 }
 .foreground{
   @apply rounded-2xl shadow-xl bg-[#FFFFFF] flex flex-col text-center items-center;
