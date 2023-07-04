@@ -1,16 +1,22 @@
 <script setup lang="ts">
   const firstTime = inject("first_time_at_home");
   const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
+  const showVideo = ref(true);
 
   onMounted(() => {
     const video = document.getElementById('video');
     video.play().then(() => {
-      console.log("video played")
+      console.log("video playing")
+      video.addEventListener('ended', () => {
+        console.log("video ended")
+        showVideo.value = false;
+        //TODO replace video with image!
+      });
     }).catch((e) => {
       console.error("video play error: ", e)
+      showVideo.value = false;
       //TODO replace video with image!
       // video will not be allowed to play on IOS safari when battery save mode is turned on.
-
     });
     balanceText();
     if(showUI) fadeInUI();
@@ -47,7 +53,10 @@
 <template>
 
 <div><!-- video container with overlay  -->
-  <video id="video" src="~/assets/bridgestars/video/shortIntro-compressed.mp4" class="w-sreen" muted autoPlay playsInline></video>
+    
+  <video id="video" fetchpriority="high" src="~/assets/bridgestars/video/shortIntro-compressed.mp4" :class="`w-screen ${!showVideo ? '!hidden':''}`" muted playsInline></video>
+    <img id="video" src="~/assets/bridgestars/images/shortIntroLastFrame.jpg" :class="`w-screen ${showVideo ? 'hidden':'block'}`"/>
+
     <div class="bg-video-overlay fadeIn">
       <button class="bg-[#EE6065] rounded-full px-5 py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px]">
         {{"click here to play"}}
@@ -114,7 +123,7 @@
 .quote-bg{
   background: linear-gradient(195deg, rgb(90, 90, 100), rgb(25, 25, 25));
 }
-video{
+#video{
 
   width:100%;
   max-width: 2000px;
@@ -122,9 +131,7 @@ video{
   height:80vh;
   min-height: min(45vw, 700px);
   max-height:1000px;
-
   object-fit:cover;
-  display: block;
   margin:0 auto;
   /* position:'relative'; */
   background-color: black;

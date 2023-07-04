@@ -15,9 +15,8 @@ export default defineNuxtConfig({
     "~/components",
   ],
   modules: [
-    [
-      "@nuxtjs/i18n",{}
-    ],
+    "@nuxtjs/i18n",
+    '@vite-pwa/nuxt'
   ],
   i18n: {
     vueI18n: "./localization/i18n.config.ts",
@@ -46,6 +45,9 @@ export default defineNuxtConfig({
       useCookie: false
     }
     /*options*/
+  },
+  pwa:{
+//???
   },
   // below is for icon autoimport
   vite: {
