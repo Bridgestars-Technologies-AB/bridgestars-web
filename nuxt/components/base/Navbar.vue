@@ -1,7 +1,11 @@
 <script setup lang="ts">
 const props = defineProps(['transparent'])
-const nuxtApp = useNuxtApp()
-const { locale, locales, setLocale } = useI18n()
+
+import { useTranslation } from "i18next-vue";
+const {t, i18next} = useTranslation()
+// const { locale, locales, setLocale } = useI18n()
+// const nuxtApp = useNuxtApp()
+
 //https://icones.js.org/
 
 const routes = reactive([
@@ -18,13 +22,16 @@ const routes = reactive([
 ]) 
 function updateRoutes(){
   routes.forEach(route => {
-    if(!route.success) route.name = nuxtApp.$i18n.t('w.' + route.key)
+    if(!route.success) route.name = t('w.' + route.key)
   })
 }
-//when locale changes
-watch(locale, () => {
+i18next.on('languageChanged', (lng) => {
   updateRoutes()
 })
+//when locale changes
+// watch(i18next.language, () => {
+//   updateRoutes()
+// })
 //server side first render
 updateRoutes()
 

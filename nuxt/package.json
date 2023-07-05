@@ -13,7 +13,6 @@
   "devDependencies": {
     "@iconify/json": "^2.2.85",
     "@nuxt/devtools": "latest",
-    "@nuxtjs/i18n": "^8.0.0-beta.12",
     "@types/node": "^18",
     "@types/parse": "^3.0.4",
     "@vite-pwa/nuxt": "^0.1.0",
@@ -28,6 +27,8 @@
     "@egoist/tailwindcss-icons": "^1.1.0",
     "@fontsource/roboto": "^5.0.3",
     "@fontsource/roboto-slab": "^5.0.3",
+    "i18next-browser-languagedetector": "^7.1.0",
+    "i18next-vue": "^2.2.0",
     "parse": "^4.1.0",
     "translation-check": "^1.0.3",
     "tw-elements": "^1.0.0-beta2",

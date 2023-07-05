@@ -15,37 +15,37 @@ export default defineNuxtConfig({
     "~/components",
   ],
   modules: [
-    "@nuxtjs/i18n",
+    // "@nuxtjs/i18n",
     '@vite-pwa/nuxt'
   ],
-  i18n: {
-    vueI18n: "./localization/i18n.config.ts",
-    locales: [
-      {
-        name: "English",
-        code: "en",
-        file: "en.json",
-        iso: "en-US",
-        flag: "i-circle-flags-gb",
-      },
-      {
-        name: "Svenska",
-        code: "sv",
-        file: "sv.json",
-        iso: "sv-SE",
-        flag: "i-circle-flags-se",
-      },
-    ],
-    baseUrl: "https://bridgestars.net",
-    strategy: "no_prefix",
-    langDir: "localization/lang",
-    defaultLocale: "en",
-    lazy: true,
-    detectBrowserLanguage: {
-      useCookie: false
-    }
-    /*options*/
-  },
+  // i18n: {
+  //   vueI18n: "./localization/i18n.config.ts",
+  //   locales: [
+  //     {
+  //       name: "English",
+  //       code: "en",
+  //       file: "en.json",
+  //       iso: "en-US",
+  //       flag: "i-circle-flags-gb",
+  //     },
+  //     {
+  //       name: "Svenska",
+  //       code: "sv",
+  //       file: "sv.json",
+  //       iso: "sv-SE",
+  //       flag: "i-circle-flags-se",
+  //     },
+  //   ],
+  //   baseUrl: "https://bridgestars.net",
+  //   strategy: "no_prefix",
+  //   langDir: "localization/lang",
+  //   defaultLocale: "en",
+  //   lazy: true,
+  //   detectBrowserLanguage: {
+  //     useCookie: false
+  //   }
+  //   /*options*/
+  // },
   pwa:{
 //???
   },

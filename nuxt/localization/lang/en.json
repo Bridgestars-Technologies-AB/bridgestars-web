@@ -7,7 +7,7 @@
     "desc4": "The Windows installer may trigger Windows Smart Screen which may warn you about the application, there is nothing that can be done about this.",
     "title": "Welcome to Bridgestars!",
     "download": "Download",
-    "size": "Download size: {size}",
+    "size": "Download size: {{size}}",
     "mac": {
       "title": "Bridgestars for Mac OS (.app)",
       "description": "This version is for Mac OS (Apple). Once downloaded and started, it will ask wether you want a shortcut on your desktop."
@@ -28,7 +28,7 @@
     "": ""
   },
   "misc": {
-    "copyright": "Copyright © {year} Bridgestars by Bridgestars Technologies Sweden AB. All rights reserved."
+    "copyright": "Copyright © {{year}} Bridgestars by Bridgestars Technologies Sweden AB. All rights reserved."
   },
   "home": {
     "play": ""

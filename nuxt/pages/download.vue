@@ -1,20 +1,21 @@
 <script setup>
-const nuxtApp = useNuxtApp()
 
 const downloads = ref([]) 
+import { useTranslation } from "i18next-vue";
+const {t} = useTranslation()
 
 function update(){
   downloads.value = [{
     platform: "mac",
-    title: nuxtApp.$i18n.t("download.mac.title"),
-    description: nuxtApp.$i18n.t("download.mac.description"),
+    title: t("download.mac.title"),
+    description: t("download.mac.description"),
     size: "60MB",
     link: "https://bridgestars-static-host.s3.eu-north-1.amazonaws.com/launcher/mac/bridgestars-macos-1.1.8.zip"
   },
   {
     platform: "win",
-    title: nuxtApp.$i18n.t("download.win.title"),
-    description: nuxtApp.$i18n.t("download.win.description"),
+    title: t("download.win.title"),
+    description: t("download.win.description"),
     size: "60MB",
     link: "https://bridgestars-static-host.s3.eu-north-1.amazonaws.com/launcher/win/bridgestars-win-1.1.8.zip"
   }]
@@ -45,14 +46,16 @@ onMounted(()=>{
       <LangSwitcher class="mb-4" @switched="update"/>
 
       <h3 class="text-start">{{$t("download.title")}}</h3> 
-      <i18n-t tag="span" keypath="download.desc1" class="text2 mt-2">
-        <template #here>
-          <NuxtLink to="/auth/reset" class="text-blue font-normal underline">{{$t("w.here")}}</NuxtLink> 
-        </template>
-      </i18n-t>
+      <span class="text2 mt-2">
+        <i18next :translation="$t('download.desc1')" >
+          <template #here>
+            <NuxtLink to="/auth/reset" class="text-blue font-normal underline">{{$t("w.here")}}</NuxtLink> 
+          </template>
+        </i18next>
+      </span>
 
       <span class="text2 mt-4">
-        <i18n-t tag="span" keypath="download.desc2" class="text mt-2">
+        <i18next :translation="$t('download.desc2')">
           <template #discord>
             <a class="text-blue font-normal underline" 
               href="https://discord.gg/YhwRDgtSX2" target="_blank" rel="noreferrer">
@@ -63,7 +66,7 @@ onMounted(()=>{
               href="mailto: info@bridgestars.net" target="_blank" rel="noreferrer">
               email</a> 
           </template>
-        </i18n-t>
+        </i18next>
       </span>
 
       <span class="text2 mt-4">
