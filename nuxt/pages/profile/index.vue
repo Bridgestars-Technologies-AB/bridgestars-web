@@ -8,17 +8,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <SideMenu>
-  </SideMenu>
-  <div>Welcome to profile</div>
-  <button
-    @click="
-      {
-        Parse.User.logOut();
-        router.push({ path: '/auth/sign-in' });
-      }
-    "
-  >
-    Sign out!
-  </button>
+  <div class="dark"><!-- enables tailwind darkmode, toggle this  -->
+    <SideMenu>
+    </SideMenu>
+    <div>Welcome to profile</div>
+    <button
+      @click="
+        {
+          Parse.User.logOut();
+          router.push({ path: '/auth/sign-in' });
+        }
+      "
+    >
+      Sign out!
+    </button>
+  </div>
 </template>

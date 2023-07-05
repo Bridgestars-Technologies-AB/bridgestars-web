@@ -16,7 +16,7 @@ module.exports = {
     require("daisyui"),
     //require("tailwindcss-animated"),
     iconsPlugin({
-      collections: getIconCollections(["ic", "material-symbols", "mdi", "circle-flags"]), 
+      collections: getIconCollections(["ic", "material-symbols", "mdi", "circle-flags", "tabler"]), 
       //tailwindcss chooses which icons to include based on usage 
     })
   ],

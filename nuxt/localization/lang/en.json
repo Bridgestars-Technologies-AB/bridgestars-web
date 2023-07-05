@@ -24,9 +24,13 @@
     "here": "Here",
     "home": "Home",
     "profile": "Profile",
-    "policy": "Policy"
+    "policy": "Policy",
+    "": ""
   },
   "misc": {
     "copyright": "Copyright © {year} Bridgestars by Bridgestars Technologies Sweden AB. All rights reserved."
+  },
+  "home": {
+    "play": ""
   }
 }

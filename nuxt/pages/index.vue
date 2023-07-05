@@ -65,9 +65,11 @@
     <img id="video" src="~/assets/bridgestars/images/shortIntroLastFrame.jpg" :class="`w-screen ${showVideo ? 'hidden':'block'}`"/>
 
     <div class="bg-video-overlay fadeIn">
+       <NuxtLink to="/profile">
       <button class="bg-[#EE6065] rounded-full px-5 py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px]">
-        {{"click here to play"}}
+         {{"Begin now"}}
       </button>
+         </NuxtLink>
     </div>
     <div class="absolute top-0 w-full fadeIn">
       <navbar transparent=true />
