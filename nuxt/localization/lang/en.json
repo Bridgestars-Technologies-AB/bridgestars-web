@@ -21,10 +21,10 @@
     "showOptions": "Show all download options"
   },
   "w": {
-    "here": "here",
-    "home": "home",
-    "profile": "profile",
-    "policy": "policy"
+    "here": "Here",
+    "home": "Home",
+    "profile": "Profile",
+    "policy": "Policy"
   },
   "misc": {
     "copyright": "Copyright © {year} Bridgestars by Bridgestars Technologies Sweden AB. All rights reserved."

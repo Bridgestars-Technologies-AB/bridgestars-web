@@ -1,5 +1,10 @@
 <script setup>
 const router = useRouter();
+onMounted(() => {
+  if (!Parse.User.current()) {
+    router.push({ path: '/auth/sign-in' });
+  }
+})
 </script>
 
 <template>

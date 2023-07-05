@@ -1,18 +1,13 @@
 <script setup>
-function capitalizeFirstLetter() {
-  const str = this.valueOf();
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-String.prototype.firstUpper = capitalizeFirstLetter;
 </script>
 
 <template>
   <footer class="mt-[100px] space-y-5">
       <div class="flex space-x-5 justify-center">
-      <NuxtLink class="" href="/">{{$t("w.home").firstUpper()}}</Nuxtlink>
-      <NuxtLink class="" href="/profile">{{$t("w.profile").firstUpper()}}</Nuxtlink>
+      <NuxtLink class="" href="/">{{$t("w.home")}}</Nuxtlink>
+      <NuxtLink class="" href="/profile">{{$t("w.profile")}}</Nuxtlink>
         <!-- <NuxtLink class="" href="/about">About</Nuxtlink> -->
-      <NuxtLink class="" href="/policy">{{$t("w.policy").firstUpper()}}</Nuxtlink>
+      <NuxtLink class="" href="/policy">{{$t("w.policy")}}</Nuxtlink>
       </div>
 
       <div class="flex space-x-5 justify-center">
