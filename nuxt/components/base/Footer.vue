@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <footer class="mt-[100px] space-y-5">
+  <footer class="mt-[100px] space-y-5 px-3">
       <div class="flex space-x-5 justify-center">
       <NuxtLink class="" href="/">{{$t("w.home")}}</Nuxtlink>
       <NuxtLink class="" href="/profile">{{$t("w.profile")}}</Nuxtlink>
@@ -25,7 +25,7 @@
         </a>
       </div>
 
-      <div class="flex justify-center">
+      <div class="flex justify-center text-center">
       <span class="text2 !text-[14px]">{{$t("misc.copyright", {year:new Date().getFullYear()})}}</span>
       </div>
   </footer>

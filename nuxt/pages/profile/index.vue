@@ -8,6 +8,8 @@ onMounted(() => {
 </script>
 
 <template>
+  <SideMenu>
+  </SideMenu>
   <div>Welcome to profile</div>
   <button
     @click="

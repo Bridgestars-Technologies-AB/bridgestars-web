@@ -2,6 +2,7 @@
 const {iconsPlugin, getIconCollections} = require("@egoist/tailwindcss-icons");
 
 module.exports = {
+  darkMode: 'class',
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -35,6 +36,7 @@ module.exports = {
       dark: "#344767", //dark text
       lightDark: "#7b809a",
       white: "#ffffff",
+      light: "#dddddd"
     },
     fontFamily: {
       family: '"Roboto", "Helvetica", "Arial", sans-serif',
