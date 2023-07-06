@@ -3,10 +3,13 @@ const router = useRouter();
 const route = useRoute();
 
 const toast = useToast();
-const email = ref(""); 
+const email = ref("");
+
+const showPass = ref(false);
+console.log(showPass);
 
 onMounted(() => {
-  if(route.params.email) {
+  if (route.params.email) {
     //get email from url param
     email.value = route.params.email;
   }
@@ -19,14 +22,17 @@ onMounted(() => {
 });
 
 watch(email, () => {
-//for debugging to see if email is updated when changed in field
+  //for debugging to see if email is updated when changed in field
 });
 
 function submit(res) {
   //try sign in server side first to migrate from firebase if sign in is not successfull
-  Parse.Cloud.run('signIn', { email:res.usernameEmail, password:res.password})
-    .catch(() => { 
-    //could not sign in server side, ignore and try client side to get error
+  Parse.Cloud.run("signIn", {
+    email: res.usernameEmail,
+    password: res.password,
+  })
+    .catch(() => {
+      //could not sign in server side, ignore and try client side to get error
     })
     //sign in client side
     .then(() => Parse.User.logIn(res.usernameEmail, res.password))
@@ -39,7 +45,6 @@ function submit(res) {
     //error
     .catch((e) => toast.error(e.message));
 }
-
 </script>
 
 <template>
@@ -55,12 +60,32 @@ function submit(res) {
       v-model="email"
       id="username-email"
     />
-    <TextInputField
-      wrapperClass="w-[100%]"
-      placeholder="Password"
-      type="password"
-      id="password-signin"
-    />
+    <div class="flex flex-row w-[100%] relative">
+      <TextInputField
+        v-if="showPass"
+        wrapperClass="w-[100%]"
+        placeholder="Password"
+        type="text"
+        id="password-signin"
+      />
+      <TextInputField
+        v-if="!showPass"
+        wrapperClass="w-[100%]"
+        placeholder="Password"
+        type="password"
+        id="password-signin"
+      />
+      <button
+        @click="
+          {
+            showPass = !showPass;
+            console.log(showPass);
+          }
+        "
+        type="button"
+        class="i-material-symbols-text-snippet absolute top-[35%] right-[5px]"
+      ></button>
+    </div>
 
     <SubmitButton
       wrapperClass="w-[100%] !mt-6"
@@ -71,7 +96,7 @@ function submit(res) {
     <div class="!mt-6 whitespace-nowrap">
       <span class="text2">Don't have an account? </span>
       <button
-          type="button"
+        type="button"
         @click="router.push({ path: '/auth/sign-up' })"
         class="normal-case text-blue font-bold normal-case tracking-[0.5px]"
       >
@@ -79,8 +104,12 @@ function submit(res) {
       </button>
     </div>
     <div>
-<!-- path below is a little bit shady, nuxt reads the param perfectly fine but url looks a little bit wierd "/resettheodor@mail.com" -->
-<button @click="router.push({path:'/auth/reset'+email})" class="text-blue font-bold normal-case tracking-[0.5px] translate-y-[-12px]" type="button">
+      <!-- path below is a little bit shady, nuxt reads the param perfectly fine but url looks a little bit wierd "/resettheodor@mail.com" -->
+      <button
+        @click="router.push({ path: '/auth/reset' + email })"
+        class="text-blue font-bold normal-case tracking-[0.5px] translate-y-[-12px]"
+        type="button"
+      >
         Forgot your password?
       </button>
     </div>

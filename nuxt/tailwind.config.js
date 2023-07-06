@@ -1,8 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-const {iconsPlugin, getIconCollections} = require("@egoist/tailwindcss-icons");
+const {
+  iconsPlugin,
+  getIconCollections,
+} = require("@egoist/tailwindcss-icons");
 
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -16,12 +19,20 @@ module.exports = {
     require("daisyui"),
     //require("tailwindcss-animated"),
     iconsPlugin({
-      collections: getIconCollections(["ic", "material-symbols", "mdi", "circle-flags", "tabler"]), 
-      //tailwindcss chooses which icons to include based on usage 
-    })
+      collections: getIconCollections([
+        "ic",
+        "material-symbols",
+        "mdi",
+        "circle-flags",
+        "tabler",
+        "basil",
+        "majesticons",
+      ]),
+      //tailwindcss chooses which icons to include based on usage
+    }),
   ],
   daisui: {
-    prefix:"daisy-"
+    prefix: "daisy-",
   },
   theme: {
     colors: {
@@ -36,14 +47,14 @@ module.exports = {
       dark: "#344767", //dark text
       lightDark: "#7b809a",
       white: "#ffffff",
-      light: "#dddddd"
+      light: "#dddddd",
     },
     fontFamily: {
       family: '"Roboto", "Helvetica", "Arial", sans-serif',
       family2: '"Roboto Slab", sans-serif',
     },
     screens: {
-      hsm: {raw:"(min-height: 700px)"},
+      hsm: { raw: "(min-height: 700px)" },
       xs: "0px",
       // => @media (min-width: 0px) { ... } //everything smaller than 576px
       sm: "576px",
@@ -63,5 +74,5 @@ module.exports = {
     },
 
     extend: {},
-  }
+  },
 };
