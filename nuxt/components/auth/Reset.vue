@@ -1,10 +1,15 @@
 <script setup lang="ts">
   const router = useRouter();
   const toast = useToast();
+  
+  const route = useRoute();
+  const email = ref("");
 
   onMounted(() => {
-
-
+    if(route.params.email) {
+      email.value = route.params.email;
+      console.log("FOUND EMAIL IN QUERY")
+    }
   })
 
 
@@ -12,7 +17,7 @@
     //Parse.User.requestPasswordReset(res.email)
         //.then(() => {
           toast.success("Your password has been reset. Please check your email.");
-          router.push({ path: "/auth/sign-in", query: { email: res.email } });
+          router.push({ path: "/auth/sign-in-"+res.email});
       //})
       //error
       //.catch((e) => toast.error(e.message));
@@ -34,7 +39,7 @@
 
 <template>
   <AuthForm
-    header=" / Reset Password"
+    header="Reset Password"
     title="Reset your Bridgestars password"
     subtitle="Enter your email address to reset your password"
     @submit="submit"
@@ -42,6 +47,7 @@
     <TextInputField
       wrapperClass="w-[100%]"
       placeholder="Email" 
+      v-model="email"
       id="email"
     />
 
@@ -58,7 +64,7 @@
       <button
         @click="router.go(-1)"
         type="button" 
-        class="textButton buttonText !text-[16px] normal-case"
+        class="!text-[16px] normal-case text-blue font-bold normal-case tracking-[0.5px]"
       >
        Go Back 
       </button>

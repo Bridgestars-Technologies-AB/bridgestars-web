@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+const {iconsPlugin, getIconCollections} = require("@egoist/tailwindcss-icons");
+
 module.exports = {
+  darkMode: 'class',
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -11,8 +14,15 @@ module.exports = {
   ],
   plugins: [
     require("daisyui"),
-    require("tailwindcss-animated"),
+    //require("tailwindcss-animated"),
+    iconsPlugin({
+      collections: getIconCollections(["ic", "material-symbols", "mdi", "circle-flags", "tabler"]), 
+      //tailwindcss chooses which icons to include based on usage 
+    })
   ],
+  daisui: {
+    prefix:"daisy-"
+  },
   theme: {
     colors: {
       primary: "#f74040", //röd
@@ -21,34 +31,37 @@ module.exports = {
       success: "#59BA83", //grön
       warning: "#fb8c00", //orange
       error: "#F44335", //röd
-      bridgeBlue:'rgb(52, 71, 103)',
-      bridgeGray: 'rgb(52, 71, 103)',
-      home: 'rgb(73, 163, 241)',
-      signIn: 'rgb(123, 128, 154)',
+      blue: "rgb(73, 163, 241)",
+      signIn: "rgb(123, 128, 154)",
       dark: "#344767", //dark text
-      lightDark:"#7b809a"
+      lightDark: "#7b809a",
+      white: "#ffffff",
+      light: "#dddddd"
     },
-    fontFamily:{
+    fontFamily: {
       family: '"Roboto", "Helvetica", "Arial", sans-serif',
       family2: '"Roboto Slab", sans-serif',
     },
-    screens: { 
-      'sm': '576px',
+    screens: {
+      hsm: {raw:"(min-height: 700px)"},
+      xs: "0px",
+      // => @media (min-width: 0px) { ... } //everything smaller than 576px
+      sm: "576px",
       // => @media (min-width: 640px) { ... }
 
-      'md': '768px',
+      md: "768px",
       // => @media (min-width: 768px) { ... }
 
-      'lg': '992px',
+      lg: "992px",
       // => @media (min-width: 1024px) { ... }
 
-      'xl': '1200px',
+      xl: "1200px",
       // => @media (min-width: 1280px) { ... }
 
-      '2xl': '1400px',
+      "2xl": "1400px",
       // => @media (min-width: 1536px) { ... }
     },
 
     extend: {},
-  },
+  }
 };

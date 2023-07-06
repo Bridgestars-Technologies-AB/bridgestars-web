@@ -21,54 +21,65 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="whitespace-nowrap pt-[30px] pl-[30px]">
-    <button
-      @click="router.push({ path: '/' })"
-      class="authHeader normal-case text-home"
-    >
-      Home
-    </button>
-    <span class="authHeader text-signIn !opacity-80">{{ header }}</span>
-  </div>
-  <form name="auth-form">
-    <div class="authGrid">
-      <div
-        class="pt-[20px] flex flex-col justify-center items-center content-center"
+  <div class="h-[100vh] flex flex-col"> 
+
+    <!-- header -->
+    <div class="flex justify-start whitespace-nowrap pt-[30px] pl-[30px]">
+      <button
+        @click="router.push({ path: '/' })"
+        class="normal-case text-blue authHeader !font-family2"
       >
+        Home
+      </button>
+      <span class="authHeader  text-lightDark opacity-80 mx-2 !font-family2"> / </span>
+      <span class="authHeader  text-lightDark opacity-80 !font-family2">{{ header }}</span>
+    </div>
+
+    <!-- form -->
+    <form name="auth-form" 
+          class="
+            flex flex-col 
+            grow 
+            items-center 
+            justify-center
+          "
+        >
+        <!-- IMG -->
         <img
           class="pt-[10px] w-[50%] h-[80%]"
           id="sign-in-image"
           src="~/assets/bridgestars/art/sign_in.svg"
           alt="Bridgestars sign-in image"
         />
-      </div>
-
-      <div
-        class="authFlex flex flex-col justify-center items-center content-center w-screen h-screen"
-      >
+        <!-- TITLE -->
         <img
-          class="w-[64px] h-[64px] mt-5 mb-5"
+          class="w-[64px] h-[64px] xs:mt-0 sm:mt-5 mb-5"
           src="~/assets/bridgestars/logo/logo-trans-512px.png"
           alt="Bridgestars logo"
         />
-        <h6 class="zoomIn text-bridgeBlue text-opacity-100 font-bold mb-1">
+        <h6 class="zoomIn text-dark flex text-center text-opacity-100 font-bold mb-4 !text-[19px] !font-family2">
           {{ title }}
         </h6>
-        <span class="zoomIn text2 mb-6 !text-[14px]">{{ subtitle }}</span>
-
+        <span class="zoomIn text2 sm:mb-7 xs:mb-4 flex text-center !text-[17px]">{{ subtitle }}</span>
+        <!-- SLOTS -->
         <div
-          class="zoomIn inputDiv flex flex-col space-y-4 items-center sm:w-[50%] md:w-[40%] lg:w-[35%] xl:w-[30%] max-w-[400px]"
+          class="zoomIn flex flex-col items-center sm:space-y-4 xs:space-y-3 xs:w-[80%] sm:w-[80%] md:w-[70%] lg:w-[70%] max-w-[400px]"
         >
           <slot></slot>
         </div>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 
   <!-- opacity 750ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,  -->
   <!--           transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; -->
 </template>
 <style scoped>
+
+
+.authHeader{
+  @apply font-family text-[3vh] hsm:text-[30px]  leading-[1.5] font-bold
+}
+
 img {
   animation: anim-bounce-in 1000ms ease-out 0ms;
 }
@@ -117,21 +128,5 @@ img {
 
 #sign-in-image {
   display: none;
-}
-@media (min-width: 992px) {
-  .authGrid {
-    @apply grid grid-cols-2;
-  }
-
-  .authFlex {
-    @apply inline-flex justify-end content-end w-[100%] h-[100%];
-  }
-  .inputDiv {
-    @apply lg:w-[50%];
-  }
-
-  #sign-in-image {
-    display: block;
-  }
 }
 </style>
