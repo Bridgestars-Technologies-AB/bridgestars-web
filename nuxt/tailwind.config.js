@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+const {iconsPlugin, getIconCollections} = require("@egoist/tailwindcss-icons");
+
 module.exports = {
+  darkMode: 'class',
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -11,8 +14,15 @@ module.exports = {
   ],
   plugins: [
     require("daisyui"),
-    require("tailwindcss-animated"),
+    //require("tailwindcss-animated"),
+    iconsPlugin({
+      collections: getIconCollections(["ic", "material-symbols", "mdi", "circle-flags", "tabler"]), 
+      //tailwindcss chooses which icons to include based on usage 
+    })
   ],
+  daisui: {
+    prefix:"daisy-"
+  },
   theme: {
     colors: {
       primary: "#f74040", //röd
@@ -25,6 +35,8 @@ module.exports = {
       signIn: "rgb(123, 128, 154)",
       dark: "#344767", //dark text
       lightDark: "#7b809a",
+      white: "#ffffff",
+      light: "#dddddd"
     },
     fontFamily: {
       family: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -51,5 +63,5 @@ module.exports = {
     },
 
     extend: {},
-  },
+  }
 };

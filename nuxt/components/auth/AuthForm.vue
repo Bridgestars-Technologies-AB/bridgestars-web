@@ -27,12 +27,12 @@ onMounted(() => {
     <div class="flex justify-start whitespace-nowrap pt-[30px] pl-[30px]">
       <button
         @click="router.push({ path: '/' })"
-        class="normal-case text-blue authHeader"
+        class="normal-case text-blue authHeader !font-family2"
       >
         Home
       </button>
-      <span class="authHeader  text-dark opacity-80 mx-2"> / </span>
-      <span class="authHeader  text-dark opacity-80">{{ header }}</span>
+      <span class="authHeader  text-lightDark opacity-80 mx-2 !font-family2"> / </span>
+      <span class="authHeader  text-lightDark opacity-80 !font-family2">{{ header }}</span>
     </div>
 
     <!-- form -->
@@ -57,10 +57,10 @@ onMounted(() => {
           src="~/assets/bridgestars/logo/logo-trans-512px.png"
           alt="Bridgestars logo"
         />
-        <h6 class="zoomIn text-dark flex text-center text-opacity-100 font-bold mb-2 !text-[18px]">
+        <h6 class="zoomIn text-dark flex text-center text-opacity-100 font-bold mb-4 !text-[19px] !font-family2">
           {{ title }}
         </h6>
-        <span class="zoomIn text2 sm:mb-7 xs:mb-4 flex text-center !text-[16px]">{{ subtitle }}</span>
+        <span class="zoomIn text2 sm:mb-7 xs:mb-4 flex text-center !text-[17px]">{{ subtitle }}</span>
         <!-- SLOTS -->
         <div
           class="zoomIn flex flex-col items-center sm:space-y-4 xs:space-y-3 xs:w-[80%] sm:w-[80%] md:w-[70%] lg:w-[70%] max-w-[400px]"
