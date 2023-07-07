@@ -86,7 +86,7 @@
         sm:text-[40px] sm:leading-[44px]"> 
         {{"Revolutionizing the Bridge Learning Experience"}}  </h1>
       
-      <span class="text2 px-3 !text-[18px] !leading-[18px]"> 
+      <span class="text2 px-3 text-[18px] leading-[18px]"> 
         {{"With Bridgestars we aim to stimulate a shift away from obsolete IT-solutions in favor of more integrated and modern solutions. "}} </span>
     </div>
 
@@ -108,8 +108,8 @@
           <!-- <MaterialSymbolsFormatQuoteRounded style="color:white;height:40px;width:40px;"/> -->
           <!--   </div> -->
           <div class="mt-3">
-            <span class="text-white !font-family2 !font-bold">Castor Mann </span>
-            <span class="text-white !font-family2">
+            <span class="text-white font-family2 font-bold">Castor Mann </span>
+            <span class="text-white font-family2">
   - Bridgestars CEO, Founder and Junior World Champion 2018
             </span>
           </div>

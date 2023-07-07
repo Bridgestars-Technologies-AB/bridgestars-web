@@ -94,6 +94,6 @@ div.input-block input:focus {
   @apply border-info
 }
 div.input-block input:focus + span.placeholder {
-   @apply text-info !font-medium
+   @apply text-blue !font-medium
 }
 </style>

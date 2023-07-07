@@ -24,7 +24,8 @@ module.exports = {
     prefix:"daisy-"
   },
   theme: {
-    colors: {
+    backgroundColor: {
+      dark: "#344767",
       primary: "#f74040", //röd
       secondary: "#2e294e", //lila
       info: "#2590ee", //"#49a3f1", //blå
@@ -32,11 +33,18 @@ module.exports = {
       warning: "#fb8c00", //orange
       error: "#F44335", //röd
       blue: "rgb(73, 163, 241)",
-      signIn: "rgb(123, 128, 154)",
-      dark: "#344767", //dark text
-      lightDark: "#7b809a",
       white: "#ffffff",
-      light: "#dddddd"
+      light: "#dddddd",
+      dark: "#344767",
+      DEFAULT: "#f74040"
+    },
+    textColor: {
+      dark: "#344767", //dark text
+      DEFAULT: "#344767", //dark text
+      grey: "#7b809a",
+      light: "#dddddd",
+      white: "#ffffff", //light text
+      blue: "rgb(73, 163, 241)",
     },
     fontFamily: {
       family: '"Roboto", "Helvetica", "Arial", sans-serif',
