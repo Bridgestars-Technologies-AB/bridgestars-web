@@ -2,47 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-h1,
-h2,
-h3,
-h4 {
-  @apply font-family2 text-dark font-bold;
+ /* these styles are the bottom layer and will therefore be overridden by other layers and utilities  */
+@layer base { 
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-family2 text-dark font-bold;
+  }
+
+  h1 {
+    @apply text-[48px] leading-[48px];
+  }
+
+  h2 {
+    @apply text-[36px] leading-[36px];
+  }
+
+  h3 {
+    @apply text-[30px] leading-[33px];
+  }
+
+  h4 {
+    @apply font-family text-[24px]  leading-[24px];
+  }
+
+  h5 {
+    @apply font-family text-[20px]  leading-[20px];
+  }
+
+  h6 {
+    @apply font-family text-[16px]  leading-[16px];
+  }
+
+  .text1 {
+    @apply font-family text-[24px] leading-[24px] text-lightDark font-normal;
+  }
+
+  .text2 {
+    @apply font-family text-[16px] leading-[1.6rem] text-lightDark font-light;
+  }
+
+  button {
+    @apply font-family text-[14px] font-light leading-[14px] uppercase;
+  }
 }
 
-h1 {
-  @apply text-[48px] leading-[48px];
+/* Second layer for complex components etc, don't use, specify in style scoped instead */
+@layer components {
+
 }
 
-h2 {
-  @apply text-[36px] leading-[36px];
+/* Third layer, here we can add our own utility classes that tailwind does not have  */
+@layer utilities{
+
 }
-
-h3 {
-  @apply text-[30px] leading-[33px];
-}
-
-h4 {
-  @apply font-family text-[24px]  leading-[24px];
-}
-
-h5 {
-  @apply font-family text-[20px]  leading-[20px];
-}
-
-h6 {
-  @apply font-family text-[16px]  leading-[16px];
-}
-
-.text1 {
-  @apply font-family text-[24px] leading-[24px] text-lightDark font-normal;
-}
-
-.text2 {
-  @apply font-family text-[16px] leading-[1.6rem] text-lightDark font-light;
-}
-
-button {
-  @apply font-family text-[14px] font-light leading-[14px] uppercase;
-}
-
-
