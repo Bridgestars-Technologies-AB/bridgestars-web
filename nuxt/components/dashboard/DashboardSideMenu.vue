@@ -84,7 +84,7 @@ function click(item){
       <div class="text-center flex flex-col items-center p-4">
         <img class="object-cover object-top w-[150px] h-[150px] rounded-full" src="~/assets/bridgestars/images/castor.jpg"/> 
         <h3 class="text-white">Castor</h3>
-        <h6 class="text-[#14C6A4] dark:text-[#14C6a4] font-light tracking-normal">{{$t("dashboard:bridgestars.premium")}}</h6>
+        <h6 class="text-[#14C6A4] dark:text-[#14C6a4] font-light tracking-normal">Bridgestars Premium</h6>
       </div>
 
       <div class="flex flex-col px-5 mt-6 mb-10">
