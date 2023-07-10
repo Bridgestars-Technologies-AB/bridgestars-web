@@ -3,7 +3,8 @@ const router = useRouter();
 const route = useRoute();
 
 const toast = useToast();
-const email = ref("");
+const email = ref("test");
+const password = ref("");
 
 onMounted(() => {
   if (route.params.email) {

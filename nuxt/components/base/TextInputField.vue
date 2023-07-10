@@ -8,35 +8,35 @@ const props = defineProps([
 ]);
 defineEmits(["update:modelValue"]);
 
-const type = ref(props.type);
+// const type = ref(props.type);
 const showPass = ref(false);
 const input = ref(null);
 
-function giveClass() {
-  let output = "absolute top-[35%] right-[5px]";
-  if (showPass.value) output += " i-basil-eye-outline";
-  else output += " i-basil-eye-closed-outline";
-  console.log(output);
-  return output;
-}
 
 
-function giveClick() {
-
+function toggleShowPass() {
+  showPass.value = !showPass.value;
+  input.value.type = showPass.value ? "text" : "password";
   // if (x.type === "password") {
   //   x.type = "text";
   // } else {
   //   x.type = "password";
 }
 
-//import autoAnimate from "../../js/autoAnimate.ts";
-//import autoAnimate from "@formkit/auto-animate";
-//const inputBlock = ref(); // we need a DOM node
-
 onMounted(() => {
-  //autoAnimate(inputBlock.value); // thats it!
   input.value.focus()
 });
+
+
+const value = ref("");
+
+function update(event){
+  const val = event.target.value;
+  if(props.modelValue)
+    emit('update:modelValue', val);
+  else value.value = val;
+}
+
 </script>
 
 <template>
@@ -45,31 +45,24 @@ onMounted(() => {
       class="py-2.5 px-3.5"
       v-bind="$attrs"
       placeholder=" "
-      :type="type"
       ref="input"
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      :value="modelValue || value"
+      @input="update"
     />
     <!--  above is solution for using v-model on this custom inputfield -->
     <span class="placeholder text2 !font-light !text-[14px] !tracking-[1.2px]">
       {{ placeholder }}
     </span>
     <small class="info"></small>
+    <!-- <div -->
+    <!--   v-if="props.id === 'password-signin' && showPass" -->
+    <!--   class="absolute top-[35%] right-[5px] i-basil-eye-outline" -->
+    <!--   @click="toggleShowPass" -->
+    <!-- ></div> -->
+      <!-- v-if="props.id === 'password-signin' && !showPass" -->
     <div
-      v-if="props.id === 'password-signin' && showPass"
-      class="absolute top-[35%] right-[5px] i-basil-eye-outline"
-      @click="
-        showPass = !showPass;
-        type = 'text';
-      "
-    ></div>
-    <div
-      v-if="props.id === 'password-signin' && !showPass"
-      class="absolute top-[35%] right-[5px] i-basil-eye-closed-outline"
-      @click="
-        showPass = !showPass;
-        type = 'password';
-      "
+      :class="`absolute top-[35%] right-[5px] ${showPass ? 'i-basil-eye-outline' : 'i-basil-eye-closed-outline'}`"
+      @click="toggleShowPass"
     ></div>
   </div>
 </template>
