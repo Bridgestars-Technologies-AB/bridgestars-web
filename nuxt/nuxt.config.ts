@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   components: [
     { path: "~/components/base" },
     { path: "~/components/auth" },
+    { path: "~/components/dashboard" },
     "~/components",
   ],
   modules: [

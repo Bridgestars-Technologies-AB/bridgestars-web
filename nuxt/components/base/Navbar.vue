@@ -1,8 +1,7 @@
 <script setup lang="ts">
 const props = defineProps(['transparent'])
 
-import { useTranslation } from "i18next-vue";
-const {t, i18next} = useTranslation()
+const {t, i18} = useTranslate()
 // const { locale, locales, setLocale } = useI18n()
 // const nuxtApp = useNuxtApp()
 
@@ -22,10 +21,10 @@ const routes = reactive([
 ]) 
 function updateRoutes(){
   routes.forEach(route => {
-    if(!route.success) route.name = t('w.' + route.key)
+    if(!route.success) route.name = t('common:' + route.key)
   })
 }
-i18next.on('languageChanged', (lng) => {
+i18.on('languageChanged', (lng) => {
   updateRoutes()
 })
 //when locale changes

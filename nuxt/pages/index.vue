@@ -24,7 +24,7 @@
       // show image instead (DONE)
     });
 
-    balanceText();
+     balanceText();
     //
     if(showUI.value) fadeInUI();
 
@@ -61,8 +61,8 @@
 
 <div><!-- video container with overlay  -->
     
-  <video id="video" fetchpriority="high" src="~/assets/bridgestars/video/shortIntro-compressed.mp4" :class="`w-screen ${!showVideo ? '!hidden':''}`" muted playsInline></video>
-    <img id="video" src="~/assets/bridgestars/images/shortIntroLastFrame.jpg" :class="`w-screen ${showVideo ? 'hidden':'block'}`"/>
+  <video id="video" fetchpriority="high" src="~/assets/bridgestars/video/shortIntro-compressed.mp4" :class="`${!showVideo ? '!hidden':''} video-size`" muted playsInline></video>
+    <img src="~/assets/bridgestars/images/shortIntroLastFrame.jpg" :class="`${showVideo ? 'hidden':''} video-size`"/>
 
     <div class="bg-video-overlay fadeIn">
        <NuxtLink to="/profile">
@@ -132,19 +132,23 @@
 .quote-bg{
   background: linear-gradient(195deg, rgb(90, 90, 100), rgb(25, 25, 25));
 }
-#video{
+.video-size{
 
-  width:100%;
+  width:100% !important;
   max-width: 2000px;
 
   height:80vh;
   min-height: min(45vw, 700px);
   max-height:1000px;
-  object-fit:cover;
-  margin:0 auto;
+  object-fit: cover;
+  -o-object-fit: cover;
+
   /* position:'relative'; */
   background-color: black;
+
+  @apply !mx-auto !my-0;
 }
+
 .bg-video-overlay{
   position: absolute;
   display:flex;

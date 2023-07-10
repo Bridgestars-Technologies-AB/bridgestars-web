@@ -1,4 +1,6 @@
 <script setup>
+await loadTranslations("dashboard"); // load translation
+
 const router = useRouter();
 onMounted(() => {
   if (!Parse.User.current()) {
@@ -9,9 +11,9 @@ onMounted(() => {
 
 <template>
   <div class="dark"><!-- enables tailwind darkmode, toggle this  -->
-    <SideMenu>
-    </SideMenu>
-    <div>Welcome to profile</div>
+    <DashboardSideMenu>
+    </DashboardSideMenu>
+    <div></div>
     <button
       @click="
         {
