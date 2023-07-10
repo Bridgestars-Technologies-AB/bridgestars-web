@@ -7,7 +7,7 @@ const imgWithDefault = props.imgSrc || "../assets/bridgestars/art/about_us.svg"
   <div class="backdrop">
     <div :class="'foreground ' + props.class">
       <!-- navbar -->
-      <Navbar v-if="!hideNavbar"></Navbar>
+      <base-navbar v-if="!hideNavbar"></base-navbar>
 
       <!-- title -->
       <img :src="imgWithDefault"
@@ -20,7 +20,7 @@ const imgWithDefault = props.imgSrc || "../assets/bridgestars/art/about_us.svg"
       </div>
 
     </div>
-    <Footer/>
+    <base-footer/>
   </div>
 </template>
 <style scoped>

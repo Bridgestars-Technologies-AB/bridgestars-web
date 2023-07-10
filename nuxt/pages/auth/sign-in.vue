@@ -1,5 +1,5 @@
 <script setup></script>
 
 <template>
-  <SignIn></SignIn>
+  <auth-sign-in/>
 </template>

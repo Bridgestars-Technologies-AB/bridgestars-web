@@ -37,24 +37,24 @@
 </script>
 
 <template>
-  <AuthForm
+  <auth-form
     header="Reset Password"
     title="Reset your Bridgestars password"
     subtitle="Enter your email address to reset your password"
     @submit="submit"
   >
-    <TextInputField
+    <base-input-field
       wrapperClass="w-[100%]"
       placeholder="Email" 
       v-model="query.email"
       id="email"
     />
 
-    <SubmitButton
+    <base-submit-button
       wrapperClass="w-[100%] !mt-6"
       id="submit"
       text="Reset Password"
-    ></SubmitButton>
+    ></base-submit-button>
 
     <div class="!mt-6 whitespace-nowrap">
       <span class="text2">Changed your mind? </span>
@@ -69,7 +69,7 @@
       </button>
         
     </div>
-  </AuthForm>
+  </auth-form>
 </template>
 
 <style scoped></style>

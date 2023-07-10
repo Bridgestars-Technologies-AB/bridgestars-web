@@ -43,30 +43,30 @@ function submit(res) {
 </script>
 
 <template>
-  <AuthForm
+  <auth-form
     header="Sign In"
     title="Sign in to your Bridgestars account"
     subtitle="Enter your username and password"
     @submit="submit"
   >
-    <TextInputField
+    <base-input-field
       wrapperClass="w-[100%]"
       placeholder="Username/Email"
       v-model="query.email"
       id="username-email"
     />
-    <TextInputField
+    <base-input-field
       wrapperClass="w-[100%]"
       placeholder="Password"
       type="password"
       id="password-signin"
     />
 
-    <SubmitButton
+    <base-submit-button
       wrapperClass="w-[100%] !mt-6"
       id="submit"
       text="SIGN IN"
-    ></SubmitButton>
+    ></base-submit-button>
 
     <div class="!mt-6 whitespace-nowrap">
       <span class="text2">Don't have an account? </span>
@@ -84,7 +84,7 @@ function submit(res) {
         Forgot your password?
       </button>
     </div>
-  </AuthForm>
+  </auth-form>
 </template>
 
 <style scoped></style>

@@ -41,9 +41,9 @@ onMounted(()=>{
 </script>
 
 <template>
-  <CardPageLayout>
+  <base-card-page-layout>
     <div class="max-w-[1000px] flex flex-col text-justify px-[16px]">
-      <LangSwitcher class="mb-4" @switched="update"/>
+      <base-lang-switcher class="mb-4" @switched="update"/>
 
       <h3 class="text-start">{{$t("download:title")}}</h3> 
       <span class="text2 mt-2">
@@ -124,7 +124,7 @@ onMounted(()=>{
       </button>
     </div>
 
-  </CardPageLayout>
+  </base-card-page-layout>
 </template>
 
 <style scoped>

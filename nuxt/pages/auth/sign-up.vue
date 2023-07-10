@@ -1,3 +1,3 @@
 <template>
-  <SignUp></SignUp> 
+  <auth-sign-up/> 
 </template>

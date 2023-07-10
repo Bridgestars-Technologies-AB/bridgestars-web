@@ -72,13 +72,13 @@
          </NuxtLink>
     </div>
     <div class="absolute top-0 w-full fadeIn">
-      <navbar transparent=true />
+      <base-navbar transparent=true />
     </div>
 </div>
 <div class='background' />
 
   <div class="fadeIn">
-  <CardPageLayout hideNavbar=true class="pt-5 translate-y-[-70px]" imgSrc="../assets/bridgestars/art/home_page.svg">
+  <base-card-page-layout hideNavbar=true class="pt-5 translate-y-[-70px]" imgSrc="../assets/bridgestars/art/home_page.svg">
     <div class="px-5">
 
       <h1 class="mb-4
@@ -121,10 +121,9 @@
   <!-- text or other quote -->
 
 
-  </CardPageLayout>
+  </base-card-page-layout>
     </div>
 
-<!-- footer -->
 </template>
 
 

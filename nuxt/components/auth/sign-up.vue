@@ -22,43 +22,43 @@ function submit(res) {
 </script>
 
 <template>
-  <AuthForm
+  <auth-form
     header="Sign Up"
     title="Join the Bridgestars waiting list"
     subtitle="Enter your desired details below to create an account."
     @submit="submit"
   >
-    <TextInputField
+    <base-input-field
       wrapperClass="w-[100%]"
       placeholder="Username"
       type="username"
       id="username"
     />
-    <TextInputField
+    <base-input-field
       wrapperClass="w-[100%]"
       placeholder="Email"
       type="email"
       id="email"
     />
-    <TextInputField
+    <base-input-field
       wrapperClass="w-[100%]"
       placeholder="Password"
       type="password"
       id="password"
     />
-    <TextInputField
+    <base-input-field
       wrapperClass="w-[100%]"
       placeholder="Confirm password"
       type="password"
       id="password-confirm"
     />
-    <SubmitButton
+    <base-submit-button
       wrapperClass="w-[100%] xs:!mt-3 sm:!mt-6"
       id="submit"
       type="submit"
       text="SIGN UP"
       @submit="submit"
-    ></SubmitButton>
+    ></base-submit-button>
 
     <div class="flex text-center">
     <div class="xs:!mt-1 sm:!mt-6 xs:!mb-3">
@@ -77,7 +77,7 @@ function submit(res) {
     <!--   Forgot your password? -->
     <!-- </button> -->
     <!-- </div> -->
-  </AuthForm>
+  </auth-form>
 </template>
 
 <style>
