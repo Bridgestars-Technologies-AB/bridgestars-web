@@ -1,15 +1,17 @@
 <script setup>
-const props = defineProps(['icon', 'key', 'link'])
+const props = defineProps(['icon', 'keypath', 'link'])
 const current_tab = inject("profile.side.selected")
+console.log(props.keypath)
+console.log(props.icon)
 </script>
 
 <template>
-  <div class="flex items-center px-2 py-1">
+  <div class="flex items-center px-2 py-2">
     <div class="flex items-center">
       <span id="icon" :class="` ${icon}`"></span>
     </div>
     <span class="!text-light font-family text-[14px] font-light tracking-wide">
-      <slot/>
+      {{ $t(props.keypath) }}
     </span>
   </div>
 </template>

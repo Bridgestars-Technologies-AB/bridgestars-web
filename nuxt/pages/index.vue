@@ -65,7 +65,7 @@
     <img src="~/assets/bridgestars/images/shortIntroLastFrame.jpg" :class="`${showVideo ? 'hidden':''} video-size`"/>
 
     <div class="bg-video-overlay fadeIn">
-       <NuxtLink to="/profile">
+       <NuxtLink to="/auth/sign-up">
       <button class="bg-[#EE6065] rounded-full px-5 py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px]">
          {{"Begin now"}}
       </button>

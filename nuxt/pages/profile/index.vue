@@ -10,19 +10,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="dark"><!-- enables tailwind darkmode, toggle this  -->
+  <div class="dark flex h-[100vh]"><!-- enables tailwind darkmode, toggle this  -->
     <DashboardSideMenu>
     </DashboardSideMenu>
-    <div></div>
-    <button
-      @click="
-        {
-          Parse.User.logOut();
-          router.push({ path: '/auth/sign-in' });
-        }
-      "
-    >
-      Sign out!
-    </button>
   </div>
 </template>
