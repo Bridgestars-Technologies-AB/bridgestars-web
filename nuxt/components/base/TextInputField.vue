@@ -1,6 +1,33 @@
-<script setup lang="ts">
-const props = defineProps(["placeholder", "id", "wrapperClass", "modelValue"]);
+<script setup lang="js">
+const props = defineProps([
+  "placeholder",
+  "id",
+  "wrapperClass",
+  "modelValue",
+  "type",
+]);
 defineEmits(["update:modelValue"]);
+
+const type = ref(props.type);
+const showPass = ref(false);
+const input = ref(null);
+
+function giveClass() {
+  let output = "absolute top-[35%] right-[5px]";
+  if (showPass.value) output += " i-basil-eye-outline";
+  else output += " i-basil-eye-closed-outline";
+  console.log(output);
+  return output;
+}
+
+
+function giveClick() {
+
+  // if (x.type === "password") {
+  //   x.type = "text";
+  // } else {
+  //   x.type = "password";
+}
 
 //import autoAnimate from "../../js/autoAnimate.ts";
 //import autoAnimate from "@formkit/auto-animate";
@@ -8,25 +35,42 @@ defineEmits(["update:modelValue"]);
 
 onMounted(() => {
   //autoAnimate(inputBlock.value); // thats it!
+  input.value.focus()
 });
-
-
 </script>
 
 <template>
   <div :class="'input-block ' + wrapperClass">
-    <input 
-      class="py-2.5 px-3.5" 
-      v-bind="$attrs" 
-      placeholder=" " 
-      :id="id" 
-
-      :value="modelValue" 
-      @input="$emit('update:modelValue', $event.target.value)" 
+    <input
+      class="py-2.5 px-3.5"
+      v-bind="$attrs"
+      placeholder=" "
+      :type="type"
+      ref="input"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
-<!--  above is solution for using v-model on this custom inputfield -->
-    <span class="placeholder text2 !font-light !text-[14px] !tracking-[1.2px]"> {{ placeholder }} </span>
+    <!--  above is solution for using v-model on this custom inputfield -->
+    <span class="placeholder text2 !font-light !text-[14px] !tracking-[1.2px]">
+      {{ placeholder }}
+    </span>
     <small class="info"></small>
+    <div
+      v-if="props.id === 'password-signin' && showPass"
+      class="absolute top-[35%] right-[5px] i-basil-eye-outline"
+      @click="
+        showPass = !showPass;
+        type = 'text';
+      "
+    ></div>
+    <div
+      v-if="props.id === 'password-signin' && !showPass"
+      class="absolute top-[35%] right-[5px] i-basil-eye-closed-outline"
+      @click="
+        showPass = !showPass;
+        type = 'password';
+      "
+    ></div>
   </div>
 </template>
 
@@ -73,8 +117,8 @@ div.input-block.success span.placeholder {
 div.input-block span.placeholder {
   position: absolute;
   margin: 11px 0px;
-  padding: 0px 5px;  
-  color: 'rgb(0,0,0,0.87)';
+  padding: 0px 5px;
+  color: "rgb(0,0,0,0.87)";
   letter-spacing: 1px;
   display: block;
   align-items: center;
@@ -91,9 +135,9 @@ div.input-block input:focus + span.placeholder {
   background: #fff;
 }
 div.input-block input:focus {
-  @apply border-info
+  @apply border-info;
 }
 div.input-block input:focus + span.placeholder {
-   @apply text-info !font-medium
+  @apply text-info !font-medium;
 }
 </style>

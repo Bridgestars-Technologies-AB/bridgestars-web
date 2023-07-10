@@ -5,9 +5,6 @@ const route = useRoute();
 const toast = useToast();
 const email = ref("");
 
-const showPass = ref(false);
-console.log(showPass);
-
 onMounted(() => {
   if (route.params.email) {
     //get email from url param
@@ -57,35 +54,16 @@ function submit(res) {
     <TextInputField
       wrapperClass="w-[100%]"
       placeholder="Username/Email"
+      type="email"
       v-model="email"
       id="username-email"
     />
-    <div class="flex flex-row w-[100%] relative">
-      <TextInputField
-        v-if="showPass"
-        wrapperClass="w-[100%]"
-        placeholder="Password"
-        type="text"
-        id="password-signin"
-      />
-      <TextInputField
-        v-if="!showPass"
-        wrapperClass="w-[100%]"
-        placeholder="Password"
-        type="password"
-        id="password-signin"
-      />
-      <button
-        @click="
-          {
-            showPass = !showPass;
-            console.log(showPass);
-          }
-        "
-        type="button"
-        class="i-material-symbols-text-snippet absolute top-[35%] right-[5px]"
-      ></button>
-    </div>
+    <TextInputField
+      wrapperClass="w-[100%]"
+      placeholder="Password"
+      type="password"
+      id="password-signin"
+    />
 
     <SubmitButton
       wrapperClass="w-[100%] !mt-6"
