@@ -11,7 +11,6 @@ onMounted(() => {
 
 <template>
   <div class="dark flex h-[100vh]"><!-- enables tailwind darkmode, toggle this  -->
-    <DashboardSideMenu>
-    </DashboardSideMenu>
+    <dash-side-menu/>
   </div>
 </template>

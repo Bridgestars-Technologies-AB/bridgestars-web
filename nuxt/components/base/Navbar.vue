@@ -48,7 +48,7 @@ onMounted(() => {
     signedIn.value = true
     const account = routes.find(route => route.key === 'profile')
     account.name = Parse.User.current().get('dispName') 
-    account.path = '/sign-in'
+    account.path = '/auth/sign-in'
     account.success = true;
   }
 })

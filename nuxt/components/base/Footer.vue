@@ -5,7 +5,7 @@
   <footer class="mt-[100px] space-y-5 px-3">
       <div class="flex space-x-5 justify-center">
       <NuxtLink class="" href="/">{{$t("common:home")}}</Nuxtlink>
-      <NuxtLink class="" href="/sign-in">{{$t("common:profile")}}</Nuxtlink>
+      <NuxtLink class="" href="/auth/sign-in">{{$t("common:profile")}}</Nuxtlink>
       <NuxtLink class="" href="/download">{{$t("common:downloads")}}</Nuxtlink>
       <NuxtLink class="" href="/policy">{{$t("common:policy")}}</Nuxtlink>
       </div>

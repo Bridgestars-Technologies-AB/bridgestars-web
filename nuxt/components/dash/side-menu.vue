@@ -40,7 +40,7 @@ const items = [
     icon: "i-material-symbols-play-circle-outline"
   },
   {
-    key: "dashboard:sidepanel.color",
+    key: "dashboard:sidepanel.suit_treatments",
     icon: "i-material-symbols-hive"
   },
   {
@@ -93,7 +93,7 @@ function click(item){
             class="text font-light dark:!text-[#aaaaaa] mb-3 mt-5">
             {{$t(item.key)}}
           </div>
-          <SideMenuItem v-else :icon="item.icon" :keypath="item.key"/>
+          <dash-side-menu-item v-else :icon="item.icon" :keypath="item.key"/>
         </div>
       </div>
     </div>

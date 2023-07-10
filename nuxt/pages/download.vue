@@ -83,27 +83,29 @@ onMounted(()=>{
     </div>
     <div class="max-w-[800px] flex flex-col text-justify xs:px-0 px-[16px] mb-[32px]">
       <!-- cards -->
-      <div v-if="platform.isMac || platform.isWindows || showOptions" 
-        v-for="(d, i) in downloads" 
-        :key="i"
-      >
-        <div 
-          v-if="showOptions || (!showOptions && i == 0)"
-          class="px-6 py-4 mt-10 rounded-2xl shadow-2xl bg-[#FFFFFF]  text-start flex items-center">
+      <template v-if="platform.isMac || platform.isWindows || showOptions">
+        <div  
+          v-for="(d, i) in downloads" 
+          :key="i"
+        >
+          <div 
+            v-if="showOptions || (!showOptions && i == 0)"
+            class="px-6 py-4 mt-10 rounded-2xl shadow-2xl bg-[#FFFFFF]  text-start flex items-center">
 
-          <div class="flex flex-col pr-6">
-            <h3>{{d.title}}</h3>
-            <span class="text2 mt-2">{{d.description}}</span>
-          </div>
+            <div class="flex flex-col pr-6">
+              <h3>{{d.title}}</h3>
+              <span class="text2 mt-2">{{d.description}}</span>
+            </div>
 
-          <div class="flex flex-col text-center">
-            <a :href="d.link" class="bg-[#EE6065] rounded-full px-4 py-4 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[20px] leading-[20px] whitespace-nowrap">
-              {{$t("download:download")}}
-            </a>
-            <span class="text2 !text-[14px] mt-1 whitespace-nowrap">{{$t("download:size", {size:d.size})}}</span>
+            <div class="flex flex-col text-center">
+              <a :href="d.link" class="bg-[#EE6065] rounded-full px-4 py-4 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[20px] leading-[20px] whitespace-nowrap">
+                {{$t("download:download")}}
+              </a>
+              <span class="text2 !text-[14px] mt-1 whitespace-nowrap">{{$t("download:size", {size:d.size})}}</span>
+            </div>
           </div>
         </div>
-      </div>
+      </template>
 
       <div v-else-if="platform.isMobile" class="text-center py-8">
         <h3>{{$t("download:isMobile")}}</h3>
