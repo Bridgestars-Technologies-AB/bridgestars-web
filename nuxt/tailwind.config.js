@@ -70,6 +70,26 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
     },
 
-    extend: {},
+    extend: {
+      animation:{
+        'shake': 'shake 1s cubic-bezier(.36,.07,.19,.97) both',
+      },
+      keyframes:{
+        shake:{
+              '15%, 85%': {
+                transform: 'translate3d(-0.5px, 0, 0) rotate(2deg)'
+              },
+             '30%, 70%': {
+                transform: 'translate3d(0.5px, 0, 0) rotate(-2deg)'
+              },
+              '40%, 60%': {
+                transform: 'translate3d(-1px, 0, 0) rotate(5deg)'
+              },
+              '50%': {
+                transform: 'translate3d(1px, 0, 0) rotate(-5deg)'
+            }
+        }
+      }
+    },
   }
 };

@@ -13,7 +13,7 @@ const ns = new Map<string, Set<string>>();
  */
 export default async function loadTranslations(namespace:string|undefined){
   const { t, i18next } = useT();
-
+//console.log(ns)
   if(namespace){
     const load = (lng:string) => loadNamespace(lng, namespace, i18next);
 

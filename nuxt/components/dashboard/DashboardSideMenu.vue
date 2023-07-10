@@ -1,6 +1,6 @@
 <script setup>
 
-const current_tab = provide("profile.side.selected", ref(""))
+const current_tab = provide("profile.side.selected", ref("dashboard:sidepanel.overview"))
 
 const items = [
   {
@@ -64,7 +64,7 @@ const items = [
     icon: "i-tabler-logout-2",
     action: async () => {
       if(Parse.User.current()) await Parse.User.logOut();
-     navigateTo("/") 
+      navigateTo("/") 
     }
   }
 ]
@@ -79,7 +79,7 @@ function click(item){
 
 
 <template>
-    <div class="bg-light dark:bg-[#1A2538] flex flex-col w-[270px] h-[100%] overflow-y-scroll">
+    <div class="bg-light dark:bg-[#1F2A40] flex flex-col w-[270px] h-[100%] overflow-y-auto">
 
       <div class="text-center flex flex-col items-center p-4">
         <img class="object-cover object-top w-[150px] h-[150px] rounded-full" src="~/assets/bridgestars/images/castor.jpg"/> 
