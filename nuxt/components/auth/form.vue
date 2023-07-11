@@ -21,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="fixed w-[100%] h-[100%] flex flex-col bg-[#fefefe]"> 
+  <div class="fixed bottom-0 top-0 w-full h-full flex flex-col justify-center bg-[#fefefe]"> 
 
     <!-- header -->
     <div class="flex justify-start whitespace-nowrap pt-[30px] pl-[30px]">
@@ -74,11 +74,6 @@ onMounted(() => {
   <!--           transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; -->
 </template>
 <style scoped>
-
-html,body{
-height:100%;
-  margin:0
-}
 
 .authHeader{
   @apply font-family2 text-[3vh] hsm:text-[30px]  leading-[1.5] font-bold;
