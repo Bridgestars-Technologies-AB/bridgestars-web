@@ -16,7 +16,7 @@ onMounted(() => {
 <template>
   <div :class="'input-block ' + wrapperClass">
     <input 
-      class="py-2.5 px-3.5" 
+      class="py-2.5 px-3.5 bg-[#fefefe]" 
       v-bind="$attrs" 
       placeholder=" " 
       :id="id" 
