@@ -3,7 +3,7 @@
 
 
 <script setup lang="ts">
-  const firstTime = inject("first_time_at_home");
+  const firstTime = inject("first_time_at_home"); //issue exists for this one
   const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
   const showVideo = ref(true);
 
@@ -59,18 +59,24 @@
 
 <template>
 
-<div><!-- video container with overlay  -->
+<div class="bg-[#000]"><!-- video container with overlay  -->
     
-  <video id="video" fetchpriority="high" src="~/assets/bridgestars/video/shortIntro-compressed.mp4" :class="`${!showVideo ? '!hidden':''} video-size`" muted playsInline></video>
+     <div class="flex justify-center">
+    <video id="video" fetchpriority="high" src="~/assets/bridgestars/video/shortIntro-compressed.mp4" :class="`${!showVideo ? '!hidden':''} video-size`" muted playsInline></video>
     <img src="~/assets/bridgestars/images/shortIntroLastFrame.jpg" :class="`${showVideo ? 'hidden':''} video-size`"/>
+       </div>
 
-    <div class="bg-video-overlay fadeIn">
-       <NuxtLink to="/auth/sign-up">
-      <button class="bg-[#EE6065] rounded-full px-5 py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px]">
-         {{"Begin now"}}
-      </button>
+     <div class="flex justify-center">
+       <div class="bg-video-gradient"/>
+      <div class="bg-video-overlay fadeIn">
+         <NuxtLink to="/auth/sign-up">
+            <button class="bg-[#EE6065] rounded-full px-5 py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px]">
+               {{"Begin now"}}
+            </button>
          </NuxtLink>
-    </div>
+      </div>
+     </div>
+
     <div class="absolute top-0 w-full fadeIn">
       <base-navbar transparent=true />
     </div>
@@ -129,21 +135,19 @@
 
 <style scoped>
 .quote-bg{
-  background: linear-gradient(195deg, rgb(90, 90, 100), rgb(25, 25, 25));
+  /* background: linear-gradient(195deg, rgb(90, 90, 100), rgb(25, 25, 25)); */
 }
 .video-size{
-
-  width:100% !important;
   max-width: 2000px;
 
   height:80vh;
   min-height: min(45vw, 700px);
   max-height:1000px;
-  object-fit: cover;
-  -o-object-fit: cover;
-
+  /* object-fit: cover; */
+  /* -o-object-fit: cover; */
   /* position:'relative'; */
   background-color: black;
+  aspect-ratio: 16/9;
 
   @apply !mx-auto !my-0;
 }
@@ -162,11 +166,24 @@
   padding-bottom: 15vh;
   max-height:1000px;
 
-  width: 100%;
+  aspect-ratio: 16/9;
+  /* width: 100%; */
   /* max-height:1000px; */
   /* min-height: min(45vw, 750px); */
-  background-color: rgba(200,0,200,0.03);
+  /* background-color: rgba(200,0,200,0.03); */
   text-align: center;
+}
+.bg-video-gradient{
+  position:absolute;
+  top:0px;
+  height:80vh;
+  min-height: min(45vw, 700px);
+  padding-bottom: 15vh;
+  max-height:1000px;
+  aspect-ratio: 16/9;
+  background: rgb(0,0,0);
+  /* background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, rgba(0,0,0,1) 100%); */
+  background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, rgba(255,0,0,1) 100%), linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(0,0,0,0) 15%);
 }
 .fadeIn{
   opacity:0;
