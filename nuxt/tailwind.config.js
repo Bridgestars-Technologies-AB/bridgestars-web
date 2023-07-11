@@ -45,7 +45,7 @@ module.exports = {
       warning: "#fb8c00", //orange
       error: "#F44335", //röd
       blue: "rgb(73, 163, 241)",
-      white: "#ffffff",
+      white: "#fefefe",
       light: "#dddddd",
       dark: "#344767",
       DEFAULT: "#f74040",

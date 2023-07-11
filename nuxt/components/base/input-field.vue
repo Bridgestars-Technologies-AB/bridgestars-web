@@ -43,7 +43,7 @@ function update(event){
 <template>
   <div :class="'input-block ' + wrapperClass">
     <input
-      class="py-2.5 px-3.5"
+      class="py-2.5 px-3.5 bg-white"
       v-bind="$attrs"
       placeholder=" "
       ref="input"
@@ -130,7 +130,7 @@ div.input-block span.placeholder {
 div.input-block input:not(:placeholder-shown) + span.placeholder,
 div.input-block input:focus + span.placeholder {
   transform: scale(0.85) translateY(-23px);
-  background: #fff;
+  background: #fefefe;
 }
 div.input-block input:focus {
   @apply border-info;
