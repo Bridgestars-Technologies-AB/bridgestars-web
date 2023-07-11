@@ -35,7 +35,9 @@ module.exports = {
     prefix: "daisy-",
   },
   theme: {
-    colors: {
+    //we should check which of these that are used
+    backgroundColor: {
+      dark: "#344767",
       primary: "#f74040", //röd
       secondary: "#2e294e", //lila
       info: "#2590ee", //"#49a3f1", //blå
@@ -43,11 +45,41 @@ module.exports = {
       warning: "#fb8c00", //orange
       error: "#F44335", //röd
       blue: "rgb(73, 163, 241)",
-      signIn: "rgb(123, 128, 154)",
-      dark: "#344767", //dark text
-      lightDark: "#7b809a",
       white: "#ffffff",
       light: "#dddddd",
+      dark: "#344767",
+      DEFAULT: "#f74040",
+      "dash-dark": {
+        200: "#475569",
+        300: "#334155",
+        400: "#1F2A40",
+        500: "#141B2D",
+        DEFAULT: "#141B2D",
+      },
+      "dash-light": {
+        100: "#f5f5f5",
+        200: "#eeeeee",
+        300: "#e0e0e0",
+        400: "#bdbdbd",
+        500: "#9e9e9e",
+        DEFAULT: "#9e9e9e",
+      },
+      "dash-accent": {
+        DEFAULT: "#868dfb",
+        light: "#6870fa",
+      },
+    },
+    textColor: {
+      dark: "#344767", //dark text
+      DEFAULT: "#344767", //dark text
+      grey: "#7b809a",
+      light: "#dddddd",
+      white: "#ffffff", //light text
+      blue: "rgb(73, 163, 241)",
+      "dash-accent": {
+        DEFAULT: "#868dfb",
+        light: "#6870fa",
+      },
     },
     fontFamily: {
       family: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -73,6 +105,26 @@ module.exports = {
       // => @media (min-width: 1536px) { ... }
     },
 
-    extend: {},
+    extend: {
+      animation: {
+        shake: "shake 1s cubic-bezier(.36,.07,.19,.97) both",
+      },
+      keyframes: {
+        shake: {
+          "15%, 85%": {
+            transform: "translate3d(-0.5px, 0, 0) rotate(2deg)",
+          },
+          "30%, 70%": {
+            transform: "translate3d(0.5px, 0, 0) rotate(-2deg)",
+          },
+          "40%, 60%": {
+            transform: "translate3d(-1px, 0, 0) rotate(5deg)",
+          },
+          "50%": {
+            transform: "translate3d(1px, 0, 0) rotate(-5deg)",
+          },
+        },
+      },
+    },
   },
 };

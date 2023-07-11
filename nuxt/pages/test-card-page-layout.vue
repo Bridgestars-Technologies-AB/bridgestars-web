@@ -1,5 +1,3 @@
 <template>
-  <CardPageLayout title="test card page layout">
-    
-  </CardPageLayout>
+  <base-card-page-layout title="test card page layout"/>
 </template>

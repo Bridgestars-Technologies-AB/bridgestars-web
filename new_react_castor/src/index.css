@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,600&display=swap');
+html, 
+body, 
+#root, 
+.app, 
+.content {
+  height: calc(100vh - 80px);
+  width: calc(100vw - 280px);
+  font-family: 'Open Sans', sans-serif;
+}
+
+.app {
+  display: flex;
+  flex-direction: relative;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #0e101a; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}

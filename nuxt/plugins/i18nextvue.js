@@ -1,16 +1,20 @@
 
 import i18next from 'i18next'
+// import resourcesToBackend from 'i18next-resources-to-backend'
 import I18NextVue from 'i18next-vue'
-import LanguageDetector from 'i18next-browser-languagedetector';
+//import LanguageDetector from 'i18next-browser-languagedetector';
 
-import sv from '~/localization/lang/sv.json'
-import en from '~/localization/lang/en.json'
+// import sv from '~/localization/lang/sv.json'
+// import en from '~/localization/lang/en.json'
 
-i18next.init({
-  debug:true,
-  resources:{sv:{translation: sv}, en:{translation:en}},
-  fallbackLng: ['en', 'sv', 'cimode'],
-  supportedLngs: ['sv', 'en', 'cimode']
+i18next
+.init({
+  debug:false,
+  resources:{},
+  fallbackLng: ['en', 'sv'],
+  supportedLngs: ['en', 'sv'],
+  ns: ['common'],
+  defaultNS: 'common',
 })
 
 // i18next.use(LanguageDetector).init({

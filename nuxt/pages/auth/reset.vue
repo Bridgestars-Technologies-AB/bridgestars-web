@@ -1,5 +1,3 @@
 <template>
-  <Reset>
-    
-  </Reset>
+  <auth-reset/>
 </template>

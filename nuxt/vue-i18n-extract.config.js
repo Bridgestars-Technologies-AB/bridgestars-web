@@ -1,7 +1,7 @@
 module.exports = {
   "vueFiles":
     "./?(components|pages|composables|js|layouts|server|util)/**/*.?(js|vue)",
-  "languageFiles": "./localization/lang/en.json",
+  "languageFiles": "./localization/**/*.json",
   "exclude": ["node_modules/"],
   "output": false,
   "add": true,

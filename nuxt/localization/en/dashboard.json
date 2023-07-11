@@ -1,0 +1,18 @@
+{
+  "side_menu": {
+    "analysis": "Analysis",
+    "exercise": "Exercise",
+    "other": "Other",
+    "overview": "Overview",
+    "deal-editor": "Deal Editor",
+    "contract-calc": "Contract Calculator",
+    "simulator": "Simulator",
+    "contracting": "Contracting",
+    "gambit": "Gambit",
+    "suit-treatments": "Suit Treatments",
+    "play": "Play",
+    "help": "Help",
+    "results": "Results",
+    "sign-out": "Sign Out"
+  }
+}

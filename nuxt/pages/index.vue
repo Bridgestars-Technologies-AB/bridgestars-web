@@ -24,7 +24,7 @@
       // show image instead (DONE)
     });
 
-    balanceText();
+     balanceText();
     //
     if(showUI.value) fadeInUI();
 
@@ -61,32 +61,32 @@
 
 <div><!-- video container with overlay  -->
     
-  <video id="video" fetchpriority="high" src="~/assets/bridgestars/video/shortIntro-compressed.mp4" :class="`w-screen ${!showVideo ? '!hidden':''}`" muted playsInline></video>
-    <img id="video" src="~/assets/bridgestars/images/shortIntroLastFrame.jpg" :class="`w-screen ${showVideo ? 'hidden':'block'}`"/>
+  <video id="video" fetchpriority="high" src="~/assets/bridgestars/video/shortIntro-compressed.mp4" :class="`${!showVideo ? '!hidden':''} video-size`" muted playsInline></video>
+    <img src="~/assets/bridgestars/images/shortIntroLastFrame.jpg" :class="`${showVideo ? 'hidden':''} video-size`"/>
 
     <div class="bg-video-overlay fadeIn">
-       <NuxtLink to="/profile">
+       <NuxtLink to="/auth/sign-up">
       <button class="bg-[#EE6065] rounded-full px-5 py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px]">
          {{"Begin now"}}
       </button>
          </NuxtLink>
     </div>
     <div class="absolute top-0 w-full fadeIn">
-      <navbar transparent=true />
+      <base-navbar transparent=true />
     </div>
 </div>
 <div class='background' />
 
   <div class="fadeIn">
-  <CardPageLayout hideNavbar=true class="pt-5 translate-y-[-70px]" imgSrc="../assets/bridgestars/art/home_page.svg">
-    <div class="px-5">
+  <base-card-page-layout hideNavbar=true class="pt-5 translate-y-[-70px]" imgSrc="../assets/bridgestars/art/home_page.svg">
+    <div class="px-5 text-center">
 
       <h1 class="mb-4
         balance-text xs:text-[27px] xs:leading-[29px]
         sm:text-[40px] sm:leading-[44px]"> 
         {{"Revolutionizing the Bridge Learning Experience"}}  </h1>
       
-      <span class="text2 px-3 !text-[18px] !leading-[18px]"> 
+      <span class="text2 px-3 text-[18px] leading-[18px]"> 
         {{"With Bridgestars we aim to stimulate a shift away from obsolete IT-solutions in favor of more integrated and modern solutions. "}} </span>
     </div>
 
@@ -108,8 +108,8 @@
           <!-- <MaterialSymbolsFormatQuoteRounded style="color:white;height:40px;width:40px;"/> -->
           <!--   </div> -->
           <div class="mt-3">
-            <span class="text-white !font-family2 !font-bold">Castor Mann </span>
-            <span class="text-white !font-family2">
+            <span class="text-white font-family2 font-bold">Castor Mann </span>
+            <span class="text-white font-family2">
   - Bridgestars CEO, Founder and Junior World Champion 2018
             </span>
           </div>
@@ -121,10 +121,9 @@
   <!-- text or other quote -->
 
 
-  </CardPageLayout>
+  </base-card-page-layout>
     </div>
 
-<!-- footer -->
 </template>
 
 
@@ -132,19 +131,23 @@
 .quote-bg{
   background: linear-gradient(195deg, rgb(90, 90, 100), rgb(25, 25, 25));
 }
-#video{
+.video-size{
 
-  width:100%;
+  width:100% !important;
   max-width: 2000px;
 
   height:80vh;
   min-height: min(45vw, 700px);
   max-height:1000px;
-  object-fit:cover;
-  margin:0 auto;
+  object-fit: cover;
+  -o-object-fit: cover;
+
   /* position:'relative'; */
   background-color: black;
+
+  @apply !mx-auto !my-0;
 }
+
 .bg-video-overlay{
   position: absolute;
   display:flex;
