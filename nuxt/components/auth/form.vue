@@ -35,8 +35,9 @@ onMounted(() => {
       <span class="authHeader text-grey opacity-80">{{ header }}</span>
     </div>
 
-    <div class="absolute flex justify-center items-center z-[-1] h-full w-full min-w-[300px]">
-        <img src="~/assets/bridgestars/art/auth-form-ipad.svg" class="w-[180%] max-w-[1500px] min-w-[300px]"/>
+    <div class="absolute flex justify-center items-center z-[-1] h-full w-full">
+        <img src="~/assets/bridgestars/art/auth-form-suits.svg" class="xs:block sm:hidden w-[100%] scale-[1] min-w-[600px]"/>
+        <img src="~/assets/bridgestars/art/auth-form-ipad.svg" class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1400px] min-w-[1000px]"/>
     </div>
     <!-- form -->
     <form name="auth-form" 
