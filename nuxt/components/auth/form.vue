@@ -35,6 +35,9 @@ onMounted(() => {
       <span class="authHeader text-grey opacity-80">{{ header }}</span>
     </div>
 
+    <div class="absolute flex flex-col justify-center items-center  z-[-1] h-full w-full">
+        <img src="~/assets/bridgestars/art/auth_form_mobile.svg" class="w-[180%] max-w-[1500px]"/>
+    </div>
     <!-- form -->
     <form name="auth-form" 
           class="
