@@ -4,7 +4,6 @@ const props = defineProps([
   "id",
   "wrapperClass",
   "modelValue",
-  "type",
 ]);
 defineEmits(["update:modelValue"]);
 
@@ -12,17 +11,12 @@ defineEmits(["update:modelValue"]);
 const showPass = ref(false);
 const input = ref(null);
 
-function x () {
-  console.log(props.id === 'password-signin')
-  return props.id === 'password-signin';
-
-}
-
 function toggleShowPass() {
   showPass.value = !showPass.value;
-  // console.log(props.id === "password-signin");
+  console.log(input.value.type)
   if(props.id === "password-signin") {
     input.value.type = showPass.value ? "text" : "password";
+    console.log(input.value.type)
   }
 
   // if (x.type === "password") {
@@ -53,6 +47,7 @@ function update(event){
       v-bind="$attrs"
       placeholder=" "
       ref="input"
+      :id="id"
       :value="modelValue || value"
       @input="update"
     />
@@ -69,7 +64,7 @@ function update(event){
     <!-- v-if="props.id === 'password-signin' && !showPass" -->
     <div
       v-if="props.id === 'password-signin'"
-      :class="`absolute top-[35%] right-[5px] ${
+      :class="`absolute top-[35%] right-[10px] scale-[1.4] ${
         showPass ? 'i-basil-eye-closed-outline' : 'i-basil-eye-outline'
       }`"
       @click="toggleShowPass"
