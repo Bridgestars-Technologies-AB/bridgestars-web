@@ -15,9 +15,16 @@ export default defineNuxtConfig({
     { path: "~/components/dashboard", prefix: "dash-" },
     "~/components",
   ],
+  imports:{
+    dirs:[
+    "composables",
+    "composables/stores",
+    ]
+  },
   modules: [
     // "@nuxtjs/i18n",
-    '@vite-pwa/nuxt'
+    '@vite-pwa/nuxt',
+    '@pinia/nuxt'
   ],
   // i18n: {
   //   vueI18n: "./localization/i18n.config.ts",
@@ -53,9 +60,6 @@ export default defineNuxtConfig({
   // below is for icon autoimport
   vite: {
     plugins: [ ],
-  },
-  tailwindcss: {
-    exposeConfig: true,
   },
   app: {
     head: {
