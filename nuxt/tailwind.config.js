@@ -24,6 +24,7 @@ module.exports = {
     prefix:"daisy-"
   },
   theme: {
+    //we should check which of these that are used
     backgroundColor: {
       dark: "#344767",
       primary: "#f74040", //röd

@@ -1,10 +1,13 @@
 <script setup>
 await loadTranslations("dashboard"); // load translation
 
-const router = useRouter();
+if(useRoute().name === "dash") {
+  navigateTo("dash/overview");
+}
+
 onMounted(() => {
   if (!Parse.User.current()) {
-    router.push({ path: '/auth/sign-in' });
+    useRouter().push({ path: '/auth/sign-in' });
   }
 })
 const darkMode = useDarkMode() 
@@ -13,6 +16,11 @@ const darkMode = useDarkMode()
 <template>
   <div :class="`${darkMode.value ? 'dark':''} flex h-[100vh]`"><!-- enables tailwind darkmode, toggle this  -->
     <dash-side-menu/>
-    <dash-top-menu/>
+    <div class="flex-col flex-grow">
+      <dash-top-menu/>
+      <div class="h-full dark:bg-[#141B2D]">
+        <NuxtPage/>
+      </div>
+    </div>
   </div>
 </template>

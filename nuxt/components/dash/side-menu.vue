@@ -1,77 +1,88 @@
 <script setup>
+const router = useRouter()
+const route = useRoute()
 
-const current_tab = provide("profile.side.selected", ref("dashboard:sidepanel.overview"))
+const toast = useToast()
 
+// name is both the key for the translation and the route name, keep them in sync!
 const items = [
   {
-    key:"dashboard:sidepanel.overview",
+    name:"overview",
     icon:"i-ic-outline-home"
   },
   {
     divider:true,
-    key: "dashboard:sidepanel.analysis",
+    name: "analysis",
   },
   {
-    key: "dashboard:sidepanel.deal_editor",
+    name: "deal-editor",
     icon:"i-material-symbols-sports-esports-outline"
   },
   // {
-  //   key: "dashboard:sidepanel.dealhistory",
+  //   name: "dealhistory",
   //   icon:"i-material-symbols-history"
   // },
   {
-    key: "dashboard:sidepanel.contract_calc",
+    name: "contract-calc",
     icon:"i-material-symbols-score"
   },
   {
-    key: "dashboard:sidepanel.simulator",
+    name: "simulator",
     icon: "i-material-symbols-analytics"
   },
   {
     divider:true,
-    key: "dashboard:sidepanel.exercise",
+    name: "exercise",
   },
   {
-    key: "dashboard:sidepanel.contracting",
+    name: "contracting",
     icon: "i-material-symbols-sports-esports-outline"
   },
   {
-    key: "dashboard:sidepanel.gambit",
+    name: "gambit",
     icon: "i-material-symbols-play-circle-outline"
   },
   {
-    key: "dashboard:sidepanel.suit_treatments",
+    name: "suit-treatments",
     icon: "i-material-symbols-hive"
   },
   {
-    key: "dashboard:sidepanel.play",
+    name: "play",
     icon: "i-material-symbols-play-circle-outline"
   },
   {
     divider:true,
-    key: "dashboard:sidepanel.other",
+    name: "other",
   },
   {
-    key: "dashboard:sidepanel.results",
+    name: "results",
     icon: "i-material-symbols-text-snippet"
   },
   {
-    key: "dashboard:sidepanel.help",
+    name: "help",
     icon: "i-material-symbols-info"
   },
   {
-    key: "dashboard:sidepanel.sign_out",
+    name: "sign-out",
     icon: "i-tabler-logout-2",
     action: async () => {
       if(Parse.User.current()) await Parse.User.logOut();
-      navigateTo("/") 
+      toast.clear() //remove old toasts , ex sign in 
+      toast.success("You have been signed out.") //translate
+      navigateTo("/")
     }
   }
 ]
+items.map(x => x.enabled = x.action || router.getRoutes().some(r => r.name=="dash-"+x.name))
 
 function click(item){
   if(item.divider) return;
-  if(item.action) item.action();
+  if(item.action) return item.action();
+  if(item.enabled) 
+    navigateTo({name:"dash-"+item.name})
+  else{
+    toast.error("Not implemented yet.")
+  }
 }
 
 </script>
@@ -93,7 +104,7 @@ function click(item){
             class="text font-light dark:!text-[#aaaaaa] mb-3 mt-5">
             {{$t(item.key)}}
           </div>
-          <dash-side-menu-item v-else :icon="item.icon" :keypath="item.key"/>
+          <dash-side-menu-item v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled"/>
         </div>
       </div>
     </div>

@@ -1,18 +1,18 @@
 {
-  "sidepanel": {
+  "side_menu": {
     "analysis": "Analysis",
     "exercise": "Exercise",
     "other": "Other",
     "overview": "Overview",
-    "deal_editor": "Deal Editor",
-    "contract_calc": "Contract Calculator",
+    "deal-editor": "Deal Editor",
+    "contract-calc": "Contract Calculator",
     "simulator": "Simulator",
     "contracting": "Contracting",
     "gambit": "Gambit",
-    "suit_treatments": "Suit Treatments",
+    "suit-treatments": "Suit Treatments",
     "play": "Play",
     "help": "Help",
     "results": "Results",
-    "sign_out": "Sign out"
+    "sign-out": "Sign Out"
   }
 }

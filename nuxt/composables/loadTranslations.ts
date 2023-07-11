@@ -34,5 +34,5 @@ async function loadNamespace(lang:string, namespace:string, i18next:i18n){
   if(ns.get(namespace)?.has(lang)) return;
   i18next.addResourceBundle(lang, namespace, await import(`~/localization/${lang}/${namespace}.json`))
   ns.get(namespace)?.add(lang);
-  console.log(`Namespace ${namespace}/${lang} loaded`)
+  console.log(`Translation [${namespace}/${lang}] loaded`)
 }

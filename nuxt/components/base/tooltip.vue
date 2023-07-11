@@ -7,7 +7,7 @@ const props = defineProps<{text:string, position:"left"|"right"|"top"|"bottom"}>
     <slot/> 
   </div>
 </template>
-<style scoped>
+<style scoped lang="scss">
 
 div[data-tooltip].top {
   &:before,

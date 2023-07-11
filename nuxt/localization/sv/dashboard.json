@@ -1,18 +1,18 @@
 {
-  "sidepanel": {
+  "side_menu": {
     "analysis": "Analys",
     "exercise": "Övningar",
     "other": "Övrigt",
     "overview": "Översikt",
-    "deal_editor": "Givredigerare",
-    "contract_calc": "Kontraktberäknare",
+    "deal-editor": "Givredigerare",
+    "contract-calc": "Kontraktberäknare",
     "simulator": "Simulator",
     "contracting": "Budgivning",
     "gambit": "Utspel",
-    "suit_treatments": "Färgbehandlingar",
+    "suit-treatments": "Färgbehandlingar",
     "play": "Spela",
     "help": "Hjälp",
     "results": "Tävlingsresultat",
-    "sign_out": "Logga ut"
+    "sign-out": "Logga ut"
   }
 }

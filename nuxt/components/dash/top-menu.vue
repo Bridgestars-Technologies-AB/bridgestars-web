@@ -3,7 +3,7 @@
   const darkMode = useDarkMode()
 </script>
 <template>
-  <div class="bg-light dark:bg-[#1F2A40] flex justify-end flex-grow p-3 space-x-4">
+  <div class="bg-light dark:bg-[#1F2A40] flex justify-end flex-grow p-3 space-x-4 h-fit">
     <span :class="`${!darkMode.enabled ? 'i-material-symbols-dark-mode-outline' : 'i-material-symbols-light-mode-outline'}  ${common}`" @click="darkMode.toggle()"></span> 
     <span :class="`i-material-symbols-notifications-outline ${common}`"></span> 
     <span :class="`i-material-symbols-settings-outline ${common}`"></span> 
