@@ -1,9 +1,9 @@
 <script setup>
-  const common = "w-[24px] h-[24px] bg-dark dark:bg-light hover:bg-[#868dfb] dark:hover:bg-[#868dfb] hover:animate-shake"
+  const common = "w-[24px] h-[24px] bg-dark dark:bg-light hover:bg-dash-accent dark:hover:bg-dash-accent hover:animate-shake"
   const darkMode = useDarkMode()
 </script>
 <template>
-  <div class="bg-light dark:bg-[#1F2A40] flex justify-end flex-grow p-3 space-x-4 h-fit">
+  <div class="bg-dash-light-300 dark:bg-dash-dark flex justify-end flex-grow p-3 space-x-4 h-fit">
     <span :class="`${!darkMode.enabled ? 'i-material-symbols-dark-mode-outline' : 'i-material-symbols-light-mode-outline'}  ${common}`" @click="darkMode.toggle()"></span> 
     <span :class="`i-material-symbols-notifications-outline ${common}`"></span> 
     <span :class="`i-material-symbols-settings-outline ${common}`"></span> 

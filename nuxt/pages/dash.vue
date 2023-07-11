@@ -18,7 +18,7 @@ const darkMode = useDarkMode()
     <dash-side-menu/>
     <div class="flex-col flex-grow">
       <dash-top-menu/>
-      <div class="h-full dark:bg-[#141B2D]">
+      <div class="h-full bg-dash-light-300 dark:bg-dash-dark p-2">
         <NuxtPage/>
       </div>
     </div>

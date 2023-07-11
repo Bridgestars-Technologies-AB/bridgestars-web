@@ -1,3 +1,3 @@
 <template>
-    <p class="text1 text-blue">Deal Editor</p> 
+    <h1>Deal Editor</h1> 
 </template>

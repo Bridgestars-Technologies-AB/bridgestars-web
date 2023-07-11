@@ -2,8 +2,8 @@
 const props = defineProps(['icon', 'keypath', 'selected', 'enabled'])
 //selected = 6870fa
 //hover 868dfb
-const bgColor = props.selected ? "bg-[#6870fa]" : "bg-dark dark:bg-light group-hover:bg-[#868dfb]"
-const textColor = props.selected ? "text-[#6870fa]" : "text-dark dark:text-light group-hover:text-[#868dfb]"
+const bgColor = props.selected ? "bg-dash-accent-light" : "bg-dark dark:bg-light group-hover:bg-dash-accent"
+const textColor = props.selected ? "text-dash-accent-light" : "text-dark dark:text-light group-hover:text-dash-accent"
 </script>
 
 <template>

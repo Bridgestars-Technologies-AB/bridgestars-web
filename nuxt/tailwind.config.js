@@ -37,7 +37,26 @@ module.exports = {
       white: "#ffffff",
       light: "#dddddd",
       dark: "#344767",
-      DEFAULT: "#f74040"
+      DEFAULT: "#f74040",
+      "dash-dark":{
+        200: "#475569",
+        300: "#334155",
+        400: "#1F2A40",
+        500: "#141B2D",
+        DEFAULT: "#141B2D",
+      },
+      "dash-light":{
+        100: "#f5f5f5",
+        200: "#eeeeee",
+        300: "#e0e0e0",
+        400: "#bdbdbd",
+        500: "#9e9e9e",
+        DEFAULT: "#9e9e9e",
+      },
+      "dash-accent":{
+        DEFAULT: "#868dfb",
+        light: "#6870fa",
+      }
     },
     textColor: {
       dark: "#344767", //dark text
@@ -46,6 +65,10 @@ module.exports = {
       light: "#dddddd",
       white: "#ffffff", //light text
       blue: "rgb(73, 163, 241)",
+      "dash-accent":{
+        DEFAULT: "#868dfb",
+        light: "#6870fa",
+      }
     },
     fontFamily: {
       family: '"Roboto", "Helvetica", "Arial", sans-serif',

@@ -90,11 +90,11 @@ function click(item){
 
 
 <template>
-    <div class="bg-light dark:bg-[#1F2A40] flex flex-col w-[270px] h-[100%] overflow-y-auto">
+    <div class="bg-dash-light-200 dark:bg-dash-dark-300 flex flex-col w-[270px] h-[100%] overflow-y-auto">
 
       <div class="text-center flex flex-col items-center p-4">
         <img class="object-cover object-top w-[150px] h-[150px] rounded-full" src="~/assets/bridgestars/images/castor.jpg"/> 
-        <h3 class="text-white">Castor</h3>
+        <h3 class="">Castor</h3>
         <h6 class="text-[#14C6A4] dark:text-[#14C6a4] font-light tracking-normal">Bridgestars Premium</h6>
       </div>
 
