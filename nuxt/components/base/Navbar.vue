@@ -1,8 +1,7 @@
 <script setup lang="ts">
 const props = defineProps(['transparent'])
 
-import { useTranslation } from "i18next-vue";
-const {t, i18next} = useTranslation()
+const {t, i18} = useTranslate()
 // const { locale, locales, setLocale } = useI18n()
 // const nuxtApp = useNuxtApp()
 
@@ -16,16 +15,16 @@ const routes = reactive([
   },
   {
     key: "profile",
-    path: '/profile',
+    path: '/auth/sign-in',
     icon: 'i-ic-baseline-account-circle', 
   }
 ]) 
 function updateRoutes(){
   routes.forEach(route => {
-    if(!route.success) route.name = t('w.' + route.key)
+    if(!route.success) route.name = t('common:' + route.key)
   })
 }
-i18next.on('languageChanged', (lng) => {
+i18.on('languageChanged', (lng) => {
   updateRoutes()
 })
 //when locale changes
@@ -49,7 +48,7 @@ onMounted(() => {
     signedIn.value = true
     const account = routes.find(route => route.key === 'profile')
     account.name = Parse.User.current().get('dispName') 
-    account.path = '/profile'
+    account.path = '/auth/sign-in'
     account.success = true;
   }
 })
@@ -73,7 +72,7 @@ onMounted(() => {
 
 <!-- Open Menu Button -->
       <div class="flex items-center sm:hidden mr-2">
-        <HamburgerMenuButton @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" :innerClass="menuIconColor"/>
+        <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" :innerClass="menuIconColor"/>
         <span v-if="signedIn" class="i-ic-baseline-account-circle !scale-[1.35]" :style="'color: '+success" @click="isOpen = !isOpen"/>
         <!-- <NavbarLangSwitcher/> -->
       </div>

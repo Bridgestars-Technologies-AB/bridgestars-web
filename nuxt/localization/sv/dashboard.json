@@ -1,0 +1,18 @@
+{
+  "side_menu": {
+    "analysis": "Analys",
+    "exercise": "Övningar",
+    "other": "Övrigt",
+    "overview": "Översikt",
+    "deal-editor": "Givredigerare",
+    "contract-calc": "Kontraktberäknare",
+    "simulator": "Simulator",
+    "contracting": "Budgivning",
+    "gambit": "Utspel",
+    "suit-treatments": "Färgbehandlingar",
+    "play": "Spela",
+    "help": "Hjälp",
+    "results": "Tävlingsresultat",
+    "sign-out": "Logga ut"
+  }
+}

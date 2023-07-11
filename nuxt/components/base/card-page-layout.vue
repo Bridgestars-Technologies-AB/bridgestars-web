@@ -7,18 +7,20 @@ const imgWithDefault = props.imgSrc || "../assets/bridgestars/art/about_us.svg"
   <div class="backdrop">
     <div :class="'foreground ' + props.class">
       <!-- navbar -->
-      <Navbar v-if="!hideNavbar"></Navbar>
+      <base-navbar v-if="!hideNavbar"></base-navbar>
 
       <!-- title -->
       <img :src="imgWithDefault"
-        class="mb-5 xs:w-[100%] sm:w-[80%] xl:w-[50%]">
+        class="mb-5 xs:w-[96%] sm:w-[80%] xl:w-[50%]">
 
 
       <!-- content -->
-      <slot class="p-[16px]"></slot> 
+      <div class="w-full flex flex-col items-center">
+        <slot></slot> 
+      </div>
 
     </div>
-    <Footer/>
+    <base-footer/>
   </div>
 </template>
 <style scoped>
@@ -26,6 +28,6 @@ const imgWithDefault = props.imgSrc || "../assets/bridgestars/art/about_us.svg"
   @apply h-fit w-[100wh] bg-[#F0F2F5] xs:px-[0px] sm:px-[16px] py-[32px];
 }
 .foreground{
-  @apply rounded-2xl shadow-xl bg-[#FFFFFF] flex flex-col text-center items-center;
+  @apply rounded-2xl shadow-xl bg-[#FFFFFF] flex flex-col items-center max-w-[1200px] mx-auto;
 }
 </style>

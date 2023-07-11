@@ -21,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="h-[100vh] flex flex-col"> 
+  <div class="fixed w-[100%] h-[100%] flex flex-col bg-[#fefefe]"> 
 
     <!-- header -->
     <div class="flex justify-start whitespace-nowrap pt-[30px] pl-[30px]">
@@ -75,6 +75,10 @@ onMounted(() => {
 </template>
 <style scoped>
 
+html,body{
+height:100%;
+  margin:0
+}
 
 .authHeader{
   @apply font-family2 text-[3vh] hsm:text-[30px]  leading-[1.5] font-bold;

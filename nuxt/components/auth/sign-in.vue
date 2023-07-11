@@ -3,22 +3,21 @@ const router = useRouter();
 const route = useRoute();
 
 const toast = useToast();
-const email = ref(""); 
+const query = ref({})
 
 onMounted(() => {
-  if(route.params.email) {
-    //get email from url param
-    email.value = route.params.email;
-  }
+  query.value = route.query;
+
   if (Parse.User.current()) {
     //temp
     toast("dev: You are already signed in, sign out at profile page");
     //go directly to profile page or temp. show: you are signed in, sign out?
-    router.push({ path: "/profile" });
+    if(query.value.to) router.push({ path: query.value.to });
+    else router.push({ path: "/dash" });
   }
 });
 
-watch(email, () => {
+watch(query, () => {
 //for debugging to see if email is updated when changed in field
 });
 
@@ -34,7 +33,8 @@ function submit(res) {
     .then((user) => {
       toast.success("You are signed in!");
       // disable profile since it does not exist
-      router.push({ path: "/profile" });
+      if(query.value.to) router.push({ path: query.value.to });
+      else router.push({ path: "/dash" });
     })
     //error
     .catch((e) => toast.error(e.message));
@@ -43,48 +43,48 @@ function submit(res) {
 </script>
 
 <template>
-  <AuthForm
+  <auth-form
     header="Sign In"
     title="Sign in to your Bridgestars account"
     subtitle="Enter your username and password"
     @submit="submit"
   >
-    <TextInputField
+    <base-input-field
       wrapperClass="w-[100%]"
       placeholder="Username/Email"
-      v-model="email"
+      v-model="query.email"
       id="username-email"
     />
-    <TextInputField
+    <base-input-field
       wrapperClass="w-[100%]"
       placeholder="Password"
       type="password"
       id="password-signin"
     />
 
-    <SubmitButton
+    <base-submit-button
       wrapperClass="w-[100%] !mt-6"
       id="submit"
       text="SIGN IN"
-    ></SubmitButton>
+    ></base-submit-button>
 
     <div class="!mt-6 whitespace-nowrap">
       <span class="text2">Don't have an account? </span>
       <button
           type="button"
-        @click="router.push({ path: '/auth/sign-up' })"
-        class="normal-case text-blue font-bold normal-case tracking-[0.5px]"
+        @click="router.push({ path: '/auth/sign-up', query})"
+        class="text-blue font-bold normal-case tracking-[0.5px]"
       >
         Sign Up
       </button>
     </div>
     <div>
 <!-- path below is a little bit shady, nuxt reads the param perfectly fine but url looks a little bit wierd "/resettheodor@mail.com" -->
-<button @click="router.push({path:'/auth/reset'+email})" class="text-blue font-bold normal-case tracking-[0.5px] translate-y-[-12px]" type="button">
+      <button @click="router.push({path:'/auth/reset', query})" class="text-blue font-bold normal-case tracking-[0.5px] translate-y-[-12px]" type="button">
         Forgot your password?
       </button>
     </div>
-  </AuthForm>
+  </auth-form>
 </template>
 
 <style scoped></style>

@@ -1,5 +1,6 @@
 
 <script setup>
+await loadTranslations("common"); // load translation
 import Toast from "vue-toastification";
 
 import "@fontsource/roboto-slab/100.css";
