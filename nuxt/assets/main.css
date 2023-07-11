@@ -22,16 +22,16 @@
 
   h6 { @apply text-[16px] leading-[16px]; }
 
-
   button { @apply font-family text-[14px] font-light leading-[14px] uppercase; }
+
+  .text1 { @apply font-family text-[24px] leading-[24px] text-grey dark:text-light font-normal; }
+
+  .text2 { @apply font-family text-[16px] leading-[1.6rem] text-grey dark:text-light font-light; }
 }
 
 /* Second layer for complex components etc, don't use, specify in style scoped instead */
 @layer components {
 
-  .text1 { @apply font-family text-[24px] leading-[24px] text-grey font-normal; }
-
-  .text2 { @apply font-family text-[16px] leading-[1.6rem] text-grey font-light; }
 }
 
 /* Third layer, here we can add our own utility classes that tailwind does not have  */

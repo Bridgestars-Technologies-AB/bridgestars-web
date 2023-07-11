@@ -13,7 +13,7 @@ onMounted(() => {
     toast("dev: You are already signed in, sign out at profile page");
     //go directly to profile page or temp. show: you are signed in, sign out?
     if(query.value.to) router.push({ path: query.value.to });
-    else router.push({ path: "/profile" });
+    else router.push({ path: "/dash" });
   }
 });
 
@@ -34,7 +34,7 @@ function submit(res) {
       toast.success("You are signed in!");
       // disable profile since it does not exist
       if(query.value.to) router.push({ path: query.value.to });
-      else router.push({ path: "/profile" });
+      else router.push({ path: "/dash" });
     })
     //error
     .catch((e) => toast.error(e.message));

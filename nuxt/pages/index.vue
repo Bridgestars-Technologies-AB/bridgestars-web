@@ -79,7 +79,7 @@
 
   <div class="fadeIn">
   <base-card-page-layout hideNavbar=true class="pt-5 translate-y-[-70px]" imgSrc="../assets/bridgestars/art/home_page.svg">
-    <div class="px-5">
+    <div class="px-5 text-center">
 
       <h1 class="mb-4
         balance-text xs:text-[27px] xs:leading-[29px]

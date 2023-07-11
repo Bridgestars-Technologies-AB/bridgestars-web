@@ -15,7 +15,7 @@ const routes = reactive([
   },
   {
     key: "profile",
-    path: '/profile',
+    path: '/auth/sign-in',
     icon: 'i-ic-baseline-account-circle', 
   }
 ]) 
@@ -72,7 +72,7 @@ onMounted(() => {
 
 <!-- Open Menu Button -->
       <div class="flex items-center sm:hidden mr-2">
-        <HamburgerMenuButton @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" :innerClass="menuIconColor"/>
+        <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" :innerClass="menuIconColor"/>
         <span v-if="signedIn" class="i-ic-baseline-account-circle !scale-[1.35]" :style="'color: '+success" @click="isOpen = !isOpen"/>
         <!-- <NavbarLangSwitcher/> -->
       </div>

@@ -14,7 +14,7 @@ function submit(res) {
     .then((user) => {
       toast.success("You are signed up!");
       if(query.value.to) router.push({ path: query.value.to });
-      else router.push({ path: "/profile" });
+      else router.push({ path: "/dash" });
     })
     //error
     .catch((e) => toast.error(e.message));
