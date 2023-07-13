@@ -1,19 +1,19 @@
 <script setup>
 const router = useRouter();
 const toast = useToast();
-const query = ref({})
+const query = ref({});
 
 //implement sign out logic on mounted
-onMounted(()=>{
+onMounted(() => {
   query.value = router.query;
-})
+});
 
 function submit(res) {
   //not sure if this is the function, copilot suggested it
   Parse.User.signUp(res.username, res.password, { email: res.email })
     .then((user) => {
       toast.success("You are signed up!");
-      if(query.value.to) router.push({ path: query.value.to });
+      if (query.value.to) router.push({ path: query.value.to });
       else router.push({ path: "/dash" });
     })
     //error
@@ -21,7 +21,7 @@ function submit(res) {
 }
 </script>
 
-<template>
+<template class="overflow-y-scroll">
   <auth-form
     header="Sign Up"
     title="Join the Bridgestars waiting list"
@@ -61,16 +61,16 @@ function submit(res) {
     ></base-submit-button>
 
     <div class="flex text-center">
-    <div class="xs:!mt-1 sm:!mt-6 xs:!mb-3">
-      <span class="text2">Already have an account? </span>
-      <button
-        @click="router.push({ path: '/auth/sign-in', query})"
-        class="buttonText normal-case text-blue font-bold tracking-[0.5px]"
-        type="button"
-      >
-        Sign In
-      </button>
-    </div>
+      <div class="xs:!mt-1 sm:!mt-6 xs:!mb-3">
+        <span class="text2">Already have an account? </span>
+        <button
+          @click="router.push({ path: '/auth/sign-in', query })"
+          class="buttonText normal-case text-blue font-bold tracking-[0.5px]"
+          type="button"
+        >
+          Sign In
+        </button>
+      </div>
     </div>
     <!-- <div> -->
     <!-- <button class="textButton buttonText normal-case translate-y-[-12px]"> -->

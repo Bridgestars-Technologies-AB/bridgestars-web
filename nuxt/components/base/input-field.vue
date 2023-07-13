@@ -14,7 +14,7 @@ const input = ref(null);
 function toggleShowPass() {
   showPass.value = !showPass.value;
   console.log(input.value.type)
-  if(props.id === "password-signin") {
+  if(props.id.includes("password")) {
     input.value.type = showPass.value ? "text" : "password";
     console.log(input.value.type)
   }
@@ -63,7 +63,7 @@ function update(event){
     <!-- ></div> -->
     <!-- v-if="props.id === 'password-signin' && !showPass" -->
     <div
-      v-if="props.id === 'password-signin'"
+      v-if="props.id.includes('password')"
       :class="`absolute top-[35%] right-[10px] scale-[1.4] ${
         showPass ? 'i-basil-eye-closed-outline' : 'i-basil-eye-outline'
       }`"
