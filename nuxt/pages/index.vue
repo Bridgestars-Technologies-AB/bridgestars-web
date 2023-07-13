@@ -107,7 +107,7 @@ function fadeInUI() {
           {{ "Revolutionizing the Bridge Learning Experience" }}
         </h1>
 
-        <span class="text2 px-3 text-[18px] leading-[18px] max-w-[700px]">
+        <span class="text2 px-3 text-[20px] leading-[22px] max-w-[700px]">
           {{
             "With Bridgestars we aim to stimulate a shift away from obsolete IT-solutions in favor of more integrated and modern solutions. "
           }}
@@ -153,14 +153,35 @@ function fadeInUI() {
           </div>
         </div>
       </div>
-      <div class="h-[10px] mt-[100px]">
-        <span class="text-blue font-family2 font-bold text-[18px]"
-          >Contact Us</span
+
+      <div
+        class="px-5 text-center flex flex-col items-center py-[10px] mt-[20px]"
+      >
+        <span
+          class="rounded-full text-[10px] py-[4px] px-[6px] text-[#d23759] bg-[#f8b3ca] font-bold mb-[2px]"
         >
-      </div>
-      <div class="h-[200px] mt-[10px]">
-        <span class="text-gray font-family2 font-bold text-[10px]">
-          {{ $t("home:quote.desc2") }}
+          Interested in a partnership?</span
+        >
+        <h1
+          class="mb-[6px] balance-text xs:text-[20px] xs:leading-[30px] sm:text-[30px] sm:leading-[40px] max-w-[700px] bg-green"
+        >
+          Contact Us
+        </h1>
+        <span
+          class="text2 px-3 text-[18px] leading-[20px] max-w-[700px] mb-[20px]"
+        >
+          <i18next :translation="$t('home:quote.desc2')">
+            <template #email>
+              <a
+                class="text-blue font-normal underline"
+                href="mailto: info@bridgestars.net"
+                target="_blank"
+                rel="noreferrer"
+              >
+                info@bridgestars.net</a
+              >
+            </template>
+          </i18next>
         </span>
       </div>
       <!-- text or other quote -->
