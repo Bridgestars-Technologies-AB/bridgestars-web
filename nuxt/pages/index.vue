@@ -16,93 +16,113 @@ onMounted(() => {
         console.log("video ended");
         showVideo.value = false;
       });
-      fade(1500);
+      fadeInUI(1000);
+      fadeInBackground(1500);
     })
     .catch((e) => {
       console.error("video play error: ", e);
       showVideo.value = false;
-      fade(0);
+      fadeInUI(0);
+      fadeInBackground(500);
       // video will not be allowed to play on IOS safari when battery save mode is turned on.
       // show image instead (DONE)
     });
 
   balanceText();
   //
-  if (showUI.value) fadeInUI();
+  if (showUI.value) {
+    fadeInUI(0);
+    fadeInBackground(500);
+  }
 });
-function fade(delay) {
+
+function fadeInBackground(delay) {
   setTimeout(() => {
-    fadeOutEffect();
-    fadeInUI();
+    const fadeTarget = document.getElementsByClassName("background")[0];
+    if (fadeTarget == null) console.error("fadeTarget is null");
+    else {
+      fadeTarget.style["background-color"] = "rgb(240, 242, 245)";
+      fadeTarget.style["opacity"] = 1;
+    }
+  }, delay);
+}
+
+function fadeInUI(delay) {
+  setTimeout(() => {
+    const cardDiv = document.getElementsByClassName("cardDiv")[0];
+    const card = document.getElementsByClassName("cardShow")[0];
+
+    cardDiv.classList.add("cardAnimation")
+    cardDiv.style.display = "block"
+    card.style.opacity = 1;
     showUI.value = true;
     firstTime.value = false;
   }, delay);
 }
 
-function fadeOutEffect() {
-  const fadeTarget = document.getElementsByClassName("background")[0];
-  if (fadeTarget == null) console.error("fadeTarget is null");
-  else {
-    fadeTarget.style.opacity = "0";
-  }
-}
-function fadeInUI() {
-  const fadeInTarget = document.getElementsByClassName("fadeIn");
-  if (fadeInTarget == null) console.error("fadeInTarget is null");
-  else
-    for (let i = 0; i < fadeInTarget.length; i++) {
-      fadeInTarget[i].style.opacity = "1";
-    }
-}
 </script>
 
 <template>
-  <div class="bg-[rgb(6,7,10)]">
+  <!-- <div class="bg-[rgb(6,7,10)]"> -->
+  <div class="">
     <!-- video container with overlay  -->
 
-    <div class="flex justify-center">
-      <video
-        id="video"
-        fetchpriority="high"
-        src="~/assets/bridgestars/video/shortIntro-compressed.mp4"
-        :class="`${!showVideo ? '!hidden' : ''} video-size`"
-        muted
-        playsInline
-      ></video>
-      <img
-        src="~/assets/bridgestars/images/shortIntroLastFrame.jpg"
-        :class="`${showVideo ? 'hidden' : ''} video-size`"
-      />
+<!-- video and border easing layout, don't touch, soo fucking annoying to set up -->
+    <div class="flex justify-center relative">
+    <div class="bg-[rgb(6,7,10)] w-full h-full absolute z-[-10]">
+    </div>
+      <div class="overflow-hidden flex justify-center relative">
+<!-- navbar can be here instead of outside video divs if we want it to be not so wide on very wide screens -->
+        <div v-if="showUI" class="absolute z-[10] top-0 w-full navbarAnimation"> 
+          <base-navbar transparent="true" />
+        </div>
+
+        <div class="bg-video-gradient" />
+        <video
+          id="video"
+          fetchpriority="high"
+          src="~/assets/bridgestars/video/shortIntro-compressed.mp4"
+          :class="`${!showVideo ? '!hidden' : ''} video-size`"
+          muted
+          playsInline
+        />
+        <img
+          src="~/assets/bridgestars/images/shortIntroLastFrame.jpg"
+          :class="`${showVideo ? 'hidden' : ''} video-size`"
+        />
+
+      </div>
     </div>
 
-    <div class="flex justify-center">
-      <div class="bg-video-gradient" />
-      <div class="bg-video-overlay fadeIn">
+<!-- Button overlay on video -->
+    <div v-if="showUI" class="flex justify-center overflow-hidden">
+      <div class="bg-video-overlay">
         <NuxtLink to="/auth/sign-up">
           <button
-            class="bg-[#EE6065] rounded-full px-5 py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px]"
+            class="bg-[#EE6065] rounded-full px-5 hxs:py-4 hsm:py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px] videoButtonAnimation hxs:-mb-1 hsm:mb-0"
           >
             {{ "Begin now" }}
           </button>
         </NuxtLink>
       </div>
+
     </div>
 
-    <div class="absolute top-0 w-full fadeIn">
-      <base-navbar transparent="true" />
-    </div>
+
+<!-- navbar was here before -->
   </div>
-  <div class="background" />
 
-  <div class="fadeIn">
+
+  <div class="cardDiv hidden">
     <base-card-page-layout
       hideNavbar="true"
-      class="pt-5 translate-y-[-70px]"
+      class="pt-5 hsm:-translate-y-[100px] hxs:-translate-y-[70px] opacity-0 cardShow"
+      backdropClass="background"
       imgSrc="../assets/bridgestars/art/home_page.svg"
     >
-      <div class="px-5 text-center flex flex-col items-center">
+      <div class="xs:px-0 sm:px-5 text-center flex flex-col items-center">
         <h1
-          class="mb-6 balance-text xs:text-[27px] xs:leading-[29px] sm:text-[40px] sm:leading-[44px] max-w-[700px]"
+          class="mb-6 balance-text xs:text-[23px] xs:leading-[29px] sm:text-[40px] sm:leading-[44px] max-w-[700px]"
         >
           {{ "Revolutionizing the Bridge Learning Experience" }}
         </h1>
@@ -155,7 +175,7 @@ function fadeInUI() {
       </div>
 
       <div
-        class="px-5 text-center flex flex-col items-center py-[10px] mt-[20px]"
+        class="xs:px-0 sm:px-5 text-center flex flex-col items-center py-[10px] mt-[20px] overflow-hidden"
       >
         <span
           class="rounded-full text-[10px] py-[4px] px-[6px] text-[#d23759] bg-[#f8b3ca] font-bold mb-[2px]"
@@ -195,49 +215,58 @@ function fadeInUI() {
 }
 .video-size {
   max-width: 2000px;
-
+  position:relative;
   height: 80vh;
   min-height: min(45vw, 700px);
   max-height: 1000px;
+  z-index: -1;
+
   /* object-fit: cover; */
   /* -o-object-fit: cover; */
   /* position:'relative'; */
+
   background-color: rgb(6, 7, 10);
   aspect-ratio: 16/9;
-
+  /**/
   @apply !mx-auto !my-0;
 }
+
 
 .bg-video-overlay {
   position: absolute;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  /* padding-bottom: min(75px, 6vh); */
-  /* padding-top: min(35vw, min(40vw, 600px)); */
   top: 0px;
 
   height: 80vh;
   min-height: min(45vw, 700px);
   padding-bottom: 15vh;
   max-height: 1000px;
-
-  aspect-ratio: 16/9;
-  /* width: 100%; */
-  /* max-height:1000px; */
-  /* min-height: min(45vw, 750px); */
-  /* background-color: rgba(200,0,200,0.03); */
+  /* aspect-ratio: 16/9; */
   text-align: center;
 }
 .bg-video-gradient {
   position: absolute;
-  top: 0px;
+  z-index: 0;
+  /* width: 100%; */
+  left: 0;
+  right: 0;
+  /* height: 100%; */
+  background-color: rgba(0,0,0,0);
+
   height: 80vh;
   min-height: min(45vw, 700px);
-  padding-bottom: 15vh;
   max-height: 1000px;
-  aspect-ratio: 16/9;
-  background: rgb(6, 7, 10);
+  /* max-width: 2000px; */
+  /* position:relative; */
+  /* height: 80vh; */
+  /* min-height: min(45vw, 700px); */
+  /* max-height: 1000px; */
+  /* /* width:100%;  */ 
+  /* aspect-ratio: 16/9; */
+  /* top:0; */
+  /* background: rgb(6, 7, 10); */
   background: linear-gradient(
       90deg,
       rgba(6, 7, 10, 1) 0%,
@@ -246,24 +275,77 @@ function fadeInUI() {
       rgba(6, 7, 10, 1) 100%
     ),
     linear-gradient(0deg, rgba(6, 7, 10, 1) 0%, rgba(6, 7, 10, 0) 15%);
+
+  /* RED for visibility */
   /* background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, rgba(255,0,0,1) 100%),  */
   /*   linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(0,0,0,0) 15%); */
 }
+
 .fadeIn {
   opacity: 0;
+  /* display:hidden; */
   transition: opacity 1s ease-in-out;
 }
-.background {
-  position: absolute;
-  display: flex;
-  transition: opacity 1s ease-in-out;
-  z-index: -1;
+
+.navbarAnimation{
+  animation: zoom-frames 750ms ease-out 0ms;
+}
+.videoButtonAnimation {
+  animation: button-frames 750ms ease-out 0ms;
+}
+.cardAnimation{
+  animation: card-frames 750ms ease-out 0ms;
+}
+
+@keyframes zoom-frames {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.8) scaleX(0.5) translateY(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+}
+
+@keyframes button-frames {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.8) scaleX(0.01) translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+}
+
+@keyframes card-frames {
+  0% {
+    opacity: 0;
+    transform:  translateY(500px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.background{
   background-color: rgb(6, 7, 10);
-  height: 100%;
-  width: 100%;
-  align-items: flex-end;
-  padding-bottom: 75px;
-  justify-content: center;
-  top: 0;
+  opacity:0;
+  transition: background-color 3s ease-in-out;
 }
+/* .background { */
+/*   position: absolute; */
+/*   display: flex; */
+/*   transition: opacity 1s ease-in-out; */
+/*   z-index: -2; */
+/*   background-color: rgb(6, 7, 10); */
+/*   height: 100%; */
+/*   width: 100%; */
+/*   align-items: flex-end; */
+/*   padding-bottom: 75px; */
+/*   justify-content: center; */
+/*   top: 0; */
+/* } */
 </style>
