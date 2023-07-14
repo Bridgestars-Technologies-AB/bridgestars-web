@@ -115,7 +115,7 @@ function fadeInUI(delay) {
       backdropClass="background"
       imgSrc="../assets/bridgestars/art/home_page.svg"
     >
-      <base-lang-switcher class="mb-4" @switched="update" />
+      <base-lang-switcher class="mb-4" />
       <div class="xs:px-0 sm:px-5 text-center flex flex-col items-center">
         <h1
           class="mb-6 balance-text xs:text-[23px] xs:leading-[29px] sm:text-[40px] sm:leading-[44px] max-w-[700px]"
@@ -190,7 +190,7 @@ function fadeInUI(delay) {
             <template #email>
               <a
                 class="text-blue font-normal underline"
-                href="mailto: info@bridgestars.net"
+                :href="`mailto:info@bridgestars.net?subject=${$t('home:contact.emailSubject')}&body=${$t('home:contact.emailBody')}`"
                 target="_blank"
                 rel="noreferrer"
               >
