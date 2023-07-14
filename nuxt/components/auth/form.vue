@@ -37,7 +37,7 @@ onMounted(() => {
 
     <div class="absolute flex justify-center items-center z-[-1] h-full w-full">
         <img src="~/assets/bridgestars/art/auth-form-suits.svg" class="xs:block sm:hidden w-[100%] scale-[1] min-w-[600px]"/>
-        <img src="~/assets/bridgestars/art/auth-form-ipad.svg" class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1400px] min-w-[1000px]"/>
+        <img src="~/assets/bridgestars/art/auth-form-ipad.svg" class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1400px] min-w-[1085px]"/>
     </div>
     <!-- form -->
     <form name="auth-form" 
