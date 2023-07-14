@@ -138,7 +138,7 @@ function fadeInUI(delay) {
       <div class="flex flex-wrap p-1 quote-bg w-full mt-[75px]">
         <div class="sm:py-3 px-3 sm:w-[30%] flex justify-center items-center">
           <img
-            class="bg-dark xs:w-[55%] sm:w-[100%] object-scale-down rounded-[50px] xs:translate-y-[-50px] sm:translate-y-0"
+            class="bg-dark xs:w-[55%] sm:w-[100%] object-scale-down rounded-[25px] xs:translate-y-[-50px] sm:translate-y-0"
             src="~/assets/bridgestars/images/castor-square.jpg"
           />
         </div>
@@ -213,7 +213,7 @@ function fadeInUI(delay) {
 
 <style scoped>
 .quote-bg {
-  background: linear-gradient(195deg, rgb(90, 90, 100), rgb(25, 25, 25));
+  background: linear-gradient(195deg, rgb(80, 80, 90), rgb(15, 15, 15));
 }
 .video-size {
   max-width: 2000px;
