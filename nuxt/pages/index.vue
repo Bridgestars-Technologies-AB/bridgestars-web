@@ -127,7 +127,7 @@ function fadeInUI(delay) {
           {{ "Revolutionizing the Bridge Learning Experience" }}
         </h1>
 
-        <span class="text2 px-3 text-[20px] leading-[22px] max-w-[700px]">
+        <span class="text2 px-3 text-[20px] leading-[24px] max-w-[700px]">
           {{
             "With Bridgestars we aim to stimulate a shift away from obsolete IT-solutions in favor of more integrated and modern solutions. "
           }}
@@ -136,15 +136,15 @@ function fadeInUI(delay) {
 
       <!-- quote -->
       <div class="flex flex-wrap p-1 quote-bg w-full mt-[75px]">
-        <div class="sm:py-3 px-3 sm:w-[40%] flex justify-center items-center">
+        <div class="sm:py-3 px-3 sm:w-[30%] flex justify-center items-center">
           <img
-            class="bg-dark xs:w-[75%] object-scale-down rounded-2xl xs:translate-y-[-50px] sm:translate-y-0"
-            src="~/assets/bridgestars/images/castor.jpg"
+            class="bg-dark xs:w-[55%] sm:w-[100%] object-scale-down rounded-[50px] xs:translate-y-[-50px] sm:translate-y-0"
+            src="~/assets/bridgestars/images/castor-square.jpg"
           />
         </div>
 
         <div
-          class="opacity-[90%] xs:w-full sm:w-1/2 flex flex-col justify-center self-center pl-3 pr-7"
+          class="opacity-[90%] xs:w-full sm:w-[70%] flex flex-col justify-center self-center pl-3 pr-7 lg:pr-[100px] lg:pl-[50px] sm:py-4 xs:-translate-y-5 sm:translate-y-0"
         >
           <div class="flex">
             <div class="flex flex-col items-center px-1 pt-[6px] space-y-[5px]">
@@ -178,17 +178,19 @@ function fadeInUI(delay) {
         class="xs:px-0 sm:px-5 text-center flex flex-col items-center py-[10px] mt-[20px] overflow-hidden"
       >
         <span
-          class="rounded-full text-[10px] py-[4px] px-[6px] text-[#d23759] bg-[#f8b3ca] font-bold mb-[2px]"
+          class="rounded-full text-[12px] uppercase py-[4px] px-[10px] text-[#d23759] bg-[#f8b3ca] font-bold mb-[2px]"
         >
-          Interested in a partnership?</span
+          Contact Us</span
         >
         <h1
           class="mb-[6px] balance-text xs:text-[20px] xs:leading-[30px] sm:text-[30px] sm:leading-[40px] max-w-[700px] bg-green"
         >
-          Contact Us
+<!-- eng translation shoul be uppercase on partnership while swedish would not -->
+<!-- https://www.webucator.com/article/how-to-capitalize-headings-and-titles/ -->
+          {{"Interested in a Partnership?"}}
         </h1>
         <span
-          class="text2 px-3 text-[18px] leading-[20px] max-w-[700px] mb-[20px]"
+          class="text2 px-3 text-[18px] leading-[22px] max-w-[700px] mb-[20px]"
         >
           <i18next :translation="$t('home:quote.desc2')">
             <template #email>
