@@ -3,7 +3,7 @@
 
 
 <script setup lang="ts">
-  const firstTime = inject("first_time_at_home");
+  const firstTime = inject("first_time_at_home"); //issue exists for this one
   const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
   const showVideo = ref(true);
 
@@ -59,18 +59,24 @@
 
 <template>
 
-<div><!-- video container with overlay  -->
+<div class="bg-[rgb(6,7,10)]"><!-- video container with overlay  -->
     
-  <video id="video" fetchpriority="high" src="~/assets/bridgestars/video/shortIntro-compressed.mp4" :class="`${!showVideo ? '!hidden':''} video-size`" muted playsInline></video>
+     <div class="flex justify-center">
+    <video id="video" fetchpriority="high" src="~/assets/bridgestars/video/shortIntro-compressed.mp4" :class="`${!showVideo ? '!hidden':''} video-size`" muted playsInline></video>
     <img src="~/assets/bridgestars/images/shortIntroLastFrame.jpg" :class="`${showVideo ? 'hidden':''} video-size`"/>
+       </div>
 
-    <div class="bg-video-overlay fadeIn">
-       <NuxtLink to="/auth/sign-up">
-      <button class="bg-[#EE6065] rounded-full px-5 py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px]">
-         {{"Begin now"}}
-      </button>
+     <div class="flex justify-center">
+       <div class="bg-video-gradient"/>
+      <div class="bg-video-overlay fadeIn">
+         <NuxtLink to="/auth/sign-up">
+            <button class="bg-[#EE6065] rounded-full px-5 py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px]">
+               {{"Begin now"}}
+            </button>
          </NuxtLink>
-    </div>
+      </div>
+     </div>
+
     <div class="absolute top-0 w-full fadeIn">
       <base-navbar transparent=true />
     </div>
@@ -79,14 +85,14 @@
 
   <div class="fadeIn">
   <base-card-page-layout hideNavbar=true class="pt-5 translate-y-[-70px]" imgSrc="../assets/bridgestars/art/home_page.svg">
-    <div class="px-5 text-center">
+    <div class="px-5 text-center flex flex-col items-center">
 
-      <h1 class="mb-4
+      <h1 class="mb-6
         balance-text xs:text-[27px] xs:leading-[29px]
-        sm:text-[40px] sm:leading-[44px]"> 
+        sm:text-[40px] sm:leading-[44px] max-w-[700px]"> 
         {{"Revolutionizing the Bridge Learning Experience"}}  </h1>
       
-      <span class="text2 px-3 text-[18px] leading-[18px]"> 
+      <span class="text2 px-3 text-[18px] leading-[18px] max-w-[700px]"> 
         {{"With Bridgestars we aim to stimulate a shift away from obsolete IT-solutions in favor of more integrated and modern solutions. "}} </span>
     </div>
 
@@ -98,22 +104,23 @@
         <img class="bg-dark xs:w-[75%] object-scale-down rounded-2xl xs:translate-y-[-50px] sm:translate-y-0" src="~/assets/bridgestars/images/castor.jpg"/>
       </div>
 
-      <div class="xs:w-full sm:w-1/2 flex justify-center items-center">
-        <div class="opacity-80 w-full">
-          <span class="i-material-symbols-quoute-rounded translate-y-1" style="color:white;height:40px;width:40px;"/>
-          <span class="text-white text-[18px] leading-[18px] px-3"> 
-            {{"In a world of rapid technological advancements, the Bridge world has not been able to keep up. There is a lack of a clean and modern solution for playing Bridge online that is fun, easy, and engaging. Our vision for the future contains a unified platform for Bridge players on which they are able to play and watch Bridge as well as catch up with the latest news about Bridge. Bridgestars is an attempt of bringing that vision to life, in a way that is free and accessible for everyone. "}} 
-          </span>
-          <!--   <div class="flex justify-end"> -->
-          <!-- <MaterialSymbolsFormatQuoteRounded style="color:white;height:40px;width:40px;"/> -->
-          <!--   </div> -->
-          <div class="mt-3">
-            <span class="text-white font-family2 font-bold">Castor Mann </span>
-            <span class="text-white font-family2">
-  - Bridgestars CEO, Founder and Junior World Champion 2018
+      <div class="opacity-[90%] xs:w-full sm:w-1/2 flex flex-col justify-center self-center pl-3 pr-7">
+         <div class="flex">
+           <div class="flex flex-col items-center px-1 pt-[6px] space-y-[5px]">
+             <div class="bg-white h-[40%] w-[3px]"/>
+             <span class="i-material-symbols-format-quote-rounded" style="color:white;height:20px;width:20px;"/>
+             <div class="bg-white h-[40%] w-[3px]"/>
+           </div>
+            <span class="text1 italic text-white text-[18px] leading-[25px] text-justify"> 
+              {{"In a world of rapid technological advancements, the Bridge world has not been able to keep up. There is a lack of a clean and modern solution for playing Bridge online that is fun, easy, and engaging. Our vision for the future contains a unified platform for Bridge players on which they are able to play and watch Bridge as well as catch up with the latest news about Bridge. Bridgestars is an attempt of bringing that vision to life, in a way that is free and accessible for everyone. "}} 
+            </span>
+         </div>
+        <div class="w-full flex flex-col pl-[29px]">
+          <div class="mt-5">
+            <span class="text-white font-family2 font-bold text-[18px]">Castor Mann, </span>
+               <span class="text-white font-light font-family2 ml-2"> Bridgestars CEO, Founder and Junior World Champion 2018.
             </span>
           </div>
-
         </div>
       </div>
     </div>
@@ -132,18 +139,16 @@
   background: linear-gradient(195deg, rgb(90, 90, 100), rgb(25, 25, 25));
 }
 .video-size{
-
-  width:100% !important;
   max-width: 2000px;
 
   height:80vh;
   min-height: min(45vw, 700px);
   max-height:1000px;
-  object-fit: cover;
-  -o-object-fit: cover;
-
+  /* object-fit: cover; */
+  /* -o-object-fit: cover; */
   /* position:'relative'; */
-  background-color: black;
+  background-color: rgb(6,7,10);
+  aspect-ratio: 16/9;
 
   @apply !mx-auto !my-0;
 }
@@ -162,11 +167,26 @@
   padding-bottom: 15vh;
   max-height:1000px;
 
-  width: 100%;
+  aspect-ratio: 16/9;
+  /* width: 100%; */
   /* max-height:1000px; */
   /* min-height: min(45vw, 750px); */
-  background-color: rgba(200,0,200,0.03);
+  /* background-color: rgba(200,0,200,0.03); */
   text-align: center;
+}
+.bg-video-gradient{
+  position:absolute;
+  top:0px;
+  height:80vh;
+  min-height: min(45vw, 700px);
+  padding-bottom: 15vh;
+  max-height:1000px;
+  aspect-ratio: 16/9;
+  background: rgb(6,7,10);
+  background: linear-gradient(90deg, rgba(6,7,10,1) 0%, rgba(6,7,10,0) 10%, rgba(6,7,10,0) 90%, rgba(6,7,10,1) 100%), 
+    linear-gradient(0deg, rgba(6,7,10,1) 0%, rgba(6,7,10,0) 15%);
+  /* background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, rgba(255,0,0,1) 100%),  */
+  /*   linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(0,0,0,0) 15%); */
 }
 .fadeIn{
   opacity:0;
@@ -176,9 +196,8 @@
   position:absolute;
   display: flex;
   transition: opacity 1s ease-in-out;
-  background-color: 'rgb(5,0,5)';
   z-index: -1;
-  background-color: black;
+  background-color: rgb(6,7,10);
   height:100%;
   width:100%;
   align-items: flex-end;
