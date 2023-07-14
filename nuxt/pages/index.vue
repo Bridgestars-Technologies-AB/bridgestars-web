@@ -63,14 +63,14 @@ function fadeInUI(delay) {
 </script>
 
 <template>
-  <!-- <div class="bg-[rgb(6,7,10)]"> -->
+  <div class="bg-[rgb(6,7,10)] fixed h-full w-full z-[-20]"/>
+
   <div class="">
     <!-- video container with overlay  -->
 
 <!-- video and border easing layout, don't touch, soo fucking annoying to set up -->
     <div class="flex justify-center relative">
-    <div class="bg-[rgb(6,7,10)] w-full h-full absolute z-[-10]">
-    </div>
+      <div class="bg-[rgb(6,7,10)] w-full h-full absolute z-[-10]"/>
       <div class="overflow-hidden flex justify-center relative">
 <!-- navbar can be here instead of outside video divs if we want it to be not so wide on very wide screens -->
         <div v-if="showUI" class="absolute z-[10] top-0 w-full navbarAnimation"> 
@@ -99,7 +99,7 @@ function fadeInUI(delay) {
       <div class="bg-video-overlay">
         <NuxtLink to="/auth/sign-up">
           <button
-            class="bg-[#EE6065] rounded-full px-5 hxs:py-4 hsm:py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px] videoButtonAnimation hxs:-mb-1 hsm:mb-0"
+            class="bg-[#EE6065] rounded-full px-5 hxs:py-4 hsm:py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px] videoButtonAnimation hxs:-mb-1 hsm:mb-2"
           >
             {{ "Begin now" }}
           </button>
@@ -108,8 +108,8 @@ function fadeInUI(delay) {
 
     </div>
 
-
 <!-- navbar was here before -->
+
   </div>
 
 
