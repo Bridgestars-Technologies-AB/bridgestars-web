@@ -52,28 +52,27 @@ function fadeInUI(delay) {
     const cardDiv = document.getElementsByClassName("cardDiv")[0];
     const card = document.getElementsByClassName("cardShow")[0];
 
-    cardDiv.classList.add("cardAnimation")
-    cardDiv.style.display = "block"
+    cardDiv.classList.add("cardAnimation");
+    cardDiv.style.display = "block";
     card.style.opacity = 1;
     showUI.value = true;
     firstTime.value = false;
   }, delay);
 }
-
 </script>
 
 <template>
-  <div class="bg-[rgb(6,7,10)] fixed h-full w-full z-[-20]"/>
+  <div class="bg-[rgb(6,7,10)] fixed h-full w-full z-[-20]" />
 
   <div class="">
     <!-- video container with overlay  -->
 
-<!-- video and border easing layout, don't touch, soo fucking annoying to set up -->
+    <!-- video and border easing layout, don't touch, soo fucking annoying to set up -->
     <div class="flex justify-center relative">
-      <div class="bg-[rgb(6,7,10)] w-full h-full absolute z-[-10]"/>
+      <div class="bg-[rgb(6,7,10)] w-full h-full absolute z-[-10]" />
       <div class="overflow-hidden flex justify-center relative">
-<!-- navbar can be here instead of outside video divs if we want it to be not so wide on very wide screens -->
-        <div v-if="showUI" class="absolute z-[10] top-0 w-full navbarAnimation"> 
+        <!-- navbar can be here instead of outside video divs if we want it to be not so wide on very wide screens -->
+        <div v-if="showUI" class="absolute z-[10] top-0 w-full navbarAnimation">
           <base-navbar transparent="true" />
         </div>
 
@@ -90,28 +89,24 @@ function fadeInUI(delay) {
           src="~/assets/bridgestars/images/shortIntroLastFrame.jpg"
           :class="`${showVideo ? 'hidden' : ''} video-size`"
         />
-
       </div>
     </div>
 
-<!-- Button overlay on video -->
+    <!-- Button overlay on video -->
     <div v-if="showUI" class="flex justify-center overflow-hidden">
       <div class="bg-video-overlay">
         <NuxtLink to="/auth/sign-up">
           <button
             class="bg-[#EE6065] rounded-full px-5 hxs:py-4 hsm:py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px] videoButtonAnimation hxs:-mb-1 hsm:mb-2"
           >
-            {{ "Begin now" }}
+            {{ $t("home:button") }}
           </button>
         </NuxtLink>
       </div>
-
     </div>
 
-<!-- navbar was here before -->
-
+    <!-- navbar was here before -->
   </div>
-
 
   <div class="cardDiv hidden">
     <base-card-page-layout
@@ -120,17 +115,16 @@ function fadeInUI(delay) {
       backdropClass="background"
       imgSrc="../assets/bridgestars/art/home_page.svg"
     >
+      <base-lang-switcher class="mb-4" @switched="update" />
       <div class="xs:px-0 sm:px-5 text-center flex flex-col items-center">
         <h1
           class="mb-6 balance-text xs:text-[23px] xs:leading-[29px] sm:text-[40px] sm:leading-[44px] max-w-[700px]"
         >
-          {{ "Revolutionizing the Bridge Learning Experience" }}
+          {{ $t("home:revolutionize.title") }}
         </h1>
 
         <span class="text2 px-3 text-[20px] leading-[24px] max-w-[700px]">
-          {{
-            "With Bridgestars we aim to stimulate a shift away from obsolete IT-solutions in favor of more integrated and modern solutions. "
-          }}
+          {{ $t("home:revolutionize.desc1") }}
         </span>
       </div>
 
@@ -167,7 +161,7 @@ function fadeInUI(delay) {
                 >Castor Mann,
               </span>
               <span class="text-white font-light font-family2 ml-2">
-                Bridgestars CEO, Founder and Junior World Champion 2018.
+                {{ $t("home:quote.castor") }}
               </span>
             </div>
           </div>
@@ -180,19 +174,19 @@ function fadeInUI(delay) {
         <span
           class="rounded-full text-[12px] uppercase py-[4px] px-[10px] text-[#d23759] bg-[#f8b3ca] font-bold mb-[2px]"
         >
-          Contact Us</span
+          {{ $t("home:contact.title1") }}</span
         >
         <h1
           class="mb-[6px] balance-text xs:text-[20px] xs:leading-[30px] sm:text-[30px] sm:leading-[40px] max-w-[700px] bg-green"
         >
-<!-- eng translation shoul be uppercase on partnership while swedish would not -->
-<!-- https://www.webucator.com/article/how-to-capitalize-headings-and-titles/ -->
-          {{"Interested in a Partnership?"}}
+          <!-- eng translation shoul be uppercase on partnership while swedish would not -->
+          <!-- https://www.webucator.com/article/how-to-capitalize-headings-and-titles/ -->
+          {{ $t("home:contact.title2") }}
         </h1>
         <span
           class="text2 px-3 text-[18px] leading-[22px] max-w-[700px] mb-[20px]"
         >
-          <i18next :translation="$t('home:quote.desc2')">
+          <i18next :translation="$t('home:contact.desc1')">
             <template #email>
               <a
                 class="text-blue font-normal underline"
@@ -217,7 +211,7 @@ function fadeInUI(delay) {
 }
 .video-size {
   max-width: 2000px;
-  position:relative;
+  position: relative;
   height: 80vh;
   min-height: min(45vw, 700px);
   max-height: 1000px;
@@ -232,7 +226,6 @@ function fadeInUI(delay) {
   /**/
   @apply !mx-auto !my-0;
 }
-
 
 .bg-video-overlay {
   position: absolute;
@@ -255,7 +248,7 @@ function fadeInUI(delay) {
   left: 0;
   right: 0;
   /* height: 100%; */
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
 
   height: 80vh;
   min-height: min(45vw, 700px);
@@ -265,7 +258,7 @@ function fadeInUI(delay) {
   /* height: 80vh; */
   /* min-height: min(45vw, 700px); */
   /* max-height: 1000px; */
-  /* /* width:100%;  */ 
+  /* /* width:100%;  */
   /* aspect-ratio: 16/9; */
   /* top:0; */
   /* background: rgb(6, 7, 10); */
@@ -289,13 +282,13 @@ function fadeInUI(delay) {
   transition: opacity 1s ease-in-out;
 }
 
-.navbarAnimation{
+.navbarAnimation {
   animation: zoom-frames 750ms ease-out 0ms;
 }
 .videoButtonAnimation {
   animation: button-frames 750ms ease-out 0ms;
 }
-.cardAnimation{
+.cardAnimation {
   animation: card-frames 750ms ease-out 0ms;
 }
 
@@ -324,7 +317,7 @@ function fadeInUI(delay) {
 @keyframes card-frames {
   0% {
     opacity: 0;
-    transform:  translateY(500px);
+    transform: translateY(500px);
   }
   100% {
     opacity: 1;
@@ -332,9 +325,9 @@ function fadeInUI(delay) {
   }
 }
 
-.background{
+.background {
   background-color: rgb(6, 7, 10);
-  opacity:0;
+  opacity: 0;
   transition: background-color 3s ease-in-out;
 }
 /* .background { */
