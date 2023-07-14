@@ -8,27 +8,9 @@ const props = defineProps([
 defineEmits(["update:modelValue"]);
 
 // const type = ref(props.type);
+const showEye = ref(false);
 const showPass = ref(false);
 const input = ref(null);
-
-function toggleShowPass() {
-  showPass.value = !showPass.value;
-  console.log(input.value.type)
-  if(props.id.includes("password")) {
-    input.value.type = showPass.value ? "text" : "password";
-    console.log(input.value.type)
-  }
-
-  // if (x.type === "password") {
-  //   x.type = "text";
-  // } else {
-  //   x.type = "password";
-}
-
-onMounted(() => {
-  input.value.focus()
-});
-
 
 const value = ref("");
 
@@ -37,6 +19,14 @@ function update(event){
   if(props.modelValue)
     emit('update:modelValue', val);
   else value.value = val;
+  showEye.value = val.length > 0;
+}
+
+function toggleShowPass() {
+  showPass.value = !showPass.value;
+  if(props.id.includes("password")) {
+    input.value.type = showPass.value ? "text" : "password";
+  }
 }
 </script>
 
@@ -62,13 +52,19 @@ function update(event){
     <!--   @click="toggleShowPass" -->
     <!-- ></div> -->
     <!-- v-if="props.id === 'password-signin' && !showPass" -->
-    <div
-      v-if="props.id.includes('password')"
-      :class="`absolute top-[35%] right-[10px] scale-[1.4] ${
-        showPass ? 'i-basil-eye-closed-outline' : 'i-basil-eye-outline'
-      }`"
-      @click="toggleShowPass"
-    ></div>
+    <ClientOnly>
+      <div v-if="(showEye || showPass) && props.id.includes('password')"
+        class="absolute top-[14px] right-[14px]">
+          <!-- 14px since input field is 48px, so position should be 48/2-20/2=14px from top -->
+        <div
+          :class="`opacity-80 ${
+            showPass ? 'i-basil-eye-closed-outline' : 'i-basil-eye-outline'
+          }`"
+          style="height:20px; width:20px;"
+          @click="toggleShowPass"
+        ></div>
+      </div>
+    </ClientOnly>
   </div>
 </template>
 
