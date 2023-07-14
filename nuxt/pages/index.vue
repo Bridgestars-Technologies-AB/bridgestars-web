@@ -156,7 +156,7 @@ function fadeInUI(delay) {
               <div class="bg-white h-[40%] w-[3px]" />
             </div>
             <span
-              class="text1 italic text-white text-[18px] leading-[25px] text-justify"
+              class="text1 italic text-white text-[18px] leading-[25px]"
             >
               {{ $t("home:quote.desc1") }}
             </span>
