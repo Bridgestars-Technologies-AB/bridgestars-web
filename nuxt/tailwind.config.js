@@ -86,7 +86,12 @@ module.exports = {
       family2: '"Roboto Slab", sans-serif',
     },
     screens: {
-      hsm: { raw: "(min-height: 700px)" },
+      hxs: {raw:"(min-height: 0px)"},
+      hsm: {raw:"(min-height: 576px)"},
+      hmd: {raw:"(min-height: 768px)"},
+      hlg: {raw:"(min-height: 992px)"},
+      hxl: {raw:"(min-height: 1200px)"},
+      
       xs: "0px",
       // => @media (min-width: 0px) { ... } //everything smaller than 576px
       sm: "576px",

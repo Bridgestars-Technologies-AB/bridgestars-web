@@ -1,208 +1,346 @@
-
- <!-- TODO: fetch all images from js so that video is fetched first to speed up loading time -->
-
+<!-- TODO: fetch all images from js so that video is fetched first to speed up loading time -->
 
 <script setup lang="ts">
-  const firstTime = inject("first_time_at_home"); //issue exists for this one
-  const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
-  const showVideo = ref(true);
+const firstTime = inject("first_time_at_home"); //issue exists for this one
+const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
+const showVideo = ref(true);
+const { t } = await loadTranslations("home");
 
-  onMounted(() => {
-    const video = document.getElementById('video');
-    video.play().then(() => {
-      console.log("video playing")
-      video.addEventListener('ended', () => {
-        console.log("video ended")
+onMounted(() => {
+  const video = document.getElementById("video");
+  video
+    .play()
+    .then(() => {
+      console.log("video playing");
+      video.addEventListener("ended", () => {
+        console.log("video ended");
         showVideo.value = false;
       });
-      fade(1500)
-    }).catch((e) => {
-      console.error("video play error: ", e)
+      fadeInUI(1000);
+      fadeInBackground(1500);
+    })
+    .catch((e) => {
+      console.error("video play error: ", e);
       showVideo.value = false;
-      fade(0)
+      fadeInUI(0);
+      fadeInBackground(500);
       // video will not be allowed to play on IOS safari when battery save mode is turned on.
       // show image instead (DONE)
     });
 
-     balanceText();
-    //
-    if(showUI.value) fadeInUI();
-
-  })
-  function fade(delay){
-    setTimeout(() => {
-      fadeOutEffect();
-      fadeInUI();
-      showUI.value = true;
-      firstTime.value = false;
-    }, delay);
+  balanceText();
+  //
+  if (showUI.value) {
+    fadeInUI(0);
+    fadeInBackground(500);
   }
+});
 
-  function fadeOutEffect() {
-    const fadeTarget = document.getElementsByClassName('background')[0];
-    if(fadeTarget == null) console.error("fadeTarget is null")
+function fadeInBackground(delay) {
+  setTimeout(() => {
+    const fadeTarget = document.getElementsByClassName("background")[0];
+    if (fadeTarget == null) console.error("fadeTarget is null");
     else {
-      fadeTarget.style.opacity = '0';
+      fadeTarget.style["background-color"] = "rgb(240, 242, 245)";
+      fadeTarget.style["opacity"] = 1;
     }
-  }
-  function fadeInUI(){
-    const fadeInTarget = document.getElementsByClassName('fadeIn');
-    if(fadeInTarget == null) console.error("fadeInTarget is null")
-    else for (let i = 0; i < fadeInTarget.length; i++) {
-      fadeInTarget[i].style.opacity = '1';
-    }
-  }
+  }, delay);
+}
 
+function fadeInUI(delay) {
+  setTimeout(() => {
+    const cardDiv = document.getElementsByClassName("cardDiv")[0];
+    const card = document.getElementsByClassName("cardShow")[0];
+
+    cardDiv.classList.add("cardAnimation");
+    cardDiv.style.display = "block";
+    card.style.opacity = 1;
+    showUI.value = true;
+    firstTime.value = false;
+  }, delay);
+}
 </script>
 
-
-
 <template>
+  <div class="bg-[rgb(6,7,10)] fixed h-full w-full z-[-20]" />
 
-<div class="bg-[rgb(6,7,10)]"><!-- video container with overlay  -->
-    
-     <div class="flex justify-center">
-    <video id="video" fetchpriority="high" src="~/assets/bridgestars/video/shortIntro-compressed.mp4" :class="`${!showVideo ? '!hidden':''} video-size`" muted playsInline></video>
-    <img src="~/assets/bridgestars/images/shortIntroLastFrame.jpg" :class="`${showVideo ? 'hidden':''} video-size`"/>
-       </div>
+  <div class="">
+    <!-- video container with overlay  -->
 
-     <div class="flex justify-center">
-       <div class="bg-video-gradient"/>
-      <div class="bg-video-overlay fadeIn">
-         <NuxtLink to="/auth/sign-up">
-            <button class="bg-[#EE6065] rounded-full px-5 py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px]">
-               {{"Begin now"}}
-            </button>
-         </NuxtLink>
+    <!-- video and border easing layout, don't touch, soo fucking annoying to set up -->
+    <div class="flex justify-center relative">
+      <div class="bg-[rgb(6,7,10)] w-full h-full absolute z-[-10]" />
+      <div class="overflow-hidden flex justify-center relative">
+        <!-- navbar can be here instead of outside video divs if we want it to be not so wide on very wide screens -->
+        <div v-if="showUI" class="absolute z-[10] top-0 w-full navbarAnimation">
+          <base-navbar transparent="true" />
+        </div>
+
+        <div class="bg-video-gradient" />
+        <video
+          id="video"
+          fetchpriority="high"
+          src="~/assets/bridgestars/video/shortIntro-compressed.mp4"
+          :class="`${!showVideo ? '!hidden' : ''} video-size`"
+          muted
+          playsInline
+        />
+        <img
+          src="~/assets/bridgestars/images/shortIntroLastFrame.jpg"
+          :class="`${showVideo ? 'hidden' : ''} video-size`"
+        />
       </div>
-     </div>
-
-    <div class="absolute top-0 w-full fadeIn">
-      <base-navbar transparent=true />
-    </div>
-</div>
-<div class='background' />
-
-  <div class="fadeIn">
-  <base-card-page-layout hideNavbar=true class="pt-5 translate-y-[-70px]" imgSrc="../assets/bridgestars/art/home_page.svg">
-    <div class="px-5 text-center flex flex-col items-center">
-
-      <h1 class="mb-6
-        balance-text xs:text-[27px] xs:leading-[29px]
-        sm:text-[40px] sm:leading-[44px] max-w-[700px]"> 
-        {{"Revolutionizing the Bridge Learning Experience"}}  </h1>
-      
-      <span class="text2 px-3 text-[18px] leading-[18px] max-w-[700px]"> 
-        {{"With Bridgestars we aim to stimulate a shift away from obsolete IT-solutions in favor of more integrated and modern solutions. "}} </span>
     </div>
 
+    <!-- Button overlay on video -->
+    <div v-if="showUI" class="flex justify-center overflow-hidden">
+      <div class="bg-video-overlay">
+        <NuxtLink to="/auth/sign-up">
+          <button
+            class="bg-[#EE6065] rounded-full px-5 hxs:py-4 hsm:py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px] videoButtonAnimation hxs:-mb-1 hsm:mb-2"
+          >
+            {{ $t("home:button") }}
+          </button>
+        </NuxtLink>
+      </div>
+    </div>
 
-    <!-- quote -->
-    <div class="flex flex-wrap p-1 quote-bg w-full mt-[75px]">
+    <!-- navbar was here before -->
+  </div>
 
-      <div class="sm:py-3 px-3 sm:w-[40%] flex justify-center items-center">
-        <img class="bg-dark xs:w-[75%] object-scale-down rounded-2xl xs:translate-y-[-50px] sm:translate-y-0" src="~/assets/bridgestars/images/castor.jpg"/>
+  <div class="cardDiv hidden">
+    <base-card-page-layout
+      hideNavbar="true"
+      class="pt-5 hsm:-translate-y-[100px] hxs:-translate-y-[70px] opacity-0 cardShow"
+      backdropClass="background"
+      imgSrc="../assets/bridgestars/art/home_page.svg"
+    >
+      <base-lang-switcher class="mb-4" />
+      <div class="xs:px-0 sm:px-5 text-center flex flex-col items-center">
+        <h1
+          class="mb-6 balance-text xs:text-[23px] xs:leading-[29px] sm:text-[40px] sm:leading-[44px] max-w-[700px]"
+        >
+          {{ $t("home:revolutionize.title") }}
+        </h1>
+
+        <span class="text2 px-3 text-[20px] leading-[24px] max-w-[700px]">
+          {{ $t("home:revolutionize.desc1") }}
+        </span>
       </div>
 
-      <div class="opacity-[90%] xs:w-full sm:w-1/2 flex flex-col justify-center self-center pl-3 pr-7">
-         <div class="flex">
-           <div class="flex flex-col items-center px-1 pt-[6px] space-y-[5px]">
-             <div class="bg-white h-[40%] w-[3px]"/>
-             <span class="i-material-symbols-format-quote-rounded" style="color:white;height:20px;width:20px;"/>
-             <div class="bg-white h-[40%] w-[3px]"/>
-           </div>
-            <span class="text1 italic text-white text-[18px] leading-[25px] text-justify"> 
-              {{"In a world of rapid technological advancements, the Bridge world has not been able to keep up. There is a lack of a clean and modern solution for playing Bridge online that is fun, easy, and engaging. Our vision for the future contains a unified platform for Bridge players on which they are able to play and watch Bridge as well as catch up with the latest news about Bridge. Bridgestars is an attempt of bringing that vision to life, in a way that is free and accessible for everyone. "}} 
+      <!-- quote -->
+      <div class="flex flex-wrap p-1 quote-bg w-full mt-[75px]">
+        <div class="sm:py-3 px-3 sm:w-[30%] flex justify-center items-center">
+          <img
+            class="bg-dark xs:w-[55%] sm:w-[100%] object-scale-down rounded-[25px] xs:translate-y-[-50px] sm:translate-y-0"
+            src="~/assets/bridgestars/images/castor-square.jpg"
+          />
+        </div>
+
+        <div
+          class="opacity-[90%] xs:w-full sm:w-[70%] flex flex-col justify-center self-center pl-3 pr-7 lg:pr-[100px] lg:pl-[50px] sm:py-4 xs:-translate-y-5 sm:translate-y-0"
+        >
+          <div class="flex">
+            <div class="flex flex-col items-center px-1 pt-[6px] space-y-[5px]">
+              <div class="bg-white h-[40%] w-[3px]" />
+              <span
+                class="i-material-symbols-format-quote-rounded"
+                style="color: white; height: 20px; width: 20px"
+              />
+              <div class="bg-white h-[40%] w-[3px]" />
+            </div>
+            <span
+              class="text1 italic text-white text-[18px] leading-[25px]"
+            >
+              {{ $t("home:quote.desc1") }}
             </span>
-         </div>
-        <div class="w-full flex flex-col pl-[29px]">
-          <div class="mt-5">
-            <span class="text-white font-family2 font-bold text-[18px]">Castor Mann, </span>
-               <span class="text-white font-light font-family2 ml-2"> Bridgestars CEO, Founder and Junior World Champion 2018.
-            </span>
+          </div>
+          <div class="w-full flex flex-col pl-[29px]">
+            <div class="mt-5">
+              <span class="text-white font-family2 font-bold text-[18px]"
+                >Castor Mann,
+              </span>
+              <span class="text-white font-light font-family2 ml-2">
+                {{ $t("home:quote.castor") }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-  <!-- text or other quote -->
-
-
-  </base-card-page-layout>
-    </div>
-
+      <div
+        class="xs:px-0 sm:px-5 text-center flex flex-col items-center py-[55px] overflow-hidden"
+      >
+        <span
+          class="rounded-full text-[12px] uppercase py-[4px] px-[10px] text-[#d23759] bg-[#f8b3ca] font-bold mb-[2px]"
+        >
+          {{ $t("home:contact.title1") }}</span
+        >
+        <h1
+          class="mb-[6px] balance-text xs:text-[20px] xs:leading-[30px] sm:text-[30px] sm:leading-[40px] max-w-[700px] bg-green"
+        >
+          <!-- eng translation shoul be uppercase on partnership while swedish would not -->
+          <!-- https://www.webucator.com/article/how-to-capitalize-headings-and-titles/ -->
+          {{ $t("home:contact.title2") }}
+        </h1>
+        <span
+          class="text2 px-3 text-[18px] leading-[22px] max-w-[700px] mb-[20px]"
+        >
+          <i18next :translation="$t('home:contact.desc1')">
+            <template #email>
+              <a
+                class="text-blue font-normal underline"
+                :href="`mailto:info@bridgestars.net?subject=${$t('home:contact.emailSubject')}&body=${$t('home:contact.emailBody')}`"
+                target="_blank"
+                rel="noreferrer"
+              >
+                info@bridgestars.net</a
+              >
+            </template>
+          </i18next>
+        </span>
+      </div>
+      <!-- text or other quote -->
+    </base-card-page-layout>
+  </div>
 </template>
 
-
 <style scoped>
-.quote-bg{
-  background: linear-gradient(195deg, rgb(90, 90, 100), rgb(25, 25, 25));
+.quote-bg {
+  background: linear-gradient(195deg, rgb(80, 80, 90), rgb(15, 15, 15));
 }
-.video-size{
+.video-size {
   max-width: 2000px;
-
-  height:80vh;
+  position: relative;
+  height: 80vh;
   min-height: min(45vw, 700px);
-  max-height:1000px;
+  max-height: 1000px;
+  z-index: -1;
+
   /* object-fit: cover; */
   /* -o-object-fit: cover; */
   /* position:'relative'; */
-  background-color: rgb(6,7,10);
-  aspect-ratio: 16/9;
 
+  background-color: rgb(6, 7, 10);
+  aspect-ratio: 16/9;
+  /**/
   @apply !mx-auto !my-0;
 }
 
-.bg-video-overlay{
+.bg-video-overlay {
   position: absolute;
-  display:flex;
+  display: flex;
   align-items: flex-end;
   justify-content: center;
-  /* padding-bottom: min(75px, 6vh); */
-  /* padding-top: min(35vw, min(40vw, 600px)); */
-  top:0px;
+  top: 0px;
 
-  height:80vh;
+  height: 80vh;
   min-height: min(45vw, 700px);
   padding-bottom: 15vh;
-  max-height:1000px;
-
-  aspect-ratio: 16/9;
-  /* width: 100%; */
-  /* max-height:1000px; */
-  /* min-height: min(45vw, 750px); */
-  /* background-color: rgba(200,0,200,0.03); */
+  max-height: 1000px;
+  /* aspect-ratio: 16/9; */
   text-align: center;
 }
-.bg-video-gradient{
-  position:absolute;
-  top:0px;
-  height:80vh;
+.bg-video-gradient {
+  position: absolute;
+  z-index: 0;
+  /* width: 100%; */
+  left: 0;
+  right: 0;
+  /* height: 100%; */
+  background-color: rgba(0, 0, 0, 0);
+
+  height: 80vh;
   min-height: min(45vw, 700px);
-  padding-bottom: 15vh;
-  max-height:1000px;
-  aspect-ratio: 16/9;
-  background: rgb(6,7,10);
-  background: linear-gradient(90deg, rgba(6,7,10,1) 0%, rgba(6,7,10,0) 10%, rgba(6,7,10,0) 90%, rgba(6,7,10,1) 100%), 
-    linear-gradient(0deg, rgba(6,7,10,1) 0%, rgba(6,7,10,0) 15%);
+  max-height: 1000px;
+  /* max-width: 2000px; */
+  /* position:relative; */
+  /* height: 80vh; */
+  /* min-height: min(45vw, 700px); */
+  /* max-height: 1000px; */
+  /* /* width:100%;  */
+  /* aspect-ratio: 16/9; */
+  /* top:0; */
+  /* background: rgb(6, 7, 10); */
+  background: linear-gradient(
+      90deg,
+      rgba(6, 7, 10, 1) 0%,
+      rgba(6, 7, 10, 0) 10%,
+      rgba(6, 7, 10, 0) 90%,
+      rgba(6, 7, 10, 1) 100%
+    ),
+    linear-gradient(0deg, rgba(6, 7, 10, 1) 0%, rgba(6, 7, 10, 0) 15%);
+
+  /* RED for visibility */
   /* background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, rgba(255,0,0,1) 100%),  */
   /*   linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(0,0,0,0) 15%); */
 }
-.fadeIn{
-  opacity:0;
+
+.fadeIn {
+  opacity: 0;
+  /* display:hidden; */
   transition: opacity 1s ease-in-out;
 }
-.background{
-  position:absolute;
-  display: flex;
-  transition: opacity 1s ease-in-out;
-  z-index: -1;
-  background-color: rgb(6,7,10);
-  height:100%;
-  width:100%;
-  align-items: flex-end;
-  padding-bottom: 75px;
-  justify-content: center;
-  top:0;
+
+.navbarAnimation {
+  animation: zoom-frames 750ms ease-out 0ms;
 }
+.videoButtonAnimation {
+  animation: button-frames 750ms ease-out 0ms;
+}
+.cardAnimation {
+  animation: card-frames 750ms ease-out 0ms;
+}
+
+@keyframes zoom-frames {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.8) scaleX(0.5) translateY(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+}
+
+@keyframes button-frames {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.8) scaleX(0.01) translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+}
+
+@keyframes card-frames {
+  0% {
+    opacity: 0;
+    transform: translateY(500px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.background {
+  background-color: rgb(6, 7, 10);
+  opacity: 0;
+  transition: background-color 3s ease-in-out;
+}
+/* .background { */
+/*   position: absolute; */
+/*   display: flex; */
+/*   transition: opacity 1s ease-in-out; */
+/*   z-index: -2; */
+/*   background-color: rgb(6, 7, 10); */
+/*   height: 100%; */
+/*   width: 100%; */
+/*   align-items: flex-end; */
+/*   padding-bottom: 75px; */
+/*   justify-content: center; */
+/*   top: 0; */
+/* } */
 </style>
