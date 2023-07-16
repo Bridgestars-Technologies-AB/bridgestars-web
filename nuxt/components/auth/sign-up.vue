@@ -24,7 +24,7 @@ function submit(res) {
 
 <template>
   <auth-form
-    header="Sign Up"
+    :header="$t('auth:common.signUp')"
     :title="$t('auth:signUp.title')"
     :subtitle="$t('auth:signUp.subtitle')"
     @submit="submit"
