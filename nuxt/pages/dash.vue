@@ -1,13 +1,14 @@
 <script setup>
 await loadTranslations("dashboard"); // load translation
+const route = useRoute()
 
-if(useRoute().name === "dash") {
+if(route.name === "dash") {
   navigateTo("dash/overview");
 }
 
 onMounted(() => {
   if (!Parse.User.current()) {
-    useRouter().push({ path: '/auth/sign-in' });
+    useRouter().push({ path: '/auth/sign-in', query: { to: route.path}});
   }
 })
 const darkMode = useDarkMode() 
@@ -42,5 +43,9 @@ html, body {
 }
 html, body, #__nuxt {
   height: 100%;
+}
+*{
+  /* dark mode transition */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; 
 }
 </style>

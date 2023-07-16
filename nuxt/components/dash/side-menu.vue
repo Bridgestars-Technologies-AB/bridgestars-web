@@ -121,12 +121,9 @@ function click(item){
     </div>
 </template>
 
-<style>
-*{
-  /* dark mode transition */
-  transition: background-color .2s ease-in-out, color .2s ease-in-out; 
-}
+<style scoped>
 #side-menu{
-  transition: left .3s ease-in-out;
+  transition: left .3s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out; 
+;
 }
 </style>
