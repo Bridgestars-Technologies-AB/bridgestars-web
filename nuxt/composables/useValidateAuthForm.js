@@ -2,6 +2,9 @@
 // const emailEl = document.querySelector('#email');
 // const passwordEl = document.querySelector('#password');
 // const confirmPasswordEl = document.querySelector('#confirm-password');
+
+const { t } = await loadTranslations("auth");
+
 export default function InitAuthFormValidation(form, callback) {
   const usernameEl = form.querySelector("#username");
   const usernameEmailEl = form.querySelector("#username-email");
@@ -17,7 +20,7 @@ export default function InitAuthFormValidation(form, callback) {
     const username = usernameEmailEl.value.trim();
 
     if (!isRequired(username)) {
-      showError(usernameEmailEl, "Username/Email cannot be blank.");
+      showError(usernameEmailEl, t("auth:error.blank1"));
       return false;
     } else {
       showSuccess(usernameEmailEl);
@@ -36,11 +39,12 @@ export default function InitAuthFormValidation(form, callback) {
     const username = usernameEl.value.trim();
 
     if (!isRequired(username)) {
-      showError(usernameEl, "Username cannot be blank.");
+      showError(usernameEl, t("auth:error.blank2"));
     } else if (!isBetween(username.length, min, max)) {
       showError(
         usernameEl,
-        `Username must be between ${min} and ${max} characters.`,
+        //This is not very pretty....
+        `${t("auth:error.username1")} ${min} ${t("auth:error.username2")} ${max} ${t("auth:error.username3")}.`,
       );
     } else {
       showSuccess(usernameEl);
@@ -54,9 +58,9 @@ export default function InitAuthFormValidation(form, callback) {
     let valid = false;
     const email = emailEl.value.trim();
     if (!isRequired(email)) {
-      showError(emailEl, "Email cannot be blank.");
+      showError(emailEl, t("auth:error.blank3"));
     } else if (!isEmailValid(email)) {
-      showError(emailEl, "Email is not valid.");
+      showError(emailEl, t("auth:error.notValid"));
     } else {
       showSuccess(emailEl);
       valid = true;
@@ -69,7 +73,7 @@ export default function InitAuthFormValidation(form, callback) {
     const password = passwordSignInEl.value.trim();
 
     if (!isRequired(password)) {
-      showError(passwordSignInEl, "Password cannot be blank.");
+      showError(passwordSignInEl, t("auth:error.blank4"));
       return false;
     } else {
       showSuccess(passwordSignInEl);
@@ -82,19 +86,19 @@ export default function InitAuthFormValidation(form, callback) {
     const password = passwordEl.value.trim();
 
     if (!isRequired(password)) {
-      showError(passwordEl, "Password cannot be blank.");
+      showError(passwordEl, t("auth:error.blank4"));
     } 
     else if(password.length < 8){
-      showError(passwordEl, "Password must be at least 8 characters");
+      showError(passwordEl, t("auth:error.passError1"));
     }
     else if(password.search(/[a-z]/) < 0){
-      showError(passwordEl, "Password must contain at least one lowercase letter.");
+      showError(passwordEl, t("auth:error.passError2"));
     }
     else if(password.search(/[A-Z]/) < 0){
-      showError(passwordEl, "Password must contain at least one uppercase letter.");
+      showError(passwordEl, t("auth:error.passError3"));
     }
     else if(password.search(/[0-9]/) < 0){
-      showError(passwordEl, "Password must contain at least one digit.");
+      showError(passwordEl, t("auth:error.passError4"));
     }
     else {
       showSuccess(passwordEl);
@@ -112,9 +116,9 @@ export default function InitAuthFormValidation(form, callback) {
     const password = passwordEl.value.trim();
 
     if (!isRequired(passwordConfirm)) {
-      showError(passwordConfirmEl, "Please enter the password again");
+      showError(passwordConfirmEl, t("auth:error.passError5"));
     } else if (password !== passwordConfirm) {
-      showError(passwordConfirmEl, "The password does not match");
+      showError(passwordConfirmEl, t("auth:error.passError6"));
     } else {
       showSuccess(passwordConfirmEl);
       valid = true;

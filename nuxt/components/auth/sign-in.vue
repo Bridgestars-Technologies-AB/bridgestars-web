@@ -8,10 +8,9 @@ const { t } = await loadTranslations("auth");
 
 onMounted(() => {
   query.value = route.query;
-
   if (Parse.User.current()) {
     //temp
-    toast("dev: You are already signed in, sign out at profile page");
+    toast(t("auth:signIn:toast.alreadyIn"));
     //go directly to profile page or temp. show: you are signed in, sign out?
     if (query.value.to) router.push({ path: query.value.to });
     else router.push({ path: "/dash" });
@@ -35,7 +34,7 @@ function submit(res) {
     .then(() => Parse.User.logIn(res.usernameEmail, res.password))
     //success
     .then((user) => {
-      toast.success("You are signed in!");
+      toast.success(t("auth:signIn:toast.signedIn"));
       // disable profile since it does not exist
       if (query.value.to) router.push({ path: query.value.to });
       else router.push({ path: "/dash" });

@@ -13,7 +13,7 @@ function submit(res) {
   //not sure if this is the function, copilot suggested it
   Parse.User.signUp(res.username, res.password, { email: res.email })
     .then((user) => {
-      toast.success("You are signed up!");
+      toast.success(t("auth:signUp:toast.signedUp"));
       if (query.value.to) router.push({ path: query.value.to });
       else router.push({ path: "/dash" });
     })

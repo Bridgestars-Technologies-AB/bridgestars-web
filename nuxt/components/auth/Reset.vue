@@ -14,7 +14,7 @@ onMounted(() => {
 function submit(res) {
   //Parse.User.requestPasswordReset(res.email)
   //.then(() => {
-  toast.success("Your password has been reset. Please check your email.");
+  toast.success(t("auth:reset:toast.passwordReset"));
   query.value.email = res.email;
   router.push({ path: "/auth/sign-in", query: query.value });
   //})
