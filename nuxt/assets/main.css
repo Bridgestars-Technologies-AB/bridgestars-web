@@ -28,9 +28,6 @@
 
   .text2 { @apply font-family text-[16px] leading-[1.6rem] text-grey dark:text-light font-light; }
 
-  html, body, #__nuxt {
-    height: 100%;
-  }
 }
 
 /* Second layer for complex components etc, don't use, specify in style scoped instead */

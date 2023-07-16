@@ -40,4 +40,7 @@ html, body {
   overflow-y: hidden;
   overflow-x: hidden;
 }
+html, body, #__nuxt {
+  height: 100%;
+}
 </style>
