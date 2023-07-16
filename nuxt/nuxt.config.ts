@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   components: [
     { path: "~/components/base", prefix: "base-" },
     { path: "~/components/auth", prefix:"auth-" },
-    { path: "~/components/dashboard", prefix: "dash-" },
+    { path: "~/components/dash", prefix: "dash-" },
     "~/components",
   ],
   imports:{
