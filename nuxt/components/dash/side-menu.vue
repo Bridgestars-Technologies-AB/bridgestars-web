@@ -80,9 +80,9 @@ function click(item){
   if(item.action) return item.action();
   if(item.enabled) 
     navigateTo({name:"dash-"+item.name})
-  else{
+  else
     toast.error("Not implemented yet.")
-  }
+  
 }
 
 </script>
@@ -104,7 +104,7 @@ function click(item){
             class="text font-light dark:!text-[#aaaaaa] mb-3 mt-5">
             {{$t(item.key)}}
           </div>
-          <dash-side-menu-item v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled"/>
+        <dash-side-menu-item v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled"/>
         </div>
       </div>
     </div>
