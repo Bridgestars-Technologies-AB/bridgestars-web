@@ -169,7 +169,7 @@ function fadeInUI(delay) {
       </div>
 
       <div
-        class="xs:px-0 sm:px-5 text-center flex flex-col items-center py-[10px] mt-[20px] overflow-hidden"
+        class="xs:px-0 sm:px-5 text-center flex flex-col items-center py-[55px] overflow-hidden"
       >
         <span
           class="rounded-full text-[12px] uppercase py-[4px] px-[10px] text-[#d23759] bg-[#f8b3ca] font-bold mb-[2px]"

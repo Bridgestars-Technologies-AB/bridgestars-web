@@ -2,16 +2,16 @@
   "button": "Börja nu",
   "revolutionize": {
     "title": "Tillsammans moderniserar vi Bridge-utbildningen",
-    "desc1": "Med Bridgestars vill vi stärka befintliga Bridge-utbildningar genom att tillhandahålla moderna och användarvänliga IT-lösningar med stöd för flera olika operativsystem och enheter."
+    "desc1": "Bridgestars vill stärka befintliga Bridge-utbildningar genom att tillhandahålla moderna och användarvänliga IT-lösningar till både Windows och Mac samt din surfplatta."
   },
   "quote": {
-    "desc1": "I en värld full av tekniska framsteg har bridgevärlden inte lyckats hänga med. Det saknas en smidig och modern lösning för att spela bridge, som är rolig, enkel och engagerande. Bridgestars erbjuder en onlineplattform med fokus på utbildning, där elever får chansen att utvecklas som bridgespelare. Elever kan både spela bridge och följa pedagogiska övningar på plattformen. Detta görs i samarbete med bridgeskolor över hela Sverige. Vår vision är att erbjuda en engagerande lärplattform för alla typer av bridge-elever, oavsett om du är en nybörjare eller en erfaren spelare.",
+    "desc1": "I en värld full av tekniska framsteg har bridgevärlden inte lyckats hänga med. Vi är två studenter som har sett att det saknas en modern lösning för att spela bridge som är rolig, enkel och engagerande. Sedan 2020 har vi utvecklat onlineplattformen Bridgestars som tar fokus på utbildning, där elever från svenska bridgeskolor får chansen att utvecklas som bridgespelare. Elever kan spela bridge och även följa pedagogiska övningar på plattformen. Vår vision är att erbjuda en engagerande lärplattform för alla bridge-elever, för nybörjare så väl som erfarna spelare.",
     "castor": "Bridgestars Grundare och Juniorvärldsmästare 2018."
   },
   "contact": {
     "title1": "Kontakta oss",
     "title2": "Intresserad av ett samarbete?",
-    "desc1": "Vi letar ständigt efter nya samarbetspartners som kan hjälpa oss att uppnå vår vision om en bättre bridgeundervisning. Är du en bridgelärare som är nyfiken på hur du kan förbättra dina elevers lärandeupplevelse? Kontakta oss på {email} så diskuterar vi ett potentiellt samarbete.", 
+    "desc1": "Vi letar ständigt efter nya samarbetspartners som kan hjälpa oss att uppnå vår vision om en bättre bridgeundervisning. Är du en bridgelärare som är nyfiken på hur du kan förbättra dina elevers lärandeupplevelse? Kontakta oss på {email}, vi ser fram emot att höra från er.", 
     "emailSubject": "Intresseanmälan",
     "emailBody": "Hej Bridgestars,%0D%0AJag är intresserad av ett samarbete och skulle vilja veta mer om hur vi kan hjälpa varandra.%0D%0A%0D%0AMitt namn är:%0D%0A%0D%0ABridgeklubb:%0D%0A%0D%0AJag är intresserad av Bridgestars kopplat till: utbildning/skräddarsydda IT-lösningar/Onlinebridge/annat"
   }
