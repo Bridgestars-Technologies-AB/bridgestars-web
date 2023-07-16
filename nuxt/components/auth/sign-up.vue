@@ -61,16 +61,16 @@ function submit(res) {
     ></base-submit-button>
 
     <div class="flex text-center">
-      <div class="xs:!mt-1 sm:!mt-6 xs:!mb-3">
-        <span class="text2">Already have an account? </span>
-        <button
-          @click="router.push({ path: '/auth/sign-in', query })"
-          class="buttonText normal-case text-blue font-bold tracking-[0.5px]"
-          type="button"
-        >
-          Sign In
-        </button>
-      </div>
+    <div class="xs:!mt-1 sm:!mt-3 xl:!mt-5 xs:!mb-3">
+      <span class="text2">Already have an account? </span>
+      <button
+        @click="navigateTo({ path: '/auth/sign-in', query})"
+        class="buttonText normal-case text-blue font-bold tracking-[0.5px]"
+        type="button"
+      >
+        Sign In
+      </button>
+    </div>
     </div>
     <!-- <div> -->
     <!-- <button class="textButton buttonText normal-case translate-y-[-12px]"> -->
