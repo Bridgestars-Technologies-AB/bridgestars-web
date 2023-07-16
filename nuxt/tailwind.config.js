@@ -1,8 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-const {iconsPlugin, getIconCollections} = require("@egoist/tailwindcss-icons");
+const {
+  iconsPlugin,
+  getIconCollections,
+} = require("@egoist/tailwindcss-icons");
 
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -16,12 +19,20 @@ module.exports = {
     require("daisyui"),
     //require("tailwindcss-animated"),
     iconsPlugin({
-      collections: getIconCollections(["ic", "material-symbols", "mdi", "circle-flags", "tabler"]), 
-      //tailwindcss chooses which icons to include based on usage 
-    })
+      collections: getIconCollections([
+        "ic",
+        "material-symbols",
+        "mdi",
+        "circle-flags",
+        "tabler",
+        "basil",
+        "majesticons",
+      ]),
+      //tailwindcss chooses which icons to include based on usage
+    }),
   ],
   daisui: {
-    prefix:"daisy-"
+    prefix: "daisy-",
   },
   theme: {
     //we should check which of these that are used
@@ -34,18 +45,18 @@ module.exports = {
       warning: "#fb8c00", //orange
       error: "#F44335", //röd
       blue: "rgb(73, 163, 241)",
-      white: "#ffffff",
+      white: "#fefefe",
       light: "#dddddd",
       dark: "#344767",
       DEFAULT: "#f74040",
-      "dash-dark":{
+      "dash-dark": {
         200: "#475569",
         300: "#334155",
         400: "#1F2A40",
         500: "#141B2D",
         DEFAULT: "#141B2D",
       },
-      "dash-light":{
+      "dash-light": {
         100: "#f5f5f5",
         200: "#eeeeee",
         300: "#e0e0e0",
@@ -53,10 +64,10 @@ module.exports = {
         500: "#9e9e9e",
         DEFAULT: "#9e9e9e",
       },
-      "dash-accent":{
+      "dash-accent": {
         DEFAULT: "#868dfb",
         light: "#6870fa",
-      }
+      },
     },
     textColor: {
       dark: "#344767", //dark text
@@ -65,10 +76,10 @@ module.exports = {
       light: "#dddddd",
       white: "#ffffff", //light text
       blue: "rgb(73, 163, 241)",
-      "dash-accent":{
+      "dash-accent": {
         DEFAULT: "#868dfb",
         light: "#6870fa",
-      }
+      },
     },
     fontFamily: {
       family: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -80,7 +91,7 @@ module.exports = {
       hmd: {raw:"(min-height: 768px)"},
       hlg: {raw:"(min-height: 992px)"},
       hxl: {raw:"(min-height: 1200px)"},
-
+      
       xs: "0px",
       // => @media (min-width: 0px) { ... } //everything smaller than 576px
       sm: "576px",
@@ -100,25 +111,25 @@ module.exports = {
     },
 
     extend: {
-      animation:{
-        'shake': 'shake 1s cubic-bezier(.36,.07,.19,.97) both',
+      animation: {
+        shake: "shake 1s cubic-bezier(.36,.07,.19,.97) both",
       },
-      keyframes:{
-        shake:{
-              '15%, 85%': {
-                transform: 'translate3d(-0.5px, 0, 0) rotate(2deg)'
-              },
-             '30%, 70%': {
-                transform: 'translate3d(0.5px, 0, 0) rotate(-2deg)'
-              },
-              '40%, 60%': {
-                transform: 'translate3d(-1px, 0, 0) rotate(5deg)'
-              },
-              '50%': {
-                transform: 'translate3d(1px, 0, 0) rotate(-5deg)'
-            }
-        }
-      }
+      keyframes: {
+        shake: {
+          "15%, 85%": {
+            transform: "translate3d(-0.5px, 0, 0) rotate(2deg)",
+          },
+          "30%, 70%": {
+            transform: "translate3d(0.5px, 0, 0) rotate(-2deg)",
+          },
+          "40%, 60%": {
+            transform: "translate3d(-1px, 0, 0) rotate(5deg)",
+          },
+          "50%": {
+            transform: "translate3d(1px, 0, 0) rotate(-5deg)",
+          },
+        },
+      },
     },
-  }
+  },
 };
