@@ -75,6 +75,8 @@ const items = [
 ]
 items.map(x => x.enabled = x.action || router.getRoutes().some(r => r.name=="dash-"+x.name))
 
+const isOpen = inject('side-menu-open')
+
 function click(item){
   if(item.divider) return;
   if(item.action) return item.action();
@@ -82,7 +84,6 @@ function click(item){
     navigateTo({name:"dash-"+item.name})
   else
     toast.error("Not implemented yet.")
-  
 }
 
 </script>
@@ -90,7 +91,17 @@ function click(item){
 
 
 <template>
-    <div class="bg-dash-light-200 dark:bg-dash-dark-300 flex flex-col w-[270px] h-[100%] overflow-y-auto">
+<!-- show open button if closed -->
+  <div v-if="!isOpen" class="absolute">
+    <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-300 bg-dark"/>
+  </div>
+
+  <div id="side-menu" :class="`bg-dash-light-200 dark:bg-dash-dark-300 flex flex-col w-[270px] z-[10] ${isOpen ? 'left-0' : '-left-[270px]'} h-[100%] overflow-y-auto fixed`">
+
+<!-- close btn -->
+    <div class="sticky top-0 h-0 flex justify-end">
+        <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-300 bg-dark"/>
+    </div>
 
       <div class="text-center flex flex-col items-center p-4">
         <img class="object-cover object-top w-[150px] h-[150px] rounded-full" src="~/assets/bridgestars/images/castor.jpg"/> 
@@ -110,5 +121,12 @@ function click(item){
     </div>
 </template>
 
-<style scoped>
+<style>
+*{
+  /* dark mode transition */
+  transition: background-color .2s ease-in-out, color .2s ease-in-out; 
+}
+#side-menu{
+  transition: left .3s ease-in-out;
+}
 </style>
