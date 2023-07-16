@@ -3,9 +3,10 @@
 // const passwordEl = document.querySelector('#password');
 // const confirmPasswordEl = document.querySelector('#confirm-password');
 
-const { t } = await loadTranslations("auth");
+
 
 export default function InitAuthFormValidation(form, callback) {
+  const { t } = useTranslate();
   const usernameEl = form.querySelector("#username");
   const usernameEmailEl = form.querySelector("#username-email");
   const emailEl = form.querySelector("#email");
@@ -20,7 +21,7 @@ export default function InitAuthFormValidation(form, callback) {
     const username = usernameEmailEl.value.trim();
 
     if (!isRequired(username)) {
-      showError(usernameEmailEl, t("auth:error.blank1"));
+      showError(usernameEmailEl, t("auth:error:email.blankUserEmail"));
       return false;
     } else {
       showSuccess(usernameEmailEl);
@@ -39,13 +40,12 @@ export default function InitAuthFormValidation(form, callback) {
     const username = usernameEl.value.trim();
 
     if (!isRequired(username)) {
-      showError(usernameEl, t("auth:error.blank2"));
+      showError(usernameEl, t("auth:error:username.blank"));
     } else if (!isBetween(username.length, min, max)) {
       showError(
         usernameEl,
         //This is not very pretty....
-        `${t("auth:error.username1")} ${min} ${t("auth:error.username2")} ${max} ${t("auth:error.username3")}.`,
-      );
+        t("auth:error.username",{min,max})      );
     } else {
       showSuccess(usernameEl);
       valid = true;
@@ -58,9 +58,9 @@ export default function InitAuthFormValidation(form, callback) {
     let valid = false;
     const email = emailEl.value.trim();
     if (!isRequired(email)) {
-      showError(emailEl, t("auth:error.blank3"));
+      showError(emailEl, t("auth:error:email.blank"));
     } else if (!isEmailValid(email)) {
-      showError(emailEl, t("auth:error.notValid"));
+      showError(emailEl, t("auth:error:password.notValid"));
     } else {
       showSuccess(emailEl);
       valid = true;
@@ -73,7 +73,7 @@ export default function InitAuthFormValidation(form, callback) {
     const password = passwordSignInEl.value.trim();
 
     if (!isRequired(password)) {
-      showError(passwordSignInEl, t("auth:error.blank4"));
+      showError(passwordSignInEl, t("auth:error:password.blank"));
       return false;
     } else {
       showSuccess(passwordSignInEl);
@@ -86,19 +86,19 @@ export default function InitAuthFormValidation(form, callback) {
     const password = passwordEl.value.trim();
 
     if (!isRequired(password)) {
-      showError(passwordEl, t("auth:error.blank4"));
+      showError(passwordEl, t("auth:error:password.blank"));
     } 
     else if(password.length < 8){
-      showError(passwordEl, t("auth:error.passError1"));
+      showError(passwordEl, t("auth:error:password.atLeastChar"));
     }
     else if(password.search(/[a-z]/) < 0){
-      showError(passwordEl, t("auth:error.passError2"));
+      showError(passwordEl, t("auth:error:password.atLeastLower"));
     }
     else if(password.search(/[A-Z]/) < 0){
-      showError(passwordEl, t("auth:error.passError3"));
+      showError(passwordEl, t("auth:error:password.atLeastUpper"));
     }
     else if(password.search(/[0-9]/) < 0){
-      showError(passwordEl, t("auth:error.passError4"));
+      showError(passwordEl, t("auth:error:password.atLeastDigit"));
     }
     else {
       showSuccess(passwordEl);
@@ -116,9 +116,9 @@ export default function InitAuthFormValidation(form, callback) {
     const password = passwordEl.value.trim();
 
     if (!isRequired(passwordConfirm)) {
-      showError(passwordConfirmEl, t("auth:error.passError5"));
+      showError(passwordConfirmEl, t("auth:error:password.enterAgain"));
     } else if (password !== passwordConfirm) {
-      showError(passwordConfirmEl, t("auth:error.passError6"));
+      showError(passwordConfirmEl, t("auth:error:password.noMatch"));
     } else {
       showSuccess(passwordConfirmEl);
       valid = true;
