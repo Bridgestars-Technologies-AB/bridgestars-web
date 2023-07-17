@@ -3,6 +3,7 @@ const router = useRouter()
 const route = useRoute()
 
 const toast = useToast()
+const auth = useAuth()
 
 // name is both the key for the translation and the route name, keep them in sync!
 const items = [
@@ -66,7 +67,7 @@ const items = [
     name: "sign-out",
     icon: "i-tabler-logout-2",
     action: async () => {
-      if(Parse.User.current()) await Parse.User.logOut();
+      if(auth.authenticated) await auth.signOut();
       toast.clear() //remove old toasts , ex sign in 
       toast.success("You have been signed out.") //translate
       navigateTo("/")
@@ -103,10 +104,12 @@ function click(item){
         <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-300 bg-dark"/>
     </div>
 
-      <div class="text-center flex flex-col items-center p-4">
-        <img class="object-cover object-top w-[150px] h-[150px] rounded-full" src="~/assets/bridgestars/images/castor.jpg"/> 
-        <h3 class="">Castor</h3>
-        <h6 class="text-[#14C6A4] dark:text-[#14C6a4] font-light tracking-normal">Bridgestars Premium</h6>
+    <div class="text-center flex items-center pl-4 pt-7 flex-wrap cursor-pointer" @click="navigateTo({name:'dash-profile'})">
+        <img class="object-cover object-top w-[50px] aspect-square rounded-full" src="~/assets/bridgestars/images/castor.jpg"/> 
+        <div class="flex flex-col text-start pl-2 justify-center space-y-2">
+          <h3 class="text-[22px] leading-[22px] tracking-tighter">Castor Mann</h3>
+          <h6 class="text-[#14C6A4] dark:text-[#14C6a4] font-light tracking-normal">Bridgestars Premium</h6>
+        </div>
       </div>
 
       <div class="flex flex-col px-5 mt-6 mb-10">
@@ -124,6 +127,5 @@ function click(item){
 <style scoped>
 #side-menu{
   transition: left .3s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out; 
-;
 }
 </style>

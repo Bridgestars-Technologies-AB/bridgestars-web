@@ -10,7 +10,7 @@ onMounted(()=>{
 
 function submit(res) {
   //not sure if this is the function, copilot suggested it
-  Parse.User.signUp(res.username, res.password, { email: res.email })
+  useAuth().signUp(res.username, res.password, res.email)
     .then((user) => {
       toast.success("You are signed up!");
       if(query.value.to) router.push({ path: query.value.to });

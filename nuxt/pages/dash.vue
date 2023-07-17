@@ -3,13 +3,14 @@ await loadTranslations("dashboard"); // load translation
 const route = useRoute()
 
 if(route.name === "dash") {
-  navigateTo("dash/overview");
+  useRouter().replace("dash/overview"); //without replace "dash" will be in history and we won't be able to go back to the login page
 }
 
 onMounted(() => {
-  if (!Parse.User.current()) {
-    useRouter().push({ path: '/auth/sign-in', query: { to: route.path}});
-  }
+  // solved by using route middleware, this way the dashboard does not flash before redirecting to login page
+  // if (!Parse.User.current()) {
+    // useRouter().replace({ path: '/auth/sign-in', query: { to: route.path}});
+  // }
 })
 const darkMode = useDarkMode() 
 const sideMenuOpen = ref(true)

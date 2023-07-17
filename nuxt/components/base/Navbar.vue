@@ -2,6 +2,7 @@
 const props = defineProps(['transparent'])
 
 const {t, i18} = useTranslate()
+const auth = useAuth()
 // const { locale, locales, setLocale } = useI18n()
 // const nuxtApp = useNuxtApp()
 
@@ -36,7 +37,6 @@ updateRoutes()
 
 const success ="#59BA83"
 const isOpen = ref(false)
-const signedIn = ref(false)
 
 const bgColor = props.transparent ? "bg-[#FFFFFF00]" : "bg-white";
 const textColor = props.transparent ? "!text-white" : "!text-dark";
@@ -44,10 +44,9 @@ const menuIconColor = props.transparent ? "bg-white" : "bg-dark";
 const iconColor = props.transparent ? "#FFFFFF" : "rgb(120,120,120)";
 
 onMounted(() => {
-  if(Parse.User.current()){
-    signedIn.value = true
+  if(auth.authenticated){
     const account = routes.find(route => route.key === 'profile')
-    account.name = Parse.User.current().get('dispName') 
+    account.name = auth.user.get('dispName') 
     account.path = '/auth/sign-in'
     account.success = true;
   }
@@ -73,7 +72,7 @@ onMounted(() => {
 <!-- Open Menu Button -->
       <div class="flex items-center sm:hidden mr-2">
         <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" :innerClass="menuIconColor"/>
-        <span v-if="signedIn" class="i-ic-baseline-account-circle !scale-[1.35]" :style="'color: '+success" @click="isOpen = !isOpen"/>
+        <span v-if="auth.authenticated" class="i-ic-baseline-account-circle !scale-[1.35]" :style="'color: '+success" @click="isOpen = !isOpen"/>
         <!-- <NavbarLangSwitcher/> -->
       </div>
 
