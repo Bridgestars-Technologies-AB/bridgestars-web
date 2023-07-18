@@ -38,7 +38,7 @@ function submit(res) {
 
 <template>
   <auth-form
-    header="Reset Password"
+    :header="$t('auth:reset.resetPassword')"
     :title="$t('auth:reset.title')"
     :subtitle="$t('auth:reset.subtitle')"
     @submit="submit"
@@ -65,7 +65,7 @@ function submit(res) {
         type="button"
         class="!text-[16px] normal-case text-blue font-bold normal-case tracking-[0.5px]"
       >
-        {{ $t("auth:reset.button") }}
+        {{ $t("auth:reset.goBack") }}
       </button>
     </div>
   </auth-form>

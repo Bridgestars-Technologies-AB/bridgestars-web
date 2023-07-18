@@ -63,7 +63,7 @@ function submit(res) {
 
     <div class="flex text-center">
       <div class="xs:!mt-1 sm:!mt-6 xs:!mb-3">
-        <span class="text2 mr-1">{{ $t("auth:signUp:footer") }} </span>
+        <span class="text2 mr-1">{{ $t("auth:signUp.footer") }} </span>
         <button
           @click="router.push({ path: '/auth/sign-in', query })"
           class="buttonText normal-case text-blue font-bold tracking-[0.5px]"

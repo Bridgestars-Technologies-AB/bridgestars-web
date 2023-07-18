@@ -71,13 +71,13 @@ function submit(res) {
     ></base-submit-button>
 
     <div class="!mt-6 whitespace-nowrap">
-      <span class="text2 mr-1">{{ $t("auth:signIn:footer") }}</span>
+      <span class="text2 mr-1">{{ $t("auth:signIn.footer") }}</span>
       <button
         type="button"
         @click="router.push({ path: '/auth/sign-up', query })"
         class="text-blue font-bold normal-case tracking-[0.5px]"
       >
-        {{ $t("auth:common:signUp") }}
+        {{ $t("auth:common.signUp") }}
       </button>
     </div>
     <div>
@@ -87,7 +87,7 @@ function submit(res) {
         class="text-blue font-bold normal-case tracking-[0.5px] translate-y-[-12px]"
         type="button"
       >
-        {{ $t("auth:signIn:forgot") }}
+        {{ $t("auth:signIn.forgot") }}
       </button>
     </div>
   </auth-form>

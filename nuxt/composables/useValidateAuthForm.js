@@ -60,7 +60,7 @@ export default function InitAuthFormValidation(form, callback) {
     if (!isRequired(email)) {
       showError(emailEl, t("auth:error:email.blank"));
     } else if (!isEmailValid(email)) {
-      showError(emailEl, t("auth:error:password.notValid"));
+      showError(emailEl, t("auth:error:email.notValid"));
     } else {
       showSuccess(emailEl);
       valid = true;
