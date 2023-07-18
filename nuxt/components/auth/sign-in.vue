@@ -5,10 +5,12 @@ const route = useRoute();
 const toast = useToast();
 const query = ref({});
 
+const auth = useAuth();
+
 onMounted(() => {
   query.value = route.query;
 
-  if (Parse.User.current()) {
+  if (auth.authenticated) {
     //temp
     toast("dev: You are already signed in, sign out at profile page");
     //go directly to profile page or temp. show: you are signed in, sign out?
@@ -25,24 +27,15 @@ watch(query, () => {
 
 function submit(res) {
   //try sign in server side first to migrate from firebase if sign in is not successfull
-  Parse.Cloud.run("signIn", {
-    email: res.usernameEmail,
-    password: res.password,
+  auth.signIn(res.usernameEmail, res.password)
+  .then((user) => {
+    toast.success("You are signed in!");
+    // disable profile since it does not exist
+    if(query.value.to) navigateTo({ path: query.value.to });
+    else navigateTo({ path: "/dash" });
   })
-    .catch(() => {
-      //could not sign in server side, ignore and try client side to get error
-    })
-    //sign in client side
-    .then(() => Parse.User.logIn(res.usernameEmail, res.password))
-    //success
-    .then((user) => {
-      toast.success("You are signed in!");
-      // disable profile since it does not exist
-      if(query.value.to) navigateTo({ path: query.value.to });
-      else navigateTo({ path: "/dash" });
-    })
-    //error
-    .catch((e) => toast.error(e.message));
+  //error
+  .catch((e) => toast.error(e.message));
 }
 </script>
 

@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   components: [
     { path: "~/components/base", prefix: "base-" },
     { path: "~/components/auth", prefix:"auth-" },
-    { path: "~/components/dashboard", prefix: "dash-" },
+    { path: "~/components/dash", prefix: "dash-" },
     "~/components",
   ],
   imports:{
@@ -24,7 +24,8 @@ export default defineNuxtConfig({
   modules: [
     // "@nuxtjs/i18n",
     '@vite-pwa/nuxt',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
   ],
   // i18n: {
   //   vueI18n: "./localization/i18n.config.ts",
