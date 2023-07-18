@@ -13,4 +13,5 @@ export default defineStore('darkmode', {
       this.value = value
     }
   },
+  persist:true,
 })
