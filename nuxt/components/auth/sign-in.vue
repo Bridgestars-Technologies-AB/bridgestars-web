@@ -4,6 +4,7 @@ const route = useRoute();
 
 const toast = useToast();
 const query = ref({});
+const { t } = await loadTranslations("auth");
 
 const auth = useAuth();
 
@@ -11,13 +12,13 @@ onMounted(() => {
   query.value = route.query;
 
   if (auth.authenticated) {
+
     //temp
-    toast("dev: You are already signed in, sign out at profile page");
+    toast(t("auth:signIn:toast.alreadyIn"));
     //go directly to profile page or temp. show: you are signed in, sign out?
 
-    if(query.value.to) navigateTo({ path: query.value.to });
+    if (query.value.to) navigateTo({ path: query.value.to });
     else navigateTo({ path: "/dash" });
-
   }
 });
 
@@ -41,20 +42,20 @@ function submit(res) {
 
 <template>
   <auth-form
-    header="Sign In"
-    title="Sign in to your Bridgestars account"
-    subtitle="Enter your username and password"
+    :header="$t('auth:common.signIn')"
+    :title="$t('auth:signIn.title')"
+    :subtitle="$t('auth:signIn.subtitle')"
     @submit="submit"
   >
     <base-input-field
       wrapperClass="w-[100%]"
-      placeholder="Username/Email"
+      :placeholder="$t('auth:placeholder.usernameEmail')"
       v-model="query.email"
       id="username-email"
     />
     <base-input-field
       wrapperClass="w-[100%]"
-      placeholder="Password"
+      :placeholder="$t('auth:placeholder.password')"
       type="password"
       id="password-signin"
     />
@@ -62,22 +63,26 @@ function submit(res) {
     <base-submit-button
       wrapperClass="w-[100%] !mt-6"
       id="submit"
-      text="SIGN IN"
+      :text="$t('auth:common.signIn')"
     ></base-submit-button>
 
     <div class="!mt-6 whitespace-nowrap">
-      <span class="text2">Don't have an account? </span>
+      <span class="text2 mr-1">{{ $t("auth:signIn.footer") }}</span>
       <button
         type="button"
-        @click="navigateTo({ path: '/auth/sign-up', query})"
+        @click="navigateTo({ path: '/auth/sign-up', query })"
         class="text-blue font-bold normal-case tracking-[0.5px]"
       >
-        Sign Up
+        {{ $t("auth:common.signUp") }}
       </button>
     </div>
     <div>
-      <button @click="navigateTo({path:'/auth/reset', query})" class="text-blue font-bold normal-case tracking-[0.5px] translate-y-[-12px]" type="button">
-        Forgot your password?
+      <button
+        @click="navigateTo({ path: '/auth/reset', query })"
+        class="text-blue font-bold normal-case tracking-[0.5px] translate-y-[-12px]"
+        type="button"
+      >
+        {{ $t("auth:signIn.forgot") }}
       </button>
     </div>
   </auth-form>
