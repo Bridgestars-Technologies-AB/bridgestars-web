@@ -2,23 +2,32 @@
 const router = useRouter();
 const toast = useToast();
 const query = ref({});
+let checkBox = null;
+
 const { t } = await loadTranslations("auth");
 
 //implement sign out logic on mounted
 onMounted(() => {
   query.value = router.query;
+  checkBox = document.getElementById("checkBox");
 });
 
 function submit(res) {
   //not sure if this is the function, copilot suggested it
-  useAuth().signUp(res.username, res.password, res.email)
-    .then((user) => {
-      toast.success(t("auth:signUp:toast.signedUp"));
-      if (query.value.to) router.push({ path: query.value.to });
-      else router.push({ path: "/dash" });
-    })
-    //error
-    .catch((e) => toast.error(e.message));
+  console.log(checkBox.checked);
+  if (checkBox.checked) {
+    useAuth()
+      .signUp(res.username, res.password, res.email)
+      .then((user) => {
+        toast.success(t("auth:signUp:toast.signedUp"));
+        if (query.value.to) router.push({ path: query.value.to });
+        else router.push({ path: "/dash" });
+      })
+      //error
+      .catch((e) => toast.error(e.message));
+  } else {
+    toast.error(t("auth:error.terms"));
+  }
 }
 </script>
 
@@ -60,6 +69,17 @@ function submit(res) {
       :text="$t('auth:common.signUp')"
       @submit="submit"
     ></base-submit-button>
+    <div class="flex flex-row">
+      <input
+        class="scale-150 mr-2"
+        id="checkBox"
+        type="checkbox"
+        ref="checkBox"
+      />
+      <label class="text2 font-bold self-center" for="terms">
+        I agree with the Terms and Conditions</label
+      ><br />
+    </div>
 
     <div class="flex text-center">
       <div class="xs:!mt-1 sm:!mt-3 xl:!mt-5 xs:!mb-3">
