@@ -21,9 +21,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="fixed w-[100%] h-[100%] flex flex-col bg-[#fefefe]">
+  <div
+    class="fixed bottom-0 top-0 w-full h-full flex flex-col justify-center bg-[#fefefe]"
+  >
     <!-- header -->
-    <div class="flex justify-start whitespace-nowrap pt-[30px] pl-[30px]">
+    <div
+      class="absolute top-0 flex justify-start whitespace-nowrap pt-[30px] pl-[30px]"
+    >
       <button
         @click="router.push({ path: '/' })"
         class="normal-case text-blue authHeader"
@@ -34,6 +38,16 @@ onMounted(() => {
       <span class="authHeader text-grey opacity-80">{{ header }}</span>
     </div>
 
+    <div class="absolute flex justify-center items-center z-[-1] h-full w-full">
+      <img
+        src="~/assets/bridgestars/art/auth-form-suits.svg"
+        class="xs:block sm:hidden w-[100%] scale-[1] min-w-[600px]"
+      />
+      <img
+        src="~/assets/bridgestars/art/auth-form-ipad.svg"
+        class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1400px] min-w-[1085px]"
+      />
+    </div>
     <!-- form -->
     <form
       name="auth-form"
@@ -41,14 +55,14 @@ onMounted(() => {
     >
       <!-- IMG -->
       <img
-        class="pt-[10px] w-[50%] h-[80%]"
+        class="anim-bounce pt-[10px] w-[50%] h-[80%]"
         id="sign-in-image"
         src="~/assets/bridgestars/art/sign_in.svg"
         alt="Bridgestars sign-in image"
       />
       <!-- TITLE -->
       <img
-        class="w-[64px] h-[64px] xs:mt-0 sm:mt-5 mb-5"
+        class="anim-bounce w-[64px] h-[64px] xs:mt-0 sm:mt-5 mb-5"
         src="~/assets/bridgestars/logo/logo-trans-512px.png"
         alt="Bridgestars logo"
       />
@@ -73,17 +87,11 @@ onMounted(() => {
   <!--           transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; -->
 </template>
 <style scoped>
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
-
 .authHeader {
   @apply font-family2 text-[3vh] hsm:text-[30px]  leading-[1.5] font-bold;
 }
 
-img {
+.anim-bounce {
   animation: anim-bounce-in 1000ms ease-out 0ms;
 }
 

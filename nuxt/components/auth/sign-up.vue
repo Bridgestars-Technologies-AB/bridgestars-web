@@ -22,7 +22,7 @@ function submit(res) {
 }
 </script>
 
-<template>
+<template class="overflow-y-scroll">
   <auth-form
     :header="$t('auth:common.signUp')"
     :title="$t('auth:signUp.title')"
@@ -62,10 +62,10 @@ function submit(res) {
     ></base-submit-button>
 
     <div class="flex text-center">
-      <div class="xs:!mt-1 sm:!mt-6 xs:!mb-3">
+      <div class="xs:!mt-1 sm:!mt-3 xl:!mt-5 xs:!mb-3">
         <span class="text2 mr-1">{{ $t("auth:signUp.footer") }} </span>
         <button
-          @click="router.push({ path: '/auth/sign-in', query })"
+          @click="navigateTo({ path: '/auth/sign-in', query })"
           class="buttonText normal-case text-blue font-bold tracking-[0.5px]"
           type="button"
         >
