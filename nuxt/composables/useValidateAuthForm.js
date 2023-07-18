@@ -45,7 +45,7 @@ export default function InitAuthFormValidation(form, callback) {
       showError(
         usernameEl,
         //This is not very pretty....
-        t("auth:error.username",{min,max})      );
+        t("auth:error.username.length",{min,max})      );
     } else {
       showSuccess(usernameEl);
       valid = true;
