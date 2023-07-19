@@ -11,6 +11,7 @@ const emit = defineEmits(["submit"]);
 //const formRef = ref(); // we need a DOM node
 
 onMounted(() => {
+  document.querySelector("input").focus();
   const form = document.querySelector("form[name=auth-form]");
   //autoAnimate(formRef.value); // thats it!
   useValidateAuthForm(form, (res: any) => {
