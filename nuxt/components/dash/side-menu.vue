@@ -115,8 +115,8 @@ function click(item){
       <div class="flex flex-col px-5 mt-6 mb-10">
         <div v-for="item in items" :key="item.key" @click="() => click(item)">
           <div v-if="item.divider" 
-            class="text font-light text-dash-dark dark:!text-dash-light mb-3 mt-5">
-            {{$t(item.key)}}
+            class="font-family font-light text-dark opacity-70 dark:text-light mb-1 mt-5 tracking-wide text-[16px]">
+            {{$t("dashboard:side_menu."+item.name)}}
           </div>
         <dash-side-menu-item v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled"/>
         </div>
