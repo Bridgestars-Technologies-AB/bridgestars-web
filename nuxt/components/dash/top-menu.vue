@@ -7,9 +7,9 @@
 
   const isSelected = (item) => route.name == 'dash-'+item;
   const colored = (b) => b ? common + "bg-dash-accent dark:bg-dash-accent" : common + "bg-dark dark:bg-light"
-  import {Popover} from 'flowbite'
+  /*import {Popover} from 'flowbite'*/
   onMounted(()=>{
-    const popover = new Popover(document.getElementById('popover-target'), {
+    /*const popover = new Popover(document.getElementById('popover-target'), {
       placement: 'bottom-end',
       content: document.getElementById('popover-description'),
       trigger: 'click',
@@ -26,7 +26,7 @@
       onHide: () => {
         notificationsOpen.value = false
       }
-    })
+    })*/
   })
 </script>
 <template>
