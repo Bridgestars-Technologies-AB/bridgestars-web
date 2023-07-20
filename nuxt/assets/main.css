@@ -28,7 +28,6 @@
   .text1 { @apply font-family text-[24px] leading-[24px] text-grey dark:text-light font-normal; }
 
   .text2 { @apply font-family text-[16px] leading-[1.6rem] text-grey dark:text-light font-light; }
-
 }
 
 /* Second layer for complex components etc, don't use, specify in style scoped instead */
