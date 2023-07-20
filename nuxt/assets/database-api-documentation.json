@@ -1,0 +1,981 @@
+[
+    {
+        "_id": "_User",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "authData": {
+            "type": "object",
+            "description": "Server stuff",
+            "who_can_view": "Only owner"
+        },
+        "username": {
+            "type": "string",
+            "description": "Lowercase username used for auth and search",
+            "who_can_view": "Authenticated"
+        },
+        "dispName": {
+            "type": "string",
+            "description": "Case sensitive username used for display",
+            "who_can_view": "Everyone",
+            "shorthand_for": "Display name"
+        },
+        "email": {
+            "type": "string",
+            "description": "Email used for auth",
+            "who_can_view": "Only owner"
+        },
+        "emailVerified": {
+            "type": "boolean",
+            "description": "Wether email has been verified or not",
+            "who_can_view": "Only Owner"
+        },
+        "bal": {
+            "type": "number",
+            "description": "Current in-game balance",
+            "who_can_view": "Authenticated",
+            "shorthand_for": "Balance"
+        },
+        "friends": {
+            "type": "array<string>",
+            "description": "List of uids of friends",
+            "who_can_view": "Only owner",
+            "shorthand_for": ""
+        },
+        "ifr": {
+            "type": "array<string>",
+            "description": "List of uids of incoming friend requests",
+            "who_can_view": "Only owner",
+            "shorthand_for": "Incoming friends requests"
+        },
+        "ofr": {
+            "type": "array<string>",
+            "description": "List of uids of outgoing friend requests",
+            "who_can_view": "Only owner",
+            "shorthand_for": "Outgoing friend requests"
+        },
+        "elo": {
+            "type": "number",
+            "description": "Current ELO ranking score",
+            "who_can_view": "Authenticated"
+        },
+        "xp": {
+            "type": "number",
+            "description": "Current Experience",
+            "who_can_view": "Authenticated",
+            "shorthand_for": "Experience"
+        },
+        "first": {
+            "type": "string",
+            "description": "Real first name",
+            "who_can_view": "Only owner*",
+            "shorthand_for": "First name"
+        },
+        "last": {
+            "type": "string",
+            "description": "Real last name",
+            "who_can_view": "Only owner*",
+            "shorthand_for": "Last name"
+        },
+        "birth": {
+            "type": "date",
+            "description": "Real birthdate",
+            "who_can_view": "Only owner*",
+            "shorthand_for": "Date of birth"
+        },
+        "nationality": {
+            "type": "string",
+            "description": "Nationality as ISO string",
+            "who_can_view": "Only owner*"
+        },
+        "profileAccess": {
+            "type": "number",
+            "description": "Dictates the access rules of private fields (Only owner*);0 - no one else; 1 - friends; 2 - everyone",
+            "who_can_view": "Only owner",
+            "shorthand_for": ""
+        },
+        "migratedFromFirebase": {
+            "type": "boolean",
+            "description": "Wether this user's password has been migrated from old db.",
+            "who_can_view": "Only owner"
+        },
+        "gameSignIn": {
+            "type": "date",
+            "description": "The last time this user was signed on the desktop app",
+            "who_can_view": "Only owner"
+        },
+        "bio": {
+            "type": "string",
+            "description": "A biography section where the user can write anything they want",
+            "who_can_view": "Authenticated",
+            "shorthand_for": "Biography"
+        },
+        "emails_sent": {
+            "type": "array<string>",
+            "description": "The emails sent to the user; ex: ['welcome']",
+            "who_can_view": "Only Owner"
+        },
+        "img": {
+            "type": "string",
+            "description": "[OBSOLETE] A link to an profile image file",
+            "who_can_view": "Everyone",
+            "shorthand_for": "Image"
+        },
+        "rooms": {
+            "type": "array<string>",
+            "description": "List of uids of rooms this user is a member of",
+            "who_can_view": "Authenticated"
+        },
+        "courses": {
+            "type": "array<string>",
+            "description": "List of uids of courses this user is a member of",
+            "who_can_view": "Authenticated"
+        },
+        "subscriptions": {
+            "type": "array<string>",
+            "description": "List of names of subscriptions;ex ['education']",
+            "who_can_view": "Authenticated",
+            "shorthand_for": ""
+        },
+        "avatar": {
+            "type": "file",
+            "description": "The file of the avatar or profile image;this is probably changing in the future",
+            "who_can_view": "Everyone",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "Wether this is an test account;it will get pruned",
+            "who_can_view": "Only owner",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "_Session",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "user": {
+            "type": "*_User",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "installationId": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "sessionToken": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "expiresAt": {
+            "type": "date",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "createdWith": {
+            "type": "object",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "_Role",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "name": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "users": {
+            "type": "relation<_User>",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "roles": {
+            "type": "relation<_Role>",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Match",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "endTime": {
+            "type": "date",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "startTime": {
+            "type": "date",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "tables": {
+            "type": "array",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "players": {
+            "type": "array",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "name": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "type": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Chat",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "users": {
+            "type": "array",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "name": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "parent": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "public": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "num_mess": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "room": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Message",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "sender": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "text": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "chat": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "status": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "reactions": {
+            "type": "object",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Table",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "north": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "south": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "east": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "west": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "data": {
+            "type": "array",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Post",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "type": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "title": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "chat": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "reactions": {
+            "type": "object",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "subtype": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "data": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "img": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "author": {
+            "type": "*_User",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "info": {
+            "type": "object",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "data2": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "parent": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "room": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "comments": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "archived": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Reaction",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "type": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "user": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "data": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "target": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Room",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "name": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "desc": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "type": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "public": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Course",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "title": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "desc": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "data": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "room": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "free": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "level": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "start": {
+            "type": "date",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "length_weeks": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "members": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Voucher",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "type": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "desc": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "validUntil": {
+            "type": "date",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "data": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "uses": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "enabled": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "usedBy": {
+            "type": "array",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "maxUses": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "usedAt": {
+            "type": "array",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "customCode": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "pending": {
+            "type": "array",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "paid": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "_Installation",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "installationId": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "deviceToken": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "channels": {
+            "type": "array",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "deviceType": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "pushType": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "GCMSenderId": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "timeZone": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "localeIdentifier": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "badge": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "appVersion": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "appName": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "appIdentifier": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "parseVersion": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Subscription",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "name": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "status": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "user": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "sub_id": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "cus_id": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "start_date": {
+            "type": "date",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "trial_end": {
+            "type": "date",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "current_period_end": {
+            "type": "date",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Customer",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "user": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "cus_id": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Invoice",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "total": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "amount_paid": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "sub_id": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "cus_id": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "inv_id": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    },
+    {
+        "_id": "Tournament",
+        "objectId": "string",
+        "updatedAt": "date",
+        "createdAt": "date",
+        "pbn": {
+            "type": "file",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "name": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "arranger": {
+            "type": "string",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "id": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "nbr_players": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "nbr_boards": {
+            "type": "number",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "date": {
+            "type": "date",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "internal": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        },
+        "test": {
+            "type": "boolean",
+            "description": "",
+            "who_can_view": "",
+            "shorthand_for": ""
+        }
+    }
+]
