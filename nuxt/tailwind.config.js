@@ -13,10 +13,9 @@ module.exports = {
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
     "./app.vue",
-    "./node_modules/tw-elements/dist/js/**/*.js",
+    "./node_modules/flowbite/**/*.{js,ts}",
   ],
   plugins: [
-    require('flowbite/plugin'),
     //require("tailwindcss-animated"),
     iconsPlugin({
       collections: getIconCollections([
@@ -30,6 +29,7 @@ module.exports = {
       ]),
       //tailwindcss chooses which icons to include based on usage
     }),
+    require('flowbite'),
   ],
   theme: {
     //we should check which of these that are used

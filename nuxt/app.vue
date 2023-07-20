@@ -24,7 +24,6 @@ onMounted(() => {
   balanceText();
 })
 
-
 //import "tw-elements/dist/css/tw-elements.min.css";
 provide("first_time_at_home", ref(true));
 </script>
