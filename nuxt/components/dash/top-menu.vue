@@ -7,6 +7,7 @@
 
   const isSelected = (item) => route.name == 'dash-'+item;
   const colored = (b) => b ? common + "bg-dash-accent dark:bg-dash-accent" : common + "bg-dark dark:bg-light"
+
 </script>
 <template>
   <div class="bg-dash-light-300 dark:bg-dash-dark flex justify-end flex-grow p-3 space-x-4 h-fit">

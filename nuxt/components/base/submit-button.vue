@@ -5,7 +5,7 @@ const props = defineProps(["wrapperClass", "text"]);
 <template>
   <div :class="'buttonDiv ' + wrapperClass">
     <button
-      class="font-family py-[12px] px-[28px] rounded-[8px] h-[35px] btn tracking-[2px]"
+      class="font-family py-[12px] px-[28px] rounded-[8px] h-[42px] btn tracking-[2px]"
       v-bind="$attrs"
     >
     {{text ||  "SUBMIT"}}

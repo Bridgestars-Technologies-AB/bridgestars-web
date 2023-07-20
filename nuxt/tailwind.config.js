@@ -16,7 +16,7 @@ module.exports = {
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   plugins: [
-    require("daisyui"),
+    require('flowbite/plugin'),
     //require("tailwindcss-animated"),
     iconsPlugin({
       collections: getIconCollections([
@@ -31,9 +31,6 @@ module.exports = {
       //tailwindcss chooses which icons to include based on usage
     }),
   ],
-  daisui: {
-    prefix: "daisy-",
-  },
   theme: {
     //we should check which of these that are used
     backgroundColor: {
@@ -132,4 +129,18 @@ module.exports = {
       },
     },
   },
+    safelist: [
+    'w-64',
+    'w-1/2',
+    'rounded-l-lg',
+    'rounded-r-lg',
+    'bg-gray-200',
+    'grid-cols-4',
+    'grid-cols-7',
+    'h-6',
+    'leading-6',
+    'h-9',
+    'leading-9',
+    'shadow-lg'
+  ],
 };
