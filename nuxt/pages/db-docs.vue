@@ -5,37 +5,20 @@ const commonProps = ['_id', 'objectId', 'updatedAt', 'createdAt']
 const public_fields= ["img","dispName"]
 const protected_fields= ["email","authData","first","last","nationality","birth","profileAccess","friends","ifr","ofr","migratedFromFirebase","gameSignIn"]
 
-data.forEach(table => {
-  console.log(table)
-  Object.keys(table).forEach(key => {
+// used this to iterate over all fields and add necessary attributes to fill in later
+// data.forEach(table => {
+//   // console.log(table)
+//   Object.keys(table).forEach(key => {
+//
+//   })
+// })
 
-    // if(!commonProps.includes(key)) {
-    //   if(table["_id"]==="_User"){
-    //     if(public_fields.includes(key)){
-    //       table[key]["who_can_view"] = "Everyone";
-    //     }
-    //     else if(protected_fields.includes(key)){
-    //       table[key]["who_can_view"] = "Only owner"
-    //     }
-    //     else{
-    //       table[key]["who_can_view"] = "Authenticated"
-    //     }
-    //   }
-    // }
-    // if(!commonProps.includes(key)) {
-    //   table[key] = {
-    //     type: table[key],
-    //     description: "",
-    //     who_can_view: "",
-    //     shorthand_for: "",
-    //   } 
-    // }
-  })
-})
 data = [
   ...data.filter(x => x['_id'][0] === '_').sort((a, b) => a['_id'] < b['_id'] ? 1 : -1),  //default classes, starts with _, sorted
   ...data.filter(x => x['_id'][0] !== '_').sort((a,b) => a['_id'] < b['_id'] ? -1 : 1)]   //other, sorted
+
 const toast = useToast()
+
 function copyUrl(id){
   let url = window.location.href;
   if(url.includes("#")){

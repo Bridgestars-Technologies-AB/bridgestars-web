@@ -11,16 +11,14 @@ onMounted(() => {
   video
     .play()
     .then(() => {
-      console.log("video playing");
       video.addEventListener("ended", () => {
-        console.log("video ended");
         showVideo.value = false;
       });
       fadeInUI(1000);
       fadeInBackground(1500);
     })
     .catch((e) => {
-      console.error("video play error: ", e);
+      console.error("video play error: ", e,"showing image instead");
       showVideo.value = false;
       fadeInUI(0);
       fadeInBackground(500);
@@ -39,7 +37,7 @@ onMounted(() => {
 function fadeInBackground(delay) {
   setTimeout(() => {
     const fadeTarget = document.getElementsByClassName("background")[0];
-    if (fadeTarget == null) console.error("fadeTarget is null");
+    if (fadeTarget == null) console.error("fadeTarget is null"); //this should never happen
     else {
       fadeTarget.style["background-color"] = "rgb(240, 242, 245)";
       fadeTarget.style["opacity"] = 1;

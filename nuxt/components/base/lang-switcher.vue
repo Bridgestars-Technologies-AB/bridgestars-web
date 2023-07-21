@@ -3,7 +3,7 @@
 const {t, i18} = useTranslate()
 
 const emit = defineEmits(['switched'])
-console.log(i18.supportedLngs)
+// console.log(i18.supportedLngs)
 async function set(lang){
   await i18.changeLanguage(lang)
   emit('switched', lang)
