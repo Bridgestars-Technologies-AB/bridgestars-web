@@ -33,9 +33,6 @@ provide('side-menu-open', sideMenuOpen)
 #content{
   transition: margin-left 0.3s ease-in-out;
 }
-</style>
-
-<style>
 
 html, body {
   /* DISABLE ALL SCROLLING ON BODY*/
