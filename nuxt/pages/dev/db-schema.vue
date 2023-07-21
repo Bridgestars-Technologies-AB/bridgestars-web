@@ -47,7 +47,8 @@ function copyUrl(id){
         </div>
       </div>
 
-      <div v-for="item in data" class="flex flex-col px-3 items-start mt-5">
+    <div class="flex flex-col items-center w-full flex-grow ">
+      <div v-for="item in data" class="flex flex-col px-3 items-start mt-5 w-full max-w-[1700px]">
         <div class="flex items-center cursor-pointer" @click="copyUrl(item['_id'])">
           <h2 class="xl:text-[30px] sm:text-[25px] xs:text-[16px] font-bold" :id="item['_id']">{{item['_id']}}</h2>
           <span class="i-material-symbols-link-rounded text-dark text-2xl ml-2"/>
@@ -77,6 +78,7 @@ function copyUrl(id){
           </tr>
         </table>
       </div>
+    </div>
     </div>
 </template>
 

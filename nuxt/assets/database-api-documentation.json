@@ -145,7 +145,7 @@
         },
         "test": {
             "type": "boolean",
-            "description": "Wether this is an test account;it will get pruned",
+            "description": "Wether this is an test account;will be pruned if true",
             "who_can_view": "Only owner",
             "shorthand_for": ""
         }
