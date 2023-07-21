@@ -11,7 +11,15 @@ onMounted(() => {
   // if (!Parse.User.current()) {
     // useRouter().replace({ path: '/auth/sign-in', query: { to: route.path}});
   // }
+  //find html and body elements and set their overflow to hidden
+  document.getElementsByTagName("html")[0].style.overflow = "hidden";
 })
+
+onUnmounted(() => {
+  //find html and body elements and set their overflow to auto
+  document.getElementsByTagName("html")[0].style.overflow = "auto";
+})
+
 const darkMode = useDarkMode() 
 const sideMenuOpen = ref(true)
 provide('side-menu-open', sideMenuOpen)
@@ -34,14 +42,11 @@ provide('side-menu-open', sideMenuOpen)
   transition: margin-left 0.3s ease-in-out;
 }
 
-html, body {
-  /* DISABLE ALL SCROLLING ON BODY*/
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-html, body, #__nuxt {
-  height: 100%;
-}
+/* html, body { */
+/*   /* DISABLE ALL SCROLLING ON BODY */
+/*   overflow-y: hidden; */
+/*   overflow-x: hidden; */
+/* } */
 *{
   /* dark mode transition */
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; 

@@ -28,6 +28,28 @@
   .text1 { @apply font-family text-[24px] leading-[24px] text-grey dark:text-light font-normal; }
 
   .text2 { @apply font-family text-[16px] leading-[1.6rem] text-grey dark:text-light font-light; }
+
+  html, body, #__nuxt {
+    height: 100%;
+  }
+
+/* override some wierd tailwind standards or smth, seems to be caused be the flowbite integration */
+[type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fefefe;
+    border-color: #6B7280;
+    border-width: 0px;
+    border-radius: 0px;
+    padding-top: 0rem;
+    padding-right: 0rem;
+    padding-bottom: 0rem;
+    padding-left: 0rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    --tw-shadow: 0 0 #0000;
+}
 }
 
 /* Second layer for complex components etc, don't use, specify in style scoped instead */

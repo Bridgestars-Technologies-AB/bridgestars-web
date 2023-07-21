@@ -13,6 +13,7 @@
   "devDependencies": {
     "@iconify/json": "^2.2.85",
     "@nuxt/devtools": "latest",
+    "@nuxtjs/tailwindcss": "^6.8.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@types/node": "^18",
     "@types/parse": "^3.0.4",
