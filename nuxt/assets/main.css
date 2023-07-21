@@ -2,43 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
- /* these styles are the bottom layer and will therefore be overridden by other layers and utilities  */
-@layer base { 
-  h1,h2,h3,h4,h5,h6 { @apply text-dark dark:text-light font-bold; }
+/* these styles are the bottom layer and will therefore be overridden by other layers and utilities  */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-dark dark:text-light font-bold;
+  }
 
-  h1,h2,h3{ @apply font-family2; }
+  h1,
+  h2,
+  h3 {
+    @apply font-family2;
+  }
 
-  h4,h5,h6{ @apply font-family; }
+  h4,
+  h5,
+  h6 {
+    @apply font-family;
+  }
 
-  h1 { @apply text-[48px] leading-[48px]; }
+  h1 {
+    @apply text-[48px] leading-[48px];
+  }
 
-  h2 { @apply text-[36px] leading-[36px]; }
+  h2 {
+    @apply text-[36px] leading-[36px];
+  }
 
-  h3 { @apply text-[30px] leading-[33px]; }
+  h3 {
+    @apply text-[30px] leading-[33px];
+  }
 
-  h4 { @apply text-[24px] leading-[24px]; }
+  h4 {
+    @apply text-[24px] leading-[24px];
+  }
 
-  h5 { @apply text-[20px] leading-[20px]; }
+  h5 {
+    @apply text-[20px] leading-[20px];
+  }
 
-  h6 { @apply text-[16px] leading-[16px]; }
+  h6 {
+    @apply text-[16px] leading-[16px];
+  }
 
-  button { @apply font-family text-[14px] font-light leading-[14px] uppercase; }
+  button {
+    @apply font-family text-[14px] font-light leading-[14px] uppercase;
+  }
 
-  .text1 { @apply font-family text-[24px] leading-[24px] text-grey dark:text-light font-normal; }
+  .text1 {
+    @apply font-family text-[24px] leading-[24px] text-grey dark:text-light font-normal;
+  }
 
-  .text2 { @apply font-family text-[16px] leading-[1.6rem] text-grey dark:text-light font-light; }
+  .text2 {
+    @apply font-family text-[16px] leading-[1.6rem] text-grey dark:text-light font-light;
+  }
 
-  .accountBox { @apply border-black border-2 m-[30px] mt-[5px] h-[30%] }
+  .accountBox {
+    @apply rounded-2xl shadow-xl bg-[#FFFFFF] h-[30%];
+  }
 
+  .editButton {
+    @apply border-2 shadow-xl border-[#344767] rounded-lg p-2;
+  }
 }
 
 /* Second layer for complex components etc, don't use, specify in style scoped instead */
 @layer components {
-
 }
 
 /* Third layer, here we can add our own utility classes that tailwind does not have  */
-@layer utilities{
-
+@layer utilities {
 }
-

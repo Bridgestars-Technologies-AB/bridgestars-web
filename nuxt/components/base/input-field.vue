@@ -1,10 +1,17 @@
 <script setup lang="js">
-const props = defineProps([
-  "placeholder",
-  "id",
-  "wrapperClass",
-  "modelValue",
-]);
+const props = defineProps({
+
+  placeholder: String,
+  id: String,
+  wrapperClass: String,
+  modelValue: Object,
+  enabled: Boolean,
+  color: {
+    type: String,
+    default: '#FFFFFF'
+  }
+})
+
 defineEmits(["update:modelValue"]);
 
 // const type = ref(props.type);
@@ -33,10 +40,11 @@ function toggleShowPass() {
 <template>
   <div :class="'input-block ' + wrapperClass">
     <input
-      class="py-2.5 px-3.5 bg-white"
+      :class="'py-2.5 px-3.5 bg-[' + color + ']'"
       v-bind="$attrs"
       placeholder=" "
       ref="input"
+      :disabled="enabled"
       :id="id"
       :value="modelValue || value"
       @input="update"
@@ -53,14 +61,16 @@ function toggleShowPass() {
     <!-- ></div> -->
     <!-- v-if="props.id === 'password-signin' && !showPass" -->
     <ClientOnly>
-      <div v-if="(showEye || showPass) && props.id.includes('password')"
-        class="absolute top-[14px] right-[14px]">
-          <!-- 14px since input field is 48px, so position should be 48/2-20/2=14px from top -->
+      <div
+        v-if="(showEye || showPass) && props.id.includes('password')"
+        class="absolute top-[14px] right-[14px]"
+      >
+        <!-- 14px since input field is 48px, so position should be 48/2-20/2=14px from top -->
         <div
           :class="`opacity-80 ${
             showPass ? 'i-basil-eye-closed-outline' : 'i-basil-eye-outline'
           }`"
-          style="height:20px; width:20px;"
+          style="height: 20px; width: 20px"
           @click="toggleShowPass"
         ></div>
       </div>
