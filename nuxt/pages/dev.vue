@@ -1,19 +1,20 @@
 <script setup>
 definePageMeta({
-  middleware:[
-    function (to, from){
-      // if(process.server) return;
-      // going from not dash to dash checks for auth
-      console.log("dev: ", process.dev)
-      console.log("process: ", process)
-      if(!process.dev && to.fullPath.startsWith("/dev")){
-         abortNavigation() 
+  middleware:[function(from, to){
+      if(!process.dev){
+        return createError({statusCode:404, statusMessage: 'Page not found: /dev'})
+        // return navigateTo("/", {redirectCode:404})
+         // return abortNavigation(new Error("error route not found")) 
       }
-      if(from.path !== to.path) return to; 
-    }
-  ]
+
+  }]
 })
+const route = useRoute()
 </script>
 <template>
+  <div class="flex items-center m-3 cursor-pointer" @click="navigateTo(route.name == 'dev' ? '/' : '/dev')">
+      <span class="i-material-symbols-arrow-back-ios text-blue xs:text-[14px] md:text-[20px]"/>
+    <a class="xs:text-[14px] md:text-[20px] text-blue font-family2 mr-1">{{route.name == 'dev' ? 'Back to home': 'Back to overview'}}</a>
+  </div>
   <NuxtPage/>
 </template>
