@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   postcss: {
     plugins: {
       tailwindcss: {
-        // cssPath: '~/assets/main.css',
+
       },
       autoprefixer: {},
     },
@@ -25,7 +25,7 @@ export default defineNuxtConfig({
   },
   modules: [
     // "@nuxtjs/i18n",
-    '@vite-pwa/nuxt',
+    // '@vite-pwa/nuxt',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
   ],
@@ -57,12 +57,15 @@ export default defineNuxtConfig({
   //   }
   //   /*options*/
   // },
-  pwa:{
-//???
-  },
+//   pwa:{
+// //???
+//   },
   // below is for icon autoimport
   vite: {
     plugins: [ ],
+  },
+  build:{
+    transpile: ["vue-toastification"],
   },
   app: {
     head: {
