@@ -1,9 +1,17 @@
 <script setup>
-import Settings from "~/pages/dash/settings.vue";
+import { Popover, initPopovers } from "flowbite";
+
+const route = useRoute();
+const darkMode = useDarkMode();
 
 const common =
-  "w-[24px] h-[24px] bg-dark dark:bg-light hover:bg-dash-accent dark:hover:bg-dash-accent hover:animate-shake";
-const darkMode = useDarkMode();
+  "w-[24px] h-[24px] hover:bg-dash-accent dark:hover:bg-dash-accent hover:animate-shake "; //important keep space at the end
+
+const isSelected = (item) => route.name == "dash-" + item;
+const colored = (b) =>
+  b
+    ? common + "bg-dash-accent dark:bg-dash-accent"
+    : common + "bg-dark dark:bg-light";
 </script>
 <template>
   <div
@@ -14,14 +22,19 @@ const darkMode = useDarkMode();
         !darkMode.enabled
           ? 'i-material-symbols-dark-mode-outline'
           : 'i-material-symbols-light-mode-outline'
-      }  ${common}`"
+      }  ${colored(false)}`"
       @click="darkMode.toggle()"
-    ></span>
-    <span :class="`i-material-symbols-notifications-outline ${common}`"></span>
+    />
+    <dash-bell />
     <span
-      :class="`i-material-symbols-settings-outline ${common}`"
-      @click="navigateTo({ name: 'dash-account-details' })"
-    ></span>
-    <span :class="`i-ic-baseline-account-circle ${common}`"></span>
+      :class="`i-material-symbols-settings-outline ${colored(
+        isSelected('settings')
+      )}`"
+    />
+    <span
+      :class="`i-ic-baseline-account-circle ${colored(isSelected('profile'))}`"
+    />
   </div>
 </template>
+
+<style scoped></style>

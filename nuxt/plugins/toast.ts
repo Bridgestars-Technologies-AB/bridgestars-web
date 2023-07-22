@@ -1,9 +1,10 @@
-import Toast, { POSITION } from "vue-toastification";
+import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
 const options = {
     // You can set your default options here
-    position: POSITION.BOTTOM_LEFT
+    position:"bottom-left",
+    timeout:8000
 };
 
 
