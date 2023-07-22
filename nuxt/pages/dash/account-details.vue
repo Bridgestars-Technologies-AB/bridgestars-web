@@ -1,6 +1,7 @@
 <script setup>
-const boxDisabled1 = ref(false);
-const boxDisabled2 = ref(false);
+const boxDisabled1 = ref(true);
+const boxDisabled2 = ref(true);
+const auth = useAuth();
 </script>
 
 <template>
