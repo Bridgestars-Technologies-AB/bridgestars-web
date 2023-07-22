@@ -8,7 +8,6 @@ const { t } = await loadTranslations("auth");
 
 onMounted(() => {
   query.value = route.query;
-  console.log(query);
 });
 
 function submit(res) {

@@ -43,14 +43,14 @@ const textColor = props.transparent ? "!text-white" : "!text-dark";
 const menuIconColor = props.transparent ? "bg-white" : "bg-dark";
 const iconColor = props.transparent ? "#FFFFFF" : "rgb(120,120,120)";
 
-onMounted(() => {
-  if(auth.authenticated){
-    const account = routes.find(route => route.key === 'profile')
-    account.name = auth.user.get('dispName') 
-    account.path = '/auth/sign-in'
-    account.success = true;
-  }
-})
+//runs on both client and server
+if(auth.authenticated){
+  const account = routes.find(route => route.key === 'profile')
+  account.name = auth.get('dispName');
+  account.path = '/dash'
+  account.success = true;
+}
+
 
 </script>
 

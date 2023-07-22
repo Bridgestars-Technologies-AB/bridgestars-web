@@ -129,7 +129,10 @@ div.input-block input:focus + span.placeholder {
   background: #fefefe;
 }
 div.input-block input:focus {
-  @apply border-info;
+  @apply border-[#2590ee];
+}
+div.input-block{
+  @apply border-none;
 }
 div.input-block input:focus + span.placeholder {
   @apply text-blue !font-medium;
