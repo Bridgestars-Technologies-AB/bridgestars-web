@@ -96,7 +96,7 @@ function fadeInUI(delay) {
     <!-- Button overlay on video -->
     <div v-if="showUI" class="flex justify-center overflow-hidden">
       <div class="bg-video-overlay">
-        <NuxtLink to="/auth/sign-up">
+        <NuxtLink to="/auth/sign-in">
           <button
             class="bg-[#EE6065] rounded-full px-5 hxs:py-4 hsm:py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px] videoButtonAnimation hxs:-mb-1 hsm:mb-2"
           >
@@ -150,9 +150,7 @@ function fadeInUI(delay) {
               />
               <div class="bg-white h-[40%] w-[3px]" />
             </div>
-            <span
-              class="text1 italic text-white text-[18px] leading-[25px]"
-            >
+            <span class="text1 italic text-white text-[18px] leading-[25px]">
               {{ $t("home:quote.desc1") }}
             </span>
           </div>
@@ -191,7 +189,9 @@ function fadeInUI(delay) {
             <template #email>
               <a
                 class="text-blue font-normal underline"
-                :href="`mailto:info@bridgestars.net?subject=${$t('home:contact.emailSubject')}&body=${$t('home:contact.emailBody')}`"
+                :href="`mailto:info@bridgestars.net?subject=${$t(
+                  'home:contact.emailSubject'
+                )}&body=${$t('home:contact.emailBody')}`"
                 target="_blank"
                 rel="noreferrer"
               >
