@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 export default defineStore('darkmode', {
-  state: () => ({ value:false, auto:false }), //fix auto-detect
+  state: () => ({ value:true, auto:false }), //fix auto-detect
   getters: {
     enabled: (state) => state.value,
   },

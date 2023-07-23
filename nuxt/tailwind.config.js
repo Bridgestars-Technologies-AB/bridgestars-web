@@ -4,39 +4,7 @@ const {
   getIconCollections,
 } = require("@egoist/tailwindcss-icons");
 
-module.exports = {
-  darkMode: "class",
-  content: [
-    "./components/**/*.{js,vue,ts}",
-    "./layouts/**/*.vue",
-    "./pages/**/*.vue",
-    "./plugins/**/*.{js,ts}",
-    "./nuxt.config.{js,ts}",
-    "./app.vue",
-    "./node_modules/tw-elements/dist/js/**/*.js",
-  ],
-  plugins: [
-    require("daisyui"),
-    //require("tailwindcss-animated"),
-    iconsPlugin({
-      collections: getIconCollections([
-        "ic",
-        "material-symbols",
-        "mdi",
-        "circle-flags",
-        "tabler",
-        "basil",
-        "majesticons",
-      ]),
-      //tailwindcss chooses which icons to include based on usage
-    }),
-  ],
-  daisui: {
-    prefix: "daisy-",
-  },
-  theme: {
-    //we should check which of these that are used
-    backgroundColor: {
+const backgroundColors = {
       dark: "#344767",
       primary: "#f74040", //röd
       secondary: "#2e294e", //lila
@@ -68,8 +36,8 @@ module.exports = {
         DEFAULT: "#868dfb",
         light: "#6870fa",
       },
-    },
-    textColor: {
+}
+const textColors = {
       dark: "#344767", //dark text
       DEFAULT: "#344767", //dark text
       grey: "#7b809a",
@@ -80,6 +48,72 @@ module.exports = {
         DEFAULT: "#868dfb",
         light: "#6870fa",
       },
+      borderColor:{
+        ...backgroundColors
+      }
+}
+
+module.exports = {
+  darkMode: "class",
+  content: [
+    "./components/**/*.{js,vue,ts}",
+    "./layouts/**/*.vue",
+    "./pages/**/*.vue",
+    "./plugins/**/*.{js,ts}",
+    "./nuxt.config.{js,ts}",
+    "./app.vue",
+    "./node_modules/flowbite/**/*.{js,ts}",
+  ],
+  plugins: [
+    //require("tailwindcss-animated"),
+    iconsPlugin({
+      collections: getIconCollections([
+        "ic",
+        "material-symbols",
+        "mdi",
+        "circle-flags",
+        "tabler",
+        "basil",
+        "majesticons",
+      ]),
+      //tailwindcss chooses which icons to include based on usage
+    }),
+    require('flowbite/plugin'),
+  ],
+  theme: {
+    //we should check which of these that are used
+    extend:{
+      backgroundColor: {
+        ...backgroundColors
+      },
+      textColor: {
+        ...textColors
+      },
+      textDecorationColor:{
+        ...textColors
+      },
+      animation: {
+        shake: "shake 1s cubic-bezier(.36,.07,.19,.97) both",
+      },
+      keyframes: {
+        shake: {
+          "15%, 85%": {
+            transform: "translate3d(-0.5px, 0, 0) rotate(2deg)",
+          },
+          "30%, 70%": {
+            transform: "translate3d(0.5px, 0, 0) rotate(-2deg)",
+          },
+          "40%, 60%": {
+            transform: "translate3d(-1px, 0, 0) rotate(5deg)",
+          },
+          "50%": {
+            transform: "translate3d(1px, 0, 0) rotate(-5deg)",
+          },
+        },
+      },
+      transitionProperty: {
+        'decoration-color': 'text-decoration-color',
+      }
     },
     fontFamily: {
       family: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -109,27 +143,19 @@ module.exports = {
       "2xl": "1400px",
       // => @media (min-width: 1536px) { ... }
     },
-
-    extend: {
-      animation: {
-        shake: "shake 1s cubic-bezier(.36,.07,.19,.97) both",
-      },
-      keyframes: {
-        shake: {
-          "15%, 85%": {
-            transform: "translate3d(-0.5px, 0, 0) rotate(2deg)",
-          },
-          "30%, 70%": {
-            transform: "translate3d(0.5px, 0, 0) rotate(-2deg)",
-          },
-          "40%, 60%": {
-            transform: "translate3d(-1px, 0, 0) rotate(5deg)",
-          },
-          "50%": {
-            transform: "translate3d(1px, 0, 0) rotate(-5deg)",
-          },
-        },
-      },
-    },
   },
+    safelist: [
+    'w-64',
+    'w-1/2',
+    'rounded-l-lg',
+    'rounded-r-lg',
+    'bg-gray-200',
+    'grid-cols-4',
+    'grid-cols-7',
+    'h-6',
+    'leading-6',
+    'h-9',
+    'leading-9',
+    'shadow-lg'
+  ],
 };

@@ -22,7 +22,7 @@ export default async function loadTranslations(namespace:string|undefined){
 
     i18next.on('languageChanged', load)
     onBeforeUnmount(() => {
-      console.log("Stopping listening to languageChanged for namespace: ", namespace)
+      // console.log("Stopping listening to languageChanged for namespace: ", namespace)
       i18next.off('languageChanged', load);
     })
     await load(lang);
@@ -34,5 +34,5 @@ async function loadNamespace(lang:string, namespace:string, i18next:i18n){
   if(ns.get(namespace)?.has(lang)) return;
   i18next.addResourceBundle(lang, namespace, await import(`~/localization/${lang}/${namespace}.json`))
   ns.get(namespace)?.add(lang);
-  console.log(`Translation [${namespace}/${lang}] loaded`)
+  // console.log(`Translation [${namespace}/${lang}] loaded`)
 }

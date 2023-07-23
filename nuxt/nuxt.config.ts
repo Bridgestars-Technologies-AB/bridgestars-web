@@ -1,11 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
+  runtimeConfig: {
+    client:'',
+    public:{
+      server:'',
+
+    }
+  },
   devtools: { enabled: true },
   css: ["~/assets/main.css"],
   postcss: {
     plugins: {
-      tailwindcss: {},
+      tailwindcss: {
+
+      },
       autoprefixer: {},
     },
   },
@@ -23,9 +32,10 @@ export default defineNuxtConfig({
   },
   modules: [
     // "@nuxtjs/i18n",
-    '@vite-pwa/nuxt',
+    // '@vite-pwa/nuxt',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
+    '@nuxtjs/tailwindcss',
   ],
   // i18n: {
   //   vueI18n: "./localization/i18n.config.ts",
@@ -55,12 +65,15 @@ export default defineNuxtConfig({
   //   }
   //   /*options*/
   // },
-  pwa:{
-//???
-  },
+//   pwa:{
+// //???
+//   },
   // below is for icon autoimport
   vite: {
     plugins: [ ],
+  },
+  build:{
+    transpile: ["vue-toastification"],
   },
   app: {
     head: {
