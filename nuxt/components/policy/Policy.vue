@@ -10,25 +10,15 @@
 <script setup>
   function moveLine(event) {
     const button = event.target
-    var tabButtons = document.querySelectorAll('.policyButton');
     var line = document.querySelector('.line');
-
-    // Remove 'active' class from all buttons
-    tabButtons.forEach(function(tabButton) {
-      tabButton.classList.remove('active');
-    });
-
-    // Add 'active' class to the clicked button
-    button.classList.add('active');
 
     // Calculate the left position of the active button
     var activeButtonRect = button.getBoundingClientRect();
     var containerRect = button.parentNode.getBoundingClientRect();
     var offsetLeft = activeButtonRect.left - containerRect.left;
-    const offset = offsetLeft;
 
     // Apply the transform to move the line
-    line.style.transform = `translate(${offset}px,  ${0}px)`;
+    line.style.transform = `translate(${offsetLeft}px,  ${0}px)`;
     line.style.width = `${activeButtonRect.width}px`;
     
   }
