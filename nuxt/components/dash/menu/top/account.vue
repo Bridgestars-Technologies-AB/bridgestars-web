@@ -43,7 +43,7 @@ onMounted(()=>{
         />
     </div>
 
-  <div data-popover ref="popover" role="tooltip" class="absolute z-10 invisible inline-block w-[200px] text-sm transition-opacity duration-300  rounded-lg shadow-sm dark:bg-dash-dark-200 bg-dash-light-100">
+  <div data-popover ref="popover" role="tooltip" class="absolute z-10 invisible inline-block w-[200px] text-sm transition-opacity duration-300  rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500">
 
     <div class="px-3 py-2 border-b border-dash-dark dark:border-dash-light border-opacity-20 group cursor-pointer" @click="navigateTo('/dash/profile')">
       <div class="flex flex-col space-y-1">

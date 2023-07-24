@@ -69,8 +69,8 @@ function formatTime(time){
       </div>
     </div>
 
-  <div data-popover id="notifications-popover" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm transition-opacity duration-300  rounded-lg shadow-sm dark:bg-dash-dark-200 bg-dash-light-100">
-    <div class="px-3 py-2 border-b rounded-t-lg">
+  <div data-popover id="notifications-popover" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm transition-opacity duration-300  rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500">
+    <div class="px-3 py-2 border-b border-dark dark:border-white border-opacity-40 rounded-t-lg">
         <h3 class="">Notifications</h3>
     </div>
     <div v-for="n in notifications" :class="`px-3 py-2`">

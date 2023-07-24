@@ -11,7 +11,7 @@ const logoutModalOpen = ref(false)
 const items = [
   {
     name:"overview",
-    icon:"i-ic-outline-home"
+    icon:"i-ic-home"
   },
   {
     divider:true,
@@ -19,7 +19,7 @@ const items = [
   },
   {
     name: "deal-editor",
-    icon:"i-material-symbols-sports-esports-outline"
+    icon:"i-material-symbols-sports-esports"
   },
   // {
   //   name: "dealhistory",
@@ -39,11 +39,11 @@ const items = [
   },
   {
     name: "contracting",
-    icon: "i-material-symbols-sports-esports-outline"
+    icon: "i-material-symbols-sports-esports"
   },
   {
     name: "gambit",
-    icon: "i-material-symbols-play-circle-outline"
+    icon: "i-material-symbols-play-circle"
   },
   {
     name: "suit-treatments",
@@ -51,7 +51,7 @@ const items = [
   },
   {
     name: "play",
-    icon: "i-material-symbols-play-circle-outline"
+    icon: "i-material-symbols-play-circle"
   },
   {
     divider:true,
@@ -97,7 +97,7 @@ function click(item){
     <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-300 bg-dark-500"/>
   </div>
 
-  <div id="side-menu" :class="`bg-dash-light-300 dark:bg-dash-dark-500 flex flex-col w-[270px] z-[10] ${isOpen ? 'left-0' : '-left-[270px]'} h-[100%] overflow-y-auto fixed`">
+  <div id="side-menu" :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col w-[270px] z-[10] ${isOpen ? 'left-0' : '-left-[270px]'} h-[100%] overflow-y-auto fixed`">
 
 <!-- close btn -->
     <div class="sticky top-0 h-0 flex justify-end">
@@ -107,18 +107,18 @@ function click(item){
     <div class="text-center flex items-center pl-4 pt-7 flex-wrap cursor-pointer" @click="navigateTo({name:'dash-profile'})">
         <img class="object-cover object-top w-[50px] aspect-square rounded-full" src="~/assets/bridgestars/images/castor.jpg"/> 
         <div class="flex flex-col text-start pl-2 justify-center space-y-2">
-          <h3 class="text-[22px] leading-[22px] tracking-tighter">Castor Mann</h3>
+          <h3 class="font-family text-[22px] leading-[22px] tracking-tighter">Castor Mann</h3>
           <h6 class="text-[#14C6A4] dark:text-[#14C6a4] font-light tracking-normal">Bridgestars Premium</h6>
         </div>
       </div>
 
-      <div class="flex flex-col px-5 mt-6 mb-10">
+      <div class="flex flex-col mt-6 mb-10">
         <div v-for="item in items" :key="item.key" @click="() => click(item)">
           <div v-if="item.divider" 
-            class="font-family font-light text-dark opacity-70 dark:text-light mb-1 mt-5 tracking-wide text-[16px]">
+            class="font-family font-light text-dark opacity-70 dark:text-light mb-1 ml-5 mt-5 tracking-wide text-[16px]">
             {{$t("dashboard:side_menu."+item.name)}}
           </div>
-        <dash-menu-side-item v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled"/>
+        <dash-menu-side-item2 v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled"/>
         </div>
       </div>
     </div>

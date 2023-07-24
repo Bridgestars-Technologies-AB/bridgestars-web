@@ -13,6 +13,7 @@ onMounted(() => {
   // }
   //find html and body elements and set their overflow to hidden
   document.getElementsByTagName("html")[0].style.overflow = "hidden";
+  document.getElementsByTagName("body")[0].style.overflow = "hidden";
 })
 
 onUnmounted(() => {
@@ -29,10 +30,10 @@ provide('side-menu-open', sideMenuOpen)
   <div :class="`${darkMode.value ? 'dark':''} flex h-full`"><!-- enables tailwind darkmode, toggle this  -->
     <dash-menu-side/>
       <div id="content" :class="`flex-grow ${sideMenuOpen ? 'ml-[270px]':''}`">
-        <div class="bg-dash-light-300 dark:bg-dash-dark-500 flex flex-col h-full w-full">
+        <div class="bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col h-full w-full">
 
-          <dash-menu-top class="rounded-tl-[32px]"/>
-          <div class="bg-dash-light-200 dark:bg-dash-dark-400 p-2 h-full rounded-bl-[48px]">
+        <dash-menu-top :class="sideMenuOpen ? 'rounded-tl-[32px]' : ''"/>
+        <div :class="`bg-dash-light-400 dark:bg-dash-dark-200 p-5 h-full ${sideMenuOpen ? 'rounded-bl-[32px]' : ''}`">
             <NuxtPage/>
           </div>
         </div>
