@@ -11,7 +11,8 @@ const logoutModalOpen = ref(false)
 const items = [
   {
     name:"overview",
-    icon:"i-ic-home"
+    icon:"i-ic-home",
+    color: "bg-[#aaC107]"
   },
   {
     divider:true,
@@ -19,7 +20,8 @@ const items = [
   },
   {
     name: "deal-editor",
-    icon:"i-material-symbols-sports-esports"
+    icon:"i-material-symbols-sports-esports",
+    color: "bg-[#95b687]"
   },
   // {
   //   name: "dealhistory",
@@ -27,11 +29,13 @@ const items = [
   // },
   {
     name: "contract-calc",
-    icon:"i-material-symbols-score"
+    icon:"i-material-symbols-score",
+    color: "bg-[#f48fb1]"
   },
   {
     name: "simulator",
-    icon: "i-material-symbols-analytics"
+    icon: "i-material-symbols-analytics",
+    color: "bg-[#4fc3f7]"
   },
   {
     divider:true,
@@ -39,19 +43,23 @@ const items = [
   },
   {
     name: "contracting",
-    icon: "i-material-symbols-sports-esports"
+    icon: "i-material-symbols-sports-esports",
+    color: "bg-[#a5d6a7]"
   },
   {
     name: "gambit",
-    icon: "i-material-symbols-play-circle"
+    icon: "i-material-symbols-play-circle",
+    color: "bg-[#f48fb1]"
   },
   {
     name: "suit-treatments",
-    icon: "i-material-symbols-hive"
+    icon: "i-material-symbols-hive",
+    color: "bg-[#4fc3f7]"
   },
   {
     name: "play",
-    icon: "i-material-symbols-play-circle"
+    icon: "i-material-symbols-play-circle",
+    color: "bg-[#5f350c]"
   },
   {
     divider:true,
@@ -59,15 +67,18 @@ const items = [
   },
   {
     name: "results",
-    icon: "i-material-symbols-text-snippet"
+    icon: "i-material-symbols-text-snippet",
+    color: "bg-[#839202]"
   },
   {
     name: "help",
-    icon: "i-material-symbols-info"
+    icon: "i-material-symbols-info",
+    color: "bg-[#2f357f]"
   },
   {
     name: "sign-out",
     icon: "i-tabler-logout-2",
+    color: "bg-[#324465]",
     action: async () => {
       logoutModalOpen.value = true;
     }
@@ -94,7 +105,7 @@ function click(item){
 <template>
 <!-- show open button if closed -->
   <div v-if="!isOpen" class="absolute">
-    <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-300 bg-dark-500"/>
+    <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-500 bg-dark"/>
   </div>
 
   <div id="side-menu" :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col w-[270px] z-[10] ${isOpen ? 'left-0' : '-left-[270px]'} h-[100%] overflow-y-auto fixed`">
@@ -118,7 +129,7 @@ function click(item){
             class="font-family font-light text-dark opacity-70 dark:text-light mb-1 ml-5 mt-5 tracking-wide text-[16px]">
             {{$t("dashboard:side_menu."+item.name)}}
           </div>
-        <dash-menu-side-item2 v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled"/>
+        <dash-menu-side-item2 v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled" :color="item.color"/>
         </div>
       </div>
     </div>
