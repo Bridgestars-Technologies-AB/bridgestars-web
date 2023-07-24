@@ -28,10 +28,13 @@ provide('side-menu-open', sideMenuOpen)
 <template>
   <div :class="`${darkMode.value ? 'dark':''} flex h-full`"><!-- enables tailwind darkmode, toggle this  -->
     <dash-menu-side/>
-      <div id="content" :class="`flex-col flex-grow ${sideMenuOpen ? 'ml-[270px]':''}`">
-        <dash-menu-top/>
-        <div class="bg-dash-light-300 dark:bg-dash-dark p-2 h-full w-full">
-          <NuxtPage/>
+      <div id="content" :class="`flex-grow ${sideMenuOpen ? 'ml-[270px]':''}`">
+        <div class="bg-dash-light-300 dark:bg-dash-dark-500 flex flex-col h-full w-full">
+
+          <dash-menu-top class="rounded-tl-[32px]"/>
+          <div class="bg-dash-light-200 dark:bg-dash-dark-400 p-2 h-full rounded-bl-[48px]">
+            <NuxtPage/>
+          </div>
         </div>
       </div>
   </div>

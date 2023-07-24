@@ -20,8 +20,8 @@ const backgroundColors = {
       "dash-dark": {
         200: "#475569",
         300: "#334155",
-        400: "#1F2A40",
-        500: "#141B2D",
+        400: "#1C1E29",
+        500: "#171620",
         DEFAULT: "#141B2D",
       },
       "dash-light": {
@@ -119,7 +119,7 @@ module.exports = {
       }
     },
     fontFamily: {
-      family: '"Roboto", "Helvetica", "Arial", sans-serif',
+      family: '"Poppins", "Roboto", "Helvetica", "Arial", sans-serif',
       family2: '"Roboto Slab", sans-serif',
     },
     screens: {

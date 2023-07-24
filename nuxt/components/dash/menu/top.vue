@@ -16,7 +16,7 @@ const colored = (b) =>
 </script>
 <template>
   <div
-    class="bg-dash-light-300 dark:bg-dash-dark flex justify-end flex-grow p-3 space-x-4 h-fit"
+    class="bg-dash-light-200 dark:bg-dash-dark-400 flex justify-end p-3 space-x-4"
   >
     <span
       :class="`${

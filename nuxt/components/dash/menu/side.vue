@@ -94,10 +94,10 @@ function click(item){
 <template>
 <!-- show open button if closed -->
   <div v-if="!isOpen" class="absolute">
-    <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-300 bg-dark"/>
+    <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-300 bg-dark-500"/>
   </div>
 
-  <div id="side-menu" :class="`bg-dash-light-200 dark:bg-dash-dark-300 flex flex-col w-[270px] z-[10] ${isOpen ? 'left-0' : '-left-[270px]'} h-[100%] overflow-y-auto fixed`">
+  <div id="side-menu" :class="`bg-dash-light-300 dark:bg-dash-dark-500 flex flex-col w-[270px] z-[10] ${isOpen ? 'left-0' : '-left-[270px]'} h-[100%] overflow-y-auto fixed`">
 
 <!-- close btn -->
     <div class="sticky top-0 h-0 flex justify-end">
