@@ -49,7 +49,7 @@ const textColors = {
         light: "#6870fa",
       },
       borderColor:{
-        ...backgroundColors
+        ...backgroundColors //ska det verkligen vara här??
       }
 }
 
@@ -91,6 +91,9 @@ module.exports = {
       },
       textDecorationColor:{
         ...textColors
+      },
+      borderColor:{
+        ...backgroundColors
       },
       animation: {
         shake: "shake 1s cubic-bezier(.36,.07,.19,.97) both",
