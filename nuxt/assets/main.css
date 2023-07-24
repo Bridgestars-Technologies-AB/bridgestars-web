@@ -31,6 +31,8 @@
 
   html, body, #__nuxt {
     height: 100%;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
   }
 
 /* override some wierd tailwind standards or smth, seems to be caused be the flowbite integration */

@@ -1,13 +1,14 @@
 <script setup>
 const auth = useAuth();
 const toast = useToast();
+const {t} = useTranslate();
 defineProps(['open'])
 defineEmits(['update:open'])
 
 async function signOut(){
   if(auth.authenticated) await auth.signOut();
   toast.clear() //remove old toasts , ex sign in 
-  toast.success("You have been signed out.") //translate
+  toast.success(t("dashboard:sign_out_modal.signed_out")) //translate
   navigateTo("/")
 }
 </script>

@@ -30,7 +30,7 @@ provide('side-menu-open', sideMenuOpen)
     <dash-menu-side/>
       <div id="content" :class="`flex-col flex-grow ${sideMenuOpen ? 'ml-[270px]':''}`">
         <dash-menu-top/>
-        <div class="bg-dash-light-300 dark:bg-dash-dark p-2 h-full">
+        <div class="bg-dash-light-300 dark:bg-dash-dark p-2 h-full w-full">
           <NuxtPage/>
         </div>
       </div>

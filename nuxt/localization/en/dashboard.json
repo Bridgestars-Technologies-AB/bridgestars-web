@@ -18,6 +18,7 @@
   "sign_out_modal":{
     "text":"Are you sure you want to sign out?",
     "yes": "Yes, I'm sure",
-    "no": "No, cancel"
+    "no": "No, cancel",
+    "signed_out":"You have been signed out."
   }
 }
