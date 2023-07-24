@@ -1,5 +1,4 @@
 <script setup>
-import {Popover, initPopovers} from 'flowbite'
 
 const route = useRoute();
 const darkMode = useDarkMode();

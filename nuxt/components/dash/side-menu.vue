@@ -5,6 +5,8 @@ const route = useRoute()
 const toast = useToast()
 const auth = useAuth()
 
+const logoutModalOpen = ref(false)
+
 // name is both the key for the translation and the route name, keep them in sync!
 const items = [
   {
@@ -67,10 +69,11 @@ const items = [
     name: "sign-out",
     icon: "i-tabler-logout-2",
     action: async () => {
-      if(auth.authenticated) await auth.signOut();
-      toast.clear() //remove old toasts , ex sign in 
-      toast.success("You have been signed out.") //translate
-      navigateTo("/")
+      logoutModalOpen.value = true;
+      // if(auth.authenticated) await auth.signOut();
+      // toast.clear() //remove old toasts , ex sign in 
+      // toast.success("You have been signed out.") //translate
+      // navigateTo("/")
     }
   }
 ]
@@ -122,6 +125,9 @@ function click(item){
         </div>
       </div>
     </div>
+
+  <base-modal v-model:open="logoutModalOpen"/>
+
 </template>
 
 <style scoped>
