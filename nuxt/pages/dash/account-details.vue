@@ -1,8 +1,33 @@
 <script setup>
+const toast = useToast();
+
 const boxDisabled1 = ref(true);
 const boxDisabled2 = ref(true);
+const buttonText1 = ref("edit");
+const buttonText2 = ref("edit");
+const pencilButton = ref(false);
 
 const auth = useAuth();
+const email = ref(auth.get("email"));
+const username = ref(auth.get("username"));
+const nationality = ref(auth.get("nationality"));
+const firstName = ref(auth.get("first"));
+const lastName = ref(auth.get("last"));
+const birthDate = ref(auth.get("birth"));
+
+function saveUserData() {
+  auth.user.set("email", email);
+  auth.user.set("username", username);
+  auth.user.set("nationality", nationality);
+  auth.user.set("first", firstName);
+  auth.user.set("last", lastName);
+  auth.user.set("birth", birthDate);
+
+  auth.user
+    .save()
+    .then(() => toast.success("successfully saved user data"))
+    .catch((e) => console.log(e));
+}
 </script>
 
 <template>
@@ -13,11 +38,24 @@ const auth = useAuth();
         class="rounded-2xl shadow-xl bg-[#FFFFFF] m-[30px] h-[25%] flex flex-row"
       >
         <!-- Fix responsiveness of picture -->
-        <img
+        <!-- <img
           class="object-cover object-top w-[120px] aspect-square rounded-full ml-[20px] self-center"
           src="~/assets/bridgestars/images/castor.jpg"
-        />
-        <div class="self-center ml-[10px]">
+        /> -->
+
+        <base-image-chooser class="self-center scale-75"></base-image-chooser>
+        <div class="self-center relative h-[100%]">
+          <button
+            :class="`btn absolute left-0 top-4 ${
+              pencilButton
+                ? 'i-material-symbols-edit-rounded'
+                : 'i-material-symbols-edit-off-rounded'
+            }`"
+            id="editBtn1"
+            @click="pencilButton = !pencilButton"
+          ></button>
+        </div>
+        <div class="self-center relative">
           <h1 class="text-[20px] leading-[22px] tracking-tighter">
             Castor Mann
           </h1>
@@ -37,11 +75,15 @@ const auth = useAuth();
           >
             <span class="ml-[5px]">Personal information</span>
             <button
-              class="editButton btn bg-white scale-75 hover:bg-white"
+              class="editButton btn"
               id="editBtn1"
-              @click="boxDisabled1 = !boxDisabled1"
+              @click="
+                boxDisabled1 = !boxDisabled1;
+                saveUserData();
+                boxDisabled1 ? (buttonText1 = 'Edit') : (buttonText1 = 'Save');
+              "
             >
-              Edit
+              {{ buttonText1 }}
             </button>
           </div>
 
@@ -56,6 +98,7 @@ const auth = useAuth();
                 id="username-email"
                 :color="boxDisabled1 ? '#344767' : '#FFFFFF'"
                 :enabled="boxDisabled1"
+                v-model="firstName"
               />
               <base-input-field
                 wrapperClass="w-[80%]"
@@ -64,6 +107,7 @@ const auth = useAuth();
                 id="username-email"
                 :color="boxDisabled1 ? '#344767' : '#FFFFFF'"
                 :enabled="boxDisabled1"
+                v-model="nationality"
               />
             </div>
             <div
@@ -76,6 +120,17 @@ const auth = useAuth();
                 id="username-email"
                 :color="boxDisabled1 ? '#344767' : '#FFFFFF'"
                 :enabled="boxDisabled1"
+                v-model="lastName"
+              />
+              <base-input-field
+                wrapperClass="w-[80%]"
+                placeholder="Date of Birth"
+                class="accountBox1 text-[#FFFFFF]"
+                type="date"
+                id="username-email"
+                :color="boxDisabled1 ? '#344767' : '#FFFFFF'"
+                :enabled="boxDisabled1"
+                v-model="birthDate"
               />
             </div>
           </div>
@@ -86,11 +141,15 @@ const auth = useAuth();
           >
             <span class="ml-[5px]">Login Credentials</span>
             <button
-              class="editButton btn bg-white scale-75 hover:bg-white"
+              class="editButton btn"
               id="editBtn2"
-              @click="boxDisabled2 = !boxDisabled2"
+              @click="
+                boxDisabled2 = !boxDisabled2;
+                saveUserData();
+                boxDisabled2 ? (buttonText2 = 'Edit') : (buttonText2 = 'Save');
+              "
             >
-              Edit
+              {{ buttonText2 }}
             </button>
           </div>
           <div class="flex flex-row justify-start">
@@ -104,6 +163,7 @@ const auth = useAuth();
                 id="username-email"
                 :color="boxDisabled2 ? '#344767' : '#FFFFFF'"
                 :enabled="boxDisabled2"
+                v-model="username"
               />
               <base-input-field
                 wrapperClass="w-[80%]"
@@ -112,6 +172,7 @@ const auth = useAuth();
                 id="username-email"
                 :color="boxDisabled2 ? '#344767' : '#FFFFFF'"
                 :enabled="boxDisabled2"
+                v-model="email"
               />
             </div>
             <div
@@ -141,6 +202,6 @@ const auth = useAuth();
 
 <style scoped>
 .editButton {
-  @apply border-2 shadow-xl border-[#344767] rounded-lg p-2;
+  @apply border-2 shadow-xl border-[#344767] rounded-lg p-2 bg-white scale-75 hover:bg-white;
 }
 </style>

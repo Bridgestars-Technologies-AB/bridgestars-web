@@ -4,7 +4,7 @@ const props = defineProps({
   placeholder: String,
   id: String,
   wrapperClass: String,
-  modelValue: Object,
+  modelValue: String,
   enabled: Boolean,
   color: {
     type: String,
@@ -141,7 +141,7 @@ div.input-block input:focus + span.placeholder {
 div.input-block input:focus {
   @apply border-[#2590ee];
 }
-div.input-block{
+div.input-block {
   @apply border-none;
 }
 div.input-block input:focus + span.placeholder {
