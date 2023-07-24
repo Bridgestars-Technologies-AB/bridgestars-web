@@ -28,10 +28,10 @@ export default defineStore('auth', {
       return Parse.User.signUp(username, password, {email:email}).then((u:any) => {this.underlying = u; return u;});
     },
     async signIn(usernameEmail:string, password:string) {
-      return Parse.Cloud.run('signIn', { email:usernameEmail, password:password})
+      return Parse.Cloud.run('signIn', { email:usernameEmail.toLowerCase(), password:password})
         .catch(() => {})
         //sign in client side
-        .then(() => Parse.User.logIn(usernameEmail, password))
+        .then(() => Parse.User.logIn(usernameEmail.toLowerCase(), password))
         //success
         .then((user:any) => {
           this.underlying = user;
