@@ -19,6 +19,7 @@ onMounted(() => {
 onUnmounted(() => {
   //find html and body elements and set their overflow to auto
   document.getElementsByTagName("html")[0].style.overflow = "auto";
+  document.getElementsByTagName("body")[0].style.overflow = "";
 })
 
 const darkMode = useDarkMode() 
