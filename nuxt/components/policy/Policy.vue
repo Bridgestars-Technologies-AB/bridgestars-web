@@ -7,67 +7,52 @@
 <!-- Introduction as prop -->
 
 <!-- to top -->
+<script setup>
+  function moveLine(event) {
+    const button = event.target
+    var tabButtons = document.querySelectorAll('.policyButton');
+    var line = document.querySelector('.line');
+
+    // Remove 'active' class from all buttons
+    tabButtons.forEach(function(tabButton) {
+      tabButton.classList.remove('active');
+    });
+
+    // Add 'active' class to the clicked button
+    button.classList.add('active');
+
+    // Calculate the left position of the active button
+    var activeButtonRect = button.getBoundingClientRect();
+    var containerRect = button.parentNode.getBoundingClientRect();
+    var offsetLeft = activeButtonRect.left - containerRect.left;
+    const offset = offsetLeft;
+
+    // Apply the transform to move the line
+    line.style.transform = `translate(${offset}px,  ${0}px)`;
+    line.style.width = `${activeButtonRect.width}px`;
+    
+  }
+</script>
 
 <template>
-  <div class="w-screen h-screen opacity-100 fixed bg-[#C0C0C0]">
-    <header
-      class="policyHeader w-screen h-[70px] mt-[30px] mb-[30px] bg-[#FFFFFF]"
-    >
-      <button class="zoomIn text-[#3F516F] text-opacity-100 font-black">
-        Bridgestars
-      </button>
-      <div class="px-[30px] flex flex-row justify-end gap-[60px]">
-        <button class="zoomIn">Home</button>
-        <button class="zoomIn">About Us</button>
-        <button class="zoomIn">Sign In</button>
-      </div>
-    </header>
+  <base-card-page-layout>
 
+
+    <div class="p-5 w-full">
     <!-- Maybe make a navigateBar component -->
-    <div
-      class="navigateBar bg-[#E0E0E0] rounded-lg h-[50px] mx-[52px] flex flex-row justify-center"
-    >
-      <button class="policyButton zoomIn">Terms</button>
-      <button class="policyButton zoomIn">Privacy</button>
-      <button class="policyButton zoomIn">Disclaimer</button>
-      <button class="policyButton zoomIn">Copyright</button>
-    </div>
-
-    <!-- Box with policy, toggle on button click-->
-    <div
-      class="w-[100 %] h-[100%] flex flex-row justify-center content-center mt-[40px]"
-    >
       <div
-        id="policyBox"
-        class="bg-[#FFFFFF] w-[100%] ml-[70px] mr-[70px] overflow-auto"
+        class="navigateBar bg-dash-light-100 rounded-lg h-[50px] w-full flex flex-row items-center text-center"
       >
-        <Terms></Terms>
+        <span @click="moveLine" class="z-10 text1 font-family2 flex-auto">Terms</span>
+        <span @click="moveLine" class="z-10 text1 font-family2 flex-auto">Privacy</span>
+        <span @click="moveLine" class="z-10 text1 font-family2 flex-auto">Disclaimer</span>
+        <span @click="moveLine" class="z-10 text1 font-family2 flex-auto">Copyright</span>
+        <div class="z-0 line bg-white h-[44px] w-[25%] transition-transform absolute rounded-xl duration-500"></div>
       </div>
     </div>
-  </div>
+  </base-card-page-layout>
+
 </template>
 
 <style scoped>
-.policyButton {
-  @apply flex-auto p-0 m-0;
-}
-
-.policyButton:focus {
-  @apply rounded-lg bg-[#FFFFFF] text-[#3A4C6B];
-}
-
-.zoomIn {
-  animation: anim-zoom 500ms ease-in-out 0ms;
-}
-
-@keyframes anim-zoom {
-  0% {
-    opacity: 0;
-    transform: scaleY(0.8) scaleX(0.3) translateY(-40px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0px);
-  }
-}
 </style>
