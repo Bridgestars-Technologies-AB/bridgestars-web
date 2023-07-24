@@ -27,6 +27,7 @@ const notifications = [
   {title:"test", read:true, time: new Date().setMinutes(new Date().getMinutes()-11175) },
 ]
 
+ import {initPopovers} from 'flowbite'
 onMounted(()=>{
   initPopovers()
     // set the popover content element

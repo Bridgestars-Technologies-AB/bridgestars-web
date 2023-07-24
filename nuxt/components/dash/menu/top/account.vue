@@ -28,8 +28,6 @@ onMounted(()=>{
       open.value = true;
     },
   };
-  console.log(popover.value)
-  console.log(popoverTrigger.value)
   new Popover(popover.value, popoverTrigger.value, options);
 })
 

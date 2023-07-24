@@ -14,5 +14,10 @@
     "help": "Hjälp",
     "results": "Tävlingsresultat",
     "sign-out": "Logga ut"
+  },
+  "sign_out_modal":{
+    "text": "Är du säker på att du vill logga ut?",
+    "yes": "Ja, jag är säker",
+    "no": "Nej, avbryt"
   }
 }

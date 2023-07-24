@@ -14,5 +14,10 @@
     "help": "Help",
     "results": "Results",
     "sign-out": "Sign Out"
+  },
+  "sign_out_modal":{
+    "text":"Are you sure you want to sign out?",
+    "yes": "Yes, I'm sure",
+    "no": "No, cancel"
   }
 }

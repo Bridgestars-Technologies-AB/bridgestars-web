@@ -10,7 +10,7 @@ export default defineStore('auth', {
   actions: {
     get(field:string){
       if(!this.underlying) return undefined;
-      return process.server ? this.underlying[field] : Parse.User.current().get(field);
+      return process.server ? this.underlying[field] : (Parse.User.current() ? Parse.User.current.get(field) : this.underlying[field]);
     },
     async signUp(username:string, password:string, email:string){
       return Parse.User.signUp(username, password, {email:email}).then((u:any) => {this.underlying = u; return u;});
