@@ -1,6 +1,7 @@
 <script setup>
 const boxDisabled1 = ref(true);
 const boxDisabled2 = ref(true);
+
 const auth = useAuth();
 </script>
 
@@ -138,4 +139,8 @@ const auth = useAuth();
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.editButton {
+  @apply border-2 shadow-xl border-[#344767] rounded-lg p-2;
+}
+</style>

@@ -27,6 +27,7 @@ const colored = (b) =>
     />
     <dash-bell />
     <span
+      @click="navigateTo({ name: 'dash-account-details' })"
       :class="`i-material-symbols-settings-outline ${colored(
         isSelected('settings')
       )}`"
