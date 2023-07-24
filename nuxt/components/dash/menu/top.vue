@@ -26,15 +26,13 @@ const colored = (b) =>
       }  ${colored(false)}`"
       @click="darkMode.toggle()"
     />
-    <dash-bell/>
+    <dash-menu-top-bell/>
     <span
       :class="`i-material-symbols-settings-outline ${colored(
         isSelected('settings')
       )}`"
     />
-    <span
-      :class="`i-ic-baseline-account-circle ${colored(isSelected('profile'))}`"
-    />
+    <dash-menu-top-account/>
   </div>
 
 </template>
