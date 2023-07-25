@@ -118,7 +118,7 @@ function click(item){
             class="font-family font-light text-dark opacity-70 dark:text-light mb-1 mt-5 tracking-wide text-[16px]">
             {{$t("dashboard:side_menu."+item.name)}}
           </div>
-        <dash-side-menu-item v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled"/>
+        <dash-menu-side-item v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled"/>
         </div>
       </div>
     </div>

@@ -17,14 +17,14 @@ const colored = (b) =>
     ? common + "bg-dash-accent dark:bg-dash-accent"
     : common + "bg-dark dark:bg-light";
 
-const notificationsOpen = ref(true);
+const notificationsOpen = ref(false);
 const hasUnreadNotifications = ref(true);
 const notifications = [
-  {title:"Welcome to Bridgestars", read:true, time: new Date() },
-  {title:"Message from Rasmus", read:true, time: new Date().setMinutes(new Date().getMinutes()-5) },
-  {title:"Bridgestars recived an update", read:false, time: new Date().setMinutes(new Date().getMinutes()-75) },
-  {title:"You've got mail", read:false, time: new Date().setMinutes(new Date().getMinutes()-175) },
-  {title:"test", read:false, time: new Date().setMinutes(new Date().getMinutes()-11175) },
+  {title:"Welcome to Bridgestars", read:false, time: new Date() },
+  {title:"Message from Rasmus", read:false, time: new Date().setMinutes(new Date().getMinutes()-5) },
+  {title:"Bridgestars recived an update", read:true, time: new Date().setMinutes(new Date().getMinutes()-75) },
+  {title:"You've got mail", read:true, time: new Date().setMinutes(new Date().getMinutes()-175) },
+  {title:"test", read:true, time: new Date().setMinutes(new Date().getMinutes()-11175) },
 ]
 
 onMounted(()=>{
@@ -38,6 +38,7 @@ onMounted(()=>{
     triggerType: 'click',
     onHide: () => {
       notificationsOpen.value = false;
+       notifications.forEach(n => n.read = true)
     },
     onShow: () => {
       notificationsOpen.value = true;
@@ -75,9 +76,9 @@ function formatTime(time){
         <div class="flex items-center justify-between">
             <div class="flex flex-col">
                 <span class="text font-family2 text-[16px] dark:text-light">{{n.title}}</span>
-          <span class="text-xs dark:text-light opacity-70">{{formatTime(n.time)}}</span>
+                <span class="text-xs dark:text-light opacity-70">{{formatTime(n.time)}}</span>
             </div>
-            <span class="flex-shrink-0 w-2 h-2 bg-green-500 rounded-full"></span>
+            <span v-if="!n.read" class="flex-shrink-0 w-2 h-2 bg-info rounded-full"></span>
         </div>
     </div>
     <div data-popper-arrow></div>
