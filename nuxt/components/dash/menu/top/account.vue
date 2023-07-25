@@ -82,14 +82,11 @@ onMounted(()=>{
 </template>
 
 <style scoped>
-/* .underlined { */
-/*   text-decoration: underline 0.10em rgba(0, 0, 0, 0); */
-/*   transition: text-decoration-color 300ms; */
-/* } */
-/**/
-/* .underlined:hover { */
-/*   @apply decoration-dark; */
-/*   /* text-decoration: underline .15em rgba(0,0,0,1); */ 
-/* } */
-
+/* REMOVE IF WE WANT TO ADD BORDER */
+div[data-popper-arrow]:before{
+  border: 0px solid transparent !important;
+}
+div[data-popper-arrow]:after{
+  border: 0px solid transparent !important;
+}
 </style>

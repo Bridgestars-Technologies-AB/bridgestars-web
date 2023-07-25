@@ -87,3 +87,13 @@ function formatTime(time){
     <div data-popper-arrow></div>
   </div>
 </template>
+
+<style scoped>
+/* REMOVE IF WE WANT TO ADD BORDER */
+div[data-popper-arrow]:before{
+  border: 0px solid transparent !important;
+}
+div[data-popper-arrow]:after{
+  border: 0px solid transparent !important;
+}
+</style>
