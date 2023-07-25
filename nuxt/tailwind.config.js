@@ -163,4 +163,9 @@ module.exports = {
     'leading-9',
     'shadow-lg'
   ],
+  purge:{
+    options:{
+      blocklist: ['true', 'false', /^debug-/],
+    }
+  }
 };
