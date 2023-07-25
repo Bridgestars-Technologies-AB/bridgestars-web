@@ -5,7 +5,7 @@
 
  /* these styles are the bottom layer and will therefore be overridden by other layers and utilities  */
 @layer base { 
-  h1,h2,h3,h4,h5,h6 { @apply text-dark dark:text-light font-bold; }
+  h1,h2,h3,h4,h5,h6 { @apply text-dark dark:text-light font-bold transition-colors duration-300; }
 
   h1,h2,h3{ @apply font-family2; }
 
@@ -22,6 +22,10 @@
   h5 { @apply text-[20px] leading-[20px]; }
 
   h6 { @apply text-[16px] leading-[16px]; }
+
+  .text1, .text2{
+    @apply transition-colors duration-1000;
+  }
 
   button { @apply font-family text-[14px] font-light leading-[14px] uppercase; }
 
@@ -61,6 +65,17 @@
 
 /* Third layer, here we can add our own utility classes that tailwind does not have  */
 @layer utilities{
+    @variants responsive {
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
 
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+      }
+    }
 }
 
