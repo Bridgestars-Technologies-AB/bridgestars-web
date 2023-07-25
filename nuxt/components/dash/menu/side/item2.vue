@@ -1,23 +1,27 @@
 <script setup>
+const open = inject('side-menu-open')
 const props = defineProps(['icon', 'keypath', 'selected', 'enabled', 'color'])
 
 const iconColor = computed(() => "bg-dash-light-400 dark:bg-white");
 
 const bgColor = computed(() => props.selected ? "dark:bg-dash-dark-200 bg-dash-light-400" : "dark:bg-dash-dark-100 bg-dash-light-300 dark:hover:bg-dash-dark-300 hover:bg-dash-light-400");
 
-const textColor = computed(() => `text-dark dark:text-light ${props.selected ? 'opacity-100' : 'opacity-80'}`);
+const textColor = computed(() => `text-dark dark:text-light text-transition ${!open.value ? 'opacity-0 text-[2px]' : (props.selected ? 'opacity-100' : 'opacity-80')}`);
+
 </script>
 
 <template>
-  <div :class="`flex items-center group hover:cursor-pointer h-full ${bgColor} color-transition`">
-    <div :class="`${selected ? 'bg-sky-500' : ''} h-full w-[3px]`">&nbsp; </div>
+  <div :class="``"/>
 
-    <div :class="`${'bg-sky-500'} p-[5px] my-2 ml-5 rounded-xl ar-1 flex items-center mr-[10px] group-hover:animate-shake`">
-      <span id="icon" :class="`text-[22px]  ${icon} ${iconColor}`">
+  <div :class="`flex items-center group hover:cursor-pointer h-full ${bgColor} item-transition ${open || 'ml-[202px]'}`">
+
+    <div :class="`${selected ? 'bg-[#04b694]' : ''} h-full w-[3px]`">&nbsp; </div>
+    <div :class="`${'bg-[#04b694]'} p-[5px] my-2 ml-4 rounded-xl ar-1 flex items-center mr-4 group-hover:animate-shake`">
+      <span id="icon" :class="`text-[25px]  ${icon} ${iconColor}`">
       </span>
     </div>
 
-    <span :class="`font-family text-[15px] my-2 font-light tracking-wide ${enabled ? '' : 'line-through'} ${textColor}`">
+    <span :class="`font-family text-[15px] my-2 font-light tracking-wide ${enabled || 'line-through'} ${textColor} `">
         {{ $t(props.keypath) }}
     </span>
 
@@ -25,7 +29,11 @@ const textColor = computed(() => `text-dark dark:text-light ${props.selected ? '
 </template>
 
 <style scoped>
-.color-transition{
-  transition: background-color 0.2s ease-in-out;
+.item-transition{
+  transition: background-color 0.2s ease-in-out, margin-left 0.3s ease-in-out;
+}
+
+.text-transition{
+  transition: opacity 0.2s ease-in-out, font-size 0.3s ease-in-out, color .2s ease-in-out;
 }
 </style>

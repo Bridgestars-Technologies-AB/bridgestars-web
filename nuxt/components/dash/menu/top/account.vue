@@ -4,7 +4,7 @@
 const route = useRoute()
 
 const common =
-  "w-[24px] h-[24px] group-hover:bg-dash-accent dark:group-hover:bg-dash-accent group-hover:animate-shake "; //important keep space at the end
+  "w-[30px] h-[30px] group-hover:bg-dash-accent dark:group-hover:bg-dash-accent group-hover:animate-shake "; //important keep space at the end
 const colored = (b) =>
   b
     ? common + "bg-dash-accent dark:bg-dash-accent"
@@ -34,7 +34,7 @@ onMounted(()=>{
 
 </script>
 <template>
-    <div class="group">
+    <div class="group flex items-center">
         <span
           :class="`relative i-ic-baseline-account-circle ${colored(
             open || route.path.startsWith('/dash/profile') || route.path.startsWith('/dash/account')

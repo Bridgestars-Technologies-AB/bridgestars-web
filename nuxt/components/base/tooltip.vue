@@ -1,11 +1,53 @@
 <script setup lang="ts">
-const props = defineProps<{text:string, position:"left"|"right"|"top"|"bottom"}>()  
+const props = defineProps({
+  text:String, 
+  position:{type:String, default:"bottom"}
+})  
+
+import {initPopovers} from 'flowbite'
+const tooltip = ref(null)
+const tooltipTrigger = ref(null)
+let popover = null;
+
+onMounted(()=>{
+  initPopovers()
+  console.log(props.position)
+  const options = {
+    placement: props.position,
+    triggerType: 'none',
+    onHide: () => {
+    },
+    onShow: () => {
+    },
+  };
+  popover = new Popover(tooltip.value, tooltipTrigger.value, options);
+})
+let debounce = new Date("1970");
+
+function show(){
+  setTimeout(() => {
+    if(new Date() - debounce < 250) return;
+    popover.show()
+  }, 250);
+}
+function hide(){
+  debounce = new Date()
+  popover.hide()
+}
 </script>
 
 <template>
-  <div :class="position" :data-tooltip="text" :data-position="position">
-    <slot/> 
+  <div ref="tooltipTrigger" class="h-fit" @click="hide" @mouseleave="hide" @mouseenter="show">
+      <slot/>
   </div>
+  <div ref="tooltip" role="tooltip" class="w-fit absolute z-10 invisible py-1 inline-block transition-opacity duration-300  rounded-lg shadow-sm bg-dash-dark-300 dark:bg-dash-light-500" @hover="hide">
+    <span v-if="text" class="text2 text-[18px] z-11 p-2 font-normal dark:text-dark text-light">
+      {{text}}
+    </span>
+    <slot v-else name="content"/>
+    <div data-popper-arrow></div>
+  </div>
+
 </template>
 <style scoped lang="scss">
 

@@ -104,29 +104,33 @@ function click(item){
 
 <template>
 <!-- show open button if closed -->
-  <div v-if="!isOpen" class="absolute">
-    <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-500 bg-dark"/>
-  </div>
+  <!-- <div v-if="!isOpen" class="absolute"> -->
+  <!--   <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-500 bg-dark"/> -->
+  <!-- </div> -->
 
-  <div id="side-menu" :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col w-[270px] z-[10] ${isOpen ? 'left-0' : '-left-[270px]'} h-[100%] overflow-y-auto fixed`">
+  <div id="side-menu" :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col w-[270px] z-[10] ${isOpen ? 'open' : 'closed'} h-[100%] overflow-y-auto no-scrollbar fixed`">
 
-<!-- close btn -->
-    <div class="sticky top-0 h-0 flex justify-end">
-        <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-300 bg-dark"/>
-    </div>
+    <!-- close btn -->
+    <!-- <div class="sticky top-0 h-0 flex justify-end" > -->
+    <!--   <div class="w-[50px] h-[50px] flex items-center justify-center" @click="isOpen = !isOpen"> -->
+    <!--     <base-hamburger-menu-button :isOpen="isOpen" class="!scale-[0.5]" innerClass="dark:bg-dash-light-300 bg-dark"/> -->
+    <!--     </div> -->
+    <!-- </div> -->
 
-    <div class="text-center flex items-center pl-4 pt-7 flex-wrap cursor-pointer" @click="navigateTo({name:'dash-profile'})">
-        <img class="object-cover object-top w-[50px] aspect-square rounded-full" src="~/assets/bridgestars/images/castor.jpg"/> 
-        <div class="flex flex-col text-start pl-2 justify-center space-y-2">
-          <h3 class="font-family text-[22px] leading-[22px] tracking-tighter">Castor Mann</h3>
-          <h6 class="text-[#14C6A4] dark:text-[#14C6a4] font-light tracking-normal">Bridgestars Premium</h6>
+    <div :class="`text-center flex items-center pt-7 flex-wrap profile-section ${isOpen ? 'open' : 'closed'}`" >
+        <img class="object-cover object-top w-[50px] aspect-square rounded-full cursor-pointer" src="~/assets/bridgestars/images/castor.jpg" @click="navigateTo({name:'dash-profile'})"/> 
+        <div class="flex flex-col text-start pl-2 justify-center ">
+          <h6 class="profile-section-text text-[24px] leading-[24px] font-family tracking-tighter" 
+            @click="navigateTo({name:'dash-profile'})">{{auth.get('dispName')}}</h6>
+          <h6 class="profile-section-text text-[#14C6A4]  text-[18px] leading-[18px] dark:text-[#14C6a4] font-light tracking-normal" 
+            @click="navigateTo({name:'dash-profile'})">Premium</h6>
         </div>
       </div>
 
-      <div class="flex flex-col mt-6 mb-10">
+      <div class="flex flex-col mt-10 mb-10">
         <div v-for="item in items" :key="item.key" @click="() => click(item)">
           <div v-if="item.divider" 
-            class="font-family font-light text-dark opacity-70 dark:text-light mb-1 ml-5 mt-5 tracking-wide text-[16px]">
+            class="font-family font-light text-dark opacity-70 dark:text-light mb-1 ml-5 mt-5 tracking-wide text-[16px] cursor-default">
             {{$t("dashboard:side_menu."+item.name)}}
           </div>
         <dash-menu-side-item2 v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled" :color="item.color"/>
@@ -141,7 +145,38 @@ function click(item){
 </template>
 
 <style scoped>
+.profile-section {
+  margin-left: 20px;
+  /* transition: margin-left 0.3s ease-in-out;  */
+}
+.profile-section.closed {
+  /* @apply ml-[-212px]; */
+}
+
+.profile-section div {
+   @apply cursor-pointer w-fit opacity-100;
+}
+.profile-section.closed div {
+}
+
+.profile-section img {
+  /* margin-left: 20px; */
+  transition: margin-left 0.3s ease-in-out, margin-top 0.3s ease-in-out;
+}
+.profile-section.closed img {
+
+  position:absolute;
+  @apply  ml-[195px] mt-[40px];
+}
+
+
 #side-menu{
   transition: left .3s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out; 
+}
+#side-menu.closed{
+  @apply xs:-left-[270px] md:-left-[203px]
+}
+#side-menu.open{
+  @apply left-0
 }
 </style>

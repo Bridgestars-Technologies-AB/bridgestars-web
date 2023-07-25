@@ -12,7 +12,6 @@ const backgroundColors = {
       success: "#59BA83", //grön
       warning: "#fb8c00", //orange
       error: "#F44335", //röd
-      blue: "rgb(73, 163, 241)",
       white: "#fefefe",
       light: "#dddddd",
       dark: "#344767",
@@ -70,13 +69,14 @@ module.exports = {
     //require("tailwindcss-animated"),
     iconsPlugin({
       collections: getIconCollections([
-        "ic",
-        "material-symbols",
+        "ic", //used a lot
+        "material-symbols", //used a lot
         "mdi",
-        "circle-flags",
-        "tabler",
+        "circle-flags", //used for flags duh
+        "tabler", //used for sign out icon
         "basil",
         "majesticons",
+        // "line-md" //used for menu close button
       ]),
       //tailwindcss chooses which icons to include based on usage
     }),

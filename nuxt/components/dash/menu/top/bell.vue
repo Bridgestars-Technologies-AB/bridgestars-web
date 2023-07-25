@@ -11,7 +11,7 @@ let timeAgo = new TimeAgo(i18.language)
 
 
 const common =
-  "w-[24px] h-[24px] group-hover:bg-dash-accent dark:group-hover:bg-dash-accent group-hover:animate-shake "; //important keep space at the end
+  "w-[30px] h-[30px] group-hover:bg-dash-accent dark:group-hover:bg-dash-accent group-hover:animate-shake "; //important keep space at the end
 const colored = (b) =>
   b
     ? common + "bg-dash-accent dark:bg-dash-accent"
@@ -28,6 +28,7 @@ const notifications = [
 ]
 
  import {initPopovers} from 'flowbite'
+ let popover = null;
 onMounted(()=>{
   initPopovers()
     // set the popover content element
@@ -36,7 +37,7 @@ onMounted(()=>{
   const $triggerEl = document.getElementById('popover-trigger');
   const options = {
     placement: 'bottom',
-    triggerType: 'click',
+    triggerType: 'none',
     onHide: () => {
       notificationsOpen.value = false;
        notifications.forEach(n => n.read = true)
@@ -46,7 +47,7 @@ onMounted(()=>{
        hasUnreadNotifications.value = false;
     },
   };
-  const popover = new Popover($targetEl, $triggerEl, options);
+   popover = new Popover($targetEl, $triggerEl, options);
 })
 function formatTime(time){
    if(!time) return ""
@@ -55,18 +56,20 @@ function formatTime(time){
 
 </script>
 <template>
-    <div class="group" id="popover-trigger">
+  <base-tooltip text="Notiser" position="bottom">
+    <div class="group flex items-center" id="popover-trigger" @click="popover.toggle()">
         <span
           :class="`relative i-material-symbols-notifications-outline ${colored(
             notificationsOpen
           )}`"
         />
       <!-- one alternative is to have this quite annopying flashing thing, otherwise we could add a red dot or even one with a number in it -->
-      <div v-if="hasUnreadNotifications" class="absolute inline-flex -translate-x-2">
+      <div v-if="hasUnreadNotifications" class="absolute translate-x-[18px] -translate-y-[12px]">
         <span class="absolute animate-ping rounded-full bg-dark opacity-75 h-[10px] w-[10px]"></span>
         <span class="absolute rounded-full h-[10px] w-[10px] bg-info"></span>
       </div>
     </div>
+  </base-tooltip>
 
   <div data-popover id="notifications-popover" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm transition-opacity duration-300  rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500">
     <div class="px-3 py-2 border-b border-dark dark:border-white border-opacity-40 rounded-t-lg">
