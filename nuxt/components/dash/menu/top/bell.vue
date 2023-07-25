@@ -55,12 +55,11 @@ function formatTime(time){
 
 </script>
 <template>
-    <div class="group">
+    <div class="group" id="popover-trigger">
         <span
           :class="`relative i-material-symbols-notifications-outline ${colored(
             notificationsOpen
           )}`"
-          id="popover-trigger"
         />
       <!-- one alternative is to have this quite annopying flashing thing, otherwise we could add a red dot or even one with a number in it -->
       <div v-if="hasUnreadNotifications" class="absolute inline-flex -translate-x-2">
