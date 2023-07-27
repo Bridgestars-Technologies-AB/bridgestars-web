@@ -108,7 +108,7 @@ function click(item){
   <!--   <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-500 bg-dark"/> -->
   <!-- </div> -->
 
-  <div id="side-menu" :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col w-[270px] z-[10] ${isOpen ? 'open' : 'closed'} h-[100%] overflow-x-hidden overflow-y-auto no-scrollbar absolute`">
+  <div id="side-menu" :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col w-[270px] z-[10] ${isOpen ? 'open' : 'closed'} h-[100%] overflow-x-scroll overflow-y-auto no-scrollbar absolute`">
 
     <!-- close btn -->
     <!-- <div class="sticky top-0 h-0 flex justify-end" > -->
