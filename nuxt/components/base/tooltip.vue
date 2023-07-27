@@ -21,12 +21,14 @@ onMounted(()=>{
     },
   };
   popover = new Popover(tooltip.value, tooltipTrigger.value, options);
+  if(props.text == "Overview") console.log(popover)
 })
 let debounce = new Date("1970");
 let isTouch = false;
 
 function show(e){
   if(isTouch) return;
+  console.log("show", e)
   setTimeout(() => {
     if(new Date() - debounce < 250) return;
     popover.show()
@@ -42,8 +44,8 @@ function hide(e){
   <div ref="tooltipTrigger" :class="props.class" @click="hide" @mouseleave="hide" @mouseenter="show" @touchstart="isTouch = true">
       <slot/>
   </div>
-    <div data-popover ref="tooltip" role="tooltip" class="absolute z-10 invisible inline-block w-fit transition-opacity duration-300 rounded-lg shadow-sm opacity-0 dark:bg-dash-light-400 bg-dash-dark-400">
-    <span v-if="text" class="text2 text-[18px] z-11 p-2 font-normal dark:text-dark text-light">
+    <div data-popover ref="tooltip" role="tooltip" class="absolute z-100 invisible inline-block w-fit transition-opacity duration-300 rounded-lg shadow-sm opacity-0 dark:bg-dash-light-400 bg-dash-dark-400">
+    <span v-if="text" class="text2 text-[18px] z-101 p-2 font-normal dark:text-dark text-light">
       {{text}}
     </span>
     <slot v-else name="content"/>

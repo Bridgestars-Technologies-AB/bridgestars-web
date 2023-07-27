@@ -22,8 +22,8 @@ const colored = (b) =>
 
       <div :class="` flex justify-center h-full w-[67px] z-10 sm:-ml-[67px] ${open ? 'xs:-ml-[70px]' : 'xs:-ml-2 sm:dark:bg-dash-dark-100 sm:bg-dash-light-300'} transition-[margin-left] duration-300`" @click="open = !open">
         <base-tooltip :text="`${open ? 'Stäng sidomenyn' : 'Öppna sidomenyn'}`" position="right" class="flex items-center">
-          <span v-if="open" class="i-mdi-menu-open dark:bg-dash-light-300 bg-dark h-[32px] w-[32px] ml-3"></span>
-          <span v-else class="i-mdi-menu-close dark:bg-dash-light-300 bg-dark h-[32px] w-[32px] ml-3"></span>
+          <span v-if="open" class="i-mdi-menu-open dark:bg-dash-light-300 bg-dark h-[38px] w-[38px] ml-3"></span>
+          <span v-else class="i-mdi-menu-close dark:bg-dash-light-300 bg-dark h-[38px] w-[38px] ml-3"></span>
         </base-tooltip>
       </div>
     </div>
