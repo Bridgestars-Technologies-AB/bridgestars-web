@@ -20,7 +20,6 @@ onMounted(()=>{
     },
   };
   popover = new Popover(tooltip.value, tooltipTrigger.value, options);
-  popover.show()
 })
 let debounce = new Date("1970");
 
