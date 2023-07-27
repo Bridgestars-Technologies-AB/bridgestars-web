@@ -15,22 +15,22 @@ const colored = (b) =>
 
 </script>
 <template>
-  <div class="flex justify-between bg-dash-light-400 dark:bg-dash-dark-200 pr-3 py-1">
+  <div class="flex justify-between bg-dash-light-400 dark:bg-dash-dark-200 pr-3 ">
 
 
     <div class="flex justify-start items-center">
 
-      <div class="flex items-center justify-center z-10 -ml-[44px] rounded-full" @click="open = !open">
-        <base-tooltip :text="`${open ? 'Stäng sidomenyn' : 'Öppna sidomenyn'}`" position="right">
-          <!-- <base-hamburger-menu-button :isOpen="open" class="!scale-[0.4]" innerClass="dark:bg-dash-light-300 bg-dark"/> -->
-          <span v-if="open" class="i-mdi-menu-open dark:bg-dash-light-300 bg-dark h-[32px] w-[32px]"></span>
-          <span v-else class="i-mdi-menu-close dark:bg-dash-light-300 bg-dark h-[32px] w-[32px]"></span>
+      <div :class="` flex justify-center h-full w-[67px] z-10 sm:-ml-[67px] ${open ? 'xs:-ml-[70px]' : 'xs:-ml-2 sm:dark:bg-dash-dark-100 sm:bg-dash-light-300'} transition-[margin-left] duration-300`" @click="open = !open">
+        <base-tooltip :text="`${open ? 'Stäng sidomenyn' : 'Öppna sidomenyn'}`" position="right" class="flex items-center">
+          <span v-if="open" class="i-mdi-menu-open dark:bg-dash-light-300 bg-dark h-[32px] w-[32px] ml-3"></span>
+          <span v-else class="i-mdi-menu-close dark:bg-dash-light-300 bg-dark h-[32px] w-[32px] ml-3"></span>
         </base-tooltip>
       </div>
     </div>
 
+
     <div
-      class="flex justify-end items-center space-x-4"
+      class="flex justify-end items-center space-x-4 py-1"
     >
       <span
         :class="`${

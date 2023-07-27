@@ -30,7 +30,7 @@ provide('side-menu-open', sideMenuOpen)
 <template>
   <div :class="`${darkMode.value ? 'dark':''} flex h-full`"><!-- enables tailwind darkmode, toggle this  -->
         <dash-menu-side/>
-      <div id="content" :class="`flex-grow ${sideMenuOpen ? 'ml-[270px]':'ml-[67px]'}`">
+      <div id="content" :class="`flex-grow ${sideMenuOpen ? 'xs:ml-[270px]':'xs:ml-0 sm:ml-[67px]'}`">
       <div class="bg-dash-light-300 dark:bg-dash-dark-100 flex-col h-full w-full">
 
       <dash-menu-top />

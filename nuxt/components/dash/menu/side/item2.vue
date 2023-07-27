@@ -11,21 +11,22 @@ const textColor = computed(() => `text-dark dark:text-light text-transition ${!o
 </script>
 
 <template>
-  <div :class="``"/>
+  <base-tooltip :text="$t(props.keypath)" class="h-full" position="right">
 
-  <div :class="`flex items-center group hover:cursor-pointer h-full ${bgColor} item-transition ${open || 'ml-[202px]'}`">
+    <div :class="`flex items-center group hover:cursor-pointer h-full ${bgColor} item-transition ${open || 'ml-[202px]'}`">
 
-    <div :class="`${selected ? 'bg-[#04b694]' : ''} h-full w-[3px]`">&nbsp; </div>
-    <div :class="`${'bg-[#04b694]'} p-[5px] my-2 ml-4 rounded-xl ar-1 flex items-center mr-4 group-hover:animate-shake`">
-      <span id="icon" :class="`text-[25px]  ${icon} ${iconColor}`">
+      <div :class="`${selected ? 'bg-[#04b694]' : ''} h-full w-[3px]`">&nbsp; </div>
+      <div :class="`${'bg-[#04b694]'} p-[5px] my-2 ml-4 rounded-xl ar-1 flex items-center mr-4 group-hover:animate-shake`">
+        <span id="icon" :class="`text-[25px]  ${icon} ${iconColor}`">
+        </span>
+      </div>
+
+      <span :class="`font-family text-[15px] my-2 font-light tracking-wide ${enabled || 'line-through'} ${textColor} `">
+          {{ $t(props.keypath) }}
       </span>
+
     </div>
-
-    <span :class="`font-family text-[15px] my-2 font-light tracking-wide ${enabled || 'line-through'} ${textColor} `">
-        {{ $t(props.keypath) }}
-    </span>
-
-  </div>
+  </base-tooltip>
 </template>
 
 <style scoped>

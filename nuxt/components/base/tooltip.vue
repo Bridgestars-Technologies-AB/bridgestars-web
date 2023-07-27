@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const props = defineProps({
   text:String, 
-  position:{type:String, default:"bottom"}
+  position:{type:String, default:"bottom"},
+  "class":String,
 })  
 
 import {initPopovers} from 'flowbite'
@@ -22,21 +23,23 @@ onMounted(()=>{
   popover = new Popover(tooltip.value, tooltipTrigger.value, options);
 })
 let debounce = new Date("1970");
+let isTouch = false;
 
-function show(){
+function show(e){
+  if(isTouch) return;
   setTimeout(() => {
     if(new Date() - debounce < 250) return;
     popover.show()
   }, 250);
 }
-function hide(){
+function hide(e){
   debounce = new Date()
   popover.hide()
 }
 </script>
 
 <template>
-  <div ref="tooltipTrigger" class="h-fit" @click="hide" @mouseleave="hide" @mouseenter="show">
+  <div ref="tooltipTrigger" :class="props.class" @click="hide" @mouseleave="hide" @mouseenter="show" @touchstart="isTouch = true">
       <slot/>
   </div>
     <div data-popover ref="tooltip" role="tooltip" class="absolute z-10 invisible inline-block w-fit transition-opacity duration-300 rounded-lg shadow-sm opacity-0 dark:bg-dash-light-400 bg-dash-dark-400">
