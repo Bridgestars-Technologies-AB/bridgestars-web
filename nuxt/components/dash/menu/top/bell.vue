@@ -1,67 +1,67 @@
 
 <script setup>
+
  import TimeAgo from 'javascript-time-ago' 
  import en from 'javascript-time-ago/locale/en'
  import sv from 'javascript-time-ago/locale/sv'
  const {i18} = useTranslate()
 
-TimeAgo.addLocale(sv)
-TimeAgo.addLocale(en)
-let timeAgo = new TimeAgo(i18.language)
+  TimeAgo.addLocale(sv)
+  TimeAgo.addLocale(en)
+  let timeAgo = new TimeAgo(i18.language)
 
 
-const common =
-  "w-[30px] h-[30px] group-hover:bg-dash-accent dark:group-hover:bg-dash-accent group-hover:animate-shake "; //important keep space at the end
-const colored = (b) =>
-  b
-    ? common + "bg-dash-accent dark:bg-dash-accent"
-    : common + "bg-dark dark:bg-light";
+  const common =
+    "w-[30px] h-[30px] group-hover:bg-dash-accent dark:group-hover:bg-dash-accent group-hover:animate-shake "; //important keep space at the end
+  const colored = (b) =>
+    b
+      ? common + "bg-dash-accent dark:bg-dash-accent"
+      : common + "bg-dark dark:bg-light";
 
-const notificationsOpen = ref(false);
-const hasUnreadNotifications = ref(true);
-const notifications = [
-  {title:"Welcome to Bridgestars", read:false, time: new Date() },
-  {title:"Message from Rasmus", read:false, time: new Date().setMinutes(new Date().getMinutes()-5) },
-  {title:"Bridgestars recived an update", read:true, time: new Date().setMinutes(new Date().getMinutes()-75) },
-  {title:"You've got mail", read:true, time: new Date().setMinutes(new Date().getMinutes()-175) },
-  {title:"test", read:true, time: new Date().setMinutes(new Date().getMinutes()-11175) },
-]
+  const notificationsOpen = ref(false);
+  const hasUnreadNotifications = ref(true);
+  const notifications = [
+    {title:"Welcome to Bridgestars", read:false, time: new Date() },
+    {title:"Message from Rasmus", read:false, time: new Date().setMinutes(new Date().getMinutes()-5) },
+    {title:"Bridgestars recived an update", read:true, time: new Date().setMinutes(new Date().getMinutes()-75) },
+    {title:"You've got mail", read:true, time: new Date().setMinutes(new Date().getMinutes()-175) },
+    {title:"test", read:true, time: new Date().setMinutes(new Date().getMinutes()-11175) },
+  ]
 
- import {initPopovers} from 'flowbite'
- let popover = null;
-onMounted(()=>{
-  initPopovers()
-    // set the popover content element
-  const $targetEl = document.getElementById('notifications-popover');
-  // set the element that trigger the popover using hover or click
-  const $triggerEl = document.getElementById('popover-trigger');
-  const options = {
-    placement: 'bottom',
-    triggerType: 'none',
-    onHide: () => {
-      notificationsOpen.value = false;
-       notifications.forEach(n => n.read = true)
-    },
-    onShow: () => {
-      notificationsOpen.value = true;
-       hasUnreadNotifications.value = false;
-    },
-  };
-   popover = new Popover($targetEl, $triggerEl, options);
-})
-function formatTime(time){
-   if(!time) return ""
-   return timeAgo.format(time)
-}
+  import {initPopovers} from 'flowbite'
+  const popoverTrigger = ref(null)
+  const popoverEl = ref(null)
+  let popover = null;
+  onMounted(()=>{
+    initPopovers()
+    const options = {
+      placement: 'bottom',
+      triggerType: 'none', // 'click' | 'hover' | 'none', we handle click ourself instead
+      onHide: () => {
+        notificationsOpen.value = false;
+         notifications.forEach(n => n.read = true)
+      },
+      onShow: () => {
+        notificationsOpen.value = true;
+         hasUnreadNotifications.value = false;
+      },
+    };
+     popover = new Popover(popoverEl.value, popoverTrigger.value, options);
+  })
+  function formatTime(time){
+     if(!time) return ""
+     return timeAgo.format(time)
+  }
 
 </script>
 <template>
   <base-tooltip text="Notiser" position="bottom">
-    <div class="group flex items-center" id="popover-trigger" @click="popover.toggle()">
+    <div class="group flex items-center" ref="popoverTrigger" @click="popover.toggle()">
         <span
           :class="`relative i-material-symbols-notifications-outline ${colored(
             notificationsOpen
           )}`"
+        
         />
       <!-- one alternative is to have this quite annopying flashing thing, otherwise we could add a red dot or even one with a number in it -->
       <div v-if="hasUnreadNotifications" class="absolute translate-x-[18px] -translate-y-[12px]">
@@ -71,7 +71,7 @@ function formatTime(time){
     </div>
   </base-tooltip>
 
-  <div data-popover id="notifications-popover" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm transition-opacity duration-300  rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500">
+  <div data-popover ref="popoverEl" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm transition-opacity duration-300  rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500">
     <div class="px-3 py-2 border-b border-dark dark:border-white border-opacity-40 rounded-t-lg">
         <h3 class="">Notifications</h3>
     </div>

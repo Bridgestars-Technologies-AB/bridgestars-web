@@ -1,5 +1,4 @@
-
-
+<!-- Account button and dropdown in top menu -->
 <script setup>
 const route = useRoute()
 
@@ -11,9 +10,10 @@ const colored = (b) =>
     : common + "bg-dark dark:bg-light";
 
 const popoverTrigger = ref(null)
-const popover = ref(null)
-const logoutModalOpen = ref(false)
+const popoverElement = ref(null)
+let popover = null;
 
+const logoutModalOpen = ref(false)
 const open = ref(false)
 
 onMounted(()=>{
@@ -21,7 +21,7 @@ onMounted(()=>{
 
   const options = {
     placement: 'bottom',
-    triggerType: 'click',
+    triggerType: 'none', // 'click' | 'hover' | 'none', we handle click ourself instead
     onHide: () => {
       open.value = false;
     },
@@ -29,12 +29,12 @@ onMounted(()=>{
       open.value = true;
     },
   };
-  new Popover(popover.value, popoverTrigger.value, options);
+  popover = new Popover(popoverElement.value, popoverTrigger.value, options);
 })
 
 </script>
 <template>
-    <div class="group flex items-center">
+    <div class="group flex items-center" @click="popover.toggle()">
         <span
           :class="`relative i-ic-baseline-account-circle ${colored(
             open || route.path.startsWith('/dash/profile') || route.path.startsWith('/dash/account')
@@ -43,7 +43,7 @@ onMounted(()=>{
         />
     </div>
 
-  <div data-popover ref="popover" role="tooltip" class="absolute z-10 invisible inline-block w-[200px] text-sm transition-opacity duration-300  rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500">
+  <div data-popover ref="popoverElement" role="tooltip" class="absolute z-10 invisible inline-block w-[200px] text-sm transition-opacity duration-300  rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500">
 
     <div class="px-3 py-2 border-b border-dash-dark dark:border-dash-light border-opacity-20 group cursor-pointer" @click="navigateTo('/dash/profile')">
       <div class="flex flex-col space-y-1">

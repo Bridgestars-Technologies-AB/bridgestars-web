@@ -23,20 +23,21 @@
 
   h6 { @apply text-[16px] leading-[16px]; }
 
-  .text1, .text2{
-    @apply transition-colors duration-1000;
-  }
-
   button { @apply font-family text-[14px] font-light leading-[14px] uppercase; }
 
-  .text1 { @apply font-family text-[24px] leading-[24px] text-grey dark:text-light font-normal; }
+  .text1, .text2{
+    @apply transition-colors duration-300; /*Dark mode transition*/
+    @apply font-family text-grey dark:text-light; /* common style and colors */
+  }
 
-  .text2 { @apply font-family text-[16px] leading-[1.6rem] text-grey dark:text-light font-light; }
+  .text1 { @apply text-[24px] leading-[24px] font-normal; }
+
+  .text2 { @apply text-[16px] leading-[1.6rem] font-light; }
 
   html, body, #__nuxt {
     height: 100%;
     width: 100%;
-    -webkit-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%; /* safari on ios will otherwise resize the text automatically */
   }
 
 /* override some wierd tailwind standards or smth, seems to be caused be the flowbite integration */
@@ -66,12 +67,12 @@
 /* Third layer, here we can add our own utility classes that tailwind does not have  */
 @layer utilities{
     @variants responsive {
-      /* Hide scrollbar for Chrome, Safari and Opera */
+      /* Hide scrollbar but still enable scrolling for Chrome, Safari and Opera */
       .no-scrollbar::-webkit-scrollbar {
           display: none;
       }
 
-      /* Hide scrollbar for IE, Edge and Firefox */
+      /* Hide scrollbar but still enable scrolling for IE, Edge and Firefox */
       .no-scrollbar {
           -ms-overflow-style: none;  /* IE and Edge */
           scrollbar-width: none;  /* Firefox */

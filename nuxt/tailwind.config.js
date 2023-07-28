@@ -76,7 +76,6 @@ module.exports = {
         "tabler", //used for sign out icon
         "basil",
         "majesticons",
-        // "line-md" //used for menu close button
       ]),
       //tailwindcss chooses which icons to include based on usage
     }),
@@ -121,7 +120,7 @@ module.exports = {
       }
     },
     fontFamily: {
-      family: '"Poppins", "Roboto", "Helvetica", "Arial", sans-serif',
+      family: '"Poppins", "Helvetica", "Arial", sans-serif',
       family2: '"Roboto Slab", sans-serif',
     },
     screens: {
@@ -165,7 +164,7 @@ module.exports = {
   ],
   purge:{
     options:{
-      blocklist: ['true', 'false', /^debug-/],
+      blocklist: ['true', 'false', /^debug-/], //prune 'true' and 'false' classes so that we can use ${open && 'bg-dark'} without polluting classList
     }
   }
 };

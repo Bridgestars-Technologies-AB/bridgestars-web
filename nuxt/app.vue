@@ -13,13 +13,7 @@ import "@fontsource/roboto-slab/700.css";
 import "@fontsource/roboto-slab/800.css";
 import "@fontsource/roboto-slab/900.css";
 
-import "@fontsource/roboto/100.css";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
-import "@fontsource/roboto/900.css";
-
+// looks nicer than regular roboto
 import '@fontsource/poppins/100.css';
 import '@fontsource/poppins/200.css';
 import '@fontsource/poppins/300.css';

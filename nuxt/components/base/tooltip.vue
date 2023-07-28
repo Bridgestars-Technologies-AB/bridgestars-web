@@ -1,11 +1,16 @@
+<!-- hover info tooltip styled -->
+
+
 <script setup lang="ts">
+import {initPopovers} from 'flowbite'
+
 const props = defineProps({
   text:String, 
   position:{type:String, default:"bottom"},
-  "class":String,
+  "class":String, // class for styling the wrapper so that we can have different h-full, h-fit etc in different situations
 })  
 
-import {initPopovers} from 'flowbite'
+
 const tooltip = ref(null)
 const tooltipTrigger = ref(null)
 let popover = null;
@@ -21,14 +26,13 @@ onMounted(()=>{
     },
   };
   popover = new Popover(tooltip.value, tooltipTrigger.value, options);
-  if(props.text == "Overview") console.log(popover)
 })
-let debounce = new Date("1970");
-let isTouch = false;
+
+let debounce = new Date("1970"); // to prevent showing tooltip directly when hovering, only after 250ms
+let isTouch = false; //touch devices don't have hover and when clicking the send the mouseenter event, so we need to prevent that
 
 function show(e){
   if(isTouch) return;
-  console.log("show", e)
   setTimeout(() => {
     if(new Date() - debounce < 250) return;
     popover.show()
@@ -42,21 +46,19 @@ function hide(e){
 
 <template>
   <div ref="tooltipTrigger" :class="props.class" @click="hide" @mouseleave="hide" @mouseenter="show" @touchstart="isTouch = true">
-      <slot/>
+    <slot/> <!-- content that is wrapper with tooltip functionality -->
   </div>
     <div data-popover ref="tooltip" role="tooltip" class="absolute z-100 invisible inline-block w-fit transition-opacity duration-300 rounded-lg shadow-sm opacity-0 dark:bg-dash-light-400 bg-dash-dark-400">
     <span v-if="text" class="text2 text-[18px] z-101 p-2 font-normal dark:text-dark text-light">
-      {{text}}
+      {{text}} <!-- tooltip text -->
     </span>
-    <slot v-else name="content"/>
+    <slot v-else name="content"/>  <!-- alternative tooltip content -->
     <div data-popper-arrow></div>
 </div>
-  <!-- <div ref="tooltip" data-popover role="tooltip" class="w-fit absolute z-10 invisible py-1 inline-block transition-opacity duration-300  rounded-lg shadow-sm bg-dash-dark-300 dark:bg-dash-light-500 border border-gray-200" @hover="hide"> -->
-  <!--   <div data-popper-arrow></div> -->
-  <!-- </div> -->
 
 </template>
 <style scoped>
+/* remove border styling on arrow */
 div[data-popper-arrow]:before{
   border: 0px solid transparent !important;
 }
