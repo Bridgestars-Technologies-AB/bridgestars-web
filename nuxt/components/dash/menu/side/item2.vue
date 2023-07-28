@@ -26,7 +26,7 @@ const textColor = computed(() => `text-dark dark:text-light text-transition ${!o
         </span>
       </div>
 
-      <span :class="`font-family text-[15px] my-2 font-light tracking-wide ${enabled || 'line-through'} ${textColor} `">
+      <span :class="`font-family text-[15px] my-2 pr-4 font-light tracking-wide ${enabled || 'line-through'} ${textColor} `">
           {{ $t(props.keypath) }}
       </span>
 
