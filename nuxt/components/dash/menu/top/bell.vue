@@ -39,11 +39,11 @@
       triggerType: 'none', // 'click' | 'hover' | 'none', we handle click ourself instead
       onHide: () => {
         notificationsOpen.value = false;
-         notifications.forEach(n => n.read = true)
+        notifications.forEach(n => n.read = true)
       },
       onShow: () => {
         notificationsOpen.value = true;
-         hasUnreadNotifications.value = false;
+        hasUnreadNotifications.value = false;
       },
     };
      popover = new Popover(popoverEl.value, popoverTrigger.value, options);

@@ -103,7 +103,8 @@ function click(item){
 
 
 <template>
-  <div id="side-menu" :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col w-[270px] z-[10] ${isOpen ? 'open' : 'closed'} h-[100%] overflow-x-scroll overflow-y-auto no-scrollbar absolute`">
+  <div id="side-menu" :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col z-[10] ${isOpen ? 'open' : 'closed'} h-full overflow-x-visible absolute`">
+  <div class="overflow-y-scroll w-[270px] no-scrollbar">
 
 
     <div :class="`text-center flex items-center pt-7 flex-wrap profile-section ${isOpen ? 'open' : 'closed'}`" >
@@ -117,7 +118,7 @@ function click(item){
         </div>
       </div>
 
-      <div class="flex flex-col mt-10 mb-10">
+      <div class="flex flex-col mt-10 mb-[200px] h-full">
         <div v-for="item in items" :key="item.key" @click="() => click(item)">
           <div v-if="item.divider" 
             class="font-family font-light text-dark opacity-70 dark:text-light mb-1 ml-5 mt-5 tracking-wide text-[16px] cursor-default">
@@ -127,11 +128,10 @@ function click(item){
         </div>
       </div>
     </div>
-
+  </div>
 
 
   <base-modal-signout v-model:open="logoutModalOpen"/>
-
 </template>
 
 <style scoped>
@@ -149,6 +149,7 @@ function click(item){
   position:absolute;
   @apply ml-[195px] mt-[40px];
 }
+
 
 #side-menu{
   transition: left .3s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out; 
