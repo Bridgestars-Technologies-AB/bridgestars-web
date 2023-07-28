@@ -17,9 +17,9 @@ const textColor = computed(() => `text-dark dark:text-light text-transition ${!o
 <template>
   <base-tooltip :text="$t(props.keypath)" class="h-full" position="right">
 
-    <div :class="`flex items-center group hover:cursor-pointer h-full ${bgColor} item-transition ${open || 'ml-[202px]'}`">
+    <div :class="`flex items-center relative group hover:cursor-pointer h-full ${bgColor} item-transition ${open || 'ml-[204px]'}`">
 
-      <div :class="`${selected ? 'bg-[#04b694]' : ''} h-full w-[3px]`"/> 
+      <div :class="`${selected ? 'bg-[#04b694]' : ''} h-full w-[3px] ${open || 'absolute ml-[-1px]'}`"/> 
 
       <div :class="`${'bg-[#04b694]'} p-[5px] my-2 ml-4 rounded-xl ar-1 flex items-center mr-4 group-hover:animate-shake`">
         <span id="icon" :class="`text-[25px]  ${icon} ${iconColor}`">

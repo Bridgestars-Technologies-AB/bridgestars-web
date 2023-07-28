@@ -107,7 +107,7 @@ function click(item){
   <div class="overflow-y-scroll w-[270px] no-scrollbar">
 
 
-    <div :class="`text-center flex items-center pt-7 flex-wrap profile-section ${isOpen ? 'open' : 'closed'}`" >
+    <div :class="`text-center flex relative items-center pt-7 flex-wrap profile-section ${isOpen ? 'open' : 'closed'}`" >
         <img class="object-cover object-top w-[50px] aspect-square rounded-full cursor-pointer" src="~/assets/bridgestars/images/castor.jpg" @click="navigateTo({name:'dash-profile'})"/> 
         <div class="flex flex-col text-start pl-2 justify-center ">
           <h6 class="profile-section-text text-[24px] leading-[24px] font-family tracking-tighter" @click="navigateTo({name:'dash-profile'})">
@@ -147,7 +147,7 @@ function click(item){
 }
 .profile-section.closed img {
   position:absolute;
-  @apply ml-[195px] mt-[40px];
+  @apply ml-[192px] mt-[40px];
 }
 
 
