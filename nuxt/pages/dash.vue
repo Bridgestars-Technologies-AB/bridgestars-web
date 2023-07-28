@@ -32,7 +32,7 @@ provide('side-menu-open', sideMenuOpen)
     <dash-menu-side/>
 
     <div class="bg-dash-light-400 dark:bg-dash-dark-200 flex-col flex-grow transition-colors duration-300">
-      <div :class="`absolute bg-black w-full h-full sm:opacity-0 ${sideMenuOpen ? 'opacity-30' :'opacity-0'} transition-opacity duration-1000`"/>
+      <div :class="`absolute bg-black w-full h-full sm:hidden ${sideMenuOpen ? 'opacity-70' :'opacity-0'} transition-opacity duration-1000`" @click="sideMenuOpen = false"/>
         <dash-menu-top />
       <div id="content" :class="`bg-dash-light-400 dark:bg-dash-dark-200 p-5 flex ${sideMenuOpen ? 'sm:ml-[270px] xs:ml-0':'xs:ml-0 sm:ml-[67px]'}`">
           <NuxtPage/>
