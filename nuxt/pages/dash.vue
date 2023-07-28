@@ -23,28 +23,28 @@ onUnmounted(() => {
 })
 
 const darkMode = useDarkMode() 
-const sideMenuOpen = ref(true)
+const sideMenuOpen = ref(false)
 provide('side-menu-open', sideMenuOpen)
 </script>
 
 <template>
-  <div :class="`${darkMode.value ? 'dark':''} flex h-full`"><!-- enables tailwind darkmode, toggle this  -->
-        <dash-menu-side/>
-      <div id="content" :class="`flex-grow ${sideMenuOpen ? 'xs:ml-[270px]':'xs:ml-0 sm:ml-[67px]'}`">
-      <div class="bg-dash-light-300 dark:bg-dash-dark-100 flex-col h-full w-full">
+  <div :class="`${darkMode.value ? 'dark':''} flex h-full w-full overflow-x-clip`"><!-- enables tailwind darkmode, toggle this  -->
+    <dash-menu-side/>
 
-      <dash-menu-top />
-        <div :class="`bg-dash-light-400 dark:bg-dash-dark-200 p-5 h-full w-full ${sideMenuOpen ? 'rounded-bl-[32px]' : ''}`">
-            <NuxtPage/>
-          </div>
-        </div>
+    <div class="bg-dash-light-400 dark:bg-dash-dark-200 flex-col flex-grow transition-colors duration-300">
+      <div :class="`absolute bg-black w-full h-full sm:opacity-0 ${sideMenuOpen ? 'opacity-30' :'opacity-0'} transition-opacity duration-1000`"/>
+        <dash-menu-top />
+      <div id="content" :class="`bg-dash-light-400 dark:bg-dash-dark-200 p-5 flex ${sideMenuOpen ? 'sm:ml-[270px] xs:ml-0':'xs:ml-0 sm:ml-[67px]'}`">
+          <NuxtPage/>
       </div>
+    </div>
+
   </div>
 </template>
 
 <style scoped>
 #content{
-  transition: margin-left 0.3s ease-in-out;
+  transition: margin-left 0.3s ease-in-out, background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* html, body { */
@@ -54,6 +54,6 @@ provide('side-menu-open', sideMenuOpen)
 /* } */
 *{
   /* dark mode transition */
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; 
+  /* transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;  */
 }
 </style>

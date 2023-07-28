@@ -15,6 +15,14 @@
     "results": "Tävlingsresultat",
     "sign-out": "Logga ut"
   },
+  "top_menu":{
+    "tooltip":{
+      "settings": "Spelinställningar",
+      "account": "Kontoinställningar",
+      "notifications": "Notiser",
+      "toggle_dark_mode": "Växla mörkt läge"
+    }
+  },
   "sign_out_modal":{
     "text": "Är du säker på att du vill logga ut?",
     "yes": "Ja, jag är säker",

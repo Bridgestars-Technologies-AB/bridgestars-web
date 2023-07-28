@@ -48,7 +48,7 @@ function hide(e){
   <div ref="tooltipTrigger" :class="props.class" @click="hide" @mouseleave="hide" @mouseenter="show" @touchstart="isTouch = true">
     <slot/> <!-- content that is wrapper with tooltip functionality -->
   </div>
-    <div data-popover ref="tooltip" role="tooltip" class="absolute z-100 invisible inline-block w-fit transition-opacity duration-300 rounded-lg shadow-sm opacity-0 dark:bg-dash-light-400 bg-dash-dark-400">
+    <div data-popover ref="tooltip" role="tooltip" class="absolute z-100 invisible inline-block w-auto whitespace-nowrap transition-opacity duration-300 rounded-lg shadow-sm opacity-0 dark:bg-dash-light-400 bg-dash-dark-400">
     <span v-if="text" class="text2 text-[18px] z-101 p-2 font-normal dark:text-dark text-light">
       {{text}} <!-- tooltip text -->
     </span>

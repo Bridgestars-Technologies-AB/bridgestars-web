@@ -3,7 +3,7 @@
 const route = useRoute()
 
 const common =
-  "w-[30px] h-[30px] group-hover:bg-dash-accent dark:group-hover:bg-dash-accent group-hover:animate-shake "; //important keep space at the end
+  "transition-colors duration-300 w-[30px] h-[30px] group-hover:bg-dash-accent dark:group-hover:bg-dash-accent group-hover:animate-shake "; //important keep space at the end
 const colored = (b) =>
   b
     ? common + "bg-dash-accent dark:bg-dash-accent"
@@ -34,6 +34,7 @@ onMounted(()=>{
 
 </script>
 <template>
+  <base-tooltip :text="$t('dashboard:top_menu.tooltip.account')">
     <div class="group flex items-center" @click="popover.toggle()">
         <span
           :class="`relative i-ic-baseline-account-circle ${colored(
@@ -42,6 +43,7 @@ onMounted(()=>{
           ref="popoverTrigger"
         />
     </div>
+  </base-tooltip>
 
   <div data-popover ref="popoverElement" role="tooltip" class="absolute z-10 invisible inline-block w-[200px] text-sm transition-opacity duration-300  rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500">
 

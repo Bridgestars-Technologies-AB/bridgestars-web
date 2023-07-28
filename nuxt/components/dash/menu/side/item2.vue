@@ -36,10 +36,10 @@ const textColor = computed(() => `text-dark dark:text-light text-transition ${!o
 
 <style scoped>
 .item-transition{
-  transition: background-color 0.2s ease-in-out, margin-left 0.3s ease-in-out;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.3s ease-in-out;
 }
 
 .text-transition{
-  transition: opacity 0.2s ease-in-out, font-size 0.3s ease-in-out, color .2s ease-in-out;
+  transition: opacity 0.2s ease-in-out, font-size 0.3s ease-in-out, color .3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 </style>

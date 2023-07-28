@@ -152,7 +152,7 @@ function click(item){
 
 
 #side-menu{
-  transition: left .3s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out; 
+  transition: left .3s ease-in-out, background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
 }
 #side-menu.closed{
   @apply xs:-left-[270px] sm:-left-[203px]

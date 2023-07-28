@@ -12,7 +12,7 @@
 
 
   const common =
-    "w-[30px] h-[30px] group-hover:bg-dash-accent dark:group-hover:bg-dash-accent group-hover:animate-shake "; //important keep space at the end
+    "transition-colors duration-300  w-[30px] h-[30px] group-hover:bg-dash-accent dark:group-hover:bg-dash-accent group-hover:animate-shake "; //important keep space at the end
   const colored = (b) =>
     b
       ? common + "bg-dash-accent dark:bg-dash-accent"
@@ -55,7 +55,7 @@
 
 </script>
 <template>
-  <base-tooltip text="Notiser" position="bottom">
+  <base-tooltip :text="$t('dashboard:top_menu.tooltip.notifications')">
     <div class="group flex items-center" ref="popoverTrigger" @click="popover.toggle()">
         <span
           :class="`relative i-material-symbols-notifications-outline ${colored(
