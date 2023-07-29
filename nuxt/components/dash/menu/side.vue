@@ -5,11 +5,14 @@ const route = useRoute()
 const toast = useToast()
 const auth = useAuth()
 
+const logoutModalOpen = ref(false)
+
 // name is both the key for the translation and the route name, keep them in sync!
 const items = [
   {
     name:"overview",
-    icon:"i-ic-outline-home"
+    icon:"i-ic-home",
+    color: "bg-[#aaC107]" //icon color, but looks like shit because I couldn't select good colors, these are replaced with bg-teal-400 in side2.vue
   },
   {
     divider:true,
@@ -17,7 +20,8 @@ const items = [
   },
   {
     name: "deal-editor",
-    icon:"i-material-symbols-sports-esports-outline"
+    icon:"i-material-symbols-sports-esports",
+    color: "bg-[#95b687]"
   },
   // {
   //   name: "dealhistory",
@@ -25,11 +29,13 @@ const items = [
   // },
   {
     name: "contract-calc",
-    icon:"i-material-symbols-score"
+    icon:"i-material-symbols-score",
+    color: "bg-[#f48fb1]"
   },
   {
     name: "simulator",
-    icon: "i-material-symbols-analytics"
+    icon: "i-material-symbols-analytics",
+    color: "bg-[#4fc3f7]"
   },
   {
     divider:true,
@@ -37,19 +43,23 @@ const items = [
   },
   {
     name: "contracting",
-    icon: "i-material-symbols-sports-esports-outline"
+    icon: "i-material-symbols-sports-esports",
+    color: "bg-[#a5d6a7]"
   },
   {
     name: "gambit",
-    icon: "i-material-symbols-play-circle-outline"
+    icon: "i-material-symbols-play-circle",
+    color: "bg-[#f48fb1]"
   },
   {
     name: "suit-treatments",
-    icon: "i-material-symbols-hive"
+    icon: "i-material-symbols-hive",
+    color: "bg-[#4fc3f7]"
   },
   {
     name: "play",
-    icon: "i-material-symbols-play-circle-outline"
+    icon: "i-material-symbols-play-circle",
+    color: "bg-[#5f350c]"
   },
   {
     divider:true,
@@ -57,24 +67,24 @@ const items = [
   },
   {
     name: "results",
-    icon: "i-material-symbols-text-snippet"
+    icon: "i-material-symbols-text-snippet",
+    color: "bg-[#839202]"
   },
   {
     name: "help",
-    icon: "i-material-symbols-info"
+    icon: "i-material-symbols-info",
+    color: "bg-[#2f357f]"
   },
   {
     name: "sign-out",
     icon: "i-tabler-logout-2",
-    action: async () => {
-      if(auth.authenticated) await auth.signOut();
-      toast.clear() //remove old toasts , ex sign in 
-      toast.success("You have been signed out.") //translate
-      navigateTo("/")
+    color: "bg-[#324465]",
+    action: () => {
+      logoutModalOpen.value = true;
     }
   }
 ]
-items.map(x => x.enabled = x.action || router.getRoutes().some(r => r.name=="dash-"+x.name))
+items.map(x => x.enabled = x.action || router.getRoutes().some(r => r.name=="dash-"+x.name)) // add enabled property
 
 const isOpen = inject('side-menu-open')
 
@@ -87,45 +97,67 @@ function click(item){
     toast.error("Not implemented yet.")
 }
 
+
 </script>
 
 
 
 <template>
-<!-- show open button if closed -->
-  <div v-if="!isOpen" class="absolute">
-    <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-300 bg-dark"/>
-  </div>
+  <div id="side-menu" :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col z-[10] ${isOpen ? 'open' : 'closed'} h-full overflow-x-visible absolute`">
+  <div class="overflow-y-scroll w-[270px] no-scrollbar">
 
-  <div id="side-menu" :class="`bg-dash-light-200 dark:bg-dash-dark-300 flex flex-col w-[270px] z-[10] ${isOpen ? 'left-0' : '-left-[270px]'} h-[100%] overflow-y-auto fixed`">
 
-<!-- close btn -->
-    <div class="sticky top-0 h-0 flex justify-end">
-        <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" innerClass="dark:bg-dash-light-300 bg-dark"/>
-    </div>
-
-    <div class="text-center flex items-center pl-4 pt-7 flex-wrap cursor-pointer" @click="navigateTo({name:'dash-profile'})">
-        <img class="object-cover object-top w-[50px] aspect-square rounded-full" src="~/assets/bridgestars/images/castor.jpg"/> 
-        <div class="flex flex-col text-start pl-2 justify-center space-y-2">
-          <h3 class="text-[22px] leading-[22px] tracking-tighter">Castor Mann</h3>
-          <h6 class="text-[#14C6A4] dark:text-[#14C6a4] font-light tracking-normal">Bridgestars Premium</h6>
+    <div :class="`text-center flex relative items-center pt-7 flex-wrap profile-section ${isOpen ? 'open' : 'closed'}`" >
+        <img class="object-cover object-top w-[50px] aspect-square rounded-full cursor-pointer" src="~/assets/bridgestars/images/castor.jpg" @click="navigateTo({name:'dash-profile'})"/> 
+        <div class="flex flex-col text-start pl-2 justify-center ">
+          <h6 class="profile-section-text text-[24px] leading-[24px] font-family tracking-tighter" @click="navigateTo({name:'dash-profile'})">
+            {{auth.get('dispName')}}
+          </h6> 
+          <h6 class="profile-section-text text-[#14C6A4] text-[18px] leading-[18px] dark:text-[#14C6a4] font-light tracking-normal" 
+            @click="navigateTo({name:'dash-profile'})">Premium</h6>
         </div>
       </div>
 
-      <div class="flex flex-col px-5 mt-6 mb-10">
-        <div v-for="item in items" :key="item.key" @click="() => click(item)">
+      <div class="flex flex-col mt-10 mb-[200px] h-full">
+        <div v-for="item in items" :key="item.key" @click="() => click(item)" class="overflow-x-clip">
           <div v-if="item.divider" 
-            class="font-family font-light text-dark opacity-70 dark:text-light mb-1 mt-5 tracking-wide text-[16px]">
+            class="font-family font-light text-dark opacity-70 dark:text-light mb-1 ml-5 mt-5 tracking-wide text-[16px] cursor-default">
             {{$t("dashboard:side_menu."+item.name)}}
           </div>
-        <dash-menu-side-item v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled"/>
+        <dash-menu-side-item2 v-else :icon="item.icon" :keypath="`dashboard:side_menu.${item.name}`" :selected="route.name == 'dash-'+item.name" :enabled="item.enabled" :color="item.color"/>
         </div>
       </div>
     </div>
+  </div>
+
+
+  <base-modal-signout v-model:open="logoutModalOpen"/>
 </template>
 
 <style scoped>
+.profile-section {
+  margin-left: 20px;
+}
+.profile-section div {
+   @apply cursor-pointer w-fit opacity-100;
+}
+
+.profile-section img {
+  transition: margin-left 0.3s ease-in-out, margin-top 0.3s ease-in-out;
+}
+.profile-section.closed img {
+  position:absolute;
+  @apply ml-[192px] mt-[40px];
+}
+
+
 #side-menu{
-  transition: left .3s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out; 
+  transition: left .3s ease-in-out, background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+#side-menu.closed{
+  @apply xs:-left-[270px] sm:-left-[203px]
+}
+#side-menu.open{
+  @apply left-0
 }
 </style>

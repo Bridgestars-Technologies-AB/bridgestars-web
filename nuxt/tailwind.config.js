@@ -12,25 +12,26 @@ const backgroundColors = {
       success: "#59BA83", //grön
       warning: "#fb8c00", //orange
       error: "#F44335", //röd
-      blue: "rgb(73, 163, 241)",
       white: "#fefefe",
       light: "#dddddd",
       dark: "#344767",
       DEFAULT: "#f74040",
       "dash-dark": {
-        200: "#475569",
-        300: "#334155",
-        400: "#1F2A40",
-        500: "#141B2D",
-        DEFAULT: "#141B2D",
+        100: "#1a1625",
+        200: "#2f2b3a",
+        300: "#46424f",
+        400: "#5e5a66",
+        500: "#76737e",
+        600: "#908d96",
+        DEFAULT:"#908d96"
       },
       "dash-light": {
-        100: "#f5f5f5",
-        200: "#eeeeee",
+        100: "#9e9e9e",
+        200: "#bdbdbd",
         300: "#e0e0e0",
-        400: "#bdbdbd",
-        500: "#9e9e9e",
-        DEFAULT: "#9e9e9e",
+        400: "#eeeeee",
+        500: "#f5f5f5",
+        DEFAULT: "#9e9e9e"
       },
       "dash-accent": {
         DEFAULT: "#868dfb",
@@ -49,7 +50,7 @@ const textColors = {
         light: "#6870fa",
       },
       borderColor:{
-        ...backgroundColors
+        ...backgroundColors //ska det verkligen vara här??
       }
 }
 
@@ -68,11 +69,11 @@ module.exports = {
     //require("tailwindcss-animated"),
     iconsPlugin({
       collections: getIconCollections([
-        "ic",
-        "material-symbols",
+        "ic", //used a lot
+        "material-symbols", //used a lot
         "mdi",
-        "circle-flags",
-        "tabler",
+        "circle-flags", //used for flags duh
+        "tabler", //used for sign out icon
         "basil",
         "majesticons",
       ]),
@@ -91,6 +92,9 @@ module.exports = {
       },
       textDecorationColor:{
         ...textColors
+      },
+      borderColor:{
+        ...backgroundColors
       },
       animation: {
         shake: "shake 1s cubic-bezier(.36,.07,.19,.97) both",
@@ -116,7 +120,7 @@ module.exports = {
       }
     },
     fontFamily: {
-      family: '"Roboto", "Helvetica", "Arial", sans-serif',
+      family: '"Poppins", "Helvetica", "Arial", sans-serif',
       family2: '"Roboto Slab", sans-serif',
     },
     screens: {
@@ -158,4 +162,9 @@ module.exports = {
     'leading-9',
     'shadow-lg'
   ],
+  purge:{
+    options:{
+      blocklist: ['true', 'false', /^debug-/], //prune 'true' and 'false' classes so that we can use ${open && 'bg-dark'} without polluting classList
+    }
+  }
 };
