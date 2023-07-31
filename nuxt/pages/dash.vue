@@ -1,5 +1,8 @@
 <script setup>
+  import {ClientEvent, ServerEvent} from "~/js/realtime-events";
+
 await loadTranslations("dashboard"); // load translation
+
 const route = useRoute()
 
 if(route.name === "dash") {
@@ -14,6 +17,24 @@ onMounted(() => {
   //find html and body elements and set their overflow to hidden
   document.getElementsByTagName("html")[0].style.overflow = "hidden";
   document.getElementsByTagName("body")[0].style.overflow = "hidden";
+
+  const socket = useSocket();
+
+  socket.on(ServerEvent.Authenticated, () => {
+    console.log("socket authenticated");
+      //get chats
+      useChats().fetchChats().then((chats) => {
+        console.log("chats", chats);
+        socket.emit(ClientEvent.SubscribeToChats, chats.map(c=> c.id));
+        socket.on(ServerEvent.ChatMessage, (chatId) => {
+          console.log("new message in ", chatId);
+          const u = chats.find(c => c.id === chatId).get("users").filter(u => u !== useAuth().user.id)
+          console.log("new message from ", u);
+        })
+      }).catch((err) => {
+        console.error(err);
+      });
+  });
 })
 
 onUnmounted(() => {
@@ -37,6 +58,16 @@ provide('side-menu-open', sideMenuOpen)
       <div id="content" :class="`bg-dash-light-400 dark:bg-dash-dark-200 p-5 flex ${sideMenuOpen ? 'sm:ml-[270px] xs:ml-0':'xs:ml-0 sm:ml-[67px]'}`">
           <NuxtPage/>
       </div>
+    </div>
+
+    <div class="absolute bottom-3 right-3 z-100">
+      <h2>Chats</h2>
+      <ul>
+        <li v-for="c in useChats().chats">
+          <base-submit-button @click="useChats().sendMessage(c.id, 'test')" :text="c.get('users').filter(u => u !== useAuth().user.id)">
+          </base-submit-button>
+        </li>
+      </ul>
     </div>
 
   </div>
