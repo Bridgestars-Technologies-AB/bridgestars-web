@@ -3,6 +3,7 @@ const router = useRouter();
 const toast = useToast();
 const query = ref({});
 const { t } = await loadTranslations("auth");
+const showLoading = ref(false);
 
 //implement sign out logic on mounted
 onMounted(() => {
@@ -11,14 +12,20 @@ onMounted(() => {
 
 function submit(res) {
   //not sure if this is the function, copilot suggested it
-  useAuth().signUp(res.username, res.password, res.email)
+  showLoading.value = true;
+  useAuth()
+    .signUp(res.username, res.password, res.email)
     .then((user) => {
+      showLoading.value = false;
       toast.success(t("auth:signUp:toast.signedUp"));
       if (query.value.to) router.push({ path: query.value.to });
       else router.push({ path: "/dash" });
     })
     //error
-    .catch((e) => toast.error(e.message));
+    .catch((e) => {
+      showLoading.value = false;
+      toast.error(e.message);
+    });
 }
 </script>
 
@@ -58,6 +65,7 @@ function submit(res) {
       id="submit"
       type="submit"
       :text="$t('auth:common.signUp')"
+      :loading="showLoading"
       @submit="submit"
     ></base-submit-button>
 
