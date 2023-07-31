@@ -18,8 +18,8 @@ function submit(res) {
     .then((user) => {
       showLoading.value = false;
       toast.success(t("auth:signUp:toast.signedUp"));
-      if (query.value.to) router.push({ path: query.value.to });
-      else router.push({ path: "/dash" });
+      if (query.value.to) navigateTo({ path: query.value.to });
+      else navigateTo({ path: "/dash" });
     })
     //error
     .catch((e) => {

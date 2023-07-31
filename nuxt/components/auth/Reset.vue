@@ -5,11 +5,13 @@ const toast = useToast();
 const route = useRoute();
 const query = ref({});
 const { t } = await loadTranslations("auth");
+const showLoading = ref(false);
 
 onMounted(() => {
   query.value = route.query;
 });
 
+//Implement showLoading doesn't make sense at this point since reset password lacks functionality
 function submit(res) {
   //Parse.User.requestPasswordReset(res.email)
   //.then(() => {
@@ -18,7 +20,7 @@ function submit(res) {
   router.push({ path: "/auth/sign-in", query: query.value });
   //})
   //error
-  //.catch((e) => toast.error(e.message));
+  //.catch( {(e) => toast.error(e.message); showLoading.value = false;});
 
   //firebase migration, this will be needed later
   /*Parse.Cloud.run('signIn', { res.usernameEmail, res.password})
@@ -53,6 +55,7 @@ function submit(res) {
       wrapperClass="w-[100%] !mt-6"
       id="submit"
       :text="$t('auth:reset.resetPassword')"
+      :loading="showLoading"
     ></base-submit-button>
 
     <div class="!mt-6 whitespace-nowrap">
