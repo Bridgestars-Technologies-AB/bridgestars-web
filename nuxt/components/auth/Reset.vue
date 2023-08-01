@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const router = useRouter();
 const toast = useToast();
-
 const route = useRoute();
 const query = ref({});
 const { t } = await loadTranslations("auth");
@@ -17,7 +15,7 @@ function submit(res) {
   //.then(() => {
   toast.success(t("auth:reset:toast.passwordReset"));
   query.value.email = res.email;
-  router.push({ path: "/auth/sign-in", query: query.value });
+  route.push({ path: "/auth/sign-in", query: query.value });
   //})
   //error
   //.catch( (e) => toast.error(e.message););
@@ -63,7 +61,7 @@ function submit(res) {
 
       <!-- type button to prevent submit form  -->
       <button
-        @click="router.go(-1)"
+        @click="navigateTo({ path: '/auth/sign-in', query })"
         type="button"
         class="!text-[16px] normal-case text-blue font-bold normal-case tracking-[0.5px]"
       >
