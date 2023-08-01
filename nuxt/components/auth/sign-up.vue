@@ -1,5 +1,5 @@
 <script setup>
-const router = useRouter();
+const route = useRoute();
 const toast = useToast();
 const query = ref({});
 const { t } = await loadTranslations("auth");
@@ -7,7 +7,7 @@ const showLoading = ref(false);
 
 //implement sign out logic on mounted
 onMounted(() => {
-  query.value = router.query;
+  query.value = route.query;
 });
 
 function submit(res) {

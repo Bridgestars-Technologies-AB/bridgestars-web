@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const router = useRouter();
 const route = useRoute();
-
 const toast = useToast();
 const query = ref({});
 const { t } = await loadTranslations("auth");

@@ -20,7 +20,7 @@ function submit(res) {
   router.push({ path: "/auth/sign-in", query: query.value });
   //})
   //error
-  //.catch( {(e) => toast.error(e.message); showLoading.value = false;});
+  //.catch( (e) => toast.error(e.message););
 
   //firebase migration, this will be needed later
   /*Parse.Cloud.run('signIn', { res.usernameEmail, res.password})
