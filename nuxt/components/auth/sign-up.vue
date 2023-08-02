@@ -1,14 +1,8 @@
 <script setup>
-const route = useRoute();
 const toast = useToast();
-const query = ref({});
+const query = useRoute().query;
 const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
-
-//implement sign out logic on mounted
-onMounted(() => {
-  query.value = route.query;
-});
 
 function submit(res) {
   //not sure if this is the function, copilot suggested it
@@ -18,7 +12,7 @@ function submit(res) {
     .then((user) => {
       showLoading.value = false;
       toast.success(t("auth:signUp:toast.signedUp"));
-      if (query.value.to) navigateTo({ path: query.value.to });
+      if (query.to) navigateTo({ path: query.to });
       else navigateTo({ path: "/dash" });
     })
     //error

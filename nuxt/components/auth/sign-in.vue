@@ -1,21 +1,18 @@
 <script setup lang="ts">
-const route = useRoute();
 const toast = useToast();
-const query = ref({});
+const query = useRoute().query;
 const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
 const auth = useAuth();
 
 onMounted(() => {
-  query.value = route.query;
-
   if (auth.authenticated) {
     //temp
     toast(t("auth:signIn:toast.alreadyIn"));
     //go directly to profile page or temp. show: you are signed in, sign out?
 
-    if (query.value.to) navigateTo({ path: query.value.to });
+    if (query.to) navigateTo({ path: query.to });
     else navigateTo({ path: "/dash" });
   }
 });
@@ -33,7 +30,7 @@ function submit(res) {
       showLoading.value = false;
       toast.success("You are signed in!");
       // disable profile since it does not exist
-      if (query.value.to) navigateTo({ path: query.value.to });
+      if (query.to) navigateTo({ path: query.to });
       else navigateTo({ path: "/dash" });
     })
     //error
