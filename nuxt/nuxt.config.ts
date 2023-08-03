@@ -36,6 +36,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/tailwindcss',
+    '@nuxt/content'
   ],
   // i18n: {
   //   vueI18n: "./localization/i18n.config.ts",

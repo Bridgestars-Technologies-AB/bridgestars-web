@@ -1,3 +1,8 @@
+---
+title: Terms & Conditions
+date: 2023/08/03
+---
+
 # Terms & Conditions
 
 ## Introduction
@@ -8,11 +13,11 @@ Please read carefully these Terms and our Privacy Statement. By using the Platfo
 
 If you have any questions about the Terms or the Privacy Statement, please contact us through mail info@bridgestars.net.
 
-## CONDUCT OF USE
+## Conduct of use
 
 You are not allowed to use this Platform in any way that is unlawful, abusive, threatening, harassing, obscene, libellous, hateful, or in any other way violating these terms and conditions.
 
-## LIABILITY
+## Liability
 
 The material contained on the Platform is provided without any guarantees, conditions or warranties as to its accuracy. Bridgestars Technologies Sweden AB does not represent that information contained on or available via the Platform is accurate or complete and accordingly, it should not be relied on as such. You should not rely on any such information. Any arrangements made between you and any other person, using or named on the Platform are entirely at your sole risk and responsibility.
 

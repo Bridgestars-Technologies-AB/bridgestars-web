@@ -7,7 +7,11 @@
 <!-- Introduction as prop -->
 
 <!-- to top -->
-<script setup>
+<script setup lang="ts">
+const { data } = await useAsyncData("policy", () =>
+  queryContent("/").findOne()
+);
+
 function moveLine(event) {
   const button = event.target;
   var line = document.querySelector(".line");
@@ -47,7 +51,12 @@ function moveLine(event) {
         ></div>
       </div>
     </div>
+    <div class="bg-white flex justify-items-center">
+      <span>{{ data?.title }}</span>
+      <!-- <ContentRenderer :value="data" /> -->
+    </div>
   </base-card-page-layout>
 </template>
+n
 
 <style scoped></style>
