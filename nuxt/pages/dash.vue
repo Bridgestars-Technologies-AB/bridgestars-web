@@ -53,21 +53,12 @@ provide('side-menu-open', sideMenuOpen)
     <dash-menu-side/>
 
     <div class="bg-dash-light-400 dark:bg-dash-dark-200 flex-col flex-grow transition-colors duration-300">
-      <div :class="`absolute bg-black w-full h-full sm:hidden ${sideMenuOpen ? 'opacity-70' :'opacity-0'} transition-opacity duration-1000`" @click="sideMenuOpen = false"/>
+      <div :class="`absolute z-100 bg-black w-full h-full sm:hidden ${sideMenuOpen ? 'opacity-70' :'opacity-0'} transition-opacity duration-1000`" @click="sideMenuOpen = false"/>
         <dash-menu-top />
       <div id="content" :class="`bg-dash-light-400 dark:bg-dash-dark-200 p-5 flex ${sideMenuOpen ? 'sm:ml-[270px] xs:ml-0':'xs:ml-0 sm:ml-[67px]'}`">
           <NuxtPage/>
+          <dash-chat-toggle/>
       </div>
-    </div>
-
-    <div class="absolute bottom-3 right-3 z-100">
-      <h2>Chats</h2>
-      <ul>
-        <li v-for="c in useChats().chats">
-          <base-submit-button @click="useChats().sendMessage(c.id, 'test')" :text="c.get('users').filter(u => u !== useAuth().user.id)">
-          </base-submit-button>
-        </li>
-      </ul>
     </div>
 
   </div>
