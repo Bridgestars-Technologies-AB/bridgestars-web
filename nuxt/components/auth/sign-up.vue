@@ -5,17 +5,14 @@ const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
 function submit(res) {
-  //not sure if this is the function, copilot suggested it
   showLoading.value = true;
   useAuth()
     .signUp(res.username, res.password, res.email)
     .then((user) => {
-      // showLoading.value = false;
       toast.success(t("auth:signUp:toast.signedUp"));
       if (query.to) navigateTo({ path: query.to });
       else navigateTo({ path: "/dash" });
     })
-    //error
     .catch((e) => {
       showLoading.value = false;
       toast.error(e.message);

@@ -5,17 +5,14 @@ const query = useRoute().query;
 const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
-//Implement showLoading doesn't make sense at this point since reset password lacks functionality
 function submit(res) {
   showLoading.value = true;
   Parse.User.requestPasswordReset(res.email)
     .then(() => {
-      // showLoading.value = false;
       toast.success(t("auth:reset:toast.passwordReset"));
       query.email = res.email;
       navigateTo({ path: "/auth/sign-in", query });
     })
-    //error
     .catch((e) => {
       showLoading.value = false;
       toast.error(e.message);
