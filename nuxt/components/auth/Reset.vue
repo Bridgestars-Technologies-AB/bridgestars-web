@@ -10,7 +10,7 @@ function submit(res) {
   showLoading.value = true;
   Parse.User.requestPasswordReset(res.email)
     .then(() => {
-      showLoading.value = false;
+      // showLoading.value = false;
       toast.success(t("auth:reset:toast.passwordReset"));
       query.email = res.email;
       navigateTo({ path: "/auth/sign-in", query });

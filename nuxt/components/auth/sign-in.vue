@@ -8,18 +8,14 @@ const auth = useAuth();
 
 onMounted(() => {
   if (auth.authenticated) {
-    //temp
+    //temp, go directily to dash, instead we should send to dash instead of login and use the middleware to route us here, then this whole onmounted is unecessary
     toast(t("auth:signIn:toast.alreadyIn"));
-    //go directly to profile page or temp. show: you are signed in, sign out?
 
     if (query.to) navigateTo({ path: query.to });
     else navigateTo({ path: "/dash" });
   }
 });
 
-watch(query, () => {
-  //for debugging to see if email is updated when changed in field
-});
 
 function submit(res) {
   showLoading.value = true;
@@ -27,7 +23,7 @@ function submit(res) {
   auth
     .signIn(res.usernameEmail, res.password)
     .then((user) => {
-      showLoading.value = false;
+      // showLoading.value = false; // this is not needed since we navigate away
       toast.success("You are signed in!");
       // disable profile since it does not exist
       if (query.to) navigateTo({ path: query.to });

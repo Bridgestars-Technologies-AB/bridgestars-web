@@ -10,7 +10,7 @@ function submit(res) {
   useAuth()
     .signUp(res.username, res.password, res.email)
     .then((user) => {
-      showLoading.value = false;
+      // showLoading.value = false;
       toast.success(t("auth:signUp:toast.signedUp"));
       if (query.to) navigateTo({ path: query.to });
       else navigateTo({ path: "/dash" });
