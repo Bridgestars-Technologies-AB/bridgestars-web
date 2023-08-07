@@ -51,9 +51,9 @@ function moveLine(event) {
         ></div>
       </div>
     </div>
-    <div class="bg-white flex justify-items-center">
-      <span>{{ data?.title }}</span>
-      <!-- <ContentRenderer :value="data" /> -->
+    <div class="bg-white flex justify-items-center m-[40px]">
+      <!-- <span>{{ data?.title }}</span> -->
+      <ContentRenderer :value="data" />
     </div>
   </base-card-page-layout>
 </template>
