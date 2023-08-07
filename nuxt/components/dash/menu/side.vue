@@ -11,7 +11,7 @@ const logoutModalOpen = ref(false)
 const items = [
   {
     name:"overview",
-    icon:"i-ic-home",
+    icon:"i-material-symbols-home-rounded",
     color: "bg-[#aaC107]" //icon color, but looks like shit because I couldn't select good colors, these are replaced with bg-teal-400 in side2.vue
   },
   {
