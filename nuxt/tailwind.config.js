@@ -64,6 +64,7 @@ module.exports = {
       //tailwindcss chooses which icons to include based on usage
     }),
     require('flowbite/plugin'),
+    require('@tailwindcss/typography'),
   ],
   theme: {
     //we should check which of these that are used
@@ -115,6 +116,13 @@ module.exports = {
     },
 
     extend: {
+      typography: ({ theme }) => ({
+        policy: {
+          css: {
+            '--tw-prose-headings': '#FFFFFF',
+          },
+        },
+      }),
       animation: {
         shake: "shake 1s cubic-bezier(.36,.07,.19,.97) both",
       },

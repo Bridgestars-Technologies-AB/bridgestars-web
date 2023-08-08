@@ -8,9 +8,15 @@
 
 <!-- to top -->
 <script setup lang="ts">
+const policy = ref(3);
 const { data } = await useAsyncData("policy", () =>
-  queryContent("/").findOne()
+  queryContent("/policy").find()
 );
+
+onMounted(() => {
+  console.log(data);
+  moveLine({ target: document.getElementById("terms") });
+});
 
 function moveLine(event) {
   const button = event.target;
@@ -34,16 +40,46 @@ function moveLine(event) {
       <div
         class="navigateBar bg-dash-light-100 rounded-lg h-[50px] w-full flex flex-row items-center text-center"
       >
-        <span @click="moveLine" class="z-10 text1 font-family2 flex-auto"
+        <span
+          @click="
+            (event) => {
+              moveLine(event);
+              policy = 3;
+            }
+          "
+          id="terms"
+          value="3"
+          class="z-10 text1 font-family2 flex-auto"
           >Terms</span
         >
-        <span @click="moveLine" class="z-10 text1 font-family2 flex-auto"
+        <span
+          @click="
+            (event) => {
+              moveLine(event);
+              policy = 2;
+            }
+          "
+          class="z-10 text1 font-family2 flex-auto"
           >Privacy</span
         >
-        <span @click="moveLine" class="z-10 text1 font-family2 flex-auto"
+        <span
+          @click="
+            (event) => {
+              moveLine(event);
+              policy = 1;
+            }
+          "
+          class="z-10 text1 font-family2 flex-auto"
           >Disclaimer</span
         >
-        <span @click="moveLine" class="z-10 text1 font-family2 flex-auto"
+        <span
+          @click="
+            (event) => {
+              moveLine(event);
+              policy = 0;
+            }
+          "
+          class="z-10 text1 font-family2 flex-auto"
           >Copyright</span
         >
         <div
@@ -51,12 +87,21 @@ function moveLine(event) {
         ></div>
       </div>
     </div>
-    <div class="bg-white flex justify-items-center m-[40px]">
+    <div
+      class="bg-[#313135] flex flex-col items-center w-[90%] h-[150px] rounded-xl mt-[40px]"
+    >
+      <span class="text-white text-[45px] font-bold font-family2 mt-[20px]">{{
+        data[policy]?.title
+      }}</span>
+      <span class="text-white text-[20px] font-family2">
+        Last modified: {{ data[policy]?.date }}
+      </span>
+    </div>
+    <div class="bg-white prose prose-xl prose-policy">
       <!-- <span>{{ data?.title }}</span> -->
-      <ContentRenderer :value="data" />
+      <ContentRenderer :value="data[policy]" />
     </div>
   </base-card-page-layout>
 </template>
-n
 
 <style scoped></style>
