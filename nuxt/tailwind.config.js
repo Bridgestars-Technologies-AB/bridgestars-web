@@ -5,54 +5,54 @@ const {
 } = require("@egoist/tailwindcss-icons");
 
 const backgroundColors = {
-      dark: "#344767",
-      primary: "#f74040", //röd
-      secondary: "#2e294e", //lila
-      info: "#2590ee", //"#49a3f1", //blå
-      success: "#59BA83", //grön
-      warning: "#fb8c00", //orange
-      error: "#F44335", //röd
-      white: "#fefefe",
-      light: "#dddddd",
-      dark: "#344767",
-      DEFAULT: "#f74040",
-      "dash-dark": {
-        100: "#1a1625",
-        200: "#2f2b3a",
-        300: "#46424f",
-        400: "#5e5a66",
-        500: "#76737e",
-        600: "#908d96",
-        DEFAULT:"#908d96"
-      },
-      "dash-light": {
-        100: "#9e9e9e",
-        200: "#bdbdbd",
-        300: "#e0e0e0",
-        400: "#eeeeee",
-        500: "#f5f5f5",
-        DEFAULT: "#9e9e9e"
-      },
-      "dash-accent": {
-        DEFAULT: "#868dfb",
-        light: "#6870fa",
-      },
-}
+  dark: "#344767",
+  primary: "#f74040", //röd
+  secondary: "#2e294e", //lila
+  info: "#2590ee", //"#49a3f1", //blå
+  success: "#59BA83", //grön
+  warning: "#fb8c00", //orange
+  error: "#F44335", //röd
+  white: "#fefefe",
+  light: "#dddddd",
+  dark: "#344767",
+  DEFAULT: "#f74040",
+  "dash-dark": {
+    100: "#1a1625",
+    200: "#2f2b3a",
+    300: "#46424f",
+    400: "#5e5a66",
+    500: "#76737e",
+    600: "#908d96",
+    DEFAULT: "#908d96",
+  },
+  "dash-light": {
+    100: "#9e9e9e",
+    200: "#bdbdbd",
+    300: "#e0e0e0",
+    400: "#eeeeee",
+    500: "#f5f5f5",
+    DEFAULT: "#9e9e9e",
+  },
+  "dash-accent": {
+    DEFAULT: "#868dfb",
+    light: "#6870fa",
+  },
+};
 const textColors = {
-      dark: "#344767", //dark text
-      DEFAULT: "#344767", //dark text
-      grey: "#7b809a",
-      light: "#dddddd",
-      white: "#ffffff", //light text
-      blue: "rgb(73, 163, 241)",
-      "dash-accent": {
-        DEFAULT: "#868dfb",
-        light: "#6870fa",
-      },
-      borderColor:{
-        ...backgroundColors //ska det verkligen vara här??
-      }
-}
+  dark: "#344767", //dark text
+  DEFAULT: "#344767", //dark text
+  grey: "#7b809a",
+  light: "#dddddd",
+  white: "#ffffff", //light text
+  blue: "rgb(73, 163, 241)",
+  "dash-accent": {
+    DEFAULT: "#868dfb",
+    light: "#6870fa",
+  },
+  borderColor: {
+    ...backgroundColors, //ska det verkligen vara här??
+  },
+};
 
 module.exports = {
   darkMode: "class",
@@ -79,23 +79,23 @@ module.exports = {
       ]),
       //tailwindcss chooses which icons to include based on usage
     }),
-    require('flowbite/plugin'),
-    require('@tailwindcss/typography'),
+    require("flowbite/plugin"),
+    require("@tailwindcss/typography"),
   ],
   theme: {
     //we should check which of these that are used
-    extend:{
+    extend: {
       backgroundColor: {
-        ...backgroundColors
+        ...backgroundColors,
       },
       textColor: {
-        ...textColors
+        ...textColors,
       },
-      textDecorationColor:{
-        ...textColors
+      textDecorationColor: {
+        ...textColors,
       },
-      borderColor:{
-        ...backgroundColors
+      borderColor: {
+        ...backgroundColors,
       },
       animation: {
         shake: "shake 1s cubic-bezier(.36,.07,.19,.97) both",
@@ -117,20 +117,27 @@ module.exports = {
         },
       },
       transitionProperty: {
-        'decoration-color': 'text-decoration-color',
-      }
+        "decoration-color": "text-decoration-color",
+      },
+      typography: ({ theme }) => ({
+        policy: {
+          css: {
+            "--tw-prose-headings": "#FFFFFF",
+          },
+        },
+      }),
     },
     fontFamily: {
       family: '"Poppins", "Helvetica", "Arial", sans-serif',
       family2: '"Roboto Slab", sans-serif',
     },
     screens: {
-      hxs: {raw:"(min-height: 0px)"},
-      hsm: {raw:"(min-height: 576px)"},
-      hmd: {raw:"(min-height: 768px)"},
-      hlg: {raw:"(min-height: 992px)"},
-      hxl: {raw:"(min-height: 1200px)"},
-      
+      hxs: { raw: "(min-height: 0px)" },
+      hsm: { raw: "(min-height: 576px)" },
+      hmd: { raw: "(min-height: 768px)" },
+      hlg: { raw: "(min-height: 992px)" },
+      hxl: { raw: "(min-height: 1200px)" },
+
       xs: "0px",
       // => @media (min-width: 0px) { ... } //everything smaller than 576px
       sm: "576px",
@@ -148,53 +155,24 @@ module.exports = {
       "2xl": "1400px",
       // => @media (min-width: 1536px) { ... }
     },
-
-    extend: {
-      typography: ({ theme }) => ({
-        policy: {
-          css: {
-            '--tw-prose-headings': '#FFFFFF',
-          },
-        },
-      }),
-      animation: {
-        shake: "shake 1s cubic-bezier(.36,.07,.19,.97) both",
-      },
-      keyframes: {
-        shake: {
-          "15%, 85%": {
-            transform: "translate3d(-0.5px, 0, 0) rotate(2deg)",
-          },
-          "30%, 70%": {
-            transform: "translate3d(0.5px, 0, 0) rotate(-2deg)",
-          },
-          "40%, 60%": {
-            transform: "translate3d(-1px, 0, 0) rotate(5deg)",
-          },
-          "50%": {
-            transform: "translate3d(1px, 0, 0) rotate(-5deg)",
-          },
-        },
-      },
+  },
+  safelist: [
+    "w-64",
+    "w-1/2",
+    "rounded-l-lg",
+    "rounded-r-lg",
+    "bg-gray-200",
+    "grid-cols-4",
+    "grid-cols-7",
+    "h-6",
+    "leading-6",
+    "h-9",
+    "leading-9",
+    "shadow-lg",
+  ],
+  purge: {
+    options: {
+      blocklist: ["true", "false", /^debug-/], //prune 'true' and 'false' classes so that we can use ${open && 'bg-dark'} without polluting classList
     },
   },
-    safelist: [
-    'w-64',
-    'w-1/2',
-    'rounded-l-lg',
-    'rounded-r-lg',
-    'bg-gray-200',
-    'grid-cols-4',
-    'grid-cols-7',
-    'h-6',
-    'leading-6',
-    'h-9',
-    'leading-9',
-    'shadow-lg'
-  ],
-  purge:{
-    options:{
-      blocklist: ['true', 'false', /^debug-/], //prune 'true' and 'false' classes so that we can use ${open && 'bg-dark'} without polluting classList
-    }
-  }
 };
