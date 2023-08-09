@@ -1,12 +1,3 @@
-<!-- Header: Logo, Home, About Us, Sign In -->
-
-<!-- Navbar: Terms, Privacy, Disclaimer, Copyright-->
-
-<!-- White container: -->
-<!-- Black container -->
-<!-- Introduction as prop -->
-
-<!-- to top -->
 <script setup lang="ts">
 const policy = ref("terms");
 const { data } = await useAsyncData("policy", () =>
@@ -74,10 +65,7 @@ function moveLine(event) {
     >
       <span
         class="text-white text-[25px] sm:text-[40px] font-bold font-family2 leading-7 sm:leading-10"
-        >{{
-          //data?.filter((e) => e.id === policy)[0].title
-          data?.filter((e) => e.id === policy)[0].title
-        }}</span
+        >{{ data?.filter((e) => e.id === policy)[0].title }}</span
       >
       <span
         class="text-white text-[16px] sm:text-[20px] font-family2 leading-4 sm:leading-10"
@@ -86,7 +74,6 @@ function moveLine(event) {
       </span>
     </div>
     <div class="bg-white prose prose-lg sm:prose-xl prose-policy px-[40px]">
-      <!-- <span>{{ data?.title }}</span> -->
       <ContentRenderer :value="data?.filter((e) => e.id === policy)[0]" />
     </div>
   </base-card-page-layout>
