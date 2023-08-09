@@ -1,42 +1,24 @@
 <script setup lang="ts">
-const router = useRouter();
-const route = useRoute();
-
 const toast = useToast();
-const query = ref({});
+const query = useRoute().query;
 const { t } = await loadTranslations("auth");
+const showLoading = ref(false);
 
 const auth = useAuth();
 
-onMounted(() => {
-  query.value = route.query;
-
-  if (auth.authenticated) {
-
-    //temp
-    toast(t("auth:signIn:toast.alreadyIn"));
-    //go directly to profile page or temp. show: you are signed in, sign out?
-
-    if (query.value.to) navigateTo({ path: query.value.to });
-    else navigateTo({ path: "/dash" });
-  }
-});
-
-watch(query, () => {
-  //for debugging to see if email is updated when changed in field
-});
-
 function submit(res) {
-  //try sign in server side first to migrate from firebase if sign in is not successfull
-  auth.signIn(res.usernameEmail, res.password)
-  .then((user) => {
-    toast.success("You are signed in!");
-    // disable profile since it does not exist
-    if(query.value.to) navigateTo({ path: query.value.to });
-    else navigateTo({ path: "/dash" });
-  })
-  //error
-  .catch((e) => toast.error(e.message));
+  showLoading.value = true;
+  auth
+    .signIn(res.usernameEmail, res.password)
+    .then((user) => {
+      toast.success("You are signed in!");
+      if (query.to) navigateTo({ path: query.to });
+      else navigateTo({ path: "/dash" });
+    })
+    .catch((e) => {
+      showLoading.value = false;
+      toast.error(e.message);
+    });
 }
 </script>
 
@@ -64,6 +46,7 @@ function submit(res) {
       wrapperClass="w-[100%] !mt-6"
       id="submit"
       :text="$t('auth:common.signIn')"
+      :loading="showLoading"
     ></base-submit-button>
 
     <div class="!mt-6 whitespace-nowrap">

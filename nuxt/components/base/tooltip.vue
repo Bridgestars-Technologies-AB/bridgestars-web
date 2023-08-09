@@ -1,155 +1,69 @@
+<!-- hover info tooltip styled -->
+
+
 <script setup lang="ts">
-const props = defineProps<{text:string, position:"left"|"right"|"top"|"bottom"}>()  
+import {initPopovers} from 'flowbite'
+
+const props = defineProps({
+  text:String, 
+  position:{type:String, default:"bottom"},
+  "class":String, // class for styling the wrapper so that we can have different h-full, h-fit etc in different situations
+})  
+
+
+const tooltip = ref(null)
+const tooltipTrigger = ref(null)
+let popover = null;
+
+onMounted(()=>{
+  initPopovers()
+  const options = {
+    placement: props.position,
+    triggerType: 'none',
+    onHide: () => {
+    },
+    onShow: () => {
+    },
+  };
+  popover = new Popover(tooltip.value, tooltipTrigger.value, options);
+})
+
+let debounce = new Date("1970"); // to prevent showing tooltip directly when hovering, only after 250ms
+let isTouch = false; //touch devices don't have hover and when clicking the send the mouseenter event, so we need to prevent that
+
+function show(e){
+  if(isTouch) return;
+  setTimeout(() => {
+    if(new Date() - debounce < 250) return;
+    popover.show()
+  }, 250);
+}
+function hide(e){
+  debounce = new Date()
+  popover.hide()
+}
 </script>
 
 <template>
-  <div :class="position" :data-tooltip="text" :data-position="position">
-    <slot/> 
+  <div ref="tooltipTrigger" :class="props.class" @click="hide" @mouseleave="hide" @mouseenter="show" @touchstart="isTouch = true">
+    <slot/> <!-- content that is wrapper with tooltip functionality -->
   </div>
+    <div data-popover ref="tooltip" role="tooltip" class="absolute z-100 invisible inline-block w-auto whitespace-nowrap transition-opacity duration-300 rounded-lg shadow-sm opacity-0 dark:bg-dash-light-400 bg-dash-dark-400">
+    <span v-if="text" class="text2 text-[18px] z-101 p-2 font-normal dark:text-dark text-light">
+      {{text}} <!-- tooltip text -->
+    </span>
+    <slot v-else name="content"/>  <!-- alternative tooltip content -->
+    <div data-popper-arrow></div>
+</div>
+
 </template>
-<style scoped lang="scss">
-
-div[data-tooltip].top {
-  &:before,
-  &:after {
-    transform: translateY(10px);
-  }
-  
-  &:hover:after,
-  &:hover:before {
-    transform: translateY(0px);
-  }
+<style scoped>
+/* remove border styling on arrow */
+div[data-popper-arrow]:before{
+  border: 0px solid transparent !important;
+}
+div[data-popper-arrow]:after{
+  border: 0px solid transparent !important;
 }
 
-div[data-tooltip].right {
-  &:before,
-  &:after {
-    transform: translateX(0px);
-  }
-  
-  &:hover:after,
-  &:hover:before {
-    transform: translateX(10px);
-  }
-}
-
-div[data-tooltip].bottom {
-  &:before,
-  &:after {
-    transform: translateY(-10px);
-  }
-  
-  &:hover:after,
-  &:hover:before {
-    transform: translateY(0px);
-  }
-}
-
-div[data-tooltip].left {
-  &:before,
-  &:after {
-    transform: translateX(0px);
-  }
-  
-  &:hover:after,
-  &:hover:before {
-    transform: translateX(-10px);
-  }
-}
-
-div[data-tooltip] {
-  position: relative;
-
-  &:after,
-  &:before {
-    position: absolute;
-    visibility: hidden;
-    opacity: 0;
-    transition: transform 200ms ease, opacity 200ms;
-    box-shadow: 0 0 10px rgba(black,0.3);
-    z-index: 99;
-  }
-
-  &:before {
-    content: attr(data-tooltip);
-    background: #000;
-    color: #fff;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 5px;
-    white-space: nowrap;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  &:after {
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    content: '';
-  }
-
-  &:hover:after,
-  &:hover:before {
-    visibility: visible;
-    opacity: 0.85;
-    transform: translateY(0px);
-  }
-}
-
-div[data-tooltip][data-position="top"]:before {
-  bottom: 100%;
-  left: -130%;
-  margin-bottom: 10px;
-}
-
-div[data-tooltip][data-position="top"]:after {
-  border-top-color: #000;
-  border-bottom: none;
-  bottom: 101%;
-  left: calc(50% - 6px);
-  margin-bottom: 4px;
-}
-div[data-tooltip][data-position="left"]:before {
-  top: -12%;
-  right: 100%;
-  margin-right: 10px;
-}
-
-div[data-tooltip][data-position="left"]:after {
-  border-left-color: #000;
-  border-right: none;
-  top: calc(50% - 3px);
-  right: 100%;
-  margin-top: -6px;
-  margin-right: 4px;
-}
-div[data-tooltip][data-position="right"]:before {
-  top: -5%;
-  left: 100%;
-  margin-left: 10px;
-}
-
-div[data-tooltip][data-position="right"]:after {
-  border-right-color: #000;
-  border-left: none;
-  top: calc(50% - 6px);
-  left: calc(100% + 4px);
-}
-
-div[data-tooltip][data-position="bottom"]:before {
-  top: 100%;
-  left: -130%;
-  margin-top: 10px;
-}
-
-div[data-tooltip][data-position="bottom"]:after {
-  border-bottom-color: #000;
-  border-top: none;
-  top: 100%;
-  left: 5px;
-  margin-top: 4px;
-}
 </style>

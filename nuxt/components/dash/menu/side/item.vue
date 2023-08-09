@@ -16,7 +16,6 @@ const textColor = computed(() => props.selected ? "text-dash-accent-light" : "te
     <span :class="`font-family text-[14px] font-light tracking-wide ${enabled ? '' : 'line-through'} ${textColor}`">
         {{ $t(props.keypath) }}
     </span>
-
   </div>
 </template>
 
