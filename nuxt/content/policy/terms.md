@@ -1,6 +1,7 @@
 ---
 title: Terms & Conditions
 date: 25th of March 2022
+id: terms
 ---
 
 ## Introduction

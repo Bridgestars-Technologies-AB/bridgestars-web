@@ -1,6 +1,7 @@
 ---
 title: Copyright Policy
 date: 25th of March 2022
+id: copyright
 ---
 
 Copyright © Bridgestars technologies Sweden AB. All Rights Reserved.

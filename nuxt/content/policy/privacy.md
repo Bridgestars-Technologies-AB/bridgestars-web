@@ -1,6 +1,7 @@
 ---
 title: Privacy Policy
 date: 25th of March 2022
+id: privacy
 ---
 
 ## Introduction
