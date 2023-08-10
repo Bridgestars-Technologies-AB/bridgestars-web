@@ -8,4 +8,4 @@
 
 
 
-The new website is automatically pushed to theolundqvist/bridgestars-helper-repo on a push to main. This notifies vercel that creates a new build and publishes the site to https://bridgestars-helper-repo.vercel.app
+The new website is automatically pushed to theolundqvist/bridgestars-helper-repo on a push to main. This notifies vercel that then creates a new build and publishes the site to https://bridgestars-helper-repo.vercel.app
