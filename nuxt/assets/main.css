@@ -40,6 +40,7 @@
     -webkit-text-size-adjust: 100%; /* safari on ios will otherwise resize the text automatically */
   }
 
+
 /* override some wierd tailwind standards or smth, seems to be caused be the flowbite integration */
 [type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select {
     -webkit-appearance: none;
