@@ -4,7 +4,8 @@
 const firstTime = inject("first_time_at_home"); //issue exists for this one
 const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
 const showVideo = ref(true);
-const { t } = await loadTranslations("home");
+const { t } = await loadTranslations("home")
+import art_img from "@/assets/bridgestars/art/home_page.svg";
 
 onMounted(() => {
   const video = document.getElementById("video");
@@ -114,7 +115,7 @@ function fadeInUI(delay) {
       hideNavbar="true"
       class="pt-5 hsm:-translate-y-[100px] hxs:-translate-y-[70px] opacity-0 cardShow"
       backdropClass="background"
-      imgSrc="../assets/bridgestars/art/home_page.svg"
+      :imgSrc="art_img"
     >
       <base-lang-switcher class="mb-4" />
       <div class="xs:px-0 sm:px-5 text-center flex flex-col items-center">
