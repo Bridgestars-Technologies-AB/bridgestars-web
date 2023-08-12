@@ -71,8 +71,8 @@ function submit(res) {
         ref="checkBox"
       />
       <p><!-- to add space between texts  -->
-      <span class="normal-case text2 text-[14px] text-dark opacity-[70%] font-medium tracking-[0.5px]"> I agree with the </span>
-      <span class="normal-case text-blue text-[14px] font-bold tracking-[0.5px]"> Terms and Conditions</span>
+      <span class="normal-case text2 text-dark tracking-[0.5px]"> I agree with the </span>
+      <NuxtLink to="/policy" class="normal-case text2 text-blue font-bold tracking-[0.5px]"> Terms and Conditions</NuxtLink>
       </p>
     </div>
 

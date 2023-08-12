@@ -23,7 +23,7 @@ export default function InitAuthFormValidation(form, callback) {
     const username = usernameEmailEl.value.trim();
 
     if (!isRequired(username)) {
-      showError(usernameEmailEl, t("auth:error:email.blankUserEmail"));
+      showError(usernameEmailEl, t("auth:error:userEmail.blank"));
       return false;
     } else {
       showSuccess(usernameEmailEl);
@@ -42,7 +42,7 @@ export default function InitAuthFormValidation(form, callback) {
     const username = usernameEl.value.trim();
 
     if (!isRequired(username)) {
-      showError(usernameEl, t("auth:error:username.blank"));
+        showError(usernameEl, t("auth:error:username.blank"));
     } else if (!isBetween(username.length, min, max)) {
       showError(
         usernameEl,
@@ -88,7 +88,7 @@ export default function InitAuthFormValidation(form, callback) {
     const password = passwordEl.value.trim();
 
     if (!isRequired(password)) {
-      showError(passwordEl, t("auth:error:password.blank"));
+      showError(passwordEl, t("auth:error:password.blankSignup"));
     } 
     else if(password.search(/[a-z]/) < 0){
       showError(passwordEl, t("auth:error:password.atLeastLower"));
