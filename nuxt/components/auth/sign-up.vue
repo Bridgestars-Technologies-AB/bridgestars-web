@@ -2,20 +2,16 @@
 const router = useRouter();
 const toast = useToast();
 const query = ref({});
-let checkBox = null;
 
 const { t } = await loadTranslations("auth");
 
 //implement sign out logic on mounted
 onMounted(() => {
   query.value = router.query;
-  checkBox = document.getElementById("checkBox");
 });
 
 function submit(res) {
   //not sure if this is the function, copilot suggested it
-  console.log(checkBox.checked);
-  if (checkBox.checked) {
     useAuth()
       .signUp(res.username, res.password, res.email)
       .then((user) => {
@@ -25,9 +21,6 @@ function submit(res) {
       })
       //error
       .catch((e) => toast.error(e.message));
-  } else {
-    toast.error(t("auth:error.terms"));
-  }
 }
 </script>
 
@@ -62,18 +55,19 @@ function submit(res) {
       type="password"
       id="password-confirm"
     />
-
-    <div class="flex flex-row items-center">
-      <input
-        class="mr-2 w-5 h-5 rounded-md text-blue border-dark"
-        id="checkBox"
-        type="checkbox"
-        ref="checkBox"
-      />
-      <p><!-- to add space between texts  -->
-      <span class="normal-case text2 text-dark tracking-[0.5px]"> I agree with the </span>
-      <NuxtLink to="/policy" class="normal-case text2 text-blue font-bold tracking-[0.5px]"> Terms and Conditions</NuxtLink>
-      </p>
+    <div class="flex flex-col items-center text-center">
+      <div class="flex flex-row items-center">
+        <input
+          class="mr-2 w-5 h-5 rounded-md text-blue border-dark"
+          id="terms-accept"
+          type="checkbox"
+        />
+        <p><!-- to add space between texts  -->
+        <span class="normal-case text2 text-dark tracking-[0.5px]"> I agree with the </span>
+        <NuxtLink to="/policy" class="normal-case text2 text-blue font-bold tracking-[0.5px]"> Terms and Conditions</NuxtLink>
+        </p>
+      </div>
+        <small class="[color:red] text-[16px] w-full">Please accept our terms and conditions in order to register.</small>
     </div>
 
     <base-submit-button

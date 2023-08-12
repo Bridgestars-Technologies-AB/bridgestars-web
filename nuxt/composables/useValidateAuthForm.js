@@ -13,6 +13,7 @@ export default function InitAuthFormValidation(form, callback) {
   const passwordEl = form.querySelector("#password");
   const passwordSignInEl = form.querySelector("#password-signin");
   const passwordConfirmEl = form.querySelector("#password-confirm");
+  const termsEl = form.querySelector("#terms-accept");
   let errorElement = null;
   let hasSubmitted = false;
   //
@@ -30,6 +31,17 @@ export default function InitAuthFormValidation(form, callback) {
       return true;
     }
   };
+  const checkTerms = () => {
+    if(!termsEl) return false;
+    const terms = termsEl.checked;
+    if(!terms){
+      showError(termsEl, t("auth:error:terms"));
+      return false;
+    }else{
+      showSuccess(termsEl);
+      return true;
+    }
+  }
 
   const checkUsername = () => {
     if (!usernameEl) return false;
@@ -145,7 +157,8 @@ export default function InitAuthFormValidation(form, callback) {
 
   const showError = (input, message) => {
     // get the form-field element
-    const formField = input.parentElement;
+    let formField = input.parentElement;
+    if(input === termsEl) formField = formField.parentElement;
     // add the error class
     formField.classList.remove("success");
     formField.classList.add("error");
@@ -164,7 +177,8 @@ export default function InitAuthFormValidation(form, callback) {
       errorElement = null;
       checkAll()
     }
-    const formField = input.parentElement;
+    let formField = input.parentElement;
+    if(input === termsEl) formField = formField.parentElement;
 
     // remove the error class
     formField.classList.remove("error");
@@ -186,12 +200,14 @@ export default function InitAuthFormValidation(form, callback) {
       isUsernameValid = checkUsername(),
       isEmailValid = checkEmail(),
       isPasswordValid = checkPassword(),
-      isConfirmPasswordValid = checkConfirmPassword();
+      isConfirmPasswordValid = checkConfirmPassword(),
+      isTermsChecked = checkTerms();
 
     let isSignUpValid = isUsernameValid &&
       isEmailValid &&
       isPasswordValid &&
       isConfirmPasswordValid &&
+      isTermsChecked &&
       !usernameEmailEl &&
       !passwordSignInEl;
 
@@ -251,6 +267,7 @@ export default function InitAuthFormValidation(form, callback) {
     checkEmail();
     checkPassword();
     checkConfirmPassword();
+    checkTerms();
   }
 
   form.addEventListener(
