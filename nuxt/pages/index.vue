@@ -11,16 +11,14 @@ onMounted(() => {
   video
     .play()
     .then(() => {
-      console.log("video playing");
       video.addEventListener("ended", () => {
-        console.log("video ended");
         showVideo.value = false;
       });
       fadeInUI(1000);
       fadeInBackground(1500);
     })
     .catch((e) => {
-      console.error("video play error: ", e);
+      console.error("video play error: ", e,"showing image instead");
       showVideo.value = false;
       fadeInUI(0);
       fadeInBackground(500);
@@ -39,8 +37,7 @@ onMounted(() => {
 function fadeInBackground(delay) {
   setTimeout(() => {
     const fadeTarget = document.getElementsByClassName("background")[0];
-    if (fadeTarget == null) console.error("fadeTarget is null");
-    else {
+    if (fadeTarget != null){
       fadeTarget.style["background-color"] = "rgb(240, 242, 245)";
       fadeTarget.style["opacity"] = 1;
     }
@@ -51,12 +48,16 @@ function fadeInUI(delay) {
   setTimeout(() => {
     const cardDiv = document.getElementsByClassName("cardDiv")[0];
     const card = document.getElementsByClassName("cardShow")[0];
-
-    cardDiv.classList.add("cardAnimation");
-    cardDiv.style.display = "block";
-    card.style.opacity = 1;
     showUI.value = true;
     firstTime.value = false;
+
+    if (cardDiv != null){
+      cardDiv.classList.add("cardAnimation");
+      cardDiv.style.display = "block";
+    }
+    if(card != null)
+      card.style.opacity = 1;
+
   }, delay);
 }
 </script>
@@ -95,7 +96,7 @@ function fadeInUI(delay) {
     <!-- Button overlay on video -->
     <div v-if="showUI" class="flex justify-center overflow-hidden">
       <div class="bg-video-overlay">
-        <NuxtLink to="/auth/sign-up">
+        <NuxtLink to="/auth/sign-in">
           <button
             class="bg-[#EE6065] rounded-full px-5 hxs:py-4 hsm:py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px] videoButtonAnimation hxs:-mb-1 hsm:mb-2"
           >
@@ -149,9 +150,7 @@ function fadeInUI(delay) {
               />
               <div class="bg-white h-[40%] w-[3px]" />
             </div>
-            <span
-              class="text1 italic text-white text-[18px] leading-[25px]"
-            >
+            <span class="text1 italic text-white text-[18px] leading-[25px]">
               {{ $t("home:quote.desc1") }}
             </span>
           </div>
@@ -190,7 +189,9 @@ function fadeInUI(delay) {
             <template #email>
               <a
                 class="text-blue font-normal underline"
-                :href="`mailto:info@bridgestars.net?subject=${$t('home:contact.emailSubject')}&body=${$t('home:contact.emailBody')}`"
+                :href="`mailto:info@bridgestars.net?subject=${$t(
+                  'home:contact.emailSubject'
+                )}&body=${$t('home:contact.emailBody')}`"
                 target="_blank"
                 rel="noreferrer"
               >

@@ -86,7 +86,7 @@ function submit(res) {
         <span class="text2 mr-1">{{ $t("auth:signUp.footer") }} </span>
         <button
           @click="navigateTo({ path: '/auth/sign-in', query })"
-          class="buttonText normal-case text-blue font-bold tracking-[0.5px]"
+          class="normal-case text-blue font-bold tracking-[0.5px]"
           type="button"
         >
           {{ $t("auth:common.signIn") }}

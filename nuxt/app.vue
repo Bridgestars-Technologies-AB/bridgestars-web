@@ -20,10 +20,11 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "@fontsource/roboto/900.css";
 
+// import 'flowbite'
+
 onMounted(() => {
   balanceText();
 })
-
 
 //import "tw-elements/dist/css/tw-elements.min.css";
 provide("first_time_at_home", ref(true));

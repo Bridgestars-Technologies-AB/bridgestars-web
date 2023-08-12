@@ -1,3 +1,10 @@
+<script setup>
+
+// initialize components based on data attribute selectors
+onMounted(() => {
+})
+ 
+</script>
 <template>
-    <p class="text1 text-blue">overview</p> 
+    <h1 class="">Overview</h1> 
 </template>

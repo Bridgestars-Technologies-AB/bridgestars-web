@@ -2,27 +2,32 @@
 import { defineStore } from 'pinia'
 
 export default defineStore('auth', {
-  state: () => ({ user:undefined }), //fix auto-detect
+  state: () => ({ underlying:undefined}), //fix auto-detect
   getters: {
-    authenticated: (state) => state.user !== undefined,
+    authenticated: (state) => state.underlying !== undefined,
+    user: (state) => process.server ? state.underlying : Parse.User.current(), //server will only have access to data, no methods
   },
   actions: {
-    signUp(username:string, password:string, email:string){
-      return Parse.User.signUp(username, password, {email:email}).then((u:any) => {this.user = u; return u;});
+    get(field:string){
+      if(!this.underlying) return undefined;
+      return process.server ? this.underlying[field] : Parse.User.current().get(field);
     },
-    signIn(usernameEmail:string, password:string) {
+    async signUp(username:string, password:string, email:string){
+      return Parse.User.signUp(username, password, {email:email}).then((u:any) => {this.underlying = u; return u;});
+    },
+    async signIn(usernameEmail:string, password:string) {
       return Parse.Cloud.run('signIn', { email:usernameEmail, password:password})
         .catch(() => {})
         //sign in client side
         .then(() => Parse.User.logIn(usernameEmail, password))
         //success
         .then((user:any) => {
-          this.user = user;
+          this.underlying = user;
           return user;
         });
     },
-    signOut() {
-      return Parse.User.logOut().then(() => {this.user = undefined})
+    async signOut() {
+      return Parse.User.logOut().then(() => {this.underlying = undefined})
     }
   },
   persist:true,
