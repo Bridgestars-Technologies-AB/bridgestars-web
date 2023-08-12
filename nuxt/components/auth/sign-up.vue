@@ -62,27 +62,30 @@ function submit(res) {
       type="password"
       id="password-confirm"
     />
+
+    <div class="flex flex-row items-center">
+      <input
+        class="mr-2 w-5 h-5 rounded-md text-blue border-dark"
+        id="checkBox"
+        type="checkbox"
+        ref="checkBox"
+      />
+      <p><!-- to add space between texts  -->
+      <span class="normal-case text2 text-[14px] text-dark opacity-[70%] font-medium tracking-[0.5px]"> I agree with the </span>
+      <span class="normal-case text-blue text-[14px] font-bold tracking-[0.5px]"> Terms and Conditions</span>
+      </p>
+    </div>
+
     <base-submit-button
-      wrapperClass="w-[100%] xs:!mt-3 sm:!mt-6"
+      wrapperClass="w-[100%] xs:!mt-2 sm:!mt-4"
       id="submit"
       type="submit"
       :text="$t('auth:common.signUp')"
       @submit="submit"
     ></base-submit-button>
-    <div class="flex flex-row">
-      <input
-        class="scale-150 mr-2"
-        id="checkBox"
-        type="checkbox"
-        ref="checkBox"
-      />
-      <label class="text2 font-bold self-center" for="terms">
-        I agree with the Terms and Conditions</label
-      ><br />
-    </div>
 
     <div class="flex text-center">
-      <div class="xs:!mt-1 sm:!mt-3 xl:!mt-5 xs:!mb-3">
+      <div class="xs:!mt-1 sm:!mt-1 xl:!mt-5 xs:!mb-3">
         <span class="text2 mr-1">{{ $t("auth:signUp.footer") }} </span>
         <button
           @click="navigateTo({ path: '/auth/sign-in', query })"

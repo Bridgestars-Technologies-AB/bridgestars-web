@@ -46,8 +46,8 @@
     padding-right: 0rem;
     padding-bottom: 0rem;
     padding-left: 0rem;
-    font-size: 1.5rem;
-    line-height: 1.5rem;
+    font-size: 100%;
+    line-height: inherit;
     --tw-shadow: 0 0 #0000;
 }
 }

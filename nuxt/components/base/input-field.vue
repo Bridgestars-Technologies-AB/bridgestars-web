@@ -33,7 +33,7 @@ function toggleShowPass() {
 <template>
   <div :class="'input-block ' + wrapperClass">
     <input
-      class="py-2.5 px-3.5 bg-white"
+      class="py-2.5 px-4 !bg-white text-[16px] font-family2"
       v-bind="$attrs"
       placeholder=" "
       ref="input"
@@ -42,10 +42,10 @@ function toggleShowPass() {
       @input="update"
     />
     <!--  above is solution for using v-model on this custom inputfield -->
-    <span class="placeholder text2 !font-light !text-[14px] !tracking-[1.2px]">
+    <span class="placeholder text2 text-[16px] tracking-[1.2px] font-family2">
       {{ placeholder }}
     </span>
-    <small class="info"></small>
+    <small class="info text-[16px] ml-1"></small>
     <!-- <div -->
     <!--   v-if="props.id === 'password-signin' && showPass" -->
     <!--   class="absolute top-[35%] right-[5px] i-basil-eye-outline" -->
@@ -125,7 +125,7 @@ div.input-block span.placeholder {
 }
 div.input-block input:not(:placeholder-shown) + span.placeholder,
 div.input-block input:focus + span.placeholder {
-  transform: scale(0.85) translateY(-23px);
+  transform: scale(0.85) translateY(-26px);
   background: #fefefe;
 }
 div.input-block input:focus {
