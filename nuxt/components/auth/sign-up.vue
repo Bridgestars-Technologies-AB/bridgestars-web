@@ -1,26 +1,22 @@
 <script setup>
-const router = useRouter();
 const toast = useToast();
-const query = ref({});
-
+const query = useRoute().query;
 const { t } = await loadTranslations("auth");
-
-//implement sign out logic on mounted
-onMounted(() => {
-  query.value = router.query;
-});
+const showLoading = ref(false);
 
 function submit(res) {
-  //not sure if this is the function, copilot suggested it
-    useAuth()
-      .signUp(res.username, res.password, res.email)
-      .then((user) => {
-        toast.success(t("auth:signUp:toast.signedUp"));
-        if (query.value.to) router.push({ path: query.value.to });
-        else router.push({ path: "/dash" });
-      })
-      //error
-      .catch((e) => toast.error(e.message));
+  showLoading.value = true;
+  useAuth()
+    .signUp(res.username, res.password, res.email)
+    .then((user) => {
+      toast.success(t("auth:signUp:toast.signedUp"));
+      if (query.to) navigateTo({ path: query.to });
+      else navigateTo({ path: "/dash" });
+    })
+    .catch((e) => {
+      showLoading.value = false;
+      toast.error(e.message);
+    });
 }
 </script>
 
@@ -75,6 +71,7 @@ function submit(res) {
       id="submit"
       type="submit"
       :text="$t('auth:common.signUp')"
+      :loading="showLoading"
       @submit="submit"
     ></base-submit-button>
 

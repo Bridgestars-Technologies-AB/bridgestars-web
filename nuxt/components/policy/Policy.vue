@@ -1,73 +1,36 @@
-<!-- Header: Logo, Home, About Us, Sign In -->
+<script setup lang="ts">
+const options = ["Terms", "Privacy", "Disclaimer", "Copyright"];
+const policy = ref("terms");
+const { data } = await useAsyncData("policy", () =>
+  queryContent("/policy").find()
+);
 
-<!-- Navbar: Terms, Privacy, Disclaimer, Copyright-->
-
-<!-- White container: -->
-<!-- Black container -->
-<!-- Introduction as prop -->
-
-<!-- to top -->
+import image from "@/assets/bridgestars/art/about_us.png";
+</script>
 
 <template>
-  <div class="w-screen h-screen opacity-100 fixed bg-[#C0C0C0]">
-    <header
-      class="policyHeader w-screen h-[70px] mt-[30px] mb-[30px] bg-[#FFFFFF]"
-    >
-      <button class="zoomIn text-[#3F516F] text-opacity-100 font-black">
-        Bridgestars
-      </button>
-      <div class="px-[30px] flex flex-row justify-end gap-[60px]">
-        <button class="zoomIn">Home</button>
-        <button class="zoomIn">About Us</button>
-        <button class="zoomIn">Sign In</button>
-      </div>
-    </header>
-
-    <!-- Maybe make a navigateBar component -->
+  <base-card-page-layout :imgSrc="image">
+    <div class="p-5 w-[90%] max-w-[1200px] flex flex-col items-center">
+      <!-- Maybe make a navigateBar component, yes -->
+      <base-animated-select :options="options" v-model="policy"/>
     <div
-      class="navigateBar bg-[#E0E0E0] rounded-lg h-[50px] mx-[52px] flex flex-row justify-center"
+      class="bg-[#313135] flex flex-col items-center justify-center w-full h-[100px] sm:h-[150px] rounded-xl mt-[40px]"
     >
-      <button class="policyButton zoomIn">Terms</button>
-      <button class="policyButton zoomIn">Privacy</button>
-      <button class="policyButton zoomIn">Disclaimer</button>
-      <button class="policyButton zoomIn">Copyright</button>
-    </div>
-
-    <!-- Box with policy, toggle on button click-->
-    <div
-      class="w-[100 %] h-[100%] flex flex-row justify-center content-center mt-[40px]"
-    >
-      <div
-        id="policyBox"
-        class="bg-[#FFFFFF] w-[100%] ml-[70px] mr-[70px] overflow-auto"
+      <span
+        class="text-white text-[25px] sm:text-[40px] font-bold font-family2 leading-7 sm:leading-10"
+        >{{ data?.filter((e) => e.id === policy)[0].title }}</span
       >
-        <Terms></Terms>
-      </div>
+      <span
+        class="text-white text-[16px] sm:text-[20px] font-family2 leading-4 sm:leading-10"
+      >
+        Last modified: {{ data?.filter((e) => e.id === policy)[0].date }}
+      </span>
     </div>
-  </div>
+    <div class="bg-white prose prose-lg sm:prose-xl prose-policy px-[40px]">
+      <ContentRenderer :value="data?.filter((e) => e.id === policy)[0]" />
+    </div>
+    </div>
+  </base-card-page-layout>
 </template>
 
-<style scoped>
-.policyButton {
-  @apply flex-auto p-0 m-0;
-}
-
-.policyButton:focus {
-  @apply rounded-lg bg-[#FFFFFF] text-[#3A4C6B];
-}
-
-.zoomIn {
-  animation: anim-zoom 500ms ease-in-out 0ms;
-}
-
-@keyframes anim-zoom {
-  0% {
-    opacity: 0;
-    transform: scaleY(0.8) scaleX(0.3) translateY(-40px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0px);
-  }
-}
-</style>
+<style scoped></style>

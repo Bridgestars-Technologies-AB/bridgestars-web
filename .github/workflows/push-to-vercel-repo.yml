@@ -1,0 +1,31 @@
+name: Push to vercel repo
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: ubuntu    # "ubuntu" is a more generic container
+                               # using "pandoc/latex" because of dependencies
+                               # used in the specific "build.sh"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      # - uses: actions/checkout@v2 //here we can do something before if we want
+      # - name: creates output
+      #   run:  sh ./build.sh # some command from your repository that creates
+      #                       # output to "source-directory" ("output" in the example)
+      - name: Pushes to of org repo so that vercel is free :) 
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.HELPER_REPO_TOKEN }}
+        with:
+          source-directory: 'nuxt' 
+          target-directory: 'web'
+          destination-github-username: 'theolundqvist'
+          destination-repository-name: 'bridgestars-helper-repo'
+          user-email: theodor.lundqvist@gmail.com 
+          target-branch: 'main'
+          create-target-branch-if-needed: true
