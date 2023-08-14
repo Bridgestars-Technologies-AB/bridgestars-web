@@ -15,8 +15,6 @@ onMounted(() => {
   const form = document.querySelector("form[name=auth-form]");
   //autoAnimate(formRef.value); // thats it!
   useValidateAuthForm(form, (res: any) => {
-    console.log("OK");
-    return;
     emit("submit", res); //res is undefined right now but that could be changed in validator script
     return res;
   });

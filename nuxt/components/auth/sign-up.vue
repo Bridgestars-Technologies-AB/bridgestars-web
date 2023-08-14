@@ -67,7 +67,7 @@ function submit(res) {
         <NuxtLink to="/policy" class="normal-case text2 text-blue font-bold tracking-[0.5px]"> Terms and Conditions</NuxtLink>
         </p>
       </div>
-        <small class="[color:red] text-[16px] w-full">Please accept our terms and conditions in order to register.</small>
+        <small class="[color:red] text-[16px] w-full"></small>
     </div>
 
     <base-submit-button
