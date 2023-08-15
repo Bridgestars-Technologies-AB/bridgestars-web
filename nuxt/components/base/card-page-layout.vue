@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const props = defineProps(['imgSrc', "hideNavbar", "class", 'backdropClass'])
-const imgWithDefault = props.imgSrc || "../assets/bridgestars/art/about_us.svg"
 </script>
 
 <template>
@@ -10,7 +9,7 @@ const imgWithDefault = props.imgSrc || "../assets/bridgestars/art/about_us.svg"
       <base-navbar v-if="!hideNavbar"></base-navbar>
 
       <!-- title -->
-      <img :src="imgWithDefault"
+      <img :srcset="imgSrc"
         class="mb-5 xs:w-[96%] sm:w-[80%] xl:w-[50%]">
 
 

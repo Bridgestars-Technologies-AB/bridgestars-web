@@ -1,44 +1,20 @@
 <script setup lang="ts">
-const router = useRouter();
-const route = useRoute();
-
 const toast = useToast();
-const query = ref({});
+const query = useRoute().query;
 const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
 const auth = useAuth();
 
-onMounted(() => {
-  query.value = route.query;
-
-  if (auth.authenticated) {
-    //temp
-    toast(t("auth:signIn:toast.alreadyIn"));
-    //go directly to profile page or temp. show: you are signed in, sign out?
-
-    if (query.value.to) navigateTo({ path: query.value.to });
-    else navigateTo({ path: "/dash" });
-  }
-});
-
-watch(query, () => {
-  //for debugging to see if email is updated when changed in field
-});
-
 function submit(res) {
   showLoading.value = true;
-  //try sign in server side first to migrate from firebase if sign in is not successfull
   auth
     .signIn(res.usernameEmail, res.password)
     .then((user) => {
-      showLoading.value = false;
       toast.success("You are signed in!");
-      // disable profile since it does not exist
-      if (query.value.to) navigateTo({ path: query.value.to });
+      if (query.to) navigateTo({ path: query.to });
       else navigateTo({ path: "/dash" });
     })
-    //error
     .catch((e) => {
       showLoading.value = false;
       toast.error(e.message);

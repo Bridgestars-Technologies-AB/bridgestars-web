@@ -3,6 +3,7 @@
 const downloads = ref([]) 
 
 const {t} = await loadTranslations("download")
+import image from "@/assets/bridgestars/art/about_us.png"
 
 function update(){
   downloads.value = [{
@@ -41,7 +42,7 @@ onMounted(()=>{
 </script>
 
 <template>
-  <base-card-page-layout>
+  <base-card-page-layout :imgSrc="image">
     <div class="max-w-[1000px] flex flex-col text-justify px-[16px]">
       <base-lang-switcher class="mb-4" @switched="update"/>
 

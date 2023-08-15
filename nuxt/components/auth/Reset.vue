@@ -1,39 +1,22 @@
 <script setup lang="ts">
-const router = useRouter();
 const toast = useToast();
-
-const route = useRoute();
-const query = ref({});
+const router = useRouter();
+const query = useRoute().query;
 const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
-onMounted(() => {
-  query.value = route.query;
-});
-
-//Implement showLoading doesn't make sense at this point since reset password lacks functionality
 function submit(res) {
-  //Parse.User.requestPasswordReset(res.email)
-  //.then(() => {
-  toast.success(t("auth:reset:toast.passwordReset"));
-  query.value.email = res.email;
-  router.push({ path: "/auth/sign-in", query: query.value });
-  //})
-  //error
-  //.catch( {(e) => toast.error(e.message); showLoading.value = false;});
-
-  //firebase migration, this will be needed later
-  /*Parse.Cloud.run('signIn', { res.usernameEmail, res.password})
-    .catch(() => { })
-    .then(() => Parse.User.logIn(res.usernameEmail, res.password))
-    .then((user) => {
-      // console.log('SIGNED IN USING FIREBASE MIGRATION');
-      // Signed in
-      alert("you are signed in")
+  showLoading.value = true;
+  Parse.User.requestPasswordReset(res.email)
+    .then(() => {
+      toast.success(t("auth:reset:toast.passwordReset"));
+      query.email = res.email;
+      navigateTo({ path: "/auth/sign-in", query });
     })
-    .catch((error) => {
-       console.log(error)
-    })*/
+    .catch((e) => {
+      showLoading.value = false;
+      toast.error(e.message);
+    });
 }
 </script>
 

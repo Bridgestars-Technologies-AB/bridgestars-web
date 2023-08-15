@@ -28,7 +28,8 @@ export default defineNuxtConfig({
     // '@vite-pwa/nuxt',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    '@nuxtjs/tailwindcss', // we probably have two tailwindcss plugins, but this one is needed for the flowbite to work, should probably remove the other one
+    '@nuxtjs/tailwindcss',
+    '@nuxt/content'
   ],
   // i18n: {
   //   vueI18n: "./localization/i18n.config.ts",

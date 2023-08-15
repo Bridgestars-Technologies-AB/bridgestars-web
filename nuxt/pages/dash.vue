@@ -44,7 +44,7 @@ onUnmounted(() => {
 })
 
 const darkMode = useDarkMode() 
-const sideMenuOpen = ref(false)
+const sideMenuOpen = ref(true)
 provide('side-menu-open', sideMenuOpen)
 </script>
 
