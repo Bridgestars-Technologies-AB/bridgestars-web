@@ -1,12 +1,18 @@
 <script setup>
-defineProps({
-  chatId: {
-    type: String,
-    required: true
-  }
-})
+import {storeToRefs} from 'pinia'
+const auth = useAuth()
+const chatManager = useChatManager()
 
 const open = ref(false)
+
+
+const currentChat = ref("VRLKREV5PK")
+const currentChatName = ref("Loading...")
+
+onMounted(async () => {
+  await chatManager.init();
+  currentChatName.value = chatManager.get(currentChat.value)?.name
+})
 
 </script>
 
@@ -17,12 +23,12 @@ const open = ref(false)
       <div v-if="open" class="flex flex-col h-[500px] w-[350px] rounded-xl overflow-clip">
         <div class="flex items-center px-3 h-[70px] bg-dash-light-500 dark:bg-dash-dark-300">
           <dash-chat-avatar />  
-          <h4 class="flex-1 ml-2 text-[22px] dark:text-light text-dark">Castor</h4>
+          <h4 class="flex-1 ml-2 text-[22px] dark:text-light text-dark">{{currentChatName}}</h4>
           <button @click="open = false">
             <span class="i-ic-round-close bg-dash-dark-500 dark:bg-dash-light-300 h-[35px] w-[35px] rounded-full"/>
           </button>
         </div>
-        <dash-chat-messaging-window/>
+        <dash-chat-messaging-window :chatId="currentChat" @sendMessage=""/>
       </div>
 
 <!-- right column-->
@@ -38,15 +44,18 @@ const open = ref(false)
 
     </div>
   </div>
-    <!-- <div class="absolute bottom-3 right-3 z-10"> -->
-    <!--   <h2>Chats</h2> -->
-    <!--   <ul> -->
-    <!--     <li v-for="c in useChats().chats"> -->
-    <!--       <base-submit-button @click="useChats().sendMessage(c.id, 'test')" :text="c.get('users').filter(u => u !== useAuth().user.id)"> -->
-    <!--       </base-submit-button> -->
-    <!--     </li> -->
-    <!--   </ul> -->
-    <!-- </div> -->
+
+
+<!-- for testing -->
+    <div class="absolute top-3 right-3 z-10">
+      <h2>Chats</h2>
+      <ul>
+        <li v-for="c in chatManager.chats">
+        <base-submit-button @click.stop="() => {chatManager.sendMessage(c.id, 'test'); console.log('testing message send')}" :text="c.users.filter(u => u !== useAuth().user.id).toString()">
+          </base-submit-button>
+        </li>
+      </ul>
+    </div>
 </template>
 <style scoped>
 </style>

@@ -1,5 +1,4 @@
 <script setup>
-  import {ClientEvent, ServerEvent} from "~/js/realtime-events";
 
 await loadTranslations("dashboard"); // load translation
 
@@ -10,31 +9,10 @@ if(route.name === "dash") {
 }
 
 onMounted(() => {
-  // solved by using route middleware, this way the dashboard does not flash before redirecting to login page
-  // if (!Parse.User.current()) {
-    // useRouter().replace({ path: '/auth/sign-in', query: { to: route.path}});
-  // }
   //find html and body elements and set their overflow to hidden
   document.getElementsByTagName("html")[0].style.overflow = "hidden";
   document.getElementsByTagName("body")[0].style.overflow = "hidden";
 
-  const socket = useSocket();
-
-  socket.on(ServerEvent.Authenticated, () => {
-    console.log("socket authenticated");
-      //get chats
-      useChats().fetchChats().then((chats) => {
-        console.log("chats", chats);
-        socket.emit(ClientEvent.SubscribeToChats, chats.map(c=> c.id));
-        socket.on(ServerEvent.ChatMessage, (chatId) => {
-          console.log("new message in ", chatId);
-          const u = chats.find(c => c.id === chatId).get("users").filter(u => u !== useAuth().user.id)
-          console.log("new message from ", u);
-        })
-      }).catch((err) => {
-        console.error(err);
-      });
-  });
 })
 
 onUnmounted(() => {
@@ -49,7 +27,7 @@ provide('side-menu-open', sideMenuOpen)
 </script>
 
 <template>
-  <div :class="`${darkMode.value ? 'dark':''} flex h-full w-full overflow-x-clip`"><!-- enables tailwind darkmode, toggle this  -->
+  <div :class="`${darkMode.value ? 'dark [color-scheme:dark]':''} flex h-full w-full overflow-x-clip`"><!-- enables tailwind darkmode, toggle this  -->
     <dash-menu-side/>
 
     <div class="bg-dash-light-400 dark:bg-dash-dark-200 flex-col flex-grow transition-colors duration-300">
