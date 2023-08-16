@@ -35,7 +35,7 @@ provide('side-menu-open', sideMenuOpen)
         <dash-menu-top />
       <div id="content" :class="`bg-dash-light-400 dark:bg-dash-dark-200 p-5 flex ${sideMenuOpen ? 'sm:ml-[270px] xs:ml-0':'xs:ml-0 sm:ml-[67px]'}`">
           <NuxtPage/>
-          <dash-chat-toggle/>
+          <!-- <dash-chat-toggle/> -->
       </div>
     </div>
 

@@ -9,11 +9,13 @@ import { Attributes } from "parse";
 export default defineStore("auth", {
   //underlying is the actual Parse.User object, but serialized to JSON so it does not contain any methods like set or get or signout
   state: () => ({
-   underlying: undefined as Parse.User<Attributes> | undefined,
+   underlying: undefined as {[key:string]:any} | undefined,
   }),
   getters: {
-    authenticated: (state) =>{
+    authenticated: (state) => {
+      console.log("authenticated", process.server, state.underlying)
       if(process.server && state.underlying) return true;
+      console.log("authenticated", process.client, Parse.User.current())
       if(process.client && Parse.User.current()) return true;
       else return false;
     },
@@ -24,7 +26,7 @@ export default defineStore("auth", {
     get(field: string) {
       if (!this.underlying) return undefined;
       return process.server
-        ? this.underlying.get(field)
+        ? this.underlying[field]
         : Parse.User.current()?.get(field);
     },
     // if fields are set using Parse.User.current().set(), then we need to update the underlying object, otherwise the server will not have updated values
