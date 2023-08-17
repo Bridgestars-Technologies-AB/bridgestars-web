@@ -22,6 +22,7 @@ export default defineStore("chatManager", {
   state: () => ({
     chats: {} as ChatMap,
     initialized: false,
+    initializing: false,
   }),
   getters: {
     chatIds: (state) => {

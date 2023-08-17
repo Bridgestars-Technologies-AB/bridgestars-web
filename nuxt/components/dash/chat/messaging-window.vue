@@ -8,7 +8,8 @@ const props = defineProps({
 });
 defineEmits(["sendMessage"])
 const chatManager = useChatManager()
-const messages = computed(() => chatManager.get(chatId).messages)
+await chatManager.init()
+const messages = computed(() => chatManager.get(props.chatId).messages)
 
 const minInputHeight = 40;
 const maxInputHeight = 150;
