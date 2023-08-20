@@ -7,7 +7,7 @@ const props = defineProps({
   }
 });
 defineEmits(["sendMessage"])
-const chatManager = useChatManager()
+const chatManager = await useChatManager()
 await chatManager.init()
 const messages = computed(() => chatManager.get(props.chatId).messages)
 

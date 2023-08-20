@@ -1,4 +1,4 @@
-import { Events } from "../../js/realtime-events";
+import { Events } from "../js/realtime-events";
 import { io, Socket as _Socket } from "socket.io-client";
 
 type Socket = _Socket<Events.ReceiveTypes, Events.SendTypes>;

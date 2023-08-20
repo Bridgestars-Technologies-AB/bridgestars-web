@@ -1,17 +1,17 @@
 <script setup>
 import {storeToRefs} from 'pinia'
 const auth = useAuth()
-const chatManager = useChatManager()
+const chatManager = await useChatManager()
 
 const open = ref(false)
 
 
-const currentChat = ref("VRLKREV5PK")
+const currentChat = ref("4uqF0UBznJ")
 const currentChatName = ref("Loading...")
 
 onMounted(async () => {
-  await chatManager.init();
-  currentChatName.value = chatManager.get(currentChat.value)?.name
+  console.log(chatManager)
+  currentChatName.value = await chatManager.chats[currentChat.value].getName();
 })
 
 </script>
