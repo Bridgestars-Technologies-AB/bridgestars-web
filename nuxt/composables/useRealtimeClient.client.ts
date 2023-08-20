@@ -2,21 +2,27 @@ import { Events } from "../../js/realtime-events";
 import { io, Socket as _Socket } from "socket.io-client";
 
 type Socket = _Socket<Events.ReceiveTypes, Events.SendTypes>;
+type Client = {socket: Socket, connected: Ref<Boolean>};
 let socket: Socket | null = null;
+
 let deferred: {
-  resolve: (socket: Socket) => void;
+  resolve: () => void;
   reject: (error: Error) => void;
 } | null = null;
-let connectingPromise: Promise<Socket> | null = null;
-let connected = false;
+let connectionPromise: Promise<void> | null = null;
+let connected = ref(false);
 
-export default function useRealtimeClient(): Promise<Socket> {
+/**
+ * Lazily connects to the realtime-server and authenticates the user. Only ever creates one connection.
+ * @returns {Client} a promise that resolves when the client is connected and authenticated
+ * @example
+ * const {socket, connected} = await useRealtimeClient();
+ * socket.on(Events.Receive.ChatMessage, (chatId: string) => {});
+*/
+export default async function useRealtimeClient(): Promise<Client> {
+
+  //stop server and unauithenticated users
   if (process.server) throw new Error("Cannot use socket on server");
-
-  if (connected) return Promise.resolve(socket as Socket);
-  if (connectingPromise) return connectingPromise;
-
-
   const auth = useAuth();
   if (!auth.authenticated || !auth.user) {
     throw new Error(
@@ -24,11 +30,20 @@ export default function useRealtimeClient(): Promise<Socket> {
     );
   }
 
-  //singlethreaded, so this is fine.... right?
-  connectingPromise = new Promise((resolve, reject) => {
-    deferred = { resolve, reject };
-  });
+  // detta ska vara en spärr som ser till att det bara finns en socket och att ingen behöver ora sig för att den inte ska vara ansluten när de börjar använda den.
+  // är lite orolig för race etc här
+  if (!connectionPromise) {
+    connectionPromise = new Promise((resolve, reject) => deferred = { resolve, reject });
+    connect(auth.user);
+  }
 
+
+  await connectionPromise;
+  return {socket: socket as Socket, connected};
+}
+
+
+function connect(user:any){
   //create socket
   socket = io("http://localhost:3001", {
     transports: ["websocket"],
@@ -41,27 +56,25 @@ export default function useRealtimeClient(): Promise<Socket> {
     //authenticate socket
     socket.emit(
       Events.Send.Authenticate,
-      auth.user.id,
-      auth.user.getSessionToken(),
+      user.id,
+      user.getSessionToken(),
     );
     socket.on(Events.Receive.Authenticated, () => {
       if (deferred == null) return;
       if (socket == null) deferred.reject(new Error("Socket is null??"));
       else {
-        connected = true;
-        deferred.resolve(socket);
+        connected.value = true;
+        deferred.resolve();
       }
     });
   });
 
   //on disconnect or connection lost
   socket.on(Events.Connection.Lost, () => {
-    connected = false;
+    connected.value = false;
   });
   //for debug
   socket.onAnyOutgoing((event, ...args) => {
     console.log("outgoing", event, args);
   });
-
-  return connectingPromise;
 }
