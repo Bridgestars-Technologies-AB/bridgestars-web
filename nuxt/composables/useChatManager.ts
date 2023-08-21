@@ -11,11 +11,13 @@ class Message {
   readonly data: DbObject;
   readonly text: string;
   readonly sender: string;
+  readonly createdAt: Date;
   constructor(data: DbObject) {
     this.id = data.id;
     this.data = data;
     this.text = data.get("text");
     this.sender = data.get("sender");
+    this.createdAt = data.createdAt;
   }
 }
 
@@ -34,14 +36,14 @@ class Chat {
     this.users = data.get("users");
     this.name = "";
   }
-  addMessage(m:Message){
+  addMessage(m: Message) {
     this.messages.push(m);
   }
 
   /**
-  * Fetches the name of the chat. If the name is already fetched, it will return the cached name. May run multiple times if called quickly
-  * @returns {string} the name of the chat
-  */
+   * Fetches the name of the chat. If the name is already fetched, it will return the cached name. May run multiple times if called quickly
+   * @returns {string} the name of the chat
+   */
   async getName() {
     if (this.name) return this.name;
     const otherUser =
@@ -57,10 +59,31 @@ class Chat {
       });
     return this.name;
   }
+  async fetchOlderMessages() {
+    const base = new Parse.Query("Message").equalTo("chat", this.id).limit(10);
+    return (this.messages.length == 0
+      ? base.ascending("createdAt")
+      : base.lessThan("createdAt", this.messages[0].data.createdAt))
+      .find()
+      .then((mx) => this.addMessages(mx));
+  }
+  async fetchNewerMessages() {
+    const base = new Parse.Query("Message").equalTo("chat", this.id).limit(10);
+    return (this.messages.length == 0 ?
+      base.descending("createdAt") :
+      base.greaterThan("createdAt", this.messages[this.messages.length - 1].data.createdAt))
+      .find()
+      .then((mx) => this.addMessages(mx));
+  }
+
+  private addMessages(m: DbObject[]) {
+    this.messages.push(...m.map((m) => new Message(m)));
+    this.messages.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
+  }
 }
 
 class ChatManager {
-  chats = {} as ChatMap;
+  chats = reactive({} as ChatMap);
   getMessages = (chatId: string) => this.chats[chatId];
   getChatIds = () => Object.keys(this.chats);
 }
@@ -85,7 +108,7 @@ export default async function useChatManager() {
         throw new Error("this should not happen, chatmanager == null");
       }
 
-      manager.chats = chats;
+      manager.chats = reactive(chats as ChatMap);
       socket.emit(Events.Send.SubscribeToChats, manager.getChatIds());
       socket.on(Events.Receive.ChatMessage, async (chatId: string) => {
         if (manager == null) {

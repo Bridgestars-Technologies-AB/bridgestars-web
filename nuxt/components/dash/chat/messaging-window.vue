@@ -8,8 +8,11 @@ const props = defineProps({
 });
 defineEmits(["sendMessage"])
 const chatManager = await useChatManager()
-await chatManager.init()
-const messages = computed(() => chatManager.get(props.chatId).messages)
+const chat = chatManager.chats[props.chatId]
+const messages = chat.messages 
+if(messages.length === 0){
+  chat.fetchOlderMessages();
+}
 
 const minInputHeight = 40;
 const maxInputHeight = 150;
@@ -57,7 +60,7 @@ onMounted(() => {
         <div :class="`flex items-center text-xs text-dash-light-500 dark:text-dash-dark-300 ${m.sender == 'me' ? 'justify-end' : 'justify-start'} mb-1`">
 
           <div :class="`relative ${m.sender == 'me' ? 'bg-green-500' : 'bg-green-500'} max-w-[70%] rounded-xl px-3 py-2 mx-2`">
-            <span class="text2 text-[16px] leading-[16px] dark:text-light text-light">{{m.get("text")}}</span>
+            <span class="text2 text-[16px] leading-[16px] dark:text-light text-light">{{m.text}}</span>
             <div :class="`absolute ${m.sender=='me' ? 'right-0 translate-x-[4px] bg-green-500' : 'left-0 translate-x-[-4px] bg-green-500'} top-2.5 h-3 w-3 rotate-45  rounded-[2px]`"></div>
           </div>
 

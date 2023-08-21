@@ -1,3 +1,4 @@
+<!-- this component is only used client side -->
 <script setup>
 import {storeToRefs} from 'pinia'
 const auth = useAuth()
