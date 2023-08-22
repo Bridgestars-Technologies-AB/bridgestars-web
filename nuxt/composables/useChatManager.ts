@@ -1,6 +1,5 @@
 import { Attributes } from "parse";
-import { defineStore } from "pinia";
-import { Events } from "../js/realtime-events";
+import { Client, Events, Socket } from "../js/realtime";
 import useRealtimeClient from "./useRealtimeClient.client";
 
 type DbObject = Parse.Object<Attributes>;
@@ -17,15 +16,21 @@ class Message {
     this.data = data;
     this.text = data.get("text");
     this.sender = data.get("sender");
-    this.createdAt = data.createdAt;
+    if (!data.createdAt) {
+      this.createdAt = new Date(); //temp
+      // throw new Error("Tried adding message before uploading it to database");
+    }
+    else this.createdAt = data.createdAt;
   }
 }
 
 class Chat {
   readonly id: string;
   readonly data: DbObject;
+  private readonly addedMessages = new Set();
   readonly messages: Message[];
   readonly users: string[];
+  latestMessage: Message | null = null;
 
   private name: string;
 
@@ -35,9 +40,6 @@ class Chat {
     this.messages = [];
     this.users = data.get("users");
     this.name = "";
-  }
-  addMessage(m: Message) {
-    this.messages.push(m);
   }
 
   /**
@@ -59,33 +61,71 @@ class Chat {
       });
     return this.name;
   }
-  async fetchOlderMessages() {
-    const base = new Parse.Query("Message").equalTo("chat", this.id).limit(10);
+
+  async getLatestMessage() {
+    if (this.messages.length == 0) await this.fetchNewerMessages(1);
+    this.latestMessage = this.messages[this.messages.length - 1];
+    return this.latestMessage;
+  }
+
+  sendMessage(text: string) {
+    manager?.socket.emit(Events.Send.ChatMessage, this.id);
+    this.addMessages([
+      new Parse.Object("Message", { text, sender: useAuth().user.id }),
+    ]); // temp
+  }
+
+  async fetchOlderMessages(limit: number) {
+    const base = new Parse.Query("Message").equalTo("chat", this.id).limit(
+      limit ?? 10,
+    );
     return (this.messages.length == 0
-      ? base.ascending("createdAt")
-      : base.lessThan("createdAt", this.messages[0].data.createdAt))
+      ? base.descending("createdAt")
+      : base.lessThan("createdAt", this.messages[0].data.createdAt).descending(
+        "createdAt",
+      ))
       .find()
       .then((mx) => this.addMessages(mx));
   }
-  async fetchNewerMessages() {
-    const base = new Parse.Query("Message").equalTo("chat", this.id).limit(10);
-    return (this.messages.length == 0 ?
-      base.descending("createdAt") :
-      base.greaterThan("createdAt", this.messages[this.messages.length - 1].data.createdAt))
+  async fetchNewerMessages(limit: number) {
+    const base = new Parse.Query("Message").equalTo("chat", this.id).limit(
+      limit ?? 10,
+    );
+    return (this.messages.length == 0
+      ? base.descending("createdAt")
+      : base.greaterThan(
+        "createdAt",
+        this.messages[this.messages.length - 1].data.createdAt,
+      ).ascending("createdAt"))
       .find()
       .then((mx) => this.addMessages(mx));
   }
 
   private addMessages(m: DbObject[]) {
-    this.messages.push(...m.map((m) => new Message(m)));
+    m.forEach((m) => this.addMessage(m)); // will sort on every add, we should add an insertion sort function
+  }
+  addMessage(data: DbObject) {
+    if (this.addedMessages.has(data.id)) return; //TODO: does not allow testing with not uploaded messages
+    this.addedMessages.add(data.id);
+    const m = new Message(data);
+    this.messages.push(m);
     this.messages.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
+    this.latestMessage = m;
+    console.log(this.messages.map(x => x.createdAt))
   }
 }
 
 class ChatManager {
-  chats = reactive({} as ChatMap);
+  readonly chats: ChatMap;
+  readonly socket: Socket;
+
   getMessages = (chatId: string) => this.chats[chatId];
   getChatIds = () => Object.keys(this.chats);
+
+  constructor(chats: ChatMap, socket: Socket) {
+    this.chats = reactive(chats);
+    this.socket = socket;
+  }
 }
 
 let manager: ChatManager | null = null;
@@ -102,24 +142,23 @@ export default async function useChatManager() {
       deferred = { resolve, reject }
     );
     const { socket } = await useRealtimeClient();
-    manager = new ChatManager();
     await fetchChats().then((chats) => {
-      if (manager == null) {
-        throw new Error("this should not happen, chatmanager == null");
-      }
-
-      manager.chats = reactive(chats as ChatMap);
+      manager = new ChatManager(chats, socket);
       socket.emit(Events.Send.SubscribeToChats, manager.getChatIds());
       socket.on(Events.Receive.ChatMessage, async (chatId: string) => {
         if (manager == null) {
           throw new Error("this should not happen, chatmanager == null");
         }
-        // console.log("new message in chat: ", chatId, this.get(chatId).name);
-        const m = new Message(
+        console.log(
+          "new message in chat: ",
+          chatId,
+          manager.chats[chatId].getName(),
+        );
+
+        // console.log("before push", this.getMessages(chatId).length);
+        manager.chats[chatId].addMessage(
           new Parse.Object("Message", { text: "new message" }),
         );
-        // console.log("before push", this.getMessages(chatId).length);
-        manager.chats[chatId].addMessage(m);
         // console.log("after push", this.getMessages(chatId).length);
       });
       deferred?.resolve();

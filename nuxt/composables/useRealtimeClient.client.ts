@@ -1,8 +1,6 @@
-import { Events } from "../js/realtime-events";
+import { Events, Socket, Client } from "../js/realtime";
 import { io, Socket as _Socket } from "socket.io-client";
 
-type Socket = _Socket<Events.ReceiveTypes, Events.SendTypes>;
-type Client = {socket: Socket, connected: Ref<Boolean>};
 let socket: Socket | null = null;
 
 let deferred: {
@@ -77,4 +75,7 @@ function connect(user:any){
   socket.onAnyOutgoing((event, ...args) => {
     console.log("outgoing", event, args);
   });
+  socket.onAny((event, ...args) => {
+    console.log("incoming", event, args);
+  })
 }

@@ -40,3 +40,7 @@ export interface SocketData {
   age: number;
 }
 
+import {Socket as _Socket} from "socket.io-client";
+export type Socket = _Socket<Events.ReceiveTypes, Events.SendTypes>;
+export type Client = {socket: Socket, connected: Ref<Boolean>};
+

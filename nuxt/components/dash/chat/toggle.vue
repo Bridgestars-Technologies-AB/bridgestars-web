@@ -10,6 +10,7 @@ const open = ref(false)
 const currentChat = ref("4uqF0UBznJ")
 const currentChatName = ref("Loading...")
 
+
 onMounted(async () => {
   console.log(chatManager)
   currentChatName.value = await chatManager.chats[currentChat.value].getName();
@@ -48,12 +49,18 @@ onMounted(async () => {
 
 
 <!-- for testing -->
-    <div class="absolute top-3 right-3 z-10">
+    <div class="absolute top-[100px] right-3 z-10">
       <h2>Chats</h2>
       <ul>
         <li v-for="c in chatManager.chats">
-        <base-submit-button @click.stop="() => {chatManager.sendMessage(c.id, 'test'); console.log('testing message send')}" :text="c.users.filter(u => u !== useAuth().user.id).toString()">
-          </base-submit-button>
+        <div class="flex items-center border border-white flex-col">
+          <h3 class="text-sm">{{c.id}}</h3>
+          <h3 class="text-sm">{{c.getName() && c.name}}</h3><!-- Will start the fetch and then when c.name is updated everything will be redrawn and c.getName() will do nothing this time, not optimal maybe  -->
+          <h3 class="text-sm">{{c.getLatestMessage() && c.latestMessage?.text}}</h3>
+        </div>
+
+        <!-- <base-submit-button @click.stop="() => {chatManager.sendMessage(c.id, 'test'); console.log('testing message send')}" :text="c.users.filter(u => u !== useAuth().user.id).toString()"> -->
+          <!-- </base-submit-button> -->
         </li>
       </ul>
     </div>

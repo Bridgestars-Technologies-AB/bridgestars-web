@@ -6,13 +6,23 @@ const props = defineProps({
     required: true
   }
 });
-defineEmits(["sendMessage"])
+
+const emit = defineEmits(["sendMessage"])
+const auth = useAuth()
+const userId = auth.user.id
+
 const chatManager = await useChatManager()
 const chat = chatManager.chats[props.chatId]
 const messages = chat.messages 
-if(messages.length === 0){
-  chat.fetchOlderMessages();
+if(messages.length < 10){
+  chat.fetchOlderMessages(10);
 }
+watch(messages, () => {
+  // scroller.value.scrollTop = scroller.value.scrollHeight+200;
+    nextTick(() => { // doesn't work if we don't wait a tick , I'm not really sure why.
+      scroller.value.scrollTop = scroller.value.scrollHeight;
+    })
+})
 
 const minInputHeight = 40;
 const maxInputHeight = 150;
@@ -50,18 +60,35 @@ onMounted(() => {
   scroller.value.scrollTop = scroller.value.scrollHeight;
 })
 
+const myMessageColor = "dark:bg-green-500 bg-green-500"
+const otherMessageColor = "dark:bg-blue-500 bg-blue-500" // what colors should we use?
+
+function sendMessage(){
+  console.log(textarea.value)
+  const text = textarea.value.value.trim()
+  if(text.length > 0){
+    emit('sendMessage',text)
+    chat.sendMessage(text)
+    textarea.value.value = ""
+    textarea.value.style.height = minInputHeight + "px"
+    // nextTick(() => { // doesn't work if we don't wait a tick , I'm not really sure why.
+    //   scroller.value.scrollTop = scroller.value.scrollHeight;
+    //   console.log(scroller.value.scrollTop, scroller.value.scrollHeight)
+    // })
+  }
+}
 </script>
 
 <template>
   <div class="flex flex-col w-full h-full overflow-clip">
 <!-- messages field -->
     <div ref="scroller" class="flex-1 overflow-y-auto dark:bg-dash-dark-400 bg-dash-light-300 pb-2"> <!-- flex-1 expands this field to fill all remaining space of flexbox -->
-      <div v-for="m in messages" class="w-full mt-2">
-        <div :class="`flex items-center text-xs text-dash-light-500 dark:text-dash-dark-300 ${m.sender == 'me' ? 'justify-end' : 'justify-start'} mb-1`">
+      <div v-for="m in messages" class="w-full px-1 mt-2">
+        <div  :class="`flex items-center text-xs text-dash-light-500 dark:text-dash-dark-300 ${m.sender == userId ? 'justify-end' : 'justify-start'} mb-1`">
 
-          <div :class="`relative ${m.sender == 'me' ? 'bg-green-500' : 'bg-green-500'} max-w-[70%] rounded-xl px-3 py-2 mx-2`">
+          <div @click="console.log(m)" :class="`relative ${m.sender == userId ? myMessageColor: otherMessageColor} max-w-[70%] rounded-xl px-3 py-2 mx-2`">
             <span class="text2 text-[16px] leading-[16px] dark:text-light text-light">{{m.text}}</span>
-            <div :class="`absolute ${m.sender=='me' ? 'right-0 translate-x-[4px] bg-green-500' : 'left-0 translate-x-[-4px] bg-green-500'} top-2.5 h-3 w-3 rotate-45  rounded-[2px]`"></div>
+            <div :class="`absolute ${m.sender==userId ? 'right-0 translate-x-[4px] ' + myMessageColor : 'left-0 translate-x-[-4px] ' + otherMessageColor} top-2.5 h-3 w-3 rotate-45  rounded-[2px]`"></div>
           </div>
 
         </div>
@@ -70,7 +97,7 @@ onMounted(() => {
 <!-- input field and send button -->
     <div :class="`flex justify-between items-center p-2 bg-dash-light-500 dark:bg-dash-dark-300`">
       <textarea ref="textarea" class="flex-grow rounded-[20px] dark:bg-dash-dark-400 bg-dash-light-400 mr-2 px-3 py-1.5 h-[40px] text-[22px] no-scrollbar leading-[22px] dark:text-light text-dark" placeholder="Aa" @keyup="grow"/>
-      <button @click="$emit('sendMessage',textarea.text)" class="self-start rounded-full bg-blue-400 w-[40px] h-[40px] p-1">
+      <button @click="sendMessage" class="self-start rounded-full bg-blue-400 w-[40px] h-[40px] p-1">
         <span class="i-material-symbols-send-rounded bg-dash-light-500 translate-x-[2px] h-full w-full"/>
       </button>
     </div>
