@@ -111,7 +111,7 @@ class Chat {
     this.messages.push(m);
     this.messages.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
     this.latestMessage = m;
-    console.log(this.messages.map(x => x.createdAt))
+    // console.log(this.messages.map(x => x.createdAt))
   }
 }
 
@@ -121,6 +121,12 @@ class ChatManager {
 
   getMessages = (chatId: string) => this.chats[chatId];
   getChatIds = () => Object.keys(this.chats);
+  get(id: string) {
+    return this.chats[id];
+  }
+  getChats() {
+    return Object.values(this.chats);
+  }
 
   constructor(chats: ChatMap, socket: Socket) {
     this.chats = reactive(chats);
@@ -152,7 +158,7 @@ export default async function useChatManager() {
         console.log(
           "new message in chat: ",
           chatId,
-          manager.chats[chatId].getName(),
+          await manager.chats[chatId].getName(),
         );
 
         // console.log("before push", this.getMessages(chatId).length);
