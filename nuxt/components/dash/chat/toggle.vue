@@ -42,32 +42,19 @@ function toggle(){
         </div>
         <base-tooltip :text="$t('chat.tooltip.open')" position="left">
           <div @click="toggle" class="cursor-pointer rounded-full dark:bg-dash-dark-100 bg-dash-light-300 p-2 hover:bg-dash-light-500 dark:hover:bg-dash-dark-300" >
-            <img src="~/assets/icon/chat-light.png" class="w-[45px] h-[45px] dark:block hidden scale-x-[-1]" alt="chat">
-            <img src="~/assets/icon/chat-dark.png" class="w-[45px] h-[45px] dark:hidden scale-x-[-1]" alt="chat">
+            <div v-if="!open">
+              <img src="~/assets/icon/chat-light.png" class="w-[45px] h-[45px] dark:block hidden scale-x-[-1]" alt="chat">
+              <img src="~/assets/icon/chat-dark.png" class="w-[45px] h-[45px] dark:hidden scale-x-[-1]" alt="chat">
+              </div>
+            <div v-else class="h-[45px]">
+              <span class="i-ic-round-close w-[45px] h-[45px] scale-x-[-1] dark:text-light text-dash-light-500"></span>
+            </div>
           </div>
         </base-tooltip>
       </div>
 
     </div>
   </div>
-
-
-<!-- for testing -->
-    <div class="absolute top-[100px] right-3 z-10">
-      <h2>Chats</h2>
-      <ul>
-        <li v-for="c in chatManager.chats">
-        <div class="flex items-center border border-white flex-col">
-          <h3 class="text-sm">{{c.id}}</h3>
-          <h3 class="text-sm">{{c.name}}</h3><!-- Will start the fetch and then when c.name is updated everything will be redrawn and c.getName() will do nothing this time, not optimal maybe  -->
-          <h3 class="text-sm">{{c.getLatestMessage() && c.latestMessage?.text}}</h3>
-        </div>
-
-        <!-- <base-submit-button @click.stop="() => {chatManager.sendMessage(c.id, 'test'); console.log('testing message send')}" :text="c.users.filter(u => u !== useAuth().user.id).toString()"> -->
-          <!-- </base-submit-button> -->
-        </li>
-      </ul>
-    </div>
 </template>
 <style scoped>
 </style>

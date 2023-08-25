@@ -1,46 +1,98 @@
 <script setup lang="ts">
 defineEmits(["openChat", "close"])
 const manager = await useChatManager();
-manager.getChats().forEach(c => {
+
+manager.sortedChats().forEach(c => { //we could do this when getting the chats but I want to fetch the chat names dynamically when they are shown instead so we keep the logic here for later
   c.getName();
+  c.getLatestMessage();
 });
+
+function getTime(c) {
+  const time = c.latestMessage?.createdAt;
+  return time ? useTimeAgo().format(time) : "";
+}
+
+const searchTerm = ref("");
+const filter = (c) => {
+  if (!searchTerm.value) return true;
+  return c.name.toLowerCase().includes(searchTerm.value.toLowerCase()); //this will not work if not all chats are downloaded, maybe keep it like this for now
+};
+async function search(){
+  Parse.Cloud.run("searchUsers", {username:searchTerm, page:0, perPage:10}).then((users) => {
+    console.log(users)
+  })
+}
+
 
 </script>
 
 <template>
   <div class="flex flex-col h-[500px] w-[350px] rounded-xl overflow-clip">
 
-    <div class="flex justify-end items-center px-3 h-[40px] bg-dash-light-500 dark:bg-dash-dark-300">
-      <button @click="$emit('close')">
-        <span
-          class="i-ic-round-close bg-dash-dark-500 dark:bg-dash-light-300 h-[30px] w-[30px] rounded-full scale-[1.2] translate-y-[2px]" />
-      </button>
+
+     <!-- Top bar with close button -->
+    <div class="flex justify-between items-center px-3 h-[50px] bg-dash-light-500 dark:bg-dash-dark-300">
+      <!-- <button @click="$emit('close')"> -->
+      <!--   <span -->
+      <!--     class="i-ic-round-close bg-dash-dark-500 dark:bg-dash-light-300 h-[30px] w-[30px] rounded-full scale-[1.2] translate-y-[2px]" /> -->
+      <!-- </button> -->
+
+      <!-- new chat -->
+        <div class="flex items-center justify-center h-[38px] w-[38px] rounded-full">
+          <span class="i-material-symbols-add-circle-outline-rounded bg-dark dark:bg-light text-[28px]"></span>
+        </div>
+
+      <!-- search field TODO: this could be an component -->
+      <div class="flex justify-between items-center bg-dash-light-400 dark:bg-dash-dark-500 h-[38px] px-3 rounded-[12px]">
+        <input
+          type="söök"
+          class="flex-grow text2 bg-transparent dark:text-light text-dark text-[16px] leading-[16px] placeholder-dark dark:placeholder-light focus:outline-none"
+          placeholder="Search..."
+          @input="searchTerm = $event.target.value"
+        />
+        <div class="flex items-center justify-center bg-dash-light-300 dark:bg-dash-dark-300 h-[30px] w-[30px] rounded-full">
+          <span class="i-ic-round-search text-[24px] bg-dark dark:bg-light"></span>
+        </div>
+      </div>
+      <!-- close --> 
+      <div class="flex items-center justify-center h-[38px] w-[38px] rounded-full cursor-pointer" @click="$emit('close')">
+          <span class="i-ic-round-close bg-dark dark:bg-light text-[28px]"></span>
+        </div>
+
     </div>
 
     <div class="flex flex-col w-full h-full overflow-clip">
       <!-- messages field -->
-      <div ref="scroller" class="flex-1 overflow-y-auto dark:bg-dash-dark-400 bg-dash-light-500 pb-2">
+      <div ref="scroller" class="flex-grow w-full overflow-x-hidden overflow-y-auto dark:bg-dash-dark-400 bg-dash-light-500 pb-2">
         <!-- flex-1 expands this field to fill all remaining space of flexbox -->
-        <hr class="border-dark dark:border-white opacity-[20%]" />
-        <div v-for="c in manager.chats" class="w-full px-1 mt-2 cursor-pointer" @click="$emit('openChat', c)">
-          <div class="flex items-center group">
+        <hr class="border-dark dark:border-white opacity-[20%] my-1" />
+        <div v-for="c in manager.sortedChats()" class="px-1 cursor-pointer" @click="$emit('openChat', c)">
+          <div v-if="filter(c)">
+          <div class="relative flex items-center group">
             <dash-chat-avatar :chat="c" />
-            <div class="flex flex-col  w-full">
-              <div class="flex w-full items-center">
+            <div class="flex flex-col w-full">
+              <div class="flex items-center justify-between">
 
-                  <h4
-                    class="flex-grow ml-2 text-[22px] leading-[22px] dark:text-light text-dark underline decoration-transparent group-hover:decoration-dark dark:group-hover:decoration-light transition-decoration-color duration-250">
-                    {{ c?.name }}</h4>
-                <span class="ml-2 text2 dark:text-light text-dark">{{ c?.latestMessage?.date || "today" }}</span>
-                  <span
-                    class="i-material-symbols-arrow-forward-ios text-dark dark:text-light text-[16px] group-hover:translate-x-1 transition-transform" />
+                <!-- Chat name -->
+                <h4 class="flex-grow ml-2 text-[22px] leading-[22px] dark:text-light text-dark underline decoration-transparent group-hover:decoration-dark dark:group-hover:decoration-light transition-decoration-color duration-250"> {{ c?.name }}</h4>
+
+                <!-- Chat last update -->
+                <span class="ml-2 text2 text-[12px] leading-[12px] dark:text-light text-dark">{{ getTime(c) }}</span>
+                <span class="i-material-symbols-arrow-forward-ios text-dark dark:text-light text-[16px] group-hover:translate-x-1 transition-transform break-words" />
+
               </div>
-              <span class="flex-1 ml-2 text-[22px] dark:text-light text-dark">{{ c?.latestMessage?.text }}</span>
+
+              <!-- Message text -->
+              <div class="w-[285px] h-[24px] overflow-hidden"> <!-- this is a hack to make the flexbox work -->
+                <span class="ml-2 mt-1 text-[18px] leading-[18px] dark:text-light text-dark opacity-[80%]">{{ c?.latestMessage?.text }}</span>
+              </div>
+
             </div>
           </div>
-          <hr class="border-dark dark:border-white opacity-[20%]" />
+          <hr class="border-dark dark:border-white opacity-[20%] my-1" />
+          </div>
         </div>
       </div>
-      <!-- input field and send button -->
+    </div>
   </div>
-</div></template>
+</template>

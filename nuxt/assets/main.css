@@ -58,6 +58,10 @@
     font-weight: inherit;
     line-height: inherit;
     --tw-shadow: 0 0 #0000;
+    outline:none;
+}
+[type="search"]:focus input:focus {
+    outline:none;
 }
 }
 

@@ -78,14 +78,15 @@ function sendMessage(){
 <!-- messages field -->
     <div ref="scroller" class="flex-1 overflow-y-auto dark:bg-dash-dark-400 bg-dash-light-300 pb-2"> <!-- flex-1 expands this field to fill all remaining space of flexbox -->
       <div v-for="m in chat.messages" class="w-full px-1 mt-2">
-        <div  :class="`flex items-center text-xs text-dash-light-500 dark:text-dash-dark-300 ${m.sender == userId ? 'justify-end' : 'justify-start'} mb-1`">
 
+          <!-- chat bubble -->
+        <div  :class="`flex items-center text-xs text-dash-light-500 dark:text-dash-dark-300 ${m.sender == userId ? 'justify-end' : 'justify-start'} mb-1`">
           <div @click="console.log(m)" :class="`relative ${m.sender == userId ? myMessageColor: otherMessageColor} max-w-[70%] rounded-xl px-3 py-2 mx-2`">
-            <span class="text2 text-[16px] leading-[16px] dark:text-light text-light">{{m.text}}</span>
+            <span class="text2 text-[16px] leading-[16px] dark:text-light text-light break-words">{{m.text}}</span>
             <div :class="`absolute ${m.sender==userId ? 'right-0 translate-x-[4px] ' + myMessageColor : 'left-0 translate-x-[-4px] ' + otherMessageColor} top-2.5 h-3 w-3 rotate-45  rounded-[2px]`"></div>
           </div>
-
         </div>
+
       </div>
     </div>
 <!-- input field and send button -->
