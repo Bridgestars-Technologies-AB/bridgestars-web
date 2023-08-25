@@ -7,7 +7,7 @@ const chatManager = await useChatManager()
 const open = ref(false)
 
 
-const currentChat = ref("4uqF0UBznJ")
+const currentChat = ref(null)
 
 onMounted(async () => {
   console.log(chatManager)
@@ -17,6 +17,13 @@ function openChat(chat){
   currentChat.value = chat.id
 }
 
+function toggle(){
+  if(open.value){
+    open.value = false
+    currentChat.value = null
+  }
+  else open.value = true
+}
 </script>
 
 <template>
@@ -34,7 +41,7 @@ function openChat(chat){
             </base-tooltip>
         </div>
         <base-tooltip :text="$t('chat.tooltip.open')" position="left">
-          <div @click="open=!open" class="cursor-pointer rounded-full dark:bg-dash-dark-100 bg-dash-light-300 p-2 hover:bg-dash-light-500 dark:hover:bg-dash-dark-300" >
+          <div @click="toggle" class="cursor-pointer rounded-full dark:bg-dash-dark-100 bg-dash-light-300 p-2 hover:bg-dash-light-500 dark:hover:bg-dash-dark-300" >
             <img src="~/assets/icon/chat-light.png" class="w-[45px] h-[45px] dark:block hidden scale-x-[-1]" alt="chat">
             <img src="~/assets/icon/chat-dark.png" class="w-[45px] h-[45px] dark:hidden scale-x-[-1]" alt="chat">
           </div>
