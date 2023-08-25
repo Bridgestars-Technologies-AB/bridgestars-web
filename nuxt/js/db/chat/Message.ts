@@ -7,7 +7,7 @@ import { DbObject } from "~/js/db";
  **/
 export default class Message {
   readonly id: string;
-  readonly data: DbObject;
+  readonly data: DbObject; //see http://localhost:3000/dev/db-schema#Message 
   readonly text: string;
   readonly sender: string;
   readonly createdAt: Date;

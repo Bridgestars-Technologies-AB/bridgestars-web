@@ -1,16 +1,22 @@
 <script setup lang="ts">
-defineProps({
-  user: { // we need a userManager, chatmanager shouldnt hold information about user status (online/offline)
-    type: Object,
-    required: false
-  },
+import {Status} from "~/js/db/user/User"
+const props = defineProps({
   userId: {
     type: String,
     required: false
+  },
+  chat: {
+    type: Object,
+    required: false
   }
 })
+// if(!props.chat && !props.userId) throw new Error("chat or userId is required");
+const userId = computed(() => {
+  if(props.userId) return props.userId;
+  if(props.chat) return props.chat?.users?.find(id => id != useAuth().user.id);
+}) 
 
-const status = ref(false);
+const manager = await useUserManager()
 const statusElement = ref();
 
 onMounted(() => {
@@ -32,11 +38,23 @@ function getBackgroundColor(el){
   if(color) return color;
   return getBackgroundColor(parent);
 }
+const statusColor = () => {
+  const status = manager.getStatus(userId.value);
+  switch (status) {
+    case Status.Online:
+     return  "bg-[#22FF06]";
+      break;
+
+    default:
+      return "bg-gray-500";
+      break;
+  }
+}
 </script>
 
 <template>
   <div class="aspect-square h-[50px] w-[50px]">
         <img src="~/assets/bridgestars/images/castor.jpg" class="rounded-full object-cover object-top aspect-square cursor-pointer"/>
-        <div ref="statusElement" class="absolute translate-x-[38px] translate-y-[-19px] rounded-full h-[16px] w-[16px] bg-[#22FF06] border-[3px]"/>
+    <div ref="statusElement" :class="`absolute translate-x-[38px] translate-y-[-19px] rounded-full h-[16px] w-[16px] ${statusColor()} border-[3px]`"/>
   </div>
 </template>

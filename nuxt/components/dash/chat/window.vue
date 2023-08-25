@@ -19,7 +19,7 @@ const emit = defineEmits(["sendMessage", "close"])
 const auth = useAuth()
 
 const chatManager = await useChatManager()
-const chat = computed(() => chatManager.chats[props.chatId])  //not the prettiest these lines
+const chat = computed(() => chatManager.get(props.chatId))  //not the prettiest these lines
 
 if(chat.value.messages.length < 10){
   chat.value.fetchOlderMessages(10);
@@ -80,7 +80,7 @@ const isMe = (m) => m.sender == auth.user.id
 <div class="flex flex-col h-[500px] w-[350px] rounded-xl overflow-clip">
  <!-- Top bar , image and name  -->
   <div class="flex items-center px-3 h-[70px] bg-dash-light-500 dark:bg-dash-dark-300">
-    <dash-chat-avatar />  
+    <dash-chat-avatar :chat="chat"/>  
     <h4 class="flex-1 ml-2 text-[22px] dark:text-light text-dark">{{chat.name}}</h4>
     <button @click="$emit('close')">
       <span class="i-ic-round-close bg-dash-dark-500 dark:bg-dash-light-300 h-[35px] w-[35px] rounded-full"/>

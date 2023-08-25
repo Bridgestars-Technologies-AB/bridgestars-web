@@ -37,7 +37,7 @@ function toggle(){
       <div class="flex flex-col space-y-1 items-center">
         <div class="bg-dash-light-400 dark:bg-dash-dark-200 rounded-full"> <!-- hack to let avatar find right color for status border without obstructing view -->
           <base-tooltip text="temp for show" position="left">
-            <dash-chat-avatar/>
+            <dash-chat-avatar :chat="currentChat"/>
             </base-tooltip>
         </div>
         <base-tooltip :text="$t('chat.tooltip.open')" position="left">

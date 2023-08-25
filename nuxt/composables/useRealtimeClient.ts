@@ -23,9 +23,12 @@ export default async function useRealtimeClient(): Promise<Client> {
   if (process.server) throw new Error("Cannot use socket on server");
   const auth = useAuth();
   if (!auth.authenticated || !auth.user) {
-    throw new Error(
+    socket?.disconnect();
+    const e = new Error(
       "User is not authenticated, cannot connect to realtime-server",
     );
+    deferred?.reject(e);
+    throw e;
   }
 
   // detta ska vara en spärr som ser till att det bara finns en socket och att ingen behöver ora sig för att den inte ska vara ansluten när de börjar använda den.
@@ -53,11 +56,11 @@ function connect(user:any){
     if (socket === null) throw new Error("Socket is null??");
     //authenticate socket
     socket.emit(
-      Events.Send.Authenticate,
+      Events.Connection.Authenticate,
       user.id,
       user.getSessionToken(),
     );
-    socket.on(Events.Receive.Authenticated, () => {
+    socket.on(Events.Connection.Authenticated, () => {
       if (deferred == null) return;
       if (socket == null) deferred.reject(new Error("Socket is null??"));
       else {
