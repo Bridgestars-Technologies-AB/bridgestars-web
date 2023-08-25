@@ -1,3 +1,12 @@
+<!-- this component is only used client side -->
+<!--
+A chat window component,
+props:
+  chatId: the id of the chat to display
+emits:
+  sendMessage: when the user sends a message
+  close: when the user closes the chat
+-->
 <script setup>
 import {storeToRefs} from 'pinia'
 const props = defineProps({
@@ -9,18 +18,14 @@ const props = defineProps({
 
 const emit = defineEmits(["sendMessage", "close"])
 const auth = useAuth()
-const userId = auth.user.id
 
 const chatManager = await useChatManager()
-const chat = computed(() => chatManager.chats[props.chatId])
+const chat = computed(() => chatManager.chats[props.chatId])  //not the prettiest these lines
 
-
-chat.value.getName();
 if(chat.value.messages.length < 10){
   chat.value.fetchOlderMessages(10);
 }
 watch(chat.value.messages, () => {
-  // scroller.value.scrollTop = scroller.value.scrollHeight+200;
     nextTick(() => { // doesn't work if we don't wait a tick , I'm not really sure why.
       scroller.value.scrollTop = scroller.value.scrollHeight;
     })
@@ -61,6 +66,15 @@ function sendMessage(){
     textarea.value.style.height = minInputHeight + "px"
   }
 }
+let lastDate = null;
+const isNewDate = (m) => {
+  if(lastDate?.getFullYear() === m.createdAt?.getFullYear() &&
+   lastDate?.getMonth() === m.createdAt?.getMonth() &&
+   lastDate?.getDate() === m.createdAt?.getDate()) return false
+  lastDate = m.createdAt
+  return true
+}
+const isMe = (m) => m.sender == auth.user.id
 </script>
 
 <template>
@@ -79,11 +93,18 @@ function sendMessage(){
     <div ref="scroller" class="flex-1 overflow-y-auto dark:bg-dash-dark-400 bg-dash-light-300 pb-2"> <!-- flex-1 expands this field to fill all remaining space of flexbox -->
       <div v-for="m in chat.messages" class="w-full px-1 mt-2">
 
+          <div v-if="isNewDate(m)">
+            <div class="flex justify-between items-center text-xs text-dash-light-500 dark:text-dash-dark-300 my-4">
+              <div class="w-[60px] h-[1px] mx-auto bg-dash-dark-500 opacity-[50%] dark:bg-dash-light-300"></div>
+              <span class="mx-2 text2 text-[14px] leading-[14px] text-dark dark:text-light">{{useTimeAgo().format(m.createdAt)}}</span>
+              <div class="w-[60px] h-[1px] mx-auto bg-dash-dark-500 opacity-[50%] dark:bg-dash-light-300"/>
+            </div>
+          </div>
           <!-- chat bubble -->
-        <div  :class="`flex items-center text-xs text-dash-light-500 dark:text-dash-dark-300 ${m.sender == userId ? 'justify-end' : 'justify-start'} mb-1`">
-          <div @click="console.log(m)" :class="`relative ${m.sender == userId ? myMessageColor: otherMessageColor} max-w-[70%] rounded-xl px-3 py-2 mx-2`">
+        <div  :class="`flex items-center text-xs text-dash-light-500 dark:text-dash-dark-300 ${isMe(m) ? 'justify-end' : 'justify-start'} mb-1`">
+          <div @click="console.log(m)" :class="`relative ${isMe(m) ? myMessageColor: otherMessageColor} max-w-[70%] rounded-xl px-3 py-2 mx-2`">
             <span class="text2 text-[16px] leading-[16px] dark:text-light text-light break-words">{{m.text}}</span>
-            <div :class="`absolute ${m.sender==userId ? 'right-0 translate-x-[4px] ' + myMessageColor : 'left-0 translate-x-[-4px] ' + otherMessageColor} top-2.5 h-3 w-3 rotate-45  rounded-[2px]`"></div>
+            <div :class="`absolute ${isMe(m) ? 'right-0 translate-x-[4px] ' + myMessageColor : 'left-0 translate-x-[-4px] ' + otherMessageColor} top-2.5 h-3 w-3 rotate-45  rounded-[2px]`"></div>
           </div>
         </div>
 

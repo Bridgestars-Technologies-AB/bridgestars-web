@@ -2,6 +2,10 @@ import { Events, Socket } from "../js/realtime";
 import { DbObject } from "../js/db";
 import { Chat, ChatManager } from "../js/db/chat";
 
+
+
+
+
 let manager: ChatManager | null = null;
 
 /**
@@ -13,7 +17,16 @@ let deferred: {
   reject: (error: Error) => void;
 } | null = null;
 
-export default async function useChatManager() {
+/**
+ *
+ *  This is a singleton that manages all chats and their messages.
+ *  It will automatically unsure a connection to the realtime server and subscribe to all chats as well as fetch more information from the database. 
+ *
+ *  @example const manager = await useChatManager();
+ *  manager.get("chatId").sendMessage("hello");
+ *
+ * **/
+export default async function useChatManager() : Promise<ChatManager> {
   if (!initPromise) {
     initPromise = new Promise((resolve, reject) =>
       deferred = { resolve, reject }
@@ -47,6 +60,7 @@ export default async function useChatManager() {
   }
 
   await initPromise;
+  if(!manager) throw new Error("ChatManager is null for some reason, investigate!");
   return manager;
 }
 

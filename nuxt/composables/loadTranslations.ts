@@ -39,7 +39,7 @@ export default async function loadTranslations(namespace:string|undefined){
 }
 
 async function loadNamespace(lang:string, namespace:string, i18next:i18n){
-  console.log(ns)
+  // console.log(ns)
   if(ns.get(namespace)?.has(lang)) return;
   i18next.addResourceBundle(lang, namespace, await import(`~/localization/${lang}/${namespace}.json`))
   ns.get(namespace)?.add(lang);

@@ -1,19 +1,19 @@
 <!-- this component is only used client side -->
+<!--
+This component is the chat toggle button, it is always visible and allows the user to open the chat window.
+
+emits: none
+props: none
+
+-->
 <script setup>
-import {storeToRefs} from 'pinia'
 const auth = useAuth()
 const chatManager = await useChatManager()
 
 const open = ref(false)
-
-
 const currentChat = ref(null)
 
-onMounted(async () => {
-  console.log(chatManager)
-})
 function openChat(chat){
-  console.log(chat)
   currentChat.value = chat.id
 }
 

@@ -1,6 +1,9 @@
 import Chat from "./Chat";
 import { Socket } from "../../realtime";
 
+/**
+ * This class manages all chats and their messages as an reactive proxy.
+ **/
 export default class ChatManager {
   readonly socket: Socket;
   readonly chats: { [id: string]: Chat };

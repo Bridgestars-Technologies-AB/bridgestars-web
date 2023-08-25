@@ -4,6 +4,13 @@ import sv from "javascript-time-ago/locale/sv";
 
 let timeAgo: TimeAgo | null = null;
 
+/**
+ * This is a conveinience hook for using the TimeAgo library.
+ * @example 
+ * 
+ * useTimeAgo().format(new Date()); // "just now"
+ * 
+ **/
 export default function useTimeAgo() {
   if(timeAgo) return timeAgo;
   const { i18 } = useTranslate();

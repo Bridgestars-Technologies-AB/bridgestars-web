@@ -1,5 +1,10 @@
 import { DbObject } from "~/js/db";
 
+/**
+ *
+ * This class represents a chat message, it contains the text, sender and time of the message.
+ * It also contains the actual database object. "data"
+ **/
 export default class Message {
   readonly id: string;
   readonly data: DbObject;

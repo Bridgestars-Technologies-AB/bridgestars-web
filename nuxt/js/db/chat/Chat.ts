@@ -3,6 +3,15 @@ import { DbObject } from "~/js/db/index";
 import Message from "./Message";
 import { Events } from "~/js/realtime";
 
+/**
+ *
+ * This class represents a chat, it contains all messages and users in the chat.
+ * It also contains methods for sending messages and fetching more messages.
+ *
+ * @example const chat = await manager.get("chatId");
+ * chat.getLatestMessage(); // Promise<"hello?">
+ * chat.sendMessage("hello");
+ **/
 export default class Chat {
   private manager: any|null = null;
   readonly id: string;
@@ -48,7 +57,7 @@ export default class Chat {
   }
 
   async getLatestMessage(): Promise<Message> {
-    if (this.messages.length == 0) await this.fetchNewerMessages(1);
+    if (this.messages.length == 0) await this.fetchNewerMessages(1); // could still be called twice if called quickly, would be nice with an easy way to let all other requests wait for the first. btw same problem as in usechatmanager and userealtimeclient.
     this.latestMessage = this.messages[this.messages.length - 1];
     return this.latestMessage;
   }

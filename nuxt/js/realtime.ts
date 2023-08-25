@@ -1,3 +1,6 @@
+/**
+ * This file contains the types for the realtime communication between the client and the server.
+ **/
 export namespace Events{
   export enum Send {
     Authenticate = "0",

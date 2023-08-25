@@ -5,6 +5,8 @@ import { defineStore } from 'pinia'
 /* 
  * This store lets the server access information about the user in order to prerender certain routes like dash and navbar,
  * and, lets the server block certain routes like dash if the user is not signed in.
+ *
+ * This store is badly typed and very unsafe, it works for some reason but needs to be fixed.
  * */
 
 export default defineStore('auth', {

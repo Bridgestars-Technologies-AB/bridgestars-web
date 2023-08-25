@@ -1,3 +1,11 @@
+<!-- this component is only used client side -->
+<!--
+Lists all the chats the user is in. 
+
+emits:
+  openChat: when the user opens a chat
+  close: when the user closes the chat
+-->
 <script setup lang="ts">
 defineEmits(["openChat", "close"])
 const manager = await useChatManager();
@@ -63,13 +71,13 @@ async function search(){
 
     <div class="flex flex-col w-full h-full overflow-clip">
       <!-- messages field -->
-      <div ref="scroller" class="flex-grow w-full overflow-x-hidden overflow-y-auto dark:bg-dash-dark-400 bg-dash-light-500 pb-2">
+      <div ref="scroller" class="flex-grow w-full overflow-x-hidden overflow-y-auto dark:bg-dash-dark-400 bg-dash-light-500 pb-2 pt-2">
         <!-- flex-1 expands this field to fill all remaining space of flexbox -->
-        <hr class="border-dark dark:border-white opacity-[20%] my-1" />
+        <!-- <hr class="border-dark dark:border-white opacity-[20%] my-1" /> -->
         <div v-for="c in manager.sortedChats()" class="px-1 cursor-pointer" @click="$emit('openChat', c)">
           <div v-if="filter(c)">
-          <div class="relative flex items-center group">
-            <dash-chat-avatar :chat="c" />
+          <div class="relative flex items-center group pl-1">
+            <dash-chat-avatar :chat="c"/>
             <div class="flex flex-col w-full">
               <div class="flex items-center justify-between">
 
@@ -83,13 +91,13 @@ async function search(){
               </div>
 
               <!-- Message text -->
-              <div class="w-[285px] h-[24px] overflow-hidden"> <!-- this is a hack to make the flexbox work -->
+              <div class="w-[280px] h-[24px] overflow-hidden"> <!-- this is a hack to make the flexbox work -->
                 <span class="ml-2 mt-1 text-[18px] leading-[18px] dark:text-light text-dark opacity-[80%]">{{ c?.latestMessage?.text }}</span>
               </div>
 
             </div>
           </div>
-          <hr class="border-dark dark:border-white opacity-[20%] my-1" />
+          <hr class="border-dark dark:border-white opacity-[20%] my-2" />
           </div>
         </div>
       </div>

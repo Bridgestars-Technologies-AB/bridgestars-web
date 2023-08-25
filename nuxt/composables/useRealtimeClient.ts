@@ -12,7 +12,7 @@ let connected = ref(false);
 
 /**
  * Lazily connects to the realtime-server and authenticates the user. Only ever creates one connection.
- * @returns {Client} a promise that resolves when the client is connected and authenticated
+ * @returns a promise that resolves when the client is connected and authenticated
  * @example
  * const {socket, connected} = await useRealtimeClient();
  * socket.on(Events.Receive.ChatMessage, (chatId: string) => {});
