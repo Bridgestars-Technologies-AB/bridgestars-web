@@ -1,12 +1,6 @@
 
 import { useTranslation as useT } from "i18next-vue";
 import {i18n} from 'i18next'
-import { defineStore } from "pinia";
-
-// const useTranslationStore = defineStore('loadedTranslations', () => {
-//     const ns = ref(new Map<string, Set<string>>())
-//     return { ns };
-// })
 
 // we do not use a store for this since we want the client to load the same libs that the server did
 // when using a store, the state is synced between server and client and then client thinks the libs are already loaded

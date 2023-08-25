@@ -8,7 +8,6 @@ emits:
   close: when the user closes the chat
 -->
 <script setup>
-import {storeToRefs} from 'pinia'
 const props = defineProps({
   chatId: {
     type: String,
