@@ -77,7 +77,7 @@ export default class Chat {
     const base = new Parse.Query("Message").equalTo("chat", this.id).limit(
       limit ?? 10,
     );
-    return (this.messages.length == 0
+    return (this.messages.length === 0
       ? base.descending("createdAt")
       : base.lessThan("createdAt", this.messages[0].data.createdAt).descending(
         "createdAt",
