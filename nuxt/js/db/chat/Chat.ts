@@ -52,7 +52,7 @@ export default class Chat {
     return this.name;
   }
   async getLastUpdateTime(): Promise<Date> {
-    if (this.messages.length == 0) await this.fetchNewerMessages(1);
+    if (this.messages.length === 0) await this.fetchNewerMessages(1);
     return this.messages[this.messages.length - 1].createdAt;
   }
 
