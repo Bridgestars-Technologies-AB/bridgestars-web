@@ -57,7 +57,7 @@ export default class Chat {
   }
 
   async getLatestMessage(): Promise<Message> {
-    if (this.messages.length == 0) await this.fetchNewerMessages(1); // could still be called twice if called quickly, would be nice with an easy way to let all other requests wait for the first. btw same problem as in usechatmanager and userealtimeclient.
+    if (this.messages.length === 0) await this.fetchNewerMessages(1); // could still be called twice if called quickly, would be nice with an easy way to let all other requests wait for the first. btw same problem as in usechatmanager and userealtimeclient.
     this.latestMessage = this.messages[this.messages.length - 1];
     return this.latestMessage;
   }
