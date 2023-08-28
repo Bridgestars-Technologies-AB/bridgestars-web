@@ -13,7 +13,7 @@ import { Events } from "~/js/realtime";
  * chat.sendMessage("hello");
  **/
 export default class Chat {
-  private manager: any|null = null;
+  private manager: any | null = null;
   readonly id: string;
   readonly data: DbObject; //see http://localhost:3000/dev/db-schema#Chat
   private readonly addedMessages = new Set();
