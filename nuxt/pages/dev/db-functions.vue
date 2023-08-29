@@ -1,21 +1,6 @@
 <script setup>
-import d from '~/assets/dev/docs-db-schema.json'
-let data = d;
-const commonProps = ['_id', 'objectId', 'updatedAt', 'createdAt']
-const public_fields= ["img","dispName"]
-const protected_fields= ["email","authData","first","last","nationality","birth","profileAccess","friends","ifr","ofr","migratedFromFirebase","gameSignIn"]
-
-// used this to iterate over all fields and add necessary attributes to fill in later
-// data.forEach(table => {
-//   // console.log(table)
-//   Object.keys(table).forEach(key => {
-//
-//   })
-// })
-
-data = [
-  ...data.filter(x => x['_id'][0] === '_').sort((a, b) => a['_id'] < b['_id'] ? 1 : -1),  //default classes, starts with _, sorted
-  ...data.filter(x => x['_id'][0] !== '_').sort((a,b) => a['_id'] < b['_id'] ? -1 : 1)]   //other, sorted
+  
+import data from '~/assets/dev/docs-db-functions.json'
 
 const toast = useToast()
 
@@ -32,8 +17,8 @@ function copyUrl(id){
 <template>
     <div>
        <div class="flex flex-col items-center text-center mt-5">
-        <h1 class="text-3xl font-bold">Database Classes and Fields</h1>
-        <p class="text1 font-family2 text-2xl">This is a list of all the classes available in the database API.</p> 
+        <h1 class="text-3xl font-bold">Database Functions</h1>
+        <p class="text1 font-family2 text-2xl">This is a list of all the functions available in the database API.</p> 
       </div>
 
   <!--  all classes links -->
@@ -41,7 +26,7 @@ function copyUrl(id){
       <div class="mx-9 my-9 flex flex-wrap flex-col">
         <div v-for="table in data" class="flex items-center text-center">
           <div class="w-full">
-            <a :href="`#${table['_id']}`" class="xs:text-[14px] md:text-[20px] text-blue font-family2 mr-1">{{table['_id']}}</a>
+            <a :href="`#${table['name']}`" class="xs:text-[14px] md:text-[20px] text-blue font-family2 mr-1">{{table['name']}}</a>
             <span class="i-material-symbols-find-in-page-outline-rounded text-blue text-[14px]"/>
           </div>
         </div>
@@ -50,7 +35,7 @@ function copyUrl(id){
     <div class="flex flex-col items-center w-full flex-grow ">
       <div v-for="item in data" class="flex flex-col px-3 items-start mt-5 w-full max-w-[1700px]">
         <div class="flex items-center cursor-pointer" @click="copyUrl(item['_id'])">
-          <h2 class="xl:text-[30px] sm:text-[25px] xs:text-[16px] font-bold" :id="item['_id']">{{item['_id']}}</h2>
+          <h2 class="xl:text-[30px] sm:text-[25px] xs:text-[16px] font-bold" :id="item['_id']">{{item['name']}}</h2>
           <span class="i-material-symbols-link-rounded text-dark text-2xl ml-2"/>
         </div>
         <div class="w-full mt-1 h-[1.5px] opacity-60 bg-dark rounded-full"/>
@@ -64,7 +49,7 @@ function copyUrl(id){
             <th>Shorthand for</th>
           </tr>
         <tr v-for="key in Object.keys(item).filter(x => x != '_id')" class="">
-            <td class="!font-normal max-w-[120px]">{{key}}</td>
+            <td class="!font-normal max-w-[120px]">{{item.name}}</td>
             <td>{{item[key].type}}</td>
             <td>
             <template v-if="item[key].description">

@@ -1,0 +1,332 @@
+[
+  {
+    "name": "getUserInfo",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "searchUsers",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "sendFriendRequest",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "acceptFriendRequest",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "denyFriendRequest",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "removeFriend",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "signOutFromAllDevices",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "signIn",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "fetchIfUpdated",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "assignRole",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "stripRole",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "assignRoomMod",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "redeemVoucher",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "listMyRoles",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "removeAllTestObjects",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "testCheckoutConfirmed",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "testCheckoutExpired",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "test_assignSubscriptionToCustomer",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "test_cancelSubscription",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "test_cancelAndExitAllCourses",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "generateSubscriptionDashboardLink",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  },
+  {
+    "name": "archivePost",
+    "params": [
+      {
+        "name": "param1",
+        "type": "string",
+        "description": "This is the first parameter"
+      }
+    ],
+    "return": {
+      "type": "string",
+      "description": "This is the return value"
+    },
+    "desc": "This is the description of the function"
+  }
+]
