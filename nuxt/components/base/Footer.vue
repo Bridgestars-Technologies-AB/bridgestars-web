@@ -37,7 +37,7 @@
         >
           <img
             class="h-[20px] hover:animate-shake"
-            src="/assets/logo/instagram-dark.svg"
+            src="~/assets/logo/instagram-dark.svg"
           />
         </a>
       </base-tooltip>
@@ -51,7 +51,7 @@
         >
           <img
             class="h-[20px] hover:animate-shake"
-            src="/assets/logo/discord-dark.svg"
+            src="~/assets/logo/discord-dark.svg"
           />
         </a>
       </base-tooltip>

@@ -1,16 +1,5 @@
 
 <script setup>
-
- import TimeAgo from 'javascript-time-ago' 
- import en from 'javascript-time-ago/locale/en'
- import sv from 'javascript-time-ago/locale/sv'
- const {i18} = useTranslate()
-
-  TimeAgo.addLocale(sv)
-  TimeAgo.addLocale(en)
-  let timeAgo = new TimeAgo(i18.language)
-
-
   const common =
     "transition-colors duration-300  w-[30px] h-[30px] group-hover:bg-dash-accent dark:group-hover:bg-dash-accent group-hover:animate-shake "; //important keep space at the end
   const colored = (b) =>
@@ -50,7 +39,7 @@
   })
   function formatTime(time){
      if(!time) return ""
-     return timeAgo.format(time)
+     return useTimeAgo().format(time)
   }
 
 </script>

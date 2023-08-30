@@ -15,6 +15,8 @@ const tooltip = ref(null)
 const tooltipTrigger = ref(null)
 let popover = null;
 
+//TODO for some reason tooltips are not displayed on top of popovers ex account in top bar
+
 onMounted(()=>{
   initPopovers()
   const options = {

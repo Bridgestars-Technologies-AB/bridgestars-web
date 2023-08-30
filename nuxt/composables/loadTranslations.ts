@@ -2,6 +2,9 @@
 import { useTranslation as useT } from "i18next-vue";
 import {i18n} from 'i18next'
 
+// we do not use a store for this since we want the client to load the same libs that the server did
+// when using a store, the state is synced between server and client and then client thinks the libs are already loaded
+// this is therefore a local representation
 const ns = new Map<string, Set<string>>();
 
 /**
@@ -13,7 +16,6 @@ const ns = new Map<string, Set<string>>();
  */
 export default async function loadTranslations(namespace:string|undefined){
   const { t, i18next } = useT();
-//console.log(ns)
   if(namespace){
     const load = (lng:string) => loadNamespace(lng, namespace, i18next);
 
@@ -31,6 +33,7 @@ export default async function loadTranslations(namespace:string|undefined){
 }
 
 async function loadNamespace(lang:string, namespace:string, i18next:i18n){
+  // console.log(ns)
   if(ns.get(namespace)?.has(lang)) return;
   i18next.addResourceBundle(lang, namespace, await import(`~/localization/${lang}/${namespace}.json`))
   ns.get(namespace)?.add(lang);
