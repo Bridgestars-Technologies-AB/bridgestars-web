@@ -51,8 +51,23 @@ function submit(res) {
       type="password"
       id="password-confirm"
     />
+    <div class="flex flex-col items-center text-center">
+      <div class="flex flex-row items-center">
+        <input
+          class="mr-2 w-5 h-5 rounded-md text-blue border-dark"
+          id="terms-accept"
+          type="checkbox"
+        />
+        <p><!-- to add space between texts  -->
+        <span class="normal-case text2 text-dark tracking-[0.5px]"> I agree with the </span>
+        <NuxtLink to="/policy" class="normal-case text2 text-blue font-bold tracking-[0.5px]"> Terms and Conditions</NuxtLink>
+        </p>
+      </div>
+        <small class="[color:red] text-[16px] w-full"></small>
+    </div>
+
     <base-submit-button
-      wrapperClass="w-[100%] xs:!mt-3 sm:!mt-6"
+      wrapperClass="w-[100%] xs:!mt-2 sm:!mt-4"
       id="submit"
       type="submit"
       :text="$t('auth:common.signUp')"
@@ -61,7 +76,7 @@ function submit(res) {
     ></base-submit-button>
 
     <div class="flex text-center">
-      <div class="xs:!mt-1 sm:!mt-3 xl:!mt-5 xs:!mb-3">
+      <div class="xs:!mt-1 sm:!mt-1 xl:!mt-5 xs:!mb-3">
         <span class="text2 mr-1">{{ $t("auth:signUp.footer") }} </span>
         <button
           @click="navigateTo({ path: '/auth/sign-in', query })"

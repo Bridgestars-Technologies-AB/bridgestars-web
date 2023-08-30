@@ -52,7 +52,7 @@ onMounted(() => {
       />
       <img
         src="~/assets/bridgestars/art/auth-form-ipad.svg"
-        class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1400px] min-w-[1085px]"
+        class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1300px] min-w-[1155px]"
       />
     </div>
     <!-- form -->
@@ -83,7 +83,7 @@ onMounted(() => {
       }}</span>
       <!-- SLOTS -->
       <div
-        class="zoomIn flex flex-col items-center sm:space-y-4 xs:space-y-3 xs:w-[80%] sm:w-[80%] md:w-[70%] lg:w-[70%] max-w-[400px]"
+        class="zoomIn flex flex-col items-center space-y-4 xs:w-[80%] sm:w-[80%] md:w-[70%] lg:w-[70%] max-w-[400px]"
       >
         <slot></slot>
       </div>

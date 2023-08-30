@@ -9,7 +9,7 @@ const props = defineProps({
 <template>
   <div :class="'buttonDiv ' + wrapperClass">
     <button
-      class="font-family py-[12px] px-[28px] font-normal rounded-[8px] h-[42px] btn tracking-[2px]"
+      class="text-[18px] font-family py-[12px] px-[28px] font-normal rounded-[8px] h-[42px] btn tracking-[2px]"
       v-bind="$attrs"
     >
       <span v-if="!loading">

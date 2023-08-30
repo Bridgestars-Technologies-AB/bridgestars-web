@@ -57,8 +57,19 @@
     font-size: 100%;
     font-weight: inherit;
     line-height: inherit;
+    outline:none;
     --tw-shadow: 0 0 #0000;
 }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    /* -webkit-background-clip: text; */
+    -webkit-text-fill-color: #393F43;
+    /* transition: background-color 5000s ease-in-out 0s; */
+    box-shadow: inset 0 0 80px 80px #fefefe;
 }
 
 /* Second layer for complex components etc, don't use, specify in style scoped instead */

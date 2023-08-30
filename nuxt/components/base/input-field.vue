@@ -33,7 +33,7 @@ function toggleShowPass() {
 <template>
   <div :class="'input-block ' + wrapperClass">
     <input
-      class="py-2.5 px-3.5 bg-white"
+      class="py-2.5 px-4 !bg-white text-[16px] font-family2"
       v-bind="$attrs"
       placeholder=" "
       ref="input"
@@ -42,10 +42,12 @@ function toggleShowPass() {
       @input="update"
     />
     <!--  above is solution for using v-model on this custom inputfield -->
-    <span class="placeholder text2 !font-light !text-[14px] !tracking-[1.2px]">
+    <span class="placeholder text2 text-[16px] tracking-[1.2px] font-family2">
       {{ placeholder }}
     </span>
-    <small class="info"></small>
+    <div class="pl-1">
+      <small class="info text-[16px]"></small>
+    </div>
     <!-- <div -->
     <!--   v-if="props.id === 'password-signin' && showPass" -->
     <!--   class="absolute top-[35%] right-[5px] i-basil-eye-outline" -->
@@ -69,6 +71,9 @@ function toggleShowPass() {
 </template>
 
 <style scoped>
+* {
+  @apply outline-none focus:outline-none; /* still not removed all outlines wtf */
+}
 div.input-block {
   position: relative;
 }
@@ -77,7 +82,6 @@ div.input-block input {
   width: 100%;
   border-radius: 8px;
   border: 1.5px solid #d9d9d9;
-  outline: none;
 }
 
 div.input-block.error input:focus,
@@ -118,14 +122,14 @@ div.input-block span.placeholder {
   align-items: center;
   top: 0;
   left: 15px;
-  transition: all 0.2s;
+  transition: all 0.4s;
   transform-origin: 0% 0%;
   background: none;
   pointer-events: none;
 }
 div.input-block input:not(:placeholder-shown) + span.placeholder,
 div.input-block input:focus + span.placeholder {
-  transform: scale(0.85) translateY(-23px);
+  transform: scale(0.85) translateY(-26px);
   background: #fefefe;
 }
 div.input-block input:focus {
