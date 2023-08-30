@@ -15,20 +15,20 @@ function signOut() {
 <template>
   <auth-form
     :header="$t('auth:already.already')"
-    :title="$t('auth:already.title', { name: useAuth().get('username') })"
+    :title="$t('auth:already.title', { name: useAuth().get('dispName') })"
     :subtitle="$t('auth:already.subtitle')"
     :subtitle2="$t('auth:already.subtitle2')"
   >
     <div>
+      <button @click="signOut" class="buttons" type="button">
+        {{ $t("auth:already.signOut") }}
+      </button>
       <button
         @click="navigateTo({ path: '/dash', query })"
         class="buttons"
         type="button"
       >
         {{ $t("auth:already.dash") }}
-      </button>
-      <button @click="signOut" class="buttons" type="button">
-        {{ $t("auth:already.signOut") }}
       </button>
     </div>
   </auth-form>

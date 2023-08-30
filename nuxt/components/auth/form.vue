@@ -13,7 +13,7 @@ const emit = defineEmits(["submit"]);
 
 onMounted(() => {
   if (useAuth().authenticated) {
-    useToast().info(toast, {});
+    navigateTo("/auth/already");
   }
   document.querySelector("input")?.focus();
   const form = document.querySelector("form[name=auth-form]");
