@@ -3,104 +3,151 @@
     "name": "getUserInfo",
     "params": [
       {
-        "name": "param1",
+        "name": "uid",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "The UID of the user"
       }
     ],
     "return": {
-      "type": "string",
-      "description": "This is the return value"
-    },
-    "desc": "This is the description of the function"
+      "type": "{; profileAccess: int,; first: string,; last: string,; birth: date,; nationality: string;}",
+      "desc": "The user's protected information"    },
+    "desc": "This function returns protected information about the user.;The result will only be populated if the user has given you access to the information.",
+    "errors":[
+      "user not signed in","This user is not public", "You are not friends with this user", "This user is private"
+    ]
   },
   {
     "name": "searchUsers",
     "params": [
       {
-        "name": "param1",
+        "name": "username",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "The search string"
+      },
+      {
+        "name": "per_page",
+        "type": "int?",
+        "desc": "Number of results to return per page maximum. (max 20, default 5)"
+      },
+      {
+        "name": "prev_username",
+        "type": "string?",
+        "desc": "The last search result returned in the previous call for pageination"
+      },
+      {
+        "name": "room",
+        "type": "string?",
+        "desc": "The room UID to search in or null for all rooms"
       }
     ],
     "return": {
-      "type": "string",
-      "description": "This is the return value"
+      "type": "[{;id: string,; disp: string,;img: string (obsolete); }]",
+      "desc": "An array of users matching the search string.;Populated with the minimal information set."
     },
-    "desc": "This is the description of the function"
+    "desc": "This function searches for users matching the search string.",
+    "errors":[
+      "user not signed in", "No username provided", "Error searching users"
+    ]
   },
   {
     "name": "sendFriendRequest",
     "params": [
       {
-        "name": "param1",
+        "name": "receiver",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "The UID of the user we want to send a friend request to"
       }
     ],
     "return": {
-      "type": "string",
-      "description": "This is the return value"
+      "type": "void"
     },
-    "desc": "This is the description of the function"
+    "desc": "This function sends a friend request to the user with the given UID.",
+    "errors":[
+      "User not authenticated", "You can't send a friend request to yourself","Already friends with this user", "Error<internal>"
+    ]
   },
   {
     "name": "acceptFriendRequest",
     "params": [
       {
-        "name": "param1",
+        "name": "uid",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "The UID of the user we want to accept a friend request from"
       }
     ],
     "return": {
-      "type": "string",
-      "description": "This is the return value"
+      "type": "void"
     },
-    "desc": "This is the description of the function"
+    "desc": "This function accepts a friend request from the user with the given UID.",
+    "errors":[
+      "User not authenticated", "You can't accept your own friend request", "Already friends with this user", "Error<internal>"
+    ]
   },
   {
     "name": "denyFriendRequest",
     "params": [
       {
-        "name": "param1",
+        "name": "uid",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "The UID of the user we want to deny a friend request from"
       }
     ],
     "return": {
-      "type": "string",
-      "description": "This is the return value"
+      "type": "void"
     },
-    "desc": "This is the description of the function"
+    "desc": "This function denies a friend request from the user with the given UID.",
+    "errors":[
+      "User not authenticated", "User can't deny their own friendrequest", "Error<internal>"
+    ]
   },
   {
     "name": "removeFriend",
     "params": [
       {
-        "name": "param1",
+        "name": "uid",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "The UID of the user we want to remove as a friend"
       }
     ],
     "return": {
-      "type": "string",
-      "description": "This is the return value"
+      "type": "void"
     },
-    "desc": "This is the description of the function"
+    "desc": "This function removes a friend from our friend list.",
+    "errors":[
+      "User not authenticated", "User can't remove themselves as friend", "Error<internal>"
+    ]
   },
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   {
     "name": "signOutFromAllDevices",
     "params": [
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -110,12 +157,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -125,12 +172,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -140,12 +187,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -155,12 +202,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -170,12 +217,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -185,12 +232,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -200,12 +247,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -215,12 +262,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -230,12 +277,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -245,12 +292,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -260,12 +307,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -275,12 +322,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -290,12 +337,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -305,12 +352,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   },
@@ -320,12 +367,12 @@
       {
         "name": "param1",
         "type": "string",
-        "description": "This is the first parameter"
+        "desc": "This is the first parameter"
       }
     ],
     "return": {
       "type": "string",
-      "description": "This is the return value"
+      "desc": "This is the return value"
     },
     "desc": "This is the description of the function"
   }

@@ -13,6 +13,12 @@ function copyUrl(id){
     toast.success(`Copied url to ${id}`)
   })
 }
+onMounted(() => {
+  //reload data() {
+  import ('~/assets/dev/docs-db-functions.json').then((res) => { //reload during development
+    data.value = res
+  })
+})
 </script>
 <template>
     <div>
@@ -32,34 +38,80 @@ function copyUrl(id){
         </div>
       </div>
 
-    <div class="flex flex-col items-center w-full flex-grow ">
+    <div class="flex flex-col items-center w-full flex-grow space-y-[50px]">
       <div v-for="item in data" class="flex flex-col px-3 items-start mt-5 w-full max-w-[1700px]">
-        <div class="flex items-center cursor-pointer" @click="copyUrl(item['_id'])">
+        <div class="flex items-center cursor-pointer mb-1" @click="copyUrl(item['_id'])">
           <h2 class="xl:text-[30px] sm:text-[25px] xs:text-[16px] font-bold" :id="item['_id']">{{item['name']}}</h2>
           <span class="i-material-symbols-link-rounded text-dark text-2xl ml-2"/>
         </div>
+        <template v-if="item.desc">
+          <div v-for="d in (item.desc+';').split(';')">
+            <span class="text2 xl:text-[25px] sm:text-[20px] xs:text-[11px]">{{d}}</span>
+          </div>
+        </template>
         <div class="w-full mt-1 h-[1.5px] opacity-60 bg-dark rounded-full"/>
         <!-- foreach key in item, print nicely -->
+        <h4 class="font-bold mt-3 font-family1 xl:text-[25px] sm:text-[20px] xs:text-[11px]">Parameters</h4>
         <table class="w-full">
           <tr>
-            <th>Key</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Who can view</th>
-            <th>Shorthand for</th>
+            <!-- <th>Name</th> -->
+            <!-- <th>Type</th> -->
+            <!-- <th>Description</th> -->
           </tr>
-        <tr v-for="key in Object.keys(item).filter(x => x != '_id')" class="">
-            <td class="!font-normal max-w-[120px]">{{item.name}}</td>
-            <td>{{item[key].type}}</td>
+          <tr v-for="param in item.params" class="">
+            <td class="!font-normal max-w-[120px]">{{param.name}}</td>
+            <td>{{param.type}}</td>
             <td>
-            <template v-if="item[key].description">
-              <div v-for="d in (item[key].description+';').split(';')">
+            <template v-if="param.desc">
+              <div v-for="d in (param.desc+';').split(';')">
                 {{d}}
               </div>
             </template>
           </td>
-            <td>{{item[key].who_can_view}}</td>
-            <td>{{item[key].shorthand_for}}</td>
+          </tr>
+        </table>
+
+        <h4 class="font-bold mt-3 font-family1 xl:text-[25px] sm:text-[20px] xs:text-[11px]">Result</h4>
+        <table class="w-full">
+          <tr>
+            <!-- <th>Type</th> -->
+            <!-- <th>Description</th> -->
+          </tr>
+          <tr class="">
+
+            <td class="!font-normal max-w-[220px]">
+              <template v-if="item.return.type">
+                <div v-for="d in (item.return.type+';').split(';')">
+                  {{d}}
+                </div>
+              </template>
+            </td>
+
+            <td>
+              <template v-if="item.return.desc">
+                <div v-for="d in (item.return.desc+';').split(';')">
+                  {{d}}
+                </div>
+              </template>
+            </td>
+          </tr>
+        </table>
+
+
+        <h4 class="font-bold mt-3 font-family1 xl:text-[25px] sm:text-[20px] xs:text-[11px]">Errors</h4>
+        <table class="w-full">
+          <tr>
+            <!-- <th>Type</th> -->
+            <!-- <th>Description</th> -->
+          </tr>
+          <tr class="" v-for="e in item.errors">
+            <td class="!font-normal max-w-[220px]">
+              <template v-if="e">
+                <div v-for="d in (e+';').split(';')">
+                  {{d}}
+                </div>
+              </template>
+            </td>
           </tr>
         </table>
       </div>
