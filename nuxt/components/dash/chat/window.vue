@@ -1,10 +1,11 @@
-<!-- this component is only used client side -->
-<!--
+<!-- 
+::this component is only used client side::
+
 A chat window component,
 props:
   chatId: the id of the chat to display
 emits:
-  sendMessage: when the user sends a message
+  sendMessage(text): when the user sends a message
   close: when the user closes the chat
 -->
 <script setup>
@@ -19,23 +20,26 @@ const emit = defineEmits(["sendMessage", "close"])
 const auth = useAuth()
 
 const chatManager = await useChatManager()
-const chat = computed(() => chatManager.get(props.chatId))  //not the prettiest these lines
+const chat = chatManager.get(props.chatId)
 
-if(chat.value.messages.length < 10){
-  chat.value.fetchOlderMessages(10);
+if(chat.messages.length < 10){
+  chat.fetchOlderMessages(10);
 }
-watch(chat.value.messages, () => {
+
+watch(chat.messages, () => {
+    // new messages has come, if they are older then we must reset the date counter so that we get a date divider
+    lastDate = new Date(0); 
     nextTick(() => { // doesn't work if we don't wait a tick , I'm not really sure why.
       scroller.value.scrollTop = scroller.value.scrollHeight;
     })
 })
 
+
 const minInputHeight = 40;
 const maxInputHeight = 150;
-
-const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
-
-function grow(e){
+// resize the input field to fit the text
+function calculateInputFieldSize(e){ //found on google
+  const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
   const oField = e.target;
   if (oField.scrollHeight > oField.clientHeight) {
       oField.style.height = clamp(oField.scrollHeight,minInputHeight, maxInputHeight) +"px";
@@ -49,6 +53,7 @@ function grow(e){
 const scroller = ref()
 const textarea = ref()
 onMounted(() => {
+  // scroll to bottom
   scroller.value.scrollTop = scroller.value.scrollHeight;
 })
 
@@ -56,21 +61,22 @@ const myMessageColor = "dark:bg-green-500 bg-green-500"
 const otherMessageColor = "dark:bg-blue-500 bg-blue-500" // what colors should we use?
 
 function sendMessage(){
-  console.log(textarea.value)
   const text = textarea.value.value.trim()
   if(text.length > 0){
     emit('sendMessage',text)
-    chat.value.sendMessage(text)
+    chat.sendMessage(text)
     textarea.value.value = ""
-    textarea.value.style.height = minInputHeight + "px"
+    textarea.value.style.height = minInputHeight + "px" //reset height of input field
   }
 }
-let lastDate = null;
-const isNewDate = (m) => {
-  if(lastDate?.getFullYear() === m.createdAt?.getFullYear() &&
-   lastDate?.getMonth() === m.createdAt?.getMonth() &&
-   lastDate?.getDate() === m.createdAt?.getDate()) return false
-  lastDate = m.createdAt
+
+// add a date divider between messages from different days
+let lastDate = new Date(0);
+const isNewDate = (d) => {
+  if(lastDate?.getFullYear() === d?.getFullYear() &&
+   lastDate?.getMonth() === d?.getMonth() &&
+   lastDate?.getDate() === d?.getDate()) return false
+  lastDate = d;
   return true
 }
 const isMe = (m) => m.sender == auth.user.id
@@ -92,7 +98,8 @@ const isMe = (m) => m.sender == auth.user.id
     <div ref="scroller" class="flex-1 overflow-y-auto dark:bg-dash-dark-400 bg-dash-light-300 pb-2"> <!-- flex-1 expands this field to fill all remaining space of flexbox -->
       <div v-for="m in chat.messages" class="w-full px-1 mt-2">
 
-          <div v-if="isNewDate(m)">
+        <!-- Date divider -->
+          <div v-if="isNewDate(m.createdAt)">
             <div class="flex justify-between items-center text-xs text-dash-light-500 dark:text-dash-dark-300 my-4">
               <div class="w-[60px] h-[1px] mx-auto bg-dash-dark-500 opacity-[50%] dark:bg-dash-light-300"></div>
               <span class="mx-2 text2 text-[14px] leading-[14px] text-dark dark:text-light">{{useTimeAgo().format(m.createdAt)}}</span>
@@ -108,10 +115,21 @@ const isMe = (m) => m.sender == auth.user.id
         </div>
 
       </div>
+      
+        <!-- Date divider, Add a date divider after the last message "today" -->
+          <!-- <div v-if="isNewDate(new Date())"> -->
+          <!--   <div class="flex justify-between items-center text-xs text-dash-light-500 dark:text-dash-dark-300 my-4"> -->
+          <!--     <div class="w-[60px] h-[1px] mx-auto bg-dash-dark-500 opacity-[50%] dark:bg-dash-light-300"></div> -->
+          <!--     <span class="mx-2 text2 text-[14px] leading-[14px] text-dark dark:text-light">{{new Date().toLocaleDateString('sv-SE', { -->
+          <!--       weekday: 'long', -->
+          <!--       })}}</span> -->
+          <!--     <div class="w-[60px] h-[1px] mx-auto bg-dash-dark-500 opacity-[50%] dark:bg-dash-light-300"/> -->
+          <!--   </div> -->
+          <!-- </div> -->
     </div>
 <!-- input field and send button -->
     <div :class="`flex justify-between items-center p-2 bg-dash-light-500 dark:bg-dash-dark-300`">
-      <textarea ref="textarea" class="flex-grow rounded-[20px] dark:bg-dash-dark-400 bg-dash-light-400 mr-2 px-3 py-1.5 h-[40px] text-[22px] no-scrollbar leading-[22px] dark:text-light text-dark" placeholder="Aa" @keyup="grow"/>
+      <textarea ref="textarea" class="flex-grow rounded-[20px] dark:bg-dash-dark-400 bg-dash-light-400 mr-2 px-3 py-1.5 h-[40px] text-[22px] no-scrollbar leading-[22px] dark:text-light text-dark" placeholder="Aa" @keyup="calculateInputFieldSize"/>
       <button @click="sendMessage" class="self-start rounded-full bg-blue-400 w-[40px] h-[40px] p-1">
         <span class="i-material-symbols-send-rounded bg-dash-light-500 translate-x-[2px] h-full w-full"/>
       </button>

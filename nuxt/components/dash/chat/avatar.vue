@@ -30,7 +30,13 @@ useDarkMode().$subscribe(() => {
 function setStatusBorderColor(){
   statusElement.value.style.borderColor = getBackgroundColor(statusElement.value)
 }
-function getBackgroundColor(el){
+
+
+/**
+ * Find the right color to use for the border of the status element.
+ * Iterates through the parents of the element and returns the first background color that is not transparent,
+ **/
+function getBackgroundColor(el:HTMLElement){
   const parent = el?.parentElement;
   if(!parent) return "white";
   let color = window.getComputedStyle(parent).backgroundColor;
@@ -39,8 +45,7 @@ function getBackgroundColor(el){
   return getBackgroundColor(parent);
 }
 const statusColor = () => {
-  const status = manager.getStatus(userId.value);
-  switch (status) {
+  switch (manager.getStatus(userId.value)) {
     case Status.Online:
      return  "bg-[#22FF06]";
       break;

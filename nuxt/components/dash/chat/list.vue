@@ -1,31 +1,38 @@
-<!-- this component is only used client side -->
-<!--
+<!-- 
+::this component is only used client side::
+
 Lists all the chats the user is in. 
 
 emits:
-  openChat: when the user opens a chat
+  openChat(id): when the user opens a chat
   close: when the user closes the chat
 -->
 <script setup lang="ts">
 defineEmits(["openChat", "close"])
 const manager = await useChatManager();
 
-manager.sortedChats().forEach(c => { //we could do this when getting the chats but I want to fetch the chat names dynamically when they are shown instead so we keep the logic here for later
+//we could do this when getting the chats but I want to fetch the chat names dynamically when they are shown instead so we keep the logic here for later
+manager.sortedChats().forEach(c => { 
   c.getName();
   c.getLatestMessage();
 });
 
 function getTime(c) {
   const time = c.latestMessage?.createdAt;
-  return time ? useTimeAgo().format(time) : "";
+  return time ? useTimeAgo().format(time, "twitter-minute-now") : "";
 }
 
 const searchTerm = ref("");
-const filter = (c) => {
+//this will not work if not all chats are downloaded, maybe keep it like this for now
+const filterUsers = (c) => {
   if (!searchTerm.value) return true;
-  return c.name.toLowerCase().includes(searchTerm.value.toLowerCase()); //this will not work if not all chats are downloaded, maybe keep it like this for now
+  return c.name.toLowerCase().includes(searchTerm.value.toLowerCase()); 
 };
-async function search(){
+
+/**
+ * Search for users, not yet used
+ **/
+async function searchUsers(){
   Parse.Cloud.run("searchUsers", {username:searchTerm, page:0, perPage:10}).then((users) => {
     console.log(users)
   })
@@ -75,7 +82,7 @@ async function search(){
         <!-- flex-1 expands this field to fill all remaining space of flexbox -->
         <!-- <hr class="border-dark dark:border-white opacity-[20%] my-1" /> -->
         <div v-for="c in manager.sortedChats()" class="px-1 cursor-pointer" @click="$emit('openChat', c)">
-          <div v-if="filter(c)">
+          <div v-if="filterUsers(c)">
           <div class="relative flex items-center group pl-1">
             <dash-chat-avatar :chat="c"/>
             <div class="flex flex-col w-full">

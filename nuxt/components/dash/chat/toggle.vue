@@ -1,6 +1,6 @@
 <!-- this component is only used client side -->
 <!--
-This component is the chat toggle button, it is always visible and allows the user to open the chat window.
+This component is the chat toggleChatApp button, it is always visible and allows the user to open the chat window.
 
 emits: none
 props: none
@@ -17,7 +17,7 @@ function openChat(chat){
   currentChat.value = chat.id
 }
 
-function toggle(){
+function toggleChatApp(){
   if(open.value){
     open.value = false
     currentChat.value = null
@@ -37,11 +37,11 @@ function toggle(){
       <div class="flex flex-col space-y-1 items-center">
         <div class="bg-dash-light-400 dark:bg-dash-dark-200 rounded-full"> <!-- hack to let avatar find right color for status border without obstructing view -->
           <base-tooltip text="temp for show" position="left">
-            <dash-chat-avatar :chat="currentChat"/>
+            <dash-chat-avatar :chat="chatManager.get(currentChat)"/>
             </base-tooltip>
         </div>
         <base-tooltip :text="$t('chat.tooltip.open')" position="left">
-          <div @click="toggle" class="cursor-pointer rounded-full dark:bg-dash-dark-100 bg-dash-light-300 p-2 hover:bg-dash-light-500 dark:hover:bg-dash-dark-300" >
+          <div @click="toggleChatApp" class="cursor-pointer rounded-full dark:bg-dash-dark-100 bg-dash-light-300 p-2 hover:bg-dash-light-500 dark:hover:bg-dash-dark-300" >
             <div v-if="!open">
               <img src="~/assets/icon/chat-light.png" class="w-[45px] h-[45px] dark:block hidden scale-x-[-1]" alt="chat">
               <img src="~/assets/icon/chat-dark.png" class="w-[45px] h-[45px] dark:hidden scale-x-[-1]" alt="chat">
