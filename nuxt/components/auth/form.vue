@@ -76,7 +76,7 @@ onMounted(() => {
       >
         {{ title }}
       </h6>
-      <span class="zoomIn text2 sm:mb-7 xs:mb-4 flex text-center text-[17px]">{{
+      <span class="zoomIn text2 xs:mb-7 sm:mb-7 xs:mb-4 flex text-center text-[17px]">{{
         subtitle
       }}</span>
 
@@ -87,7 +87,7 @@ onMounted(() => {
       </span>
       <!-- SLOTS -->
       <div
-        class="zoomIn flex flex-col items-center space-y-4 xs:w-[80%] sm:w-[80%] md:w-[70%] lg:w-[70%] max-w-[400px]"
+        class="zoomIn flex flex-col items-center space-y-4 xs:mt-4 sm:mt-0 xs:w-[80%] sm:w-[80%] md:w-[70%] lg:w-[70%] max-w-[400px]"
       >
         <slot></slot>
       </div>

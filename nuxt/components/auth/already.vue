@@ -2,14 +2,20 @@
 import { User } from "parse";
 
 const query = useRoute().query;
-const toast = useToast();
-const { t } = await loadTranslations("auth");
+await loadTranslations("auth");
 const logoutModalOpen = ref(false);
-const hej = "x";
 
 function signOut() {
   logoutModalOpen.value = true;
 }
+
+//custom action replaces route so that <back> doesn't direct us to "you are already signed in" since we are not anymore signed in 
+const redirect = () => useRouter().replace('/auth/sign-in')
+
+onMounted(() => {
+  if (!useAuth().authenticated)  // we should never show this page if user is not signed in
+    redirect()
+})
 </script>
 
 <template>
@@ -19,7 +25,7 @@ function signOut() {
     :subtitle="$t('auth:already.subtitle')"
     :subtitle2="$t('auth:already.subtitle2')"
   >
-    <div>
+    <div class="flex xs:flex-col sm:flex-row xs:flex-reverse">
       <button @click="signOut" class="buttons" type="button">
         {{ $t("auth:already.signOut") }}
       </button>
@@ -32,7 +38,9 @@ function signOut() {
       </button>
     </div>
   </auth-form>
-  <base-modal-signout v-model:open="logoutModalOpen" />
+  <base-modal-signout 
+    v-model:open="logoutModalOpen" 
+    :customSignOutAction="redirect" />
 </template>
 
 <style scoped>
