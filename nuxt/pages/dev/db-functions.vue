@@ -41,17 +41,17 @@ onMounted(() => {
     <div class="flex flex-col items-center w-full flex-grow space-y-[50px]">
       <div v-for="item in data" class="flex flex-col px-3 items-start mt-5 w-full max-w-[1700px]">
         <div class="flex items-center cursor-pointer mb-1" @click="copyUrl(item['_id'])">
-          <h2 class="xl:text-[30px] sm:text-[25px] xs:text-[16px] font-bold" :id="item['_id']">{{item['name']}}</h2>
+          <h2 class="sm:text-[25px] xs:text-[16px] font-bold" :id="item['name']">{{item['name']}}</h2>
           <span class="i-material-symbols-link-rounded text-dark text-2xl ml-2"/>
         </div>
         <template v-if="item.desc">
-          <div v-for="d in (item.desc+';').split(';')">
-            <span class="text2 xl:text-[25px] sm:text-[20px] xs:text-[11px]">{{d}}</span>
+          <div v-for="d in (item.desc+';').split(';')" class="sm:h-[20px] xs:text-[11px]">
+            <span class="text2 sm:text-[20px] xs:text-[11px] sm:leading-[20px] xs:leading-[11px]">{{d}}</span>
           </div>
         </template>
         <div class="w-full mt-1 h-[1.5px] opacity-60 bg-dark rounded-full"/>
         <!-- foreach key in item, print nicely -->
-        <h4 class="font-bold mt-3 font-family1 xl:text-[25px] sm:text-[20px] xs:text-[11px]">Parameters</h4>
+        <h4 class="font-bold mt-3 font-family1 sm:text-[20px] xs:text-[11px]">Parameters</h4>
         <table class="w-full">
           <tr>
             <!-- <th>Name</th> -->
@@ -71,7 +71,7 @@ onMounted(() => {
           </tr>
         </table>
 
-        <h4 class="font-bold mt-3 font-family1 xl:text-[25px] sm:text-[20px] xs:text-[11px]">Result</h4>
+        <h4 class="font-bold mt-3 font-family1  sm:text-[20px] xs:text-[11px]">Result</h4>
         <table class="w-full">
           <tr>
             <!-- <th>Type</th> -->
@@ -98,7 +98,7 @@ onMounted(() => {
         </table>
 
 
-        <h4 class="font-bold mt-3 font-family1 xl:text-[25px] sm:text-[20px] xs:text-[11px]">Errors</h4>
+        <h4 class="font-bold mt-3 font-family1 sm:text-[20px] xs:text-[11px]">Errors</h4>
         <table class="w-full">
           <tr>
             <!-- <th>Type</th> -->
@@ -120,10 +120,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-th{
-  text-align:left;
-  @apply font-family2 text-dark xs:text-[8px] sm:text-[16px] xl:text-[20px];
-}  
 td{
   @apply font-family2 text-dark font-light xs:text-[6px] sm:text-[16px] xl:text-[18px] px-1;
   /* border-right: 1px solid #E5E5E5; */
