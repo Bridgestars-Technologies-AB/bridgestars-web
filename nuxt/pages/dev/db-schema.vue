@@ -1,5 +1,5 @@
 <script setup>
-import d from '~/assets/database-api-documentation.json'
+import d from '~/assets/dev/docs-db-schema.json'
 let data = d;
 const commonProps = ['_id', 'objectId', 'updatedAt', 'createdAt']
 const public_fields= ["img","dispName"]
