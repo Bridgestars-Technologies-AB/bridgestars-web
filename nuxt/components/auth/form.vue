@@ -1,23 +1,21 @@
 <script setup lang="ts">
-import toast from './signed-in-toast.vue'
+import toast from "./signed-in-toast.vue";
 //import InitValidation from "~/util/validator2.js";
 //import "~/util/validator.js";
 
 const router = useRouter();
 
-defineProps(["header", "title", "subtitle", "footer"]);
+defineProps(["header", "title", "subtitle", "subtitle2", "footer"]);
 const emit = defineEmits(["submit"]);
 //hej
 ///import autoAnimate from "../js/autoAnimate.ts";
 //const formRef = ref(); // we need a DOM node
 
 onMounted(() => {
-  if(useAuth().authenticated()){
-    useToast().info(toast, {
-
-    });
+  if (useAuth().authenticated()) {
+    navigateTo("/auth/already");
   }
-  document.querySelector("input").focus();
+  document.querySelector("input")?.focus();
   const form = document.querySelector("form[name=auth-form]");
   //autoAnimate(formRef.value); // thats it!
   useValidateAuthForm(form, (res: any) => {
@@ -78,12 +76,18 @@ onMounted(() => {
       >
         {{ title }}
       </h6>
-      <span class="zoomIn text2 sm:mb-7 xs:mb-4 flex text-center text-[17px]">{{
+      <span class="zoomIn text2 xs:mb-7 sm:mb-7 flex text-center text-[17px]">{{
         subtitle
       }}</span>
+
+      <span
+        class="zoomIn text2 sm:mb-7 xs:mb-3 mt-[-30px] flex text-center text-[17px]"
+      >
+        {{ subtitle2 }}
+      </span>
       <!-- SLOTS -->
       <div
-        class="zoomIn flex flex-col items-center space-y-4 xs:w-[80%] sm:w-[80%] md:w-[70%] lg:w-[70%] max-w-[400px]"
+        class="zoomIn flex flex-col items-center space-y-4 xs:mt-4 sm:mt-0 xs:w-[80%] sm:w-[80%] md:w-[70%] lg:w-[70%] max-w-[400px]"
       >
         <slot></slot>
       </div>

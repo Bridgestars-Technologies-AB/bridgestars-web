@@ -20,6 +20,13 @@ const routes : Array<any> = reactive([ //object so we can add attributes
     icon: 'i-ic-baseline-account-circle', 
   }
 ]) 
+if(process.dev){
+  routes.push({
+    key: "Dev",
+    path: '/dev',
+    icon: 'i-material-symbols-code-blocks',
+  })
+}
 function updateRoutes(){
   routes.forEach(route => {
     if(!route.success) route.name = t('common:' + route.key)
