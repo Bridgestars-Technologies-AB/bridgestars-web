@@ -1,35 +1,27 @@
 <script setup>
-// for bidding box status display history
-
 const p = defineProps({
-  nbr: {
-    type: Number,
-    required: true,
-  },
-  suit: {
-    type: Number,
+  history: {
+    type: [],
     required: true,
   },
 });
 
+//lägg till funktionalitet för hover/click, tooltip?
+
 const suits = ["♣", "♦", "♥", "♠", "NT"];
 const players = ["V", "N", "Ö", "S"];
-const historyElement = [
-  { player: 0, suit: 0, nbr: 0 },
-  { player: 1, suit: 3, nbr: 1 },
-  { player: 2, suit: 2, nbr: 2 },
-  { player: 3, suit: 2, nbr: 1 },
-];
-const historyElement2 = [
-  { player: 0, suit: 0, nbr: 0 },
-  { player: 1, suit: 0, nbr: 1 },
-  { player: 2, suit: 4, nbr: 1 },
-  { player: 3, suit: 2, nbr: 1 },
-];
 
-const completeHistory = [historyElement, historyElement2];
+//Lite ineffektivt att skapa en ny lista varje gång kanske, men det funkar iallafall
+function updateHistoryList() {
+  const historyList = [];
+  for (let i = 0; i < p.history.length - 1; i += 2) {
+    const pair = [p.history[i], p.history[i + 1]];
+    historyList.push(brick(pair[0], pair[1]));
+  }
+  return historyList;
+}
 
-function brick(nbr, suit) {
+function brick(suit, nbr) {
   return suit === 0 && nbr === 0 ? "PASS" : `${nbr}${suits[suit]}`;
 }
 </script>
@@ -38,20 +30,20 @@ function brick(nbr, suit) {
   <div
     class="flex flex-col items-center w-[300px] h-[100%] bg-dash-dark-300 ml-10 rounded-xl"
   >
-    <div class="w-[100%] flex flex-row justify-between p-[16px]">
-      <span class="text1" v-for="p in 4">{{ players[p - 1] }}</span>
+    <div class="w-[100%] flex flex-row">
+      <div class="w-1/4 flex flex-row justify-center mt-[16px]" v-for="p in 4">
+        <span class="text1">
+          {{ players[p - 1] }}
+        </span>
+      </div>
     </div>
-    <div class="bg-dash-dark-400 w-[100%] h-[2px]"></div>
-    <div class="w-[100%] h-[10%]" v-for="e1 in completeHistory.length">
-      <div class="flex flex-row justify-between w-[100%] p-[16px]">
-        <div class="bg-dash-dark-400" v-for="e2 in 4">
-          <span class="text1 text-[20px] items-center">{{
-            brick(
-              completeHistory[e1 - 1][e2 - 1].nbr,
-              completeHistory[e1 - 1][e2 - 1].suit
-            )
-          }}</span>
-        </div>
+    <div class="w-[100%] h-[2px] bg-dash-dark-400 mb-[10px]"></div>
+    <div class="flex flex-row flex-wrap w-[100%]">
+      <div
+        class="w-1/4 h-[10%] flex flex-row justify-center mb-[10px]"
+        v-for="e in updateHistoryList()"
+      >
+        <span class="text1 text-[26px]">{{ e }}</span>
       </div>
     </div>
   </div>
