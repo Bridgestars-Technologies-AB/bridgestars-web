@@ -7,7 +7,6 @@ import { defineStore } from "pinia";
  * This store is badly typed and very unsafe, it works for some reason but needs to be fixed.
  */
 
-// TODO maybe rebuild this as an regular class that has an store, which lets the store be simpler and we can have more startup logic, for example removing underlying if Parse.User.current() is not available.
 export default defineStore("auth", {
   //underlying is the actual Parse.User object, but serialized to JSON so it does not contain any methods like set or get or signout
   state: () => ({ underlying: undefined }),
