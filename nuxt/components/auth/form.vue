@@ -76,12 +76,12 @@ onMounted(() => {
       >
         {{ title }}
       </h6>
-      <span class="zoomIn text2 xs:mb-7 sm:mb-7 xs:mb-4 flex text-center text-[17px]">{{
+      <span class="zoomIn text2 xs:mb-7 sm:mb-7 xs:mb-4 flex text-center text-[15px]">{{
         subtitle
       }}</span>
 
       <span
-        class="zoomIn text2 sm:mb-7 xs:mb-4 mt-[-30px] flex text-center text-[17px]"
+        class="zoomIn text2 sm:mb-7 xs:mb-4 mt-[-30px] flex text-center text-[15px]"
       >
         {{ subtitle2 }}
       </span>
