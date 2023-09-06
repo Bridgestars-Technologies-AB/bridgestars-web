@@ -34,8 +34,8 @@ const backgroundColors = {
     DEFAULT: "#9e9e9e",
   },
   "dash-accent": {
-    DEFAULT: "#868dfb",
-    light: "#6870fa",
+    DEFAULT: "#04b694",
+    light: "#04b694",
   },
 };
 const textColors = {
@@ -46,8 +46,8 @@ const textColors = {
   white: "#ffffff", //light text
   blue: "rgb(73, 163, 241)",
   "dash-accent": {
-    DEFAULT: "#868dfb",
-    light: "#6870fa",
+    DEFAULT: "#04b694",
+    light: "#04b694",
   },
   borderColor: {
     ...backgroundColors, //ska det verkligen vara här??

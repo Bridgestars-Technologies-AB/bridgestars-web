@@ -84,6 +84,7 @@ const items = [
     }
   }
 ]
+
 items.map(x => x.enabled = x.action || router.getRoutes().some(r => r.name=="dash-"+x.name)) // add enabled property
 
 const isOpen = inject('side-menu-open')
@@ -107,16 +108,19 @@ function click(item){
   <div class="overflow-y-scroll w-[270px] no-scrollbar">
 
 
-    <div :class="`text-center flex relative items-center pt-7 flex-wrap profile-section ${isOpen ? 'open' : 'closed'}`" >
-        <img class="object-cover object-top w-[50px] aspect-square rounded-full cursor-pointer" src="~/assets/bridgestars/images/castor.jpg" @click="navigateTo({name:'dash-profile'})"/> 
-        <div class="flex flex-col text-start pl-2 justify-center ">
-          <h6 class="profile-section-text text-[24px] leading-[24px] font-family tracking-tighter" @click="navigateTo({name:'dash-profile'})">
-            {{auth.get('dispName')}}
-          </h6> 
-          <h6 class="profile-section-text text-[#14C6A4] text-[18px] leading-[18px] dark:text-[#14C6a4] font-light tracking-normal" 
-            @click="navigateTo({name:'dash-profile'})">Premium</h6>
+    <div class="flex flex-col space-y-3">
+        <div :class="`text-center flex relative items-center pt-7 flex-wrap profile-section ${isOpen ? 'open' : 'closed'}`" >
+          <img class="object-cover object-top w-[50px] aspect-square rounded-full cursor-pointer" src="~/assets/bridgestars/images/castor.jpg" @click="navigateTo({name:'dash-profile'})"/> 
+          <div class="flex flex-col text-start pl-2 justify-center ">
+            <h6 class="profile-section-text text-[24px] leading-[24px] font-family tracking-tighter" @click="navigateTo({name:'dash-profile'})">
+              {{auth.get("dispName")}}
+            </h6> 
+            <h6 class="profile-section-text text-[#14C6A4] text-[18px] leading-[18px] dark:text-[#14C6a4] font-light tracking-normal" 
+              @click="navigateTo({name:'dash-profile'})">Premium</h6>
+          </div>
         </div>
-      </div>
+      <dash-menu-side-level :level="auth.get('level')" :xp="0.5"/>
+    </div>
 
       <div class="flex flex-col mt-10 mb-[200px] h-full">
         <div v-for="item in items" :key="item.key" @click="() => click(item)" class="overflow-x-clip">

@@ -7,13 +7,14 @@ import {initPopovers} from 'flowbite'
 const props = defineProps({
   text:String, 
   position:{type:String, default:"bottom"},
+  disabled: Boolean,
   "class":String, // class for styling the wrapper so that we can have different h-full, h-fit etc in different situations
 })  
 
 
 const tooltip = ref(null)
 const tooltipTrigger = ref(null)
-let popover = null;
+let popover:any = null;
 
 //TODO for some reason tooltips are not displayed on top of popovers ex account in top bar
 
@@ -30,19 +31,20 @@ onMounted(()=>{
   popover = new Popover(tooltip.value, tooltipTrigger.value, options);
 })
 
-let debounce = new Date("1970"); // to prevent showing tooltip directly when hovering, only after 250ms
+let debounce:number = new Date("1970").getTime(); // to prevent showing tooltip directly when hovering, only after 250ms
 let isTouch = false; //touch devices don't have hover and when clicking the send the mouseenter event, so we need to prevent that
 
 function show(e){
+  if(props.disabled) return;
   if(isTouch) return;
   setTimeout(() => {
-    if(new Date() - debounce < 250) return;
-    popover.show()
+    if(Date.now() - debounce < 250) return;
+    popover?.show()
   }, 250);
 }
 function hide(e){
-  debounce = new Date()
-  popover.hide()
+  debounce = Date.now() 
+  popover?.hide()
 }
 </script>
 
