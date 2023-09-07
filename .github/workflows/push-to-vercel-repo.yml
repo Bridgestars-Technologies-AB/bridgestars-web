@@ -1,4 +1,4 @@
-name: Push to vercel repo
+name: Deploy main to bridgestars-web-test.vercel.app
 
 on:
   push:
