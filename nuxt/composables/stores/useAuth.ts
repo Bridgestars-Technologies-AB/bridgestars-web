@@ -11,9 +11,14 @@ const authStore = defineStore("auth", {
       this.username = username;
     },
   },
-  persist:true
+  persist:true // store data in local cookie, possibly not needed since Parse.User.current() is already saved
 });
 
+/*
+ * The AuthManager contains all the logic for signing in, up and out,
+ * and for getting the current user data.
+ *
+ * */
 class AuthManager {
   //-------- server / client ----------
   authenticated = () => Boolean(authStore().username);
@@ -22,7 +27,7 @@ class AuthManager {
   //------------ client only -----------
   user = () => {
     const user = Parse.User.current()
-    return user ? new User(user) : null;
+    return user ? new User(user) : null; // wrap Parse.User in User class for uniformity with UserManager
   }
 
   signUp = async (username: string, password: string, email: string) => {
@@ -36,17 +41,18 @@ class AuthManager {
   };
 
   signIn = async (usernameEmail: string, password: string) => {
-    //lowercase since neither username or email is case sensitive, and iphone users often write `Username` due to auto-capitalizition
+    // first run signin function in cloud to possibly migrate from old database if needed
     return Parse.Cloud.run("signIn", {
+    // lowercase since neither username or email is case sensitive, and iphone users often write `Username` due to auto-capitalizition
       email: usernameEmail.toLowerCase().trim(),
       password: password,
     })
-      .catch(() => { })
-      //sign in client side
+      .catch(() => { }) // catch errors and find them again when we try to sign in from client
+      // sign in client side
       .then(() => Parse.User.logIn(usernameEmail.toLowerCase(), password))
-      //success
+      // success
       .then((user: any) => {
-        authStore().set(user.get("dispName"));
+        authStore().set(user.get("dispName")); // set auth store so that server knows that we are signed in
         return user;
       });
   };
@@ -54,7 +60,7 @@ class AuthManager {
   signOut = async () => {
     return Parse.User.logOut().then(() => {
       authStore().$reset();
-      // ---- update (reset) all managers ----
+      // ---- update manager/remove locally stored data about user ----
       useRealtimeClient().catch(() => { });
       useUserManager().catch(() => { });;
       useChatManager().catch(() => { });;
@@ -66,6 +72,7 @@ const manager = new AuthManager();
 
 export default function useAuth() {
   if (process.client && !manager.user()) {
+    // -- if client side and not really logged in, ensure the store/server does not think we are signed in --
     authStore().$reset();
   }
   return manager;

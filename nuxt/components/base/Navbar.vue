@@ -8,7 +8,7 @@ const auth = useAuth()
 
 //https://icones.js.org/
 
-const routes : Array<any> = reactive([ //object so we can add attributes
+const routes : Array<any> = reactive([ 
   {
     key: "home",
     path: '/',
