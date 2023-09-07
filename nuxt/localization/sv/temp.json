@@ -1,5 +1,8 @@
 {
-  "signOut":"Logga ut",
-  "info": "infoooo",
-  "welcome": "Välkommen till Bridgestars"
+  "signout":"Logga ut",
+  "info": "Bridgestars är ännu inte riktigt redo, vi jobbar på det och hör av oss så snart det är dags att börja spela.",
+  "welcome": "Välkommen till Bridgestars",
+  "hi": "Hej {{name}}!",
+  "home": "Hem",
+  "path": "Inloggad"
 }

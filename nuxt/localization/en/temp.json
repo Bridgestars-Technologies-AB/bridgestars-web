@@ -1,5 +1,8 @@
 {
-  "signOut":"Logga ut",
-  "info": "infoooo",
-  "welcome": "Välkommen till Bridgestars"
+  "signout":"Sign Out",
+  "info": "Bridgestars is not yet ready, we are working on it. You will receive an email when your account is ready.",
+  "welcome": "Welcome to Bridgestars",
+  "hi": "Hi {{name}}!",
+  "home": "Home",
+  "path": "Signed In"
 }
