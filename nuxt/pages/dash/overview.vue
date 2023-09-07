@@ -1,10 +1,8 @@
 <script setup>
-
 // initialize components based on data attribute selectors
-onMounted(() => {
-})
- 
+onMounted(() => {});
 </script>
 <template>
-    <h1 class="">Overview</h1> 
+  <h1 class="">Overview</h1>
+  <game-bidding-hand></game-bidding-hand>
 </template>
