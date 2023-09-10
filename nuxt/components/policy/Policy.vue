@@ -5,11 +5,10 @@ const { data } = await useAsyncData("policy", () =>
   queryContent("/policy").find()
 );
 
-import image from "/bridgestars/art/about_us.png";
 </script>
 
 <template>
-  <base-card-page-layout :imgSrc="image">
+  <base-card-page-layout imgSrc="/bridgestars/art/about_us.png">
     <div class="p-5 w-[90%] max-w-[1200px] flex flex-col items-center">
       <!-- Maybe make a navigateBar component, yes -->
       <base-animated-select :options="options" v-model="policy"/>

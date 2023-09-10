@@ -45,10 +45,12 @@ onMounted(() => {
 
     <div class="absolute flex justify-center items-center z-[-1] h-full w-full">
       <NuxtImg
+        alt="background"
         src="/bridgestars/art/auth-form-suits.svg"
         class="xs:block sm:hidden w-[100%] scale-[1] min-w-[600px]"
       />
       <NuxtImg
+        alt="background"
         src="/bridgestars/art/auth-form-ipad.svg"
         class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1300px] min-w-[1155px]"
       />
@@ -59,12 +61,12 @@ onMounted(() => {
       class="flex flex-col grow items-center justify-center"
     >
       <!-- IMG -->
-      <NuxtImg
-        class="anim-bounce pt-[10px] w-[50%] h-[80%]"
-        id="sign-in-image"
-        src="/bridgestars/art/sign_in.svg"
-        alt="Bridgestars sign-in image"
-      />
+      <!-- <NuxtImg -->
+      <!--   class="anim-bounce pt-[10px] w-[50%] h-[80%]" -->
+      <!--   id="sign-in-image" -->
+      <!--   src="/bridgestars/art/sign_in.svg" -->
+      <!--   alt="bridgestars logo" -->
+      <!-- /> -->
       <!-- TITLE -->
       <NuxtImg
         class="anim-bounce w-[64px] h-[64px] xs:mt-0 sm:mt-5 mb-5"

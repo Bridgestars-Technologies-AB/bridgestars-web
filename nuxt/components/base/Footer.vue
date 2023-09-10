@@ -22,6 +22,8 @@
           rel="noreferrer"
         >
           <NuxtImg
+            loading="lazy"
+            alt="facebook logo"
             height="20"
             class="h-[20px] hover:animate-shake"
             src="/logo/facebook-dark.svg"
@@ -37,6 +39,8 @@
           rel="noreferrer"
         >
           <NuxtImg
+            loading="lazy"
+            alt="instagram logo"
             height="20"
             class="h-[20px] hover:animate-shake"
             src="/logo/instagram-dark.svg"
@@ -52,6 +56,8 @@
           rel="noreferrer"
         >
           <NuxtImg
+            loading="lazy"
+            alt="discord logo"
             height="20"
             class="h-[20px] hover:animate-shake"
             src="/logo/discord-dark.svg"

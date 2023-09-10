@@ -69,6 +69,9 @@ if(auth.authenticated()){
     <div class="flex items-center sm:w-auto">
       <NuxtLink to="/">
         <NuxtImg src="/bridgestars/logo/logo-trans-128px.png" width="32" height="32"
+            format="webp"
+            loading="lazy"
+            alt="Bridgestars logo"
           class="h-[32px] w-[32px] mx-2"/>
       </NuxtLink>
       <NuxtLink to="/">

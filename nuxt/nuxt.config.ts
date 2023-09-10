@@ -5,9 +5,7 @@ export default defineNuxtConfig({
   css: ["~/assets/main.css"],
   postcss: {
     plugins: {
-      tailwindcss: {
-
-      },
+      tailwindcss: {},
       autoprefixer: {},
     },
   },
@@ -21,24 +19,26 @@ export default defineNuxtConfig({
     dirs: [
       "composables",
       "composables/stores",
-    ]
+    ],
   },
   modules: [
     // "@nuxtjs/i18n",
     // '@vite-pwa/nuxt',
-    '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
-    '@nuxtjs/tailwindcss',
-    '@nuxt/content',
-    '@nuxt/image'
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
+    "@nuxtjs/tailwindcss",
+    "@nuxt/content",
+    "@nuxt/image",
+    "@averjs/nuxt-compression",
   ],
   image: {
-    format:['webp'],
+    format: ["webp"],
     quality: 85,
   },
   routeRules: {
-    "/": { prerender: true }, // build static resource 
-    "/dash/**": { ssr: false } //only client side
+    "/": { prerender: true }, // build static resource
+    "auth/**": {prerender: true},
+    "/dash/**": { ssr: false }, //only client side
   },
   // i18n: {
   //   vueI18n: "./localization/i18n.config.ts",
@@ -68,9 +68,9 @@ export default defineNuxtConfig({
   //   }
   //   /*options*/
   // },
-//   pwa:{
-// //???
-//   },
+  //   pwa:{
+  // //???
+  //   },
   // below is for icon autoimport
   vite: {
     plugins: [],
@@ -80,10 +80,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      script: [{
-        src:
-          "https://cdnjs.cloudflare.com/ajax/libs/balance-text/3.3.1/balancetext.min.js", // script to balance titles on home page
-      }],
+      script: [{}],
       title: "Bridgestars",
       meta: [
         {
@@ -92,7 +89,8 @@ export default defineNuxtConfig({
         },
         {
           name: "viewport",
-          content: "width=device-width, height=device-height, initial-scale=1.0", //not sure this makes a difference but SO says it is good to have it.
+          content:
+            "width=device-width, height=device-height, initial-scale=1.0", //not sure this makes a difference but SO says it is good to have it.
         },
       ],
     },
