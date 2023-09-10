@@ -5,7 +5,7 @@ const { data } = await useAsyncData("policy", () =>
   queryContent("/policy").find()
 );
 
-import image from "@/assets/bridgestars/art/about_us.png";
+import image from "/bridgestars/art/about_us.png";
 </script>
 
 <template>

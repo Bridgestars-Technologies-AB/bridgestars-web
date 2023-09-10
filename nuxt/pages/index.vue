@@ -5,7 +5,7 @@ const firstTime = inject("first_time_at_home"); //issue exists for this one
 const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
 const showVideo = ref(true);
 const { t } = await loadTranslations("home")
-import art_img from "@/assets/bridgestars/art/home_page.svg";
+import art_img from "/bridgestars/art/home_page.svg";
 
 onMounted(() => {
   const video = document.getElementById("video");
@@ -82,13 +82,13 @@ function fadeInUI(delay) {
         <video
           id="video"
           fetchpriority="high"
-          src="~/assets/bridgestars/video/shortIntro-compressed.mp4"
+          src="/bridgestars/video/shortIntro-compressed.mp4"
           :class="`${!showVideo ? '!hidden' : ''} video-size`"
           muted
           playsInline
         />
-        <img
-          src="~/assets/bridgestars/images/shortIntroLastFrame.jpg"
+        <NuxtImg
+          src="/bridgestars/images/shortIntroLastFrame.jpg"
           :class="`${showVideo ? 'hidden' : ''} video-size`"
         />
       </div>
@@ -133,9 +133,9 @@ function fadeInUI(delay) {
       <!-- quote -->
       <div class="flex flex-wrap p-1 quote-bg w-full mt-[75px]">
         <div class="sm:py-3 px-3 sm:w-[30%] flex justify-center items-center">
-          <img
+          <NuxtImg
             class="bg-dark xs:w-[55%] sm:w-[100%] object-scale-down rounded-[25px] xs:translate-y-[-50px] sm:translate-y-0"
-            src="~/assets/bridgestars/images/castor-square.jpg"
+            src="/bridgestars/images/castor-square.jpg"
           />
         </div>
 

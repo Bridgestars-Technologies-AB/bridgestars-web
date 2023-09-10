@@ -3,7 +3,7 @@
 const downloads = ref([]) 
 
 const {t} = await loadTranslations("download")
-import image from "@/assets/bridgestars/art/about_us.png"
+import image from "/bridgestars/art/about_us.png"
 
 function update(){
   downloads.value = [{

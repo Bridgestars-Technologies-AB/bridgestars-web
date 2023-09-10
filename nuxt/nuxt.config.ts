@@ -29,8 +29,13 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/tailwindcss',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxt/image'
   ],
+  image: {
+    format:['webp'],
+    quality: 85,
+  },
   routeRules: {
     "/": { prerender: true }, // build static resource 
     "/dash/**": { ssr: false } //only client side
