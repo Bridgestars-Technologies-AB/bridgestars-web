@@ -13,14 +13,14 @@ export default defineNuxtConfig({
   },
   components: [
     { path: "~/components/base", prefix: "base-" },
-    { path: "~/components/auth", prefix:"auth-" },
+    { path: "~/components/auth", prefix: "auth-" },
     { path: "~/components/dash", prefix: "dash-" },
     "~/components",
   ],
-  imports:{
-    dirs:[
-    "composables",
-    "composables/stores",
+  imports: {
+    dirs: [
+      "composables",
+      "composables/stores",
     ]
   },
   modules: [
@@ -31,6 +31,10 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxt/content'
   ],
+  routeRules: {
+    "/": { prerender: true }, // build static resource 
+    "/dash/**": { ssr: false } //only client side
+  },
   // i18n: {
   //   vueI18n: "./localization/i18n.config.ts",
   //   locales: [
@@ -64,9 +68,9 @@ export default defineNuxtConfig({
 //   },
   // below is for icon autoimport
   vite: {
-    plugins: [ ],
+    plugins: [],
   },
-  build:{
+  build: {
     transpile: ["vue-toastification"],
   },
   app: {
