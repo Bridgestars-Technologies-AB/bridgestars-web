@@ -33,14 +33,15 @@ onMounted(() => {
     <div
       class="absolute top-0 flex justify-start whitespace-nowrap pt-[30px] pl-[30px]"
     >
+      <span class="authHeader text-blue mr-2 xs:block sm:hidden"> {{"<"}} </span>
       <button
         @click="router.push({ path: '/' })"
         class="normal-case text-blue authHeader"
       >
         {{ $t("auth:common.home") }}
       </button>
-      <span class="authHeader text-grey opacity-80 mx-2"> / </span>
-      <span class="authHeader text-grey opacity-80">{{ header }}</span>
+      <span class="authHeader text-grey opacity-80 mx-2 xs:hidden sm:block"> / </span>
+      <span class="authHeader text-grey opacity-80 xs:hidden sm:block">{{ header }}</span>
     </div>
 
     <div class="absolute flex justify-center items-center z-[-1] h-full w-full">
@@ -76,7 +77,7 @@ onMounted(() => {
       >
         {{ title }}
       </h6>
-      <span class="zoomIn text2 xs:mb-7 sm:mb-7 xs:mb-4 flex text-center text-[15px]">{{
+      <span class="zoomIn break-words sm:max-w-[450px] xs:max-w-[450px] xs:px-2 sm:px-0 text2 xs:mb-7 sm:mb-7 xs:mb-4 flex text-center text-[15px]">{{
         subtitle
       }}</span>
 
@@ -99,7 +100,7 @@ onMounted(() => {
 </template>
 <style scoped>
 .authHeader {
-  @apply font-family2 text-[3vh] hsm:text-[30px]  leading-[1.5] font-bold;
+  @apply font-family2 text-[3vh]  leading-[1.5] font-bold;
 }
 
 .anim-bounce {
