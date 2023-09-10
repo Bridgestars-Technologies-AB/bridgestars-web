@@ -7,9 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "analyze": "nuxt build --analyze",
-    "postbuild": "find .nuxt -type f -iname *.mp4 -exec gzip -k {} ';' ; find .nuxt -type f -iname *.mp4 -exec brotli --best {} ';'"
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "@averjs/nuxt-compression": "^1.2.2",

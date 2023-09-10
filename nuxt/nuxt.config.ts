@@ -37,7 +37,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/": { prerender: true }, // build static resource
-    "auth/**": {prerender: true},
+    "/auth/**": {prerender: true},
     "/dash/**": { ssr: false }, //only client side
   },
   // i18n: {

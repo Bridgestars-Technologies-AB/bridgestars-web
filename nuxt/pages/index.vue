@@ -8,24 +8,23 @@ const { t } = await loadTranslations("home")
 // import art_img from "/bridgestars/art/home_page.svg";
 
 onMounted(() => {
-  // const video = document.getElementById("video");
-  // video
-  //   .play()
-  //   .then(() => {
-  //     video.addEventListener("ended", () => {
-  //       showVideo.value = false;
-  //     });
-  //     fadeInUI(1000);
-  //     fadeInBackground(1500);
-  //   })
-  //   .catch((e) => {
+  const video : any = document.getElementById("video");
+  video.play()
+    .then(() => {
+      video.addEventListener("ended", () => {
+        showVideo.value = false;
+      });
+      fadeInUI(600);
+      fadeInBackground(800);
+    })
+    .catch((e) => {
       // console.error("video play error: ", e,"showing image instead");
       showVideo.value = false;
       fadeInUI(0);
       fadeInBackground(0);
       // video will not be allowed to play on IOS safari when battery save mode is turned on.
       // show image instead (DONE)
-    // });
+    });
   //
   if (showUI.value) {
     fadeInUI(0);
