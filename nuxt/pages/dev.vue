@@ -9,10 +9,11 @@
 //
 //   }]
 // })
+const dev = ref(process.dev)
 const route = useRoute()
 </script>
 <template>
-  <div v-if="process.dev" class="flex items-center m-3 cursor-pointer" @click="navigateTo(route.name == 'dev' ? '/' : '/dev')">
+  <div v-if="dev" class="flex items-center m-3 cursor-pointer" @click="navigateTo(route.name == 'dev' ? '/' : '/dev')">
       <span class="i-material-symbols-arrow-back-ios text-blue xs:text-[14px] md:text-[20px]"/>
     <a class="xs:text-[14px] md:text-[20px] text-blue font-family2 mr-1">{{route.name == 'dev' ? 'Back to home': 'Back to overview'}}</a>
   </div>
