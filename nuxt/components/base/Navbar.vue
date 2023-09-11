@@ -68,8 +68,11 @@ if(auth.authenticated()){
 <!-- Logo -->
     <div class="flex items-center sm:w-auto">
       <NuxtLink to="/">
-        <img src="~/assets/bridgestars/logo/logo-trans-128px.png" 
-          class="h-[32px] w-[32px] mx-2">
+        <NuxtImg src="/bridgestars/logo/logo-trans-128px.png" width="32" height="32"
+            format="webp"
+            loading="lazy"
+            alt="Bridgestars logo"
+          class="h-[32px] w-[32px] mx-2"/>
       </NuxtLink>
       <NuxtLink to="/">
         <h3 :class="'text-[22px] ' + textColor">Bridgestars</h3>

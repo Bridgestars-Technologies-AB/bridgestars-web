@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps(['imgSrc', "hideNavbar", "class", 'backdropClass'])
+const props = defineProps(['imgSrc', "hideNavbar", "class", 'backdropClass', "lazy"])
 </script>
 
 <template>
@@ -9,8 +9,10 @@ const props = defineProps(['imgSrc', "hideNavbar", "class", 'backdropClass'])
       <base-navbar v-if="!hideNavbar"></base-navbar>
 
       <!-- title -->
-      <img :srcset="imgSrc"
-        class="mb-5 xs:w-[96%] sm:w-[80%] xl:w-[50%]">
+      <NuxtImg :src="imgSrc"
+        :loading="lazy ? 'lazy' : ''"
+        alt="Bridgestars Art Image"
+        class="mb-5 xs:w-[96%] sm:w-[80%] xl:w-[50%]"/>
 
 
       <!-- content -->

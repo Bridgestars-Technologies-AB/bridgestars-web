@@ -5,29 +5,26 @@ const firstTime = inject("first_time_at_home"); //issue exists for this one
 const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
 const showVideo = ref(true);
 const { t } = await loadTranslations("home")
-import art_img from "@/assets/bridgestars/art/home_page.svg";
+// import art_img from "/bridgestars/art/home_page.svg";
 
 onMounted(() => {
-  const video = document.getElementById("video");
-  video
-    .play()
+  const video : any = document.getElementById("video");
+  video.play()
     .then(() => {
       video.addEventListener("ended", () => {
         showVideo.value = false;
       });
-      fadeInUI(1000);
-      fadeInBackground(1500);
+      fadeInUI(600);
+      fadeInBackground(800);
     })
     .catch((e) => {
-      console.error("video play error: ", e,"showing image instead");
+      // console.error("video play error: ", e,"showing image instead");
       showVideo.value = false;
       fadeInUI(0);
-      fadeInBackground(500);
+      fadeInBackground(0);
       // video will not be allowed to play on IOS safari when battery save mode is turned on.
       // show image instead (DONE)
     });
-
-  balanceText();
   //
   if (showUI.value) {
     fadeInUI(0);
@@ -82,13 +79,14 @@ function fadeInUI(delay) {
         <video
           id="video"
           fetchpriority="high"
-          src="~/assets/bridgestars/video/shortIntro-compressed.mp4"
+          src="/bridgestars/video/shortIntro-compressed.mp4"
           :class="`${!showVideo ? '!hidden' : ''} video-size`"
           muted
           playsInline
         />
-        <img
-          src="~/assets/bridgestars/images/shortIntroLastFrame.jpg"
+        <NuxtImg
+          alt="Intro Video"
+          src="/bridgestars/images/shortIntroLastFrame.jpg"
           :class="`${showVideo ? 'hidden' : ''} video-size`"
         />
       </div>
@@ -113,14 +111,14 @@ function fadeInUI(delay) {
   <div class="cardDiv hidden">
     <base-card-page-layout
       hideNavbar="true"
-      class="pt-5 hsm:-translate-y-[100px] hxs:-translate-y-[70px] opacity-0 cardShow"
+      class="will-change-transform pt-5 hsm:-translate-y-[100px] hxs:-translate-y-[70px] opacity-0 cardShow"
       backdropClass="background"
-      :imgSrc="art_img"
+      imgSrc="/bridgestars/art/home_page.svg"
     >
       <base-lang-switcher class="mb-4" />
       <div class="xs:px-0 sm:px-5 text-center flex flex-col items-center">
         <h1
-          class="mb-6 balance-text xs:text-[23px] xs:leading-[29px] sm:text-[40px] sm:leading-[44px] max-w-[700px]"
+          class="mb-6 xs:text-[23px] xs:leading-[29px] sm:text-[40px] sm:leading-[44px] max-w-[700px]"
         >
           {{ $t("home:revolutionize.title") }}
         </h1>
@@ -133,9 +131,12 @@ function fadeInUI(delay) {
       <!-- quote -->
       <div class="flex flex-wrap p-1 quote-bg w-full mt-[75px]">
         <div class="sm:py-3 px-3 sm:w-[30%] flex justify-center items-center">
-          <img
+          <NuxtImg
+            alt="Castor Mann"
+            loading="lazy"
+            format="webp"
             class="bg-dark xs:w-[55%] sm:w-[100%] object-scale-down rounded-[25px] xs:translate-y-[-50px] sm:translate-y-0"
-            src="~/assets/bridgestars/images/castor-square.jpg"
+            src="/bridgestars/images/castor-square.jpg"
           />
         </div>
 
@@ -177,7 +178,7 @@ function fadeInUI(delay) {
           {{ $t("home:contact.title1") }}</span
         >
         <h1
-          class="mb-[6px] balance-text xs:text-[20px] xs:leading-[30px] sm:text-[30px] sm:leading-[40px] max-w-[700px] bg-green"
+          class="mb-[6px] xs:text-[20px] xs:leading-[30px] sm:text-[30px] sm:leading-[40px] max-w-[700px] bg-green"
         >
           <!-- eng translation shoul be uppercase on partnership while swedish would not -->
           <!-- https://www.webucator.com/article/how-to-capitalize-headings-and-titles/ -->
