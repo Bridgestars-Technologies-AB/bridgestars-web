@@ -1,6 +1,13 @@
 <script setup>
+/*
+Bdding Hand
+A component which displays the users hand
+
+Props:
+  hand: Array(4) [{suit (0-3), ranks: [K2A4]}....]
+*/
 const p = defineProps({
-  handx: {
+  hand: {
     type: [],
     required: true,
   },
@@ -10,13 +17,13 @@ const suits = ["♣", "♦", "♥", "♠"];
 const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"];
 // Create a standard deck of 52 cards
 const deck = [];
-for (const suit of suits) {
+for (let suit = 0; suit < 4; suit++) {
   for (const rank of ranks) {
-    deck.push(rank + suit);
+    deck.push({ suit: suit, rank: rank });
   }
 }
 
-const hand = ref(["♣A5", "♦KJ8", "♥AT4", "♠KJT2"]);
+const testHand = ref([]);
 
 function dealHand() {
   // Shuffle the deck (Fisher-Yates algorithm)
@@ -27,27 +34,23 @@ function dealHand() {
 
   // Deal the first 13 cards to a hand
   const bridgeHand = deck.slice(0, 13);
-  const formatedHand = [
-    format(bridgeHand, "♣"),
-    format(bridgeHand, "♦"),
-    format(bridgeHand, "♥"),
-    format(bridgeHand, "♠"),
-  ];
 
-  hand.value = formatedHand;
+  testHand.value = [
+    format(bridgeHand, 0),
+    format(bridgeHand, 1),
+    format(bridgeHand, 2),
+    format(bridgeHand, 3),
+  ];
 }
 
-//const x = dealHand();
-//console.log(x);
-
 function format(bridgeHand, suit) {
-  return (
-    suit +
-    bridgeHand
-      .filter((e) => e[1] === suit)
-      .map((e) => e[0])
-      .join("")
-  );
+  return {
+    suit: suit,
+    ranks: bridgeHand
+      .filter((e) => e.suit === suit)
+      .map((e) => e.rank)
+      .join(""),
+  };
 }
 </script>
 
@@ -61,8 +64,8 @@ function format(bridgeHand, suit) {
       class="h-1/4 flex flex-row items-center ml-[10px]"
     >
       <span class="text-[30px]">{{ suit }} </span>
-      <span class="ml-[10px] text-[20px] text1">{{
-        hand[index].slice(1, hand[index].length)
+      <span class="ml-[10px] text-[20px] text1 tracking-[1px]">{{
+        testHand.filter((e) => e.suit === index)[0]?.ranks
       }}</span>
     </div>
     <button @click="dealHand()" class="bg-white text1">Deal</button>
