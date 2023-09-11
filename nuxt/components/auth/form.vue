@@ -12,7 +12,7 @@ const emit = defineEmits(["submit"]);
 //const formRef = ref(); // we need a DOM node
 
 onMounted(() => {
-  if (useAuth().authenticated) {
+  if (useAuth().authenticated()) {
     navigateTo("/auth/already");
   }
   document.querySelector("input")?.focus();
@@ -76,12 +76,12 @@ onMounted(() => {
       >
         {{ title }}
       </h6>
-      <span class="zoomIn text2 xs:mb-7 sm:mb-7 xs:mb-4 flex text-center text-[17px]">{{
+      <span class="zoomIn text2 xs:mb-7 sm:mb-7 flex text-center text-[17px]">{{
         subtitle
       }}</span>
 
       <span
-        class="zoomIn text2 sm:mb-7 xs:mb-4 mt-[-30px] flex text-center text-[17px]"
+        class="zoomIn text2 sm:mb-7 xs:mb-3 mt-[-30px] flex text-center text-[17px]"
       >
         {{ subtitle2 }}
       </span>

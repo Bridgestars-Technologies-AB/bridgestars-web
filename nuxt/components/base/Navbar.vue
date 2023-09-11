@@ -8,7 +8,7 @@ const auth = useAuth()
 
 //https://icones.js.org/
 
-const routes = reactive([
+const routes : Array<any> = reactive([ 
   {
     key: "home",
     path: '/',
@@ -51,11 +51,11 @@ const menuIconColor = props.transparent ? "bg-white" : "bg-dark";
 const iconColor = props.transparent ? "#FFFFFF" : "rgb(120,120,120)";
 
 //runs on both client and server
-if(auth.authenticated){
+if(auth.authenticated()){
   const account = routes.find(route => route.key === 'profile')
-  account.name = auth.get('dispName');
-  account.path = '/dash'
-  account.success = true;
+  account!.name = auth.username();
+  account!.path = '/dash'
+  account!.success = true;
 }
 
 
@@ -79,7 +79,7 @@ if(auth.authenticated){
 <!-- Open Menu Button -->
       <div class="flex items-center sm:hidden mr-2">
         <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" :innerClass="menuIconColor"/>
-        <span v-if="auth.authenticated" class="i-ic-baseline-account-circle !scale-[1.35]" :style="'color: '+success" @click="isOpen = !isOpen"/>
+        <span v-if="auth.authenticated()" class="i-ic-baseline-account-circle !scale-[1.35]" :style="'color: '+success" @click="isOpen = !isOpen"/>
         <!-- <NavbarLangSwitcher/> -->
       </div>
 
