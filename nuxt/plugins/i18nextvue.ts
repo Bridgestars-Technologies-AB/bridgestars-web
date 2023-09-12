@@ -4,6 +4,7 @@ import i18next from 'i18next'
 import I18NextVue from 'i18next-vue'
 
 import universalLanguageDetect from '@unly/universal-language-detector';
+import onLanguageChanged from 'composables/useLanguageChanged';
 // import sv from '~/localization/lang/sv.json'
 // import en from '~/localization/lang/en.json'
 const SUPPORTED_LANGUAGES = ['en', 'sv'];
@@ -59,9 +60,7 @@ export default defineNuxtPlugin(nuxtApp => {
       console.error(error);
     },
   });
-  i18next.on('languageChanged', (lng) => {
-
-  })
+  console.log("Browser language detected: ", lang);
   i18next.changeLanguage(lang);
   
   nuxtApp.vueApp.use(I18NextVue, {i18next})
