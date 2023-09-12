@@ -1,4 +1,15 @@
 <!-- sign out modal: "are you sure?" -->
+<!--
+  Usage:
+  <script>
+  const open = ref(false); //signoutmodal
+  </script>
+  <base-modal-signout v-model:open="open"/>
+
+props:
+  open: boolean (v-model)
+  customSignOutAction: function
+-->
 
 <script setup>
 const auth = useAuth();
