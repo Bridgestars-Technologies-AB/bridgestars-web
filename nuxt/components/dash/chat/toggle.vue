@@ -43,8 +43,8 @@ function toggleChatApp(){
         <base-tooltip :text="$t('chat.tooltip.open')" position="left">
           <div @click="toggleChatApp" class="cursor-pointer rounded-full dark:bg-dash-dark-100 bg-dash-light-300 p-2 hover:bg-dash-light-500 dark:hover:bg-dash-dark-300" >
             <div v-if="!open">
-              <img src="~/assets/icon/chat-light.png" class="w-[45px] h-[45px] dark:block hidden scale-x-[-1]" alt="chat">
-              <img src="~/assets/icon/chat-dark.png" class="w-[45px] h-[45px] dark:hidden scale-x-[-1]" alt="chat">
+              <NuxtImg width="45" height="45" src="/icon/chat-light.png" class="w-[45px] h-[45px] dark:block hidden scale-x-[-1]" alt="chat"/>
+              <NuxtImg width="45" height="45" src="/icon/chat-dark.png" class="w-[45px] h-[45px] dark:hidden scale-x-[-1]" alt="chat"/>
               </div>
             <div v-else class="h-[45px]">
               <span class="i-ic-round-close w-[45px] h-[45px] scale-x-[-1] dark:text-light text-dash-light-500"></span>

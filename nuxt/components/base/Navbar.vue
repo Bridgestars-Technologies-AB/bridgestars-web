@@ -8,7 +8,7 @@ const auth = useAuth()
 
 //https://icones.js.org/
 
-const routes = reactive([
+const routes : Array<any> = reactive([ 
   {
     key: "home",
     path: '/',
@@ -51,11 +51,11 @@ const menuIconColor = props.transparent ? "bg-white" : "bg-dark";
 const iconColor = props.transparent ? "#FFFFFF" : "rgb(120,120,120)";
 
 //runs on both client and server
-if(auth.authenticated){
+if(auth.authenticated()){
   const account = routes.find(route => route.key === 'profile')
-  account.name = auth.get('dispName');
-  account.path = '/dash'
-  account.success = true;
+  account!.name = auth.username();
+  account!.path = '/dash'
+  account!.success = true;
 }
 
 
@@ -68,8 +68,11 @@ if(auth.authenticated){
 <!-- Logo -->
     <div class="flex items-center sm:w-auto">
       <NuxtLink to="/">
-        <img src="~/assets/bridgestars/logo/logo-trans-128px.png" 
-          class="h-[32px] w-[32px] mx-2">
+        <NuxtImg src="/bridgestars/logo/logo-trans-128px.png" width="32" height="32"
+            format="webp"
+            loading="lazy"
+            alt="Bridgestars logo"
+          class="h-[32px] w-[32px] mx-2"/>
       </NuxtLink>
       <NuxtLink to="/">
         <h3 :class="'text-[22px] ' + textColor">Bridgestars</h3>
@@ -79,7 +82,7 @@ if(auth.authenticated){
 <!-- Open Menu Button -->
       <div class="flex items-center sm:hidden mr-2">
         <base-hamburger-menu-button @click="isOpen = !isOpen" :isOpen="isOpen" class="!scale-[0.3]" :innerClass="menuIconColor"/>
-        <span v-if="auth.authenticated" class="i-ic-baseline-account-circle !scale-[1.35]" :style="'color: '+success" @click="isOpen = !isOpen"/>
+        <span v-if="auth.authenticated()" class="i-ic-baseline-account-circle !scale-[1.35]" :style="'color: '+success" @click="isOpen = !isOpen"/>
         <!-- <NavbarLangSwitcher/> -->
       </div>
 

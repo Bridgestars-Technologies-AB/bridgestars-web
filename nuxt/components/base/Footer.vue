@@ -21,9 +21,12 @@
           target="_blank"
           rel="noreferrer"
         >
-          <img
+          <NuxtImg
+            loading="lazy"
+            alt="facebook logo"
+            height="20"
             class="h-[20px] hover:animate-shake"
-            src="~/assets/logo/facebook-dark.svg"
+            src="/logo/facebook-dark.svg"
           />
         </a>
       </base-tooltip>
@@ -35,9 +38,12 @@
           target="_blank"
           rel="noreferrer"
         >
-          <img
+          <NuxtImg
+            loading="lazy"
+            alt="instagram logo"
+            height="20"
             class="h-[20px] hover:animate-shake"
-            src="~/assets/logo/instagram-dark.svg"
+            src="/logo/instagram-dark.svg"
           />
         </a>
       </base-tooltip>
@@ -49,9 +55,12 @@
           target="_blank"
           rel="noreferrer"
         >
-          <img
+          <NuxtImg
+            loading="lazy"
+            alt="discord logo"
+            height="20"
             class="h-[20px] hover:animate-shake"
-            src="~/assets/logo/discord-dark.svg"
+            src="/logo/discord-dark.svg"
           />
         </a>
       </base-tooltip>
