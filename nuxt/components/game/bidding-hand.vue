@@ -43,13 +43,37 @@ function dealHand() {
   ];
 }
 
+function sortCards(cards) {
+  // Define the values for each card
+  const cardValues = {
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
+    6: 6,
+    7: 7,
+    8: 8,
+    9: 9,
+    T: 10,
+    J: 11,
+    Q: 12,
+    K: 13,
+    A: 14,
+  };
+
+  // Sort the cards based on their values
+  cards.sort((a, b) => cardValues[a] - cardValues[b]);
+
+  return cards;
+}
+
 function format(bridgeHand, suit) {
   return {
     suit: suit,
-    ranks: bridgeHand
-      .filter((e) => e.suit === suit)
-      .map((e) => e.rank)
-      .join(""),
+    ranks: sortCards(
+      bridgeHand.filter((e) => e.suit === suit).map((e) => e.rank)
+    ).join(""),
   };
 }
 </script>
