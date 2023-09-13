@@ -12,7 +12,7 @@ const emit = defineEmits(["submit"]);
 //const formRef = ref(); // we need a DOM node
 
 onMounted(() => {
-  if (useAuth().authenticated) {
+  if (useAuth().authenticated()) {
     navigateTo("/auth/already");
   }
   document.querySelector("input")?.focus();
@@ -45,12 +45,14 @@ onMounted(() => {
     </div>
 
     <div class="absolute flex justify-center items-center z-[-1] h-full w-full">
-      <img
-        src="~/assets/bridgestars/art/auth-form-suits.svg"
+      <NuxtImg
+        alt="background"
+        src="/bridgestars/art/auth-form-suits.svg"
         class="xs:block sm:hidden w-[100%] scale-[1] min-w-[600px]"
       />
-      <img
-        src="~/assets/bridgestars/art/auth-form-ipad.svg"
+      <NuxtImg
+        alt="background"
+        src="/bridgestars/art/auth-form-ipad.svg"
         class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1300px] min-w-[1155px]"
       />
     </div>
@@ -60,16 +62,16 @@ onMounted(() => {
       class="flex flex-col grow items-center justify-center"
     >
       <!-- IMG -->
-      <img
-        class="anim-bounce pt-[10px] w-[50%] h-[80%]"
-        id="sign-in-image"
-        src="~/assets/bridgestars/art/sign_in.svg"
-        alt="Bridgestars sign-in image"
-      />
+      <!-- <NuxtImg -->
+      <!--   class="anim-bounce pt-[10px] w-[50%] h-[80%]" -->
+      <!--   id="sign-in-image" -->
+      <!--   src="/bridgestars/art/sign_in.svg" -->
+      <!--   alt="bridgestars logo" -->
+      <!-- /> -->
       <!-- TITLE -->
-      <img
+      <NuxtImg
         class="anim-bounce w-[64px] h-[64px] xs:mt-0 sm:mt-5 mb-5"
-        src="~/assets/bridgestars/logo/logo-trans-512px.png"
+        src="/bridgestars/logo/logo-trans-512px.png"
         alt="Bridgestars logo"
       />
       <h6

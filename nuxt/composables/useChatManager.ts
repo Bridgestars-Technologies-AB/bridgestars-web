@@ -27,7 +27,7 @@ let deferred: {
  *
  * **/
 export default async function useChatManager() : Promise<ChatManager> {
-  if(!useAuth().authenticated) {
+  if(!useAuth().authenticated()) {
     manager = null;
     const e = new Error("Can't initialize chat manager when not signed in");
     deferred?.reject(e);

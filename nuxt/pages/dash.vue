@@ -44,7 +44,7 @@ const open = ref(false); //signoutmodal
     </div>
 
   <div class="flex flex-col justify-center items-center h-full space-y-4  text-center">
-    <h3 class="max-w-[400px] px-3">{{$t("temp:hi", {name: 'theo'})}}</h3>
+    <h3 class="max-w-[400px] px-3">{{$t("temp:hi", {name: useAuth().username()})}}</h3>
     <h3 class="max-w-[500px] px-3">{{$t("temp:welcome")}}</h3>
     <span class="text1 max-w-[500px] px-3">{{$t("temp:info")}}</span>
     <base-submit-button
