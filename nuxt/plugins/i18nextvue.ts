@@ -30,6 +30,6 @@ export default defineNuxtPlugin(nuxtApp => {
   });
 
   i18next.changeLanguage(lang);
-  
+
   nuxtApp.vueApp.use(I18NextVue, {i18next})
 })
