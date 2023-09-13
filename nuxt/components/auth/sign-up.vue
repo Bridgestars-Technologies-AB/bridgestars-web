@@ -59,8 +59,15 @@ function submit(res) {
           type="checkbox"
         />
         <p><!-- to add space between texts  -->
-        <span class="normal-case text2 text-dark tracking-[0.5px]"> I agree with the </span>
-        <NuxtLink to="/policy" class="normal-case text2 text-blue font-bold tracking-[0.5px]"> Terms and Conditions</NuxtLink>
+
+          
+        <span class="normal-case text2 text-dark tracking-[0.5px]">
+          <i18next :translation="$t('auth:signUp:agree')">
+            <template #terms>
+                  <NuxtLink to="/policy" class="normal-case text2 text-blue font-bold tracking-[0.5px]">{{$t("auth:signUp:terms")}}</NuxtLink>
+            </template>
+          </i18next>
+        </span>
         </p>
       </div>
         <small class="[color:red] text-[16px] w-full"></small>
