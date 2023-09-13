@@ -8,13 +8,18 @@ Props:
 */
 const p = defineProps({
   hand: {
-    type: [],
-    required: true,
+    type: Array,
+    required: false,
+  },
+  showDeal: {
+    type: Boolean,
+    required: false,
   },
 });
 
 const suits = ["♣", "♦", "♥", "♠"];
 const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"];
+
 // Create a standard deck of 52 cards
 const deck = [];
 for (let suit = 0; suit < 4; suit++) {
@@ -23,8 +28,19 @@ for (let suit = 0; suit < 4; suit++) {
   }
 }
 
-const testHand = ref([]);
+// We don't want to mutate props, bad practice
+const computedHand = ref([]);
 
+//onMounted is needed here, else the server and client will have different values of computedHand when calling dealHand()
+onMounted(() => {
+  if (p.hand) {
+    computedHand.value = [...p.hand];
+  } else {
+    dealHand();
+  }
+});
+
+//If we do not send a hand as a property, this will be used to assign computedHand a randomly dealt hand
 function dealHand() {
   // Shuffle the deck (Fisher-Yates algorithm)
   for (let i = deck.length - 1; i > 0; i--) {
@@ -35,7 +51,7 @@ function dealHand() {
   // Deal the first 13 cards to a hand
   const bridgeHand = deck.slice(0, 13);
 
-  testHand.value = [
+  computedHand.value = [
     format(bridgeHand, 0),
     format(bridgeHand, 1),
     format(bridgeHand, 2),
@@ -89,9 +105,13 @@ function format(bridgeHand, suit) {
     >
       <span class="text-[30px]">{{ suit }} </span>
       <span class="ml-[10px] text-[20px] text1 tracking-[1px]">{{
-        testHand.filter((e) => e.suit === index)[0]?.ranks
+        computedHand.filter((e) => e.suit === index)[0]?.ranks
       }}</span>
     </div>
-    <button @click="dealHand()" class="bg-white text1">Deal</button>
+    <!-- Only for testing, later we will provde dealt hans from parent component -->
+    <button v-if="showDeal" @click="dealHand" class="bg-white text1">
+      Deal
+    </button>
   </div>
+  <!-- text-[${suitColors[index]}] -->
 </template>
