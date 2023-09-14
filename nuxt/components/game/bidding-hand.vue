@@ -79,7 +79,9 @@ function sortCards(cards) {
   };
 
   // Sort the cards based on their values
-  cards.sort((a, b) => cardValues[a] - cardValues[b]);
+  console.log(cards);
+  cards.sort((a, b) => cardValues[b] - cardValues[a]);
+  console.log(cards);
 
   return cards;
 }
