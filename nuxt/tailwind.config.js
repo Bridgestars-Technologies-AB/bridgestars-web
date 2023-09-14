@@ -5,6 +5,10 @@ const {
 } = require("@egoist/tailwindcss-icons");
 
 const backgroundColors = {
+  clubs: "#2B72C0",
+  diamonds: "#f1716f",
+  hearts: "#f78217",
+  spades: "#349e3f",
   dark: "#344767",
   primary: "#f74040", //röd
   secondary: "#2e294e", //lila
@@ -97,7 +101,7 @@ module.exports = {
       borderColor: {
         ...backgroundColors,
       },
-      placeholderColor:{
+      placeholderColor: {
         ...textColors,
       },
       animation: {
