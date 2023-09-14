@@ -7,7 +7,7 @@ This component displays the bidding history from bidding-box.
 
 const p = defineProps({
   history: {
-    type: [],
+    type: Array,
     required: true,
   },
 });
