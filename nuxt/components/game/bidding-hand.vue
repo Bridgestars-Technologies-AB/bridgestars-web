@@ -4,7 +4,7 @@ Bdding Hand
 A component which displays the users hand
 
 Props:
-  hand: Array(4) [{suit (0-3), ranks: [K2A4]}....]
+  hand: Array(13) [{suit: 0, rank: 2},{suit: 1, rank: 5},{suit:1, rank:12},{suit:2, rank:13} .....] 
 */
 const p = defineProps({
   hand: {
@@ -18,7 +18,38 @@ const p = defineProps({
 });
 
 const suits = ["♣", "♦", "♥", "♠"];
-const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"];
+const ranks = [
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+  "12",
+  "13",
+  "14",
+];
+
+// When we print the ranks, we do not want rank 2-14, we want T, J, Q, K, A as well
+const printedRanks = [
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "T",
+  "J",
+  "Q",
+  "K",
+  "A",
+];
 
 // Create a standard deck of 52 cards
 const deck = [];
@@ -34,22 +65,29 @@ const computedHand = ref([]);
 //onMounted is needed here, else the server and client will have different values of computedHand when calling dealHand()
 onMounted(() => {
   if (p.hand) {
-    computedHand.value = [...p.hand];
+    dealHand(p.hand);
   } else {
     dealHand();
   }
 });
 
-//If we do not send a hand as a property, this will be used to assign computedHand a randomly dealt hand
-function dealHand() {
-  // Shuffle the deck (Fisher-Yates algorithm)
-  for (let i = deck.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [deck[i], deck[j]] = [deck[j], deck[i]];
-  }
+//If we do not provide an inputHand, this will be used to assign computedHand a randomly dealt hand
+//Else, we format inputHand and update computedHand accordingly
+function dealHand(inputHand) {
+  let bridgeHand = [];
 
-  // Deal the first 13 cards to a hand
-  const bridgeHand = deck.slice(0, 13);
+  if (!inputHand) {
+    // Shuffle the deck (Fisher-Yates algorithm)
+    for (let i = deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+
+    // Deal the first 13 cards to a hand
+    bridgeHand = deck.slice(0, 13);
+  } else {
+    bridgeHand = [...inputHand];
+  }
 
   computedHand.value = [
     format(bridgeHand, 0),
@@ -79,9 +117,7 @@ function sortCards(cards) {
   };
 
   // Sort the cards based on their values
-  console.log(cards);
   cards.sort((a, b) => cardValues[b] - cardValues[a]);
-  console.log(cards);
 
   return cards;
 }
@@ -90,7 +126,9 @@ function format(bridgeHand, suit) {
   return {
     suit: suit,
     ranks: sortCards(
-      bridgeHand.filter((e) => e.suit === suit).map((e) => e.rank)
+      bridgeHand
+        .filter((e) => e.suit === suit)
+        .map((e) => printedRanks[e.rank - 2])
     ).join(""),
   };
 }
@@ -111,7 +149,7 @@ function format(bridgeHand, suit) {
       }}</span>
     </div>
     <!-- Only for testing, later we will provde dealt hans from parent component -->
-    <button v-if="showDeal" @click="dealHand" class="bg-white text1">
+    <button v-if="showDeal" @click="dealHand()" class="bg-white text1">
       Deal
     </button>
   </div>

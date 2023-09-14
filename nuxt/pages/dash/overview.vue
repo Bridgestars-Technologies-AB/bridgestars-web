@@ -16,12 +16,21 @@ function bid(s, n) {
     <game-bidding-box v-model:suit="suit" v-model:nbr="nbr" @bid="bid" />
     <game-bidding-history :history="history"></game-bidding-history>
     <game-bidding-hand
-      :showDeal="false"
+      :showDeal="true"
       :hand="[
-        { suit: 0, ranks: '3678K' },
-        { suit: 1, ranks: '2TQ' },
-        { suit: 2, ranks: '23' },
-        { suit: 3, ranks: '45A' },
+        { suit: 0, rank: 2 },
+        { suit: 0, rank: 5 },
+        { suit: 0, rank: 12 },
+        { suit: 1, rank: 13 },
+        { suit: 1, rank: 3 },
+        { suit: 2, rank: 8 },
+        { suit: 2, rank: 11 },
+        { suit: 2, rank: 13 },
+        { suit: 2, rank: 14 },
+        { suit: 3, rank: 5 },
+        { suit: 3, rank: 6 },
+        { suit: 3, rank: 9 },
+        { suit: 3, rank: 14 },
       ]"
     ></game-bidding-hand>
   </div>
