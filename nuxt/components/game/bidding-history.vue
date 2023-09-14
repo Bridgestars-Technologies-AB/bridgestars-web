@@ -10,6 +10,10 @@ const p = defineProps({
     type: Array,
     required: true,
   },
+  wrapperClass: {
+    type: String,
+    required: false,
+  },
 });
 
 //lägg till funktionalitet för hover/click, tooltip?
@@ -23,9 +27,7 @@ function brick(suit, nbr) {
 </script>
 
 <template>
-  <div
-    class="flex flex-col items-center w-[290px] h-[100%] bg-dash-dark-300 ml-10 rounded-xl"
-  >
+  <div :class="'flex flex-col items-center bg-dash-dark-300 ' + wrapperClass">
     <div class="w-[100%] flex flex-row">
       <div class="w-1/4 flex flex-row justify-center mt-[16px]" v-for="p in 4">
         <span class="text1 text-[32px] mb-[4px]">

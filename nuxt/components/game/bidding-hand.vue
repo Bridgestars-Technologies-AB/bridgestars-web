@@ -15,6 +15,10 @@ const p = defineProps({
     type: Boolean,
     required: false,
   },
+  wrapperClass: {
+    type: String,
+    required: false,
+  },
 });
 
 const suits = ["♣", "♦", "♥", "♠"];
@@ -135,9 +139,7 @@ function format(bridgeHand, suit) {
 </script>
 
 <template>
-  <div
-    class="flex flex-col w-[150px] h-[200px] bg-dash-dark-300 ml-10 rounded-xl"
-  >
+  <div :class="'flex flex-col bg-dash-dark-300 ' + wrapperClass">
     <div
       v-for="(suit, index) in suits"
       :key="index"
