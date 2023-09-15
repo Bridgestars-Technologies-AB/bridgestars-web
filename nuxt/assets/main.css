@@ -1,53 +1,106 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
- /* these styles are the bottom layer and will therefore be overridden by other layers and utilities  */
-@layer base { 
-  h1,h2,h3,h4,h5,h6 { @apply text-dark dark:text-light font-bold transition-colors duration-300; }
+/* these styles are the bottom layer and will therefore be overridden by other layers and utilities  */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-dark dark:text-light font-bold transition-colors duration-300;
+  }
 
-  h1,h2,h3{ @apply font-family2; }
+  h1,
+  h2,
+  h3 {
+    @apply font-family2;
+  }
 
-  h4,h5,h6{ @apply font-family; }
+  h4,
+  h5,
+  h6 {
+    @apply font-family;
+  }
 
-  h1 { @apply text-[48px] leading-[48px]; }
+  h1 {
+    @apply text-[48px] leading-[48px];
+  }
 
-  h2 { @apply text-[36px] leading-[36px]; }
+  h2 {
+    @apply text-[36px] leading-[36px];
+  }
 
-  h3 { @apply text-[30px] leading-[33px]; }
+  h3 {
+    @apply text-[30px] leading-[33px];
+  }
 
-  h4 { @apply text-[24px] leading-[24px]; }
+  h4 {
+    @apply text-[24px] leading-[24px];
+  }
 
-  h5 { @apply text-[20px] leading-[20px]; }
+  h5 {
+    @apply text-[20px] leading-[20px];
+  }
 
-  h6 { @apply text-[16px] leading-[16px]; }
+  h6 {
+    @apply text-[16px] leading-[16px];
+  }
 
-  button { @apply font-family text-[14px] font-light leading-[14px] uppercase; }
+  button {
+    @apply font-family text-[14px] font-light leading-[14px] uppercase;
+  }
 
-  .text1, .text2{
+  .text1,
+  .text2,
+  .text3 {
     @apply transition-colors duration-300; /*Dark mode transition*/
     @apply font-family text-grey dark:text-light; /* common style and colors */
   }
 
-  .text1 { @apply text-[24px] leading-[24px] font-normal; }
+  .text1 {
+    @apply text-[24px] leading-[24px] font-normal;
+  }
 
-  .text2 { @apply text-[16px] leading-[1.6rem] font-light; }
+  .text2 {
+    @apply text-[16px] leading-[1.6rem] font-light;
+  }
 
-  html, body, #__nuxt {
+  .text3 {
+    @apply text-[16px] leading-[1.6rem] font-semibold;
+  }
+
+  html,
+  body,
+  #__nuxt {
     height: 100%;
     width: 100%;
     -webkit-text-size-adjust: 100%; /* safari on ios will otherwise resize the text automatically */
   }
 
-
-/* override some wierd tailwind standards or smth, seems to be caused be the flowbite integration */
-[type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select {
+  /* override some wierd tailwind standards or smth, seems to be caused be the flowbite integration */
+  [type="text"],
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
+  [multiple],
+  textarea,
+  select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     background-color: #fefefe;
-    border-color: #6B7280;
+    border-color: #6b7280;
     border-width: 0px;
     border-radius: 0px;
     padding-top: 0rem;
@@ -57,43 +110,41 @@
     font-size: 100%;
     font-weight: inherit;
     line-height: inherit;
-    outline:none;
+    outline: none;
     --tw-shadow: 0 0 #0000;
-    outline:none;
-}
-[type="search"]:focus input:focus {
-    outline:none;
-}
+    outline: none;
+  }
+  [type="search"]:focus input:focus {
+    outline: none;
+  }
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    /* -webkit-background-clip: text; */
-    -webkit-text-fill-color: #393F43;
-    /* transition: background-color 5000s ease-in-out 0s; */
-    box-shadow: inset 0 0 80px 80px #fefefe;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  /* -webkit-background-clip: text; */
+  -webkit-text-fill-color: #393f43;
+  /* transition: background-color 5000s ease-in-out 0s; */
+  box-shadow: inset 0 0 80px 80px #fefefe;
 }
 
 /* Second layer for complex components etc, don't use, specify in style scoped instead */
 @layer components {
-
 }
 
 /* Third layer, here we can add our own utility classes that tailwind does not have  */
-@layer utilities{
-    @variants responsive {
-      /* Hide scrollbar but still enable scrolling for Chrome, Safari and Opera */
-      .no-scrollbar::-webkit-scrollbar {
-          display: none;
-      }
-
-      /* Hide scrollbar but still enable scrolling for IE, Edge and Firefox */
-      .no-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-      }
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar but still enable scrolling for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
     }
-}
 
+    /* Hide scrollbar but still enable scrolling for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  }
+}

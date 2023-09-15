@@ -3,14 +3,14 @@
 
   Props:
     suit: Number (0-4) //  v-model:suit="suit" where suit is a ref(0)
-    nbr: Number (0-7) // 0 = pass
+    rank: Number (0-7) // 0 = pass
 
   Emits:
-    bid: {suit: Number, nbr: Number}
+    bid: {suit: Number, rank: Number}
 -->
 <script setup>
 const p = defineProps({
-  nbr: {
+  rank: {
     type: Number,
     required: true,
   },
@@ -23,22 +23,37 @@ const p = defineProps({
     required: false,
   },
 });
-const emit = defineEmits(["bid", "update:nbr", "update:suit"]);
+const emit = defineEmits(["bid", "update:rank", "update:suit"]);
+
+function iconColor(index) {
+  switch (index) {
+    case 0:
+      return "!text-[#2B72C0]";
+    case 1:
+      return "!text-[#f78720]";
+    case 2:
+      return "!text-[#f26a68]";
+    case 3:
+      return "!text-[#349e3f]";
+    default:
+      return "!text-white";
+  }
+}
 
 const suits = ["♣", "♦", "♥", "♠", "NT"]; //replace with better icons, colored?
 
-function bid(suit, nbr) {
-  console.log("BIDDINGBOX: ", suit, nbr);
-  if (nbr > p.nbr || (suit > p.suit && nbr === p.nbr)) {
-    emit("update:nbr", nbr);
+function bid(suit, rank) {
+  console.log("BIDDINGBOX: ", suit, rank);
+  if (rank > p.rank || (suit > p.suit && rank === p.rank)) {
+    emit("update:rank", rank);
     emit("update:suit", suit);
   }
-  emit("bid", suit, nbr);
+  emit("bid", suit, rank);
 }
 
-function getDisabled(nbr, suit) {
-  if (!p.suit || !p.nbr) return "";
-  if (nbr < p.nbr || (suit <= p.suit && nbr === p.nbr))
+function getDisabled(rank, suit) {
+  if (!p.suit || !p.rank) return "";
+  if (rank < p.rank || (suit <= p.suit && rank === p.rank))
     return "opacity-50 cursor-not-allowed";
   return "";
 }
@@ -58,25 +73,25 @@ function getDisabled(nbr, suit) {
 
     <!-- 7 rows of 5 buttons -->
     <div
-      v-for="nbr in 7"
-      :key="nbr"
+      v-for="rank in 7"
+      :key="rank"
       class="flex flex-row justify-center space-x-1"
     >
       <button
         v-for="suit in 5"
         :key="suit"
-        @click="bid(suit - 1, nbr)"
+        @click="bid(suit - 1, rank)"
         :class="`bg-dash-dark-300 hover:bg-dash-dark-400 rounded-sm w-[50px] h-[30px] flex items-center justify-center overflow-x-hidden outline-none ${getDisabled(
-          nbr,
+          rank,
           suit - 1
         )}`"
       >
         <span class="text1 text-[15px] select-none">
-          {{ nbr }}
+          {{ rank }}
         </span>
         <span
-          :class="`text1 ${
-            suit < 5 ? 'text-[25px] mb-1 ml-1' : 'text-[15px]'
+          :class="`text1 ${iconColor(suit - 1)} ${
+            suit < 5 ? 'text-[22px] ml-1' : 'text-[13px] ml-[1px]'
           } select-none`"
         >
           {{ suits[suit - 1] }}

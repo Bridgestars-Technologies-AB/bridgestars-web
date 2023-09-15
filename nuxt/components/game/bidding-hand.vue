@@ -63,6 +63,21 @@ for (let suit = 0; suit < 4; suit++) {
   }
 }
 
+function iconColor(index) {
+  switch (index) {
+    case 0:
+      return "text-[#2B72C0]";
+    case 1:
+      return "text-[#f78720]";
+    case 2:
+      return "text-[#f26a68]";
+    case 3:
+      return "text-[#349e3f]";
+    default:
+      console.log(`wrong index.`);
+  }
+}
+
 // We don't want to mutate props, bad practice
 const computedHand = ref([]);
 
@@ -99,6 +114,8 @@ function dealHand(inputHand) {
     format(bridgeHand, 2),
     format(bridgeHand, 3),
   ];
+
+  console.log(computedHand);
 }
 
 function sortCards(cards) {
@@ -139,14 +156,14 @@ function format(bridgeHand, suit) {
 </script>
 
 <template>
-  <div :class="'flex flex-col bg-dash-dark-300 ' + wrapperClass">
+  <div :class="'flex flex-col bg-[#121c27] ' + wrapperClass">
     <div
       v-for="(suit, index) in suits"
       :key="index"
       class="h-1/4 flex flex-row items-center ml-[10px]"
     >
-      <span class="text-[30px]">{{ suit }} </span>
-      <span class="ml-[10px] text-[20px] text1 tracking-[1px]">{{
+      <span :class="`text-[45px] ${iconColor(index)}`">{{ suit }} </span>
+      <span class="ml-[10px] text-[30px] text1 tracking-[1px]">{{
         computedHand.filter((e) => e.suit === index)[0]?.ranks
       }}</span>
     </div>
