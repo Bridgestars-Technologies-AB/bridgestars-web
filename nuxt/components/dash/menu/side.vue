@@ -84,7 +84,6 @@ const items = [
     },
   },
 ];
-
 items.map(
   (x) =>
     (x.enabled =
@@ -109,37 +108,6 @@ function click(item) {
     } h-full overflow-x-visible absolute`"
   >
     <div class="overflow-y-scroll w-[270px] no-scrollbar">
-      <<<<<<< HEAD <
-      <div class="flex flex-col space-y-3">
-        <div
-          :class="`text-center flex relative items-center pt-7 flex-wrap profile-section ${
-            isOpen ? 'open' : 'closed'
-          }`"
-        >
-          <NuxtImg
-            width="50"
-            class="object-cover object-top w-[50px] aspect-square rounded-full cursor-pointer"
-            src="/bridgestars/images/castor.jpg"
-            @click="navigateTo({ name: 'dash-profile' })"
-          />
-          <div class="flex flex-col text-start pl-2 justify-center">
-            <h6
-              class="profile-section-text text-[24px] leading-[24px] font-family tracking-tighter"
-              @click="navigateTo({ name: 'dash-profile' })"
-            >
-              {{ auth.username() }}
-            </h6>
-            <h6
-              class="profile-section-text text-[#14C6A4] text-[18px] leading-[18px] dark:text-[#14C6a4] font-light tracking-normal"
-              @click="navigateTo({ name: 'dash-profile' })"
-            >
-              Premium
-            </h6>
-          </div>
-        </div>
-        <dash-menu-side-level :level="auth.get('level')" :xp="0.5" />
-      </div>
-      =======
       <div
         :class="`text-center flex relative items-center pt-7 flex-wrap profile-section ${
           isOpen ? 'open' : 'closed'
@@ -164,9 +132,8 @@ function click(item) {
           >
             Premium
           </h6>
-          >>>>>>> main
         </div>
-        <dash-menu-side-level :level="auth.get('level')" :xp="0.5" />
+        <!-- <dash-menu-side-level :level="auth.get('level')" :xp="0.5" /> -->
       </div>
 
       <div class="flex flex-col mt-10 mb-[200px] h-full">

@@ -4,15 +4,8 @@ import User from "~/js/db/user/User";
  * Minimal auth store that lets the server access information about the user in order to prerender certain routes like dash and navbar,
  * and, lets the server block certain routes like dash if the user is not signed in.
  */
-
-// TODO maybe rebuild this as an regular class that has an store, which lets the store be simpler and we can have more startup logic, for example removing underlying if Parse.User.current() is not available.
-export default defineStore("auth", {
-  //underlying is the actual Parse.User object, but serialized to JSON so it does not contain any methods like set or get or signout
-  state: () => ({ underlying: undefined }),
-  getters: {
-    authenticated: (state) => state.underlying !== undefined,
-    user: (state) => (process.server ? state.underlying : Parse.User.current()), //return the best available representation of the user
-  },
+const authStore = defineStore("auth", {
+  state: () => ({ username: "" as string }),
   actions: {
     set(username: string) {
       this.username = username;
