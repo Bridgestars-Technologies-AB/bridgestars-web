@@ -22,7 +22,6 @@ const p = defineProps({
   },
 });
 
-const suits = ["♣", "♦", "♥", "♠"];
 const ranks = [
   "2",
   "3",
@@ -39,43 +38,11 @@ const ranks = [
   "14",
 ];
 
-// When we print the ranks, we do not want rank 2-14, we want T, J, Q, K, A as well
-const printedRanks = [
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "T",
-  "J",
-  "Q",
-  "K",
-  "A",
-];
-
 // Create a standard deck of 52 cards
 const deck = [];
 for (let suit = 0; suit < 4; suit++) {
   for (const rank of ranks) {
     deck.push({ suit: suit, rank: rank });
-  }
-}
-
-function iconColor(index) {
-  switch (index) {
-    case 0:
-      return "text-[#2B72C0]";
-    case 1:
-      return "text-[#f78720]";
-    case 2:
-      return "text-[#f26a68]";
-    case 3:
-      return "text-[#349e3f]";
-    default:
-      console.log(`wrong index.`);
   }
 }
 
@@ -163,7 +130,7 @@ function format(bridgeHand, suit) {
       :key="index"
       class="h-1/4 flex flex-row items-center ml-[10px]"
     >
-      <span :class="`text-[45px] ${iconColor(index)}`">{{ suit }} </span>
+      <span :class="`text-[45px] ${symbols[index].color}`">{{ suit }} </span>
       <span class="ml-[10px] text-[25px] text1 tracking-[1px]">{{
         computedHand.filter((e) => e.suit === index)[0]?.ranks
       }}</span>

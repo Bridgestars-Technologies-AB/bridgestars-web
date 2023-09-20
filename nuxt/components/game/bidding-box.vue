@@ -27,23 +27,6 @@ const p = defineProps({
 });
 const emit = defineEmits(["bid", "update:rank", "update:suit"]);
 
-function iconColor(index) {
-  switch (index) {
-    case 0:
-      return "!text-[#2B72C0]";
-    case 1:
-      return "!text-[#f78720]";
-    case 2:
-      return "!text-[#f26a68]";
-    case 3:
-      return "!text-[#349e3f]";
-    default:
-      return "!text-white";
-  }
-}
-
-const suits = ["♣", "♦", "♥", "♠", "NT"]; //replace with better icons, colored?
-
 function bid(suit, rank) {
   console.log("BIDDINGBOX: ", suit, rank);
   if (rank > p.rank || (suit > p.suit && rank === p.rank)) {
@@ -92,11 +75,11 @@ function getDisabled(rank, suit) {
           {{ rank }}
         </span>
         <span
-          :class="`text1 ${iconColor(suit - 1)} ${
+          :class="`text1 ${symbols[suit - 1].color} ${
             suit < 5 ? 'text-[26px] ml-1' : 'text-[14px] ml-[1px]'
           } select-none`"
         >
-          {{ suits[suit - 1] }}
+          {{ symbols[suit - 1].symbol }}
         </span>
       </button>
     </div>

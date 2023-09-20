@@ -1,14 +1,5 @@
 <!-- This component is the parent to all bid-components, keeps track of cards, bids, etc, -->
 
-<!-- suit = 0 nbr = 0 => pass
-   suit = 0 => clubs
-   suit = 1 => diamonds
-   suit = 2 => hearts
-   suit = 3 => spades
-   Right now this is hard to work with, hard to keep track of index, and the only thing that provides the correct
-   suits is the order of this array: const suits = ["♣", "♦", "♥", "♠", "NT"];
--->
-
 <script setup>
 // initialize components based on data attribute selectors
 onMounted(() => {});
@@ -23,17 +14,11 @@ function bid(s, r) {
 </script>
 <template>
   <div class="flex flex-row space-x-1 h-[370px] w-[1200px] justify-center">
-    <game-bidding-container
-      showImage="true"
-      wrapperClass="h-full w-[24%] border"
-    >
+    <game-bidding-container showImage="true" wrapperClass="h-full w-[24%]">
       <game-bidding-text></game-bidding-text>
     </game-bidding-container>
 
-    <game-bidding-container
-      wrapperClass="h-full w-[24%] border"
-      header="DIN HAND"
-    >
+    <game-bidding-container wrapperClass="h-full w-[24%]" header="DIN HAND">
       <game-bidding-hand
         wrapperClass="w-full h-[90%]"
         :showDeal="false"
@@ -55,20 +40,14 @@ function bid(s, r) {
       ></game-bidding-hand>
     </game-bidding-container>
 
-    <game-bidding-container
-      wrapperClass="h-full w-[24%] border"
-      header="BUDGIVNING"
-    >
+    <game-bidding-container wrapperClass="h-full w-[24%]" header="BUDGIVNING">
       <game-bidding-history
         :history="history"
         wrapperClass="w-full h-[90%]"
       ></game-bidding-history>
     </game-bidding-container>
 
-    <game-bidding-container
-      wrapperClass="h-full w-[24%] border"
-      header="BUDLÅDA"
-    >
+    <game-bidding-container wrapperClass="h-full w-[24%]" header="BUDLÅDA">
       <game-bidding-box
         wrapperClass="w-full h-[90%]"
         v-model:suit="suit"

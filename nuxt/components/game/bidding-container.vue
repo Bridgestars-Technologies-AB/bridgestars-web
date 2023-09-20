@@ -3,7 +3,7 @@
 const p = defineProps(["wrapperClass", "header", "showImage"]);
 </script>
 <template>
-  <div :class="'flex flex-col bg-dash-dark-200 ' + wrapperClass">
+  <div :class="'flex flex-col bg-dash-dark-100 ' + wrapperClass">
     <div
       v-if="header"
       class="w-full h-[15%] flex flex-row justify-center items-center"
@@ -20,13 +20,13 @@ const p = defineProps(["wrapperClass", "header", "showImage"]);
       <div class="w-[100%] h-[100%] ml-[25px]">
         <img
           class="max-w-[100%] max-h-[100%]"
-          src="../../assets/game/owls/Layer-1.png"
+          src="../../assets/game/owls/owl-1.png"
         />
       </div>
     </div>
 
     <div class="w-[90%] h-[2px] bg-dash-dark-400 mb-[10px] self-center"></div>
-    <div class="flex flex-col w-full h-full border justify-start">
+    <div class="flex flex-col w-full h-full justify-start">
       <slot></slot>
     </div>
   </div>

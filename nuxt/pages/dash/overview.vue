@@ -12,5 +12,5 @@ function bid(s, n) {
 </script>
 <template>
   <!-- <h1 class="">Overview</h1> -->
-  <game-bidding-system> </game-bidding-system>
+  <game-bidding-practice> </game-bidding-practice>
 </template>
