@@ -1,12 +1,14 @@
 <!--
-  Bidding Box
+ Bidding Box
 
-  Props:
-    suit: Number (0-4) //  v-model:suit="suit" where suit is a ref(0)
-    rank: Number (0-7) // 0 = pass
 
-  Emits:
-    bid: {suit: Number, rank: Number}
+ Props:
+   suit: Number (0-4) //  v-model:suit="suit" where suit is a ref(0)
+   rank: Number (0-7) // 0 = pass
+
+
+ Emits:
+   bid: {suit: Number, rank: Number}
 -->
 <script setup>
 const p = defineProps({
@@ -81,17 +83,17 @@ function getDisabled(rank, suit) {
         v-for="suit in 5"
         :key="suit"
         @click="bid(suit - 1, rank)"
-        :class="`bg-dash-dark-300 hover:bg-dash-dark-400 rounded-sm w-[50px] h-[30px] flex items-center justify-center overflow-x-hidden outline-none ${getDisabled(
+        :class="`bg-dash-dark-300 hover:bg-dash-dark-400 rounded-md w-[52px] h-[34px] flex items-center justify-center overflow-x-hidden outline-none ${getDisabled(
           rank,
           suit - 1
         )}`"
       >
-        <span class="text1 text-[15px] select-none">
+        <span class="text1 text-[20px] select-none">
           {{ rank }}
         </span>
         <span
           :class="`text1 ${iconColor(suit - 1)} ${
-            suit < 5 ? 'text-[22px] ml-1' : 'text-[13px] ml-[1px]'
+            suit < 5 ? 'text-[26px] ml-1' : 'text-[14px] ml-[1px]'
           } select-none`"
         >
           {{ suits[suit - 1] }}

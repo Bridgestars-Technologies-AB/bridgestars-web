@@ -1,8 +1,8 @@
 <script setup>
 /*
 This component displays the bidding history from bidding-box.
- Props:
-   history: List of {suit, rank}
+Props:
+  history: List of {suit, rank}
 */
 
 const p = defineProps({
@@ -42,7 +42,11 @@ function brick(suit, rank) {
 </script>
 
 <template>
-  <div :class="'flex flex-col items-center bg-[#121c27] ' + wrapperClass">
+  <div
+    :class="
+      'flex flex-col items-center rounded-xl bg-[#121c27] ' + wrapperClass
+    "
+  >
     <div class="w-[100%] flex flex-row">
       <div class="w-1/4 flex flex-row justify-center mt-[8px]" v-for="p in 4">
         <span class="text1 text-[26px] font-semibold mb-[4px]">
@@ -60,12 +64,12 @@ function brick(suit, rank) {
           v-for="e in history"
         >
           <!-- <span
-            :class="`text1 text-[22px] + ${
-              (e.suit === 0 && e.rank === 0) || e.suit === 4
-                ? 'tracking-[0.5px] text-[18px]'
-                : 'tracking-[2px]'
-            }`"
-            >{{ brick(e.suit, e.rank) }}</span -->
+           :class="`text1 text-[22px] + ${
+             (e.suit === 0 && e.rank === 0) || e.suit === 4
+               ? 'tracking-[0.5px] text-[18px]'
+               : 'tracking-[2px]'
+           }`"
+           >{{ brick(e.suit, e.rank) }}</span -->
           <span
             class="text1 text-[18px] tracking-[0.5px]"
             v-if="e.suit === 0 && e.rank === 0"

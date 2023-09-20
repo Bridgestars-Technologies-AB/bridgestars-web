@@ -1,12 +1,12 @@
 <!-- This component is the parent to all bid-components, keeps track of cards, bids, etc, -->
 
 <!-- suit = 0 nbr = 0 => pass
-    suit = 0 => clubs
-    suit = 1 => diamonds
-    suit = 2 => hearts
-    suit = 3 => spades
-    Right now this is hard to work with, hard to keep track of index, and the only thing that provides the correct
-    suits is the order of this array: const suits = ["♣", "♦", "♥", "♠", "NT"];
+   suit = 0 => clubs
+   suit = 1 => diamonds
+   suit = 2 => hearts
+   suit = 3 => spades
+   Right now this is hard to work with, hard to keep track of index, and the only thing that provides the correct
+   suits is the order of this array: const suits = ["♣", "♦", "♥", "♠", "NT"];
 -->
 
 <script setup>
@@ -22,7 +22,7 @@ function bid(s, r) {
 }
 </script>
 <template>
-  <div class="flex flex-row space-x-1 h-[400px] w-[1200px] justify-center">
+  <div class="flex flex-row space-x-1 h-[370px] w-[1200px] justify-center">
     <game-bidding-container
       showImage="true"
       wrapperClass="h-full w-[24%] border"
@@ -35,7 +35,7 @@ function bid(s, r) {
       header="DIN HAND"
     >
       <game-bidding-hand
-        wrapperClass="w-full h-[80%]"
+        wrapperClass="w-full h-[90%]"
         :showDeal="false"
         :hand="[
           { suit: 0, rank: 2 },
@@ -61,7 +61,7 @@ function bid(s, r) {
     >
       <game-bidding-history
         :history="history"
-        wrapperClass="w-full h-[80%]"
+        wrapperClass="w-full h-[90%]"
       ></game-bidding-history>
     </game-bidding-container>
 
@@ -70,7 +70,7 @@ function bid(s, r) {
       header="BUDLÅDA"
     >
       <game-bidding-box
-        wrapperClass="w-full h-[80%]"
+        wrapperClass="w-full h-[90%]"
         v-model:suit="suit"
         v-model:rank="rank"
         @bid="bid"

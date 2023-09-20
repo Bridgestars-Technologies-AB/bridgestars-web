@@ -26,7 +26,7 @@ const p = defineProps(["wrapperClass", "header", "showImage"]);
     </div>
 
     <div class="w-[90%] h-[2px] bg-dash-dark-400 mb-[10px] self-center"></div>
-    <div class="flex flex-col w-full h-full border justify-center">
+    <div class="flex flex-col w-full h-full border justify-start">
       <slot></slot>
     </div>
   </div>

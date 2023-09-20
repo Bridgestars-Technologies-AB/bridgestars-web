@@ -3,8 +3,9 @@
 Bdding Hand
 A component which displays the users hand
 
+
 Props:
-  hand: Array(13) [{suit: 0, rank: 2},{suit: 1, rank: 5},{suit:1, rank:12},{suit:2, rank:13} .....] 
+ hand: Array(13) [{suit: 0, rank: 2},{suit: 1, rank: 5},{suit:1, rank:12},{suit:2, rank:13} .....]
 */
 const p = defineProps({
   hand: {
@@ -156,14 +157,14 @@ function format(bridgeHand, suit) {
 </script>
 
 <template>
-  <div :class="'flex flex-col bg-[#121c27] ' + wrapperClass">
+  <div :class="'flex flex-col bg-[#121c27] rounded-xl ' + wrapperClass">
     <div
       v-for="(suit, index) in suits"
       :key="index"
       class="h-1/4 flex flex-row items-center ml-[10px]"
     >
       <span :class="`text-[45px] ${iconColor(index)}`">{{ suit }} </span>
-      <span class="ml-[10px] text-[30px] text1 tracking-[1px]">{{
+      <span class="ml-[10px] text-[25px] text1 tracking-[1px]">{{
         computedHand.filter((e) => e.suit === index)[0]?.ranks
       }}</span>
     </div>
