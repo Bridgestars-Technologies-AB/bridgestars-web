@@ -133,10 +133,11 @@ function click(item) {
             Premium
           </h6>
         </div>
-        <!-- <dash-menu-side-level :level="auth.get('level')" :xp="0.5" /> -->
+        <div class="[flex-basis:100%] h-0"/> <!-- break to new row -->
+        <dash-menu-side-level :user="auth.user()" class="mt-5 pl-2 pr-5" />
       </div>
 
-      <div class="flex flex-col mt-10 mb-[200px] h-full">
+      <div class="flex flex-col mt-6 mb-[200px] h-full">
         <div
           v-for="item in items"
           :key="item.key"
