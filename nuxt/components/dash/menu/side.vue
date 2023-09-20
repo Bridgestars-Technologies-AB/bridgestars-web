@@ -121,20 +121,21 @@ function click(item) {
         />
         <div class="flex flex-col text-start pl-2 justify-center">
           <h6
-            class="profile-section-text text-[24px] leading-[24px] font-family tracking-tighter"
+            class="text-[24px] leading-[24px] font-family tracking-tighter"
             @click="navigateTo({ name: 'dash-profile' })"
           >
             {{ auth.username() }}
           </h6>
           <h6
-            class="profile-section-text text-[#14C6A4] text-[18px] leading-[18px] dark:text-[#14C6a4] font-light tracking-normal"
+            class="text-[#14C6A4] text-[18px] leading-[18px] dark:text-[#14C6a4] font-light tracking-normal"
             @click="navigateTo({ name: 'dash-profile' })"
           >
             Premium
           </h6>
         </div>
         <div class="[flex-basis:100%] h-0"/> <!-- break to new row -->
-        <dash-menu-side-level :user="auth.user()" class="mt-5 pl-2 pr-5" />
+        <dash-menu-side-level :user="auth.user()" :class="`mt-5 pl-2 pr-5 ${isOpen ? 'block' : 'hidden'}`" />
+        <div :class="`h-[40px] ${isOpen ? 'hidden' : 'block'}`" />
       </div>
 
       <div class="flex flex-col mt-6 mb-[200px] h-full">
