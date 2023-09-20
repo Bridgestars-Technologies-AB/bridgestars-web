@@ -12,7 +12,7 @@ const emit = defineEmits(["submit"]);
 //const formRef = ref(); // we need a DOM node
 
 onMounted(() => {
-  if (useAuth().authenticated) {
+  if (useAuth().authenticated()) {
     navigateTo("/auth/already");
   }
   document.querySelector("input")?.focus();
@@ -33,23 +33,26 @@ onMounted(() => {
     <div
       class="absolute top-0 flex justify-start whitespace-nowrap pt-[30px] pl-[30px]"
     >
+      <span class="authHeader text-blue mr-2 xs:block sm:hidden"> {{"<"}} </span>
       <button
         @click="router.push({ path: '/' })"
         class="normal-case text-blue authHeader"
       >
         {{ $t("auth:common.home") }}
       </button>
-      <span class="authHeader text-grey opacity-80 mx-2"> / </span>
-      <span class="authHeader text-grey opacity-80">{{ header }}</span>
+      <span class="authHeader text-grey opacity-80 mx-2 xs:hidden sm:block"> / </span>
+      <span class="authHeader text-grey opacity-80 xs:hidden sm:block">{{ header }}</span>
     </div>
 
     <div class="absolute flex justify-center items-center z-[-1] h-full w-full">
-      <img
-        src="~/assets/bridgestars/art/auth-form-suits.svg"
+      <NuxtImg
+        alt="background"
+        src="/bridgestars/art/auth-form-suits.svg"
         class="xs:block sm:hidden w-[100%] scale-[1] min-w-[600px]"
       />
-      <img
-        src="~/assets/bridgestars/art/auth-form-ipad.svg"
+      <NuxtImg
+        alt="background"
+        src="/bridgestars/art/auth-form-ipad.svg"
         class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1300px] min-w-[1155px]"
       />
     </div>
@@ -59,16 +62,16 @@ onMounted(() => {
       class="flex flex-col grow items-center justify-center"
     >
       <!-- IMG -->
-      <img
-        class="anim-bounce pt-[10px] w-[50%] h-[80%]"
-        id="sign-in-image"
-        src="~/assets/bridgestars/art/sign_in.svg"
-        alt="Bridgestars sign-in image"
-      />
+      <!-- <NuxtImg -->
+      <!--   class="anim-bounce pt-[10px] w-[50%] h-[80%]" -->
+      <!--   id="sign-in-image" -->
+      <!--   src="/bridgestars/art/sign_in.svg" -->
+      <!--   alt="bridgestars logo" -->
+      <!-- /> -->
       <!-- TITLE -->
-      <img
+      <NuxtImg
         class="anim-bounce w-[64px] h-[64px] xs:mt-0 sm:mt-5 mb-5"
-        src="~/assets/bridgestars/logo/logo-trans-512px.png"
+        src="/bridgestars/logo/logo-trans-512px.png"
         alt="Bridgestars logo"
       />
       <h6
@@ -76,12 +79,12 @@ onMounted(() => {
       >
         {{ title }}
       </h6>
-      <span class="zoomIn text2 xs:mb-7 sm:mb-7 xs:mb-4 flex text-center text-[17px]">{{
+      <span class="zoomIn break-words sm:max-w-[450px] xs:max-w-[450px] xs:px-2 sm:px-0 text2 xs:mb-7 sm:mb-7 xs:mb-4 flex text-center text-[15px]">{{
         subtitle
       }}</span>
 
       <span
-        class="zoomIn text2 sm:mb-7 xs:mb-4 mt-[-30px] flex text-center text-[17px]"
+        class="zoomIn text2 sm:mb-7 xs:mb-4 mt-[-30px] flex text-center text-[15px]"
       >
         {{ subtitle2 }}
       </span>
@@ -99,7 +102,7 @@ onMounted(() => {
 </template>
 <style scoped>
 .authHeader {
-  @apply font-family2 text-[3vh] hsm:text-[30px]  leading-[1.5] font-bold;
+  @apply font-family2 text-[3vh]  leading-[1.5] font-bold;
 }
 
 .anim-bounce {

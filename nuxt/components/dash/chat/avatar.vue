@@ -59,7 +59,7 @@ const statusColor = () => {
 
 <template>
   <div class="aspect-square h-[50px] w-[50px]">
-        <img src="~/assets/bridgestars/images/castor.jpg" class="rounded-full object-cover object-top aspect-square cursor-pointer"/>
+        <NuxtImg width="50" height="50" format="webp" src="/bridgestars/images/castor.jpg" class="rounded-full object-cover object-top aspect-square cursor-pointer"/>
     <div ref="statusElement" :class="`absolute translate-x-[38px] translate-y-[-19px] rounded-full h-[16px] w-[16px] ${statusColor()} border-[3px]`"/>
   </div>
 </template>

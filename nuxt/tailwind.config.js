@@ -177,9 +177,9 @@ module.exports = {
     "leading-9",
     "shadow-lg",
   ],
-  purge: {
-    options: {
-      blocklist: ["true", "false", /^debug-/], //prune 'true' and 'false' classes so that we can use ${open && 'bg-dark'} without polluting classList
-    },
-  },
+  // purge: {
+  //   options: {
+  //     blocklist: ["true", "false", /^debug-/], //prune 'true' and 'false' classes so that we can use ${open && 'bg-dark'} without polluting classList
+  //   },
+  // },
 };

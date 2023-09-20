@@ -22,11 +22,9 @@ export default async function useRealtimeClient(): Promise<Client> {
   //stop server and unauithenticated users
   if (process.server) throw new Error("Cannot use socket on server");
   const auth = useAuth();
-  if (!auth.authenticated || !auth.user) {
+  if (!auth.authenticated()) {
     socket?.disconnect();
-    const e = new Error(
-      "User is not authenticated, cannot connect to realtime-server",
-    );
+    const e = new Error("User is not authenticated, cannot connect to realtime-server");
     deferred?.reject(e);
     throw e;
   }
@@ -35,7 +33,7 @@ export default async function useRealtimeClient(): Promise<Client> {
   // är lite orolig för race etc här
   if (!connectionPromise) {
     connectionPromise = new Promise((resolve, reject) => deferred = { resolve, reject });
-    connect(auth.user);
+    connect(auth.user());
   }
 
 
@@ -52,13 +50,13 @@ function connect(user:any){
 
   //connect socket to server
   socket.on(Events.Connection.Established, () => {
-    console.log("Socket connected");
+    // console.log("Connection to realtime-server established");
     if (socket === null) throw new Error("Socket is null??");
     //authenticate socket
     socket.emit(
       Events.Connection.Authenticate,
       user.id,
-      user.getSessionToken(),
+      user.data.getSessionToken(),
     );
     socket.on(Events.Connection.Authenticated, () => {
       if (deferred == null) return;
@@ -75,10 +73,10 @@ function connect(user:any){
     connected.value = false;
   });
   //for debug
-  socket.onAnyOutgoing((event, ...args) => {
-    console.log("outgoing", event, args);
-  });
-  socket.onAny((event, ...args) => {
-    console.log("incoming", event, args);
-  })
+  // socket.onAnyOutgoing((event, ...args) => {
+  //   console.log("outgoing", event, args);
+  // });
+  // socket.onAny((event, ...args) => {
+  //   console.log("incoming", event, args);
+  // })
 }

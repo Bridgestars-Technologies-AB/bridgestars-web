@@ -1,5 +1,10 @@
 
 <script setup>
+useHead({
+  htmlAttrs:{
+    lang: useTranslate().i18.language
+  }
+})
 await loadTranslations("common"); // load translation
 import Toast from "vue-toastification";
 
@@ -27,7 +32,6 @@ import '@fontsource/poppins/900.css';
 // import 'flowbite'
 
 onMounted(() => {
-  balanceText();
 })
 
 //import "tw-elements/dist/css/tw-elements.min.css";

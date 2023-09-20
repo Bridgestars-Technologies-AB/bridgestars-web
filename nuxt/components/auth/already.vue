@@ -13,7 +13,7 @@ function signOut() {
 const redirect = () => useRouter().replace("/auth/sign-in");
 
 onMounted(() => {
-  if (!useAuth().authenticated)
+  if (!useAuth().authenticated())
     // we should never show this page if user is not signed in
     redirect();
 });
@@ -22,7 +22,7 @@ onMounted(() => {
 <template>
   <auth-form
     :header="$t('auth:already.already')"
-    :title="$t('auth:already.title', { name: useAuth().get('dispName') })"
+    :title="$t('auth:already.title', { name: useAuth().username() })"
     :subtitle="$t('auth:already.subtitle')"
     :subtitle2="$t('auth:already.subtitle2')"
   >
