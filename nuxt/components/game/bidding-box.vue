@@ -66,7 +66,7 @@ function getDisabled(rank, suit) {
         v-for="suit in 5"
         :key="suit"
         @click="bid(suit - 1, rank)"
-        :class="`bg-dash-dark-300 hover:bg-dash-dark-400 rounded-md w-[52px] h-[34px] flex items-center justify-center overflow-x-hidden outline-none ${getDisabled(
+        :class="`biddingBox hover:bg-dash-dark-400 rounded-md flex items-center justify-center overflow-x-hidden outline-none ${getDisabled(
           rank,
           suit - 1
         )}`"

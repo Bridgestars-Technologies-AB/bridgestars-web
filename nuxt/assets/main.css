@@ -53,6 +53,23 @@
     @apply font-family text-[14px] font-light leading-[14px] uppercase;
   }
 
+  /* Here comes classes for bidding components */
+
+  /* The box for rank + suit used in bidding-box and bidding-history */
+  .biddingBox {
+    @apply w-[52px] h-[34px] bg-dash-dark-200;
+  }
+
+  /* Size for the bidding-container used in bidding-practice */
+  .biddingContainer {
+    @apply h-full w-[24%];
+  }
+
+  /* Size for all bidding-components used in bidding-practice */
+  .biddingComponent {
+    @apply w-full h-[90%];
+  }
+
   .text1,
   .text2,
   .text3 {

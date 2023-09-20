@@ -20,10 +20,6 @@ const p = defineProps({
 
 const players = ["V", "N", "Ö", "S"];
 
-function ifPass() {
-  e.suit === 0 && e.rank === 0 ? "bg-[#0E9F6E]" : "bg-dash-dark-200";
-}
-
 function brick(suit, rank) {
   return suit === 0 && rank === 0 ? "PASS" : `${rank}${symbols[suit].symbol}`;
 }
@@ -64,7 +60,7 @@ function brick(suit, rank) {
           </div>
 
           <div
-            class="h-full w-[52px] flex flex-row items-center justify-center rounded-lg bg-dash-dark-200"
+            class="biddingBox flex flex-row items-center justify-center rounded-lg"
             v-else
           >
             <span class="text1 text-[22px] tracking-[2px]">{{ e.rank }}</span>

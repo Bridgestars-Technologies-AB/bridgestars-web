@@ -13,47 +13,55 @@ function bid(s, r) {
 }
 </script>
 <template>
-  <div class="flex flex-row space-x-1 h-[370px] w-[1200px] justify-center">
-    <game-bidding-container showImage="true" wrapperClass="h-full w-[24%]">
-      <game-bidding-text></game-bidding-text>
-    </game-bidding-container>
+  <div
+    class="flex flex-col items-center w-full h-[100%] justify-between border"
+  >
+    <div class="w-[90%] h-[80px] border mb-[100px]"></div>
+    <div class="flex flex-row space-x-1 h-[370px] w-[100%] justify-center">
+      <game-bidding-container showImage="true" wrapperClass="biddingContainer">
+        <game-bidding-text></game-bidding-text>
+      </game-bidding-container>
 
-    <game-bidding-container wrapperClass="h-full w-[24%]" header="DIN HAND">
-      <game-bidding-hand
-        wrapperClass="w-full h-[90%]"
-        :showDeal="false"
-        :hand="[
-          { suit: 0, rank: 2 },
-          { suit: 0, rank: 5 },
-          { suit: 0, rank: 12 },
-          { suit: 1, rank: 13 },
-          { suit: 1, rank: 3 },
-          { suit: 1, rank: 8 },
-          { suit: 2, rank: 11 },
-          { suit: 2, rank: 13 },
-          { suit: 2, rank: 14 },
-          { suit: 3, rank: 5 },
-          { suit: 3, rank: 6 },
-          { suit: 3, rank: 9 },
-          { suit: 3, rank: 14 },
-        ]"
-      ></game-bidding-hand>
-    </game-bidding-container>
+      <game-bidding-container wrapperClass="biddingContainer" header="DIN HAND">
+        <game-bidding-hand
+          wrapperClass="biddingComponent"
+          :showDeal="false"
+          :hand="[
+            { suit: 0, rank: 2 },
+            { suit: 0, rank: 5 },
+            { suit: 0, rank: 12 },
+            { suit: 1, rank: 13 },
+            { suit: 1, rank: 3 },
+            { suit: 1, rank: 8 },
+            { suit: 2, rank: 11 },
+            { suit: 2, rank: 13 },
+            { suit: 2, rank: 14 },
+            { suit: 3, rank: 5 },
+            { suit: 3, rank: 6 },
+            { suit: 3, rank: 9 },
+            { suit: 3, rank: 14 },
+          ]"
+        ></game-bidding-hand>
+      </game-bidding-container>
 
-    <game-bidding-container wrapperClass="h-full w-[24%]" header="BUDGIVNING">
-      <game-bidding-history
-        :history="history"
-        wrapperClass="w-full h-[90%]"
-      ></game-bidding-history>
-    </game-bidding-container>
+      <game-bidding-container
+        wrapperClass="biddingContainer"
+        header="BUDGIVNING"
+      >
+        <game-bidding-history
+          :history="history"
+          wrapperClass="biddingComponent"
+        ></game-bidding-history>
+      </game-bidding-container>
 
-    <game-bidding-container wrapperClass="h-full w-[24%]" header="BUDLÅDA">
-      <game-bidding-box
-        wrapperClass="w-full h-[90%]"
-        v-model:suit="suit"
-        v-model:rank="rank"
-        @bid="bid"
-      />
-    </game-bidding-container>
+      <game-bidding-container wrapperClass="biddingContainer" header="BUDLÅDA">
+        <game-bidding-box
+          wrapperClass="biddingComponent"
+          v-model:suit="suit"
+          v-model:rank="rank"
+          @bid="bid"
+        />
+      </game-bidding-container>
+    </div>
   </div>
 </template>
