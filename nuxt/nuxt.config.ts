@@ -16,10 +16,7 @@ export default defineNuxtConfig({
     "~/components",
   ],
   imports: {
-    dirs: [
-      "composables",
-      "composables/stores",
-    ],
+    dirs: ["composables", "composables/stores"],
   },
   modules: [
     // "@nuxtjs/i18n",
@@ -30,6 +27,12 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/image",
     "@averjs/nuxt-compression",
+    [
+      "@nuxtjs/eslint-module",
+      {
+        /* module options */
+      },
+    ],
   ],
   image: {
     format: ["webp"],
@@ -37,7 +40,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/": { prerender: true }, // build static resource
-    "/auth/**": {prerender: true},
+    "/auth/**": { prerender: true },
     "/dash/**": { ssr: false }, //only client side
   },
   // i18n: {
