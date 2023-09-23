@@ -1,24 +1,24 @@
 /**
  * This file contains the types for the realtime communication between the client and the server.
  **/
-export namespace Events{
-    export enum Send {
-        //chats
-        SubscribeToChats = "1",
-        TypingInChat = "2",
-        ChatMessage = "3",
-        ChatMessageReactedTo = "4",
+export namespace Events {
+  export enum Send {
+    //chats
+    SubscribeToChats = "1",
+    TypingInChat = "2",
+    ChatMessage = "3",
+    ChatMessageReactedTo = "4",
 
-        GetUserStatus = "5",
-        SetUserStatus = "6",
-        SubscribeToUserStatus = "7"
-    }
+    GetUserStatus = "5",
+    SetUserStatus = "6",
+    SubscribeToUserStatus = "7",
+  }
   export enum Receive {
-    ChatMessage="1",
-    UserIsTyping="2",
-    ChatMessageReaction="3",
+    ChatMessage = "1",
+    UserIsTyping = "2",
+    ChatMessageReaction = "3",
 
-    UserStatus="4",
+    UserStatus = "4",
   }
   export enum Connection {
     Authenticated = "a1",
@@ -43,10 +43,14 @@ export namespace Events{
   export interface ReceiveTypes {
     [Connection.Authenticated]: () => void;
     [Receive.ChatMessage]: (chatId: string) => void;
-    [Receive.UserIsTyping]: (chatId: string, userId:string, typing:boolean) => void;
-    [Receive.ChatMessageReaction]: (chatId: string, messageId:string) => void;
+    [Receive.UserIsTyping]: (
+      chatId: string,
+      userId: string,
+      typing: boolean,
+    ) => void;
+    [Receive.ChatMessageReaction]: (chatId: string, messageId: string) => void;
 
-    [Receive.UserStatus]: (userId:string, status: number) => void;
+    [Receive.UserStatus]: (userId: string, status: number) => void;
   }
 }
 
@@ -55,7 +59,6 @@ export interface SocketData {
   age: number;
 }
 
-import {Socket as _Socket} from "socket.io-client";
+import { Socket as _Socket } from "socket.io-client";
 export type Socket = _Socket<Events.ReceiveTypes, Events.SendTypes>;
-export type Client = {socket: Socket, connected: Ref<Boolean>};
-
+export type Client = { socket: Socket; connected: Ref<Boolean> };

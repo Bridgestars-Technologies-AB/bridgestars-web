@@ -88,7 +88,7 @@ function format(bridgeHand, suit) {
   return {
     suit: suit,
     ranks: sortCards(
-      bridgeHand.filter((e) => e.suit === suit).map((e) => e.rank)
+      bridgeHand.filter((e) => e.suit === suit).map((e) => e.rank),
     ).join(""),
   };
 }

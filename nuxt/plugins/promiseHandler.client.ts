@@ -8,12 +8,11 @@ function handleParseError(error) {
 
 export default defineNuxtPlugin((nuxtContext) => {
   window.onunhandledrejection = (error) => {
-    handleParseError(error)
-    console.log("via plugin: ", error)
-
-  }
+    handleParseError(error);
+    console.log("via plugin: ", error);
+  };
   window.onrejectionhandled = (error) => {
-    handleParseError(error)
-    console.log("via plugin: ", error)
-  }
-})
+    handleParseError(error);
+    console.log("via plugin: ", error);
+  };
+});

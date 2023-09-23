@@ -1,21 +1,19 @@
-
-import i18next from 'i18next'
+import i18next from "i18next";
 // import resourcesToBackend from 'i18next-resources-to-backend'
-import I18NextVue from 'i18next-vue'
+import I18NextVue from "i18next-vue";
 //import LanguageDetector from 'i18next-browser-languagedetector';
 
 // import sv from '~/localization/lang/sv.json'
 // import en from '~/localization/lang/en.json'
 
-i18next
-.init({
-  debug:false,
-  resources:{},
-  fallbackLng: ['en', 'sv'],
-  supportedLngs: ['en', 'sv'],
-  ns: ['common'],
-  defaultNS: 'common',
-})
+i18next.init({
+  debug: false,
+  resources: {},
+  fallbackLng: ["en", "sv"],
+  supportedLngs: ["en", "sv"],
+  ns: ["common"],
+  defaultNS: "common",
+});
 
 // i18next.use(LanguageDetector).init({
 //   detection: {
@@ -46,6 +44,6 @@ i18next
 //   },
 // });
 
-export default defineNuxtPlugin(nuxtApp => {
-  nuxtApp.vueApp.use(I18NextVue, {i18next})
-})
+export default defineNuxtPlugin((nuxtApp) => {
+  nuxtApp.vueApp.use(I18NextVue, { i18next });
+});

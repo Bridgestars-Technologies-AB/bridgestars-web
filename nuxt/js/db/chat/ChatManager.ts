@@ -21,7 +21,7 @@ export default class ChatManager {
         const aT = a.latestMessage?.createdAt?.getTime() || 0;
         const bT = b.latestMessage?.createdAt?.getTime() || 0;
         return bT - aT;
-      })
+      }),
     );
   }
 }

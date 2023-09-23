@@ -10,10 +10,14 @@
     ],
     "return": {
       "type": "{; profileAccess: int,; first: string,; last: string,; birth: date,; nationality: string;}",
-      "desc": "The user's protected information"    },
+      "desc": "The user's protected information"
+    },
     "desc": "This function returns protected information about the user.;The result will only be populated if the user has given you access to the information.",
-    "errors":[
-      "user not signed in","This user is not public", "You are not friends with this user", "This user is private"
+    "errors": [
+      "user not signed in",
+      "This user is not public",
+      "You are not friends with this user",
+      "This user is private"
     ]
   },
   {
@@ -45,8 +49,10 @@
       "desc": "An array of users matching the search string.;Populated with the minimal information set."
     },
     "desc": "This function searches for users matching the search string.",
-    "errors":[
-      "user not signed in", "No username provided", "Error searching users"
+    "errors": [
+      "user not signed in",
+      "No username provided",
+      "Error searching users"
     ]
   },
   {
@@ -62,8 +68,11 @@
       "type": "void"
     },
     "desc": "This function sends a friend request to the user with the given UID.",
-    "errors":[
-      "User not authenticated", "You can't send a friend request to yourself","Already friends with this user", "Error<internal>"
+    "errors": [
+      "User not authenticated",
+      "You can't send a friend request to yourself",
+      "Already friends with this user",
+      "Error<internal>"
     ]
   },
   {
@@ -79,8 +88,11 @@
       "type": "void"
     },
     "desc": "This function accepts a friend request from the user with the given UID.",
-    "errors":[
-      "User not authenticated", "You can't accept your own friend request", "Already friends with this user", "Error<internal>"
+    "errors": [
+      "User not authenticated",
+      "You can't accept your own friend request",
+      "Already friends with this user",
+      "Error<internal>"
     ]
   },
   {
@@ -96,8 +108,10 @@
       "type": "void"
     },
     "desc": "This function denies a friend request from the user with the given UID.",
-    "errors":[
-      "User not authenticated", "User can't deny their own friendrequest", "Error<internal>"
+    "errors": [
+      "User not authenticated",
+      "User can't deny their own friendrequest",
+      "Error<internal>"
     ]
   },
   {
@@ -113,42 +127,22 @@
       "type": "void"
     },
     "desc": "This function removes a friend from our friend list.",
-    "errors":[
-      "User not authenticated", "User can't remove themselves as friend", "Error<internal>"
+    "errors": [
+      "User not authenticated",
+      "User can't remove themselves as friend",
+      "Error<internal>"
     ]
   },
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   {
     "name": "signOutFromAllDevices",
-    "params": [
-      {"name":"none", "type":"", "desc":""}
-    ],
+    "params": [{ "name": "none", "type": "", "desc": "" }],
     "return": {
       "type": "void",
       "desc": ""
     },
     "desc": "Removes all sessions associated with user, forcing all devices to sign in again.",
-    "errors":[
-      "User not authenticated", "Error<internal>"
-    ]
+    "errors": ["User not authenticated", "Error<internal>"]
   },
   {
     "name": "signIn",
@@ -169,10 +163,11 @@
       "desc": ""
     },
     "desc": "This function checks if the credentials are correct and will otherwise check; if they are correct on the old database and then migrate the account to; the new database and return.",
-    "errors":[
-      "Invalid username/password", "Error<internal>", "User not found <internal error, migration failed>"
+    "errors": [
+      "Invalid username/password",
+      "Error<internal>",
+      "User not found <internal error, migration failed>"
     ]
-    
   },
   {
     "name": "fetchIfUpdated",
@@ -190,7 +185,7 @@
       {
         "name": "updatedAt",
         "type": "date",
-        "desc": "The client's latest known updatedAt date" 
+        "desc": "The client's latest known updatedAt date"
       }
     ],
     "return": {
@@ -198,8 +193,10 @@
       "desc": "The DbObject of type <className> if updated; otherwise null"
     },
     "desc": "This functions fetches an object, but only if needed.; Useful for caching and for minimizing data usage.",
-    "errors":[
-      "User not authenticated.", "className not provided.", "uid not provided."
+    "errors": [
+      "User not authenticated.",
+      "className not provided.",
+      "uid not provided."
     ]
   },
   {
@@ -211,9 +208,9 @@
         "desc": "The UID of the user"
       },
       {
-        "name":"role", 
-        "type":"string", 
-        "desc":"The role to assign"
+        "name": "role",
+        "type": "string",
+        "desc": "The role to assign"
       }
     ],
     "return": {
@@ -222,8 +219,12 @@
     },
     "desc": "Add Role <role> to user with UID <uid>.",
     "roles": ["admin"],
-    "errors":[
-      "User not authenticated.", "uid not provided.", "role not provided.", "Role not found.", "Error<internal>"
+    "errors": [
+      "User not authenticated.",
+      "uid not provided.",
+      "role not provided.",
+      "Role not found.",
+      "Error<internal>"
     ]
   },
   {
@@ -235,9 +236,9 @@
         "desc": "The UID of the user"
       },
       {
-        "name":"role", 
-        "type":"string", 
-        "desc":"The role to remove/strip"
+        "name": "role",
+        "type": "string",
+        "desc": "The role to remove/strip"
       }
     ],
     "return": {
@@ -246,8 +247,12 @@
     },
     "desc": "Remove Role <role> from user with UID <uid>.",
     "roles": ["admin"],
-    "errors":[
-      "User not authenticated.", "uid not provided.", "role not provided.", "Role not found.", "Error<internal>"
+    "errors": [
+      "User not authenticated.",
+      "uid not provided.",
+      "role not provided.",
+      "Role not found.",
+      "Error<internal>"
     ]
   },
   {
@@ -259,9 +264,9 @@
         "desc": "The UID of the user"
       },
       {
-        "name":"room", 
-        "type":"string", 
-        "desc":"The UID of the room"
+        "name": "room",
+        "type": "string",
+        "desc": "The UID of the room"
       }
     ],
     "return": {
@@ -270,10 +275,13 @@
     },
     "desc": "Add the role RoomMod to user with UID <uid> in room with UID <room>.",
     "roles": ["admin"],
-    "errors":[
-      "User not authenticated.", "uid not provided.", "room not provided.", "Role not found.", "Error<internal>"
+    "errors": [
+      "User not authenticated.",
+      "uid not provided.",
+      "room not provided.",
+      "Role not found.",
+      "Error<internal>"
     ]
-
   },
   {
     "name": "redeemVoucher",
@@ -289,20 +297,33 @@
       "desc": "This is the return value"
     },
     "desc": "Returns an object with information about the unlocked voucher.",
-    "errors":[
-      "Must be signed in to redeem a voucher","No voucherCode provided", "This code is not valid.","This code has expired.", "This code is currently held be someone else.", "You have already used this code.", "This voucher is for a room that you are already a member of.", "This voucher is for a course that you are already a member of.", "The course does not exist.", "<internal> Could not create subscription", "<internal> user not found", "<internal> voucher not found", "Internal error: Room not found when redeeming voucher.","Internal error: Course not found when redeeming voucher."
+    "errors": [
+      "Must be signed in to redeem a voucher",
+      "No voucherCode provided",
+      "This code is not valid.",
+      "This code has expired.",
+      "This code is currently held be someone else.",
+      "You have already used this code.",
+      "This voucher is for a room that you are already a member of.",
+      "This voucher is for a course that you are already a member of.",
+      "The course does not exist.",
+      "<internal> Could not create subscription",
+      "<internal> user not found",
+      "<internal> voucher not found",
+      "Internal error: Room not found when redeeming voucher.",
+      "Internal error: Course not found when redeeming voucher."
     ]
   },
   {
     "name": "removeAllTestObjects",
-    "params": [ ],
+    "params": [],
     "return": {
       "type": "void",
       "desc": ""
     },
-    "roles":["admin"],
+    "roles": ["admin"],
     "desc": "Removes all objects where object.test is true.;ps. when testing you should define {testing:true} as an argument to the parse connection.; (may be obsolete in web)",
-    "errors":["Not admin."]
+    "errors": ["Not admin."]
   },
   {
     "name": "testCheckoutConfirmed",
@@ -314,8 +335,8 @@
       },
       {
         "name": "voucher",
-        "type":"string",
-        "desc":"The UID of the voucher"
+        "type": "string",
+        "desc": "The UID of the voucher"
       }
     ],
     "return": {
@@ -323,8 +344,14 @@
       "desc": ""
     },
     "desc": "Uses a voucher without requiring payment. In order to test that user receives the right roles.",
-    "roles":["admin"],
-    "errors":["Not admin.", "Not logged in.", "Param user missing.", "Param voucher missing.", "... almost all the same as in redeemVoucher function ..."]
+    "roles": ["admin"],
+    "errors": [
+      "Not admin.",
+      "Not logged in.",
+      "Param user missing.",
+      "Param voucher missing.",
+      "... almost all the same as in redeemVoucher function ..."
+    ]
   },
   {
     "name": "testCheckoutExpired",
@@ -336,8 +363,8 @@
       },
       {
         "name": "voucher",
-        "type":"string",
-        "desc":"The UID of the voucher"
+        "type": "string",
+        "desc": "The UID of the voucher"
       }
     ],
     "return": {
@@ -345,8 +372,14 @@
       "desc": ""
     },
     "desc": "Lets a pending use of a voucher expire.",
-    "roles":["admin"],
-    "errors":["Not admin.", "Not logged in.", "Param user missing.", "Param voucher missing.", "Voucher not und"]
+    "roles": ["admin"],
+    "errors": [
+      "Not admin.",
+      "Not logged in.",
+      "Param user missing.",
+      "Param voucher missing.",
+      "Voucher not und"
+    ]
   },
   {
     "name": "test_assignSubscriptionToCustomer",
@@ -355,7 +388,8 @@
         "name": "course",
         "type": "string",
         "desc": "The UID of the course"
-      },{
+      },
+      {
         "name": "user",
         "type": "string",
         "desc": "The UID of the user"
@@ -366,8 +400,13 @@
       "desc": ""
     },
     "desc": "'Pays' for an subscription via stripe in order to check; that stripe triggers subscription creation on bridgestars server.",
-    "roles":["admin"],
-    "errors":["Not logged in.", "Not admin.", "Param user missing.", "Param course missing."]
+    "roles": ["admin"],
+    "errors": [
+      "Not logged in.",
+      "Not admin.",
+      "Param user missing.",
+      "Param course missing."
+    ]
   },
   {
     "name": "test_cancelSubscription",
@@ -383,8 +422,13 @@
       "desc": ""
     },
     "desc": "Cancels a subscription on stripe in order to check; that stripes triggers subscription deletion on bridgestars server.",
-    "roles":["admin"],
-    "errors":["Not logged in.", "Not admin.", "Param user missing.", "Param course missing."]
+    "roles": ["admin"],
+    "errors": [
+      "Not logged in.",
+      "Not admin.",
+      "Param user missing.",
+      "Param course missing."
+    ]
   },
   {
     "name": "test_cancelAndExitAllCourses",
@@ -400,19 +444,27 @@
       "desc": ""
     },
     "desc": "Cancels all subscriptions on stripe and exits all courses.",
-    "roles":["admin"],
-    "errors":["Not logged in.", "Not admin.", "Param user missing.", "No subscription found but cleaned exited room and courses."]
+    "roles": ["admin"],
+    "errors": [
+      "Not logged in.",
+      "Not admin.",
+      "Param user missing.",
+      "No subscription found but cleaned exited room and courses."
+    ]
   },
   {
     "name": "generateSubscriptionDashboardLink",
-    "params": [
-    ],
+    "params": [],
     "return": {
       "type": "string",
       "desc": "The URL to the subscription dashboard"
     },
     "desc": "Generates a link to the subscription dashboard on stripe.",
-    "errors":["Not logged in.", "This user does not have any active subscriptions", "Could not create subscription (wierd text, should be 'could not create link')"]
+    "errors": [
+      "Not logged in.",
+      "This user does not have any active subscriptions",
+      "Could not create subscription (wierd text, should be 'could not create link')"
+    ]
   },
   {
     "name": "archivePost",
@@ -424,9 +476,16 @@
       }
     ],
     "return": {
-      "type": "void","desc":""
+      "type": "void",
+      "desc": ""
     },
     "desc": "This function marks a post on the forum or voting pages as archived.; (Not the same as deleting., Will not appear in flow.)",
-    "errors":["User not authenticated.", "uid not provided.", "Object not found.", "Action is not allowed. (user is not the author of the object or a moderator in the room the object is in)", "Object could not be archived. (it's the wrong type of object)"]
+    "errors": [
+      "User not authenticated.",
+      "uid not provided.",
+      "Object not found.",
+      "Action is not allowed. (user is not the author of the object or a moderator in the room the object is in)",
+      "Object could not be archived. (it's the wrong type of object)"
+    ]
   }
 ]

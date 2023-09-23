@@ -23,7 +23,6 @@ const emit = defineEmits(["bid", "update:nbr", "update:suit"]);
 
 const suits = ["♣", "♦", "♥", "♠", "NT"]; //replace with better icons, colored?
 
-
 function bid(suit, nbr) {
   console.log("BIDDINGBOX: ", suit, nbr);
   if (nbr > p.nbr || (suit > p.suit && nbr === p.nbr)) {
@@ -61,7 +60,7 @@ function getDisabled(nbr, suit) {
         @click="bid(suit - 1, nbr)"
         :class="`bg-dash-dark-300 hover:bg-dash-dark-400 rounded-xl w-[65px] h-[45px] flex items-center justify-center overflow-x-hidden outline-none ${getDisabled(
           nbr,
-          suit - 1
+          suit - 1,
         )}`"
       >
         <span class="text1 text-[26px] select-none">

@@ -41,7 +41,7 @@ function brick(suit, nbr) {
             e === 'PASS' ? 'bg-[#0E9F6E]' : 'bg-dash-dark-200'
           }`"
           v-for="e in history.map((element) =>
-            brick(element.suit, element.nbr)
+            brick(element.suit, element.nbr),
           )"
         >
           <span

@@ -27,7 +27,7 @@ async function signOut() {
   }
   toast.clear(); //remove old toasts , ex sign in
   toast.success(t("dashboard:sign_out_modal.signed_out"));
-  if(props.customSignOutAction) props.customSignOutAction()  
+  if (props.customSignOutAction) props.customSignOutAction();
   else navigateTo("/auth/sign-in"); // go to home or sign-in on signout?? not sure what is best
 }
 </script>

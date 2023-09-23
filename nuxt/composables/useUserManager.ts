@@ -23,15 +23,15 @@ let deferred: {
  *
  * **/
 export default async function useUserManager(): Promise<UserManager> {
-  if(!useAuth().authenticated()) {
+  if (!useAuth().authenticated()) {
     manager = null;
     const e = new Error("Can't initialize user manager when not signed in");
     deferred?.reject(e);
     throw e;
   }
   if (!initPromise) {
-    initPromise = new Promise((resolve, reject) =>
-      deferred = { resolve, reject }
+    initPromise = new Promise(
+      (resolve, reject) => (deferred = { resolve, reject }),
     );
     const { socket } = await useRealtimeClient();
     const auth = useAuth();
@@ -52,6 +52,6 @@ export default async function useUserManager(): Promise<UserManager> {
   return manager;
 }
 
-async function fetchFriends() { //TODO: implement ?
-
+async function fetchFriends() {
+  //TODO: implement ?
 }

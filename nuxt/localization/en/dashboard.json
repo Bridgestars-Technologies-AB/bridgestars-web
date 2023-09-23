@@ -15,18 +15,18 @@
     "results": "Results",
     "sign-out": "Sign Out"
   },
-  "top_menu":{
-    "tooltip":{
+  "top_menu": {
+    "tooltip": {
       "settings": "Game Settings",
       "account": "Account Settings",
       "notifications": "Notifications",
       "toggle_dark_mode": "Toggle Dark Mode"
     }
   },
-  "sign_out_modal":{
-    "text":"Are you sure you want to sign out?",
+  "sign_out_modal": {
+    "text": "Are you sure you want to sign out?",
     "yes": "Yes, I'm sure",
     "no": "No, cancel",
-    "signed_out":"You have been signed out."
+    "signed_out": "You have been signed out."
   }
 }

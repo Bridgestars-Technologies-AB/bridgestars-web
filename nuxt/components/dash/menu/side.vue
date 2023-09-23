@@ -87,7 +87,7 @@ const items = [
 items.map(
   (x) =>
     (x.enabled =
-      x.action || router.getRoutes().some((r) => r.name == "dash-" + x.name))
+      x.action || router.getRoutes().some((r) => r.name == "dash-" + x.name)),
 ); // add enabled property
 
 const isOpen = inject("side-menu-open");
@@ -133,8 +133,12 @@ function click(item) {
             Premium
           </h6>
         </div>
-        <div class="[flex-basis:100%] h-0"/> <!-- break to new row -->
-        <dash-menu-side-level :user="auth.user()" :class="`mt-5 pl-2 pr-5 ${isOpen ? 'block' : 'hidden'}`" />
+        <div class="[flex-basis:100%] h-0" />
+        <!-- break to new row -->
+        <dash-menu-side-level
+          :user="auth.user()"
+          :class="`mt-5 pl-2 pr-5 ${isOpen ? 'block' : 'hidden'}`"
+        />
         <div :class="`h-[40px] ${isOpen ? 'hidden' : 'block'}`" />
       </div>
 
@@ -176,7 +180,9 @@ function click(item) {
 }
 
 .profile-section img {
-  transition: margin-left 0.3s ease-in-out, margin-top 0.3s ease-in-out;
+  transition:
+    margin-left 0.3s ease-in-out,
+    margin-top 0.3s ease-in-out;
 }
 .profile-section.closed img {
   position: absolute;
@@ -184,7 +190,8 @@ function click(item) {
 }
 
 #side-menu {
-  transition: left 0.3s ease-in-out,
+  transition:
+    left 0.3s ease-in-out,
     background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

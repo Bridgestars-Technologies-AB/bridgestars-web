@@ -1,4 +1,3 @@
-
 import { DbObject } from "~/js/db/index";
 import Message from "./Message";
 import { Events } from "~/js/realtime";
@@ -29,7 +28,7 @@ export default class Chat {
     this.messages = [];
     this.users = data.get("users");
     this.name = "";
-    (async () => this.manager = await useChatManager())();
+    (async () => (this.manager = await useChatManager()))();
   }
 
   /**
@@ -38,13 +37,15 @@ export default class Chat {
    */
   async getName(): Promise<string> {
     if (this.name) return this.name;
-    const otherUser =
-      this.users.filter((u: string) => u != useAuth().user.id)[0]; // temp, chats can have 2 users and therefore another name
-    await new Parse.Query("_User").select("dispName").get(otherUser).then(
-      (u) => {
+    const otherUser = this.users.filter(
+      (u: string) => u != useAuth().user.id,
+    )[0]; // temp, chats can have 2 users and therefore another name
+    await new Parse.Query("_User")
+      .select("dispName")
+      .get(otherUser)
+      .then((u) => {
         this.name = u.get("dispName");
-      },
-    )
+      })
       .catch((e) => {
         console.error("ChatManager error fetching chat name", e);
         throw e;
@@ -74,27 +75,33 @@ export default class Chat {
   }
 
   async fetchOlderMessages(limit: number): Promise<void> {
-    const base = new Parse.Query("Message").equalTo("chat", this.id).limit(
-      limit ?? 10,
-    );
-    return (this.messages.length === 0
-      ? base.descending("createdAt")
-      : base.lessThan("createdAt", this.messages[0].data.createdAt).descending(
-        "createdAt",
-      ))
+    const base = new Parse.Query("Message")
+      .equalTo("chat", this.id)
+      .limit(limit ?? 10);
+    return (
+      this.messages.length === 0
+        ? base.descending("createdAt")
+        : base
+            .lessThan("createdAt", this.messages[0].data.createdAt)
+            .descending("createdAt")
+    )
       .find()
       .then((mx) => this.addMessages(mx));
   }
   async fetchNewerMessages(limit: number) {
-    const base = new Parse.Query("Message").equalTo("chat", this.id).limit(
-      limit ?? 10,
-    );
-    return (this.messages.length == 0
-      ? base.descending("createdAt")
-      : base.greaterThan(
-        "createdAt",
-        this.messages[this.messages.length - 1].data.createdAt,
-      ).ascending("createdAt"))
+    const base = new Parse.Query("Message")
+      .equalTo("chat", this.id)
+      .limit(limit ?? 10);
+    return (
+      this.messages.length == 0
+        ? base.descending("createdAt")
+        : base
+            .greaterThan(
+              "createdAt",
+              this.messages[this.messages.length - 1].data.createdAt,
+            )
+            .ascending("createdAt")
+    )
       .find()
       .then((mx) => this.addMessages(mx));
   }

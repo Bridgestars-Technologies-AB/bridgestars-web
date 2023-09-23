@@ -4,12 +4,13 @@
 const firstTime = inject("first_time_at_home"); //issue exists for this one
 const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
 const showVideo = ref(true);
-const { t } = await loadTranslations("home")
+const { t } = await loadTranslations("home");
 // import art_img from "/bridgestars/art/home_page.svg";
 
 onMounted(() => {
-  const video : any = document.getElementById("video");
-  video.play()
+  const video: any = document.getElementById("video");
+  video
+    .play()
     .then(() => {
       video.addEventListener("ended", () => {
         showVideo.value = false;
@@ -35,7 +36,7 @@ onMounted(() => {
 function fadeInBackground(delay) {
   setTimeout(() => {
     const fadeTarget = document.getElementsByClassName("background")[0];
-    if (fadeTarget != null){
+    if (fadeTarget != null) {
       fadeTarget.style["background-color"] = "rgb(240, 242, 245)";
       fadeTarget.style["opacity"] = 1;
     }
@@ -49,13 +50,11 @@ function fadeInUI(delay) {
     showUI.value = true;
     firstTime.value = false;
 
-    if (cardDiv != null){
+    if (cardDiv != null) {
       cardDiv.classList.add("cardAnimation");
       cardDiv.style.display = "block";
     }
-    if(card != null)
-      card.style.opacity = 1;
-
+    if (card != null) card.style.opacity = 1;
   }, delay);
 }
 </script>
@@ -192,7 +191,7 @@ function fadeInUI(delay) {
               <a
                 class="text-blue font-normal underline"
                 :href="`mailto:info@bridgestars.net?subject=${$t(
-                  'home:contact.emailSubject'
+                  'home:contact.emailSubject',
                 )}&body=${$t('home:contact.emailBody')}`"
                 target="_blank"
                 rel="noreferrer"
