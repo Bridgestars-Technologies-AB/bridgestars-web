@@ -1,9 +1,12 @@
+//This is the config file for ESLint, here we specify which plugins and parsers to use, and also which
+//rule sets ESLint follows
 module.exports = {
   env: {
     node: true,
     es2021: true,
   },
   parser: "vue-eslint-parser",
+  // typescript parser needs to be under parserOptions so not to override vue-eslint-parser
   parserOptions: {
     ecmaVersion: 12,
     sourceType: "module",
