@@ -23,8 +23,8 @@ const current = reactive(locales.value.find((l) => l.code === locale.value));
       @click="expanded = !expanded"
     />
     <span
-      v-else
       v-for="l in locales"
+      v-else
       :class="`${l.flag} ${l.code != locale ? 'opacity-50' : ''}`"
       style="height: 34px; width: 34px"
       @click="set(l.code)"

@@ -30,21 +30,21 @@ function submit(res) {
     @submit="submit"
   >
     <base-input-field
-      wrapperClass="w-[100%]"
-      :placeholder="$t('auth:placeholder.usernameEmail')"
-      v-model="query.email"
       id="username-email"
+      v-model="query.email"
+      wrapper-class="w-[100%]"
+      :placeholder="$t('auth:placeholder.usernameEmail')"
     />
     <base-input-field
-      wrapperClass="w-[100%]"
+      id="password-signin"
+      wrapper-class="w-[100%]"
       :placeholder="$t('auth:placeholder.password')"
       type="password"
-      id="password-signin"
     />
 
     <base-submit-button
-      wrapperClass="w-[100%] !mt-6"
       id="submit"
+      wrapper-class="w-[100%] !mt-6"
       :text="$t('auth:common.signIn')"
       :loading="showLoading"
     ></base-submit-button>
@@ -53,17 +53,17 @@ function submit(res) {
       <span class="text2 mr-1">{{ $t("auth:signIn.footer") }}</span>
       <button
         type="button"
-        @click="navigateTo({ path: '/auth/sign-up', query })"
         class="text-blue font-bold normal-case tracking-[0.5px]"
+        @click="navigateTo({ path: '/auth/sign-up', query })"
       >
         {{ $t("auth:common.signUp") }}
       </button>
     </div>
     <div>
       <button
-        @click="navigateTo({ path: '/auth/reset', query })"
         class="text-blue font-bold normal-case tracking-[0.5px] translate-y-[-12px]"
         type="button"
+        @click="navigateTo({ path: '/auth/reset', query })"
       >
         {{ $t("auth:signIn.forgot") }}
       </button>

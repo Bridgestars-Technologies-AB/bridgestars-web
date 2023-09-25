@@ -45,8 +45,8 @@ function getDisabled(nbr, suit) {
     <!-- Pass button -->
     <div class="flex justify-start">
       <button
-        @click="bid(0, 0)"
         class="bg-green-500 hover:bg-green-400 text1 text-white dark:text-light text-[26px] w-[120px] h-[45px] rounded-xl outline-none select-none"
+        @click="bid(0, 0)"
       >
         Pass
       </button>
@@ -57,11 +57,11 @@ function getDisabled(nbr, suit) {
       <button
         v-for="suit in 5"
         :key="suit"
-        @click="bid(suit - 1, nbr)"
         :class="`bg-dash-dark-300 hover:bg-dash-dark-400 rounded-xl w-[65px] h-[45px] flex items-center justify-center overflow-x-hidden outline-none ${getDisabled(
           nbr,
           suit - 1,
         )}`"
+        @click="bid(suit - 1, nbr)"
       >
         <span class="text1 text-[26px] select-none">
           {{ nbr }}

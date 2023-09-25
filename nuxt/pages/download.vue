@@ -43,7 +43,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <base-card-page-layout imgSrc="/bridgestars/art/about_us.png">
+  <base-card-page-layout img-src="/bridgestars/art/about_us.png">
     <div class="max-w-[1000px] flex flex-col text-justify px-[16px]">
       <base-lang-switcher class="mb-4" @switched="update" />
 
@@ -130,9 +130,9 @@ onMounted(() => {
 
       <button
         v-if="!showOptions"
-        @click="showOptions = true"
         type="button"
         class="mt-10 !text-[16px] text-blue font-bold normal-case tracking-[0.5px]"
+        @click="showOptions = true"
       >
         {{ $t("download:showOptions") }}
       </button>

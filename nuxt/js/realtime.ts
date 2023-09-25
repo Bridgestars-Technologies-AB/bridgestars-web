@@ -1,6 +1,7 @@
 /**
  * This file contains the types for the realtime communication between the client and the server.
  **/
+/* eslint-disable-next-line */
 export namespace Events {
   export enum Send {
     //chats
@@ -61,4 +62,4 @@ export interface SocketData {
 
 import { Socket as _Socket } from "socket.io-client";
 export type Socket = _Socket<Events.ReceiveTypes, Events.SendTypes>;
-export type Client = { socket: Socket; connected: Ref<Boolean> };
+export type Client = { socket: Socket; connected: Ref<boolean> };

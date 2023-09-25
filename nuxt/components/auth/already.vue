@@ -27,13 +27,13 @@ onMounted(() => {
     :subtitle2="$t('auth:already.subtitle2')"
   >
     <div class="flex xs:flex-col sm:flex-row xs:flex-reverse">
-      <button @click="signOut" class="buttons" type="button">
+      <button class="buttons" type="button" @click="signOut">
         {{ $t("auth:already.signOut") }}
       </button>
       <button
-        @click="navigateTo({ path: '/dash', query })"
         class="buttons"
         type="button"
+        @click="navigateTo({ path: '/dash', query })"
       >
         {{ $t("auth:already.dash") }}
       </button>
@@ -41,7 +41,7 @@ onMounted(() => {
   </auth-form>
   <base-modal-signout
     v-model:open="logoutModalOpen"
-    :customSignOutAction="redirect"
+    :custom-sign-out-action="redirect"
   />
 </template>
 

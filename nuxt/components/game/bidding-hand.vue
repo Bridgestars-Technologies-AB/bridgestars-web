@@ -109,7 +109,7 @@ function format(bridgeHand, suit) {
       }}</span>
     </div>
     <!-- Only for testing, later we will provde dealt hans from parent component -->
-    <button v-if="showDeal" @click="dealHand" class="bg-white text1">
+    <button v-if="showDeal" class="bg-white text1" @click="dealHand">
       Deal
     </button>
   </div>

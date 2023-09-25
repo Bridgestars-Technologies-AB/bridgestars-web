@@ -14,7 +14,7 @@ export default class UserManager {
 
   getUserIds = () => Object.keys(this.users);
   get = (id: string) => this.users[id];
-  getFriends = () => this.current.data.get("friends") || [];
+  getFriends = ():string[] => this.current.data.get("friends") as string[] || [];
   getStatus = (id: string) => {
     // send request to get live status and return the cached status in the meantime
     // the user object is reactive so will trigger a re-render when the status is updated
@@ -29,7 +29,7 @@ export default class UserManager {
       if (!user)
         this.getUser(id).then(
           (u) => u && this.socket.emit(Events.Send.GetUserStatus, id),
-        );
+        ).catch(() => {});
       else {
         // console.log(useTimeAgo().format(Date.now()-user.statusFetchTime.getTime()))
         this.socket.emit(Events.Send.GetUserStatus, id);
@@ -59,7 +59,7 @@ export default class UserManager {
   async getUser(id: string) {
     if (!id) return null;
     if (!this.users[id]) console.log("fetching user", id);
-    new Parse.Query("_User")
+    await new Parse.Query("_User")
       .get(id)
       .then((user) => {
         //TODO: this will run multiple times if called "fast"

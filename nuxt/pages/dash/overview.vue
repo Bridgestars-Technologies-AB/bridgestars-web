@@ -17,8 +17,8 @@ function bid(s, n) {
       <game-bidding-box
         v-model:suit="suit"
         v-model:nbr="nbr"
-        @bid="bid"
         class="scale-[80%]"
+        @bid="bid"
       />
       <!-- using scale creates som space between the elements which is not nice, not sure how to handle this. Maybe start by shrinking the component a little bit and hopefully we don't need scaling after that. Maybe the size of 80-90% is good. I prefered 80 on computer and 90 on mobile (i think)-->
       <game-bidding-history
@@ -26,7 +26,7 @@ function bid(s, n) {
         class="scale-[80%]"
       ></game-bidding-history>
       <game-bidding-hand
-        :showDeal="false"
+        :show-deal="false"
         :hand="[
           { suit: 0, ranks: '3678K' },
           { suit: 1, ranks: '2TQ' },

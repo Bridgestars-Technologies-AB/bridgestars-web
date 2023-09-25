@@ -31,7 +31,7 @@ function toggleChatApp() {
       <!-- left column-->
       <dash-chat-window
         v-if="open && currentChat"
-        :chatId="currentChat"
+        :chat-id="currentChat"
         @sendMessage=""
         @close="currentChat = null"
       />
@@ -54,8 +54,8 @@ function toggleChatApp() {
         </div>
         <base-tooltip :text="$t('chat.tooltip.open')" position="left">
           <div
-            @click="toggleChatApp"
             class="cursor-pointer rounded-full dark:bg-dash-dark-100 bg-dash-light-300 p-2 hover:bg-dash-light-500 dark:hover:bg-dash-dark-300"
+            @click="toggleChatApp"
           >
             <div v-if="!open">
               <NuxtImg

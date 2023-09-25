@@ -18,7 +18,6 @@ const backgroundColors = {
   error: "#F44335", //röd
   white: "#fefefe",
   light: "#dddddd",
-  dark: "#344767",
   DEFAULT: "#f74040",
   "dash-dark": {
     100: "#1a1625",
@@ -126,7 +125,7 @@ module.exports = {
       transitionProperty: {
         "decoration-color": "text-decoration-color",
       },
-      typography: ({ theme }) => ({
+      typography: () => ({ //{theme} => ({})
         policy: {
           css: {
             "--tw-prose-headings": "#FFFFFF",

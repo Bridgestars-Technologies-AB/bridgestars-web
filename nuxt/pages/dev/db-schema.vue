@@ -1,22 +1,22 @@
 <script setup>
 import d from "~/assets/dev/docs-db-schema.json";
 let data = d;
-const commonProps = ["_id", "objectId", "updatedAt", "createdAt"];
-const public_fields = ["img", "dispName"];
-const protected_fields = [
-  "email",
-  "authData",
-  "first",
-  "last",
-  "nationality",
-  "birth",
-  "profileAccess",
-  "friends",
-  "ifr",
-  "ofr",
-  "migratedFromFirebase",
-  "gameSignIn",
-];
+// const commonProps = ["_id", "objectId", "updatedAt", "createdAt"];
+// const public_fields = ["img", "dispName"];
+// const protected_fields = [
+//   "email",
+//   "authData",
+//   "first",
+//   "last",
+//   "nationality",
+//   "birth",
+//   "profileAccess",
+//   "friends",
+//   "ifr",
+//   "ofr",
+//   "migratedFromFirebase",
+//   "gameSignIn",
+// ];
 
 // used this to iterate over all fields and add necessary attributes to fill in later
 // data.forEach(table => {
@@ -59,7 +59,7 @@ function copyUrl(id) {
     <!--  all classes links -->
 
     <div class="mx-9 my-9 flex flex-wrap flex-col">
-      <div v-for="table in data" class="flex items-center text-center">
+      <div v-for="table in data" :key="table['_id']" class="flex items-center text-center" >
         <div class="w-full">
           <a
             :href="`#${table['_id']}`"
@@ -76,6 +76,7 @@ function copyUrl(id) {
     <div class="flex flex-col items-center w-full flex-grow">
       <div
         v-for="item in data"
+        :key="item['_id']"
         class="flex flex-col px-3 items-start mt-5 w-full max-w-[1700px]"
       >
         <div
@@ -83,8 +84,8 @@ function copyUrl(id) {
           @click="copyUrl(item['_id'])"
         >
           <h2
-            class="xl:text-[30px] sm:text-[25px] xs:text-[16px] font-bold"
             :id="item['_id']"
+            class="xl:text-[30px] sm:text-[25px] xs:text-[16px] font-bold"
           >
             {{ item["_id"] }}
           </h2>
@@ -104,14 +105,15 @@ function copyUrl(id) {
           </tr>
           <tr
             v-for="key in Object.keys(item).filter((x) => x != '_id')"
+            :key="key"
             class=""
           >
             <td class="!font-normal max-w-[120px]">{{ key }}</td>
             <td>{{ item[key].type }}</td>
             <td>
               <template v-if="item[key].description">
-                <div v-for="d in (item[key].description + ';').split(';')">
-                  {{ d }}
+                <div v-for="dx in (item[key].description + ';').split(';')" :key="dx">
+                  {{ dx }}
                 </div>
               </template>
             </td>

@@ -4,7 +4,7 @@
 const firstTime = inject("first_time_at_home"); //issue exists for this one
 const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
 const showVideo = ref(true);
-const { t } = await loadTranslations("home");
+await loadTranslations("home");
 // import art_img from "/bridgestars/art/home_page.svg";
 
 onMounted(() => {
@@ -18,7 +18,7 @@ onMounted(() => {
       fadeInUI(600);
       fadeInBackground(800);
     })
-    .catch((e) => {
+    .catch(() => {
       // console.error("video play error: ", e,"showing image instead");
       showVideo.value = false;
       fadeInUI(0);
@@ -109,10 +109,10 @@ function fadeInUI(delay) {
 
   <div class="cardDiv hidden">
     <base-card-page-layout
-      hideNavbar="true"
+      hide-navbar="true"
       class="will-change-transform pt-5 hsm:-translate-y-[100px] hxs:-translate-y-[70px] opacity-0 cardShow"
-      backdropClass="background"
-      imgSrc="/bridgestars/art/home_page.svg"
+      backdrop-class="background"
+      img-src="/bridgestars/art/home_page.svg"
     >
       <base-lang-switcher class="mb-4" />
       <div class="xs:px-0 sm:px-5 text-center flex flex-col items-center">

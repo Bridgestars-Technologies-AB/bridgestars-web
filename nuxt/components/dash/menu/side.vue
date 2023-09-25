@@ -146,8 +146,8 @@ function click(item) {
         <div
           v-for="item in items"
           :key="item.key"
-          @click="() => click(item)"
           class="overflow-x-clip"
+          @click="() => click(item)"
         >
           <div
             v-if="item.divider"

@@ -14,8 +14,8 @@ export default class Message {
   constructor(data: DbObject) {
     this.id = data.id;
     this.data = data;
-    this.text = data.get("text");
-    this.sender = data.get("sender");
+    this.text = data.get("text") as string;
+    this.sender = data.get("sender") as string;
     if (!data.createdAt) {
       this.createdAt = new Date(); //temp?
       // throw new Error("Tried adding message before uploading it to database");

@@ -57,20 +57,20 @@ async function signOut() {
       </h3>
 
       <button
+        type="button"
+        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 normal-case font-medium rounded-lg text-[20px] leading-[20px] inline-flex items-center px-5 py-2.5 text-center mr-2"
         @click="
           $emit('update:open', false);
           signOut();
         "
-        type="button"
-        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 normal-case font-medium rounded-lg text-[20px] leading-[20px] inline-flex items-center px-5 py-2.5 text-center mr-2"
       >
         {{ $t("dashboard:sign_out_modal.yes") }}
       </button>
 
       <button
-        @click="$emit('update:open', false)"
         type="button"
         class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-[20px] leading-[20px] font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white normal-case dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+        @click="$emit('update:open', false)"
       >
         {{ $t("dashboard:sign_out_modal.no") }}
       </button>

@@ -28,34 +28,34 @@ function submit(res) {
     @submit="submit"
   >
     <base-input-field
-      wrapperClass="w-[100%]"
+      id="username"
+      wrapper-class="w-[100%]"
       :placeholder="$t('auth:placeholder.username')"
       type="username"
-      id="username"
     />
     <base-input-field
-      wrapperClass="w-[100%]"
+      id="email"
+      wrapper-class="w-[100%]"
       :placeholder="$t('auth:placeholder.email')"
       type="email"
-      id="email"
     />
     <base-input-field
-      wrapperClass="w-[100%]"
+      id="password"
+      wrapper-class="w-[100%]"
       :placeholder="$t('auth:placeholder.password')"
       type="password"
-      id="password"
     />
     <base-input-field
-      wrapperClass="w-[100%]"
+      id="password-confirm"
+      wrapper-class="w-[100%]"
       :placeholder="$t('auth:placeholder.confirmPassword')"
       type="password"
-      id="password-confirm"
     />
     <div class="flex flex-col items-center text-center">
       <div class="flex flex-row items-center">
         <input
-          class="mr-2 w-5 h-5 rounded-md text-blue border-dark"
           id="terms-accept"
+          class="mr-2 w-5 h-5 rounded-md text-blue border-dark"
           type="checkbox"
         />
         <p>
@@ -78,8 +78,8 @@ function submit(res) {
     </div>
 
     <base-submit-button
-      wrapperClass="w-[100%] xs:!mt-2 sm:!mt-4"
       id="submit"
+      wrapper-class="w-[100%] xs:!mt-2 sm:!mt-4"
       type="submit"
       :text="$t('auth:common.signUp')"
       :loading="showLoading"
@@ -90,9 +90,9 @@ function submit(res) {
       <div class="xs:!mt-1 sm:!mt-1 xl:!mt-5 xs:!mb-3">
         <span class="text2 mr-1">{{ $t("auth:signUp.footer") }} </span>
         <button
-          @click="navigateTo({ path: '/auth/sign-in', query })"
           class="normal-case text-blue font-bold tracking-[0.5px]"
           type="button"
+          @click="navigateTo({ path: '/auth/sign-in', query })"
         >
           {{ $t("auth:common.signIn") }}
         </button>

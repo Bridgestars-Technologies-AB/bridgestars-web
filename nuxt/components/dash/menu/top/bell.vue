@@ -60,8 +60,8 @@ function formatTime(time) {
 <template>
   <base-tooltip :text="$t('dashboard:top_menu.tooltip.notifications')">
     <div
-      class="group flex items-center"
       ref="popoverTrigger"
+      class="group flex items-center"
       @click="popover.toggle()"
     >
       <span
@@ -83,8 +83,8 @@ function formatTime(time) {
   </base-tooltip>
 
   <div
-    data-popover
     ref="popoverEl"
+    data-popover
     role="tooltip"
     class="absolute z-10 invisible inline-block w-64 text-sm transition-opacity duration-300 rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500"
   >
