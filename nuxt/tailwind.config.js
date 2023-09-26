@@ -125,7 +125,7 @@ module.exports = {
       transitionProperty: {
         "decoration-color": "text-decoration-color",
       },
-      typography: ({ theme }) => ({
+      typography: () => ({ //{theme} => ({})
         policy: {
           css: {
             "--tw-prose-headings": "#FFFFFF",

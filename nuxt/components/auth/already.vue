@@ -39,7 +39,7 @@ onMounted(() => {
   </auth-form>
   <base-modal-signout
     v-model:open="logoutModalOpen"
-    :customSignOutAction="redirect"
+    :custom-sign-out-action="redirect"
   />
 </template>
 

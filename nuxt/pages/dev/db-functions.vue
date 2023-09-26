@@ -1,4 +1,5 @@
 <script setup>
+/* eslint-disable vue/require-v-for-key  */
 const toast = useToast();
 
 function copyUrl(id) {

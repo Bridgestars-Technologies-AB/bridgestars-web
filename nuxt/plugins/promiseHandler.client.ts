@@ -1,18 +1,16 @@
-function handleParseError(error) {
-  // if(error.reason.code == 209){
-  //   useAuth().signOut().catch(e => {});
-  //   navigateTo("/auth/sign-in")
-  //   useToast().error("You were signed out because somebody else is using this account",{timeout: false});
-  // }
+async function handleParseError(error: { reason: { code: number } }): void {
+  if (error.reason.code == 209) {
+    useAuth().signOut().catch(() => { });
+    await navigateTo("/auth/sign-in");
+    useToast().error("You have been signed out", { timeout: false });
+  }
 }
 
-export default defineNuxtPlugin((nuxtContext) => {
+export default defineNuxtPlugin(() => {
   window.onunhandledrejection = (error) => {
     handleParseError(error);
-    console.log("via plugin: ", error);
   };
   window.onrejectionhandled = (error) => {
     handleParseError(error);
-    console.log("via plugin: ", error);
   };
 });

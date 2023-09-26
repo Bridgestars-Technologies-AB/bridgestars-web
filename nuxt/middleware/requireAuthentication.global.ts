@@ -1,5 +1,6 @@
 const authRoutes = ["/dash"];
-export default defineNuxtRouteMiddleware((to, from) => {
+
+export default defineNuxtRouteMiddleware((to) => {
   // if(process.server) return;
   // going from not dash to dash checks for auth
   for (const route of authRoutes) {

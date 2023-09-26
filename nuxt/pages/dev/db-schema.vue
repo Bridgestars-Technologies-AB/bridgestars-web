@@ -2,22 +2,22 @@
 <script setup>
 import d from "~/assets/dev/docs-db-schema.json";
 let data = d;
-const commonProps = ["_id", "objectId", "updatedAt", "createdAt"];
-const public_fields = ["img", "dispName"];
-const protected_fields = [
-  "email",
-  "authData",
-  "first",
-  "last",
-  "nationality",
-  "birth",
-  "profileAccess",
-  "friends",
-  "ifr",
-  "ofr",
-  "migratedFromFirebase",
-  "gameSignIn",
-];
+// const commonProps = ["_id", "objectId", "updatedAt", "createdAt"];
+// const public_fields = ["img", "dispName"];
+// const protected_fields = [
+//   "email",
+//   "authData",
+//   "first",
+//   "last",
+//   "nationality",
+//   "birth",
+//   "profileAccess",
+//   "friends",
+//   "ifr",
+//   "ofr",
+//   "migratedFromFirebase",
+//   "gameSignIn",
+// ];
 
 // used this to iterate over all fields and add necessary attributes to fill in later
 // data.forEach(table => {
@@ -117,11 +117,8 @@ function copyUrl(id) {
             <td>{{ item[key].type }}</td>
             <td>
               <template v-if="item[key].description">
-                <div
-                  v-for="d in (item[key].description + ';').split(';')"
-                  :key="d"
-                >
-                  {{ d }}
+                <div v-for="dx in (item[key].description + ';').split(';')" :key="dx">
+                  {{ dx }}
                 </div>
               </template>
             </td>

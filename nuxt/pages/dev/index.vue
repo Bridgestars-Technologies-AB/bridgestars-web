@@ -15,7 +15,7 @@ const routes = [
     </div>
 
     <div class="mx-9 my-9 flex flex-wrap flex-col space-y-4">
-      <div v-for="route in routes" :key="route.name">
+      <div v-for="route in routes" :key="route.path">
         <div
           class="w-full cursor-pointer flex items-center justify-center"
           @click="navigateTo(route.path)"

@@ -6,15 +6,6 @@ import I18NextVue from "i18next-vue";
 // import sv from '~/localization/lang/sv.json'
 // import en from '~/localization/lang/en.json'
 
-i18next.init({
-  debug: false,
-  resources: {},
-  fallbackLng: ["en", "sv"],
-  supportedLngs: ["en", "sv"],
-  ns: ["common"],
-  defaultNS: "common",
-});
-
 // i18next.use(LanguageDetector).init({
 //   detection: {
 //     // order and from where user language should be detected
@@ -44,6 +35,14 @@ i18next.init({
 //   },
 // });
 
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin(async (nuxtApp) => {
+  await i18next.init({
+    debug: false,
+    resources: {},
+    fallbackLng: ["en", "sv"],
+    supportedLngs: ["en", "sv"],
+    ns: ["common"],
+    defaultNS: "common",
+  });
   nuxtApp.vueApp.use(I18NextVue, { i18next });
 });

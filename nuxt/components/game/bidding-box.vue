@@ -24,16 +24,18 @@ const emit = defineEmits(["bid", "update:nbr", "update:suit"]);
 const suits = ["♣", "♦", "♥", "♠", "NT"]; //replace with better icons, colored?
 
 function bid(suit, nbr) {
-  console.log("BIDDINGBOX: ", suit, nbr);
+  // console.log("BIDDINGBOX: ", {suit, nbr, p: p.suit, n: p.nbr});
   if (nbr > p.nbr || (suit > p.suit && nbr === p.nbr)) {
     emit("update:nbr", nbr);
     emit("update:suit", suit);
+    emit("bid", suit, nbr)
   }
-  emit("bid", suit, nbr);
+  else if(nbr == 0 && suit == 0) //PASS
+    emit("bid", suit, nbr);
 }
 
 function getDisabled(nbr, suit) {
-  if (!p.suit || !p.nbr) return "";
+  // if (!p.suit || !p.nbr) return ""; // 2 spades suit is zero so we could not have this here
   if (nbr < p.nbr || (suit <= p.suit && nbr === p.nbr))
     return "opacity-50 cursor-not-allowed";
   return "";

@@ -23,7 +23,7 @@ export default class User {
   constructor(data: DbObject) {
     this.id = data.id;
     this.data = data;
-    this.displayName = data.get("dispName");
+    this.displayName = data.get("dispName") as string;
     if (!data.createdAt) {
       throw new Error(
         "Tried adding an user that does not exist in the database",
