@@ -8,7 +8,7 @@ let deferred: {
   reject: (error: Error) => void;
 } | null = null;
 let connectionPromise: Promise<void> | null = null;
-let connected = ref(false);
+const connected = ref(false);
 
 /**
  * Lazily connects to the realtime-server and authenticates the user. Only ever creates one connection.

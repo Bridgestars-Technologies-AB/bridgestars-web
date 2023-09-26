@@ -57,8 +57,8 @@ function hide(e) {
     <!-- content that is wrapper with tooltip functionality -->
   </div>
   <div
-    data-popover
     ref="tooltip"
+    data-popover
     role="tooltip"
     class="absolute z-100 invisible inline-block w-auto whitespace-nowrap transition-opacity duration-300 rounded-lg shadow-sm opacity-0 dark:bg-dash-light-400 bg-dash-dark-400"
   >

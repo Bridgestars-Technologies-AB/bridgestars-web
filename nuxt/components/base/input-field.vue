@@ -27,11 +27,11 @@ function toggleShowPass() {
 <template>
   <div :class="'input-block ' + wrapperClass">
     <input
-      class="py-2.5 px-4 !bg-white text-[16px] font-family2"
       v-bind="$attrs"
-      placeholder=" "
-      ref="input"
       :id="id"
+      ref="input"
+      class="py-2.5 px-4 !bg-white text-[16px] font-family2"
+      placeholder=" "
       :value="modelValue || value"
       @input="update"
     />

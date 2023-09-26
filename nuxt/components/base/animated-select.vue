@@ -45,10 +45,10 @@ function moveLine(event) {
     class="relative bg-dash-light-400 rounded-lg h-fit min-h-[50px] w-full flex xs:flex-col sm:flex-row items-center text-center"
   >
     <div
-      @click="moveLine"
-      :id="o.toLowerCase()"
       v-for="o in options"
+      :id="o.toLowerCase()"
       class="h-[50px] flex items-center justify-center z-10 flex-auto"
+      @click="moveLine"
     >
       <span
         class="z-10 text1 text-dark font-family2 [pointer-events:none] xs:mx-4 sm:mx-0 w-full"

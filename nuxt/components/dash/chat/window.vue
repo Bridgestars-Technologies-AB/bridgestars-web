@@ -136,10 +136,10 @@ const isMe = (m) => m.sender == auth.user()?.id;
             } mb-1`"
           >
             <div
-              @click="console.log(m)"
               :class="`relative ${
                 isMe(m) ? myMessageColor : otherMessageColor
               } max-w-[70%] rounded-xl px-3 py-2 mx-2`"
+              @click="console.log(m)"
             >
               <span
                 class="text2 text-[16px] leading-[16px] dark:text-light text-light break-words"
@@ -178,8 +178,8 @@ const isMe = (m) => m.sender == auth.user()?.id;
           @keyup="calculateInputFieldSize"
         />
         <button
-          @click="sendMessage"
           class="self-start rounded-full bg-blue-400 w-[40px] h-[40px] p-1"
+          @click="sendMessage"
         >
           <span
             class="i-material-symbols-send-rounded bg-dash-light-500 translate-x-[2px] h-full w-full"

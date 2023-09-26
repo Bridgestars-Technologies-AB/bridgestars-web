@@ -10,7 +10,7 @@ const { data } = await useAsyncData("policy", () =>
   <base-card-page-layout imgSrc="/bridgestars/art/about_us.png">
     <div class="p-5 w-[90%] max-w-[1200px] flex flex-col items-center">
       <!-- Maybe make a navigateBar component, yes -->
-      <base-animated-select :options="options" v-model="policy" />
+      <base-animated-select v-model="policy" :options="options" />
       <div
         class="bg-[#313135] flex flex-col items-center justify-center w-full h-[100px] sm:h-[150px] rounded-xl mt-[40px]"
       >

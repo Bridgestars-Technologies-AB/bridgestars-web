@@ -83,8 +83,8 @@ function copyUrl(id) {
           @click="copyUrl(item['_id'])"
         >
           <h2
-            class="xl:text-[30px] sm:text-[25px] xs:text-[16px] font-bold"
             :id="item['_id']"
+            class="xl:text-[30px] sm:text-[25px] xs:text-[16px] font-bold"
           >
             {{ item["_id"] }}
           </h2>

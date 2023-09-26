@@ -93,8 +93,8 @@ onMounted(() => {
           @click="copyUrl(item['_id'])"
         >
           <h2
-            class="sm:text-[25px] xs:text-[16px] font-bold"
             :id="item['name']"
+            class="sm:text-[25px] xs:text-[16px] font-bold"
           >
             {{ item["name"] }}
           </h2>
@@ -180,7 +180,7 @@ onMounted(() => {
             <!-- <th>Type</th> -->
             <!-- <th>Description</th> -->
           </tr>
-          <tr class="" v-for="e in item.errors">
+          <tr v-for="e in item.errors" class="">
             <td class="!font-normal max-w-[220px]">
               <template v-if="e">
                 <div v-for="d in (e + ';').split(';')">

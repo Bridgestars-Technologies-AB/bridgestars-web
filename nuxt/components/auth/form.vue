@@ -37,8 +37,8 @@ onMounted(() => {
         {{ "<" }}
       </span>
       <button
-        @click="router.push({ path: '/' })"
         class="normal-case text-blue authHeader"
+        @click="router.push({ path: '/' })"
       >
         {{ $t("auth:common.home") }}
       </button>

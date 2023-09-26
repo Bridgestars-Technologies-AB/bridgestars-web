@@ -130,9 +130,9 @@ onMounted(() => {
 
       <button
         v-if="!showOptions"
-        @click="showOptions = true"
         type="button"
         class="mt-10 !text-[16px] text-blue font-bold normal-case tracking-[0.5px]"
+        @click="showOptions = true"
       >
         {{ $t("download:showOptions") }}
       </button>

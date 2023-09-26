@@ -36,19 +36,19 @@ onMounted(() => {
   <base-tooltip :text="$t('dashboard:top_menu.tooltip.account')">
     <div class="group flex items-center" @click="popover.toggle()">
       <span
+        ref="popoverTrigger"
         :class="`relative i-ic-baseline-account-circle ${colored(
           open ||
             route.path.startsWith('/dash/profile') ||
             route.path.startsWith('/dash/account'),
         )}`"
-        ref="popoverTrigger"
       />
     </div>
   </base-tooltip>
 
   <div
-    data-popover
     ref="popoverElement"
+    data-popover
     role="tooltip"
     class="absolute z-10 invisible inline-block w-[200px] text-sm transition-opacity duration-300 rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500"
   >
