@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const props = defineProps(["transparent"]);
+const props = defineProps({
+  transparent: {
+    type: String,
+  },
+});
 
 const { t, i18 } = useTranslate();
 const auth = useAuth();
@@ -32,6 +36,7 @@ function updateRoutes() {
     if (!route.success) route.name = t("common:" + route.key);
   });
 }
+// eslint-disable-next-line no-unused-vars
 i18.on("languageChanged", (lng) => {
   updateRoutes();
 });

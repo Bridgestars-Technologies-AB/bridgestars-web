@@ -1,11 +1,27 @@
 <script setup lang="ts">
-import toast from "./signed-in-toast.vue";
 //import InitValidation from "~/util/validator2.js";
 //import "~/util/validator.js";
 
 const router = useRouter();
 
-defineProps(["header", "title", "subtitle", "subtitle2", "footer"]);
+//defineProps(["header", "title", "subtitle", "subtitle2", "footer"]);
+defineProps({
+  header: {
+    type: String,
+  },
+  title: {
+    type: String,
+  },
+  subtitle: {
+    type: String,
+  },
+  subtitle2: {
+    type: String,
+  },
+  footer: {
+    type: String,
+  },
+});
 const emit = defineEmits(["submit"]);
 //hej
 ///import autoAnimate from "../js/autoAnimate.ts";

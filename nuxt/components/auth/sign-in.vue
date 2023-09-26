@@ -1,16 +1,15 @@
 <script setup lang="ts">
 const toast = useToast();
 const query = useRoute().query;
-const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
 const auth = useAuth();
 
-function submit(res) {
+function submit(res: { usernameEmail: string; password: string }) {
   showLoading.value = true;
   auth
     .signIn(res.usernameEmail, res.password)
-    .then((user) => {
+    .then(() => {
       toast.success("You have been signed in!"); //TODO: translate this
       if (query.to) navigateTo({ path: query.to });
       else navigateTo({ path: "/dash" });

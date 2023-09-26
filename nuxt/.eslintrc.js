@@ -9,7 +9,6 @@ module.exports = {
     sourceType: "module",
     parser: "@typescript-eslint/parser",
   },
-  plugins: ["@typescript-eslint"],
   extends: ["eslint:recommended", "plugin:vue/vue3-recommended", "prettier"],
   overrides: [
     // Use `overrides` so ESLint can check both JS and TS files.
@@ -23,16 +22,20 @@ module.exports = {
         tsconfigRootDir: __dirname,
         project: ["./tsconfig.json"],
       },
+      rules: {
+        // adding typescript config ex: "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-unused-vars": "off",
+      },
     },
   ],
   rules: {
     // override/add rules settings here, such as:
     // 'vue/no-unused-vars': 'error'
-    // adding typescript config ex: "@typescript-eslint/no-unused-vars": "error",
     "no-undef": "off",
     "vue/multi-word-component-names": "off",
     "vue/attribute-hyphenation": "off",
     "vue/v-on-event-hyphenation": "off",
+    "vue/require-default-prop": "off",
   },
   globals: {
     $nuxt: true,
