@@ -8,6 +8,8 @@ emits:
   close: when the user closes the chat
 -->
 <script setup lang="ts">
+import Chat from "js/db/chat/Chat";
+
 defineEmits(["openChat", "close"]);
 const manager = await useChatManager();
 
@@ -17,21 +19,25 @@ manager.sortedChats().forEach((c) => {
   c.getLatestMessage();
 });
 
-function getTime(c) {
+function getTime(c: Chat) {
   const time = c.latestMessage?.createdAt;
   return time ? useTimeAgo().format(time, "twitter-minute-now") : "";
 }
 
 const searchTerm = ref("");
 //this will not work if not all chats are downloaded, maybe keep it like this for now
-const filterUsers = (c) => {
+const filterUsers = (c: Chat) => {
   if (!searchTerm.value) return true;
-  return c.name.toLowerCase().includes(searchTerm.value.toLowerCase());
+  return c
+    .getNameAttribute()
+    .toLowerCase()
+    .includes(searchTerm.value.toLowerCase());
 };
 
 /**
  * Search for users, not yet used
  **/
+// eslint-disable-next-line no-unused-vars
 async function searchUsers() {
   Parse.Cloud.run("searchUsers", {
     username: searchTerm,
@@ -100,6 +106,7 @@ async function searchUsers() {
         <!-- <hr class="border-dark dark:border-white opacity-[20%] my-1" /> -->
         <div
           v-for="c in manager.sortedChats()"
+          :key="c.id"
           class="px-1 cursor-pointer"
           @click="$emit('openChat', c)"
         >
@@ -112,7 +119,7 @@ async function searchUsers() {
                   <h4
                     class="flex-grow ml-2 text-[22px] leading-[22px] dark:text-light text-dark underline decoration-transparent group-hover:decoration-dark dark:group-hover:decoration-light transition-decoration-color duration-250"
                   >
-                    {{ c?.name }}
+                    {{ c?.getName() }}
                   </h4>
 
                   <!-- Chat last update -->

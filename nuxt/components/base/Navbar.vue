@@ -1,8 +1,6 @@
 <script setup lang="ts">
 const props = defineProps({
-  transparent: {
-    type: String,
-  },
+  transparent: String,
 });
 
 const { t, i18 } = useTranslate();

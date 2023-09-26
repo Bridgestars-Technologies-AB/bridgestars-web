@@ -1,5 +1,10 @@
 <script setup lang="js">
-const props = defineProps(["placeholder", "id", "wrapperClass", "modelValue"]);
+const props = defineProps({
+  placeholder: String,
+  id: String,
+  wrapperClass: String,
+  modelValue: String,
+});
 defineEmits(["update:modelValue"]);
 
 // const type = ref(props.type);

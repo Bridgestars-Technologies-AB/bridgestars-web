@@ -4,7 +4,7 @@
 const firstTime = inject("first_time_at_home"); //issue exists for this one
 const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
 const showVideo = ref(true);
-const { t } = await loadTranslations("home");
+await loadTranslations("home");
 // import art_img from "/bridgestars/art/home_page.svg";
 
 onMounted(() => {

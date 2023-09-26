@@ -1,3 +1,4 @@
+<!-- eslint-disable no-unused-vars -->
 <script setup>
 import d from "~/assets/dev/docs-db-schema.json";
 let data = d;
@@ -59,7 +60,11 @@ function copyUrl(id) {
     <!--  all classes links -->
 
     <div class="mx-9 my-9 flex flex-wrap flex-col">
-      <div v-for="table in data" class="flex items-center text-center">
+      <div
+        v-for="table in data"
+        :key="table['_id']"
+        class="flex items-center text-center"
+      >
         <div class="w-full">
           <a
             :href="`#${table['_id']}`"
@@ -76,6 +81,7 @@ function copyUrl(id) {
     <div class="flex flex-col items-center w-full flex-grow">
       <div
         v-for="item in data"
+        :key="item['_id']"
         class="flex flex-col px-3 items-start mt-5 w-full max-w-[1700px]"
       >
         <div
@@ -104,13 +110,17 @@ function copyUrl(id) {
           </tr>
           <tr
             v-for="key in Object.keys(item).filter((x) => x != '_id')"
+            :key="key"
             class=""
           >
             <td class="!font-normal max-w-[120px]">{{ key }}</td>
             <td>{{ item[key].type }}</td>
             <td>
               <template v-if="item[key].description">
-                <div v-for="d in (item[key].description + ';').split(';')">
+                <div
+                  v-for="d in (item[key].description + ';').split(';')"
+                  :key="d"
+                >
                   {{ d }}
                 </div>
               </template>

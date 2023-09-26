@@ -1,5 +1,10 @@
 <script setup>
-const props = defineProps(["icon", "keypath", "selected", "enabled"]);
+const props = defineProps({
+  icon: String,
+  keypath: String,
+  selected: Boolean,
+  enabled: Boolean,
+});
 
 const bgColor = computed(() =>
   props.selected

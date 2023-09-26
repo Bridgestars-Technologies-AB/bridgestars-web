@@ -2,6 +2,7 @@
 const toast = useToast();
 const query = useRoute().query;
 const showLoading = ref(false);
+await loadTranslations("auth");
 
 const auth = useAuth();
 

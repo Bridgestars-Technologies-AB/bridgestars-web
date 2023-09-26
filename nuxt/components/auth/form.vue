@@ -6,21 +6,11 @@ const router = useRouter();
 
 //defineProps(["header", "title", "subtitle", "subtitle2", "footer"]);
 defineProps({
-  header: {
-    type: String,
-  },
-  title: {
-    type: String,
-  },
-  subtitle: {
-    type: String,
-  },
-  subtitle2: {
-    type: String,
-  },
-  footer: {
-    type: String,
-  },
+  header: String,
+  title: String,
+  subtitle: String,
+  subtitle2: String,
+  footer: String,
 });
 const emit = defineEmits(["submit"]);
 //hej

@@ -50,11 +50,8 @@ const statusColor = () => {
   switch (manager.getStatus(userId.value)) {
     case Status.Online:
       return "bg-[#22FF06]";
-      break;
-
     default:
       return "bg-gray-500";
-      break;
   }
 };
 </script>

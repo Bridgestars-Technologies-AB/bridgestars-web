@@ -7,7 +7,6 @@ props: none
 
 -->
 <script setup>
-const auth = useAuth();
 const chatManager = await useChatManager();
 
 const open = ref(false);

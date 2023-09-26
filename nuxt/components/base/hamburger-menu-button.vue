@@ -1,7 +1,11 @@
 <!-- hamburgermenubutton, i.e. three horizontal lines, this component animates the transiation from hamburger to X and back, used on navbar  -->
 <script setup lang="ts">
 defineEmits(["click"]);
-const props = defineProps(["isOpen", "class", "innerClass"]);
+const props = defineProps({
+  isOpen: Boolean,
+  class: String,
+  innerClass: String,
+});
 </script>
 
 <template>
