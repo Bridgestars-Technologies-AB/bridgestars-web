@@ -131,12 +131,16 @@ function format(bridgeHand, suit) {
       class="h-1/4 flex flex-row items-center ml-[10px]"
     >
       <span :class="`text-[45px] ${symbols[index].color}`">{{ suit }} </span>
-      <span class="ml-[10px] text-[25px] text1 tracking-[1px]">{{
+      <span class="ml-[10px] text-[25px] text1 text-white tracking-[1px]">{{
         computedHand.filter((e) => e.suit === index)[0]?.ranks
       }}</span>
     </div>
     <!-- Only for testing, later we will provde dealt hans from parent component -->
-    <button v-if="showDeal" @click="dealHand()" class="bg-white text1">
+    <button
+      v-if="showDeal"
+      @click="dealHand()"
+      class="bg-white text1 text-white"
+    >
       Deal
     </button>
   </div>

@@ -47,14 +47,14 @@ function brick(suit, rank) {
     <div class="flex flex-row justify-center w-full">
       <div class="flex flex-row flex-wrap w-[97%]">
         <div
-          class="w-[24%] h-[34px] flex flex-row justify-center items-center mx-[1px] my-[3px]"
+          class="w-[24%] flex flex-row justify-center items-center mx-[1px] my-[3px]"
           v-for="e in history"
         >
           <div
-            class="w-[52px] h-full bg-[#0E9F6E] flex flex-row justify-center items-center rounded-lg"
+            class="biddingBox bg-[#0E9F6E] flex flex-row justify-center items-center rounded-lg"
             v-if="e.suit === 0 && e.rank === 0"
           >
-            <span class="text1 text-[18px] tracking-[0.5px]">
+            <span class="biddingPass">
               {{ brick(e.suit, e.rank) }}
             </span>
           </div>
@@ -63,10 +63,10 @@ function brick(suit, rank) {
             class="biddingBox flex flex-row items-center justify-center rounded-lg"
             v-else
           >
-            <span class="text1 text-[22px] tracking-[2px]">{{ e.rank }}</span>
+            <span class="biddingText1 tracking-[2px]">{{ e.rank }}</span>
             <span
-              :class="`text1 tracking-[2px] ${
-                e.suit > 3 ? 'text-[16px]' : 'text-[22px]'
+              :class="`tracking-[2px] ${
+                e.suit > 3 ? 'biddingText3' : 'biddingText2'
               } ${symbols[e.suit].color}`"
               >{{ symbols[e.suit].symbol }}</span
             >

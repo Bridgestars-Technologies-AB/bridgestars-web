@@ -47,10 +47,10 @@ function getDisabled(rank, suit) {
 <template>
   <div :class="'flex flex-col space-y-1 ' + wrapperClass">
     <!-- Pass button -->
-    <div class="flex justify-start ml-[8px]">
+    <div class="flex justify-start">
       <button
         @click="bid(0, 0)"
-        class="flex flex-row justify-center items-center bg-green-500 hover:bg-green-400 text1 text-white dark:text-light text-[15px] rounded-sm w-[80px] h-[30px] outline-none select-none"
+        class="flex flex-row justify-center items-center outline-none select-none biddingPass biddingBox"
       >
         <span>PASS</span>
       </button>
@@ -71,12 +71,12 @@ function getDisabled(rank, suit) {
           suit - 1
         )}`"
       >
-        <span class="text1 text-[20px] select-none">
+        <span class="biddingText1 select-none">
           {{ rank }}
         </span>
         <span
-          :class="`text1 ${symbols[suit - 1].color} ${
-            suit < 5 ? 'text-[26px] ml-1' : 'text-[14px] ml-[1px]'
+          :class="`${symbols[suit - 1].color} ${
+            suit < 5 ? 'biddingText2 ml-1' : 'biddingText3 ml-[1px]'
           } select-none`"
         >
           {{ symbols[suit - 1].symbol }}
