@@ -16,8 +16,8 @@ function bid(s, r) {
   <div
     class="flex flex-col items-center w-full h-[100%] justify-between border"
   >
-    <div class="w-[90%] h-[80px] border mb-[100px]"></div>
-    <div class="flex flex-row space-x-1 h-[370px] w-[100%] justify-center">
+    <div class="w-[90%] h-[80px] border mb-[20px]"></div>
+    <div class="flex flex-row space-x-1 h-[70%] w-[100%] justify-center">
       <game-bidding-container showImage="true" wrapperClass="biddingContainer">
         <game-bidding-text></game-bidding-text>
       </game-bidding-container>

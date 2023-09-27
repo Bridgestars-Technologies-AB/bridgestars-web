@@ -34,7 +34,7 @@ function brick(suit, rank) {
     <div class="w-[100%] flex flex-row justify-center">
       <div class="flex flex-row w-[97%]">
         <div
-          class="w-[24%] flex flex-row justify-center mt-[8px] mx-[1px]"
+          class="w-[24%] flex flex-row justify-center mt-[8px]"
           v-for="p in 4"
         >
           <span class="text1 text-[26px] font-semibold mb-[4px]">
@@ -47,7 +47,7 @@ function brick(suit, rank) {
     <div class="flex flex-row justify-center w-full">
       <div class="flex flex-row flex-wrap w-[97%]">
         <div
-          class="w-[24%] flex flex-row justify-center items-center mx-[1px] my-[3px]"
+          class="w-[24%] flex flex-row justify-center items-center my-[3px]"
           v-for="e in history"
         >
           <div

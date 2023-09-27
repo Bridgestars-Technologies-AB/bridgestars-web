@@ -1,14 +1,18 @@
 <!--
- Bidding Box
+Bidding Box
 
 
- Props:
-   suit: Number (0-4) //  v-model:suit="suit" where suit is a ref(0)
-   rank: Number (0-7) // 0 = pass
 
 
- Emits:
-   bid: {suit: Number, rank: Number}
+Props:
+  suit: Number (0-4) //  v-model:suit="suit" where suit is a ref(0)
+  rank: Number (0-7) // 0 = pass
+
+
+
+
+Emits:
+  bid: {suit: Number, rank: Number}
 -->
 <script setup>
 const p = defineProps({
@@ -47,13 +51,20 @@ function getDisabled(rank, suit) {
 <template>
   <div :class="'flex flex-col space-y-1 ' + wrapperClass">
     <!-- Pass button -->
-    <div class="flex justify-start">
-      <button
-        @click="bid(0, 0)"
-        class="flex flex-row justify-center items-center outline-none select-none biddingPass biddingBox"
+
+    <div class="flex justify-center space-x-1">
+      <div
+        v-for="e in 5"
+        :class="`${e === 1 ? 'biddingBox' : 'biddingBox invisible'}`"
       >
-        <span>PASS</span>
-      </button>
+        <button
+          v-if="e === 1"
+          @click="bid(0, 0)"
+          class="w-full h-full flex flex-row justify-center items-center outline-none select-none biddingPass"
+        >
+          <span>PASS</span>
+        </button>
+      </div>
     </div>
 
     <!-- 7 rows of 5 buttons -->
