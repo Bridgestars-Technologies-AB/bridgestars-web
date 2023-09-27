@@ -109,10 +109,10 @@ function fadeInUI(delay) {
 
   <div class="cardDiv hidden">
     <base-card-page-layout
-      hide-navbar="true"
+      :hideNavbar-="true"
       class="will-change-transform pt-5 hsm:-translate-y-[100px] hxs:-translate-y-[70px] opacity-0 cardShow"
-      backdrop-class="background"
-      img-src="/bridgestars/art/home_page.svg"
+      backdropClass="background"
+      imgSrc="/bridgestars/art/home_page.svg"
     >
       <base-lang-switcher class="mb-4" />
       <div class="xs:px-0 sm:px-5 text-center flex flex-col items-center">

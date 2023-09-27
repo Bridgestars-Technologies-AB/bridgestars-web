@@ -26,7 +26,7 @@ function bid(s, n) {
         class="scale-[80%]"
       ></game-bidding-history>
       <game-bidding-hand
-        :show-deal="false"
+        :showDeal="false"
         :hand="[
           { suit: 0, ranks: '3678K' },
           { suit: 1, ranks: '2TQ' },

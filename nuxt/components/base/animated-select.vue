@@ -54,10 +54,7 @@ function moveLine(event) {
     <div
       v-for="o in options"
       :id="o.toLowerCase()"
-<<<<<<< HEAD
       :key="o"
-=======
->>>>>>> game
       class="h-[50px] flex items-center justify-center z-10 flex-auto"
       @click="moveLine"
     >
