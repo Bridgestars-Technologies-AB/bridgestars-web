@@ -27,12 +27,6 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/image",
     "@averjs/nuxt-compression",
-    [
-      "@nuxtjs/eslint-module",
-      {
-        /* module options */
-      },
-    ],
   ],
   image: {
     format: ["webp"],
