@@ -1,13 +1,8 @@
 <script setup lang="ts">
 const props = defineProps(['transparent'])
-
-const {t, i18} = useTranslate()
 const auth = useAuth()
-// const { locale, locales, setLocale } = useI18n()
-// const nuxtApp = useNuxtApp()
 
 //https://icones.js.org/
-
 const routes : Array<any> = reactive([ 
   {
     key: "home",
@@ -27,20 +22,6 @@ if(process.dev){
     icon: 'i-material-symbols-code-blocks',
   })
 }
-function updateRoutes(){
-  routes.forEach(route => {
-    if(!route.success) route.name = t('common:' + route.key)
-  })
-}
-i18.on('languageChanged', (lng) => {
-  updateRoutes()
-})
-//when locale changes
-// watch(i18next.language, () => {
-//   updateRoutes()
-// })
-//server side first render
-updateRoutes()
 
 const success ="#59BA83"
 const isOpen = ref(false)
@@ -57,8 +38,6 @@ if(auth.authenticated()){
   account!.path = '/dash'
   account!.success = true;
 }
-
-
 </script>
 
 <template>
@@ -89,7 +68,7 @@ if(auth.authenticated()){
       <!-- Menu -->
       <div :class="`w-full sm:w-auto sm:block ${!isOpen ? 'xs:hidden' : ''}`">
         <ul class=" sm:flex sm:justify-end sm:p-0 xs:p-1"> 
-          <li v-for="route in routes" :key="route.name" class="block mx-2">
+          <li v-for="route in routes" :key="route.key" class="block mx-2">
             <nuxt-link :to="route.path" class="text-[14px]">
 
               <div class="flex items-center space-x-2 mx-1 xs:mt-3 sm:mt-0">
@@ -101,7 +80,7 @@ if(auth.authenticated()){
                 <span 
                   :class="`text2 !text-[18px] !font-medium
                     ${route.success ? '!text-[#59BA83]' : textColor}`"> 
-                  {{ route.name }}
+                  {{ route.name || $t('common:' + route.key) }}
                 </span>
               </div>
 
