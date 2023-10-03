@@ -34,6 +34,9 @@ module.exports = {
     // adding typescript config ex: "@typescript-eslint/no-unused-vars": "error",
     "no-undef": "off",
     "vue/multi-word-component-names": "off",
+    "vue/attribute-hyphenation": "off",
+    "vue/v-on-event-hyphenation": "off",
+    "vue/require-default-prop": "off",
   },
   globals: {
     $nuxt: true,

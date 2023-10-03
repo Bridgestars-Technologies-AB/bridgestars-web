@@ -31,7 +31,7 @@ function toggleChatApp() {
       <!-- left column-->
       <dash-chat-window
         v-if="open && currentChat"
-        :chat-id="currentChat"
+        :chatId="currentChat"
         @sendMessage=""
         @close="currentChat = null"
       />

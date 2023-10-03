@@ -30,13 +30,13 @@ function submit(res) {
     <base-input-field
       id="email"
       v-model="query.email"
-      wrapper-class="w-[100%]"
+      wrapperClass="w-[100%]"
       :placeholder="$t('auth:placeholder.email')"
     />
 
     <base-submit-button
       id="submit"
-      wrapper-class="w-[100%] !mt-6"
+      wrapperClass="w-[100%] !mt-6"
       :text="$t('auth:reset.resetPassword')"
       :loading="showLoading"
     ></base-submit-button>

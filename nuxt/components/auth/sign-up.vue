@@ -29,25 +29,25 @@ function submit(res) {
   >
     <base-input-field
       id="username"
-      wrapper-class="w-[100%]"
+      wrapperClass="w-[100%]"
       :placeholder="$t('auth:placeholder.username')"
       type="username"
     />
     <base-input-field
       id="email"
-      wrapper-class="w-[100%]"
+      wrapperClass="w-[100%]"
       :placeholder="$t('auth:placeholder.email')"
       type="email"
     />
     <base-input-field
       id="password"
-      wrapper-class="w-[100%]"
+      wrapperClass="w-[100%]"
       :placeholder="$t('auth:placeholder.password')"
       type="password"
     />
     <base-input-field
       id="password-confirm"
-      wrapper-class="w-[100%]"
+      wrapperClass="w-[100%]"
       :placeholder="$t('auth:placeholder.confirmPassword')"
       type="password"
     />
@@ -79,7 +79,7 @@ function submit(res) {
 
     <base-submit-button
       id="submit"
-      wrapper-class="w-[100%] xs:!mt-2 sm:!mt-4"
+      wrapperClass="w-[100%] xs:!mt-2 sm:!mt-4"
       type="submit"
       :text="$t('auth:common.signUp')"
       :loading="showLoading"

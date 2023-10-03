@@ -88,9 +88,9 @@ if (auth.authenticated()) {
       <!-- Open Menu Button -->
       <div class="flex items-center sm:hidden mr-2">
         <base-hamburger-menu-button
-          :is-open="isOpen"
+          :isOpen="isOpen"
           class="!scale-[0.3]"
-          :inner-class="menuIconColor"
+          :innerClass="menuIconColor"
           @click="isOpen = !isOpen"
         />
         <span
