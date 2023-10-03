@@ -28,15 +28,15 @@ function submit(res) {
     @submit="submit"
   >
     <base-input-field
+      id="email"
+      v-model="query.email"
       wrapperClass="w-[100%]"
       :placeholder="$t('auth:placeholder.email')"
-      v-model="query.email"
-      id="email"
     />
 
     <base-submit-button
-      wrapperClass="w-[100%] !mt-6"
       id="submit"
+      wrapperClass="w-[100%] !mt-6"
       :text="$t('auth:reset.resetPassword')"
       :loading="showLoading"
     ></base-submit-button>
@@ -46,9 +46,9 @@ function submit(res) {
 
       <!-- type button to prevent submit form  -->
       <button
-        @click="router.go(-1)"
         type="button"
         class="!text-[16px] normal-case text-blue font-bold normal-case tracking-[0.5px]"
+        @click="router.go(-1)"
       >
         {{ $t("auth:reset.goBack") }}
       </button>

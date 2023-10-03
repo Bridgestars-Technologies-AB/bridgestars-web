@@ -8,7 +8,7 @@ let deferred: {
   reject: (error: Error) => void;
 } | null = null;
 let connectionPromise: Promise<void> | null = null;
-let connected = ref(false);
+const connected = ref(false);
 
 /**
  * Lazily connects to the realtime-server and authenticates the user. Only ever creates one connection.
@@ -16,15 +16,16 @@ let connected = ref(false);
  * @example
  * const {socket, connected} = await useRealtimeClient();
  * socket.on(Events.Receive.ChatMessage, (chatId: string) => {});
-*/
+ */
 export default async function useRealtimeClient(): Promise<Client> {
-
   //stop server and unauithenticated users
   if (process.server) throw new Error("Cannot use socket on server");
   const auth = useAuth();
   if (!auth.authenticated()) {
     socket?.disconnect();
-    const e = new Error("User is not authenticated, cannot connect to realtime-server");
+    const e = new Error(
+      "User is not authenticated, cannot connect to realtime-server",
+    );
     deferred?.reject(e);
     throw e;
   }
@@ -32,17 +33,17 @@ export default async function useRealtimeClient(): Promise<Client> {
   // detta ska vara en spärr som ser till att det bara finns en socket och att ingen behöver ora sig för att den inte ska vara ansluten när de börjar använda den.
   // är lite orolig för race etc här
   if (!connectionPromise) {
-    connectionPromise = new Promise((resolve, reject) => deferred = { resolve, reject });
+    connectionPromise = new Promise(
+      (resolve, reject) => (deferred = { resolve, reject }),
+    );
     connect(auth.user());
   }
 
-
   await connectionPromise;
-  return {socket: socket as Socket, connected};
+  return { socket: socket as Socket, connected };
 }
 
-
-function connect(user:any){
+function connect(user: any) {
   //create socket
   socket = io("http://localhost:3001", {
     transports: ["websocket"],

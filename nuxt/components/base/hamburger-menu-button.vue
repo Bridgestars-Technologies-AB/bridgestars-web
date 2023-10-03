@@ -1,20 +1,23 @@
 <!-- hamburgermenubutton, i.e. three horizontal lines, this component animates the transiation from hamburger to X and back, used on navbar  -->
 <script setup lang="ts">
-  defineEmits(['click'])
-  const props = defineProps(['isOpen', 'class', 'innerClass'])
+defineEmits(["click"]);
+const props = defineProps(["isOpen", "class", "innerClass"]);
 </script>
 
 <template>
-  <div id="nav-icon3" :class="props.class +  ' ' + (isOpen ? 'open' : '')" @click="$emit('click')">
-    <span v-for="i in 4" :key='i' :class="(props.innerClass || 'bg-dark')"/>  
+  <div
+    id="nav-icon3"
+    :class="props.class + ' ' + (isOpen ? 'open' : '')"
+    @click="$emit('click')"
+  >
+    <span v-for="i in 4" :key="i" :class="props.innerClass || 'bg-dark'" />
   </div>
 </template>
 
-
-
 <!-- https://codepen.io/designcouch/pen/ExvwPY -->
-<style scoped>/* Icon 1 */
-div{
+<style scoped>
+/* Icon 1 */
+div {
   width: 60px;
   height: 45px;
 }
@@ -24,10 +27,10 @@ div{
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
-  transition: .5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
   cursor: pointer;
 }
 
@@ -43,10 +46,10 @@ div{
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: .25s ease-in-out;
-  -moz-transition: .25s ease-in-out;
-  -o-transition: .25s ease-in-out;
-  transition: .25s ease-in-out;
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
 }
 
 /* Icon 3 */
@@ -55,7 +58,8 @@ div{
   top: 0px;
 }
 
-#nav-icon3 span:nth-child(2),#nav-icon3 span:nth-child(3) {
+#nav-icon3 span:nth-child(2),
+#nav-icon3 span:nth-child(3) {
   top: 18px;
 }
 

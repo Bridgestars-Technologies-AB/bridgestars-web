@@ -1,7 +1,6 @@
-
 import { DbObject } from "~/js/db";
 
-export enum Status{
+export enum Status {
   Offline = 0,
   Online = 1,
   InGame = 2,
@@ -16,7 +15,7 @@ export enum Status{
  **/
 export default class User {
   readonly id: string;
-  readonly data: DbObject; //see http://localhost:3000/dev/db-schema#_User 
+  readonly data: DbObject; //see http://localhost:3000/dev/db-schema#_User
   readonly displayName: string;
   cachedStatus: Status = Status.Offline;
   statusFetchTime: Date = new Date(0);
@@ -24,9 +23,11 @@ export default class User {
   constructor(data: DbObject) {
     this.id = data.id;
     this.data = data;
-    this.displayName = data.get("dispName");
+    this.displayName = data.get("dispName") as string;
     if (!data.createdAt) {
-      throw new Error("Tried adding an user that does not exist in the database");
+      throw new Error(
+        "Tried adding an user that does not exist in the database",
+      );
     }
   }
 }

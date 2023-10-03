@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import eslint from "vite-plugin-eslint";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -16,10 +17,7 @@ export default defineNuxtConfig({
     "~/components",
   ],
   imports: {
-    dirs: [
-      "composables",
-      "composables/stores",
-    ],
+    dirs: ["composables", "composables/stores"],
   },
   modules: [
     // "@nuxtjs/i18n",
@@ -30,6 +28,13 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/image",
     "@averjs/nuxt-compression",
+    [
+      "@nuxtjs/eslint-module",
+      {
+        /* module options */
+        lintOnStart: false,
+      },
+    ],
   ],
   image: {
     format: ["webp"],
@@ -37,7 +42,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/": { prerender: true }, // build static resource
-    "/auth/**": {prerender: true},
+    "/auth/**": { prerender: true },
     "/dash/**": { ssr: false }, //only client side
   },
   // i18n: {
@@ -73,7 +78,7 @@ export default defineNuxtConfig({
   //   },
   // below is for icon autoimport
   vite: {
-    plugins: [],
+    plugins: [eslint({ lintOnStart: false })],
   },
   build: {
     transpile: ["vue-toastification"],

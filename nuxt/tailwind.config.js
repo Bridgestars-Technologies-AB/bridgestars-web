@@ -5,6 +5,10 @@ const {
 } = require("@egoist/tailwindcss-icons");
 
 const backgroundColors = {
+  clubs: "#2B72C0",
+  diamonds: "#f1716f",
+  hearts: "#f78217",
+  spades: "#349e3f",
   dark: "#344767",
   primary: "#f74040", //röd
   secondary: "#2e294e", //lila
@@ -14,7 +18,6 @@ const backgroundColors = {
   error: "#F44335", //röd
   white: "#fefefe",
   light: "#dddddd",
-  dark: "#344767",
   DEFAULT: "#f74040",
   "dash-dark": {
     100: "#1a1625",
@@ -34,8 +37,8 @@ const backgroundColors = {
     DEFAULT: "#9e9e9e",
   },
   "dash-accent": {
-    DEFAULT: "#868dfb",
-    light: "#6870fa",
+    DEFAULT: "#04b694",
+    light: "#04b694",
   },
 };
 const textColors = {
@@ -46,8 +49,8 @@ const textColors = {
   white: "#ffffff", //light text
   blue: "rgb(73, 163, 241)",
   "dash-accent": {
-    DEFAULT: "#868dfb",
-    light: "#6870fa",
+    DEFAULT: "#04b694",
+    light: "#04b694",
   },
   borderColor: {
     ...backgroundColors, //ska det verkligen vara här??
@@ -97,7 +100,7 @@ module.exports = {
       borderColor: {
         ...backgroundColors,
       },
-      placeholderColor:{
+      placeholderColor: {
         ...textColors,
       },
       animation: {
@@ -122,7 +125,7 @@ module.exports = {
       transitionProperty: {
         "decoration-color": "text-decoration-color",
       },
-      typography: ({ theme }) => ({
+      typography: () => ({ //{theme} => ({})
         policy: {
           css: {
             "--tw-prose-headings": "#FFFFFF",
