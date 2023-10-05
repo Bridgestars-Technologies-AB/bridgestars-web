@@ -7,9 +7,9 @@
       <NuxtLink class="" href="/auth/sign-in">{{
         $t("common:profile")
       }}</NuxtLink>
-      <NuxtLink class="" href="/download">{{
-        $t("common:downloads")
-      }}</NuxtLink>
+      <!-- <NuxtLink class="" href="/download">{{ -->
+      <!--   $t("common:downloads") -->
+      <!-- }}</NuxtLink> -->
       <NuxtLink class="" href="/policy">{{ $t("common:policy") }}</NuxtLink>
     </div>
 

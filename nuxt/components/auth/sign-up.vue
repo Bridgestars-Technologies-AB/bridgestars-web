@@ -25,6 +25,7 @@ function submit(res) {
     :header="$t('auth:common.signUp')"
     :title="$t('auth:signUp.title')"
     :subtitle="$t('auth:signUp.subtitle')"
+    :subtitle2="$t('auth:signUp.subtitle2')"
     @submit="submit"
   >
     <base-input-field

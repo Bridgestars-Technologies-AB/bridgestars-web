@@ -95,7 +95,7 @@ function fadeInUI(delay) {
     <!-- Button overlay on video -->
     <div v-if="showUI" class="flex justify-center overflow-hidden">
       <div class="bg-video-overlay">
-        <NuxtLink to="/dash">
+        <NuxtLink to="/auth/sign-up">
           <button
             class="bg-[#EE6065] rounded-full px-5 hxs:py-4 hsm:py-5 text-[#FFFFFFEE] font-family font-bold tracking-wider text-[23.5px] leading-[23.5px] videoButtonAnimation hxs:-mb-1 hsm:mb-2"
           >
