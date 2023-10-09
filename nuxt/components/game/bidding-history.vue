@@ -3,6 +3,7 @@
 This component displays the bidding history from bidding-box.
  Props:
    history: List of {suit, nbr}
+   
 */
 
 defineProps({
