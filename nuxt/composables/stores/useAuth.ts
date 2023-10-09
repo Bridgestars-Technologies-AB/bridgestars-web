@@ -53,6 +53,8 @@ class AuthManager {
         // success
         .then((user: any) => {
           authStore().set(user.get("dispName")); // set auth store so that server knows that we are signed in
+        // --- TODO: add "lang" field to user so language can be saved between sessions and devices ---
+        
           return user;
         })
     );

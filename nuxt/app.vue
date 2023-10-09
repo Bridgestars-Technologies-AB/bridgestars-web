@@ -1,4 +1,5 @@
 <script setup>
+
 useHead({
   htmlAttrs: {
     lang: useTranslate().i18.language,
