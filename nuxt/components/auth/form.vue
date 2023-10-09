@@ -90,7 +90,7 @@ onMounted(() => {
       </span>
       <!-- SLOTS -->
       <div
-        class="zoomIn flex flex-col items-center space-y-4 xs:mt-4 sm:mt-0 xs:w-[80%] sm:w-[80%] md:w-[70%] lg:w-[70%] max-w-[400px]"
+        class="zoomIn flex flex-col items-center space-y-4 xs:mt-4 sm:mt-0 xs:w-[90%] sm:w-[80%] md:w-[70%] lg:w-[70%] max-w-[400px]"
       >
         <slot></slot>
       </div>
