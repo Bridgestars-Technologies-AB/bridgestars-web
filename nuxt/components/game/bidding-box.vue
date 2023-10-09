@@ -50,7 +50,30 @@ function getDisabled(rank, suit) {
 
 <template>
   <div :class="'flex flex-col space-y-1 ' + wrapperClass">
-    <!-- Pass button -->
+    <div class="flex justify-center">
+      <div v-for="e in 5">
+        <game-bidding-block
+          :card="{ suit: 0, rank: 0 }"
+          v-if="e === 1"
+        ></game-bidding-block>
+        <game-bidding-block v-else :invisible="true"></game-bidding-block>
+      </div>
+    </div>
+
+    <div class="flex flex-row justify-center space-x-1" v-for="r in 7">
+      <div
+        class="flex items-center justify-center overflow-x-hidden outline-none"
+        v-for="s in 5"
+      >
+        <game-bidding-block
+          :card="{ suit: s - 1, rank: r }"
+        ></game-bidding-block>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!--   <div :class="'flex flex-col space-y-1 ' + wrapperClass">
 
     <div class="flex justify-center space-x-1">
       <div
@@ -67,7 +90,6 @@ function getDisabled(rank, suit) {
       </div>
     </div>
 
-    <!-- 7 rows of 5 buttons -->
     <div
       v-for="rank in 7"
       :key="rank"
@@ -94,5 +116,4 @@ function getDisabled(rank, suit) {
         </span>
       </button>
     </div>
-  </div>
-</template>
+  </div> -->

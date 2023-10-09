@@ -46,32 +46,12 @@ function brick(suit, rank) {
     <div class="w-[100%] h-[2px] bg-dash-dark-400 mb-[7px]"></div>
     <div class="flex flex-row justify-center w-full">
       <div class="flex flex-row flex-wrap w-[97%]">
-        <div
-          class="w-[24%] flex flex-row justify-center items-center my-[3px]"
+        <game-bidding-block
           v-for="e in history"
-        >
-          <div
-            class="biddingBox bg-[#0E9F6E] flex flex-row justify-center items-center rounded-lg"
-            v-if="e.suit === 0 && e.rank === 0"
-          >
-            <span class="biddingPass">
-              {{ brick(e.suit, e.rank) }}
-            </span>
-          </div>
-
-          <div
-            class="biddingBox flex flex-row items-center justify-center rounded-lg"
-            v-else
-          >
-            <span class="biddingText1 tracking-[2px]">{{ e.rank }}</span>
-            <span
-              :class="`tracking-[2px] ${
-                e.suit > 3 ? 'biddingText3' : 'biddingText2'
-              } ${symbols[e.suit].color}`"
-              >{{ symbols[e.suit].symbol }}</span
-            >
-          </div>
-        </div>
+          wrapperClass="w-[24%]"
+          :card="e"
+          :bg="e.suit === 0 && e.rank === 0 ? 'bg-[#0E9F6E]' : ''"
+        ></game-bidding-block>
       </div>
     </div>
   </div>
