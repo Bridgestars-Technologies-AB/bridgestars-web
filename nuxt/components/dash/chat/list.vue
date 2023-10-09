@@ -29,7 +29,7 @@ const searchTerm = ref("");
 const filterUsers = (c: Chat) => {
   if (!searchTerm.value) return true;
   return c
-    .getNameAttribute()
+    .name
     .toLowerCase()
     .includes(searchTerm.value.toLowerCase());
 };

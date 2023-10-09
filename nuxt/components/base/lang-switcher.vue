@@ -27,7 +27,7 @@ onMounted(() => {
     <div class="flex space-x-2">
       <span 
         v-for="l in ['sv', 'en']" 
-        :key="key"
+        :key="l"
         :class="`${flags[l]} ${l == i18.language || 'opacity-50'}`" 
         style="height:34px;width:34px;"
         @click="set(l)"

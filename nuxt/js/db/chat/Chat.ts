@@ -20,7 +20,7 @@ export default class Chat {
   readonly users: string[];
   latestMessage: Message | null = null;
 
-  private name: string;
+  public name: string;
 
   constructor(data: DbObject) {
     this.id = data.id;
@@ -31,10 +31,6 @@ export default class Chat {
     (async () => (this.manager = await useChatManager()))();
   }
 
-  //None async function for accessing this.name
-  getNameAttribute() {
-    return this.name;
-  }
   /**
    * Fetches the name of the chat. If the name is already fetched, it will return the cached name. May run multiple times if called quickly
    * @returns the name of the chat
