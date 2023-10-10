@@ -8,7 +8,7 @@ let deferred: {
   reject: (error: Error) => void;
 } | null = null;
 let connectionPromise: Promise<void> | null = null;
-let connected = ref(false);
+const connected = ref(false);
 
 /**
  * Lazily connects to the realtime-server and authenticates the user. Only ever creates one connection.
@@ -16,13 +16,12 @@ let connected = ref(false);
  * @example
  * const {socket, connected} = await useRealtimeClient();
  * socket.on(Events.Receive.ChatMessage, (chatId: string) => {});
-*/
+ */
 export default async function useRealtimeClient(): Promise<Client> {
-
   //stop server and unauithenticated users
   if (process.server) throw new Error("Cannot use socket on server");
   const auth = useAuth();
-  if (!auth.authenticated || !auth.user) {
+  if (!auth.authenticated()) {
     socket?.disconnect();
     const e = new Error(
       "User is not authenticated, cannot connect to realtime-server",
@@ -34,17 +33,17 @@ export default async function useRealtimeClient(): Promise<Client> {
   // detta ska vara en spärr som ser till att det bara finns en socket och att ingen behöver ora sig för att den inte ska vara ansluten när de börjar använda den.
   // är lite orolig för race etc här
   if (!connectionPromise) {
-    connectionPromise = new Promise((resolve, reject) => deferred = { resolve, reject });
-    connect(auth.user);
+    connectionPromise = new Promise(
+      (resolve, reject) => (deferred = { resolve, reject }),
+    );
+    connect(auth.user());
   }
 
-
   await connectionPromise;
-  return {socket: socket as Socket, connected};
+  return { socket: socket as Socket, connected };
 }
 
-
-function connect(user:any){
+function connect(user: any) {
   //create socket
   socket = io("http://localhost:3001", {
     transports: ["websocket"],
@@ -52,13 +51,13 @@ function connect(user:any){
 
   //connect socket to server
   socket.on(Events.Connection.Established, () => {
-    console.log("Socket connected");
+    // console.log("Connection to realtime-server established");
     if (socket === null) throw new Error("Socket is null??");
     //authenticate socket
     socket.emit(
       Events.Connection.Authenticate,
       user.id,
-      user.getSessionToken(),
+      user.data.getSessionToken(),
     );
     socket.on(Events.Connection.Authenticated, () => {
       if (deferred == null) return;
@@ -75,10 +74,10 @@ function connect(user:any){
     connected.value = false;
   });
   //for debug
-  socket.onAnyOutgoing((event, ...args) => {
-    console.log("outgoing", event, args);
-  });
-  socket.onAny((event, ...args) => {
-    console.log("incoming", event, args);
-  })
+  // socket.onAnyOutgoing((event, ...args) => {
+  //   console.log("outgoing", event, args);
+  // });
+  // socket.onAny((event, ...args) => {
+  //   console.log("incoming", event, args);
+  // })
 }

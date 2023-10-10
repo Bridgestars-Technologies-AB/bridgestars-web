@@ -1,10 +1,10 @@
 <script setup lang="js">
-const props = defineProps([
-  "placeholder",
-  "id",
-  "wrapperClass",
-  "modelValue",
-]);
+const props = defineProps({
+  placeholder: String,
+  id: String,
+  wrapperClass: String,
+  modelValue: String,
+});
 defineEmits(["update:modelValue"]);
 
 // const type = ref(props.type);
@@ -14,17 +14,16 @@ const input = ref(null);
 
 const value = ref("");
 
-function update(event){
+function update(event) {
   const val = event.target.value;
-  if(props.modelValue)
-    emit('update:modelValue', val);
+  if (props.modelValue) emit("update:modelValue", val);
   else value.value = val;
   showEye.value = val.length > 0;
 }
 
 function toggleShowPass() {
   showPass.value = !showPass.value;
-  if(props.id.includes("password")) {
+  if (props.id.includes("password")) {
     input.value.type = showPass.value ? "text" : "password";
   }
 }
@@ -33,11 +32,11 @@ function toggleShowPass() {
 <template>
   <div :class="'input-block ' + wrapperClass">
     <input
-      class="py-2.5 px-4 !bg-white text-[16px] font-family2"
       v-bind="$attrs"
-      placeholder=" "
-      ref="input"
       :id="id"
+      ref="input"
+      class="py-2.5 px-4 !bg-white text-[16px] font-family2"
+      placeholder=" "
       :value="modelValue || value"
       @input="update"
     />
@@ -55,14 +54,16 @@ function toggleShowPass() {
     <!-- ></div> -->
     <!-- v-if="props.id === 'password-signin' && !showPass" -->
     <ClientOnly>
-      <div v-if="(showEye || showPass) && props.id.includes('password')"
-        class="absolute top-[14px] right-[14px]">
-          <!-- 14px since input field is 48px, so position should be 48/2-20/2=14px from top -->
+      <div
+        v-if="(showEye || showPass) && props.id.includes('password')"
+        class="absolute top-[14px] right-[14px]"
+      >
+        <!-- 14px since input field is 48px, so position should be 48/2-20/2=14px from top -->
         <div
           :class="`opacity-80 ${
             showPass ? 'i-basil-eye-closed-outline' : 'i-basil-eye-outline'
           }`"
-          style="height:20px; width:20px;"
+          style="height: 20px; width: 20px"
           @click="toggleShowPass"
         ></div>
       </div>
@@ -135,7 +136,7 @@ div.input-block input:focus + span.placeholder {
 div.input-block input:focus {
   @apply border-[#2590ee];
 }
-div.input-block{
+div.input-block {
   @apply border-none;
 }
 div.input-block input:focus + span.placeholder {

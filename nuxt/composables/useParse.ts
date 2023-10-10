@@ -1,5 +1,4 @@
-
-import Parse from 'parse/dist/parse.min.js';
+import Parse from "parse/dist/parse.min.js";
 
 const initializeParse = (serverURL, applicationId) => {
   Parse.serverURL = serverURL;
@@ -9,8 +8,8 @@ const initializeParse = (serverURL, applicationId) => {
 
 initializeParse(
   // 'https://aws.lb.bridgestars.net/rest',
-  'https://65mwftnqsj.eu-central-1.awsapprunner.com/rest',
-  'k4PTFS2R8tSYoZC8UNXzvplbZ38jOmViOkJxJEyE'
+  "https://65mwftnqsj.eu-central-1.awsapprunner.com/rest",
+  "k4PTFS2R8tSYoZC8UNXzvplbZ38jOmViOkJxJEyE",
 );
 
-export {Parse};
+export { Parse };

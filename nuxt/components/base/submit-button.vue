@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps({
+defineProps({
   wrapperClass: String,
   text: String,
   loading: Boolean,
@@ -54,7 +54,8 @@ button {
     rgb(73, 163, 241),
     rgb(26, 115, 232)
   );
-  box-shadow: rgb(73 163 241 / 15%) 0rem 0.1875rem 0.1875rem 0rem,
+  box-shadow:
+    rgb(73 163 241 / 15%) 0rem 0.1875rem 0.1875rem 0rem,
     rgb(73 163 241 / 20%) 0rem 0.1875rem 0.0625rem -0.125rem,
     rgb(73 163 241 / 15%) 0rem 0.0625rem 0.3125rem 0rem;
 }

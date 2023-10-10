@@ -1,6 +1,4 @@
 <script setup>
-import { User } from "parse";
-
 const query = useRoute().query;
 await loadTranslations("auth");
 const logoutModalOpen = ref(false);
@@ -13,7 +11,7 @@ function signOut() {
 const redirect = () => useRouter().replace("/auth/sign-in");
 
 onMounted(() => {
-  if (!useAuth().authenticated)
+  if (!useAuth().authenticated())
     // we should never show this page if user is not signed in
     redirect();
 });
@@ -22,18 +20,18 @@ onMounted(() => {
 <template>
   <auth-form
     :header="$t('auth:already.already')"
-    :title="$t('auth:already.title', { name: useAuth().get('dispName') })"
+    :title="$t('auth:already.title', { name: useAuth().username() })"
     :subtitle="$t('auth:already.subtitle')"
     :subtitle2="$t('auth:already.subtitle2')"
   >
     <div class="flex xs:flex-col sm:flex-row xs:flex-reverse">
-      <button @click="signOut" class="buttons" type="button">
+      <button class="buttons" type="button" @click="signOut">
         {{ $t("auth:already.signOut") }}
       </button>
       <button
-        @click="navigateTo({ path: '/dash', query })"
         class="buttons"
         type="button"
+        @click="navigateTo({ path: '/dash', query })"
       >
         {{ $t("auth:already.dash") }}
       </button>

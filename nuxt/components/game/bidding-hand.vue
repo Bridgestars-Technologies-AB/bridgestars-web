@@ -117,7 +117,7 @@ function format(bridgeHand, suit) {
     ranks: sortCards(
       bridgeHand
         .filter((e) => e.suit === suit)
-        .map((e) => printedRanks[e.rank - 2])
+        .map((e) => printedRanks[e.rank - 2]),
     ).join(""),
   };
 }

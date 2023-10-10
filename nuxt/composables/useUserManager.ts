@@ -1,6 +1,6 @@
 import UserManager from "../js/db/user/UserManager";
 import { Events } from "../js/realtime";
-import { Status } from "../js/db/user/User";
+import User, { Status } from "../js/db/user/User";
 
 let manager: UserManager | null = null;
 
@@ -23,28 +23,23 @@ let deferred: {
  *
  * **/
 export default async function useUserManager(): Promise<UserManager> {
-  if(!useAuth().authenticated) {
+  if (!useAuth().authenticated()) {
     manager = null;
     const e = new Error("Can't initialize user manager when not signed in");
     deferred?.reject(e);
     throw e;
   }
   if (!initPromise) {
-    initPromise = new Promise((resolve, reject) =>
-      deferred = { resolve, reject }
+    initPromise = new Promise(
+      (resolve, reject) => (deferred = { resolve, reject }),
     );
     const { socket } = await useRealtimeClient();
     const auth = useAuth();
-    if (!auth.user) {
+    const user = auth.user();
+    if (!user) {
       throw new Error("Can't initialize user manager when not signed in");
     }
-    manager = new UserManager(socket);
-    manager.users[auth.user.id] = auth.user;
-    manager.setStatus(Status.Online);
-    socket.emit( //TODO: implement
-      Events.Send.SubscribeToUserStatus,
-      auth.user.get("friends") || [],
-    );
+    manager = new UserManager(socket, user);
 
     deferred?.resolve();
     // deferred?.reject(e);
@@ -57,6 +52,6 @@ export default async function useUserManager(): Promise<UserManager> {
   return manager;
 }
 
-async function fetchFriends() { //TODO: implement ?
-
+async function fetchFriends() {
+  //TODO: implement ?
 }

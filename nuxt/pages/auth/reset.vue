@@ -1,3 +1,3 @@
 <template>
-  <auth-reset/>
+  <auth-reset />
 </template>
