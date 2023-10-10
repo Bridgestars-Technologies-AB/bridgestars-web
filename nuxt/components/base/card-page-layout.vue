@@ -1,11 +1,11 @@
 <script setup lang="ts">
-const props = defineProps([
-  "imgSrc",
-  "hideNavbar",
-  "class",
-  "backdropClass",
-  "lazy",
-]);
+const props = defineProps({
+  imgSrc: String,
+  hideNavbar: Boolean,
+  class: String,
+  backdropClass: String,
+  lazy: Boolean,
+});
 </script>
 
 <template>

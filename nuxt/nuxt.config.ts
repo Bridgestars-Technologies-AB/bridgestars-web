@@ -1,5 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import eslint from "vite-plugin-eslint";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -28,13 +27,6 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/image",
     "@averjs/nuxt-compression",
-    [
-      "@nuxtjs/eslint-module",
-      {
-        /* module options */
-        lintOnStart: false,
-      },
-    ],
   ],
   image: {
     format: ["webp"],
@@ -78,7 +70,7 @@ export default defineNuxtConfig({
   //   },
   // below is for icon autoimport
   vite: {
-    plugins: [eslint({ lintOnStart: false })],
+    plugins: [],
   },
   build: {
     transpile: ["vue-toastification"],

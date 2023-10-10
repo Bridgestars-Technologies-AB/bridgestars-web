@@ -1,3 +1,4 @@
+<!-- eslint-disable no-unused-vars -->
 <script setup>
 import d from "~/assets/dev/docs-db-schema.json";
 let data = d;
@@ -59,7 +60,11 @@ function copyUrl(id) {
     <!--  all classes links -->
 
     <div class="mx-9 my-9 flex flex-wrap flex-col">
-      <div v-for="table in data" :key="table['_id']" class="flex items-center text-center" >
+      <div
+        v-for="table in data"
+        :key="table['_id']"
+        class="flex items-center text-center"
+      >
         <div class="w-full">
           <a
             :href="`#${table['_id']}`"

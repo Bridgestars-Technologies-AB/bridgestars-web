@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // const usernameEl = document.querySelector('#username');
 // const emailEl = document.querySelector('#email');
 // const passwordEl = document.querySelector('#password');
@@ -240,7 +241,6 @@ export default function InitAuthFormValidation(form, callback) {
       callback({
         email: emailEl.value,
       });
-    } else {
     }
   });
 

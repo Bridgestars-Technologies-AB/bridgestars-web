@@ -55,25 +55,25 @@ function getDisabled(nbr, suit) {
     </div>
 
     <!-- 7 rows of 5 buttons -->
-    <div v-for="nbr in 7" :key="nbr" class="flex space-x-1">
+    <div v-for="number in 7" :key="number" class="flex space-x-1">
       <button
-        v-for="suit in 5"
-        :key="suit"
+        v-for="suitIt in 5"
+        :key="suitIt"
         :class="`bg-dash-dark-300 hover:bg-dash-dark-400 rounded-xl w-[65px] h-[45px] flex items-center justify-center overflow-x-hidden outline-none ${getDisabled(
-          nbr,
-          suit - 1,
+          number,
+          suitIt - 1,
         )}`"
-        @click="bid(suit - 1, nbr)"
+        @click="bid(suitIt - 1, number)"
       >
         <span class="text1 text-[26px] select-none">
-          {{ nbr }}
+          {{ number }}
         </span>
         <span
           :class="`text1 ${
-            suit < 5 ? 'text-[35px] mb-1 ml-1' : 'text-[26px]'
+            suitIt < 5 ? 'text-[35px] mb-1 ml-1' : 'text-[26px]'
           } select-none`"
         >
-          {{ suits[suit - 1] }}
+          {{ suits[suitIt - 1] }}
         </span>
       </button>
     </div>

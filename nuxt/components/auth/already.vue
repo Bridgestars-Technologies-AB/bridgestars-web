@@ -1,6 +1,4 @@
 <script setup>
-import { User } from "parse";
-
 const query = useRoute().query;
 await loadTranslations("auth");
 const logoutModalOpen = ref(false);

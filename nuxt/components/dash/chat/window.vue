@@ -111,7 +111,7 @@ const isMe = (m) => m.sender == auth.user()?.id;
         class="flex-1 overflow-y-auto dark:bg-dash-dark-400 bg-dash-light-300 pb-2"
       >
         <!-- flex-1 expands this field to fill all remaining space of flexbox -->
-        <div v-for="m in chat.messages" class="w-full px-1 mt-2">
+        <div v-for="m in chat.messages" :key="m.id" class="w-full px-1 mt-2">
           <!-- Date divider -->
           <div v-if="isNewDate(m.createdAt)">
             <div

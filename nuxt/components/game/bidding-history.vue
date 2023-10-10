@@ -3,11 +3,12 @@
 This component displays the bidding history from bidding-box.
  Props:
    history: List of {suit, nbr}
+   
 */
 
-const p = defineProps({
+defineProps({
   history: {
-    type: [],
+    type: Array,
     required: true,
   },
 });
@@ -27,7 +28,11 @@ function brick(suit, nbr) {
     class="flex flex-col items-center w-[290px] h-[100%] bg-dash-dark-300 ml-10 rounded-xl"
   >
     <div class="w-[100%] flex flex-row">
-      <div v-for="p in 4" class="w-1/4 flex flex-row justify-center mt-[16px]">
+      <div
+        v-for="p in 4"
+        :key="p"
+        class="w-1/4 flex flex-row justify-center mt-[16px]"
+      >
         <span class="text1 text-[32px] mb-[4px]">
           {{ players[p - 1] }}
         </span>
@@ -40,6 +45,7 @@ function brick(suit, nbr) {
           v-for="e in history.map((element) =>
             brick(element.suit, element.nbr),
           )"
+          :key="e"
           :class="`w-[24%] mx-[2px] h-[40px] flex flex-row justify-center items-center mb-[10px] rounded-2xl + ${
             e === 'PASS' ? 'bg-[#0E9F6E]' : 'bg-dash-dark-200'
           }`"

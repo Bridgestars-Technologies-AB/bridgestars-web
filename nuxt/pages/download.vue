@@ -1,6 +1,6 @@
 <script setup>
 const downloads = ref([]);
-
+//test
 const { t } = await loadTranslations("download");
 // import image from "/bridgestars/art/about_us.png"
 

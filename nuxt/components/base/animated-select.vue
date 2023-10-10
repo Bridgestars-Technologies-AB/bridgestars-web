@@ -1,5 +1,12 @@
 <script setup>
-const props = defineProps(["modelValue", "options"]);
+const props = defineProps({
+  modelValue: {
+    type: String,
+  },
+  options: {
+    type: String,
+  },
+});
 const emits = defineEmits(["update:modelValue"]);
 
 function resize() {
@@ -47,6 +54,7 @@ function moveLine(event) {
     <div
       v-for="o in options"
       :id="o.toLowerCase()"
+      :key="o"
       class="h-[50px] flex items-center justify-center z-10 flex-auto"
       @click="moveLine"
     >

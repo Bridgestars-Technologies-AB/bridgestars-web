@@ -54,7 +54,11 @@ onMounted(() => {
     <!--  all classes links -->
 
     <div v-if="data" class="mx-9 my-9 flex flex-wrap flex-col">
-      <div v-for="table in data" class="relative flex items-center text-center">
+      <div
+        v-for="table in data"
+        :key="table['name']"
+        class="relative flex items-center text-center"
+      >
         <div class="w-full">
           <a
             :href="`#${table['name']}`"
@@ -71,6 +75,7 @@ onMounted(() => {
           }}</span>
           <div
             v-for="role in table['roles']"
+            :key="role"
             class="ml-[90px] rounded-xl px-[5px] py-[0px] bg-red-400"
           >
             <span class="text1 text-white font-medium text-[12px]">{{
@@ -87,6 +92,7 @@ onMounted(() => {
     >
       <div
         v-for="item in data"
+        :key="item['_id']"
         class="flex flex-col px-3 items-start mt-5 w-full max-w-[1700px]"
       >
         <div
@@ -104,6 +110,7 @@ onMounted(() => {
           />
           <div
             v-for="role in item['roles']"
+            :key="role"
             class="ml-3 rounded-xl px-2 py-1 bg-red-400"
           >
             <span class="text1 text-white font-medium text-[20px]">{{
@@ -114,6 +121,7 @@ onMounted(() => {
         <template v-if="item.desc">
           <div
             v-for="d in item.desc.split(';')"
+            :key="d"
             class="sm:h-[20px] xs:text-[11px] mt-1"
           >
             <span
@@ -133,12 +141,12 @@ onMounted(() => {
             <!-- <th>Type</th> -->
             <!-- <th>Description</th> -->
           </tr>
-          <tr v-for="param in item.params" class="">
+          <tr v-for="param in item.params" :key="param.name" class="">
             <td class="!font-normal max-w-[120px]">{{ param.name }}</td>
             <td>{{ param.type }}</td>
             <td>
               <template v-if="param.desc">
-                <div v-for="d in (param.desc + ';').split(';')">
+                <div v-for="d in (param.desc + ';').split(';')" :key="d">
                   {{ d }}
                 </div>
               </template>
@@ -157,7 +165,7 @@ onMounted(() => {
           <tr class="">
             <td class="!font-normal max-w-[220px]">
               <template v-if="item.return?.type">
-                <div v-for="d in (item.return.type + ';').split(';')">
+                <div v-for="d in (item.return.type + ';').split(';')" :key="d">
                   {{ d }}
                 </div>
               </template>
@@ -165,7 +173,7 @@ onMounted(() => {
 
             <td>
               <template v-if="item.return?.desc">
-                <div v-for="d in (item.return.desc + ';').split(';')">
+                <div v-for="d in (item.return.desc + ';').split(';')" :key="d">
                   {{ d }}
                 </div>
               </template>
@@ -181,10 +189,10 @@ onMounted(() => {
             <!-- <th>Type</th> -->
             <!-- <th>Description</th> -->
           </tr>
-          <tr v-for="e in item.errors" class="">
+          <tr v-for="e in item.errors" :key="e" class="">
             <td class="!font-normal max-w-[220px]">
               <template v-if="e">
-                <div v-for="d in (e + ';').split(';')">
+                <div v-for="d in (e + ';').split(';')" :key="d">
                   {{ d }}
                 </div>
               </template>

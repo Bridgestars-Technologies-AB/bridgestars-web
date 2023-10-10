@@ -93,7 +93,7 @@ function formatTime(time) {
     >
       <h3 class="">Notifications</h3>
     </div>
-    <div v-for="n in notifications" :class="`px-3 py-2`">
+    <div v-for="n in notifications" :key="n.title" :class="`px-3 py-2`">
       <div class="flex items-center justify-between">
         <div class="flex flex-col">
           <span class="text font-family2 text-[16px] dark:text-light">{{

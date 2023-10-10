@@ -1,7 +1,7 @@
 <!-- hover info tooltip styled -->
 
 <script setup lang="ts">
-import { initPopovers } from "flowbite";
+import { Popover, initPopovers } from "flowbite";
 
 const props = defineProps({
   text: String,
@@ -30,7 +30,7 @@ onMounted(() => {
 let debounce: number = new Date("1970").getTime(); // to prevent showing tooltip directly when hovering, only after 250ms
 let isTouch = false; //touch devices don't have hover and when clicking the send the mouseenter event, so we need to prevent that
 
-function show(e) {
+function show() {
   if (props.disabled) return;
   if (isTouch) return;
   setTimeout(() => {
@@ -38,7 +38,7 @@ function show(e) {
     popover?.show();
   }, 250);
 }
-function hide(e) {
+function hide() {
   debounce = Date.now();
   popover?.hide();
 }

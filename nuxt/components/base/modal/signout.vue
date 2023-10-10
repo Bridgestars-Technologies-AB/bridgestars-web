@@ -15,7 +15,10 @@ props:
 const auth = useAuth();
 const toast = useToast();
 const { t } = await loadTranslations("dashboard");
-const props = defineProps(["open", "customSignOutAction"]);
+const props = defineProps({
+  open: Boolean,
+  customSignOutAction: Function,
+});
 defineEmits(["update:open"]);
 
 async function signOut() {
