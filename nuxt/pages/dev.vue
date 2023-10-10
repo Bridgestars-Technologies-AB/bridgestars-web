@@ -1,14 +1,14 @@
 <script setup>
-// definePageMeta({
-//   middleware:[function(from, to){
-//       if(!process.dev){
-//         // return createError({statusCode:404, statusMessage: 'Page not found: /dev'})
-//         return navigateTo("/", {})
-//          // return abortNavigation(new Error("error route not found")) 
-//       }
-//
-//   }]
-// })
+definePageMeta({
+  middleware:[function(from, to){
+      if(!process.dev){
+        return createError({statusCode:404, statusMessage: 'Page not found: /dev'})
+        // return navigateTo("/", {})
+         // return abortNavigation(new Error("error route not found")) 
+      }
+
+  }]
+})
 const dev = ref(process.dev)
 const route = useRoute()
 </script>
