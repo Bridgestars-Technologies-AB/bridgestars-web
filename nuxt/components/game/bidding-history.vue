@@ -5,7 +5,7 @@ Props:
   history: List of {suit, rank}
 */
 
-const p = defineProps({
+defineProps({
   history: {
     type: Array,
     required: true,
@@ -20,6 +20,7 @@ const p = defineProps({
 
 const players = ["V", "N", "Ö", "S"];
 
+// eslint-disable-next-line no-unused-vars
 function brick(suit, rank) {
   return suit === 0 && rank === 0 ? "PASS" : `${rank}${symbols[suit].symbol}`;
 }
@@ -34,8 +35,9 @@ function brick(suit, rank) {
     <div class="w-[100%] flex flex-row justify-center">
       <div class="flex flex-row w-[97%]">
         <div
-          class="w-[24%] flex flex-row justify-center mt-[8px]"
           v-for="p in 4"
+          :key="p"
+          class="w-[24%] flex flex-row justify-center mt-[8px]"
         >
           <span class="text1 text-[26px] font-semibold mb-[4px]">
             {{ players[p - 1] }}
@@ -47,7 +49,8 @@ function brick(suit, rank) {
     <div class="flex flex-row justify-center w-full">
       <div class="flex flex-row flex-wrap w-[97%]">
         <game-bidding-block
-          v-for="e in history"
+          v-for="(e, index) in history"
+          :key="index"
           wrapperClass="w-[24%]"
           :card="e"
           :bg="e.suit === 0 && e.rank === 0 ? 'bg-[#0E9F6E]' : ''"

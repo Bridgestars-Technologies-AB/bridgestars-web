@@ -53,40 +53,6 @@
     @apply font-family text-[14px] font-light leading-[14px] uppercase;
   }
 
-  /* Here comes classes for bidding components */
-  /*w-52 h-34*/
-  /* The box for rank + suit used in bidding-box and bidding-history */
-  .biddingBox {
-    @apply xl:w-[70px] xl:h-[45px] lg:w-[55px] lg:h-[35px] md:w-[35px] md:h-[30px] sm:w-[30px] sm:h-[25px] w-[20px] h-[15px] bg-dash-dark-200;
-  }
-
-  /* Size for the bidding-container used in bidding-practice */
-  .biddingContainer {
-    @apply h-full w-[24%];
-  }
-
-  /* Size for all bidding-components used in bidding-practice */
-  .biddingComponent {
-    @apply w-full h-[90%];
-  }
-
-  .biddingText1 {
-    @apply text1 xl:text-[20px] text-[15px] text-white;
-  }
-
-  .biddingText2 {
-    @apply text1 xl:text-[26px] text-[20px]  text-white;
-  }
-
-  .biddingText3 {
-    @apply text1 xl:text-[18px] text-[12px] text-white;
-  }
-
-  .biddingPass {
-    @apply bg-green-500 hover:bg-green-400 rounded-lg
-    dark:text-light biddingText3 tracking-[0.5px] text-white;
-  }
-
   .text1,
   .text2,
   .text3 {

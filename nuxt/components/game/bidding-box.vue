@@ -1,3 +1,4 @@
+<!-- eslint-disable no-unused-vars -->
 <!--
 Bidding Box
 
@@ -39,34 +40,34 @@ function bid(suit, rank) {
   }
   emit("bid", suit, rank);
 }
-
-function getDisabled(rank, suit) {
-  if (!p.suit || !p.rank) return "";
-  if (rank < p.rank || (suit <= p.suit && rank === p.rank))
-    return "opacity-50 cursor-not-allowed";
-  return "";
-}
 </script>
 
 <template>
   <div :class="'flex flex-col space-y-1 ' + wrapperClass">
     <div class="flex justify-center">
-      <div v-for="e in 5">
+      <div v-for="e in 5" :key="e">
         <game-bidding-block
-          :card="{ suit: 0, rank: 0 }"
           v-if="e === 1"
+          :card="{ suit: 0, rank: 0 }"
+          :clickable="true"
+          :onClick="bid"
         ></game-bidding-block>
         <game-bidding-block v-else :invisible="true"></game-bidding-block>
       </div>
     </div>
 
-    <div class="flex flex-row justify-center space-x-1" v-for="r in 7">
+    <div v-for="r in 7" :key="r" class="flex flex-row justify-center space-x-1">
       <div
-        class="flex items-center justify-center overflow-x-hidden outline-none"
         v-for="s in 5"
+        :key="s"
+        class="flex items-center justify-center overflow-x-hidden outline-none"
       >
         <game-bidding-block
           :card="{ suit: s - 1, rank: r }"
+          :clickable="true"
+          :onClick="bid"
+          :suit="suit"
+          :rank="rank"
         ></game-bidding-block>
       </div>
     </div>

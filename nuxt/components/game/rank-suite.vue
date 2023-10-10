@@ -1,8 +1,8 @@
 <script setup>
-const props = defineProps({
+defineProps({
   card: {
     type: Object,
-    default: { suit: 1, rank: 1 },
+    default: () => ({ suit: 1, rank: 1 }),
   },
   click: Boolean,
 });
@@ -10,16 +10,6 @@ const props = defineProps({
 function brick(suit, rank) {
   return suit === 0 && rank === 0 ? "PASS" : `${rank}${symbols[suit].symbol}`;
 }
-
-const symbols = [
-  { symbol: "♣", color: "!text-clubs" },
-  { symbol: "♦", color: "!text-diamonds" },
-  { symbol: "♥", color: "!text-hearts" },
-  { symbol: "♠", color: "!text-spades" },
-  { symbol: "NT", color: "!text-white" },
-];
-
-const suits = ["♣", "♦", "♥", "♠"];
 </script>
 
 <template>
@@ -30,12 +20,26 @@ const suits = ["♣", "♦", "♥", "♠"];
     >
   </div>
   <div v-else>
-    <span class="biddingText1 tracking-[2px]">{{ card.rank }}</span>
+    <span class="biddingText1 text1 tracking-[2px]">{{ card.rank }}</span>
     <span
-      :class="`tracking-[2px] ${
+      :class="`tracking-[2px] text1 ${
         card.suit > 3 ? 'biddingText3' : 'biddingText2'
       } ${symbols[card.suit].color}`"
       >{{ symbols[card.suit].symbol }}</span
     >
   </div>
 </template>
+
+<style scoped>
+.biddingText1 {
+  @apply xl:text-[20px] text-[15px] text-white;
+}
+
+.biddingText2 {
+  @apply xl:text-[26px] text-[20px]  text-white;
+}
+
+.biddingText3 {
+  @apply xl:text-[18px] text-[12px] text-white;
+}
+</style>

@@ -16,6 +16,12 @@ export enum Suit {
   NT = 4,
 }
 
+//Not able to use as type, Card not defined??
+export interface Card {
+  suit: number;
+  rank: number;
+}
+
 // When we print the ranks, we do not want rank 2-14, we want T, J, Q, K, A as well
 export const printedRanks = [
   "2",

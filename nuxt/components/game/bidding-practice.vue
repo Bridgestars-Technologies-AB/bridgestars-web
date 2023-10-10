@@ -56,12 +56,24 @@ function bid(s, r) {
 
       <game-bidding-container wrapperClass="biddingContainer" header="BUDLÅDA">
         <game-bidding-box
-          wrapperClass="biddingComponent"
           v-model:suit="suit"
           v-model:rank="rank"
+          wrapperClass="biddingComponent"
           @bid="bid"
         />
       </game-bidding-container>
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Size for the bidding-container used in bidding-practice */
+.biddingContainer {
+  @apply h-full w-[24%];
+}
+
+/* Size for all bidding-components used in bidding-practice */
+.biddingComponent {
+  @apply w-full h-[90%];
+}
+</style>
