@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const p = defineProps({
   card: {
-    type: Object,
+    type: CardUtil.Card,
     default: () => ({ suit: 1, rank: 1 }),
   },
   wrapperClass: String,
@@ -27,8 +27,6 @@ function getDisabled(rank, suit) {
 <template>
   <div
     :class="`${wrapperClass} flex flex-row justify-center items-center my-[3px] ${
-      invisible ? 'invisible' : ''
-    } ${
       getDisabled(card.suit, card.rank) ? 'opacity-50 cursor-not-allowed' : ''
     }`"
   >
@@ -56,29 +54,3 @@ function getDisabled(rank, suit) {
     dark:text-light biddingText3 tracking-[0.5px] text-white;
 } */
 </style>
-
-<!-- <div
-    :class="`${wrapperClass} flex flex-row justify-center items-center my-[3px]`"
-  >
-    <div
-      class="biddingBox bg-[#0E9F6E] flex flex-row justify-center items-center rounded-lg"
-      v-if="card.suit === 0 && card.rank === 0"
-    >
-      <span class="biddingPass">
-        {{ brick(card.suit, card.rank) }}
-      </span>
-    </div>
-
-    <div
-      class="biddingBox flex flex-row items-center justify-center rounded-lg"
-      v-else
-    >
-      <span class="biddingText1 tracking-[2px]">{{ card.rank }}</span>
-      <span
-        :class="`tracking-[2px] ${
-          card.suit > 3 ? 'biddingText3' : 'biddingText2'
-        } ${symbols[card.suit].color}`"
-        >{{ symbols[card.suit].symbol }}</span
-      >
-    </div>
-  </div> -->

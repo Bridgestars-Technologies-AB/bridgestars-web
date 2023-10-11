@@ -1,14 +1,19 @@
 <script setup>
+// Import statement not needed, provided for context
+import { CardUtil } from "/composables/useCardUtil.ts";
+
 defineProps({
   card: {
-    type: Object,
+    type: CardUtil.Card,
     default: () => ({ suit: 1, rank: 1 }),
   },
   click: Boolean,
 });
 
 function brick(suit, rank) {
-  return suit === 0 && rank === 0 ? "PASS" : `${rank}${symbols[suit].symbol}`;
+  return suit === 0 && rank === 0
+    ? "PASS"
+    : `${rank}${CardUtil.symbols[suit].symbol}`;
 }
 </script>
 
@@ -24,8 +29,8 @@ function brick(suit, rank) {
     <span
       :class="`tracking-[2px] text1 ${
         card.suit > 3 ? 'biddingText3' : 'biddingText2'
-      } ${symbols[card.suit].color}`"
-      >{{ symbols[card.suit].symbol }}</span
+      } ${CardUtil.symbols[card.suit].color}`"
+      >{{ CardUtil.symbols[card.suit].symbol }}</span
     >
   </div>
 </template>

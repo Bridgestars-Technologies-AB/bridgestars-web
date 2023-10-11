@@ -47,12 +47,15 @@ function bid(suit, rank) {
     <div class="flex justify-center">
       <div v-for="e in 5" :key="e">
         <game-bidding-block
-          v-if="e === 1"
+          :wrapperClass="e !== 1 ? 'invisible' : ''"
           :card="{ suit: 0, rank: 0 }"
           :clickable="true"
           :onClick="bid"
         ></game-bidding-block>
-        <game-bidding-block v-else :invisible="true"></game-bidding-block>
+        <!-- <game-bidding-block
+          v-else
+          wrapperClass="invisible"
+        ></game-bidding-block> -->
       </div>
     </div>
 
@@ -73,48 +76,3 @@ function bid(suit, rank) {
     </div>
   </div>
 </template>
-
-<!--   <div :class="'flex flex-col space-y-1 ' + wrapperClass">
-
-    <div class="flex justify-center space-x-1">
-      <div
-        v-for="e in 5"
-        :class="`${e === 1 ? 'biddingBox' : 'biddingBox invisible'}`"
-      >
-        <button
-          v-if="e === 1"
-          @click="bid(0, 0)"
-          class="w-full h-full flex flex-row justify-center items-center outline-none select-none biddingPass"
-        >
-          <span>PASS</span>
-        </button>
-      </div>
-    </div>
-
-    <div
-      v-for="rank in 7"
-      :key="rank"
-      class="flex flex-row justify-center space-x-1"
-    >
-      <button
-        v-for="suit in 5"
-        :key="suit"
-        @click="bid(suit - 1, rank)"
-        :class="`biddingBox hover:bg-dash-dark-400 rounded-md flex items-center justify-center overflow-x-hidden outline-none ${getDisabled(
-          rank,
-          suit - 1
-        )}`"
-      >
-        <span class="biddingText1 select-none">
-          {{ rank }}
-        </span>
-        <span
-          :class="`${symbols[suit - 1].color} ${
-            suit < 5 ? 'biddingText2 ml-1' : 'biddingText3 ml-[1px]'
-          } select-none`"
-        >
-          {{ symbols[suit - 1].symbol }}
-        </span>
-      </button>
-    </div>
-  </div> -->

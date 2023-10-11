@@ -1,4 +1,6 @@
 <script setup>
+// Import statement not needed, provided for context
+import { CardUtil } from "/composables/useCardUtil.ts";
 /*
 Bdding Hand
 A component which displays the users hand
@@ -9,7 +11,7 @@ Props:
 */
 const p = defineProps({
   hand: {
-    type: Array,
+    type: Array[CardUtil.Card],
     required: false,
   },
   showDeal: {
@@ -87,26 +89,8 @@ function dealHand(inputHand) {
 }
 
 function sortCards(cards) {
-  // Define the values for each card
-  const cardValues = {
-    1: 1,
-    2: 2,
-    3: 3,
-    4: 4,
-    5: 5,
-    6: 6,
-    7: 7,
-    8: 8,
-    9: 9,
-    T: 10,
-    J: 11,
-    Q: 12,
-    K: 13,
-    A: 14,
-  };
-
   // Sort the cards based on their values
-  cards.sort((a, b) => cardValues[b] - cardValues[a]);
+  cards.sort((a, b) => CardUtil.cardValues[b] - CardUtil.cardValues[a]);
 
   return cards;
 }
@@ -117,7 +101,7 @@ function format(bridgeHand, suit) {
     ranks: sortCards(
       bridgeHand
         .filter((e) => e.suit === suit)
-        .map((e) => printedRanks[e.rank - 2]),
+        .map((e) => CardUtil.printedRanks[e.rank - 2]),
     ).join(""),
   };
 }
@@ -126,11 +110,13 @@ function format(bridgeHand, suit) {
 <template>
   <div :class="'flex flex-col bg-[#121c27] rounded-xl ' + wrapperClass">
     <div
-      v-for="(suit, index) in suits"
+      v-for="(suit, index) in CardUtil.suits"
       :key="index"
       class="h-1/4 flex flex-row items-center ml-[10px]"
     >
-      <span :class="`text-[45px] ${symbols[index].color}`">{{ suit }} </span>
+      <span :class="`text-[45px] ${CardUtil.symbols[index].color}`"
+        >{{ suit }}
+      </span>
       <span class="ml-[10px] text-[25px] text1 text-white tracking-[1px]">{{
         computedHand.filter((e) => e.suit === index)[0]?.ranks
       }}</span>

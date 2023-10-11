@@ -19,11 +19,6 @@ defineProps({
 //lägg till funktionalitet för hover/click, tooltip?
 
 const players = ["V", "N", "Ö", "S"];
-
-// eslint-disable-next-line no-unused-vars
-function brick(suit, rank) {
-  return suit === 0 && rank === 0 ? "PASS" : `${rank}${symbols[suit].symbol}`;
-}
 </script>
 
 <template>
@@ -53,7 +48,7 @@ function brick(suit, rank) {
           :key="index"
           wrapperClass="w-[24%]"
           :card="e"
-          :bg="e.suit === 0 && e.rank === 0 ? 'bg-[#0E9F6E]' : ''"
+          :bg="e.suit || e.rank ? '' : 'bg-[#0E9F6E]'"
         ></game-bidding-block>
       </div>
     </div>
