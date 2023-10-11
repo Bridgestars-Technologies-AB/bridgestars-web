@@ -7,7 +7,7 @@ Props:
 
 defineProps({
   history: {
-    type: Array,
+    type: Array[CardUtil.Card],
     required: true,
   },
   wrapperClass: {

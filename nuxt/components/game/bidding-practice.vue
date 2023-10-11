@@ -19,7 +19,9 @@ function bid(s, r) {
     <div class="w-[90%] h-[80px] border mb-[20px]"></div>
     <div class="flex flex-row space-x-1 h-[70%] w-[100%] justify-center">
       <game-bidding-container showImage="true" wrapperClass="biddingContainer">
-        <game-bidding-text></game-bidding-text>
+        <game-bidding-text
+          text="Vad bjuder du som svarshand när din partner har öppnat med 1 NT?"
+        ></game-bidding-text>
       </game-bidding-container>
 
       <game-bidding-container wrapperClass="biddingContainer" header="DIN HAND">
