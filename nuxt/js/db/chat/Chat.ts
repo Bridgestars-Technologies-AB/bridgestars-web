@@ -20,7 +20,7 @@ export default class Chat {
   readonly users: string[];
   latestMessage: Message | null = null;
 
-  private name: string;
+  public name: string;
 
   constructor(data: DbObject) {
     this.id = data.id;

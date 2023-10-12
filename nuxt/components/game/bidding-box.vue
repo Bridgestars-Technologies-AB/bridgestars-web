@@ -1,16 +1,23 @@
+<!-- eslint-disable no-unused-vars -->
 <!--
-  Bidding Box
+Bidding Box
 
-  Props:
-    suit: Number (0-4) //  v-model:suit="suit" where suit is a ref(0)
-    nbr: Number (0-7) // 0 = pass
 
-  Emits:
-    bid: {suit: Number, nbr: Number}
+
+
+Props:
+  suit: Number (0-4) //  v-model:suit="suit" where suit is a ref(0)
+  rank: Number (0-7) // 0 = pass
+
+
+
+
+Emits:
+  bid: {suit: Number, rank: Number}
 -->
 <script setup>
 const p = defineProps({
-  nbr: {
+  rank: {
     type: Number,
     required: true,
   },
@@ -18,64 +25,54 @@ const p = defineProps({
     type: Number,
     required: true,
   },
+  wrapperClass: {
+    type: String,
+    required: false,
+  },
 });
-const emit = defineEmits(["bid", "update:nbr", "update:suit"]);
+const emit = defineEmits(["bid", "update:rank", "update:suit"]);
 
-const suits = ["♣", "♦", "♥", "♠", "NT"]; //replace with better icons, colored?
-
-function bid(suit, nbr) {
-  // console.log("BIDDINGBOX: ", {suit, nbr, p: p.suit, n: p.nbr});
-  if (nbr > p.nbr || (suit > p.suit && nbr === p.nbr)) {
-    emit("update:nbr", nbr);
+function bid(suit, rank) {
+  console.log("BIDDINGBOX: ", suit, rank);
+  if (rank > p.rank || (suit > p.suit && rank === p.rank)) {
+    emit("update:rank", rank);
     emit("update:suit", suit);
-    emit("bid", suit, nbr)
   }
-  else if(nbr == 0 && suit == 0) //PASS
-    emit("bid", suit, nbr);
-}
-
-function getDisabled(nbr, suit) {
-  // if (!p.suit || !p.nbr) return ""; // 2 spades suit is zero so we could not have this here
-  if (nbr < p.nbr || (suit <= p.suit && nbr === p.nbr))
-    return "opacity-50 cursor-not-allowed";
-  return "";
+  emit("bid", suit, rank);
 }
 </script>
 
 <template>
-  <div class="flex flex-col space-y-1">
-    <!-- Pass button -->
-    <div class="flex justify-start">
-      <button
-        class="bg-green-500 hover:bg-green-400 text1 text-white dark:text-light text-[26px] w-[120px] h-[45px] rounded-xl outline-none select-none"
-        @click="bid(0, 0)"
-      >
-        Pass
-      </button>
+  <div :class="'flex flex-col space-y-1 ' + wrapperClass">
+    <div class="flex justify-center">
+      <div v-for="e in 5" :key="e">
+        <game-bidding-block
+          :wrapperClass="e !== 1 ? 'invisible' : ''"
+          :card="{ suit: 0, rank: 0 }"
+          :clickable="true"
+          :onClick="bid"
+        ></game-bidding-block>
+        <!-- <game-bidding-block
+          v-else
+          wrapperClass="invisible"
+        ></game-bidding-block> -->
+      </div>
     </div>
 
-    <!-- 7 rows of 5 buttons -->
-    <div v-for="nbr in 7" :key="nbr" class="flex space-x-1">
-      <button
-        v-for="suit in 5"
-        :key="suit"
-        :class="`bg-dash-dark-300 hover:bg-dash-dark-400 rounded-xl w-[65px] h-[45px] flex items-center justify-center overflow-x-hidden outline-none ${getDisabled(
-          nbr,
-          suit - 1,
-        )}`"
-        @click="bid(suit - 1, nbr)"
+    <div v-for="r in 7" :key="r" class="flex flex-row justify-center space-x-1">
+      <div
+        v-for="s in 5"
+        :key="s"
+        class="flex items-center justify-center overflow-x-hidden outline-none"
       >
-        <span class="text1 text-[26px] select-none">
-          {{ nbr }}
-        </span>
-        <span
-          :class="`text1 ${
-            suit < 5 ? 'text-[35px] mb-1 ml-1' : 'text-[26px]'
-          } select-none`"
-        >
-          {{ suits[suit - 1] }}
-        </span>
-      </button>
+        <game-bidding-block
+          :card="{ suit: s - 1, rank: r }"
+          :clickable="true"
+          :onClick="bid"
+          :suit="suit"
+          :rank="rank"
+        ></game-bidding-block>
+      </div>
     </div>
   </div>
 </template>

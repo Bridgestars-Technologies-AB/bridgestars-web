@@ -1,6 +1,6 @@
 <script setup>
 const downloads = ref([]);
-
+//test
 const { t } = await loadTranslations("download");
 // import image from "/bridgestars/art/about_us.png"
 
@@ -45,11 +45,11 @@ onMounted(() => {
 <template>
   <base-card-page-layout imgSrc="/bridgestars/art/about_us.png">
     <div class="max-w-[1000px] flex flex-col text-justify px-[16px]">
-      <base-lang-switcher class="mb-4" @switched="update" />
+      <base-lang-switcher @switched="update"/>
 
-      <h3 class="text-start">
-        {{ $t("download:title") }}
-      </h3>
+      <h3 class="text-start mt-4">
+        {{$t("download:title")}}
+      </h3> 
       <span class="text2 mt-2">
         <i18next :translation="$t('download:desc1')">
           <template #here>

@@ -10,6 +10,3 @@ dist
 .fleet
 .idea
 .eslintrc
-**/*.js
-**/*.ts
-**/*.vue

@@ -5,7 +5,7 @@ const bar = ref(null);
 // random calculation, increasing xp needed to level up
 // level steps are: 0, 100, 400, 900, 1600, 2500, 3600, 4900, 6400
 // maybe that curve is a little steep
-const xp = props.user.data.get("xp") || 550; // temp, should be 0 here
+const xp = props.user?.data.get("xp") || 550; // temp, should be 0 here
 const level = computed(() => (xp / 100) ** 0.5);
 const levelFloored = computed(() => Math.floor(level.value));
 const levelProgressPercent = computed(

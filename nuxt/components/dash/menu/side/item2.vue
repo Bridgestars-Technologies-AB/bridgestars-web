@@ -1,7 +1,13 @@
 <!-- new menu item, wanted to keep the old one if needed so this is temporarily named item2 -->
 <script setup>
 const open = inject("side-menu-open");
-const props = defineProps(["icon", "keypath", "selected", "enabled", "color"]);
+const props = defineProps({
+  icon: String,
+  keypath: String,
+  selected: Boolean,
+  enabled: Boolean,
+  color: String,
+});
 
 const iconColor = "bg-dash-light-400 dark:bg-white";
 

@@ -1,11 +1,11 @@
 <script setup>
+
 useHead({
   htmlAttrs: {
     lang: useTranslate().i18.language,
   },
 });
 await loadTranslations("common"); // load translation
-import Toast from "vue-toastification";
 
 import "@fontsource/roboto-slab/100.css";
 import "@fontsource/roboto-slab/200.css";
