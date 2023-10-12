@@ -108,27 +108,42 @@ function format(bridgeHand, suit) {
 </script>
 
 <template>
-  <div :class="'flex flex-col bg-[#121c27] rounded-xl ' + wrapperClass">
+  <div
+    :class="
+      'bg-[#121c27] rounded-xl flex flex-row justify-between w-full sm:flex-col sm:items-center' +
+      wrapperClass
+    "
+  >
     <div
       v-for="(suit, index) in CardUtil.suits"
       :key="index"
-      class="h-1/4 flex flex-row items-center ml-[10px]"
+      class="h-1/4 flex flex-row items-center"
     >
-      <span :class="`text-[45px] ${CardUtil.symbols[index].color}`"
+      <span :class="`text-[30px] ${CardUtil.symbols[index].color}`"
         >{{ suit }}
       </span>
-      <span class="ml-[10px] text-[25px] text1 text-white tracking-[1px]">{{
+      <span class="ml-[5px] text-[17px] text1 text-white tracking-[1px]">{{
         computedHand.filter((e) => e.suit === index)[0]?.ranks
       }}</span>
     </div>
     <!-- Only for testing, later we will provde dealt hans from parent component -->
     <button
       v-if="showDeal"
-      @click="dealHand()"
       class="bg-white text1 text-white"
+      @click="dealHand()"
     >
       Deal
     </button>
   </div>
   <!-- text-[${suitColors[index]}] -->
 </template>
+
+<style scoped>
+.mobileSize {
+  @apply flex;
+}
+
+.desktopSize {
+  @apply sm:flex sm:flex-col;
+}
+</style>

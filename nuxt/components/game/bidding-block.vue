@@ -15,7 +15,7 @@ const p = defineProps({
 
 const disabled = ref(false);
 
-function getDisabled(rank, suit) {
+function getDisabled(rank: Number, suit: Number) {
   if (rank < p.rank || (suit <= p.suit && rank === p.rank)) {
     disabled.value = true;
     return true;
@@ -46,8 +46,10 @@ function getDisabled(rank, suit) {
 
 <style scoped>
 .biddingBox {
-  @apply xl:w-[70px] xl:h-[45px] lg:w-[55px] lg:h-[35px] md:w-[35px] md:h-[30px] sm:w-[30px] sm:h-[25px] w-[20px] h-[15px] bg-dash-dark-200;
+  @apply w-[50px] h-[25px] bg-dash-dark-200 xl:w-[70px] xl:h-[45px] lg:w-[55px] lg:h-[35px] md:w-[35px] md:h-[30px] sm:w-[30px] sm:h-[25px];
 }
+
+/* Kanske lägga till en biddingbox för bidding-block mobile */
 
 /* .biddingPass {
   @apply bg-green-500 hover:bg-green-400 rounded-lg

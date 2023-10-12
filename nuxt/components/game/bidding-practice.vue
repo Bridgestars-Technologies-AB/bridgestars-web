@@ -16,9 +16,9 @@ function bid(s, r) {
   <div
     class="flex flex-col items-center w-full h-[100%] justify-between border"
   >
-    <div class="w-[90%] h-[80px] border mb-[20px]"></div>
-    <div class="flex flex-row space-x-1 h-[70%] w-[100%] justify-center">
-      <game-bidding-container showImage="true" wrapperClass="biddingContainer">
+    <!-- <div class="w-[90%] h-[80px] border mb-[20px]"></div> -->
+    <div class="mobileSize desktopSize">
+      <game-bidding-container :showImage="true" wrapperClass="biddingContainer">
         <game-bidding-text
           text="Vad bjuder du som svarshand när din partner har öppnat med 1 NT?"
         ></game-bidding-text>
@@ -47,7 +47,7 @@ function bid(s, r) {
       </game-bidding-container>
 
       <game-bidding-container
-        wrapperClass="biddingContainer"
+        wrapperClass="w-[80%] h-[40%] rounded-xl mt-[8px] sm:h-full sm:w-[24%]"
         header="BUDGIVNING"
       >
         <game-bidding-history
@@ -56,26 +56,55 @@ function bid(s, r) {
         ></game-bidding-history>
       </game-bidding-container>
 
-      <game-bidding-container wrapperClass="biddingContainer" header="BUDLÅDA">
-        <game-bidding-box
-          v-model:suit="suit"
-          v-model:rank="rank"
-          wrapperClass="biddingComponent"
-          @bid="bid"
-        />
-      </game-bidding-container>
+      <!-- Here we have a bidding-box component for mobile -->
+      <div class="sm:hidden w-[80%] h-[20%]">
+        <game-bidding-container
+          wrapperClass="w-full h-full rounded-xl mt-[8px]"
+          header="BUDLÅDA"
+        >
+          <game-bidding-box-mobile
+            v-model:suit="suit"
+            v-model:rank="rank"
+            wrapperClass="biddingComponent"
+            @bid="bid"
+          />
+        </game-bidding-container>
+      </div>
+
+      <!-- Here we have a bidding-box component for desktop -->
+      <div class="hidden sm:block h-full w-[24%] mt-[8px]">
+        <game-bidding-container
+          wrapperClass="h-full w-full rounded-xl"
+          header="BUDLÅDA"
+        >
+          <game-bidding-box
+            v-model:suit="suit"
+            v-model:rank="rank"
+            wrapperClass="biddingComponent"
+            @bid="bid"
+          />
+        </game-bidding-container>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-/* Size for the bidding-container used in bidding-practice */
+/* Size for the bidding-container used in bidding-practice  h-full w-[24%];*/
 .biddingContainer {
-  @apply h-full w-[24%];
+  @apply w-[80%] h-[10%] rounded-xl mt-[8px] sm:h-full sm:w-[24%];
 }
 
 /* Size for all bidding-components used in bidding-practice */
 .biddingComponent {
   @apply w-full h-[90%];
+}
+
+.mobileSize {
+  @apply flex flex-col h-[100%] w-[100%] items-center;
+}
+
+.desktopSize {
+  @apply sm:flex-row sm:space-x-1 sm:h-[70%] sm:w-[100%] sm:justify-center;
 }
 </style>

@@ -32,9 +32,9 @@ const players = ["V", "N", "Ö", "S"];
         <div
           v-for="p in 4"
           :key="p"
-          class="w-[24%] flex flex-row justify-center mt-[8px]"
+          class="w-[24%] flex flex-row justify-center mt-[4px]"
         >
-          <span class="text1 text-[26px] font-semibold mb-[4px]">
+          <span class="text1 text-[20px] font-semibold mb-[4px]">
             {{ players[p - 1] }}
           </span>
         </div>

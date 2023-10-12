@@ -43,35 +43,41 @@ function bid(suit, rank) {
 </script>
 
 <template>
-  <div :class="'flex flex-col space-y-1 ' + wrapperClass">
-    <div class="flex justify-center">
-      <div v-for="e in 5" :key="e">
-        <game-bidding-block
-          :wrapperClass="e !== 1 ? 'invisible' : ''"
-          :card="{ suit: 0, rank: 0 }"
-          :clickable="true"
-          :onClick="bid"
-        ></game-bidding-block>
-        <!-- <game-bidding-block
+  <div>
+    <div :class="'flex flex-col space-y-1 ' + wrapperClass">
+      <div class="flex justify-center">
+        <div v-for="e in 5" :key="e">
+          <game-bidding-block
+            :wrapperClass="e !== 1 ? 'invisible' : ''"
+            :card="{ suit: 0, rank: 0 }"
+            :clickable="true"
+            :onClick="bid"
+          ></game-bidding-block>
+          <!-- <game-bidding-block
           v-else
           wrapperClass="invisible"
         ></game-bidding-block> -->
+        </div>
       </div>
-    </div>
 
-    <div v-for="r in 7" :key="r" class="flex flex-row justify-center space-x-1">
       <div
-        v-for="s in 5"
-        :key="s"
-        class="flex items-center justify-center overflow-x-hidden outline-none"
+        v-for="r in 7"
+        :key="r"
+        class="flex flex-row justify-center space-x-1"
       >
-        <game-bidding-block
-          :card="{ suit: s - 1, rank: r }"
-          :clickable="true"
-          :onClick="bid"
-          :suit="suit"
-          :rank="rank"
-        ></game-bidding-block>
+        <div
+          v-for="s in 5"
+          :key="s"
+          class="flex items-center justify-center overflow-x-hidden outline-none"
+        >
+          <game-bidding-block
+            :card="{ suit: s - 1, rank: r }"
+            :clickable="true"
+            :onClick="bid"
+            :suit="suit"
+            :rank="rank"
+          ></game-bidding-block>
+        </div>
       </div>
     </div>
   </div>
