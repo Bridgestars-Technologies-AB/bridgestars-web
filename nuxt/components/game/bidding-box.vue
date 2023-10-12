@@ -29,8 +29,11 @@ const p = defineProps({
     type: String,
     required: false,
   },
+  mobile: Boolean,
 });
 const emit = defineEmits(["bid", "update:rank", "update:suit"]);
+
+const currentRank = ref(1);
 
 function bid(suit, rank) {
   console.log("BIDDINGBOX: ", suit, rank);
@@ -43,7 +46,7 @@ function bid(suit, rank) {
 </script>
 
 <template>
-  <div>
+  <div class="hidden sm:block">
     <div :class="'flex flex-col space-y-1 ' + wrapperClass">
       <div class="flex justify-center">
         <div v-for="e in 5" :key="e">
@@ -53,10 +56,6 @@ function bid(suit, rank) {
             :clickable="true"
             :onClick="bid"
           ></game-bidding-block>
-          <!-- <game-bidding-block
-          v-else
-          wrapperClass="invisible"
-        ></game-bidding-block> -->
         </div>
       </div>
 
@@ -80,5 +79,36 @@ function bid(suit, rank) {
         </div>
       </div>
     </div>
+  </div>
+  <div class="sm:hidden w-full flex flex-col items-center">
+    <div class="flex flex-row">
+      <div
+        v-for="e in 7"
+        :key="e"
+        :class="`border w-[30px] h-[30px] flex justify-center items-center ${
+          currentRank === e ? 'bg-slate-500' : ''
+        }`"
+      >
+        <button class="text1 text-[15px] text-white" @click="currentRank = e">
+          {{ e }}
+        </button>
+      </div>
+    </div>
+    <div class="flex flex-row">
+      <div v-for="e in 5" :key="e">
+        <game-bidding-block
+          :card="{ suit: e - 1, rank: currentRank }"
+          :clickable="true"
+          :onClick="bid"
+          :suit="suit"
+          :rank="rank"
+        ></game-bidding-block>
+      </div>
+    </div>
+    <game-bidding-block
+      :card="{ suit: 0, rank: 0 }"
+      :clickable="true"
+      :onClick="bid"
+    ></game-bidding-block>
   </div>
 </template>

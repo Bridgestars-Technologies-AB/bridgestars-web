@@ -57,7 +57,7 @@ function bid(s, r) {
       </game-bidding-container>
 
       <!-- Here we have a bidding-box component for mobile -->
-      <div class="sm:hidden w-[80%] h-[20%]">
+      <!-- <div class="sm:hidden w-[80%] h-[20%]">
         <game-bidding-container
           wrapperClass="w-full h-full rounded-xl mt-[8px]"
           header="BUDLÅDA"
@@ -69,22 +69,19 @@ function bid(s, r) {
             @bid="bid"
           />
         </game-bidding-container>
-      </div>
+      </div> -->
 
-      <!-- Here we have a bidding-box component for desktop -->
-      <div class="hidden sm:block h-full w-[24%] mt-[8px]">
-        <game-bidding-container
-          wrapperClass="h-full w-full rounded-xl"
-          header="BUDLÅDA"
-        >
-          <game-bidding-box
-            v-model:suit="suit"
-            v-model:rank="rank"
-            wrapperClass="biddingComponent"
-            @bid="bid"
-          />
-        </game-bidding-container>
-      </div>
+      <game-bidding-container
+        wrapperClass="w-[80%] h-[20%] sm:h-full sm:w-[24%] sm:mt-[8px] rounded-xl"
+        header="BUDLÅDA"
+      >
+        <game-bidding-box
+          v-model:suit="suit"
+          v-model:rank="rank"
+          wrapperClass="biddingComponent"
+          @bid="bid"
+        />
+      </game-bidding-container>
     </div>
   </div>
 </template>
