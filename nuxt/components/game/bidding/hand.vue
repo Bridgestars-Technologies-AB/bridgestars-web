@@ -110,21 +110,21 @@ function format(bridgeHand, suit) {
 <template>
   <div
     :class="
-      'bg-[#121c27] rounded-xl flex flex-row justify-between sm:flex-col sm:items-start ' +
+      'bg-[#121c27] rounded-xl flex flex-row justify-between lm:flex-col lm:items-start ' +
       wrapperClass
     "
   >
     <div
       v-for="(suit, index) in CardUtil.suits"
       :key="index"
-      class="h-1/4 flex flex-row items-center sm:ml-[10px]"
+      class="h-1/4 flex flex-row items-center lm:ml-[10px]"
     >
       <span
-        :class="`text-[30px] sm:ml-[10px] sm:text-[40px] ${CardUtil.symbols[index].color}`"
+        :class="`text-[30px] lm:ml-[10px] lm:text-[40px] ${CardUtil.symbols[index].color}`"
         >{{ suit }}
       </span>
       <span
-        class="ml-[10px] text-[17px] text1 text-white tracking-[1px] sm:text-[25px]"
+        class="ml-[10px] text-[17px] text1 text-white tracking-[1px] lm:text-[25px]"
         >{{ computedHand.filter((e) => e.suit === index)[0]?.ranks }}</span
       >
     </div>
@@ -146,6 +146,6 @@ function format(bridgeHand, suit) {
 }
 
 .desktopSize {
-  @apply sm:flex sm:flex-col;
+  @apply lm:flex lm:flex-col;
 }
 </style>

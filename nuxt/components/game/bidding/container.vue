@@ -14,7 +14,7 @@ defineProps({ wrapperClass: String, header: String, showImage: Boolean });
 
     <div
       :class="`flex flex-row justify-start items-center w-[60%] h-[80%] ${
-        showImage ? 'hidden sm:block' : 'hidden'
+        showImage ? 'hidden lm:block' : 'hidden'
       }`"
     >
       <div class="w-[100%] h-[100%] ml-[25px]">
@@ -27,7 +27,9 @@ defineProps({ wrapperClass: String, header: String, showImage: Boolean });
     </div>
 
     <div class="w-[90%] h-[2px] bg-dash-dark-400 self-center"></div>
-    <div class="sm:flex sm:flex-col sm:w-full sm:h-full sm:justify-center">
+    <div
+      class="w-full h-[80%] mt-[10px] lm:flex lm:flex-col lm:w-full lm:h-full lm:justify-center border"
+    >
       <slot></slot>
     </div>
   </div>

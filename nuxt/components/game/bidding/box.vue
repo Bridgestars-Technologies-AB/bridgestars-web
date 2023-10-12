@@ -46,7 +46,8 @@ function bid(suit, rank) {
 </script>
 
 <template>
-  <div class="hidden sm:block">
+  <!-- "Component" for larger devices -->
+  <div class="hidden lm:block">
     <div :class="'flex flex-col space-y-1 ' + wrapperClass">
       <div class="flex justify-center">
         <div v-for="e in 5" :key="e">
@@ -80,8 +81,9 @@ function bid(suit, rank) {
       </div>
     </div>
   </div>
-  <div class="sm:hidden w-full flex flex-col items-center">
-    <div class="flex flex-row">
+  <!-- "Component" smaller devices -->
+  <div class="lm:hidden w-full h-full mt-[8px] flex flex-col items-center">
+    <div class="flex flex-row items-center h-full">
       <div
         v-for="e in 7"
         :key="e"

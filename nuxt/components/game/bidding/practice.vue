@@ -25,30 +25,33 @@ function bid(s, r) {
       </game-bidding-container>
 
       <game-bidding-container
-        wrapperClass="w-[80%] h-[40%] rounded-xl mt-[8px] sm:h-full sm:w-[24%]"
+        wrapperClass="w-[80%] h-[40%] rounded-xl mt-[8px] lm:h-full lm:w-[24%]"
         header="BUDGIVNING"
       >
         <game-bidding-history
           :history="history"
-          wrapperClass="biddingComponent"
+          wrapperClass="w-full h-full lm:w-full lm:h-[70%]"
         ></game-bidding-history>
       </game-bidding-container>
 
       <game-bidding-container
-        wrapperClass="w-[80%] h-[20%] mt-[8px] rounded-xl sm:h-full sm:w-[24%]"
+        wrapperClass="w-[80%] h-[20%] mt-[8px] rounded-xl lm:h-full lm:w-[24%]"
         header="BUDLÅDA"
       >
         <game-bidding-box
           v-model:suit="suit"
           v-model:rank="rank"
-          wrapperClass="biddingComponent"
+          wrapperClass="w-full lm:w-full lm:h-[70%]"
           @bid="bid"
         />
       </game-bidding-container>
 
-      <game-bidding-container wrapperClass="biddingContainer" header="DIN HAND">
+      <game-bidding-container
+        wrapperClass="w-[80%] h-[10%] rounded-xl mt-[8px] lm:h-full lm:w-[24%]"
+        header="DIN HAND"
+      >
         <game-bidding-hand
-          wrapperClass="biddingComponent"
+          wrapperClass="w-full lm:w-full lm:h-[70%]"
           :showDeal="false"
           :hand="[
             { suit: 0, rank: 2 },
@@ -74,12 +77,12 @@ function bid(s, r) {
 <style scoped>
 /* Size for the bidding-container used in bidding-practice  h-full w-[24%];*/
 .biddingContainer {
-  @apply w-[80%] h-[10%] rounded-xl mt-[8px] sm:h-full sm:w-[24%];
+  @apply w-[80%] h-[10%] rounded-xl mt-[8px] lm:h-full lm:w-[24%];
 }
 
 /* Size for all bidding-components used in bidding-practice */
 .biddingComponent {
-  @apply sm:w-full sm:h-[70%];
+  @apply w-full lm:w-full lm:h-[70%];
 }
 
 .mobileSize {
@@ -87,6 +90,6 @@ function bid(s, r) {
 }
 
 .desktopSize {
-  @apply sm:flex-row sm:space-x-1 sm:h-[70%] sm:w-[100%] sm:justify-center;
+  @apply lm:flex-row lm:space-x-1 lm:h-[70%] lm:w-[100%] lm:justify-center;
 }
 </style>
