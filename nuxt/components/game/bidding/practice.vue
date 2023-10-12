@@ -18,40 +18,43 @@ function bid(s, r) {
   >
     <!-- <div class="w-[90%] h-[80px] border mb-[20px]"></div> -->
     <div class="mobileSize desktopSize">
-      <game-bidding-container :showImage="true" wrapperClass="biddingContainer">
+      <game-bidding-container
+        :showImage="true"
+        wrapperClass="w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
+      >
         <game-bidding-text
           text="Vad bjuder du som svarshand när din partner har öppnat med 1 NT?"
         ></game-bidding-text>
       </game-bidding-container>
 
       <game-bidding-container
-        wrapperClass="w-[80%] h-[40%] rounded-xl mt-[8px] lm:h-full lm:w-[24%]"
+        wrapperClass="w-[80%] h-[40%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
         header="BUDGIVNING"
       >
         <game-bidding-history
           :history="history"
-          wrapperClass="w-full h-full lm:w-full lm:h-[70%]"
+          wrapperClass="w-full h-full lg:w-full lg:h-[70%]"
         ></game-bidding-history>
       </game-bidding-container>
 
       <game-bidding-container
-        wrapperClass="w-[80%] h-[20%] mt-[8px] rounded-xl lm:h-full lm:w-[24%]"
+        wrapperClass="min-h-[150px] w-[80%] h-[20%] mt-[8px] rounded-xl lg:h-full lg:w-[24%]"
         header="BUDLÅDA"
       >
         <game-bidding-box
           v-model:suit="suit"
           v-model:rank="rank"
-          wrapperClass="w-full lm:w-full lm:h-[70%]"
+          wrapperClass="w-full lg:w-full lg:h-[70%]"
           @bid="bid"
         />
       </game-bidding-container>
 
       <game-bidding-container
-        wrapperClass="w-[80%] h-[10%] rounded-xl mt-[8px] lm:h-full lm:w-[24%]"
+        wrapperClass="w-[80%] h-[10%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
         header="DIN HAND"
       >
         <game-bidding-hand
-          wrapperClass="w-full lm:w-full lm:h-[70%]"
+          wrapperClass="w-full lg:w-full lg:h-[70%]"
           :showDeal="false"
           :hand="[
             { suit: 0, rank: 2 },
@@ -77,12 +80,12 @@ function bid(s, r) {
 <style scoped>
 /* Size for the bidding-container used in bidding-practice  h-full w-[24%];*/
 .biddingContainer {
-  @apply w-[80%] h-[10%] rounded-xl mt-[8px] lm:h-full lm:w-[24%];
+  @apply w-[80%] h-[10%] rounded-xl mt-[8px] lg:h-full lg:w-[24%];
 }
 
 /* Size for all bidding-components used in bidding-practice */
 .biddingComponent {
-  @apply w-full lm:w-full lm:h-[70%];
+  @apply w-full lg:w-full lg:h-[70%];
 }
 
 .mobileSize {
@@ -90,6 +93,6 @@ function bid(s, r) {
 }
 
 .desktopSize {
-  @apply lm:flex-row lm:space-x-1 lm:h-[70%] lm:w-[100%] lm:justify-center;
+  @apply lg:flex-row lg:space-x-1 lg:h-[70%] lg:w-[100%] lg:justify-center;
 }
 </style>

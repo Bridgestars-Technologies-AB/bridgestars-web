@@ -46,13 +46,6 @@ function getDisabled(rank: Number, suit: Number) {
 
 <style scoped>
 .biddingBox {
-  @apply w-[50px] h-[25px] bg-dash-dark-200 sm:w-[60px] sm:h-[40px] lm:w-[40px] lm:h-[40px] lg:w-[55px] lg:h-[35px] xl:w-[60px] xl:h-[40px];
+  @apply w-[40px] h-[20px] bg-dash-dark-200 sm:w-[50px] sm:h-[25px] lg:w-[65px] lg:h-[40px] xl:w-[60px] xl:h-[40px];
 }
-
-/* Kanske lägga till en biddingbox för bidding-block mobile */
-
-/* .biddingPass {
-  @apply bg-green-500 hover:bg-green-400 rounded-lg
-    dark:text-light biddingText3 tracking-[0.5px] text-white;
-} */
 </style>

@@ -37,14 +37,14 @@ function brick(suit, rank) {
 
 <style scoped>
 .biddingText1 {
-  @apply xl:text-[20px] text-[15px] text-white;
+  @apply xl:text-[20px] text-[15px] sm:text-[20px]  text-white;
 }
 
 .biddingText2 {
-  @apply xl:text-[26px] text-[20px]  text-white;
+  @apply xl:text-[26px] text-[20px] sm:text-[25px]  text-white;
 }
 
 .biddingText3 {
-  @apply xl:text-[18px] text-[12px] text-white;
+  @apply xl:text-[18px] text-[12px] sm:text-[17px] text-white;
 }
 </style>
