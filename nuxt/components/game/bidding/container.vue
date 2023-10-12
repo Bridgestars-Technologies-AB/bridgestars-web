@@ -18,11 +18,6 @@ defineProps({ wrapperClass: String, header: String, showImage: Boolean });
       }`"
     >
       <div class="w-[100%] h-[100%] ml-[25px]">
-        <!-- fixa nuxtImg -->
-        <!-- <img
-          class="max-w-[100%] max-h-[100%]"
-          src="../../../assets/game/owls/owl-1.png"
-        /> -->
         <NuxtImg
           alt="owl"
           src="/bridgestars/game/owls/owl-1.png"
@@ -31,8 +26,8 @@ defineProps({ wrapperClass: String, header: String, showImage: Boolean });
       </div>
     </div>
 
-    <div class="w-[90%] h-[2px] bg-dash-dark-400 mb-[7px] self-center"></div>
-    <div class="sm:flex sm:flex-col sm:w-full sm:h-full sm:justify-start">
+    <div class="w-[90%] h-[2px] bg-dash-dark-400 self-center"></div>
+    <div class="sm:flex sm:flex-col sm:w-full sm:h-full sm:justify-center">
       <slot></slot>
     </div>
   </div>

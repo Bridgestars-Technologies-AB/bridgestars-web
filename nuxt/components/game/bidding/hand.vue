@@ -110,21 +110,23 @@ function format(bridgeHand, suit) {
 <template>
   <div
     :class="
-      'bg-[#121c27] rounded-xl flex flex-row justify-between w-full sm:flex-col sm:items-center' +
+      'bg-[#121c27] rounded-xl flex flex-row justify-between sm:flex-col sm:items-start ' +
       wrapperClass
     "
   >
     <div
       v-for="(suit, index) in CardUtil.suits"
       :key="index"
-      class="h-1/4 flex flex-row items-center"
+      class="h-1/4 flex flex-row items-center sm:ml-[10px]"
     >
-      <span :class="`text-[30px] ${CardUtil.symbols[index].color}`"
+      <span
+        :class="`text-[30px] sm:ml-[10px] sm:text-[40px] ${CardUtil.symbols[index].color}`"
         >{{ suit }}
       </span>
-      <span class="ml-[5px] text-[17px] text1 text-white tracking-[1px]">{{
-        computedHand.filter((e) => e.suit === index)[0]?.ranks
-      }}</span>
+      <span
+        class="ml-[10px] text-[17px] text1 text-white tracking-[1px] sm:text-[25px]"
+        >{{ computedHand.filter((e) => e.suit === index)[0]?.ranks }}</span
+      >
     </div>
     <!-- Only for testing, later we will provde dealt hans from parent component -->
     <button

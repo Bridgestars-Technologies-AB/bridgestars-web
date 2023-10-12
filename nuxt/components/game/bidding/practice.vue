@@ -24,6 +24,28 @@ function bid(s, r) {
         ></game-bidding-text>
       </game-bidding-container>
 
+      <game-bidding-container
+        wrapperClass="w-[80%] h-[40%] rounded-xl mt-[8px] sm:h-full sm:w-[24%]"
+        header="BUDGIVNING"
+      >
+        <game-bidding-history
+          :history="history"
+          wrapperClass="biddingComponent"
+        ></game-bidding-history>
+      </game-bidding-container>
+
+      <game-bidding-container
+        wrapperClass="w-[80%] h-[20%] mt-[8px] rounded-xl sm:h-full sm:w-[24%]"
+        header="BUDLÅDA"
+      >
+        <game-bidding-box
+          v-model:suit="suit"
+          v-model:rank="rank"
+          wrapperClass="biddingComponent"
+          @bid="bid"
+        />
+      </game-bidding-container>
+
       <game-bidding-container wrapperClass="biddingContainer" header="DIN HAND">
         <game-bidding-hand
           wrapperClass="biddingComponent"
@@ -45,43 +67,6 @@ function bid(s, r) {
           ]"
         ></game-bidding-hand>
       </game-bidding-container>
-
-      <game-bidding-container
-        wrapperClass="w-[80%] h-[40%] rounded-xl mt-[8px] sm:h-full sm:w-[24%]"
-        header="BUDGIVNING"
-      >
-        <game-bidding-history
-          :history="history"
-          wrapperClass="biddingComponent"
-        ></game-bidding-history>
-      </game-bidding-container>
-
-      <!-- Here we have a bidding-box component for mobile -->
-      <!-- <div class="sm:hidden w-[80%] h-[20%]">
-        <game-bidding-container
-          wrapperClass="w-full h-full rounded-xl mt-[8px]"
-          header="BUDLÅDA"
-        >
-          <game-bidding-box-mobile
-            v-model:suit="suit"
-            v-model:rank="rank"
-            wrapperClass="biddingComponent"
-            @bid="bid"
-          />
-        </game-bidding-container>
-      </div> -->
-
-      <game-bidding-container
-        wrapperClass="w-[80%] h-[20%] sm:h-full sm:w-[24%] sm:mt-[8px] rounded-xl"
-        header="BUDLÅDA"
-      >
-        <game-bidding-box
-          v-model:suit="suit"
-          v-model:rank="rank"
-          wrapperClass="biddingComponent"
-          @bid="bid"
-        />
-      </game-bidding-container>
     </div>
   </div>
 </template>
@@ -94,7 +79,7 @@ function bid(s, r) {
 
 /* Size for all bidding-components used in bidding-practice */
 .biddingComponent {
-  @apply w-full h-[90%];
+  @apply sm:w-full sm:h-[70%];
 }
 
 .mobileSize {
