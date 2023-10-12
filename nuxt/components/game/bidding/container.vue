@@ -1,5 +1,5 @@
 <script setup>
-defineProps(["wrapperClass", "header", "showImage"]);
+defineProps({ wrapperClass: String, header: String, showImage: Boolean });
 </script>
 <template>
   <div :class="'flex flex-col bg-dash-dark-100 ' + wrapperClass">
@@ -19,9 +19,14 @@ defineProps(["wrapperClass", "header", "showImage"]);
     >
       <div class="w-[100%] h-[100%] ml-[25px]">
         <!-- fixa nuxtImg -->
-        <img
+        <!-- <img
           class="max-w-[100%] max-h-[100%]"
-          src="../../assets/game/owls/owl-1.png"
+          src="../../../assets/game/owls/owl-1.png"
+        /> -->
+        <NuxtImg
+          alt="owl"
+          src="/bridgestars/game/owls/owl-1.png"
+          class="scale-[1]"
         />
       </div>
     </div>

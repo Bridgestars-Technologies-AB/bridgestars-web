@@ -39,7 +39,7 @@ function getDisabled(rank: Number, suit: Number) {
       @click="onClick(card.suit, card.rank)"
     >
       <!-- <span class="text1 text-white">{{ brick(card.suit, card.rank) }}</span> -->
-      <game-rank-suite :card="card"></game-rank-suite>
+      <game-bidding-rank-suite :card="card"></game-bidding-rank-suite>
     </div>
   </div>
 </template>
