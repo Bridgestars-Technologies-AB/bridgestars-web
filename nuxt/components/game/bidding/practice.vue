@@ -13,67 +13,63 @@ function bid(s, r) {
 }
 </script>
 <template>
-  <div
-    class="flex flex-col items-center w-full h-[100%] justify-between border"
-  >
-    <!-- <div class="w-[90%] h-[80px] border mb-[20px]"></div> -->
-    <div class="mobileSize desktopSize">
-      <game-bidding-container
-        :showImage="true"
-        wrapperClass="w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
-      >
-        <game-bidding-text
-          text="Vad bjuder du som svarshand när din partner har öppnat med 1 NT?"
-        ></game-bidding-text>
-      </game-bidding-container>
+  <!-- <div class="w-[90%] h-[80px] border mb-[20px]"></div> -->
+  <div class="mobileSize desktopSize">
+    <game-bidding-container
+      :showImage="true"
+      wrapperClass="w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
+    >
+      <game-bidding-text
+        text="Vad bjuder du som svarshand när din partner har öppnat med 1 NT?"
+      ></game-bidding-text>
+    </game-bidding-container>
 
-      <game-bidding-container
-        wrapperClass="w-[80%] h-[40%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
-        header="BUDGIVNING"
-      >
-        <game-bidding-history
-          :history="history"
-          wrapperClass="w-full h-full lg:w-full lg:h-[70%]"
-        ></game-bidding-history>
-      </game-bidding-container>
+    <game-bidding-container
+      wrapperClass="w-[80%] h-[40%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
+      header="BUDGIVNING"
+    >
+      <game-bidding-history
+        :history="history"
+        wrapperClass="w-full h-full lg:w-full lg:h-[70%]"
+      ></game-bidding-history>
+    </game-bidding-container>
 
-      <game-bidding-container
-        wrapperClass="min-h-[150px] w-[80%] h-[20%] mt-[8px] rounded-xl lg:h-full lg:w-[24%]"
-        header="BUDLÅDA"
-      >
-        <game-bidding-box
-          v-model:suit="suit"
-          v-model:rank="rank"
-          wrapperClass="w-full lg:w-full lg:h-[70%]"
-          @bid="bid"
-        />
-      </game-bidding-container>
+    <game-bidding-container
+      wrapperClass="min-h-[150px] w-[80%] h-[30%] mt-[8px] rounded-xl lg:h-full lg:w-[24%]"
+      header="BUDLÅDA"
+    >
+      <game-bidding-box
+        v-model:suit="suit"
+        v-model:rank="rank"
+        wrapperClass="w-full lg:w-full lg:h-[70%]"
+        @bid="bid"
+      />
+    </game-bidding-container>
 
-      <game-bidding-container
-        wrapperClass="w-[80%] h-[10%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
-        header="DIN HAND"
-      >
-        <game-bidding-hand
-          wrapperClass="w-full lg:w-full lg:h-[70%]"
-          :showDeal="false"
-          :hand="[
-            { suit: 0, rank: 2 },
-            { suit: 0, rank: 5 },
-            { suit: 0, rank: 12 },
-            { suit: 1, rank: 13 },
-            { suit: 1, rank: 3 },
-            { suit: 1, rank: 8 },
-            { suit: 2, rank: 11 },
-            { suit: 2, rank: 13 },
-            { suit: 2, rank: 14 },
-            { suit: 3, rank: 5 },
-            { suit: 3, rank: 6 },
-            { suit: 3, rank: 9 },
-            { suit: 3, rank: 14 },
-          ]"
-        ></game-bidding-hand>
-      </game-bidding-container>
-    </div>
+    <game-bidding-container
+      wrapperClass="w-[80%] h-[10%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
+      header="DIN HAND"
+    >
+      <game-bidding-hand
+        wrapperClass="w-full lg:w-full lg:h-[70%]"
+        :showDeal="false"
+        :hand="[
+          { suit: 0, rank: 2 },
+          { suit: 0, rank: 5 },
+          { suit: 0, rank: 12 },
+          { suit: 1, rank: 13 },
+          { suit: 1, rank: 3 },
+          { suit: 1, rank: 8 },
+          { suit: 2, rank: 11 },
+          { suit: 2, rank: 13 },
+          { suit: 2, rank: 14 },
+          { suit: 3, rank: 5 },
+          { suit: 3, rank: 6 },
+          { suit: 3, rank: 9 },
+          { suit: 3, rank: 14 },
+        ]"
+      ></game-bidding-hand>
+    </game-bidding-container>
   </div>
 </template>
 
@@ -93,6 +89,6 @@ function bid(s, r) {
 }
 
 .desktopSize {
-  @apply lg:flex-row lg:space-x-1 lg:h-[70%] lg:w-[100%] lg:justify-center;
+  @apply sm:h-[90%] sm:w-[100%] lg:h-[400px] lg:w-[1000px] lg:flex-row lg:space-x-1 lg:justify-center  xl:w-[1200px] xl:h-[450px] 2xl:w-[1400px] 2xl:h-[500px] border;
 }
 </style>

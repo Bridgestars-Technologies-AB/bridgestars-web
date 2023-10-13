@@ -101,7 +101,7 @@ function bid(suit, rank) {
         </button>
       </div>
     </div>
-    <div class="flex flex-row space-x-[2px]">
+    <div class="flex flex-row space-x-[3px]">
       <div v-for="e in 5" :key="e">
         <game-bidding-block
           :card="{ suit: e - 1, rank: currentRank }"

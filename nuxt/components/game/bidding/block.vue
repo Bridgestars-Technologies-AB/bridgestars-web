@@ -46,6 +46,6 @@ function getDisabled(rank: Number, suit: Number) {
 
 <style scoped>
 .biddingBox {
-  @apply w-[40px] h-[20px] bg-dash-dark-200 sm:w-[50px] sm:h-[25px] lg:w-[65px] lg:h-[40px] xl:w-[60px] xl:h-[40px];
+  @apply w-[40px] h-[20px] bg-dash-dark-200 sm:w-[50px] sm:h-[25px] md:w-[65px] md:h-[30px] lg:w-[45px] lg:h-[30px] xl:w-[50px] xl:h-[35px] 2xl:w-[60px] 2xl:h-[40px];
 }
 </style>
