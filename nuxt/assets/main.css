@@ -135,7 +135,6 @@ input:-webkit-autofill:active {
 
 /* Third layer, here we can add our own utility classes that tailwind does not have  */
 @layer utilities {
-  @variants responsive {
     /* Hide scrollbar but still enable scrolling for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
@@ -146,5 +145,4 @@ input:-webkit-autofill:active {
       -ms-overflow-style: none; /* IE and Edge */
       scrollbar-width: none; /* Firefox */
     }
-  }
 }
