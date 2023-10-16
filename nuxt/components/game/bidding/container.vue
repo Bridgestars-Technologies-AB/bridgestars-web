@@ -28,7 +28,7 @@ defineProps({ wrapperClass: String, header: String, showImage: Boolean });
 
     <div class="w-[90%] h-[2px] bg-dash-dark-400 self-center"></div>
     <div
-      class="w-full h-[80%] mt-[10px] lg:flex lg:flex-col lg:w-full lg:h-full lg:justify-center border"
+      class="w-full h-[80%] mt-[10px] lg:flex lg:flex-col lg:w-full lg:h-full lg:justify-center"
     >
       <slot></slot>
     </div>
