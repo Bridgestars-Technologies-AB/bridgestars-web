@@ -20,14 +20,16 @@ function brick(suit, rank) {
 <template>
   <div v-if="card.suit === 0 && card.rank === 0">
     <span
-      class="rounded-lg dark:text-light biddingText3 tracking-[0.5px] text-white"
+      class="rounded-lg dark:text-light biddingText3 tracking-[0.5px] text-white cursor-pointer"
       >{{ brick(card.suit, card.rank) }}</span
     >
   </div>
   <div v-else>
-    <span class="biddingText1 text1 tracking-[2px]">{{ card.rank }}</span>
+    <span class="biddingText1 text1 tracking-[2px] cursor-pointer">{{
+      card.rank
+    }}</span>
     <span
-      :class="`tracking-[2px] text1 ${
+      :class="`tracking-[2px] text1 cursor-pointer ${
         card.suit > 3 ? 'biddingText3' : 'biddingText2'
       } ${CardUtil.symbols[card.suit].color}`"
       >{{ CardUtil.symbols[card.suit].symbol }}</span
