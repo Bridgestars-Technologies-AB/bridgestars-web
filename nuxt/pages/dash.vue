@@ -28,32 +28,62 @@ provide("side-menu-open", sideMenuOpen);
   <div
     :class="`${
       darkMode.value ? 'dark [color-scheme:dark]' : ''
-    } flex h-full w-full overflow-x-clip`"
+    }  h-full w-full overflow-x-clip`"
   >
-    <!-- enables tailwind darkmode, toggle this  -->
-    <dash-menu-side />
-
     <div
-      class="bg-dash-light-400 dark:bg-dash-dark-200 flex-col flex-grow transition-colors duration-300"
+      class="flex bg-dash-light-400 dark:bg-dash-dark-200 transition-colors duration-300 w-full h-full"
     >
+      <!-- <dash-menu-side :class="`border flex-shrink-0 xs:absolute sm:relative ${sideMenuOpen ? 'ml-[270px]' : 'ml-[67px]'}`"/> -->
+      <dash-menu-side class="absolute opacity-50" />
       <div
-        :class="`absolute z-100 bg-black w-full h-full sm:hidden ${
-          sideMenuOpen ? 'opacity-70' : 'opacity-0'
-        } transition-opacity duration-1000`"
-        @click="sideMenuOpen = false"
+        :class="`border ${sideMenuOpen ? 'w-[290px]' : 'w-[70px]'}`"
+        id="sideMock"
       />
-      <dash-menu-top />
-      <div
-        id="content"
-        :class="`bg-dash-light-400 dark:bg-dash-dark-200 p-5 flex ${
-          sideMenuOpen ? 'sm:ml-[270px] xs:ml-0' : 'xs:ml-0 sm:ml-[67px]'
-        }`"
-      >
-        <NuxtPage />
-        <ClientOnly>
-          <dash-chat-toggle />
-        </ClientOnly>
+      <!--     <div -->
+      <!--       :class="`absolute z-100 bg-black w-full h-full sm:hidden ${ -->
+      <!--         sideMenuOpen ? 'opacity-70' : 'opacity-0' -->
+      <!--       } transition-opacity duration-1000`" -->
+      <!--       @click="sideMenuOpen = false" -->
+      <!--     /> -->
+      <div class="flex flex-col" id="content">
+        <dash-menu-top />
+        <div class="relative w-full p-3 h-full">
+          <div class="border w-full"></div>
+          <NuxtPage />
+          <ClientOnly>
+            <dash-chat-toggle />
+          </ClientOnly>
+        </div>
+        <!-- <div class="p-5 flex w-full"> -->
+        <!--   <ClientOnly> -->
+        <!--     <dash-chat-toggle /> -->
+        <!--   </ClientOnly> -->
+        <!-- </div> -->
       </div>
+      <!--   enables tailwind darkmode, toggle this  -->
+      <!--   <dash-menu-side class="border"/> -->
+      <!---->
+      <!--   <div -->
+      <!--     id="content" -->
+      <!--     :class="`flex-col border border-blue-200 `" -->
+      <!--   > -->
+      <!--    ${sideMenuOpen ? 'sm:ml-[270px] xs:ml-0' : 'xs:ml-0 sm:ml-[67px]'}`"-->
+      <!--     <div -->
+      <!--       :class="`absolute z-100 bg-black w-full h-full sm:hidden ${ -->
+      <!--         sideMenuOpen ? 'opacity-70' : 'opacity-0' -->
+      <!--       } transition-opacity duration-1000`" -->
+      <!--       @click="sideMenuOpen = false" -->
+      <!--     /> -->
+      <!--     <dash-menu-top /> -->
+      <!--     <div -->
+      <!--       :class="`p-5 flex w-full`" -->
+      <!--     > -->
+      <!--       <NuxtPage class="w-full"/> -->
+      <!--       <ClientOnly> -->
+      <!--         <dash-chat-toggle /> -->
+      <!--       </ClientOnly> -->
+      <!--     </div> -->
+      <!--   </div> -->
     </div>
   </div>
 </template>
@@ -61,8 +91,11 @@ provide("side-menu-open", sideMenuOpen);
 <style scoped>
 #content {
   transition:
-    margin-left 0.3s ease-in-out,
-    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* all 0.3s ease-in-out, */ background-color 0.3s
+    cubic-bezier(0.4, 0, 0.2, 1);
+}
+#sideMock {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* html, body { */
