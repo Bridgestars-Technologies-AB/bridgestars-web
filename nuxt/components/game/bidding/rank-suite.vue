@@ -45,6 +45,6 @@ function brick(suit, rank) {
 }
 
 .biddingText3 {
-  @apply text-white text-[12px] sm:text-[17px] lg:text-[15px] xl:text-[18px];
+  @apply text-white text-[14px] sm:text-[17px] lg:text-[15px] xl:text-[18px];
 }
 </style>

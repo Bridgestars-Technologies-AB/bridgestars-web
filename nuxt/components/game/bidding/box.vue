@@ -92,7 +92,7 @@ function bid(suit, rank) {
       <div
         v-for="e in biddingArray"
         :key="e"
-        :class="`border w-[30px] h-[30px] flex justify-center items-center ${
+        :class="`border mb-[2px] w-[30px] h-[30px] sm:w-[35px] sm:h-[35px] flex justify-center items-center ${
           currentRank === e ? 'bg-slate-500' : ''
         }`"
       >
