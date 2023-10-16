@@ -28,29 +28,26 @@ provide("side-menu-open", sideMenuOpen);
   <div
     :class="`${
       darkMode.value ? 'dark [color-scheme:dark]' : ''
-    } flex h-full w-full`"
+    } flex h-full w-full overflow-x-clip`"
   >
     <!-- enables tailwind darkmode, toggle this  -->
-    <!-- <dash-menu-side /> -->
-    <div class="h-full border hidden md:block lg:w-[20%] xl:w-[15%]">
-      <dash-menu-side />
-    </div>
+    <dash-menu-side />
 
     <div
-      class="h-full md:w-full lg:w-[80%] xl:w-[85%] bg-dash-light-400 dark:bg-dash-dark-200 flex-col transition-colors duration-300"
+      class="bg-dash-light-400 dark:bg-dash-dark-200 flex-col flex-grow transition-colors duration-300"
     >
-      <!-- <div
+      <div
         :class="`absolute z-100 bg-black w-full h-full sm:hidden ${
           sideMenuOpen ? 'opacity-70' : 'opacity-0'
         } transition-opacity duration-1000`"
         @click="sideMenuOpen = false"
-      /> -->
-      <div class="w-full h-[10%] border">
-        <!-- <dash-menu-top /> -->
-      </div>
+      />
+      <dash-menu-top />
       <div
         id="content"
-        :class="`h-[90%] w-full border bg-dash-light-400 dark:bg-dash-dark-200 flex`"
+        :class="`bg-dash-light-400 dark:bg-dash-dark-200 p-5 flex ${
+          sideMenuOpen ? 'sm:ml-[270px] xs:ml-0' : 'xs:ml-0 sm:ml-[67px]'
+        }`"
       >
         <NuxtPage />
         <ClientOnly>
@@ -59,8 +56,6 @@ provide("side-menu-open", sideMenuOpen);
       </div>
     </div>
   </div>
-
-  <!--  ${sideMenuOpen ? 'sm:ml-[270px] xs:ml-0':'xs:ml-0 sm:ml-[67px]'} -->
 </template>
 
 <style scoped>
