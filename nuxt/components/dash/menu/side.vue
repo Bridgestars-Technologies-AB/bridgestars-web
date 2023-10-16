@@ -105,9 +105,9 @@ function click(item) {
     id="side-menu"
     :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col z-[10] ${
       isOpen ? 'open' : 'closed'
-    } h-full overflow-x-visible absolute`"
+    } h-full w-full`"
   >
-    <div class="overflow-y-scroll w-[270px] no-scrollbar">
+    <div class="overflow-y-scroll w-full no-scrollbar">
       <div
         :class="`text-center flex relative items-center pt-7 flex-wrap profile-section ${
           isOpen ? 'open' : 'closed'
