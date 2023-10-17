@@ -21,10 +21,10 @@ const textColor = computed(
   () =>
     `text-dark dark:text-light text-transition ${
       !open.value
-        ? "opacity-0 text-[2px]"
+        ? "opacity-0 -ml-[170px]"
         : props.selected
-        ? "opacity-100"
-        : "opacity-80"
+        ? "opacity-100 ml-[0px]"
+        : "opacity-80 ml-[0px]"
     }`,
 );
 </script>
@@ -38,7 +38,7 @@ const textColor = computed(
   >
     <div
       :class="`flex items-center relative group hover:cursor-pointer h-full ${bgColor} item-transition ${
-        open || 'ml-[204px]'
+        open || 'ml-[205px]'
       }`"
     >
       <div
@@ -75,6 +75,7 @@ const textColor = computed(
   transition:
     opacity 0.2s ease-in-out,
     font-size 0.3s ease-in-out,
+    margin-left 0.3s ease-in-out,
     color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 </style>

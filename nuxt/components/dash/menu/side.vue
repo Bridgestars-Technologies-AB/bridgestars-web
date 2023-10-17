@@ -103,11 +103,11 @@ function click(item) {
 <template>
   <div
     id="side-menu"
-    :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col z-[10] ${
+    :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col ${
       isOpen ? 'open' : 'closed'
     } h-full overflow-x-visible ${$attrs.class}`"
   >
-    <div class="overflow-y-scroll w-full no-scrollbar">
+    <div class="overflow-y-scroll w-full no-scrollbar border">
       <div
         :class="`text-center flex relative items-center pt-7 flex-wrap profile-section ${
           isOpen ? 'open' : 'closed'
@@ -142,7 +142,7 @@ function click(item) {
         <div :class="`h-[40px] ${isOpen ? 'hidden' : 'block'}`" />
       </div>
 
-      <div class="flex flex-col mt-6 mb-[200px] h-full">
+      <div class="flex flex-col mt-6 h-full border">
         <div
           v-for="item in items"
           :key="item.key"
@@ -186,7 +186,7 @@ function click(item) {
 }
 .profile-section.closed img {
   position: absolute;
-  @apply ml-[192px] mt-[40px];
+  @apply ml-[196px] mt-[40px];
 }
 
 #side-menu {
@@ -196,7 +196,7 @@ function click(item) {
     color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 #side-menu.closed {
-  @apply xs:-left-[270px] sm:-left-[203px];
+  @apply xs:-left-[270px] sm:-left-[206px];
 }
 #side-menu.open {
   @apply left-0;

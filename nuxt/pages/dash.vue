@@ -28,24 +28,29 @@ provide("side-menu-open", sideMenuOpen);
   <div
     :class="`${
       darkMode.value ? 'dark [color-scheme:dark]' : ''
-    }  h-full w-full overflow-x-clip`"
+    }  h-full w-full overflow-x-clip border`"
   >
     <div
       class="flex bg-dash-light-400 dark:bg-dash-dark-200 transition-colors duration-300 w-full h-full"
     >
       <!-- <dash-menu-side :class="`border flex-shrink-0 xs:absolute sm:relative ${sideMenuOpen ? 'ml-[270px]' : 'ml-[67px]'}`"/> -->
-      <dash-menu-side class="absolute opacity-50" />
+
       <div
-        :class="`border ${sideMenuOpen ? 'w-[290px]' : 'w-[70px]'}`"
+        :class="`border border-[10px] fixed bg-black w-full z-[1] h-full sm:hidden ${
+          sideMenuOpen ? 'opacity-60' : 'opacity-0 [pointer-events:none]'
+        } transition-opacity duration-1000 `"
+        @click="sideMenuOpen = false"
+      />
+      <dash-menu-side class="absolute opacity-100 z-[1]" />
+
+      <div
+        :class="` ${
+          sideMenuOpen ? 'sm:w-[268px]' : 'sm:w-[70px]'
+        } shrink-0 grow-0`"
         id="sideMock"
       />
-      <!--     <div -->
-      <!--       :class="`absolute z-100 bg-black w-full h-full sm:hidden ${ -->
-      <!--         sideMenuOpen ? 'opacity-70' : 'opacity-0' -->
-      <!--       } transition-opacity duration-1000`" -->
-      <!--       @click="sideMenuOpen = false" -->
-      <!--     /> -->
-      <div class="flex flex-col" id="content">
+
+      <div class="grow border flex flex-col" id="content">
         <dash-menu-top />
         <div class="relative w-full p-3 h-full">
           <div class="border w-full"></div>
@@ -54,12 +59,13 @@ provide("side-menu-open", sideMenuOpen);
             <dash-chat-toggle />
           </ClientOnly>
         </div>
-        <!-- <div class="p-5 flex w-full"> -->
-        <!--   <ClientOnly> -->
-        <!--     <dash-chat-toggle /> -->
-        <!--   </ClientOnly> -->
-        <!-- </div> -->
       </div>
+
+      <!-- <div class="p-5 flex w-full"> -->
+      <!--   <ClientOnly> -->
+      <!--     <dash-chat-toggle /> -->
+      <!--   </ClientOnly> -->
+      <!-- </div> -->
       <!--   enables tailwind darkmode, toggle this  -->
       <!--   <dash-menu-side class="border"/> -->
       <!---->
