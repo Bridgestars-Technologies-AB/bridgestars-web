@@ -16,85 +16,114 @@ defineProps({
 });
 </script>
 <template>
-  <div class="h-[100%] w-[100%] flex flex-col bg-dash-dark-100 lg:flex-row">
-    <div class="w-full h-[5%] flex flex-row justify-center items-center">
-      <span class="header"> Analys </span>
-    </div>
-    <div class="w-[90%] h-[2px] bg-dash-dark-400 self-center mb-[5px]"></div>
-
-    <div class="flex justify-center items-center w-full h-[5%]">
-      <game-bidding-hand
-        :showDeal="false"
-        wrapperClass="w-full"
-      ></game-bidding-hand>
+  <div
+    class="h-[100%] w-[100%] flex flex-col bg-dash-dark-100 lg:w-[1000px] lg:h-[500px]"
+  >
+    <div class="w-full flex flex-col justify-center items-center h-[10%]">
+      <span class="header flex-grow-1"> Analys </span>
+      <div class="w-[90%] h-[2px] bg-dash-dark-400 self-center mb-[5px]"></div>
     </div>
 
-    <div class="flex flex-row justify-center">
+    <!-- Here comes div for all boxes -->
+    <div class="flex flex-col h-[90%] lg-flex lg:flex-row lg:w-full">
+      <!-- First container -->
       <div
-        class="flex items-center justify-center bg-[#075B0E] w-[100px] h-[100px] rounded-xl"
+        class="w-full bg-dash-dark-100 flex flex-col space-y-2 justify-around items-center lg:w-1/3 lg:h-full"
       >
-        <div class="flex flex-col w-[90%] h-[90%]">
-          <div class="w-full h-1/3 flex justify-center items-start">
-            <span class="player">N</span>
-          </div>
-          <div class="flex flex-row w-full h-1/3 justify-between items-center">
-            <span class="player">W</span> <span class="player">E</span>
-          </div>
-          <div class="w-full h-1/3 flex justify-center items-end">
-            <span class="player">S</span>
-          </div>
+        <div class="flex justify-center items-center w-full lg:h-[30%]">
+          <game-bidding-hand
+            :showDeal="false"
+            wrapperClass="w-full lg:h-full lg:w-[70%]"
+          ></game-bidding-hand>
         </div>
-      </div>
-    </div>
 
-    <div class="flex justify-center items-center w-full h-[5%]">
-      <game-bidding-hand
-        :showDeal="false"
-        wrapperClass="w-full"
-      ></game-bidding-hand>
-    </div>
-
-    <div class="w-[90%] h-[2px] bg-dash-dark-400 self-center mb-[5px]"></div>
-
-    <div class="w-full h-[5%] flex flex-row justify-center items-center">
-      <span class="header"> Budgivning </span>
-    </div>
-
-    <game-bidding-history
-      :history="[{ suit: 1, rank: 1 }]"
-      wrapperClass="w-full h-[25%]"
-    ></game-bidding-history>
-
-    <div class="w-[90%] h-[2px] bg-dash-dark-400 self-center mb-[5px]"></div>
-
-    <div class="w-full h-[5%] flex flex-row justify-center">
-      <span class="header"> Korrekt Slutbud </span>
-    </div>
-    <div class="flex flex-row justify-center mt-[5px]">
-      <div
-        class="w-[80px] h-[40px] bg-dash-dark-200 flex justify-center items-center rounded-xl"
-      >
-        <div>
-          <span class="biddingText1 text1 tracking-[2px] mr-[2px]">{{
-            correctBid.rank
-          }}</span>
-          <span
-            :class="`tracking-[2px] text1 ${
-              correctBid.suit > 3 ? 'biddingText3' : 'biddingText2'
-            } ${CardUtil.symbols[correctBid.suit].color}`"
-            >{{ CardUtil.symbols[correctBid.suit].symbol }}</span
+        <div class="flex flex-row justify-center items-center">
+          <div
+            class="flex items-center justify-center bg-[#075B0E] w-[100px] h-[100px] rounded-xl"
           >
+            <div class="flex flex-col w-[90%] h-[90%]">
+              <div class="w-full h-1/3 flex justify-center items-start">
+                <span class="player">N</span>
+              </div>
+              <div
+                class="flex flex-row w-full h-1/3 justify-between items-center"
+              >
+                <span class="player">W</span> <span class="player">E</span>
+              </div>
+              <div class="w-full h-1/3 flex justify-center items-end">
+                <span class="player">S</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center items-center w-full lg:h-[30%]">
+          <game-bidding-hand
+            :showDeal="false"
+            wrapperClass="w-full lg:h-full lg:w-[70%]"
+          ></game-bidding-hand>
         </div>
       </div>
+
+      <!-- Line -->
       <div
-        class="w-[80px] h-[40px] bg-dash-dark-200 flex justify-center items-center rounded-xl ml-[5px]"
+        class="w-[90%] h-[2px] bg-dash-dark-400 self-center mb-[5px] lg:h-[95%] lg:w-[2px]"
+      ></div>
+
+      <!-- Second container -->
+      <div
+        class="h-full bg-dash-dark-100 flex flex-col items-center lg:justify-around lg:w-1/3"
       >
-        <span class="biddingText1 text1 tracking-[2px]">Nord</span>
+        <div class="w-full flex flex-row justify-center">
+          <span class="text-white text-[20px] header"> Budgivning </span>
+        </div>
+
+        <game-bidding-history
+          :history="[{ suit: 1, rank: 1 }]"
+          wrapperClass="w-full h-[45%]"
+        ></game-bidding-history>
+
+        <div class="flex justify-center items-center h-[30%] lg:w-[80%]">
+          <game-analysis-bid :brick="correctBid" dir="Nord"></game-analysis-bid>
+        </div>
       </div>
-    </div>
-    <div class="w-[90%] h-[2px] bg-dash-dark-400 self-center mt-[10px]"></div>
-    <div class="w-full flex flex-row justify-center">
-      <span class="text1 text-[17px] text-center">{{ biddingAnswer }}</span>
+
+      <!-- Line -->
+      <div
+        class="w-[90%] h-[2px] bg-dash-dark-400 self-center mb-[5px] lg:h-[95%] lg:w-[2px]"
+      ></div>
+
+      <!-- Third container -->
+      <div
+        class="w-full h-full bg-dash-dark-100 flex flex-col items-center lg:w-1/3"
+      >
+        <div
+          class="flex flex-col w-full items-center lg:justify-around lg:h-1/2 lg:w-full"
+        >
+          <div class="w-full flex flex-row justify-center">
+            <span class="text-white text-[20px] header"> Korrekt Slutbud </span>
+          </div>
+
+          <div class="flex justify-center items-center lg:h-[30%] lg:w-[80%]">
+            <game-analysis-bid
+              :brick="correctBid"
+              dir="Nord"
+            ></game-analysis-bid>
+          </div>
+          <!-- Placeholder for star img -->
+          <div class="lg:w-[80%] lg:h-[40%]"></div>
+
+          <!-- Line -->
+          <div class="w-[90%] h-[2px] bg-dash-dark-400"></div>
+        </div>
+        <div class="w-full lg:h-1/2">
+          <div class="w-full flex flex-row justify-center">
+            <span class="text1 text-[17px] text-center">{{
+              biddingAnswer
+            }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -106,17 +135,5 @@ defineProps({
 
 .header {
   @apply text-[22px] items-center text-white font-semibold h-auto;
-}
-
-.biddingText1 {
-  @apply text-white text-[25px] sm:text-[20px] lg:text-[15px] xl:text-[20px];
-}
-
-.biddingText2 {
-  @apply text-white text-[40px] sm:text-[25px] lg:text-[20px] xl:text-[26px];
-}
-
-.biddingText3 {
-  @apply text-white text-[25px] sm:text-[17px] lg:text-[15px] xl:text-[18px];
 }
 </style>
