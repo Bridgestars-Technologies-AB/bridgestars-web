@@ -129,7 +129,29 @@ defineProps({
             size="w-[50px] h-[30px] lg:w-[80px] lg:h-[40px]"
           ></game-analysis-bid>
           <!-- Placeholder for star img -->
-          <div class="lg:w-[80%] lg:h-[30%]"></div>
+          <div class="w-auto h-[60px] flex flex-row mb-[3px]">
+            <div class="flex flex-col h-full justify-end">
+              <NuxtImg
+                src="/bridgestars/game/star.png"
+                alt="star"
+                class="w-[50px] h-[50px] lg:w-[40px] lg:h-[40px]"
+              />
+            </div>
+            <div class="flex flex-col h-full justify-start">
+              <NuxtImg
+                src="/bridgestars/game/star.png"
+                alt="star"
+                class="w-[50px] h-[50px] lg:w-[40px] lg:h-[40px]"
+              />
+            </div>
+            <div class="flex flex-col h-full justify-end">
+              <NuxtImg
+                src="/bridgestars/game/star.png"
+                alt="star"
+                class="w-[50px] h-[50px] lg:w-[40px] lg:h-[40px]"
+              />
+            </div>
+          </div>
 
           <!-- Line -->
           <div class="w-[80%] h-[2px] bg-dash-dark-400"></div>
