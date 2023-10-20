@@ -5,5 +5,6 @@
     <game-analysis-main></game-analysis-main>
     <!-- <game-analysis-container class="w-[25%] h-[90%]"></game-analysis-container> -->
     <!-- <game-bidding-practice></game-bidding-practice> -->
+    <!-- <game-bidding-view-hand></game-bidding-view-hand> -->
   </div>
 </template>

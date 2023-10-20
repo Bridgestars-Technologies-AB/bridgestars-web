@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 /*
 This component displays the analysis from bidding-practice.
 Props:
@@ -25,6 +25,19 @@ defineProps({
     type: Array[CardUtil.Card],
   },
 });
+
+function getJustify(e: Number) {
+  switch (e) {
+    case 1:
+      return "justify-end";
+    case 2:
+      return "justify-start";
+    case 3:
+      return "justify-end";
+    default:
+      return "";
+  }
+}
 </script>
 <template>
   <div
@@ -56,15 +69,16 @@ defineProps({
           >
             <div class="flex flex-col w-[90%] h-[90%]">
               <div class="w-full h-1/3 flex justify-center items-start">
-                <span class="player">N</span>
+                <span class="text1 !text-white">N</span>
               </div>
               <div
                 class="flex flex-row w-full h-1/3 justify-between items-center"
               >
-                <span class="player">W</span> <span class="player">E</span>
+                <span class="text1 !text-white">W</span>
+                <span class="text1 !text-white">E</span>
               </div>
               <div class="w-full h-1/3 flex justify-center items-end">
-                <span class="player">S</span>
+                <span class="text1 !text-white">S</span>
               </div>
             </div>
           </div>
@@ -130,21 +144,11 @@ defineProps({
           ></game-analysis-bid>
           <!-- Placeholder for star img -->
           <div class="w-auto h-[60px] flex flex-row mb-[3px]">
-            <div class="flex flex-col h-full justify-end">
-              <NuxtImg
-                src="/bridgestars/game/star.png"
-                alt="star"
-                class="w-[50px] h-[50px] lg:w-[40px] lg:h-[40px]"
-              />
-            </div>
-            <div class="flex flex-col h-full justify-start">
-              <NuxtImg
-                src="/bridgestars/game/star.png"
-                alt="star"
-                class="w-[50px] h-[50px] lg:w-[40px] lg:h-[40px]"
-              />
-            </div>
-            <div class="flex flex-col h-full justify-end">
+            <div
+              v-for="e in 3"
+              :key="e"
+              :class="`flex flex-col h-full ${getJustify(e)}`"
+            >
               <NuxtImg
                 src="/bridgestars/game/star.png"
                 alt="star"
@@ -170,10 +174,6 @@ defineProps({
 </template>
 
 <style scoped>
-.player {
-  @apply text1 !text-white;
-}
-
 .header {
   @apply text-white text-[20px] items-center font-semibold h-auto;
 }
