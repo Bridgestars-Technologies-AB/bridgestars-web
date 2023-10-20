@@ -110,7 +110,7 @@ function format(bridgeHand, suit) {
 <template>
   <div
     :class="
-      'bg-[#121c27] rounded-xl flex flex-row justify-center space-x-[10px] lg:flex-col lg:items-start ' +
+      'rounded-xl flex flex-row justify-center space-x-[10px] lg:flex-col lg:items-start ' +
       wrapperClass
     "
   >

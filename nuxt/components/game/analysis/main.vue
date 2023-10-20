@@ -19,7 +19,7 @@ defineProps({
   biddingAnswer: {
     type: String,
     default:
-      "Nord had 17hp och en jämn hand. Därför öppnar nord med 1NT som visar 15-17 hp och jämn hand.",
+      "Nord had 17hp och en jämn hand. Därför öppnar nord med 1NT som visar 15-17 hp och jämn hand. Syd fortsätter med 3NT som visar slutbud 10-15 hp.",
   },
   biddingHand: {
     type: Array[CardUtil.Card],
@@ -115,7 +115,7 @@ function getJustify(e: Number) {
             <game-analysis-bid
               :brick="correctBid"
               dir="Nord"
-              size="w-[50px] h-[30px] lg:w-[80px] lg:h-[40px]"
+              size="w-[70px] h-[40px] lg:w-[140x] lg:h-[60px]"
             ></game-analysis-bid>
           </div>
         </div>
@@ -131,7 +131,7 @@ function getJustify(e: Number) {
         class="w-full h-[30%] bg-dash-dark-100 flex flex-col items-center lg:justify-center lg:h-full lg:w-1/3"
       >
         <div
-          class="w-full h-[10%] flex flex-row justify-center mb-[10px] lg:mb-[10px] lg:h-[5%]"
+          class="w-full h-[10%] flex flex-row justify-center mb-[8px] lg:mb-[10px] lg:h-[5%]"
         >
           <span class="header"> Korrekt Slutbud </span>
         </div>
@@ -140,10 +140,10 @@ function getJustify(e: Number) {
           <game-analysis-bid
             :brick="correctBid"
             dir="Nord"
-            size="w-[50px] h-[30px] lg:w-[80px] lg:h-[40px]"
+            size="w-[60px] h-[30px] lg:w-[80px] lg:h-[40px]"
           ></game-analysis-bid>
           <!-- Placeholder for star img -->
-          <div class="w-auto h-[60px] flex flex-row mb-[3px]">
+          <div class="w-auto h-[35px] sm:h-[60px] flex flex-row mb-[3px]">
             <div
               v-for="e in 3"
               :key="e"
@@ -152,19 +152,20 @@ function getJustify(e: Number) {
               <NuxtImg
                 src="/bridgestars/game/star.png"
                 alt="star"
-                class="w-[50px] h-[50px] lg:w-[40px] lg:h-[40px]"
+                class="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px]"
               />
             </div>
           </div>
 
           <!-- Line -->
-          <div class="w-[80%] h-[2px] bg-dash-dark-400"></div>
+          <div class="w-[85%] h-[2px] bg-dash-dark-400 mb-[2px]"></div>
 
-          <div class="w-full">
-            <div class="w-full p-3 flex flex-row justify-center">
-              <span class="text1 text-[17px] text-center">{{
-                biddingAnswer
-              }}</span>
+          <div class="w-full flex flex-row justify-center">
+            <div class="w-[95%]">
+              <span
+                class="text1 leading-tight text-[16px] sm:text-[19px] md:text-[18px]"
+                >{{ biddingAnswer }}</span
+              >
             </div>
           </div>
         </div>

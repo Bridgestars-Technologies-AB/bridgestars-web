@@ -51,7 +51,7 @@ function bid(s, r) {
       header="DIN HAND"
     >
       <game-bidding-hand
-        wrapperClass="w-full lg:w-full lg:h-[70%]"
+        wrapperClass="bg-[#121c27] w-full lg:w-full lg:h-[70%]"
         :showDeal="false"
         :hand="[
           { suit: 0, rank: 2 },
