@@ -44,9 +44,15 @@ function getJustify(e: Number) {
     class="h-[100%] w-[100%] flex flex-col bg-dash-dark-100 lg:w-[1000px] lg:h-[500px]"
   >
     <div
-      class="w-full flex flex-col justify-center items-center h-[5%] lg:items-start lg:h-[10%]"
+      class="w-full flex flex-col justify-center items-center h-[6%] lg:items-start lg:h-[10%]"
     >
-      <span class="header flex-grow-1 mx-[5px]"> Analys </span>
+      <div class="w-full flex flex-row justify-between my-[2px]">
+        <span class="header flex-grow-1 mx-[10px]"> Analys </span>
+        <div class="rounded-xl bg-dash-dark-200 mx-[10px]">
+          <span class="header flex-grow-1 p-[3px]">Nästa giv</span>
+        </div>
+      </div>
+
       <div class="w-full h-[2px] bg-dash-dark-400"></div>
     </div>
 
@@ -115,7 +121,7 @@ function getJustify(e: Number) {
             <game-analysis-bid
               :brick="correctBid"
               dir="Nord"
-              size="w-[70px] h-[40px] lg:w-[140x] lg:h-[60px]"
+              size="w-[70px] h-[40px] lg:w-[120px] lg:h-[60px]"
             ></game-analysis-bid>
           </div>
         </div>

@@ -26,16 +26,14 @@ function getDisabled(rank: Number, suit: Number) {
 
 <template>
   <div
-    :class="`${wrapperClass} flex flex-row justify-center items-center my-[3px] hover:bg-transparent ${
+    :class="`${wrapperClass} flex flex-row justify-center items-center my-[2px] hover:bg-transparent ${
       getDisabled(card.suit, card.rank) ? 'opacity-50 cursor-not-allowed' : ''
     }`"
   >
     <div
-      :class="`biddingBox ${
+      :class="`biddingBox rounded-lg ${
         card.suit === 0 && card.rank === 0 ? '!bg-[#0E9F6E]' : ''
-      } ${
-        clickable && !disabled ? '' : 'pointer-events-none'
-      } flex flex-row justify-center items-center rounded-lg`"
+      } ${clickable && !disabled ? '' : 'pointer-events-none'}`"
       @click="onClick(card.suit, card.rank)"
     >
       <!-- <span class="text1 text-white">{{ brick(card.suit, card.rank) }}</span> -->

@@ -79,6 +79,7 @@ module.exports = {
         "tabler", //used for sign out icon
         "basil",
         "majesticons",
+        "fluent-emoji-high-contrast",
       ]),
       //tailwindcss chooses which icons to include based on usage
     }),

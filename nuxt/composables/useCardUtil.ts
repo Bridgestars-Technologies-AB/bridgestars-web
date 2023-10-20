@@ -1,10 +1,17 @@
 namespace CardUtil {
+  // export const symbols = [
+  //   { symbol: "♣", color: "!text-clubs" },
+  //   { symbol: "♦", color: "!text-diamonds" },
+  //   { symbol: "♥", color: "!text-hearts" },
+  //   { symbol: "♠", color: "!text-spades" },
+  //   { symbol: "NT", color: "!text-white" },
+  // ];
+
   export const symbols = [
-    { symbol: "♣", color: "!text-clubs" },
-    { symbol: "♦", color: "!text-diamonds" },
-    { symbol: "♥", color: "!text-hearts" },
-    { symbol: "♠", color: "!text-spades" },
-    { symbol: "NT", color: "!text-white" },
+    "i-fluent-emoji-high-contrast-club-suit !text-clubs",
+    "i-fluent-emoji-high-contrast-diamond-suit !text-diamonds",
+    "i-fluent-emoji-high-contrast-heart-suit !text-hearts",
+    "i-fluent-emoji-high-contrast-spade-suit !text-spades",
   ];
 
   // Define the values for each card
