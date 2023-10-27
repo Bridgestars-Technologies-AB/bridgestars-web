@@ -134,7 +134,6 @@ function click(item) {
           </h6>
         </div>
         <div class="[flex-basis:100%] h-0" />
-        <!-- break to new row -->
         <dash-menu-side-level
           :user="auth.user()"
           :class="`mt-5 pl-2 pr-5 ${isOpen ? 'block' : 'hidden'}`"
@@ -173,7 +172,7 @@ function click(item) {
 
 <style scoped>
 .profile-section {
-  margin-left: 20px;
+  @apply ml-[20px];
 }
 .profile-section div {
   @apply cursor-pointer w-fit opacity-100;

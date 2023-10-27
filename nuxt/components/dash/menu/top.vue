@@ -20,7 +20,7 @@ const colored = (b) =>
     <div class="fixed left-0 z-10">
       <div
         :class="`flex justify-center h-full w-[67px] z-10 ${
-          open ? 'ml-[200px]' : 'sm:dark:bg-dash-dark-100 sm:bg-dash-light-300'
+          open ? 'ml-[200px]' : ''
         } transition-[margin-left,background-color,color] duration-300`"
         @click="open = !open"
       >
