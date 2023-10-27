@@ -22,14 +22,16 @@ onMounted(() => {
 
 <template>
   <div class="flex grow space-x-3 items-center">
-    <span class="text-white text-[14px] font-bold">Lv.{{ levelFloored }}</span>
+    <span class="dark:text-white text-dark text-[14px] font-bold"
+      >Lv.{{ levelFloored }}</span
+    >
     <div class="grow bg-dash-dark-300 h-[10px] rounded-full">
       <div
         ref="bar"
         class="bg-dash-accent h-full rounded-full transition-[width] w-0"
       ></div>
     </div>
-    <span class="text-white text-[14px] font-bold"
+    <span class="dark:text-white text-dark text-[14px] font-bold"
       >Lv.{{ levelFloored + 1 }}</span
     >
   </div>
