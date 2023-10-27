@@ -17,7 +17,7 @@ const colored = (b) =>
     class="flex justify-end bg-dash-light-400 dark:bg-dash-dark-200 pr-3 transition-colors duration-300"
   >
     <!-- side menu open/close button with tooltip, some styles going on here for all the different situations -->
-    <div class="absolute left-0 z-10">
+    <div class="fixed left-0 z-10">
       <div
         :class="`flex justify-center h-full w-[67px] z-10 ${
           open ? 'ml-[200px]' : 'sm:dark:bg-dash-dark-100 sm:bg-dash-light-300'
@@ -41,7 +41,7 @@ const colored = (b) =>
       </div>
     </div>
 
-    <div class="flex items-center space-x-4 py-1">
+    <div class="flex space-x-4 py-1">
       <base-tooltip
         class="flex items-center"
         :text="$t('dashboard:top_menu.tooltip.toggle_dark_mode')"

@@ -107,7 +107,7 @@ function click(item) {
       isOpen ? 'open' : 'closed'
     } h-full overflow-x-visible ${$attrs.class}`"
   >
-    <div class="overflow-y-scroll w-full no-scrollbar border">
+    <div class="overflow-y-scroll w-full no-scrollbar">
       <div
         :class="`text-center flex relative items-center pt-7 flex-wrap profile-section ${
           isOpen ? 'open' : 'closed'
@@ -142,7 +142,7 @@ function click(item) {
         <div :class="`h-[40px] ${isOpen ? 'hidden' : 'block'}`" />
       </div>
 
-      <div class="flex flex-col mt-6 h-full border">
+      <div class="flex flex-col mt-6 h-full">
         <div
           v-for="item in items"
           :key="item.key"
@@ -168,7 +168,7 @@ function click(item) {
     </div>
   </div>
 
-  <base-modal-signout v-model:open="logoutModalOpen" />
+  <base-modal-signout v-model:open="logoutModalOpen" class="border" />
 </template>
 
 <style scoped>
@@ -196,7 +196,7 @@ function click(item) {
     color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 #side-menu.closed {
-  @apply xs:-left-[270px] sm:-left-[206px];
+  @apply xs:-left-[277px] sm:-left-[204px];
 }
 #side-menu.open {
   @apply left-0;

@@ -28,19 +28,21 @@ provide("side-menu-open", sideMenuOpen);
   <div
     :class="`${
       darkMode.value ? 'dark [color-scheme:dark]' : ''
-    }  h-full w-full overflow-x-clip border`"
+    }  h-full w-full overflow-x-clip `"
   >
     <div
       class="flex bg-dash-light-400 dark:bg-dash-dark-200 transition-colors duration-300 w-full h-full"
     >
       <!-- <dash-menu-side :class="`border flex-shrink-0 xs:absolute sm:relative ${sideMenuOpen ? 'ml-[270px]' : 'ml-[67px]'}`"/> -->
 
+      <!-- dask overlay -->
       <div
-        :class="`border border-[10px] fixed bg-black w-full z-[1] h-full sm:hidden ${
+        :class="`fixed bg-black w-full z-[1] h-full sm:hidden ${
           sideMenuOpen ? 'opacity-60' : 'opacity-0 [pointer-events:none]'
         } transition-opacity duration-1000 `"
         @click="sideMenuOpen = false"
       />
+
       <dash-menu-side class="absolute opacity-100 z-[1]" />
 
       <div
@@ -50,10 +52,10 @@ provide("side-menu-open", sideMenuOpen);
         id="sideMock"
       />
 
-      <div class="grow border flex flex-col" id="content">
+      <div class="grow flex flex-col" id="content">
         <dash-menu-top />
         <div class="relative w-full p-3 h-full">
-          <div class="border w-full"></div>
+          <div class="w-full"></div>
           <NuxtPage />
           <ClientOnly>
             <dash-chat-toggle />
@@ -105,12 +107,11 @@ provide("side-menu-open", sideMenuOpen);
 }
 
 /* html, body { */
-/*   /* DISABLE ALL SCROLLING ON BODY */
 /*   overflow-y: hidden; */
 /*   overflow-x: hidden; */
 /* } */
-* {
-  /* dark mode transition */
-  /* transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;  */
-}
+/* * { */
+/* dark mode transition */
+/* transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;  */
+/* } */
 </style>
