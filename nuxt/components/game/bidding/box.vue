@@ -34,10 +34,12 @@ const emit = defineEmits(["bid", "update:rank", "update:suit"]);
 const currentRank = ref(1);
 
 const biddingArray = ref([1, 2, 3, 4, 5, 6, 7]);
-
+function isAcceptable(suit, rank) {
+  return rank > p.rank || (suit > p.suit && rank === p.rank);
+}
 function bid(suit, rank) {
   console.log("BIDDINGBOX: ", suit, rank);
-  if (rank > p.rank || (suit > p.suit && rank === p.rank)) {
+  if (isAcceptable(suit, rank)) {
     emit("update:rank", rank);
     emit("update:suit", suit);
   }
@@ -63,8 +65,7 @@ function bid(suit, rank) {
             :card="{ suit: s - 1, rank: r }"
             :clickable="true"
             :onClick="bid"
-            :suit="suit"
-            :rank="rank"
+            :disabled="!isAcceptable(s - 1, r)"
             :size="biddingBox"
           ></game-bidding-block>
         </div>
