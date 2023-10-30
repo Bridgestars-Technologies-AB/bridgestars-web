@@ -72,7 +72,7 @@ function formatTime(time) {
       <!-- one alternative is to have this quite annopying flashing thing, otherwise we could add a red dot or even one with a number in it -->
       <div
         v-if="hasUnreadNotifications"
-        class="absolute translate-x-[18px] -translate-y-[12px]"
+        class="fixed translate-x-[18px] -translate-y-[12px]"
       >
         <span
           class="absolute animate-ping rounded-full bg-dark opacity-75 h-[10px] w-[10px]"
@@ -86,7 +86,7 @@ function formatTime(time) {
     ref="popoverEl"
     data-popover
     role="tooltip"
-    class="absolute z-10 invisible inline-block w-64 text-sm transition-opacity duration-300 rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500"
+    class="fixed z-10 invisible inline-block w-64 text-sm transition-opacity duration-300 rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500"
   >
     <div
       class="px-3 py-2 border-b border-dark dark:border-white border-opacity-40 rounded-t-lg"

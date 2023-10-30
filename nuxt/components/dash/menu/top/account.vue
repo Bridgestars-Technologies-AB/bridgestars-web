@@ -50,7 +50,7 @@ onMounted(() => {
     ref="popoverElement"
     data-popover
     role="tooltip"
-    class="absolute z-10 invisible inline-block w-[200px] text-sm transition-opacity duration-300 rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500"
+    class="fixed z-10 invisible inline-block w-[200px] text-sm transition-opacity duration-300 rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500"
   >
     <div
       class="px-3 py-2 border-b border-dash-dark dark:border-dash-light border-opacity-20 group cursor-pointer"
@@ -95,7 +95,6 @@ onMounted(() => {
     <div class="px-3 py-2 group cursor-pointer" @click="logoutModalOpen = true">
       <div class="flex flex-col space-y-1">
         <div class="flex flex-row space-x-2 items-center">
-          <!-- <span class="i-tabler-logout-2 text-dark dark:text-light text-[20px] group-hover:translate-x-1 transition-transform"/> -->
           <span
             class="text font-family2 font-medium text-[20px] dark:text-light underline decoration-transparent group-hover:decoration-dark dark:group-hover:decoration-light transition-decoration-color duration-250"
             >Logga Ut</span
