@@ -45,7 +45,7 @@ const biddingBox =
       <game-bidding-box
         v-model:suit="suit"
         v-model:rank="rank"
-        wrapperClass="w-full lg:w-full lg:h-[70%]"
+        class="w-full lg:w-full lg:h-[70%]"
         :biddingBox="biddingBox"
         @bid="bid"
       />

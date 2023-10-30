@@ -49,7 +49,7 @@ const players = ["V", "N", "Ö", "S"];
         <game-bidding-block
           v-for="(e, index) in history"
           :key="index"
-          wrapperClass="w-[24%]"
+          class="w-[24%]"
           :card="e"
           :bg="e.suit || e.rank ? '' : 'bg-[#0E9F6E]'"
           :size="biddingBox"
