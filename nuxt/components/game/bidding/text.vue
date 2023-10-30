@@ -7,6 +7,8 @@ defineProps({
 
 <template>
   <div class="w-full h-full flex flex-row justify-start">
-    <span class="text3 sm:text-[20px] m-[4px]">{{ text }}</span>
+    <span class="text3 !text-[#FFFEFA] sm:text-[20px] ml-[12px]">{{
+      text
+    }}</span>
   </div>
 </template>

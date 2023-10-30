@@ -1,41 +1,35 @@
 <script setup lang="ts">
-const p = defineProps({
+defineProps({
   card: {
     type: CardUtil.Card,
     default: () => ({ suit: 1, rank: 1 }),
   },
   wrapperClass: String,
+  size: String,
   bg: String,
   invisible: Boolean,
-  clickable: Boolean,
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  clickable: {
+    type: Boolean,
+    default: true,
+  },
   onClick: Function,
-  suit: Number,
-  rank: Number,
 });
-
-const disabled = ref(false);
-
-function getDisabled(rank: Number, suit: Number) {
-  if (rank < p.rank || (suit <= p.suit && rank === p.rank)) {
-    disabled.value = true;
-    return true;
-  }
-  //return "opacity-50 cursor-not-allowed";
-}
 </script>
 
 <template>
   <div
-    :class="`${wrapperClass} flex flex-row justify-center items-center my-[3px] hover:bg-transparent ${
-      getDisabled(card.suit, card.rank) ? 'opacity-50 cursor-not-allowed' : ''
+    :class="`${wrapperClass} flex flex-row justify-center items-center my-[2px] hover:bg-transparent ${
+      disabled ? 'opacity-50 cursor-not-allowed' : ''
     }`"
   >
     <div
-      :class="`biddingBox ${
+      :class="`${size} rounded-lg ${
         card.suit === 0 && card.rank === 0 ? '!bg-[#0E9F6E]' : ''
-      } ${
-        clickable && !disabled ? '' : 'pointer-events-none'
-      } flex flex-row justify-center items-center rounded-lg`"
+      } ${clickable && !disabled ? '' : 'pointer-events-none'}`"
       @click="onClick(card.suit, card.rank)"
     >
       <!-- <span class="text1 text-white">{{ brick(card.suit, card.rank) }}</span> -->
@@ -43,9 +37,3 @@ function getDisabled(rank: Number, suit: Number) {
     </div>
   </div>
 </template>
-
-<style scoped>
-.biddingBox {
-  @apply w-[50px] h-[30px] bg-dash-dark-200 hover:bg-transparent  sm:w-[55px] sm:h-[30px] md:w-[65px] md:h-[30px] lg:w-[45px] lg:h-[30px] xl:w-[50px] xl:h-[35px] 2xl:w-[60px] 2xl:h-[40px];
-}
-</style>

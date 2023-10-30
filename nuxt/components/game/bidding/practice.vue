@@ -11,6 +11,9 @@ const history = ref([]);
 function bid(s, r) {
   history.value.push({ suit: s, rank: r });
 }
+
+const biddingBox =
+  "w-[50px] h-[30px] bg-dash-dark-200 hover:bg-transparent  sm:w-[55px] sm:h-[30px] lg:w-[45px] lg:h-[30px]";
 </script>
 <template>
   <!-- <div class="w-[90%] h-[80px] border mb-[20px]"></div> -->
@@ -31,6 +34,7 @@ function bid(s, r) {
       <game-bidding-history
         :history="history"
         wrapperClass="w-full h-full lg:w-full lg:h-[70%]"
+        :biddingBox="biddingBox"
       ></game-bidding-history>
     </game-bidding-container>
 
@@ -42,6 +46,7 @@ function bid(s, r) {
         v-model:suit="suit"
         v-model:rank="rank"
         wrapperClass="w-full lg:w-full lg:h-[70%]"
+        :biddingBox="biddingBox"
         @bid="bid"
       />
     </game-bidding-container>
@@ -51,7 +56,7 @@ function bid(s, r) {
       header="DIN HAND"
     >
       <game-bidding-hand
-        wrapperClass="w-full lg:w-full lg:h-[70%]"
+        wrapperClass="bg-[#121c27] w-full lg:w-full lg:h-[70%]"
         :showDeal="false"
         :hand="[
           { suit: 0, rank: 2 },
@@ -89,6 +94,13 @@ function bid(s, r) {
 }
 
 .desktopSize {
-  @apply sm:h-[100%] sm:w-[100%] lg:h-[400px] lg:w-[1000px] lg:flex-row lg:space-x-1 lg:justify-center  xl:w-[1200px] xl:h-[450px] 2xl:w-[1400px] 2xl:h-[500px];
+  @apply lg:flex-row lg:space-x-1 lg:justify-center
+  lg:w-[100%]  lg:max-w-[1000px] 
+  lg:h-[400px] lg:max-h-[500px];
+
+  /* @apply sm:h-[100%] sm:w-[100%] lg:h-[400px] lg:w-[1000px] lg:flex-row lg:space-x-1 lg:justify-center  xl:w-[1200px] xl:h-[450px] 2xl:w-[1400px] 2xl:h-[500px]; */
 }
 </style>
+
+<!--   sm:w-[100%]  max-w-[1000px] 
+  sm:h-[400px] max-h-[500px] -->

@@ -3,6 +3,8 @@
 This component displays the bidding history from bidding-box.
 Props:
   history: List of {suit, rank}
+  wrapperClass: css properties
+  biddingBox: css properties for sizing of bidding-block component
 */
 
 defineProps({
@@ -14,6 +16,7 @@ defineProps({
     type: String,
     required: false,
   },
+  biddingBox: String,
 });
 
 //lägg till funktionalitet för hover/click, tooltip?
@@ -49,8 +52,15 @@ const players = ["V", "N", "Ö", "S"];
           wrapperClass="w-[24%]"
           :card="e"
           :bg="e.suit || e.rank ? '' : 'bg-[#0E9F6E]'"
+          :size="biddingBox"
         ></game-bidding-block>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.biddingBox {
+  @apply w-[50px] h-[30px] bg-dash-dark-200 hover:bg-transparent  sm:w-[55px] sm:h-[30px] md:w-[65px] md:h-[25px] lg:w-[40px] lg:h-[30px];
+}
+</style>
