@@ -126,9 +126,11 @@ function format(bridgeHand, suit) {
       >
       </span>
       <span
-        class="ml-[10px] text-[15px] sm:text-[20px] lg:text-[25px] text1 text-white tracking-[1px]"
+        v-if="computedHand.filter((e) => e.suit === index - 1)[0]?.ranks"
+        class="rank text1"
         >{{ computedHand.filter((e) => e.suit === index - 1)[0]?.ranks }}</span
       >
+      <span v-else class="rank text1">-</span>
     </div>
     <!-- Only for testing, later we will provde dealt hans from parent component -->
     <button
@@ -143,11 +145,7 @@ function format(bridgeHand, suit) {
 </template>
 
 <style scoped>
-.mobileSize {
-  @apply flex;
-}
-
-.desktopSize {
-  @apply lg:flex lg:flex-col;
+.rank {
+  @apply ml-[10px] text-[15px] sm:text-[20px] lg:text-[25px] text-white tracking-[1px];
 }
 </style>

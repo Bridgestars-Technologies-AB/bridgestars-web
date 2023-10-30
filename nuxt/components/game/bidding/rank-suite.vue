@@ -46,7 +46,7 @@ defineProps({
 }
 
 .biddingText2 {
-  @apply text-white text-[18px] sm:text-[20px] lg:text-[14px] xl:text-[16px];
+  @apply text-white text-[18px] sm:text-[20px] lg:text-[14px] xl:text-[17px];
 }
 
 .biddingText3 {

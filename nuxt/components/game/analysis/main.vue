@@ -46,10 +46,12 @@ function getJustify(e: Number) {
     <div
       class="w-full flex flex-col justify-center items-center h-[6%] lg:items-start lg:h-[10%]"
     >
-      <div class="w-full flex flex-row justify-between my-[2px]">
+      <div class="w-full flex flex-row justify-between items-center my-[2px]">
         <span class="header flex-grow-1 mx-[10px]"> Analys </span>
-        <div class="rounded-xl bg-dash-dark-200 mx-[10px]">
-          <span class="header flex-grow-1 p-[3px]">Nästa giv</span>
+        <div
+          class="rounded-xl bg-dash-dark-200 mx-[10px] flex items-center justify-center"
+        >
+          <span class="header px-[6px] py-[2px]">Nästa giv > </span>
         </div>
       </div>
 
@@ -149,7 +151,9 @@ function getJustify(e: Number) {
             size="w-[60px] h-[30px] lg:w-[80px] lg:h-[40px]"
           ></game-analysis-bid>
           <!-- Placeholder for star img -->
-          <div class="w-auto h-[35px] sm:h-[60px] flex flex-row mb-[3px]">
+          <div
+            class="w-auto h-[35px] sm:h-[60px] flex flex-row mb-[3px] mt-[5px]"
+          >
             <div
               v-for="e in 3"
               :key="e"
@@ -164,12 +168,12 @@ function getJustify(e: Number) {
           </div>
 
           <!-- Line -->
-          <div class="w-[85%] h-[2px] bg-dash-dark-400 mb-[2px]"></div>
+          <div class="w-[90%] h-[2px] bg-dash-dark-400 mb-[2px] mt-[5px]"></div>
 
           <div class="w-full flex flex-row justify-center">
-            <div class="w-[95%]">
+            <div class="w-[95%] ml-[10px]">
               <span
-                class="text1 leading-tight text-[16px] sm:text-[19px] md:text-[18px]"
+                class="text1 !text-[#FFFEFA] leading-tight text-[16px] tracking-wide sm:text-[19px] md:text-[18px]"
                 >{{ biddingAnswer }}</span
               >
             </div>
