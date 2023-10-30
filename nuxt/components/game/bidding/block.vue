@@ -15,7 +15,7 @@ const p = defineProps({
 
 const disabled = ref(false);
 
-function getDisabled(rank, suit) {
+function getDisabled(rank: Number, suit: Number) {
   if (rank < p.rank || (suit <= p.suit && rank === p.rank)) {
     disabled.value = true;
     return true;
@@ -26,31 +26,24 @@ function getDisabled(rank, suit) {
 
 <template>
   <div
-    :class="`${wrapperClass} flex flex-row justify-center items-center my-[3px] ${
+    :class="`${wrapperClass} flex flex-row justify-center items-center my-[2px] hover:bg-transparent ${
       getDisabled(card.suit, card.rank) ? 'opacity-50 cursor-not-allowed' : ''
     }`"
   >
     <div
-      :class="`biddingBox ${
+      :class="`biddingBox rounded-lg ${
         card.suit === 0 && card.rank === 0 ? '!bg-[#0E9F6E]' : ''
-      } ${
-        clickable && !disabled ? '' : 'pointer-events-none'
-      } flex flex-row justify-center items-center rounded-lg`"
+      } ${clickable && !disabled ? '' : 'pointer-events-none'}`"
       @click="onClick(card.suit, card.rank)"
     >
       <!-- <span class="text1 text-white">{{ brick(card.suit, card.rank) }}</span> -->
-      <game-rank-suite :card="card"></game-rank-suite>
+      <game-bidding-rank-suite :card="card"></game-bidding-rank-suite>
     </div>
   </div>
 </template>
 
 <style scoped>
 .biddingBox {
-  @apply xl:w-[70px] xl:h-[45px] lg:w-[55px] lg:h-[35px] md:w-[35px] md:h-[30px] sm:w-[30px] sm:h-[25px] w-[20px] h-[15px] bg-dash-dark-200;
+  @apply w-[50px] h-[30px] bg-dash-dark-200 hover:bg-transparent  sm:w-[55px] sm:h-[30px] md:w-[65px] md:h-[30px] lg:w-[45px] lg:h-[30px] xl:w-[50px] xl:h-[35px] 2xl:w-[60px] 2xl:h-[40px];
 }
-
-/* .biddingPass {
-  @apply bg-green-500 hover:bg-green-400 rounded-lg
-    dark:text-light biddingText3 tracking-[0.5px] text-white;
-} */
 </style>

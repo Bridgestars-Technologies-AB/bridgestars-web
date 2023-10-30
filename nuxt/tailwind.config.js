@@ -79,6 +79,7 @@ module.exports = {
         "tabler", //used for sign out icon
         "basil",
         "majesticons",
+        "fluent-emoji-high-contrast",
       ]),
       //tailwindcss chooses which icons to include based on usage
     }),
@@ -125,7 +126,8 @@ module.exports = {
       transitionProperty: {
         "decoration-color": "text-decoration-color",
       },
-      typography: () => ({ //{theme} => ({})
+      typography: () => ({
+        //{theme} => ({})
         policy: {
           css: {
             "--tw-prose-headings": "#FFFFFF",
@@ -151,6 +153,8 @@ module.exports = {
 
       md: "768px",
       // => @media (min-width: 768px) { ... }
+
+      lm: "862px",
 
       lg: "992px",
       // => @media (min-width: 1024px) { ... }
