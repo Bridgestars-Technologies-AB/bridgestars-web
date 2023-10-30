@@ -102,12 +102,15 @@ function click(item) {
 
 <template>
   <div
-    id="side-menu"
-    :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col ${
-      isOpen ? 'open' : 'closed'
-    } h-full overflow-x-visible ${$attrs.class}`"
+    class="absolute w-full h-full overflow-y-scroll overflow-x-hidden no-scrollbar"
   >
-    <div class="overflow-y-scroll w-full no-scrollbar">
+    <div
+      id="side-menu"
+      :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col ${
+        isOpen ? 'open' : 'closed'
+      } ${$attrs.class} pb-[200px]`"
+    >
+      <!-- profile section -->
       <div
         :class="`text-center flex relative items-center pt-7 flex-wrap profile-section ${
           isOpen ? 'open' : 'closed'
@@ -141,20 +144,16 @@ function click(item) {
         <div :class="`h-[40px] ${isOpen ? 'hidden' : 'block'}`" />
       </div>
 
-      <div class="flex flex-col mt-6 h-full">
-        <div
-          v-for="item in items"
-          :key="item.key"
-          class="overflow-x-clip"
-          @click="() => click(item)"
-        >
+      <!-- menu items -->
+      <div class="flex flex-col mt-6">
+        <div v-for="item in items" :key="item.key" @click="() => click(item)">
           <div
             v-if="item.divider"
             class="font-family font-light text-dark opacity-70 dark:text-light mb-1 ml-5 mt-5 tracking-wide text-[16px] cursor-default"
           >
             {{ $t("dashboard:side_menu." + item.name) }}
           </div>
-          <dash-menu-side-item2
+          <dash-menu-side-item
             v-else
             :icon="item.icon"
             :keypath="`dashboard:side_menu.${item.name}`"
@@ -166,7 +165,6 @@ function click(item) {
       </div>
     </div>
   </div>
-
   <base-modal-signout v-model:open="logoutModalOpen" class="border" />
 </template>
 

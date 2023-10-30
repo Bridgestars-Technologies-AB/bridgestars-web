@@ -7,6 +7,7 @@ const props = defineProps({
   text: String,
   position: { type: String, default: "bottom" },
   disabled: Boolean,
+  class: String,
 });
 
 const tooltip = ref(null);
@@ -48,6 +49,7 @@ function hide() {
     <div
       ref="tooltipTrigger"
       @click="hide"
+      :class="props.class"
       @mouseleave="hide"
       @mouseenter="show"
       @touchstart="isTouch = true"
