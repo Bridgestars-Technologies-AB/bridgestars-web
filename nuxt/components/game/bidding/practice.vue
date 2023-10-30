@@ -89,6 +89,10 @@ function bid(s, r) {
 }
 
 .desktopSize {
-  @apply sm:h-[100%] sm:w-[100%] lg:h-[400px] lg:w-[1000px] lg:flex-row lg:space-x-1 lg:justify-center  xl:w-[1200px] xl:h-[450px] 2xl:w-[1400px] 2xl:h-[500px];
+  @apply lg:flex-row lg:space-x-1 lg:justify-center  
+  sm:w-[100%]  max-w-[1000px] 
+  sm:h-[400px] max-h-[500px];
+
+  /* @apply sm:h-[100%] sm:w-[100%] lg:h-[400px] lg:w-[1000px] lg:flex-row lg:space-x-1 lg:justify-center  xl:w-[1200px] xl:h-[450px] 2xl:w-[1400px] 2xl:h-[500px]; */
 }
 </style>
