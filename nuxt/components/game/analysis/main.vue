@@ -117,6 +117,7 @@ function getJustify(e: Number) {
           <game-bidding-history
             :history="[{ suit: 1, rank: 1 }]"
             wrapperClass="w-full h-[70%]"
+            biddingBox="w-[50px] h-[30px] bg-dash-dark-200 hover:bg-transparent  sm:w-[55px] sm:h-[30px] md:w-[65px] md:h-[30px] lg:w-[45px] lg:h-[30px] xl:w-[50px] xl:h-[35px] 2xl:w-[60px] 2xl:h-[40px]"
           ></game-bidding-history>
 
           <div class="flex justify-center items-center h-[20%] lg:w-[80%]">

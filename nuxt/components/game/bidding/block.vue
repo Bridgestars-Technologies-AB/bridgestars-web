@@ -5,6 +5,7 @@ const p = defineProps({
     default: () => ({ suit: 1, rank: 1 }),
   },
   wrapperClass: String,
+  size: String,
   bg: String,
   invisible: Boolean,
   clickable: Boolean,
@@ -31,7 +32,7 @@ function getDisabled(rank: Number, suit: Number) {
     }`"
   >
     <div
-      :class="`biddingBox rounded-lg ${
+      :class="`${size} rounded-lg ${
         card.suit === 0 && card.rank === 0 ? '!bg-[#0E9F6E]' : ''
       } ${clickable && !disabled ? '' : 'pointer-events-none'}`"
       @click="onClick(card.suit, card.rank)"
@@ -41,9 +42,3 @@ function getDisabled(rank: Number, suit: Number) {
     </div>
   </div>
 </template>
-
-<style scoped>
-.biddingBox {
-  @apply w-[50px] h-[30px] bg-dash-dark-200 hover:bg-transparent  sm:w-[55px] sm:h-[30px] md:w-[65px] md:h-[30px] lg:w-[45px] lg:h-[30px] xl:w-[50px] xl:h-[35px] 2xl:w-[60px] 2xl:h-[40px];
-}
-</style>
