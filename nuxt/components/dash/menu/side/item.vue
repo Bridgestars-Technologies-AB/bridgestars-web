@@ -30,30 +30,32 @@ const textColor = computed(
 
 <template>
   <base-tooltip :text="$t(props.keypath)" position="right" :disabled="open">
-    <div
-      :class="`flex items-center relative group hover:cursor-pointer h-full ${bgColor} item-transition ${
-        open || 'ml-[205px]'
-      }`"
-    >
+    <div class="relative h-[50px]">
       <div
-        :class="`${selected ? 'bg-dash-accent' : ''} h-full w-[3px] ${
-          open || 'absolute ml-[-1px]'
+        :class="`flex items-center relative group hover:cursor-pointer h-full ${bgColor} item-transition ${
+          open || 'ml-[205px]'
         }`"
-      />
-
-      <div
-        :class="`${'bg-dash-accent'} p-[5px] my-2 ml-4 rounded-xl ar-1 flex items-center mr-4 group-hover:animate-shake`"
       >
-        <span id="icon" :class="`text-[25px]  ${icon} ${iconColor}`"> </span>
+        <div
+          :class="`${selected ? 'bg-dash-accent' : ''} h-full  w-[3px] ${
+            open || 'absolute ml-[-1px]'
+          }`"
+        />
+
+        <div
+          :class="`${'bg-dash-accent'} p-[5px] my-2 ml-4 rounded-xl ar-1 flex items-center mr-4 group-hover:animate-shake`"
+        >
+          <span id="icon" :class="`text-[25px]  ${icon} ${iconColor}`"> </span>
+        </div>
+
+        <span
+          :class="`font-family text-[15px] my-2 pr-4 font-light tracking-wide ${
+            enabled || 'line-through'
+          } ${textColor} `"
+        >
+          {{ $t(props.keypath) }}
+        </span>
       </div>
-
-      <span
-        :class="`font-family text-[15px] my-2 pr-4 font-light tracking-wide ${
-          enabled || 'line-through'
-        } ${textColor} `"
-      >
-        {{ $t(props.keypath) }}
-      </span>
     </div>
   </base-tooltip>
 </template>
