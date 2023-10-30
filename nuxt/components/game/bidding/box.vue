@@ -58,17 +58,17 @@ function bid(suit, rank) {
         >
           <game-bidding-block
             :card="{ suit: s - 1, rank: r }"
-            @click="bid"
-            :disabled="!isValid(s - 1, r)"
             :size="biddingBox"
+            :disabled="!isValid(s - 1, r)"
+            @click="bid"
           ></game-bidding-block>
         </div>
       </div>
       <div class="w-full flex flex-row justify-center">
         <game-bidding-block
           :card="{ suit: 0, rank: 0 }"
-          @click="bid"
           :size="biddingBox"
+          @click="bid"
         ></game-bidding-block>
       </div>
     </div>
@@ -94,15 +94,15 @@ function bid(suit, rank) {
       <div v-for="e in 5" :key="e">
         <game-bidding-block
           :card="{ suit: e - 1, rank: currentRank }"
-          @click="bid"
           :size="biddingBox"
+          @click="bid"
         ></game-bidding-block>
       </div>
     </div>
     <game-bidding-block
       :card="{ suit: 0, rank: 0 }"
-      @click="bid"
       :size="biddingBox"
+      @click="bid"
     ></game-bidding-block>
   </div>
 </template>
