@@ -95,6 +95,7 @@ function bid(suit, rank) {
         <game-bidding-block
           :card="{ suit: e - 1, rank: currentRank }"
           :size="biddingBox"
+          :disabled="!isValid(e - 1, currentRank)"
           @click="bid"
         ></game-bidding-block>
       </div>
