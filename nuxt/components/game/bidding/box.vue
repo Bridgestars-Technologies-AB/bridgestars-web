@@ -35,6 +35,13 @@ function isValid(suit, rank) {
 }
 function bid(suit, rank) {
   if (isValid(suit, rank)) {
+    if (suit === 4 && rank < 7) {
+      biddingArray.value = Array.from(
+        { length: 7 - rank },
+        (_, index) => rank + 1 + index,
+      );
+      currentRank.value = rank + 1;
+    }
     emit("update:rank", rank);
     emit("update:suit", suit);
   }
