@@ -53,6 +53,7 @@ const players = ["V", "N", "Ö", "S"];
           :card="e"
           :bg="e.suit || e.rank ? '' : 'bg-[#0E9F6E]'"
           :size="biddingBox"
+          :clickable="false"
         ></game-bidding-block>
       </div>
     </div>
