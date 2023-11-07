@@ -3,7 +3,6 @@
 This component displays the bidding history from bidding-box.
 Props:
   history: List of {suit, rank}
-  wrapperClass: css properties
   biddingBox: css properties for sizing of bidding-block component
 */
 
@@ -11,10 +10,6 @@ defineProps({
   history: {
     type: Array[CardUtil.Card],
     required: true,
-  },
-  wrapperClass: {
-    type: String,
-    required: false,
   },
   biddingBox: String,
 });
@@ -25,11 +20,7 @@ const players = ["V", "N", "Ö", "S"];
 </script>
 
 <template>
-  <div
-    :class="
-      'flex flex-col items-center rounded-xl bg-[#121c27] ' + wrapperClass
-    "
-  >
+  <div class="flex flex-col items-center rounded-xl bg-[#121c27]">
     <div class="w-[100%] flex flex-row justify-center">
       <div class="flex flex-row w-[97%]">
         <div

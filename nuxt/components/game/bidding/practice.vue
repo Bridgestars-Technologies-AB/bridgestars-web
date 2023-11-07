@@ -20,7 +20,7 @@ const biddingBox =
   <div class="mobileSize desktopSize">
     <game-bidding-container
       :showImage="true"
-      wrapperClass="w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
+      class="flex flex-col bg-dash-dark-100 w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
     >
       <game-bidding-text
         text="Vad bjuder du som svarshand när din partner har öppnat med 1 NT?"
@@ -28,18 +28,18 @@ const biddingBox =
     </game-bidding-container>
 
     <game-bidding-container
-      wrapperClass="w-[80%] h-[40%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
+      class="flex flex-col bg-dash-dark-100 w-[80%] h-[40%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
       header="BUDGIVNING"
     >
       <game-bidding-history
         :history="history"
-        wrapperClass="w-full h-full lg:w-full lg:h-[70%]"
+        class="w-full h-full lg:w-full lg:h-[70%]"
         :biddingBox="biddingBox"
       ></game-bidding-history>
     </game-bidding-container>
 
     <game-bidding-container
-      wrapperClass="min-h-[150px] w-[80%] h-[30%] mt-[8px] rounded-xl lg:h-full lg:w-[24%]"
+      class="flex flex-col bg-dash-dark-100 min-h-[150px] w-[80%] h-[30%] mt-[8px] rounded-xl lg:h-full lg:w-[24%]"
       header="BUDLÅDA"
     >
       <game-bidding-box
@@ -52,11 +52,11 @@ const biddingBox =
     </game-bidding-container>
 
     <game-bidding-container
-      wrapperClass="w-[80%] h-[10%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
+      class="flex flex-col bg-dash-dark-100 w-[80%] h-[10%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
       header="DIN HAND"
     >
       <game-bidding-hand
-        wrapperClass="bg-[#121c27] w-full lg:w-full lg:h-[70%]"
+        class="bg-[#121c27] w-full lg:w-full lg:h-[70%]"
         :showDeal="false"
         :hand="[
           { suit: 0, rank: 2 },

@@ -67,7 +67,7 @@ function getJustify(e: Number) {
         <div class="flex justify-center items-center w-full lg:h-[30%]">
           <game-bidding-hand
             :showDeal="false"
-            wrapperClass="w-full lg:h-full lg:w-[70%]"
+            class="w-full lg:h-full lg:w-[70%]"
           ></game-bidding-hand>
         </div>
 
@@ -95,7 +95,7 @@ function getJustify(e: Number) {
         <div class="flex justify-center items-center w-full lg:h-[30%]">
           <game-bidding-hand
             :showDeal="false"
-            wrapperClass="w-full lg:h-full lg:w-[70%]"
+            class="w-full lg:h-full lg:w-[70%]"
           ></game-bidding-hand>
         </div>
       </div>
@@ -116,7 +116,7 @@ function getJustify(e: Number) {
         <div class="h-[95%] w-full flex flex-col justify-center items-center">
           <game-bidding-history
             :history="[{ suit: 1, rank: 1 }]"
-            wrapperClass="w-full h-[70%]"
+            class="w-full h-[70%]"
             biddingBox="w-[50px] h-[30px] bg-dash-dark-200 hover:bg-transparent  sm:w-[55px] sm:h-[30px] md:w-[65px] md:h-[30px] lg:w-[45px] lg:h-[30px] xl:w-[50px] xl:h-[35px] 2xl:w-[60px] 2xl:h-[40px]"
           ></game-bidding-history>
 

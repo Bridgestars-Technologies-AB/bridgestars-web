@@ -5,7 +5,6 @@ Bidding Box
 Props:
   suit: Number (0-4) //  v-model:suit="suit" where suit is a ref(0)
   rank: Number (0-7) // 0 = pass
-  wrapperClass: css properties
   biddingBox: css properties for sizing of bidding-block component
   mobile: for choosing mobile or desktop version
 
