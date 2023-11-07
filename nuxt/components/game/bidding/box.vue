@@ -29,17 +29,38 @@ const emit = defineEmits(["bid", "update:rank", "update:suit"]);
 const currentRank = ref(1);
 
 const biddingArray = ref([1, 2, 3, 4, 5, 6, 7]);
+
 function isValid(suit, rank) {
   return rank > p.rank || (suit > p.suit && rank === p.rank);
 }
+
+function updateBiddingArray(suit, rank) {
+  let r = 0;
+  const array = [
+    [4, 1],
+    [4, 2],
+    [4, 3],
+    [4, 4],
+    [4, 5],
+    [4, 6],
+    [4, 7],
+  ];
+  array.forEach((e) => {
+    if ((suit === e[0] && rank === e[1]) || !isValid(e[0], e[1])) {
+      r = e[1];
+    }
+  });
+  biddingArray.value = Array.from(
+    { length: 7 - r },
+    (_, index) => r + 1 + index,
+  );
+  currentRank.value = r + 1;
+}
+
 function bid(suit, rank) {
   if (isValid(suit, rank)) {
-    if (suit === 4 && rank < 7) {
-      biddingArray.value = Array.from(
-        { length: 7 - rank },
-        (_, index) => rank + 1 + index,
-      );
-      currentRank.value = rank + 1;
+    if (rank < 7) {
+      updateBiddingArray(suit, rank);
     }
     emit("update:rank", rank);
     emit("update:suit", suit);
