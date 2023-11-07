@@ -4,18 +4,21 @@ const hasEntered = ref(false);
 
 <template>
   <div
-    class="flex flex-col items-center w-[500px] h-[500px] bg-dash-dark-200 rounded-xl"
+    class="flex flex-col justify-center items-center w-full h-full bg-dash-dark-200 space-y-[20px]"
   >
-    <span class="player mt-[60px] !font-semibold"> Spelare </span>
+    <span class="player !font-semibold mb-[15px]"> Spelare </span>
     <game-lobby-button
       v-model:hasEntered="hasEntered"
       class="mt-[35px]"
     ></game-lobby-button>
 
     <div
-      class="flex flex-row justify-center items-center w-full h-[125px] mt-[20px] mb-[20px] space-x-[20px]"
+      class="flex flex-row justify-center items-center w-full h-[125px] space-x-[20px]"
     >
-      <game-lobby-button v-model:hasEntered="hasEntered"></game-lobby-button>
+      <div class="h-full w-[25%] flex items-center justify-end">
+        <game-lobby-button v-model:hasEntered="hasEntered"></game-lobby-button>
+      </div>
+
       <div
         class="flex items-center justify-center bg-[#075B0E] w-[125px] h-full rounded-xl"
       >
@@ -31,7 +34,10 @@ const hasEntered = ref(false);
           </div>
         </div>
       </div>
-      <game-lobby-button v-model:hasEntered="hasEntered"></game-lobby-button>
+
+      <div class="h-full w-[25%] flex items-center justify-start">
+        <game-lobby-button v-model:hasEntered="hasEntered"></game-lobby-button>
+      </div>
     </div>
 
     <game-lobby-button v-model:hasEntered="hasEntered"></game-lobby-button>
