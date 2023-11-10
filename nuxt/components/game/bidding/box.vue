@@ -32,6 +32,7 @@ const crank = ref(0);
 const biddingArray = ref([1, 2, 3, 4, 5, 6, 7]);
 
 function isValid(suit, rank, currentSuit = p.suit, currentRank = p.rank) {
+  if (rank > 7) return false;
   return rank > currentRank || (suit > currentSuit && rank === currentRank);
 }
 
@@ -105,7 +106,7 @@ function bid(suit, rank) {
     <div class="flex flex-row space-x-[3px]">
       <div v-for="e in 5" :key="e">
         <game-bidding-block
-          :card="{ suit: e - 1, rank: currentRank }"
+          :card="{ suit: e - 1, rank: Math.min(currentRank, 7) }"
           :size="biddingBox"
           :disabled="!isValid(e - 1, currentRank)"
           @click="bid"
