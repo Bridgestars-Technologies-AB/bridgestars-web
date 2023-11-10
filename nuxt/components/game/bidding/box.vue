@@ -90,30 +90,37 @@ function bid(suit, rank) {
   <div
     class="lg:hidden w-full h-full flex flex-col justify-center items-center"
   >
-    <div class="flex flex-row items-center mb-[5px]">
+    <div class="flex flex-row items-center">
       <div
         v-for="e in biddingArray"
         :key="e"
-        :class="`border mb-[2px] w-[30px] h-[30px] sm:w-[35px] sm:h-[35px] flex justify-center items-center ${
-          currentRank === e ? 'bg-slate-500' : ''
+        :class="`rounded-t-[8px] bg-dash-dark-100 border-t border-x border-dash-light-100 w-[45px] h-[40px] sm:w-[50px] sm:h-[45px] flex justify-center items-center ${
+          currentRank === e
+            ? 'z-[3] mb-[-1px]'
+            : 'bg-dash-dark-200 mb-[-8px] z-[1]'
         }`"
       >
-        <button class="text1 text-[15px] text-white" @click="currentRank = e">
+        <button class="text1 text-[18px] text-white" @click="currentRank = e">
           {{ e }}
         </button>
       </div>
     </div>
-    <div class="flex flex-row space-x-[3px]">
-      <div v-for="e in 5" :key="e">
-        <game-bidding-block
-          :card="{ suit: e - 1, rank: Math.min(currentRank, 7) }"
-          :size="biddingBox"
-          :disabled="!isValid(e - 1, currentRank)"
-          @click="bid"
-        ></game-bidding-block>
+    <div
+      class="border-dash-light-100 bg-dash-dark-100 border z-[2] rounded-[6px] px-7 sm:px-[40px] pt-4 pb-4"
+    >
+      <div class="flex flex-row space-x-[3px]">
+        <div v-for="e in 5" :key="e">
+          <game-bidding-block
+            :card="{ suit: e - 1, rank: Math.min(currentRank, 7) }"
+            :size="biddingBox"
+            :disabled="!isValid(e - 1, currentRank)"
+            @click="bid"
+          ></game-bidding-block>
+        </div>
       </div>
     </div>
     <game-bidding-block
+      class="mt-[20px]"
       :card="{ suit: 0, rank: 0 }"
       :size="biddingBox"
       @click="bid"
