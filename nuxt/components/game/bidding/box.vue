@@ -37,11 +37,11 @@ function isValid(suit, rank, currentSuit = p.suit, currentRank = p.rank) {
 }
 
 function updateBiddingArray(suit, rank) {
-  biddingArray.value = [1, 2, 3, 4, 5, 6, 7].filter((e) =>
+  biddingArray.value = biddingArray.value.filter((e) =>
     isValid(4, e, suit, rank),
   );
-  if (suit === 4) {
-    currentRank.value = rank + 1;
+  if (biddingArray.value.length !== 0) {
+    currentRank.value = biddingArray.value[0];
   }
 }
 
