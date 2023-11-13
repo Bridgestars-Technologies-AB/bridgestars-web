@@ -3,6 +3,7 @@ const routes = [
   { path: "/dev/test/lobby", name: "Lobby" },
   { path: "/dev/test/invite", name: "Invite" },
   { path: "/dev/test/bidding", name: "Bidding" },
+  { path: "/dev/test/analysis", name: "Analysis" },
 ];
 </script>
 
