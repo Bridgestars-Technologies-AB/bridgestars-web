@@ -3,6 +3,7 @@
 This component displays the bidding history from bidding-box.
 Props:
   history: List of {suit, rank}
+  biddingBox: css properties for sizing of bidding-block component
 */
 
 defineProps({
@@ -10,10 +11,7 @@ defineProps({
     type: Array[CardUtil.Card],
     required: true,
   },
-  wrapperClass: {
-    type: String,
-    required: false,
-  },
+  biddingBox: String,
 });
 
 //lägg till funktionalitet för hover/click, tooltip?
@@ -22,11 +20,7 @@ const players = ["V", "N", "Ö", "S"];
 </script>
 
 <template>
-  <div
-    :class="
-      'flex flex-col items-center rounded-xl bg-[#121c27] ' + wrapperClass
-    "
-  >
+  <div class="flex flex-col items-center rounded-xl bg-[#121c27]">
     <div class="w-[100%] flex flex-row justify-center">
       <div class="flex flex-row w-[97%]">
         <div
@@ -46,11 +40,19 @@ const players = ["V", "N", "Ö", "S"];
         <game-bidding-block
           v-for="(e, index) in history"
           :key="index"
-          wrapperClass="w-[24%]"
+          class="w-[24%]"
           :card="e"
           :bg="e.suit || e.rank ? '' : 'bg-[#0E9F6E]'"
+          :size="biddingBox"
+          :clickable="false"
         ></game-bidding-block>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.biddingBox {
+  @apply w-[50px] h-[30px] bg-dash-dark-200 hover:bg-transparent  sm:w-[55px] sm:h-[30px] md:w-[65px] md:h-[25px] lg:w-[40px] lg:h-[30px];
+}
+</style>

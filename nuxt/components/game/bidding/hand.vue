@@ -18,10 +18,6 @@ const p = defineProps({
     type: Boolean,
     required: false,
   },
-  wrapperClass: {
-    type: String,
-    required: false,
-  },
 });
 
 const ranks = [
@@ -109,10 +105,7 @@ function format(bridgeHand, suit) {
 
 <template>
   <div
-    :class="
-      'rounded-xl flex flex-row justify-center space-x-[10px] lg:flex-col lg:items-start ' +
-      wrapperClass
-    "
+    :class="`rounded-xl flex flex-row justify-center space-x-[10px] lg:flex-col lg:items-start ${$attrs.class}`"
   >
     <div
       v-for="index in 4"

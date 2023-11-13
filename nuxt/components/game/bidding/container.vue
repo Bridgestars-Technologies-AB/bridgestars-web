@@ -1,8 +1,8 @@
 <script setup>
-defineProps({ wrapperClass: String, header: String, showImage: Boolean });
+defineProps({ header: String, showImage: Boolean });
 </script>
 <template>
-  <div :class="'flex flex-col bg-dash-dark-100 ' + wrapperClass">
+  <div>
     <div
       v-if="header"
       class="w-full h-[15%] flex flex-row justify-center items-center mt-[10px] mb-[5px]"
