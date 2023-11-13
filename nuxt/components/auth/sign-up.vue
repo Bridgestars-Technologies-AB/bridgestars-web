@@ -8,6 +8,7 @@ function submit(res) {
   showLoading.value = true;
   useAuth()
     .signUp(res.username, res.password, res.email)
+    // eslint-disable-next-line no-unused-vars
     .then((user) => {
       toast.success(t("auth:signUp:toast.signedUp"));
       if (query.to) navigateTo({ path: query.to });
@@ -25,6 +26,7 @@ function submit(res) {
     :header="$t('auth:common.signUp')"
     :title="$t('auth:signUp.title')"
     :subtitle="$t('auth:signUp.subtitle')"
+    :subtitle2="$t('auth:signUp.subtitle2')"
     @submit="submit"
   >
     <base-input-field

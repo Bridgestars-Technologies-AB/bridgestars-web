@@ -56,6 +56,22 @@ provide("side-menu-open", sideMenuOpen);
       </div>
     </div>
   </div>
+  <!-- enables tailwind darkmode, toggle this  -->
+  <!-- <div :class="`${darkMode.value ? 'dark [color-scheme:dark]':''} flex h-full w-full overflow-x-clip`">-->
+  <!--   <dash-menu-side/> -->
+  <!---->
+  <!--   <div class="bg-dash-light-400 dark:bg-dash-dark-200 flex-col flex-grow transition-colors duration-300"> -->
+  <!--     <div :class="`absolute z-100 bg-black w-full h-full sm:hidden ${sideMenuOpen ? 'opacity-70' :'opacity-0'} transition-opacity duration-1000`" @click="sideMenuOpen = false"/> -->
+  <!--       <dash-menu-top /> -->
+  <!--     <div id="content" :class="`bg-dash-light-400 dark:bg-dash-dark-200 p-5 flex ${sideMenuOpen ? 'sm:ml-[270px] xs:ml-0':'xs:ml-0 sm:ml-[67px]'}`"> -->
+  <!--         <NuxtPage/> -->
+  <!--       <ClientOnly> -->
+  <!--         <dash-chat-toggle/> -->
+  <!--       </ClientOnly> -->
+  <!--     </div> -->
+  <!--   </div> -->
+  <!---->
+  <!-- </div> -->
 </template>
 
 <style scoped>
@@ -65,13 +81,12 @@ provide("side-menu-open", sideMenuOpen);
     background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.authHeader {
+  @apply font-family2 text-[3vh] hsm:text-[30px]  leading-[1.5] font-bold;
+}
 /* html, body { */
 /*   /* DISABLE ALL SCROLLING ON BODY */
 /*   overflow-y: hidden; */
 /*   overflow-x: hidden; */
 /* } */
-* {
-  /* dark mode transition */
-  /* transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;  */
-}
 </style>
