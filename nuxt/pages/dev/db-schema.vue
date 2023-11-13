@@ -50,7 +50,7 @@ function copyUrl(id) {
 </script>
 <template>
   <div>
-    <div class="flex flex-col items-center text-center mt-5">
+    <div class="flex flex-col items-center text-center mt-[100px]">
       <h1 class="text-3xl font-bold">Database Classes and Fields</h1>
       <p class="text1 font-family2 text-2xl">
         This is a list of all the classes available in the database API.
@@ -117,7 +117,10 @@ function copyUrl(id) {
             <td>{{ item[key].type }}</td>
             <td>
               <template v-if="item[key].description">
-                <div v-for="dx in (item[key].description + ';').split(';')" :key="dx">
+                <div
+                  v-for="dx in (item[key].description + ';').split(';')"
+                  :key="dx"
+                >
                   {{ dx }}
                 </div>
               </template>

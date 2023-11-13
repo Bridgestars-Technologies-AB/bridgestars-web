@@ -1,17 +1,17 @@
 <script setup>
 const routes = [
-  { path: "/dev/db-schema", name: "Database Classes and Fields" },
-  { path: "/dev/db-functions", name: "Database Functions" },
-  { path: "/dev/test", name: "Component Tests" },
+  { path: "/dev/test/lobby", name: "Lobby" },
+  { path: "/dev/test/invite", name: "Invite" },
+  { path: "/dev/test/bidding", name: "Bidding" },
 ];
 </script>
 
 <template>
   <div>
     <div class="flex flex-col items-center text-center mt-[100px]">
-      <h1 class="text-3xl font-bold">Bridgestars Dev Reference</h1>
+      <h1 class="text-3xl font-bold">Bridgestars Component Tests</h1>
       <p class="text1 font-family2 text-2xl">
-        Here is some documentation on basic features in the Bridgestars stack
+        These are some components that are currently being developed.
       </p>
     </div>
 

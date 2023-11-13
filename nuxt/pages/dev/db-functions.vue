@@ -44,7 +44,7 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <div class="flex flex-col items-center text-center mt-5">
+    <div class="flex flex-col items-center text-center mt-[100px]">
       <h1 class="text-3xl font-bold">Database Functions</h1>
       <p class="text1 font-family2 text-2xl">
         This is a list of all the functions available in the database API.
