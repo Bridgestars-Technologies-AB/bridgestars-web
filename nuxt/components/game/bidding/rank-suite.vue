@@ -50,6 +50,6 @@ defineProps({
 }
 
 .biddingText3 {
-  @apply text-white text-[14px] sm:text-[17px] lg:text-[15px] xl:text-[18px];
+  @apply text-white text-[14px] sm:text-[17px] lg:text-[15px] xl:text-[16px];
 }
 </style>

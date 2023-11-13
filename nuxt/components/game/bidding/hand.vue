@@ -113,7 +113,7 @@ function format(bridgeHand, suit) {
       class="h-1/4 flex flex-row items-center lg:ml-[10px]"
     >
       <span
-        :class="`text-[20px] sm:text-[25px] lg:ml-[10px] lg:text-[30px] ${
+        :class="`text-[25px] sm:text-[25px] lg:ml-[10px] lg:text-[30px] ${
           CardUtil.symbols[index - 1]
         }`"
       >
@@ -139,6 +139,6 @@ function format(bridgeHand, suit) {
 
 <style scoped>
 .rank {
-  @apply ml-[10px] text-[15px] sm:text-[20px] lg:text-[25px] text-white tracking-[1px];
+  @apply ml-[10px] text-[20px] sm:text-[20px] lg:text-[25px] text-white tracking-[1px];
 }
 </style>
