@@ -1,0 +1,22 @@
+# fly.toml app configuration file generated for bidding-practice-server on 2023-09-15T19:55:52+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "bidding-practice-server"
+primary_region = "arn"
+
+[processes]
+
+[http_service]
+  internal_port = 1337
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = false
+  min_machines_running = 1
+  processes = ["app"]
+
+[mounts]
+  source = "bidding_practice_vol"
+  destination = "/data"
+  processes = ["app"]
