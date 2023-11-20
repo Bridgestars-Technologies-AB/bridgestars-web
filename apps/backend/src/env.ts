@@ -1,9 +1,9 @@
 import "dotenv/config";
 
-let envs:any = process.env;
+let envs: any = process.env;
 
 // when passing --env-file to docker, it does not escape quotes
-if(envs.DB && !envs.DB.includes("prod")){
+if (envs.DB && !envs.DB.includes("prod")) {
   Object.keys(envs).forEach((key: string) => {
     envs[key] = envs[key].replace(/[\"\']/g, "");
   });
@@ -28,12 +28,11 @@ SERVER_PORT = SERVER_PORT || "1337";
 DB = DB || "prod";
 ENV = ENV || "docker";
 
-
 const env = {
   databaseURI:
-    `mongodb+srv://${DB_USER}:${DB_PASS}@db-cluster-0.1aex5z2.mongodb.net/${DB}?retryWrites=true&w=majority`,
-  appId: "UE3zFgZ3HDvjQtV7aRUQyf0ktow9843o0G16rxMd4jWbOPg",
-  appName: "bidding-practice",
+    `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.evwv141.mongodb.net/${DB}?retryWrites=true&w=majority`,
+  appId: "76SGU2S6Sixv78YNTLfXVoRhq794D8o2",
+  appName: "bridgestars",
   masterKey: MASTERKEY,
   readOnlyMasterKey: READONLY_MASTERKEY,
   masterKeyIps: [ // for 6.0.0
@@ -44,7 +43,7 @@ const env = {
   serverURL: `http://localhost:${SERVER_PORT}/rest`,
   publicServerURL: LOCAL
     ? `http://localhost:${SERVER_PORT}/rest`
-    : `https://bidding-practice-server${DB == "dev" ? "-dev" : ""
+    : `https://bridgestars-backend${DB == "dev" ? "-dev" : ""
     }.fly.dev/rest`,
   serverPort: SERVER_PORT,
   dashWritePass: DASH_WRITE_PASS,

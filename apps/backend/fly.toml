@@ -1,22 +1,23 @@
-# fly.toml app configuration file generated for bidding-practice-server on 2023-09-15T19:55:52+02:00
+# fly.toml app configuration file generated for bridgestars-backend on 2023-11-20T19:56:57+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "bidding-practice-server"
+app = "bridgestars-backend"
 primary_region = "arn"
 
-[processes]
+[build]
+
+[[mounts]]
+  source = "bridgestars_vol"
+  destination = "/data"
+  processes = ["app"]
+  auto_extend_size_threshold = 0
 
 [http_service]
-  internal_port = 1337
+  internal_port = 3000
   force_https = true
   auto_stop_machines = true
   auto_start_machines = false
   min_machines_running = 1
-  processes = ["app"]
-
-[mounts]
-  source = "bidding_practice_vol"
-  destination = "/data"
   processes = ["app"]

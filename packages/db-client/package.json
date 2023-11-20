@@ -1,0 +1,24 @@
+{
+  "name": "bidding-db-client",
+  "private": true,
+  "version": "1.0.1",
+  "type": "module",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rimraf -rf dist && tsc",
+    "preinstall": "cd `git rev-parse --show-toplevel` && cd packages/Parse-SDK-TS && npm install && npm run build"
+  },
+  "keywords": [],
+  "author": "Theodor Lundqvist, Emanuel Unge",
+  "dependencies": {
+    "@types/parse": "^3.0.4",
+    "parse": "^4.2.0",
+    "parse-sdk-ts": "link:../Parse-SDK-TS",
+    "xmlhttprequest": "^1.8.0",
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

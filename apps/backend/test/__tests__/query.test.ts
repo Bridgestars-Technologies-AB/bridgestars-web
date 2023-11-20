@@ -90,6 +90,5 @@ describe("Query", () => {
     expect(users[1].usernameLower.get()).toBeUndefined();
 
     expect.assertions(10);
-
   });
 });

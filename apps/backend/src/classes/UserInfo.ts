@@ -9,8 +9,8 @@ class UserInfo extends DbObject {
     super({
       className: "UserInfo",
       fields: {
-        emails_sent: { type: "Array" },
         user: { type: "Pointer", targetClass: User.className },
+        emails_sent: { type: "Array" },
         migrated: { type: "Boolean" },
         last_login: { type: "Date" },
         stripe_cus_id: { type: "String" },

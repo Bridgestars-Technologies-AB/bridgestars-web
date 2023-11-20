@@ -1,10 +1,15 @@
 import { removeAllAssociatedSessions } from "../utils/roles";
-import { field, immutable, masterOnly, refExists, required, z } from "../utils/validate";
+import { field, immutable, masterOnly, z } from "../utils/validate";
 import { Mailer } from "../utils/mailer";
 
 import "parse/node";
 import DbObject, * as Requests from "./__DbObject__";
 import UserInfo from "../utils/userinfo";
+
+
+
+
+
 
 class User extends DbObject {
   static instance = new User();
@@ -13,14 +18,16 @@ class User extends DbObject {
     super({
       className: "_User",
       fields: {
-        // username, password etc. are default fields
+        // username, password, email etc. are default fields
         dispName: { type: "String" },
         img: { type: "File" },
-        lang: { type: "String" },
         plan: { type: "String" },
+
+        // private
+        lang: { type: "String" },
         plan_status: { type: "String" },
       },
-      indexes: {},
+      indexes: { },
       classLevelPermissions: {
         find: { requiresAuthentication: true },
         count: { "role:Admin": true },
@@ -99,15 +106,15 @@ class User extends DbObject {
   }
 
   async afterSave(req: Requests.AfterSaveRequest, obj: Parse.Object): Promise<void> {
-    if (!req.original) {
+    if (! req.original) {
       if (req.installationId) {
         // installationhandler.createinstallation
       }
-      await UserInfo.create(req.object as Parse.User);
-      await Mailer.sendWelcomeEmail(req.object as Parse.User);
+      await UserInfo.create(obj as Parse.User);
+      await Mailer.sendWelcomeEmail(obj as Parse.User);
     } else {
       // remove old profile img
-      if (req.original.get("img")?.url() !== req.object.get("img")?.url()) {
+      if (req.original.get("img")?.url() !== obj.get("img")?.url()) {
         await req.original.get("img").destroy({ useMasterKey: true });
       }
     }
@@ -118,7 +125,7 @@ class User extends DbObject {
 
   async afterDelete(req: Requests.AfterDeleteRequest, obj: Parse.Object): Promise<void> {
     console.log("\n\n\n USER DELETED\n\n")
-    await req.object.get("img")?.destroy({ useMasterKey: true });
+    await obj.get("img")?.destroy({ useMasterKey: true });
     await removeAllAssociatedSessions(req.object as Parse.User);
     await UserInfo.delete(obj as Parse.User);
   }

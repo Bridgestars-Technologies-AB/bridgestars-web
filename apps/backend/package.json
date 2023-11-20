@@ -12,13 +12,16 @@
     "start": "npm run clean && tsc && ENV=shell node build/app.js",
     "deploy:prod": "npm run clean && tsc && fly deploy",
     "test": "cd test && npm run test",
-    "clean": "rimraf -rf build",
-    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org theodor-lundqvist-7f058c81 --project bidding-practice-server ./build && sentry-cli sourcemaps upload --org theodor-lundqvist-7f058c81 --project bidding-practice-server ./build"
+    "clean": "rimraf -rf build"
   },
   "dependencies": {
     "@parse/s3-files-adapter": "^2.2.0",
+    "@sentry-internal/tracing": "^7.81.0",
     "@sentry/cli": "^2.21.2",
+    "@sentry/core": "^7.81.0",
     "@sentry/node": "^7.77.0",
+    "@sentry/types": "^7.81.0",
+    "@sentry/utils": "^7.81.0",
     "axios": "0.27.2",
     "body-parser": "^1.20.2",
     "cookie-parser": "1.4.4",
