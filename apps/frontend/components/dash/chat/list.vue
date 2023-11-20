@@ -8,7 +8,7 @@ emits:
   close: when the user closes the chat
 -->
 <script setup lang="ts">
-import Chat from "js/db/chat/Chat";
+import Chat from "~/js/db/chat/Chat";
 
 defineEmits(["openChat", "close"]);
 const manager = await useChatManager();

@@ -11,8 +11,7 @@
     "lint": "eslint --ext .js,.jsx,.vue,.ts,.tsx .",
     "lintfix": "eslint --fix --ext .js,.jsx,.vue,.ts,.tsx .",
     "format": "prettier .  --write",
-    "check-types": "npx tsc --noEmit",
-    "prepare": "cd ../.. && husky install apps/frontend/.husky"
+    "check-types": "npx tsc --noEmit"
   },
   "devDependencies": {
     "@averjs/nuxt-compression": "^1.2.2",
