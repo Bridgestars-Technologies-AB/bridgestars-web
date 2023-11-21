@@ -41,7 +41,7 @@ const dashboard = new ParseDashboard(
   options,
 );
 
-if(env.DB == "test"){
+if(env.DB == "testing"){
   console.log({
     info: "(TESTING) Dashboard login credentials",
     users:config.users,
