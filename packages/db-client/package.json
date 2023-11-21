@@ -1,5 +1,5 @@
 {
-  "name": "bidding-db-client",
+  "name": "db-client",
   "private": true,
   "version": "1.0.1",
   "type": "module",
@@ -10,7 +10,7 @@
     "preinstall": "cd `git rev-parse --show-toplevel` && cd packages/Parse-SDK-TS && npm install && npm run build"
   },
   "keywords": [],
-  "author": "Theodor Lundqvist, Emanuel Unge",
+  "author": "Theodor Lundqvist",
   "dependencies": {
     "@types/parse": "^3.0.4",
     "parse": "^4.2.0",
