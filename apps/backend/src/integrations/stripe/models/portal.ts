@@ -6,12 +6,12 @@ import fail, { CODE } from "../../../utils/fail";
 function validateURL(url: string) {
   if (
     url.startsWith("http://localhost") || url.startsWith("https://localhost") ||
-    url.startsWith("https://budträning.se")
+    url.startsWith("https://bridgestars.net")
   ) {
     return;
   } else {
     fail("Ogiltig URL-address för vidarebefordring.", CODE.InternalError, {
-      meta: "Endast budträning.se eller localhost är tillåtet.",
+      meta: "Endast bridgestars.se eller localhost är tillåtet.",
     });
   }
 }
