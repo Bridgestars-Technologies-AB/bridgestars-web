@@ -1,7 +1,7 @@
 import * as Sentry from "@sentry/node";
 
 Sentry.init({
-  dsn: 'https://99a04c151a4821420a8a3fb7e0e8d897@o4505885777199104.ingest.sentry.io/4505885777330176',
+  dsn: 'https://89b522314173f933f0aa5e93d2a8b7ba@o4506263752802304.ingest.sentry.io/4506263752998912',
   // Performance Monitoring
   tracesSampleRate: 1.0,
 });
