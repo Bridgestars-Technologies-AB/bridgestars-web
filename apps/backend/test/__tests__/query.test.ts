@@ -3,7 +3,7 @@
  */
 import Util from "../Util";
 import { CODE } from "../../src/utils/errorcode";
-import { Course, DatabasePrimitive, Query, User } from "db-client";
+import { Course, DatabasePrimitive, Query, User } from "bridgestars-db-client";
 
 describe("Query", () => {
   //

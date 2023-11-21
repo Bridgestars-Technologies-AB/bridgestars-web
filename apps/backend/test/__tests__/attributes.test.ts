@@ -9,7 +9,7 @@ import {
   Query,
   User,
   UserInfo,
-} from "db-client";
+} from "bridgestars-db-client";
 
 describe("Attributes", () => {
   //

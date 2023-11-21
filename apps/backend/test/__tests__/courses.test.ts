@@ -10,7 +10,7 @@ import {
   Problem,
   useAuthMock as useAuth,
   User,
-} from "db-client";
+} from "bridgestars-db-client";
 import sleep from "../sleep";
 
 describe("Course", () => {

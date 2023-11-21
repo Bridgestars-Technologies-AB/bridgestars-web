@@ -1,5 +1,5 @@
 {
-  "name": "db-client",
+  "name": "bridgestars-db-client",
   "private": true,
   "version": "1.0.1",
   "type": "module",
@@ -7,7 +7,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rimraf -rf dist && tsc",
-    "preinstall": "cd `git rev-parse --show-toplevel` && cd packages/Parse-SDK-TS && npm install && npm run build"
+    "pnpm:devPreinstall": "cd `git rev-parse --show-toplevel` && cd packages/Parse-SDK-TS && npm install && npm run build"
   },
   "keywords": [],
   "author": "Theodor Lundqvist",
@@ -15,8 +15,7 @@
     "@types/parse": "^3.0.4",
     "parse": "^4.2.0",
     "parse-sdk-ts": "link:../Parse-SDK-TS",
-    "xmlhttprequest": "^1.8.0",
-    "zustand": "^4.4.1"
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "typescript": "^5.2.2"

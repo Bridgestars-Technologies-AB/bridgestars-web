@@ -42,14 +42,8 @@ class AuthManager {
   signIn = async (usernameEmail: string, password: string) => {
     // first run signin function in cloud to possibly migrate from old database if needed
     return (
-      Parse.Cloud.run("signIn", {
-        // lowercase since neither username or email is case sensitive, and iphone users often write `Username` due to auto-capitalizition
-        email: usernameEmail.toLowerCase().trim(),
-        password: password,
-      })
-        .catch(() => {}) // catch errors and find them again when we try to sign in from client
         // sign in client side
-        .then(() => Parse.User.logIn(usernameEmail.toLowerCase(), password))
+        Parse.User.logIn(usernameEmail.toLowerCase(), password)
         // success
         .then((user: any) => {
           authStore().set(user.get("dispName")); // set auth store so that server knows that we are signed in

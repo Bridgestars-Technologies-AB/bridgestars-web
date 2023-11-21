@@ -1,6 +1,7 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
-import { DatabasePrimitive as Db } from "db-client"
+import { DatabasePrimitive as Db } from "bridgestars-db-client"
+var env = require("../src/env");
 
 import sleep from "./sleep"
 import dns from "dns"
@@ -25,9 +26,10 @@ const destroyAliveConnections = function () {
 };
 
 beforeAll(async () => {
-  Db.initialize('UE3zFgZ3HDvjQtV7aRUQyf0ktow9843o0G16rxMd4jWbOPg');
+  console.log(env)
+  Db.initialize(env.appId);
   Db.CoreManager.set('SERVER_URL', serverURL);
-  Db.CoreManager.set('MASTER_KEY', 'qwkALaufN8wQV8LBMPb6VD4KvxjNDsJU');
+  Db.CoreManager.set('MASTER_KEY', env.masterKey);
   Db.User.enableUnsafeCurrentUser(); //parse.current on node
   Db.Object.enableSingleInstance(); // should be disabled in server env
 });

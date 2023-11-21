@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -12,6 +11,7 @@
     "rimraf": "^5.0.1"
   },
   "dependencies": {
+    "bridgestars-db-client": "workspace:^"
   },
   "packageManager": "pnpm@8.1.0"
 }

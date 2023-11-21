@@ -1,7 +1,7 @@
 var env = require("../env");
 
 Parse.Cloud.define("clearTestDB", async (req) => {
-  if(env.DB != "test") throw new Error("Not in testing environment")
+  if(env.DB != "testing") throw new Error("Not in testing environment")
   if(!env.databaseURI.includes("/test")) throw new Error("Not using testing database") //same as above
 
 

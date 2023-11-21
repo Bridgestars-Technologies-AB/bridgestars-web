@@ -3,7 +3,7 @@ import {
   Course,
   Problem,
   useAuthMock as useAuth,
-} from "db-client";
+} from "bridgestars-db-client";
 
 export default class Util {
   static pass = (id: number = 1) => "asdASD123" + id;

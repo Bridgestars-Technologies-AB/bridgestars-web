@@ -4,7 +4,10 @@ const props = defineProps({
   hideNavbar: Boolean,
   class: String,
   backdropClass: String,
-  lazy: Boolean,
+  lazy: {
+    type: Boolean,
+    default: true,
+  },
 });
 </script>
 
@@ -17,7 +20,7 @@ const props = defineProps({
       <!-- title -->
       <NuxtImg
         :src="imgSrc"
-        :loading="lazy ? 'lazy' : ''"
+        :loading="lazy ? 'lazy' : 'eager'"
         alt="Bridgestars Art Image"
         class="mb-5 xs:w-[96%] sm:w-[80%] xl:w-[50%]"
       />

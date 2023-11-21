@@ -7,7 +7,7 @@ import {
   useAuthMock as useAuth,
   UserInfo,
   wrap,
-} from "db-client";
+} from "bridgestars-db-client";
 import { CODE } from "../../src/utils/errorcode";
 import Util from "../Util";
 

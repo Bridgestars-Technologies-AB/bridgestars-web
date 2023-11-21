@@ -71,7 +71,7 @@ function fadeInUI(delay) {
       <div class="overflow-hidden flex justify-center relative">
         <!-- navbar can be here instead of outside video divs if we want it to be not so wide on very wide screens -->
         <div v-if="showUI" class="absolute z-[10] top-0 w-full navbarAnimation">
-          <base-navbar transparent="true" />
+          <base-navbar transparent />
         </div>
 
         <div class="bg-video-gradient" />
