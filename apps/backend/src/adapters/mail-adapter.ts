@@ -129,7 +129,7 @@ export default {
         // For example, the placeholder `{{appName}}` in the email
         // will be replaced the value defined here.
         placeholders: {
-          title: "Välkommen till Budträning.se",
+          title: "Välkommen till Bridgestars",
           text1: "Tack för att du har registrerat dig!",
           text2:
             "Vi hoppas att du kommer trivas och att du får ut så mycket som möjligt av din träning.",
@@ -171,7 +171,7 @@ export default {
     // may need to be converted specifically for the API; conversion for
     // common APIs is conveniently available in the `ApiPayloadConverter`.
     apiCallback: async (data: { payload: any; locale: any }) => {
-      data.payload.from = "Budträning <" + data.payload.from + ">";
+      data.payload.from = "Bridgestars <" + data.payload.from + ">";
       await sendEmail(data.payload);
     },
   },

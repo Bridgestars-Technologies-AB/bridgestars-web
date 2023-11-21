@@ -1,6 +1,6 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
-import { DatabasePrimitive as Db } from "bidding-db-client"
+import { DatabasePrimitive as Db } from "db-client"
 
 import sleep from "./sleep"
 import dns from "dns"

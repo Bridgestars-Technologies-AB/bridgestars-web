@@ -1,7 +1,7 @@
 export default {
   module: "@parse/s3-files-adapter",
   options: {
-    bucket: "bidding-practice-storage",
+    bucket: "bridgestars-storage",
     // optional:
     region: "eu-north-1", // default value
     bucketPrefix: "", // default value

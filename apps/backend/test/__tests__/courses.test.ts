@@ -10,7 +10,7 @@ import {
   Problem,
   useAuthMock as useAuth,
   User,
-} from "bidding-db-client";
+} from "db-client";
 import sleep from "../sleep";
 
 describe("Course", () => {

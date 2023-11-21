@@ -14,7 +14,7 @@
     "@types/jest": "^29.5.5",
     "@types/node": "^20.6.3",
     "@types/react": "18.2.21",
-    "bidding-db-client": "workspace:^",
+    "db-client": "workspace:^",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "next": "13.5.4",

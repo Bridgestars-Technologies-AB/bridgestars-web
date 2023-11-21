@@ -9,7 +9,7 @@ import {
   Query,
   User,
   UserInfo,
-} from "bidding-db-client";
+} from "db-client";
 
 describe("Attributes", () => {
   //

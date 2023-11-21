@@ -7,7 +7,7 @@ import {
   useAuthMock as useAuth,
   UserInfo,
   wrap,
-} from "bidding-db-client";
+} from "db-client";
 import { CODE } from "../../src/utils/errorcode";
 import Util from "../Util";
 
