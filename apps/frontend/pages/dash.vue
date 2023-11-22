@@ -46,17 +46,6 @@ provide("side-menu-open", sideMenuOpen);
 
       <!-- side menu mock for displacing content -->
       <div
-<<<<<<< HEAD:apps/frontend/pages/dash.vue
-        id="content"
-        :class="`bg-dash-light-400 dark:bg-dash-dark-200 p-5 flex ${
-          sideMenuOpen ? 'sm:ml-[270px] xs:ml-0' : 'xs:ml-0 sm:ml-[67px]'
-        }`"
-      >
-        <NuxtPage />
-        <ClientOnly>
-          <!-- <dash-chat-toggle /> -->
-        </ClientOnly>
-=======
         :class="` ${
           sideMenuOpen ? 'sm:w-[268px]' : 'sm:w-[70px]'
         } shrink-0 grow-0`"
@@ -73,10 +62,9 @@ provide("side-menu-open", sideMenuOpen);
           <NuxtPage class="overflow-y-scroll h-full" />
           <!-- chat -->
           <ClientOnly>
-            <dash-chat-toggle />
+            <!-- <dash-chat-toggle /> -->
           </ClientOnly>
         </div>
->>>>>>> origin/game:nuxt/pages/dash.vue
       </div>
     </div>
   </div>
@@ -88,18 +76,7 @@ provide("side-menu-open", sideMenuOpen);
     /* all 0.3s ease-in-out, */ background-color 0.3s
     cubic-bezier(0.4, 0, 0.2, 1);
 }
-<<<<<<< HEAD:apps/frontend/pages/dash.vue
-
-/* html, body { */
-/*   /* DISABLE ALL SCROLLING ON BODY */
-/*   overflow-y: hidden; */
-/*   overflow-x: hidden; */
-/* } */
-/* dark mode transition */
-/* transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;  */
-=======
 #sideMock {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
->>>>>>> origin/game:nuxt/pages/dash.vue
 </style>
