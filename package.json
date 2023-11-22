@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "frontend:start": "cd apps/frontend && pnpm start",
-    "backend:start": "cd apps/backend && pnpm start"
+    "backend:start": "cd apps/backend && pnpm start",
+    "backend:docker": "cd apps/backend && pnpm docker"
   },
   "keywords": [],
   "author": "",
