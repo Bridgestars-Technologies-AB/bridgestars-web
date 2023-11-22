@@ -1,5 +1,14 @@
-export * from "./db";
 export * from "./models";
-export * from "./hooks";
-export * from "./cloud";
-export { isServer, Query, useLocalTestServer, DatabasePrimitive, Primitive } from "parse-sdk-ts";
+
+export * as Cloud from "./cloud/functions";
+
+export * as Auth from "./auth";
+
+export {
+  DatabasePrimitive,
+  isServer,
+  Primitive,
+  Query,
+  useLocalTestServer,
+  setServerURL,
+} from "parse-sdk-ts";

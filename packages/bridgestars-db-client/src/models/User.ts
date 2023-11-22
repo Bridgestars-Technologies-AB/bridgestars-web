@@ -2,7 +2,7 @@ import { DbModel, Keys, Query, field } from "parse-sdk-ts";
 import { DatabasePrimitive as Primitive } from "parse-sdk-ts";
 
 import { Course } from "./Course";
-import { Cloud } from "../cloud";
+import { joinCourse, leaveCourse } from "../cloud/functions";
 
 
 /**
@@ -45,10 +45,10 @@ export class User extends DbModel {
   }
 
   async joinCourse(course: Course) {
-    return Cloud.joinCourse(course.id).then(() => course.fetch());
+    return joinCourse(course.id).then(() => course.fetch());
   }
 
   async leaveCourse(course: Course) {
-    return Cloud.leaveCourse(course.id).then(() => course.fetch());
+    return leaveCourse(course.id).then(() => course.fetch());
   }
 }

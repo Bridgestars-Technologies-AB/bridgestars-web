@@ -1,11 +1,4 @@
-import {
-  OptionalString,
-  Pointer,
-  RequiredArray,
-  RequiredNumber,
-  RequiredString,
-} from "parse-sdk-ts/attributes";
-import { DbModel, Key, Keys, Query, field } from "parse-sdk-ts";
+import { DbModel, Keys, Query, field } from "parse-sdk-ts";
 
 import { DatabasePrimitive as Primitive } from "parse-sdk-ts";
 import { Chapter } from "./Chapter";

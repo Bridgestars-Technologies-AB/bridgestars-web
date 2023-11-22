@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "frontend:start": "cd apps/frontend && pnpm start",
-    "backend:start": "cd apps/backend && pnpm start",
-    "backend:docker": "cd apps/backend && pnpm docker"
+    "start:frontend": "cd apps/frontend && pnpm start",
+    "start:backend": "cd apps/backend && pnpm start",
+    "docker:backend": "cd apps/backend && pnpm docker"
   },
   "keywords": [],
   "author": "",

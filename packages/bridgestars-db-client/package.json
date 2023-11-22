@@ -12,9 +12,13 @@
   "keywords": [],
   "author": "Theodor Lundqvist",
   "dependencies": {
+    "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
+    "@pinia/nuxt": "^0.5.0",
     "@types/parse": "^3.0.4",
     "parse": "^4.2.0",
     "parse-sdk-ts": "link:../Parse-SDK-TS",
+    "pinia": "^2.1.4",
+    "pinia-plugin-persistedstate": "^3.1.0",
     "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {

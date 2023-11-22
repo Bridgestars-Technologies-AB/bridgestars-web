@@ -1,5 +1,4 @@
 import { DbModel, Keys, Query, field } from "parse-sdk-ts";
-import { DatabasePrimitive as Primitive } from "parse-sdk-ts";
 
 import { Course } from "./Course";
 import { Problem } from "./Problem";
