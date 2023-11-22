@@ -18,7 +18,7 @@ const emit = defineEmits(["submit"]);
 //const formRef = ref(); // we need a DOM node
 
 onMounted(() => {
-  if (useAuth().authenticated()) {
+  if (useAuth().authenticated) {
     navigateTo("/auth/already");
   }
   document.querySelector("input")?.focus();

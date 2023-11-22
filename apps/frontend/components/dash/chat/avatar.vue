@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Status } from "~/js/db/user/User";
+//import { Status } from "~/js/db/user/User";
 const props = defineProps({
   userId: {
     type: String,
@@ -12,12 +12,13 @@ const props = defineProps({
 });
 // if(!props.chat && !props.userId) throw new Error("chat or userId is required");
 const userId = computed(() => {
-  if (props.userId) return props.userId;
-  if (props.chat)
-    return props.chat?.users?.find((id) => id != useAuth().user.id);
+  ""
+  // if (props.userId) return props.userId;
+  // if (props.chat)
+  //   return props.chat?.users?.find((id) => id != useAuth().user?.id);
 });
 
-const manager = await useUserManager();
+//const manager = await useUserManager();
 const statusElement = ref();
 
 onMounted(() => {
@@ -42,17 +43,18 @@ function getBackgroundColor(el: HTMLElement) {
   const parent = el?.parentElement;
   if (!parent) return "white";
   let color = window.getComputedStyle(parent).backgroundColor;
-  if (color == "rgba(0, 0, 0, 0)") color = null;
+  if (color == "rgba(0, 0, 0, 0)") color = "";
   if (color) return color;
   return getBackgroundColor(parent);
 }
 const statusColor = () => {
-  switch (manager.getStatus(userId.value)) {
-    case Status.Online:
-      return "bg-[#22FF06]";
-    default:
-      return "bg-gray-500";
-  }
+  return "bg-[#22FF06]";
+  // switch (manager.getStatus(userId.value)) {
+  //   case Status.Online:
+  //     return "bg-[#22FF06]";
+  //   default:
+  //     return "bg-gray-500";
+  // }
 };
 </script>
 

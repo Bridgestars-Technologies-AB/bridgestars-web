@@ -51,7 +51,7 @@ provide("side-menu-open", sideMenuOpen);
       >
         <NuxtPage />
         <ClientOnly>
-          <dash-chat-toggle />
+          <!-- <dash-chat-toggle /> -->
         </ClientOnly>
       </div>
     </div>
@@ -70,8 +70,6 @@ provide("side-menu-open", sideMenuOpen);
 /*   overflow-y: hidden; */
 /*   overflow-x: hidden; */
 /* } */
-* {
-  /* dark mode transition */
-  /* transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;  */
-}
+/* dark mode transition */
+/* transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;  */
 </style>

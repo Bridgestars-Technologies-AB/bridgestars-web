@@ -1,14 +1,18 @@
+import "./db"
+
 export * from "./models";
 
-export * as Cloud from "./cloud/functions";
+import * as Cloud from "./cloud/functions";
+export { Cloud };
 
-export * as Auth from "./auth";
+import * as Auth from "./auth";
+export { Auth };
 
 export {
   DatabasePrimitive,
   isServer,
   Primitive,
   Query,
-  useLocalTestServer,
   setServerURL,
+  useLocalTestServer,
 } from "parse-sdk-ts";

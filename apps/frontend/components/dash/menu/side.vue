@@ -124,7 +124,7 @@ function click(item) {
             class="text-[24px] leading-[24px] font-family tracking-tighter"
             @click="navigateTo({ name: 'dash-profile' })"
           >
-            {{ auth.username() }}
+            {{ auth.username }}
           </h6>
           <h6
             class="text-[#14C6A4] text-[18px] leading-[18px] dark:text-[#14C6a4] font-light tracking-normal"
@@ -136,7 +136,7 @@ function click(item) {
         <div class="[flex-basis:100%] h-0" />
         <!-- break to new row -->
         <dash-menu-side-level
-          :user="auth.user()"
+          :user="auth.user"
           :class="`mt-5 pl-2 pr-5 ${isOpen ? 'block' : 'hidden'}`"
         />
         <div :class="`h-[40px] ${isOpen ? 'hidden' : 'block'}`" />

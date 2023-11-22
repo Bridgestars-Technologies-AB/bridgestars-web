@@ -1,5 +1,5 @@
-import { useLocalTestServer } from "bridgestars-db-client"
+import { setServerURL } from "bridgestars-db-client"
 
 export default defineNuxtPlugin((nuxtApp) => {
-  useLocalTestServer()
+  if(process.dev) setServerURL("http://localhost:1337/rest")
 })

@@ -84,7 +84,7 @@ const isNewDate = (d) => {
   lastDate = d;
   return true;
 };
-const isMe = (m) => m.sender == auth.user()?.id;
+const isMe = (m) => m.sender == auth.user?.id;
 </script>
 
 <template>
