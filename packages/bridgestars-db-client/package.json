@@ -8,6 +8,7 @@
   "scripts": {
     "build": "rimraf -rf dist && tsc",
     "preinstall": "cd `git rev-parse --show-toplevel` &&  git submodule update --init --recursive && cd packages/Parse-SDK-TS && npm install && npm run build",
+    "postinstall":"pnpm build",
     "dependency-check": "npx madge --circular --extensions ts ./src"
   },
   "keywords": [],
