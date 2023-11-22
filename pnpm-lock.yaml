@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      bridgestars-db-client:
-        specifier: workspace:^
-        version: link:packages/bridgestars-db-client
     devDependencies:
       rimraf:
         specifier: ^5.0.1
@@ -160,6 +156,9 @@ importers:
       '@unly/universal-language-detector':
         specifier: ^2.0.3
         version: 2.0.3
+      bridgestars-db-client:
+        specifier: workspace:^
+        version: link:../../packages/bridgestars-db-client
       eslint-plugin-prettier:
         specifier: ^5.0.0
         version: 5.0.1(eslint-config-prettier@9.0.0)(eslint@8.54.0)(prettier@3.0.3)

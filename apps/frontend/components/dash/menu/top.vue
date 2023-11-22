@@ -16,11 +16,11 @@ const colored = (b) =>
   <div
     class="flex justify-end bg-dash-light-400 dark:bg-dash-dark-200 pr-3 transition-colors duration-300"
   >
-    <!-- side menu open/close button with tooltip, some styles going on here for all the different situations -->
-    <div class="absolute left-0 z-10">
+    <!-- side menu open/close -->
+    <div class="fixed left-0 z-10">
       <div
         :class="`flex justify-center h-full w-[67px] z-10 ${
-          open ? 'ml-[200px]' : 'sm:dark:bg-dash-dark-100 sm:bg-dash-light-300'
+          open ? 'ml-[195px]' : ''
         } transition-[margin-left,background-color,color] duration-300`"
         @click="open = !open"
       >
@@ -41,7 +41,9 @@ const colored = (b) =>
       </div>
     </div>
 
-    <div class="flex items-center space-x-4 py-1">
+    <!-- top menu right -->
+    <div class="flex space-x-4 py-1">
+      <!-- light/dark -->
       <base-tooltip
         class="flex items-center"
         :text="$t('dashboard:top_menu.tooltip.toggle_dark_mode')"
@@ -56,8 +58,10 @@ const colored = (b) =>
         />
       </base-tooltip>
 
+      <!-- notifications -->
       <dash-menu-top-bell />
 
+      <!-- settings -->
       <base-tooltip
         class="flex items-center"
         :text="$t('dashboard:top_menu.tooltip.settings')"
@@ -69,6 +73,7 @@ const colored = (b) =>
         />
       </base-tooltip>
 
+      <!-- account -->
       <dash-menu-top-account />
     </div>
   </div>

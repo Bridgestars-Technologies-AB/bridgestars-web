@@ -46,6 +46,7 @@
     "@nuxt/image": "^1.0.0-rc.1",
     "@pinia/nuxt": "^0.5.0",
     "@unly/universal-language-detector": "^2.0.3",
+    "bridgestars-db-client": "workspace:^",
     "eslint-plugin-prettier": "^5.0.0",
     "flowbite": "^1.7.0",
     "i18next": "^23.7.6",

@@ -28,22 +28,25 @@ provide("side-menu-open", sideMenuOpen);
   <div
     :class="`${
       darkMode.value ? 'dark [color-scheme:dark]' : ''
-    } flex h-full w-full overflow-x-clip`"
+    }  h-full w-full overflow-x-clip `"
   >
-    <!-- enables tailwind darkmode, toggle this  -->
-    <dash-menu-side />
-
     <div
-      class="bg-dash-light-400 dark:bg-dash-dark-200 flex-col flex-grow transition-colors duration-300"
+      class="flex bg-dash-light-400 dark:bg-dash-dark-200 transition-colors duration-300 w-full h-full"
     >
+      <!-- dash overlay -->
       <div
-        :class="`absolute z-100 bg-black w-full h-full sm:hidden ${
-          sideMenuOpen ? 'opacity-70' : 'opacity-0'
-        } transition-opacity duration-1000`"
+        :class="`fixed bg-black w-full z-[1] h-full sm:hidden ${
+          sideMenuOpen ? 'opacity-60' : 'opacity-0 [pointer-events:none]'
+        } transition-opacity duration-1000 `"
         @click="sideMenuOpen = false"
       />
-      <dash-menu-top />
+
+      <!-- side -->
+      <dash-menu-side class="absolute opacity-100 z-[1]" />
+
+      <!-- side menu mock for displacing content -->
       <div
+<<<<<<< HEAD:apps/frontend/pages/dash.vue
         id="content"
         :class="`bg-dash-light-400 dark:bg-dash-dark-200 p-5 flex ${
           sideMenuOpen ? 'sm:ml-[270px] xs:ml-0' : 'xs:ml-0 sm:ml-[67px]'
@@ -53,6 +56,27 @@ provide("side-menu-open", sideMenuOpen);
         <ClientOnly>
           <!-- <dash-chat-toggle /> -->
         </ClientOnly>
+=======
+        :class="` ${
+          sideMenuOpen ? 'sm:w-[268px]' : 'sm:w-[70px]'
+        } shrink-0 grow-0`"
+        id="sideMock"
+      />
+
+      <!-- top and content -->
+      <div class="grow flex flex-col" id="content">
+        <!-- top -->
+        <dash-menu-top />
+
+        <div class="relative w-full px-3 pb-3 h-full">
+          <!-- content -->
+          <NuxtPage class="overflow-y-scroll h-full" />
+          <!-- chat -->
+          <ClientOnly>
+            <dash-chat-toggle />
+          </ClientOnly>
+        </div>
+>>>>>>> origin/game:nuxt/pages/dash.vue
       </div>
     </div>
   </div>
@@ -61,9 +85,10 @@ provide("side-menu-open", sideMenuOpen);
 <style scoped>
 #content {
   transition:
-    margin-left 0.3s ease-in-out,
-    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* all 0.3s ease-in-out, */ background-color 0.3s
+    cubic-bezier(0.4, 0, 0.2, 1);
 }
+<<<<<<< HEAD:apps/frontend/pages/dash.vue
 
 /* html, body { */
 /*   /* DISABLE ALL SCROLLING ON BODY */
@@ -72,4 +97,9 @@ provide("side-menu-open", sideMenuOpen);
 /* } */
 /* dark mode transition */
 /* transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;  */
+=======
+#sideMock {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+>>>>>>> origin/game:nuxt/pages/dash.vue
 </style>

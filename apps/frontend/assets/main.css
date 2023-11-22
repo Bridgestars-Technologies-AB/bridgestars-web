@@ -54,7 +54,8 @@
   }
 
   .text1,
-  .text2 {
+  .text2,
+  .text3 {
     @apply transition-colors duration-300; /*Dark mode transition*/
     @apply font-family text-grey dark:text-light; /* common style and colors */
   }
@@ -65,6 +66,10 @@
 
   .text2 {
     @apply text-[16px] leading-[1.6rem] font-light;
+  }
+
+  .text3 {
+    @apply text-[16px] leading-[1.6rem] font-semibold;
   }
 
   html,
@@ -130,14 +135,14 @@ input:-webkit-autofill:active {
 
 /* Third layer, here we can add our own utility classes that tailwind does not have  */
 @layer utilities {
-  /* Hide scrollbar but still enable scrolling for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
+    /* Hide scrollbar but still enable scrolling for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
 
-  /* Hide scrollbar but still enable scrolling for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
+    /* Hide scrollbar but still enable scrolling for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
 }

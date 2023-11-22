@@ -5,10 +5,6 @@ const {
 } = require("@egoist/tailwindcss-icons");
 
 const backgroundColors = {
-  clubs: "#2B72C0",
-  diamonds: "#f1716f",
-  hearts: "#f78217",
-  spades: "#349e3f",
   dark: "#344767",
   primary: "#f74040", //röd
   secondary: "#2e294e", //lila
@@ -42,6 +38,10 @@ const backgroundColors = {
   },
 };
 const textColors = {
+  clubs: "#2B72C0",
+  diamonds: "#f1716f",
+  hearts: "#f78217",
+  spades: "#349e3f",
   dark: "#344767", //dark text
   DEFAULT: "#344767", //dark text
   grey: "#7b809a",
@@ -79,6 +79,7 @@ module.exports = {
         "tabler", //used for sign out icon
         "basil",
         "majesticons",
+        "fluent-emoji-high-contrast",
       ]),
       //tailwindcss chooses which icons to include based on usage
     }),
@@ -125,7 +126,8 @@ module.exports = {
       transitionProperty: {
         "decoration-color": "text-decoration-color",
       },
-      typography: () => ({ //{theme} => ({})
+      typography: () => ({
+        //{theme} => ({})
         policy: {
           css: {
             "--tw-prose-headings": "#FFFFFF",
@@ -151,6 +153,8 @@ module.exports = {
 
       md: "768px",
       // => @media (min-width: 768px) { ... }
+
+      lm: "862px",
 
       lg: "992px",
       // => @media (min-width: 1024px) { ... }

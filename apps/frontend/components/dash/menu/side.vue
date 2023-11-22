@@ -102,12 +102,15 @@ function click(item) {
 
 <template>
   <div
-    id="side-menu"
-    :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col z-[10] ${
-      isOpen ? 'open' : 'closed'
-    } h-full overflow-x-visible absolute`"
+    class="absolute w-full h-full overflow-y-scroll overflow-x-hidden no-scrollbar"
   >
-    <div class="overflow-y-scroll w-[270px] no-scrollbar">
+    <div
+      id="side-menu"
+      :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col ${
+        isOpen ? 'open' : 'closed'
+      } ${$attrs.class} min-h-full pb-[200px]`"
+    >
+      <!-- profile section -->
       <div
         :class="`text-center flex relative items-center pt-7 flex-wrap profile-section ${
           isOpen ? 'open' : 'closed'
@@ -134,7 +137,6 @@ function click(item) {
           </h6>
         </div>
         <div class="[flex-basis:100%] h-0" />
-        <!-- break to new row -->
         <dash-menu-side-level
           :user="auth.user"
           :class="`mt-5 pl-2 pr-5 ${isOpen ? 'block' : 'hidden'}`"
@@ -142,20 +144,16 @@ function click(item) {
         <div :class="`h-[40px] ${isOpen ? 'hidden' : 'block'}`" />
       </div>
 
-      <div class="flex flex-col mt-6 mb-[200px] h-full">
-        <div
-          v-for="item in items"
-          :key="item.key"
-          class="overflow-x-clip"
-          @click="() => click(item)"
-        >
+      <!-- menu items -->
+      <div class="flex flex-col mt-6">
+        <div v-for="item in items" :key="item.key" @click="() => click(item)">
           <div
             v-if="item.divider"
             class="font-family font-light text-dark opacity-70 dark:text-light mb-1 ml-5 mt-5 tracking-wide text-[16px] cursor-default"
           >
             {{ $t("dashboard:side_menu." + item.name) }}
           </div>
-          <dash-menu-side-item2
+          <dash-menu-side-item
             v-else
             :icon="item.icon"
             :keypath="`dashboard:side_menu.${item.name}`"
@@ -167,13 +165,12 @@ function click(item) {
       </div>
     </div>
   </div>
-
-  <base-modal-signout v-model:open="logoutModalOpen" />
+  <base-modal-signout v-model:open="logoutModalOpen" class="border" />
 </template>
 
 <style scoped>
 .profile-section {
-  margin-left: 20px;
+  @apply ml-[20px];
 }
 .profile-section div {
   @apply cursor-pointer w-fit opacity-100;
@@ -186,7 +183,7 @@ function click(item) {
 }
 .profile-section.closed img {
   position: absolute;
-  @apply ml-[192px] mt-[40px];
+  @apply ml-[196px] mt-[40px];
 }
 
 #side-menu {
@@ -196,7 +193,7 @@ function click(item) {
     color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 #side-menu.closed {
-  @apply xs:-left-[270px] sm:-left-[203px];
+  @apply xs:-left-[277px] sm:-left-[204px];
 }
 #side-menu.open {
   @apply left-0;

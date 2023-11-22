@@ -28,6 +28,7 @@ module.exports = {
       rules: {
         // adding typescript config ex: "@typescript-eslint/no-unused-vars": "error",
         "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-namespace": "off",
       },
     },
   ],
