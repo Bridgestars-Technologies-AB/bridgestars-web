@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "frontend:start": "cd apps/frontend && pnpm start",
+    "backend:start": "cd apps/backend && pnpm start"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
