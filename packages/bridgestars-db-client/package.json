@@ -7,7 +7,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rimraf -rf dist && tsc",
-    "pnpm:devPreinstall": "cd `git rev-parse --show-toplevel` && cd packages/Parse-SDK-TS && npm install && npm run build"
+    "preinstall": "cd `git rev-parse --show-toplevel` &&  git submodule update --init --recursive && cd packages/Parse-SDK-TS && npm install && npm run build",
+    "dependency-check": "npx madge --circular --extensions ts ./src"
   },
   "keywords": [],
   "author": "Theodor Lundqvist",
