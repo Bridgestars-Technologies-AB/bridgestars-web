@@ -9,7 +9,7 @@ const initializeParse = (serverURL, applicationId) => {
 
 initializeParse(
   // 'https://aws.lb.bridgestars.net/rest',
-  'https://65mwftnqsj.eu-central-1.awsapprunner.com/rest',
+  'https://vdn2remri5.eu-central-1.awsapprunner.com/rest',
   'k4PTFS2R8tSYoZC8UNXzvplbZ38jOmViOkJxJEyE'
 );
 
