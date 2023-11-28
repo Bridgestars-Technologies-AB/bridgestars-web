@@ -11,7 +11,7 @@ function submit(res: { usernameEmail: string; password: string }) {
   auth
     .signIn(res.usernameEmail, res.password)
     .then(() => {
-      toast.success("You have been signed in!"); //TODO: translate this
+      toast.success("Du har loggats in"); //TODO: translate this
       if (query.to) navigateTo({ path: query.to });
       else navigateTo({ path: "/dash" });
     })
