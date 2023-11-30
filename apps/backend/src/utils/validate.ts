@@ -56,13 +56,7 @@ export function immutable(
   if (!obj.isNew()) {
     if (obj.dirty(key)) {
       if (obj.get(key) == req.original!.get(key)) return;
-      if (req.master) {
-        failValidation(
-          key,
-          CODE.ImmutableField,
-          `Fältet kan inte ändras, testa: 'o.save({useMasterKey:true, context:{noValidation:true}})'`,
-        );
-      } else failValidation(key, CODE.ImmutableField, `Fältet kan inte ändras`);
+      failValidation(key, CODE.ImmutableField, `Fältet kan inte ändras`);
     }
   }
 }

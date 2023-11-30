@@ -1,6 +1,14 @@
 import "parse/node";
 import fail, { CODE } from "./fail";
 
+export function getObjRoleName(obj: Parse.Object){
+  if(!obj.id) fail("Internal: Object has no id", CODE.ObjectNotFound);
+  return obj.className + "-" + obj.id;
+}
+export function createObjRole(obj: Parse.Object){
+  return new Parse.Role(getObjRoleName(obj), new Parse.ACL());
+}
+
 export async function removeAllAssociatedSessions(user: Parse.User) {
   const query = new Parse.Query("_Session");
   query.equalTo("user", user);
