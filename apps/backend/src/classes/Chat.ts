@@ -54,14 +54,14 @@ class Chat extends DbObject {
     if (!req.original) {
       // create role and add users
       const roleName = getObjRoleName(chat);
-      const role = createRole(roleName);
+      const role = await createRole(roleName);
       const users = await chat.relation("users").query().findAll({useMasterKey: true});
       role.relation("users").add(users);
       role.save(null, {useMasterKey: true});
 
       // add role to chat read access
       const acl = new Parse.ACL();
-      acl.setRoleReadAccess(, true);
+      //acl.setRoleReadAccess(, true);
       chat.setACL(acl);
       chat.save(null, { useMasterKey: true, context: { noValidation: true } });
     }

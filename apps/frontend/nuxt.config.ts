@@ -1,14 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
+import { periodicSyncForUpdates } from "virtual:nuxt-pwa-configuration";
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/main.css"],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
   components: [
     { path: "~/components/base", prefix: "base-" },
     { path: "~/components/auth", prefix: "auth-" },
@@ -18,9 +14,14 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["composables", "composables/stores"],
   },
+  experimental: {
+    payloadExtraction: true,
+    watcher: "parcel",
+  },
   modules: [
     // "@nuxtjs/i18n",
-    // '@vite-pwa/nuxt',
+    "@vite-pwa/nuxt",
+    //"@nuxtjs/pwa",
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "@nuxtjs/tailwindcss",
@@ -65,9 +66,61 @@ export default defineNuxtConfig({
   //   }
   //   /*options*/
   // },
-  //   pwa:{
-  // //???
-  //   },
+  pwa: {
+    registerType: "autoUpdate",
+    workbox: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+    },
+    client: {
+      installPrompt: true,
+      // you don't need to include this: only for testing purposes
+      // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600)
+      periodicSyncForUpdates: 20,
+    },
+    devOptions: {
+      enabled: true,
+      suppressWarnings: true,
+      navigateFallbackAllowlist: [/^\/$/],
+      type: "module",
+    },
+    includeAssets: ["favicon.png", "apple-touch-icon.png", "mask-icon.png"],
+    manifest: {
+      "name": "Bridgestars",
+      "short_name": "Bridgestars",
+      "icons": [
+        {
+          "src": "/pwa/pwa-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "any",
+        },
+        {
+          "src": "/pwa/pwa-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "any",
+        },
+        {
+          "src": "/pwa/pwa-maskable-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "maskable",
+        },
+        {
+          "src": "/pwa/pwa-maskable-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "maskable",
+        },
+      ],
+      //"start_url": "/",
+      "display": "standalone",
+      "background_color": "#FFFFFF",
+      "theme_color": "#FFFFFF",
+      "description":
+        "Bridgestars provides custom IT-solutions for Contract Bridge.",
+    },
+  },
   // below is for icon autoimport
   vite: {
     plugins: [],
@@ -89,6 +142,43 @@ export default defineNuxtConfig({
           content:
             "width=device-width, height=device-height, initial-scale=1.0", //not sure this makes a difference but SO says it is good to have it.
         },
+        {
+          name: "theme-color",
+          content: "#ffffff",
+          media: "(prefers-color-scheme: light)",
+        },
+        {
+          name: "theme-color",
+          content: "#000000",
+          media: "(prefers-color-scheme: dark)",
+        },
+      ],
+      link: [
+        {
+          rel: "icon",
+          href: "/pwa/favicon-32x32.png",
+          type: "image/png",
+          sizes: "32x32",
+        },
+        {
+          rel: "icon",
+          href: "/pwa/favicon-16x16.png",
+          type: "image/png",
+          sizes: "16x16",
+        },
+        {
+          rel: "apple-touch-icon",
+          href: "/pwa/apple-touch-icon.png",
+        },
+        {
+          rel: "manifest",
+          href: "/manifest.webmanifest",
+        },
+        // {
+        //   rel: "mask-icon",
+        //   href: "/mask-icon.svg",
+        //   color: "#ffffff",
+        // },
       ],
     },
   },
