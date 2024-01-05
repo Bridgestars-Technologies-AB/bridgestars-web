@@ -6,8 +6,6 @@ useHead({
 });
 await loadTranslations("common"); // load translation
 
-//import '~/assets/css/main.css'
-
 import "@fontsource/roboto-slab/100.css";
 import "@fontsource/roboto-slab/200.css";
 import "@fontsource/roboto-slab/300.css";
@@ -29,34 +27,24 @@ import "@fontsource/poppins/700.css";
 import "@fontsource/poppins/800.css";
 import "@fontsource/poppins/900.css";
 
-// import 'flowbite'
 
-onMounted(() => {});
+onMounted(() => {
+});
 
-//import "tw-elements/dist/css/tw-elements.min.css";
 provide("first_time_at_home", ref(true));
 
-const { $pwa } = useNuxtApp();
-onMounted(() => {
-  console.log($pwa);
-});
 </script>
 
 <template>
-  <div class="mainwrapper">
-    <NuxtPwaManifest />
-    <NuxtLoadingIndicator />
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-
-    <!-- comment to test vercel build -->
-    <!-- PWA TEST -->
+  <NuxtLayout>
+    <NuxtPwaManifest/>
+    <NuxtLoadingIndicator/>
+    <NuxtPage/>
     <ClientOnly>
       <div
-        v-if="$pwa?.offlineReady || $pwa?.needRefresh"
-        class="fixed z-1 bottom-0 right-0 m-3 p-3 bg-white border border-black rounded-lg shadow-xl text-left"
-        role="alert"
+          v-if="$pwa?.offlineReady || $pwa?.needRefresh"
+          class="fixed z-1 bottom-0 right-0 m-3 p-3 bg-white border border-black rounded-lg shadow-xl text-left"
+          role="alert"
       >
         <div class="font-family1 mb-2">
           <span v-if="$pwa.offlineReady"> App ready to work offline </span>
@@ -65,42 +53,45 @@ onMounted(() => {
           </span>
         </div>
         <button
-          v-if="$pwa.needRefresh"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          @click="$pwa.updateServiceWorker()"
+            v-if="$pwa.needRefresh"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            @click="$pwa.updateServiceWorker()"
         >
           Reload
         </button>
         <button
-          class="bg-red-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          @click="$pwa.cancelPrompt()"
+            class="bg-red-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            @click="$pwa.cancelPrompt()"
         >
           Close
         </button>
       </div>
       <div
-        v-if="
+          v-if="
           $pwa?.showInstallPrompt && !$pwa?.offlineReady && !$pwa?.needRefresh
         "
-        class="fixed z-1 bottom-0 right-0 m-3 p-3 bg-white border border-black rounded-lg shadow-xl text-left"
-        role="alert"
+          class="fixed z-1 bottom-0 right-0 m-3 p-3 bg-white border border-black rounded-lg shadow-xl text-left"
+          role="alert"
       >
         <div class="font-family1 mb-2">
           <span> Vill du ladda ner vår app? </span>
         </div>
         <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          @click="$pwa.install()"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            @click="$pwa.install()"
         >
           Ladda ner
         </button>
         <button
-          class="bg-red-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          @click="$pwa.cancelInstall()"
+            class="bg-red-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            @click="$pwa.cancelInstall()"
         >
           Stäng
         </button>
       </div>
     </ClientOnly>
-  </div>
+  </NuxtLayout>
+
+  <!-- comment to test vercel build -->
+  <!-- PWA TEST -->
 </template>
