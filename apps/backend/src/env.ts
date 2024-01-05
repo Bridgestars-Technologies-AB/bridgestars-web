@@ -13,6 +13,7 @@ let {
   ENV,
   DB_USER,
   DB_PASS,
+  MONGO_URL,
   MASTERKEY,
   READONLY_MASTERKEY,
   DASH_WRITE_PASS,
@@ -30,7 +31,7 @@ ENV = ENV || "docker";
 
 const env = {
   databaseURI:
-    `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.evwv141.mongodb.net/${DB}?retryWrites=true&w=majority`,
+    `mongodb+srv://${DB_USER}:${DB_PASS}@${MONGO_URL}/${DB}?retryWrites=true&w=majority`,
   appId: "76SGU2S6Sixv78YNTLfXVoRhq794D8o2",
   appName: "bridgestars",
   masterKey: MASTERKEY,
