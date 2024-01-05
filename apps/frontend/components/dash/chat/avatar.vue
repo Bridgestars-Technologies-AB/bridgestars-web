@@ -12,7 +12,7 @@ const props = defineProps({
 });
 // if(!props.chat && !props.userId) throw new Error("chat or userId is required");
 const userId = computed(() => {
-  ""
+  ("");
   // if (props.userId) return props.userId;
   // if (props.chat)
   //   return props.chat?.users?.find((id) => id != useAuth().user?.id);

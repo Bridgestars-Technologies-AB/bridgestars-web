@@ -4,7 +4,7 @@ import { periodicSyncForUpdates } from "virtual:nuxt-pwa-configuration";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ["~/assets/main.css"],
+  //css: ["~/assets/css/main.css"],
   components: [
     { path: "~/components/base", prefix: "base-" },
     { path: "~/components/auth", prefix: "auth-" },
@@ -85,39 +85,39 @@ export default defineNuxtConfig({
     },
     includeAssets: ["favicon.png", "apple-touch-icon.png", "mask-icon.png"],
     manifest: {
-      "name": "Bridgestars",
-      "short_name": "Bridgestars",
-      "icons": [
+      name: "Bridgestars",
+      short_name: "Bridgestars",
+      icons: [
         {
-          "src": "/pwa/pwa-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png",
-          "purpose": "any",
+          src: "/pwa/pwa-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "any",
         },
         {
-          "src": "/pwa/pwa-512x512.png",
-          "sizes": "512x512",
-          "type": "image/png",
-          "purpose": "any",
+          src: "/pwa/pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any",
         },
         {
-          "src": "/pwa/pwa-maskable-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png",
-          "purpose": "maskable",
+          src: "/pwa/pwa-maskable-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "maskable",
         },
         {
-          "src": "/pwa/pwa-maskable-512x512.png",
-          "sizes": "512x512",
-          "type": "image/png",
-          "purpose": "maskable",
+          src: "/pwa/pwa-maskable-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "maskable",
         },
       ],
       //"start_url": "/",
-      "display": "standalone",
-      "background_color": "#FFFFFF",
-      "theme_color": "#FFFFFF",
-      "description":
+      display: "standalone",
+      background_color: "#FFFFFF",
+      theme_color: "#FFFFFF",
+      description:
         "Bridgestars provides custom IT-solutions for Contract Bridge.",
     },
   },
@@ -126,7 +126,13 @@ export default defineNuxtConfig({
     plugins: [],
   },
   build: {
-    transpile: ["vue-toastification"],
+    transpile: ["vue-toastification", "h3", "Parse-SDK-TS"],
+    postcss:{
+      plugins:{
+        tailwindcss:{},
+        autoprefixer:{}
+      }
+    }
   },
   app: {
     head: {

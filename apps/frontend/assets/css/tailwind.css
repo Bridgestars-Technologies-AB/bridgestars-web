@@ -53,24 +53,6 @@
     @apply font-family text-[14px] font-light leading-[14px] uppercase;
   }
 
-  .text1,
-  .text2,
-  .text3 {
-    @apply transition-colors duration-300; /*Dark mode transition*/
-    @apply font-family text-grey dark:text-light; /* common style and colors */
-  }
-
-  .text1 {
-    @apply text-[24px] leading-[24px] font-normal;
-  }
-
-  .text2 {
-    @apply text-[16px] leading-[1.6rem] font-light;
-  }
-
-  .text3 {
-    @apply text-[16px] leading-[1.6rem] font-semibold;
-  }
 
   html,
   body,
@@ -131,18 +113,36 @@ input:-webkit-autofill:active {
 
 /* Second layer for complex components etc, don't use, specify in style scoped instead */
 @layer components {
+  .text1,
+  .text2,
+  .text3 {
+    @apply transition-colors duration-300; /*Dark mode transition*/
+    @apply font-family text-grey dark:text-light; /* common style and colors */
+  }
+
+  .text1 {
+    @apply text-[24px] leading-[24px] font-normal;
+  }
+
+  .text2 {
+    @apply text-[16px] leading-[1.6rem] font-light;
+  }
+
+  .text3 {
+    @apply text-[16px] leading-[1.6rem] font-semibold;
+  }
 }
 
 /* Third layer, here we can add our own utility classes that tailwind does not have  */
 @layer utilities {
-    /* Hide scrollbar but still enable scrolling for Chrome, Safari and Opera */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
+  /* Hide scrollbar but still enable scrolling for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
-    /* Hide scrollbar but still enable scrolling for IE, Edge and Firefox */
-    .no-scrollbar {
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
-    }
+  /* Hide scrollbar but still enable scrolling for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
