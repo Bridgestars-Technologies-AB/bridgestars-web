@@ -1,3 +1,4 @@
-[submodule "packages/Parse-SDK-TS"]
+[submodule "Parse-SDK-TS"]
 	path = packages/Parse-SDK-TS
-	url = git@github.com:theolundqvist/Parse-SDK-TS.git
+  url = https://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@github.com/theolundqvist/Parse-SDK-TS.git
+  #url = git@github.com:theolundqvist/Parse-SDK-TS.git
