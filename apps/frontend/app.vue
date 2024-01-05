@@ -50,6 +50,7 @@ onMounted(() => {
       <NuxtPage />
     </NuxtLayout>
 
+    <!-- comment to test vercel build -->
     <!-- PWA TEST -->
     <ClientOnly>
       <div
