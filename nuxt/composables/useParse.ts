@@ -7,10 +7,13 @@ const initializeParse = (serverURL, applicationId) => {
   //Parse.enableLocalDatastore();
 };
 
+// initializeParse(
+//   'http://localhost:1337/rest',
+//   'abc123'
+// );
 initializeParse(
-  // 'https://aws.lb.bridgestars.net/rest',
-  'https://vdn2remri5.eu-central-1.awsapprunner.com/rest',
-  'k4PTFS2R8tSYoZC8UNXzvplbZ38jOmViOkJxJEyE'
+  'https://bridgestars-legacy.fly.dev/rest',
+  'tv4DV5aBdGXcG8y9hiT85s6R2qKTwEhCpcA8Q'
 );
 
 export {Parse};

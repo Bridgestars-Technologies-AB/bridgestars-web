@@ -1,0 +1,61 @@
+{
+  "name": "bridgestars-backend",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=14.21.0 <17 || >=18 <19"
+  },
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "npm run clean && tsc -w ",
+    "docker": "npm run clean && tsc && docker build -t bridgestars-backend . && docker run --env-file ./.env -p 1337:1337 bridgestars-backend",
+    "start": "npm run clean && tsc && ENV=shell node build/app.js",
+    "deploy:prod": "npm run clean && tsc && fly deploy",
+    "test": "cd test && pnpm test",
+    "clean": "rimraf -rf build"
+  },
+  "dependencies": {
+    "@parse/s3-files-adapter": "^2.2.0",
+    "@sentry-internal/tracing": "^7.81.1",
+    "@sentry/cli": "^2.21.5",
+    "@sentry/core": "^7.81.1",
+    "@sentry/node": "^7.81.1",
+    "@sentry/profiling-node": "^1.2.6",
+    "@sentry/types": "^7.81.1",
+    "@sentry/utils": "^7.81.1",
+    "axios": "0.27.2",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "1.4.4",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "debug": "2.6.9",
+    "dotenv": "^16.3.1",
+    "express": "^4.17.3",
+    "image-size": "^1.0.2",
+    "mime": "^3.0.0",
+    "morgan": "1.9.1",
+    "node-cache": "5.1.2",
+    "nodemailer": "6.8.0",
+    "parse": "4.1.0",
+    "parse-dashboard": "5.2.0",
+    "parse-server": "^6.1.0",
+    "parse-server-api-mail-adapter": "3.0.0",
+    "stripe": "11.18.0",
+    "typescript": "4.8.3",
+    "zod": "3.22.4"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/cookie-parser": "1.4.3",
+    "@types/cors": "^2.8.14",
+    "@types/mime": "2.0.3",
+    "@types/morgan": "1.9.3",
+    "@types/node": "^18.7.16",
+    "@types/nodemailer": "6.4.6",
+    "@types/parse": "2.18.18",
+    "@types/preview-email": "2.0.1",
+    "@types/stripe-v3": "^3.1.27",
+    "ts-node": "8.3.0"
+  },
+  "keywords": []
+}
