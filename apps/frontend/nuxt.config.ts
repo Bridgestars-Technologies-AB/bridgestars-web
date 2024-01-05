@@ -33,6 +33,9 @@ export default defineNuxtConfig({
     format: ["webp"],
     quality: 85,
   },
+  nitro: {
+    preset: "vercel-edge",
+  },
   routeRules: {
     "/": { prerender: true }, // build static resource
     "/auth/**": { prerender: true },
@@ -126,13 +129,13 @@ export default defineNuxtConfig({
     plugins: [],
   },
   build: {
-    transpile: ["vue-toastification", "h3", "Parse-SDK-TS"],
-    postcss:{
-      plugins:{
-        tailwindcss:{},
-        autoprefixer:{}
-      }
-    }
+    transpile: ["vue-toastification", "bridgestars-db-client", "parse-sdk-ts"],
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    },
   },
   app: {
     head: {
@@ -146,7 +149,7 @@ export default defineNuxtConfig({
         {
           name: "viewport",
           content:
-            "width=device-width, height=device-height, initial-scale=1.0", //not sure this makes a difference but SO says it is good to have it.
+            "width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0 user-scalable=no", //not sure this makes a difference but SO says it is good to have it.
         },
         {
           name: "theme-color",

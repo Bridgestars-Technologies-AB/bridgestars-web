@@ -57,7 +57,7 @@ onMounted(() => {
         class="fixed z-1 bottom-0 right-0 m-3 p-3 bg-white border border-black rounded-lg shadow-xl text-left"
         role="alert"
       >
-        <div class="text4">
+        <div class="font-family1 mb-2">
           <span v-if="$pwa.offlineReady"> App ready to work offline </span>
           <span v-else>
             New content available, click on reload button to update.
@@ -71,7 +71,7 @@ onMounted(() => {
           Reload
         </button>
         <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          class="bg-red-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           @click="$pwa.cancelPrompt()"
         >
           Close
@@ -81,23 +81,23 @@ onMounted(() => {
         v-if="
           $pwa?.showInstallPrompt && !$pwa?.offlineReady && !$pwa?.needRefresh
         "
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        class="fixed z-1 bottom-0 right-0 m-3 p-3 bg-white border border-black rounded-lg shadow-xl text-left"
         role="alert"
       >
-        <div class="text4">
-          <span> Install PWA </span>
+        <div class="font-family1 mb-2">
+          <span> Vill du ladda ner vår app? </span>
         </div>
         <button
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           @click="$pwa.install()"
         >
-          Install
+          Ladda ner
         </button>
         <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          class="bg-red-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           @click="$pwa.cancelInstall()"
         >
-          Cancel
+          Stäng
         </button>
       </div>
     </ClientOnly>
