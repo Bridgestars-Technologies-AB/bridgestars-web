@@ -1,27 +1,27 @@
 # Backend server 
 ## Dashboard
 Running the server will print instructions for connecting to the dashboard. 
-The production dashboard is available at https://bridgestars-backend.fly.dev/dash/login. Ask me for credentials (theolundqvist).
+The production dashboard is available at https://bridgestars-demo-backend.fly.dev/dash/login. Ask me for credentials (theolundqvist).
 
 
 ## How to use
 
 ### install
-```
+```bash
 pnpm install
 ```
 
 
-### run server locally (connects to test db)
-```
+### Run server
+```bash
+# Locally
 pnpm start 
-```
-or
-```
+
+# Locally in docker container
 pnpm docker
 ```
 
-### run tests
+### Run tests
 1. start local server
 2. `pnpm test`
 
@@ -29,7 +29,7 @@ pnpm docker
 
 
 ## deploy server to production (needs fly.io credentials)
-```
+```bash
 pnpm deploy:prod
 ```
 
