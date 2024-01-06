@@ -6,7 +6,7 @@ The production dashboard is available at https://bridgestars-demo-backend.fly.de
 
 ## How to use
 
-### install
+### Install
 ```bash
 pnpm install
 ```
@@ -28,7 +28,7 @@ pnpm docker
 
 
 
-## deploy server to production (needs fly.io credentials)
+## Deploy server to production (needs fly.io credentials)
 ```bash
 pnpm deploy:prod
 ```
