@@ -1,4 +1,4 @@
-# bridgestars-web
+∆# bridgestars-web
 
 `apps/frontend` - the new website built with vue3 and nuxt3
 
@@ -13,7 +13,7 @@ requirements: `pnpm, git`
 2. Run frontend `cd apps/frontend && pnpm start`
 3. Run backend `cd apps/backend && pnpm start`
 4. Go to `localhost:3000`
-5. Further instructions can be found at frontend/README and backend/README
+5. Further instructions can be found at [frontend/README](https://github.com/Bridgestars-Technologies-AB/bridgestars-web/blob/demo/apps/frontend/README.md) and [backend/README](https://github.com/Bridgestars-Technologies-AB/bridgestars-web/blob/demo/apps/backend/README.md)
 
 
 ## Deploy scheme
