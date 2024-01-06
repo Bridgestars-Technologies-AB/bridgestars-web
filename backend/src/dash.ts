@@ -11,7 +11,7 @@ const config = {
       readOnlyMasterKey: env.readOnlyMasterKey,
       appName: env.appName,
       supportedPushLocales: ["en"],
-      production: env.DB == "prod",
+      production: env.DB === "parse" || env.DB === "prod",
       iconName: "SuitClubs.svg",
       columnPreference
     },
