@@ -149,7 +149,7 @@ importers:
         version: 5.0.18
       '@nuxt/image':
         specifier: npm:@nuxt/image-edge@latest
-        version: /@nuxt/image-edge@1.1.0-28404773.c60aac2(rollup@2.79.1)
+        version: /@nuxt/image-edge@1.1.0-28408112.572f502(rollup@2.79.1)
       '@pinia/nuxt':
         specifier: ^0.5.1
         version: 0.5.1(rollup@2.79.1)(typescript@5.2.2)(vue@3.4.5)
@@ -619,14 +619,6 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
       js-tokens: 4.0.0
-
-  /@babel/parser@7.23.4:
-    resolution: {integrity: sha512-vf3Xna6UEprW+7t6EtOmFpHNAuxw3xqPZghy+brsnusscJRW5BMUzzHZc5ICjULee81WeUV2jjakG09MDglJXQ==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
-    dependencies:
-      '@babel/types': 7.23.4
-    dev: true
 
   /@babel/parser@7.23.6:
     resolution: {integrity: sha512-Z2uID7YJ7oNvAI20O9X0bblw7Qqs8Q2hFy0R9tAfnfLkp5MW0UH9eUvnDSnFwKZ0AvgS1ucqR4KzvVHgnke1VQ==}
@@ -1635,15 +1627,6 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
-
-  /@babel/types@7.23.4:
-    resolution: {integrity: sha512-7uIFwVYpoplT5jp/kVv6EF93VaJ8H+Yn5IczYiaAi98ajzjfoZfslet/e0sLh+wVBjb2qqIut1b0S26VSafsSQ==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/helper-string-parser': 7.23.4
-      '@babel/helper-validator-identifier': 7.22.20
-      to-fast-properties: 2.0.0
-    dev: true
 
   /@babel/types@7.23.6:
     resolution: {integrity: sha512-+uarb83brBzPKN38NX1MkB6vb6+mwvR6amUulqAE7ccQw1pEl+bCia9TbdG1lsnFP7lZySvUn37CHyXQdfTwzg==}
@@ -2716,7 +2699,7 @@ packages:
       fast-glob: 3.3.2
       flatted: 3.2.9
       get-port-please: 3.1.1
-      h3: 1.9.0
+      h3: 1.10.0
       hookable: 5.5.3
       image-meta: 0.2.0
       is-installed-globally: 1.0.0
@@ -2764,14 +2747,14 @@ packages:
       - utf-8-validate
       - xml2js
 
-  /@nuxt/image-edge@1.1.0-28404773.c60aac2(rollup@2.79.1):
-    resolution: {integrity: sha512-QFJ/yK5RAsLporPSk0E+i/RITOgJOPM0OmL6lFZi3xB66Cb5XU30mAvC78uN0zX7UbouIQLX+S1fAxlqwrgpRw==}
+  /@nuxt/image-edge@1.1.0-28408112.572f502(rollup@2.79.1):
+    resolution: {integrity: sha512-k3egy3ZSPfG+59N/OdFbFz4AI5zHkZ9DrR9WqGdtzHagcldDJGW/JEcdHJ+4V/YzCJTmL3C1lQfhXJxdthR4JQ==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@nuxt/kit': 3.9.0(rollup@2.79.1)
       consola: 3.2.3
-      defu: 6.1.3
-      h3: 1.9.0
+      defu: 6.1.4
+      h3: 1.10.0
       image-meta: 0.2.0
       node-fetch-native: 1.6.1
       ohash: 1.1.3
@@ -4241,7 +4224,7 @@ packages:
   /@types/jsonwebtoken@8.5.9:
     resolution: {integrity: sha512-272FMnFGzAVMGtu9tkr29hRL6bZj4Zs1KZNeHLnKqAvp06tAIcarTMwOh8/8bz4FmKRcMxZhZNeUAQsNLoiPhg==}
     dependencies:
-      '@types/node': 18.18.11
+      '@types/node': 18.19.4
     dev: false
 
   /@types/keyv@3.1.4:
@@ -4282,12 +4265,6 @@ packages:
     dependencies:
       undici-types: 5.26.5
 
-  /@types/node@20.10.6:
-    resolution: {integrity: sha512-Vac8H+NlRNNlAmDfGUP7b5h/KA+AtWIzuXy0E6OyP8f1tCLYAtPvKRRDJjAPqhpCb0t6U2j7/xqAuLEebW2kiw==}
-    dependencies:
-      undici-types: 5.26.5
-    dev: false
-
   /@types/nodemailer@6.4.6:
     resolution: {integrity: sha512-pD6fL5GQtUKvD2WnPmg5bC2e8kWCAPDwMPmHe/ohQbW+Dy0EcHgZ2oCSuPlWNqk74LS5BVMig1SymQbFMPPK3w==}
     dependencies:
@@ -4303,7 +4280,7 @@ packages:
   /@types/parse@3.0.4:
     resolution: {integrity: sha512-mma6mfV8CT0+O52ELvZpC951BhNFOHaTzCVRwUfReWGB1gb/VxxiARwhNstOHR4MZDjERASP30Nvaduo2IvJ4w==}
     dependencies:
-      '@types/node': 20.10.6
+      '@types/node': 18.19.4
     dev: false
 
   /@types/parse@3.0.9:
@@ -4409,7 +4386,7 @@ packages:
   /@types/whatwg-url@8.2.2:
     resolution: {integrity: sha512-FtQu10RWgn3D9U4aazdwIE2yzphmTJREDqNdODHrbrZmmMqI0vMheC/6NE/J1Yveaj8H+ela+YwWTjq5PGmuhA==}
     dependencies:
-      '@types/node': 18.18.11
+      '@types/node': 18.19.4
       '@types/webidl-conversions': 7.0.3
     dev: false
 
@@ -5386,8 +5363,8 @@ packages:
       safe-buffer: 5.1.2
     dev: false
 
-  /basic-ftp@5.0.3:
-    resolution: {integrity: sha512-QHX8HLlncOLpy54mh+k/sWIFd0ThmRqwe9ZjELybGZK+tZ8rUb9VO0saKJUROTbE+KhzDUT7xziGpGrW8Kmd+g==}
+  /basic-ftp@5.0.4:
+    resolution: {integrity: sha512-8PzkB0arJFV4jJWSGOYR+OEic6aeKMu/osRhBULN6RY0ykby6LKhbmuQ5ublvaas5BOwboah5D87nrHyuh8PPA==}
     engines: {node: '>=10.0.0'}
     dev: true
 
@@ -6666,6 +6643,9 @@ packages:
   /defu@6.1.3:
     resolution: {integrity: sha512-Vy2wmG3NTkmHNg/kzpuvHhkqeIx3ODWqasgCRbKtbXEN0G+HpEEv9BtJLp7ZG1CZloFaC41Ah3ZFbq7aqCqMeQ==}
 
+  /defu@6.1.4:
+    resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
+
   /degenerator@5.0.1:
     resolution: {integrity: sha512-TllpMR/t0M5sqCXfj85i4XaAzxmS5tVA16dqvdkMwGmzI+dXLXnw3J+3Vdv7VKw+ThlTMboK6i9rnZ6Nntj5CQ==}
     engines: {node: '>= 14'}
@@ -7817,7 +7797,7 @@ packages:
       resolve-dependency-path: 2.0.0
       sass-lookup: 3.0.0
       stylus-lookup: 3.0.2
-      tsconfig-paths: 3.14.2
+      tsconfig-paths: 3.15.0
       typescript: 3.9.10
     transitivePeerDependencies:
       - supports-color
@@ -8207,7 +8187,7 @@ packages:
     resolution: {integrity: sha512-5KLucCJobh8vBY1K07EFV4+cPZH3mrV9YeAruUseCQKHB58SGjjT2l9/eA9LD082IiuMjSlFJEcdJ27TXvbZNw==}
     engines: {node: '>= 14'}
     dependencies:
-      basic-ftp: 5.0.3
+      basic-ftp: 5.0.4
       data-uri-to-buffer: 6.0.1
       debug: 4.3.4
       fs-extra: 8.1.0
@@ -8513,6 +8493,18 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       duplexer: 0.1.2
+
+  /h3@1.10.0:
+    resolution: {integrity: sha512-Tw1kcIC+AeimwRmviiObaD5EB430Yt+lTgOxLJxNr96Vd/fGRu04EF7aKfOAcpwKCI+U2JlbxOLhycD86p3Ciw==}
+    dependencies:
+      cookie-es: 1.0.0
+      defu: 6.1.4
+      destr: 2.0.2
+      iron-webcrypto: 1.0.0
+      radix3: 1.1.0
+      ufo: 1.3.2
+      uncrypto: 0.1.3
+      unenv: 1.8.0
 
   /h3@1.9.0:
     resolution: {integrity: sha512-+F3ZqrNV/CFXXfZ2lXBINHi+rM4Xw3CDC5z2CDK3NMPocjonKipGLLDSkrqY9DOrioZNPTIdDMWfQKm//3X2DA==}
@@ -9102,10 +9094,10 @@ packages:
       '@fastify/accept-negotiator': 1.1.0
       citty: 0.1.5
       consola: 3.2.3
-      defu: 6.1.3
+      defu: 6.1.4
       destr: 2.0.2
       etag: 1.8.1
-      h3: 1.9.0
+      h3: 1.10.0
       image-meta: 0.2.0
       listhen: 1.5.5
       ofetch: 1.3.3
@@ -11300,14 +11292,14 @@ packages:
     resolution: {integrity: sha512-8Q1hXew6ETzqKRAs3jjLioSxNfT1cx74ooiF8RlAONwVMcfq+UdzLC2eB5qcPldUxaE5w3ytLkrmV1TGddhZTA==}
     engines: {node: '>=6.0'}
     dependencies:
-      '@babel/parser': 7.23.4
+      '@babel/parser': 7.23.6
     dev: true
 
   /node-source-walk@5.0.2:
     resolution: {integrity: sha512-Y4jr/8SRS5hzEdZ7SGuvZGwfORvNsSsNRwDXx5WisiqzsVfeftDvRgfeqWNgZvWSJbgubTRVRYBzK6UO+ErqjA==}
     engines: {node: '>=12'}
     dependencies:
-      '@babel/parser': 7.23.4
+      '@babel/parser': 7.23.6
     dev: true
 
   /nodemailer@6.8.0:
@@ -14213,7 +14205,7 @@ packages:
   /serve-placeholder@2.0.1:
     resolution: {integrity: sha512-rUzLlXk4uPFnbEaIz3SW8VISTxMuONas88nYWjAWaM2W9VDbt9tyFOr3lq8RhVOFrT3XISoBw8vni5una8qMnQ==}
     dependencies:
-      defu: 6.1.3
+      defu: 6.1.4
 
   /serve-static@1.15.0:
     resolution: {integrity: sha512-XGuRDNjXUijsUL0vl6nSD7cwURuzEgglbOaFuZM9g3kwDXOWVTck0jLzjPzGD+TazWbboZYu52/9/XPdUgne9g==}
@@ -15219,8 +15211,8 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /tsconfig-paths@3.14.2:
-    resolution: {integrity: sha512-o/9iXgCYc5L/JxCHPe3Hvh8Q/2xm5Z+p18PESBU6Ff33695QnCHBEjcytY2q19ua7Mbl/DavtBOLq+oG0RCL+g==}
+  /tsconfig-paths@3.15.0:
+    resolution: {integrity: sha512-2Ac2RgzDe/cn48GvOe3M+o82pEFewD3UPbyoUHHdKasHwJKjds4fLXWf/Ux5kATBKN20oaFGu+jbElp1pos0mg==}
     dependencies:
       '@types/json5': 0.0.29
       json5: 1.0.2
