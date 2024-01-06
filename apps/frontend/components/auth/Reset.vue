@@ -5,10 +5,10 @@ const query = useRoute().query;
 const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
-
 function submit(res) {
   showLoading.value = true;
-  useAuth().requestPasswordReset(res.email)
+  useAuth()
+    .requestPasswordReset(res.email)
     .then(() => {
       toast.success(t("auth:reset:toast.passwordReset"));
       query.email = res.email;

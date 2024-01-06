@@ -28,10 +28,7 @@ const searchTerm = ref("");
 //this will not work if not all chats are downloaded, maybe keep it like this for now
 const filterUsers = (c: Chat) => {
   if (!searchTerm.value) return true;
-  return c
-    .name
-    .toLowerCase()
-    .includes(searchTerm.value.toLowerCase());
+  return c.name.toLowerCase().includes(searchTerm.value.toLowerCase());
 };
 
 /**
