@@ -13,6 +13,7 @@ requirements: `pnpm, git`
 2. Run frontend `cd apps/frontend && pnpm start`
 3. Run backend `cd apps/backend && pnpm start`
 4. Go to `localhost:3000`
+5. Further instructions can be found at frontend/README and backend/README
 
 
 ## Deploy scheme
