@@ -1,4 +1,4 @@
-∆# bridgestars-web
+# bridgestars-web
 
 `apps/frontend` - the new website built with vue3 and nuxt3
 
