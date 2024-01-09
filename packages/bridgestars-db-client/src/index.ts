@@ -15,6 +15,7 @@ export {
   isServer,
   Primitive,
   Query,
+  initialize,
   setServerURL,
   useLocalTestServer,
 } from "parse-sdk-ts";
