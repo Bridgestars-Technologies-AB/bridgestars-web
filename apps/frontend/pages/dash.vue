@@ -1,46 +1,82 @@
 <script setup>
-await loadTranslations("temp"); // load translation
-const open = ref(false); //signoutmodal
+await loadTranslations("dashboard"); // load translation
+
+const route = useRoute();
+
+if (route.name === "dash") {
+  useRouter().replace("dash/overview"); //without replace "dash" will be in history and we won't be able to go back to the login page
+}
+
+onMounted(() => {
+  //find html and body elements and set their overflow to hidden
+  document.getElementsByTagName("html")[0].style.overflow = "hidden";
+  document.getElementsByTagName("body")[0].style.overflow = "hidden";
+});
+
+onUnmounted(() => {
+  //find html and body elements and set their overflow to auto
+  document.getElementsByTagName("html")[0].style.overflow = "auto";
+  document.getElementsByTagName("body")[0].style.overflow = "";
+});
+
+const darkMode = useDarkMode();
+const sideMenuOpen = ref(true);
+provide("side-menu-open", sideMenuOpen);
 </script>
 
 <template>
   <div
-    class="absolute top-0 flex justify-start whitespace-nowrap pt-[30px] pl-[30px]"
+    :class="`${
+      darkMode.value ? 'dark [color-scheme:dark]' : ''
+    }  h-full w-full overflow-x-clip `"
   >
-    <button
-      @click="useRouter().push({ path: '/' })"
-      class="normal-case text-blue authHeader"
+    <div
+      class="flex bg-dash-light-400 dark:bg-dash-dark-200 transition-colors duration-300 w-full h-full"
     >
-      {{ $t("temp:home") }}
-    </button>
-    <span class="authHeader text-grey opacity-80 mx-2"> / </span>
-    <span class="authHeader text-grey opacity-80">{{ $t("temp:path") }}</span>
-  </div>
+      <!-- dash overlay -->
+      <div
+        :class="`fixed bg-black w-full z-[1] h-full sm:hidden ${
+          sideMenuOpen ? 'opacity-60' : 'opacity-0 [pointer-events:none]'
+        } transition-opacity duration-1000 `"
+        @click="sideMenuOpen = false"
+      />
 
-  <div
-    class="flex flex-col justify-center items-center h-full space-y-4 text-center"
-  >
-    <h3 class="max-w-[400px] px-3">
-      {{ $t("temp:hi", { name: useAuth().username }) }}
-    </h3>
-    <h3 class="max-w-[500px] px-3">{{ $t("temp:welcome") }}</h3>
-    <span class="text1 max-w-[500px] px-3">{{ $t("temp:info") }}</span>
-    <base-submit-button
-      @click="open = true"
-      :text="$t('temp:signout')"
-    ></base-submit-button>
-    <base-modal-signout v-model:open="open" />
+      <!-- side -->
+      <dash-menu-side class="absolute opacity-100 z-[1]" />
+
+      <!-- side menu mock for displacing content -->
+      <div
+        :class="` ${
+          sideMenuOpen ? 'sm:w-[268px]' : 'sm:w-[70px]'
+        } shrink-0 grow-0`"
+        id="sideMock"
+      />
+
+      <!-- top and content -->
+      <div class="grow flex flex-col" id="content">
+        <!-- top -->
+        <dash-menu-top />
+
+        <div class="relative w-full px-3 pb-3 h-full">
+          <!-- content -->
+          <NuxtPage class="overflow-y-scroll h-full no-scrollbar" />
+          <!-- chat -->
+          <ClientOnly>
+            <!-- <dash-chat-toggle /> -->
+          </ClientOnly>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
 #content {
   transition:
-    margin-left 0.3s ease-in-out,
-    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* all 0.3s ease-in-out, */ background-color 0.3s
+    cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-.authHeader {
-  @apply font-family2 text-[3vh] hsm:text-[30px]  leading-[1.5] font-bold;
+#sideMock {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 </style>
