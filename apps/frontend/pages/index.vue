@@ -1,6 +1,9 @@
 <!-- TODO: fetch all images from js so that video is fetched first to speed up loading time -->
 
 <script setup lang="ts">
+//temp for demo
+navigateTo({ path: "/auth/sign-in" });
+
 const firstTime = inject("first_time_at_home"); //issue exists for this one
 const showUI = ref(!firstTime.value); //when visiting home page for second time we can show UI immediately
 const showVideo = ref(true);
