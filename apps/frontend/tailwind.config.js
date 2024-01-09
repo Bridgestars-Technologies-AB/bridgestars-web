@@ -1,8 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-const {
+import {
   iconsPlugin,
   getIconCollections,
-} = require("@egoist/tailwindcss-icons");
+} from "@egoist/tailwindcss-icons";
+import flowbite from "flowbite/plugin"
+import typography from "@tailwindcss/typography"
 
 const backgroundColors = {
   dark: "#344767",
@@ -64,7 +66,6 @@ module.exports = {
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
-    "./nuxt.config.{js,ts}",
     "./app.vue",
     "./node_modules/flowbite/**/*.{js,ts}",
   ],
@@ -83,8 +84,8 @@ module.exports = {
       ]),
       //tailwindcss chooses which icons to include based on usage
     }),
-    require("flowbite/plugin"),
-    require("@tailwindcss/typography"),
+    flowbite,
+    typography
   ],
   theme: {
     //we should check which of these that are used
