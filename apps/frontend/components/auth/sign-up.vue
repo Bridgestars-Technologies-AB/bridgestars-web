@@ -23,7 +23,7 @@ function submit(res) {
 <template class="overflow-y-scroll">
   <auth-form
     :header="$t('auth:common.signUp')"
-    :title="$t('auth:signUp.title')"
+    :title="$t('auth:demo.signUp')"
     :subtitle="$t('auth:signUp.subtitle')"
     @submit="submit"
   >

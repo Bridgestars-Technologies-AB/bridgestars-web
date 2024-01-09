@@ -24,7 +24,7 @@ function submit(res) {
 <template>
   <auth-form
     :header="$t('auth:reset.resetPassword')"
-    :title="$t('auth:reset.title')"
+    :title="$t('auth:demo.reset')"
     :subtitle="$t('auth:reset.subtitle')"
     @submit="submit"
   >

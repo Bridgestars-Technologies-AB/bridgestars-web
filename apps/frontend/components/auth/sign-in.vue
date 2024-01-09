@@ -25,7 +25,7 @@ function submit(res: { usernameEmail: string; password: string }) {
 <template>
   <auth-form
     :header="$t('auth:common.signIn')"
-    :title="$t('auth:signIn.title')"
+    :title="$t('auth:demo.title')"
     :subtitle="$t('auth:signIn.subtitle')"
     @submit="submit"
   >

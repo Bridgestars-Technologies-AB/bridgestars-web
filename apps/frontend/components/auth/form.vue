@@ -82,9 +82,9 @@ onMounted(() => {
       <!-- /> -->
       <!-- TITLE -->
       <NuxtImg
-        class="anim-bounce w-[64px] h-[64px] xs:mt-0 sm:mt-5 mb-5"
-        src="/bridgestars/logo/logo-trans-512px.png"
-        alt="Bridgestars logo"
+        class="anim-bounce w-[120px] h-[120px] xs:mt-0 sm:mt-5 mb-5"
+        src="/demo/bridgeschool.png"
+        alt="Bridgeschool logo"
       />
       <h6
         class="zoomIn text-dark flex text-center text-opacity-100 font-bold mb-4 text-[19px] font-family2"
