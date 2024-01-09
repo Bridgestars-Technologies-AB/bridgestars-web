@@ -13,6 +13,7 @@ let {
   ENV,
   DB_USER,
   DB_PASS,
+  MONGO_URL,
   MASTERKEY,
   READONLY_MASTERKEY,
   DASH_WRITE_PASS,
@@ -22,6 +23,8 @@ let {
   SERVER_PORT,
   STRIPE_KEY,
   STRIPE_WEBHOOK_SECRET,
+  PUBLIC_SERVER_URL,
+  APP_ID
 } = envs;
 
 SERVER_PORT = SERVER_PORT || "1337";
@@ -30,8 +33,8 @@ ENV = ENV || "docker";
 
 const env = {
   databaseURI:
-    `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.evwv141.mongodb.net/${DB}?retryWrites=true&w=majority`,
-  appId: "76SGU2S6Sixv78YNTLfXVoRhq794D8o2",
+    `mongodb+srv://${DB_USER}:${DB_PASS}@${MONGO_URL}/${DB}?retryWrites=true&w=majority`,
+  appId: APP_ID,
   appName: "bridgestars",
   masterKey: MASTERKEY,
   readOnlyMasterKey: READONLY_MASTERKEY,
@@ -43,8 +46,7 @@ const env = {
   serverURL: `http://localhost:${SERVER_PORT}/rest`,
   publicServerURL: LOCAL
     ? `http://localhost:${SERVER_PORT}/rest`
-    : `https://bridgestars-backend${DB == "dev" ? "-dev" : ""
-    }.fly.dev/rest`,
+    : PUBLIC_SERVER_URL,
   serverPort: SERVER_PORT,
   dashWritePass: DASH_WRITE_PASS,
   dashReadOnlyPass: DASH_READONLY_PASS,

@@ -26,7 +26,7 @@ const destroyAliveConnections = function () {
 };
 
 beforeAll(async () => {
-  console.log(env)
+  //console.log(env)
   Db.initialize(env.appId);
   Db.CoreManager.set('SERVER_URL', serverURL);
   Db.CoreManager.set('MASTER_KEY', env.masterKey);
