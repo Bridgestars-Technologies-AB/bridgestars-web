@@ -94,11 +94,12 @@ function bid(suit, rank) {
       <div
         v-for="e in biddingArray"
         :key="e"
-        :class="`rounded-t-[8px] bg-dash-dark-100 border-t border-x border-dash-light-100 w-[45px] h-[40px] sm:w-[50px] sm:h-[45px] flex justify-center items-center ${
+        :class="`cursor-pointer rounded-t-[8px] bg-dash-dark-100 border-t border-x border-dash-light-100 w-[45px] h-[40px] sm:w-[50px] sm:h-[45px] flex justify-center items-center ${
           currentRank === e
             ? 'z-[0.9] mb-[-1px]'
             : 'bg-dash-dark-200 mb-[-8px] z-[0.8]'
         }`"
+        @click="currentRank = e"
       >
         <button class="text1 text-[18px] text-white" @click="currentRank = e">
           {{ e }}
