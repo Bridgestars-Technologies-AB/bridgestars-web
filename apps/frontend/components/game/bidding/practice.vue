@@ -13,7 +13,7 @@ function bid(s, r) {
 }
 
 const biddingBox =
-  "xs:w-[60px] xs:h-[40px] bg-dash-dark-200 hover:bg-transparent lg:w-[43px] lg:h-[30px]";
+  "xs:w-[50px] xs:h-[28px] bg-dash-dark-200 hover:bg-transparent lg:w-[43px] lg:h-[30px]";
 </script>
 <template>
   <!-- <div class="w-[90%] h-[80px] border mb-[20px]"></div> -->
