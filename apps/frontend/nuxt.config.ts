@@ -33,6 +33,11 @@ export default defineNuxtConfig({
     format: ["webp"],
     quality: 85,
   },
+  runtimeConfig:{
+    public: {
+      PROD_SERVER: process.env.PROD_SERVER
+    }
+  },
   nitro: {
     preset: "vercel-edge",
   },

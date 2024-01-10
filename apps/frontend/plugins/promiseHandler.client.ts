@@ -3,7 +3,7 @@ async function handleParseError(error: { reason: { code: number } }): void {
     useAuth()
       .signOut()
       .catch(() => {});
-    await navigateTo("/auth/sign-in");
+    //await navigateTo("/auth/sign-in");
     useToast().error("You have been signed out", { timeout: false });
   }
 }

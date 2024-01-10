@@ -14,6 +14,10 @@ Start the development server on `http://localhost:3000`.
 ```bash
 pnpm start
 ```
+Run with production backend instead of local
+```bash
+npm run with_prod_server
+```
 
 ## Production
 

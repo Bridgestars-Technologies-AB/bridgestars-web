@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "start": "nuxt dev --o --host",
+    "with_prod_server": "npx nuxi dev --dotenv .env.with_prod_server --o --host",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
