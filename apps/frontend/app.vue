@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import {SpeedInsights} from "@vercel/speed-insights/vue"
 useHead({
   htmlAttrs: {
     lang: useTranslate().i18.language,
@@ -36,6 +37,7 @@ provide("first_time_at_home", ref(true));
 </script>
 
 <template>
+  <SpeedInsights/>
   <NuxtLayout>
     <NuxtPwaManifest/>
     <NuxtLoadingIndicator/>

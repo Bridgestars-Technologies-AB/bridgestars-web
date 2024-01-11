@@ -45,6 +45,8 @@
     "@nuxt/image": "npm:@nuxt/image-edge@latest",
     "@pinia/nuxt": "^0.5.1",
     "@unly/universal-language-detector": "^2.0.3",
+    "@vercel/analytics": "^1.1.1",
+    "@vercel/speed-insights": "^1.0.2",
     "bridgestars-db-client": "workspace:^",
     "bridgestars-frontend": "link:",
     "eslint-plugin-prettier": "^5.1.2",
