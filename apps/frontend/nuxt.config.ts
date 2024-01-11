@@ -35,6 +35,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig:{
     public: {
+      sentry:{
+        dsn: process.env.SENTRY_DSN,
+        environment: process.dev ? "dev" : "prod"
+      },
       PROD_SERVER: process.env.PROD_SERVER
     }
   },
