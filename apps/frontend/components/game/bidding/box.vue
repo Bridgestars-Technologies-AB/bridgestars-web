@@ -94,11 +94,12 @@ function bid(suit, rank) {
       <div
         v-for="e in biddingArray"
         :key="e"
-        :class="`rounded-t-[8px] bg-dash-dark-100 border-t border-x border-dash-light-100 w-[45px] h-[40px] sm:w-[50px] sm:h-[45px] flex justify-center items-center ${
+        :class="`cursor-pointer rounded-t-[8px] bg-dash-dark-100 border-t border-x border-dash-light-100 w-[45px] h-[40px] sm:w-[50px] sm:h-[45px] flex justify-center items-center ${
           currentRank === e
-            ? 'z-[3] mb-[-1px]'
-            : 'bg-dash-dark-200 mb-[-8px] z-[1]'
+            ? 'z-[0.9] mb-[-1px]'
+            : 'bg-dash-dark-200 mb-[-8px] z-[0.8]'
         }`"
+        @click="currentRank = e"
       >
         <button class="text1 text-[18px] text-white" @click="currentRank = e">
           {{ e }}
@@ -106,7 +107,7 @@ function bid(suit, rank) {
       </div>
     </div>
     <div
-      class="border-dash-light-100 bg-dash-dark-100 border z-[2] rounded-[6px] px-7 sm:px-[40px] pt-4 pb-4"
+      class="border-dash-light-100 bg-dash-dark-100 border z-[0.8] rounded-[6px] px-7 sm:px-[40px] pt-2 pb-2"
     >
       <div class="flex flex-row space-x-[3px]">
         <div v-for="e in 5" :key="e">
@@ -120,7 +121,7 @@ function bid(suit, rank) {
       </div>
     </div>
     <game-bidding-block
-      class="mt-[20px]"
+      class="mt-[10px]"
       :card="{ suit: 0, rank: 0 }"
       :size="biddingBox"
       @click="bid"

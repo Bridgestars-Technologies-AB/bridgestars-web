@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-import {
-  iconsPlugin,
-  getIconCollections,
-} from "@egoist/tailwindcss-icons";
-import flowbite from "flowbite/plugin"
-import typography from "@tailwindcss/typography"
+import { iconsPlugin, getIconCollections } from "@egoist/tailwindcss-icons";
+import flowbite from "flowbite/plugin";
+import typography from "@tailwindcss/typography";
 
 const backgroundColors = {
   dark: "#344767",
@@ -40,10 +37,10 @@ const backgroundColors = {
   },
 };
 const textColors = {
-  clubs: "#2B72C0",
-  diamonds: "#f1716f",
-  hearts: "#f78217",
-  spades: "#349e3f",
+  spades: "#2B72C0",
+  hearts: "#f1716f",
+  diamonds: "#f78217",
+  clubs: "#349e3f",
   dark: "#344767", //dark text
   DEFAULT: "#344767", //dark text
   grey: "#7b809a",
@@ -85,7 +82,7 @@ module.exports = {
       //tailwindcss chooses which icons to include based on usage
     }),
     flowbite,
-    typography
+    typography,
   ],
   theme: {
     //we should check which of these that are used

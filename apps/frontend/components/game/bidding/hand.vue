@@ -20,6 +20,14 @@ const p = defineProps({
   },
 });
 
+//defines the order of suits displayed
+const order = [
+  CardUtil.Suit.spades,
+  CardUtil.Suit.hearts,
+  CardUtil.Suit.diamonds,
+  CardUtil.Suit.clubs,
+];
+
 const ranks = [
   "2",
   "3",
@@ -114,7 +122,7 @@ function format(bridgeHand, suit) {
     >
       <span
         :class="`text-[25px] sm:text-[25px] lg:ml-[10px] lg:text-[30px] ${
-          CardUtil.symbols[index - 1]
+          CardUtil.symbols[order[index - 1]]
         }`"
       >
       </span>

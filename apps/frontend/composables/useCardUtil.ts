@@ -1,20 +1,7 @@
 namespace CardUtil {
-  // export const symbols = [
-  //   { symbol: "♣", color: "!text-clubs" },
-  //   { symbol: "♦", color: "!text-diamonds" },
-  //   { symbol: "♥", color: "!text-hearts" },
-  //   { symbol: "♠", color: "!text-spades" },
-  //   { symbol: "NT", color: "!text-white" },
-  // ];
-
-  export const symbols = [
-    "i-fluent-emoji-high-contrast-club-suit !text-clubs",
-    "i-fluent-emoji-high-contrast-diamond-suit !text-diamonds",
-    "i-fluent-emoji-high-contrast-heart-suit !text-hearts",
-    "i-fluent-emoji-high-contrast-spade-suit !text-spades",
-  ];
-
   // Define the values for each card
+  //example of a card: {suit: 0, rank: 1} = Ace of Clubs
+
   export const cardValues = {
     1: 1,
     2: 2,
@@ -32,15 +19,24 @@ namespace CardUtil {
     A: 14,
   };
 
-  export const suits = ["♣", "♦", "♥", "♠"];
-
+  // Enum for which number corresponds to which suit
   export enum Suit {
     clubs = 0,
-    diamond = 1,
+    diamonds = 1,
     hearts = 2,
     spades = 3,
     NT = 4,
   }
+
+  // A list of tailwind util classes for each suit in the same order as Suit enum
+  // i.e symbols[Suits.club] = "i-fluent-emoji-high-contrast-club-suit !text-clubs"
+  // OBS: The order should be the same as the Suit enum
+  export const symbols = [
+    "i-fluent-emoji-high-contrast-club-suit !text-clubs",
+    "i-fluent-emoji-high-contrast-diamond-suit !text-diamonds",
+    "i-fluent-emoji-high-contrast-heart-suit !text-hearts",
+    "i-fluent-emoji-high-contrast-spade-suit !text-spades",
+  ];
 
   //Not able to use as type, Card not defined??
   export interface Card {
