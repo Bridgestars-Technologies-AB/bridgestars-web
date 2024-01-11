@@ -1,3 +1,5 @@
 <template>
-  <h1>Deal Editor</h1>
+  <div class="flex items-center justify-center">
+    <game-analysis-main> </game-analysis-main>
+  </div>
 </template>
