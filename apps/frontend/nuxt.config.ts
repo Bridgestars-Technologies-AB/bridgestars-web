@@ -40,11 +40,6 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: "vercel-edge",
-    output:{
-      dir: "dist"
-    }
-
-    
   },
   routeRules: {
     "/": { prerender: true }, // build static resource
