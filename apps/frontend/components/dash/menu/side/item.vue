@@ -5,7 +5,6 @@ const props = defineProps({
   keypath: String,
   selected: Boolean,
   enabled: Boolean,
-  color: String,
 });
 
 const iconColor = "bg-dash-light-400 dark:bg-white";

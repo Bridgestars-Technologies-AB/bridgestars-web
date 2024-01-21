@@ -12,82 +12,64 @@ const items = [
   {
     name: "overview",
     icon: "i-material-symbols-home-rounded",
-    color: "bg-[#aaC107]", //icon color, but looks like shit because I couldn't select good colors, these are replaced with bg-teal-400 in side2.vue
   },
   {
     divider: true,
-    name: "analysis",
+    name: "courses",
   },
   {
-    name: "deal-editor",
-    icon: "i-material-symbols-sports-esports",
-    color: "bg-[#95b687]",
-  },
-  // {
-  //   name: "dealhistory",
-  //   icon:"i-material-symbols-history"
-  // },
-  {
-    name: "contract-calc",
-    icon: "i-material-symbols-score",
-    color: "bg-[#f48fb1]",
+    name: "my-courses",
+    icon: "i-material-symbols-school",
   },
   {
-    name: "simulator",
-    icon: "i-material-symbols-analytics",
-    color: "bg-[#4fc3f7]",
+    name: "all-courses",
+    icon: "i-material-symbols-school",
   },
   {
     divider: true,
-    name: "exercise",
+    name: "library",
   },
   {
-    name: "contracting",
+    name: "books",
+    icon: "i-material-symbols-menu-book",
+  },
+  {
+    name: "documents",
+    icon: "i-material-symbols-library-books",
+  },
+  {
+    divider: true,
+    name: "practice",
+  },
+  {
+    name: "bidding",
     icon: "i-material-symbols-sports-esports",
-    color: "bg-[#a5d6a7]",
-  },
-  {
-    name: "gambit",
-    icon: "i-material-symbols-play-circle",
-    color: "bg-[#f48fb1]",
-  },
-  {
-    name: "suit-treatments",
-    icon: "i-material-symbols-hive",
-    color: "bg-[#4fc3f7]",
-  },
-  {
-    name: "play",
-    icon: "i-material-symbols-play-circle",
-    color: "bg-[#5f350c]",
   },
   {
     divider: true,
     name: "other",
   },
   {
-    name: "results",
-    icon: "i-material-symbols-text-snippet",
-    color: "bg-[#839202]",
+    name: "schedule",
+    icon: "i-material-symbols-calendar-month",
   },
   {
     name: "help",
     icon: "i-material-symbols-info",
-    color: "bg-[#2f357f]",
   },
   {
     name: "sign-out",
     icon: "i-tabler-logout-2",
-    color: "bg-[#324465]",
     action: () => {
       logoutModalOpen.value = true;
     },
   },
 ];
 items.map(
-  (x) =>
-    (x.enabled =
-      x.action || router.getRoutes().some((r) => r.name == "dash-" + x.name)),
+  (x) => {
+    (
+      x.enabled = x.action || router.getRoutes().some((r) => r.name == "dash-" + x.name))
+  }
 ); // add enabled property
 
 const isOpen = inject("side-menu-open");
@@ -159,7 +141,6 @@ function click(item) {
             :keypath="`dashboard:side_menu.${item.name}`"
             :selected="route.name == 'dash-' + item.name"
             :enabled="item.enabled"
-            :color="item.color"
           />
         </div>
       </div>
