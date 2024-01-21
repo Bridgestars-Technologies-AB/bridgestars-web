@@ -12,7 +12,6 @@ const items = [
   {
     name: "overview",
     icon: "i-material-symbols-home-rounded",
-    color: "bg-[#aaC107]", //icon color, but looks like shit because I couldn't select good colors, these are replaced with bg-teal-400 in side2.vue
   },
   {
     divider: true,
@@ -21,12 +20,10 @@ const items = [
   {
     name: "my-courses",
     icon: "i-material-symbols-school",
-    color: "bg-[#95b687]",
   },
   {
     name: "all-courses",
     icon: "i-material-symbols-school",
-    color: "bg-[#f48fb1]",
   },
   {
     divider: true,
@@ -35,12 +32,10 @@ const items = [
   {
     name: "books",
     icon: "i-material-symbols-menu-book",
-    color: "bg-[#f48fb1]",
   },
   {
     name: "documents",
     icon: "i-material-symbols-library-books",
-    color: "bg-[#f48fb1]",
   },
   {
     divider: true,
@@ -49,7 +44,6 @@ const items = [
   {
     name: "bidding",
     icon: "i-material-symbols-sports-esports",
-    color: "bg-[#a5d6a7]",
   },
   {
     divider: true,
@@ -58,17 +52,14 @@ const items = [
   {
     name: "schedule",
     icon: "i-material-symbols-calendar-month",
-    color: "bg-[#2f357f]",
   },
   {
     name: "help",
     icon: "i-material-symbols-info",
-    color: "bg-[#2f357f]",
   },
   {
     name: "sign-out",
     icon: "i-tabler-logout-2",
-    color: "bg-[#324465]",
     action: () => {
       logoutModalOpen.value = true;
     },
@@ -150,7 +141,6 @@ function click(item) {
             :keypath="`dashboard:side_menu.${item.name}`"
             :selected="route.name == 'dash-' + item.name"
             :enabled="item.enabled"
-            :color="item.color"
           />
         </div>
       </div>
