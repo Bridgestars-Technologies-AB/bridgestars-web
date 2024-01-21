@@ -13,7 +13,16 @@
     "play": "Play",
     "help": "Help",
     "results": "Results",
-    "sign-out": "Sign Out"
+    "sign-out": "Sign Out", 
+    "courses": "Courses", 
+    "my-courses": "My Courses", 
+    "all-courses": "All Courses", 
+    "library": "Library", 
+    "books": "Books", 
+    "documents": "Documents", 
+    "practice": "Practice", 
+    "bidding": "Bidding Practice", 
+    "schedule": "Schedule"
   },
   "top_menu": {
     "tooltip": {

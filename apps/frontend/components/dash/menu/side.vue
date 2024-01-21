@@ -16,59 +16,49 @@ const items = [
   },
   {
     divider: true,
-    name: "analysis",
+    name: "courses",
   },
   {
-    name: "deal-editor",
-    icon: "i-material-symbols-sports-esports",
+    name: "my-courses",
+    icon: "i-material-symbols-school",
     color: "bg-[#95b687]",
   },
-  // {
-  //   name: "dealhistory",
-  //   icon:"i-material-symbols-history"
-  // },
   {
-    name: "contract-calc",
-    icon: "i-material-symbols-score",
+    name: "all-courses",
+    icon: "i-material-symbols-school",
     color: "bg-[#f48fb1]",
-  },
-  {
-    name: "simulator",
-    icon: "i-material-symbols-analytics",
-    color: "bg-[#4fc3f7]",
   },
   {
     divider: true,
-    name: "exercise",
+    name: "library",
   },
   {
-    name: "contracting",
-    icon: "i-material-symbols-sports-esports",
-    color: "bg-[#a5d6a7]",
-  },
-  {
-    name: "gambit",
-    icon: "i-material-symbols-play-circle",
+    name: "books",
+    icon: "i-material-symbols-menu-book",
     color: "bg-[#f48fb1]",
   },
   {
-    name: "suit-treatments",
-    icon: "i-material-symbols-hive",
-    color: "bg-[#4fc3f7]",
+    name: "documents",
+    icon: "i-material-symbols-library-books",
+    color: "bg-[#f48fb1]",
   },
   {
-    name: "play",
-    icon: "i-material-symbols-play-circle",
-    color: "bg-[#5f350c]",
+    divider: true,
+    name: "practice",
+  },
+  {
+    name: "bidding",
+    icon: "i-material-symbols-sports-esports",
+    color: "bg-[#a5d6a7]",
   },
   {
     divider: true,
     name: "other",
   },
   {
-    name: "results",
-    icon: "i-material-symbols-text-snippet",
-    color: "bg-[#839202]",
+    name: "schedule",
+    icon: "i-material-symbols-calendar-month",
+    color: "bg-[#2f357f]",
   },
   {
     name: "help",
@@ -85,9 +75,10 @@ const items = [
   },
 ];
 items.map(
-  (x) =>
-    (x.enabled =
-      x.action || router.getRoutes().some((r) => r.name == "dash-" + x.name)),
+  (x) => {
+    (
+      x.enabled = x.action || router.getRoutes().some((r) => r.name == "dash-" + x.name))
+  }
 ); // add enabled property
 
 const isOpen = inject("side-menu-open");
