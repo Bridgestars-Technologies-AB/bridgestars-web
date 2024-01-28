@@ -46,6 +46,10 @@ const items = [
     icon: "i-material-symbols-sports-esports",
   },
   {
+    name: "scenario",
+    icon: "i-material-symbols-sports-esports",
+  },
+  {
     divider: true,
     name: "other",
   },
@@ -65,12 +69,10 @@ const items = [
     },
   },
 ];
-items.map(
-  (x) => {
-    (
-      x.enabled = x.action || router.getRoutes().some((r) => r.name == "dash-" + x.name))
-  }
-); // add enabled property
+items.map((x) => {
+  x.enabled =
+    x.action || router.getRoutes().some((r) => r.name == "dash-" + x.name);
+}); // add enabled property
 
 const isOpen = inject("side-menu-open");
 
