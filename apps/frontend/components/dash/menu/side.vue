@@ -18,11 +18,11 @@ const items = [
     name: "courses",
   },
   {
-    name: "my-courses",
+    name: "all-courses",
     icon: "i-material-symbols-school",
   },
   {
-    name: "all-courses",
+    name: "my-courses",
     icon: "i-material-symbols-school",
   },
   {
