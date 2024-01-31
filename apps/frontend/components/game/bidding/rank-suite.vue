@@ -15,7 +15,7 @@ defineProps({
   <div class="w-full h-full rounded-lg">
     <div
       v-if="card.suit === 0 && card.rank === 0"
-      class="w-full h-full flex justify-center items-center"
+      class="w-full h-full flex justify-center items-center "
     >
       <span
         class="rounded-lg dark:text-light biddingText3 tracking-[0.5px] text-white cursor-pointer"
