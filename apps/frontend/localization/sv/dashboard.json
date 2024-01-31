@@ -13,7 +13,17 @@
     "play": "Spela",
     "help": "Hjälp",
     "results": "Tävlingsresultat",
-    "sign-out": "Logga ut"
+    "sign-out": "Logga ut",
+    "courses": "Kurser",
+    "my-courses": "Mina kurser",
+    "all-courses": "Alla Kurser",
+    "library": "Bibliotek",
+    "books": "Böcker",
+    "documents": "Dokument",
+    "practice": "Öva",
+    "bidding": "Budträning",
+    "scenario": "Scenario",
+    "schedule": "Schema"
   },
   "top_menu": {
     "tooltip": {
