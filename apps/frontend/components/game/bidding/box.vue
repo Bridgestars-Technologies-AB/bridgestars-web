@@ -107,7 +107,7 @@ function bid(suit, rank) {
       </div>
     </div>
     <div
-      class="border-dash-light-100 bg-dash-dark-100 border z-[0.8] rounded-[6px] px-7 sm:px-[40px] pt-2 pb-2"
+      class="border-dash-light-100 bg-dash-dark-100 border z-[0.8] rounded-[6px] px-7 sm:px-[45px] pt-2 pb-2"
     >
       <div class="flex flex-row space-x-[3px]">
         <div v-for="e in 5" :key="e">

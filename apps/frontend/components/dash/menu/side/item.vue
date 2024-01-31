@@ -19,7 +19,7 @@ const textColor = computed(
   () =>
     `text-dark dark:text-light text-transition ${
       !open.value
-        ? "opacity-0 -ml-[170px]"
+        ? "opacity-0 hidden"
         : props.selected
         ? "opacity-100 ml-[0px]"
         : "opacity-80 ml-[0px]"

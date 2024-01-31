@@ -52,11 +52,11 @@ const biddingBox =
     </game-bidding-container>
 
     <game-bidding-container
-      class="flex flex-col bg-dash-dark-100 xs:w-[100%] sm:w-[80%] h-[10%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
+      class="flex flex-col bg-dash-dark-100 xs:w-[100%] sm:w-[80%] h-[12%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
       header="DIN HAND"
     >
       <game-bidding-hand
-        class="bg-[#121c27] w-full lg:w-full lg:h-[70%]"
+        class="bg-[#121c27] w-full mx-auto lg:w-full lg:h-[70%]"
         :showDeal="false"
         :hand="[
           { suit: 0, rank: 2 },
