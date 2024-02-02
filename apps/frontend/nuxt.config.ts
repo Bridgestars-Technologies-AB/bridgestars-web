@@ -14,10 +14,10 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["composables", "composables/stores"],
   },
-  experimental: {
-    payloadExtraction: true,
-    watcher: "parcel",
-  },
+  //experimental: {
+  // payloadExtraction: true,
+  // watcher: "parcel",
+  //},
   modules: [
     // "@nuxtjs/i18n",
     "@vite-pwa/nuxt",
@@ -33,14 +33,14 @@ export default defineNuxtConfig({
     format: ["webp"],
     quality: 85,
   },
-  runtimeConfig:{
+  runtimeConfig: {
     public: {
-      sentry:{
+      sentry: {
         dsn: process.env.SENTRY_DSN,
-        environment: process.dev ? "dev" : "prod"
+        environment: process.dev ? "dev" : "prod",
       },
-      PROD_SERVER: process.env.PROD_SERVER
-    }
+      PROD_SERVER: process.env.PROD_SERVER,
+    },
   },
   nitro: {
     //preset: "vercel-edge",
