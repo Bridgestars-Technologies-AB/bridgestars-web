@@ -100,7 +100,7 @@ function click(item) {
           isOpen ? 'open' : 'closed'
         }`"
       >
-        <NuxtImg
+        <img
           width="50"
           class="object-cover object-top w-[50px] aspect-square rounded-full cursor-pointer"
           src="/bridgestars/images/castor.jpg"

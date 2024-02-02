@@ -81,7 +81,7 @@ onMounted(() => {
       <!--   alt="bridgestars logo" -->
       <!-- /> -->
       <!-- TITLE -->
-      <NuxtImg
+      <img
         class="anim-bounce w-[120px] h-[120px] xs:mt-0 sm:mt-5 mb-5"
         src="/demo/bridgeschool.png"
         alt="Bridgeschool logo"
