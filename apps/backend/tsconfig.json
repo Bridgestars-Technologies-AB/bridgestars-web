@@ -1,34 +1,20 @@
 {
- "compilerOptions": {
-     "allowSyntheticDefaultImports" : true,
-     "module": "commonjs",
-     "esModuleInterop": false,
-     "target": "es2022",
-     "noImplicitAny": false,
-     "sourceMap": true,
-     "outDir": "build",
-     "rootDir": "src",
-     "allowJs": true,
-     "baseUrl": "./",
-
-     "paths": {
-         "*": [
-             "node_modules/*",
-             "src/*"
-         ]
-     },
-
-     "inlineSources": true,
-
-     // Set `sourceRoot` to  "/" to strip the build path prefix
-     // from generated source code references.
-     // This improves issue grouping in Sentry.
-     // Set `sourceRoot` to  "/" to strip the build path prefix
-     // from generated source code references.
-     // This improves issue grouping in Sentry.
-     "sourceRoot": "/"
- },
-  "include": [
-    "src/**/*"
-  ]
+    "compilerOptions": {
+        "allowJs": true,
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "jsx": "preserve",
+        "strict": true,
+        "isolatedModules": true,
+        "target": "ESNext",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "skipLibCheck": true,
+        "paths": {
+            "@/*": ["./resources/js/*"],
+            "ziggy-js": ["./vendor/tightenco/ziggy"]
+        }
+    },
+    "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/**/*.vue"]
 }
