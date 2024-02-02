@@ -1,7 +1,7 @@
 <script setup>
 const toast = useToast();
 const query = useRoute().query;
-const {t} = await loadTranslations("auth");
+const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
 function submit(res) {

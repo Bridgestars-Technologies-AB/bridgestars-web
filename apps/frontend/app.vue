@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {SpeedInsights} from "@vercel/speed-insights/vue"
+import { SpeedInsights } from "@vercel/speed-insights/vue";
 useHead({
   htmlAttrs: {
     lang: useTranslate().i18.language,
@@ -28,25 +28,22 @@ import "@fontsource/poppins/700.css";
 import "@fontsource/poppins/800.css";
 import "@fontsource/poppins/900.css";
 
-
-onMounted(() => {
-});
+onMounted(() => {});
 
 provide("first_time_at_home", ref(true));
-
 </script>
 
 <template>
-  <SpeedInsights/>
+  <SpeedInsights />
   <NuxtLayout>
-    <NuxtPwaManifest/>
-    <NuxtLoadingIndicator/>
-    <NuxtPage/>
+    <NuxtPwaManifest />
+    <NuxtLoadingIndicator />
+    <NuxtPage />
     <ClientOnly>
       <div
-          v-if="$pwa?.offlineReady || $pwa?.needRefresh"
-          class="fixed z-1 bottom-0 right-0 m-3 p-3 bg-white border border-black rounded-lg shadow-xl text-left"
-          role="alert"
+        v-if="$pwa?.offlineReady || $pwa?.needRefresh"
+        class="fixed z-1 bottom-0 right-0 m-3 p-3 bg-white border border-black rounded-lg shadow-xl text-left"
+        role="alert"
       >
         <div class="font-family1 mb-2">
           <span v-if="$pwa.offlineReady"> App ready to work offline </span>
@@ -55,38 +52,38 @@ provide("first_time_at_home", ref(true));
           </span>
         </div>
         <button
-            v-if="$pwa.needRefresh"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            @click="$pwa.updateServiceWorker()"
+          v-if="$pwa.needRefresh"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          @click="$pwa.updateServiceWorker()"
         >
           Reload
         </button>
         <button
-            class="bg-red-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            @click="$pwa.cancelPrompt()"
+          class="bg-red-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          @click="$pwa.cancelPrompt()"
         >
           Close
         </button>
       </div>
       <div
-          v-if="
+        v-if="
           $pwa?.showInstallPrompt && !$pwa?.offlineReady && !$pwa?.needRefresh
         "
-          class="fixed z-1 bottom-0 right-0 m-3 p-3 bg-white border border-black rounded-lg shadow-xl text-left"
-          role="alert"
+        class="fixed z-1 bottom-0 right-0 m-3 p-3 bg-white border border-black rounded-lg shadow-xl text-left"
+        role="alert"
       >
         <div class="font-family1 mb-2">
           <span> Vill du ladda ner vår app? </span>
         </div>
         <button
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            @click="$pwa.install()"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          @click="$pwa.install()"
         >
           Ladda ner
         </button>
         <button
-            class="bg-red-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            @click="$pwa.cancelInstall()"
+          class="bg-red-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          @click="$pwa.cancelInstall()"
         >
           Stäng
         </button>
