@@ -22,7 +22,7 @@ const items = [
     icon: "i-material-symbols-school",
   },
   {
-    name: "my-courses",
+    name: "my-courses-overview",
     icon: "i-material-symbols-school",
   },
   {

@@ -1,4 +1,4 @@
-<!-- Component for displaying different courses similar to budträning.se -->
+<!-- Template for displaying a course similar to budträning.se on my-course/overview -->
 
 <script setup>
 defineProps({ header: String, course: String });
@@ -7,7 +7,7 @@ defineProps({ header: String, course: String });
 <template>
   <div class="flex flex-col border w-[200px] h-[250px]">
     <div class="w-full flex flex-row justify-center">
-      <span class="text-[22px] text-white font-semibold">{{ header }}</span>
+      <span class="text-[18px] text-white font-semibold">{{ header }}</span>
     </div>
     <div class="w-full h-[2px] bg-dash-dark-400"></div>
     <courses-button text="Fortsätt" :course="course"></courses-button>
