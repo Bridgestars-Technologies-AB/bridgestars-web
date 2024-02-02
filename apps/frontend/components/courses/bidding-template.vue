@@ -1,4 +1,4 @@
-<!-- Component for displaying different bidding practices displayed on my-courses -->
+<!-- Component for displaying different bidding practices displayed on my-courses/bridgeA... -->
 
 <script setup>
 defineProps({ header: String, course: String });
