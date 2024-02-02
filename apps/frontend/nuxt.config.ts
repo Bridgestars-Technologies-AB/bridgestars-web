@@ -14,10 +14,10 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["composables", "composables/stores"],
   },
-  experimental: {
-    //payloadExtraction: true,
-    //watcher: "parcel",
-  },
+  //experimental: {
+    // payloadExtraction: true,
+    // watcher: "parcel",
+  //},
   modules: [
     // "@nuxtjs/i18n",
     "@vite-pwa/nuxt",
