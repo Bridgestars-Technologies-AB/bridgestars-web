@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('bidding_results', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->publicId();
+            $table->nonNullableTimestamps();
+
+            $table->foreignId('bidding_problem_id');
+            $table->foreignId('user_id');
+            // $table->string('bidding', 200);
+            $table->unsignedInteger('failed_attempts');
         });
     }
 

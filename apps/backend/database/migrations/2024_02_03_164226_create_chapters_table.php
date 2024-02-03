@@ -17,8 +17,12 @@ return new class extends Migration
             $table->nonNullableTimestamps();
 
             $table->string('name', 100);
-            $table->integerIncrements('chapter_nbr');
+            $table->unsignedInteger('chapter_nbr');
             $table->boolean('paid');
+
+            $table->foreignId('course_id');
+            $table->boolean('published')->default(false);
+            $table->boolean('randomize')->default(true);
         });
     }
 
