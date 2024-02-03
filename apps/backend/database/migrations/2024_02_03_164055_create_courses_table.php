@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('courses', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id();
             $table->publicId();
             $table->nonNullableTimestamps();
 
             $table->string('name', 100);
             $table->string('description', 200);
-            $table->integerIncrements('course_nbr');
+            $table->unsignedInteger('course_nbr');
             $table->string('color', 11); //255,255,255
+            $table->boolean('published');
         });
     }
 

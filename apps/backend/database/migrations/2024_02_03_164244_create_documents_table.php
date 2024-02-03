@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->publicId();
+            $table->nonNullableTimestamps();
+            $table->foreignId('chapter_id');
         });
     }
 
