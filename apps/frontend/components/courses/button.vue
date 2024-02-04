@@ -5,7 +5,7 @@ defineProps({ text: String, course: String });
 
 <template>
   <button
-    class="w-[80px] h-[20px] border text-[12px] text-white font-semibold"
+    class="w-[80px] h-[20px] rounded-2xl m-1 text-[12px] bg-[#168f7c] text-white font-semibold"
     @click="() => navigateTo({ name: 'dash-' + course })"
   >
     {{ text }}

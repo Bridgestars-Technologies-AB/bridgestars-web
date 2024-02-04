@@ -5,11 +5,24 @@ defineProps({ header: String, course: String });
 </script>
 
 <template>
-  <div class="flex flex-col border w-[125px] h-[150px]">
-    <div class="w-full flex flex-row justify-center">
-      <span class="text-[12px] text-white font-semibold">{{ header }}</span>
+  <div
+    class="flex flex-col justify-between w-[160px] h-[200px] bg-dash-dark-100 rounded-xl"
+  >
+    <div class="flex flex-col space-y-2">
+      <div class="w-full flex flex-row justify-center mt-2">
+        <span class="text-[11px] text-white font-semibold">{{ header }}</span>
+      </div>
+      <div class="w-full h-[2px] bg-dash-dark-400"></div>
     </div>
-    <div class="w-full h-[2px] bg-dash-dark-400"></div>
-    <courses-button text="Fortsätt" :course="course"></courses-button>
+
+    <div class="w-full h-[100px] flex justify-center items-center">
+      <span class="text-[13px] text-white px-3"
+        >Här kommer lite text om detta öppningsbudet, som handlar om något
+        väldigt viktigt...</span
+      >
+    </div>
+    <div class="flex flex-row justify-end w-full">
+      <courses-button text="Fortsätt" :course="course"></courses-button>
+    </div>
   </div>
 </template>

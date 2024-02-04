@@ -7,7 +7,7 @@ import { CourseUtil } from "/composables/useCourseUtil.ts";
 
 <template>
   <div
-    class="flex flex-col bg-dash-dark-100 rounded-xl w-[200px] h-[275px] justify-between"
+    class="flex flex-col bg-dash-dark-100 rounded-xl w-[200px] h-[240px] justify-between"
   >
     <div class="flex flex-col">
       <div class="w-full flex flex-row justify-center">
@@ -16,10 +16,10 @@ import { CourseUtil } from "/composables/useCourseUtil.ts";
       <div class="w-full h-[2px] bg-dash-dark-400"></div>
     </div>
     <div
-      class="flex flex-col items-center justify-center space-y-2 h-[175px] w-full"
+      class="flex flex-col items-center justify-center space-y-2 h-[150px] w-full"
     >
       <courses-completion-bar
-        v-for="item in CourseUtil.bridgeA.slice(0, 4)"
+        v-for="item in CourseUtil.bridgeA.slice(0, 3)"
         :key="item"
         :text="item.header"
       ></courses-completion-bar>
