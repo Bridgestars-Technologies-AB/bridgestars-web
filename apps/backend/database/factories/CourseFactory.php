@@ -20,8 +20,8 @@ class CourseFactory extends Factory
         return [
             'name' => "Bridge " . ++self::$NUMBER_COURSES,
             'course_nbr' => self::$NUMBER_COURSES,
-            'color' => fake()->regexify('#[A-Fa-f0-9]{6}'),
-            'published' => fake()->boolean(0.8),
+            'color' => fake()->regexify('#[a-f0-9]{6}'),
+            'published' => fake()->boolean(90),
             'description' => fake()->text(200),
         ];
     }

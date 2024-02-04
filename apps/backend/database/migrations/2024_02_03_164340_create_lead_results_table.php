@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lead_results', function (Blueprint $table) {
+            $table->id();
             $table->publicId();
             $table->nonNullableTimestamps();
             $table->foreignId('lead_problem_id');

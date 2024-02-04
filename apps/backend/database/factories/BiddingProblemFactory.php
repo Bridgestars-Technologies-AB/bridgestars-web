@@ -19,7 +19,7 @@ class BiddingProblemFactory extends Factory
         return [
             'hands_visible' => 2,
             'presentation' => fake()->sentence(),
-            'solution' => fake()->sentences(2),
+            'solution' => fake()->paragraph(2),
         ];
     }
 }

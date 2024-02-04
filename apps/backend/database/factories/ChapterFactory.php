@@ -23,10 +23,10 @@ class ChapterFactory extends Factory
         return [
             'name' => "Kap " . ++self::$NUMBER_CHAPTERS,
             'chapter_nbr' => self::$NUMBER_CHAPTERS,
-            'course_id' => Course::inRandomOrder()->first()->id,
-            'paid' => fake()->boolean(0.8),
-            'published' => fake()->boolean(0.8),
-            'randomize' => fake()->boolean(0.8),
+            'course_id' => Course::inRandomOrder()->pluck('id')->first(),
+            'paid' => fake()->boolean(80),
+            'published' => fake()->boolean(80),
+            'randomize' => fake()->boolean(80),
         ];
     }
 }

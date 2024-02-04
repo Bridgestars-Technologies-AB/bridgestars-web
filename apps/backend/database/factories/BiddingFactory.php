@@ -18,9 +18,10 @@ class BiddingFactory extends Factory
     public function definition(): array
     {
         return [
+            'bidding_nbr' => fake()->numberBetween(1, 10),
             'bid' => fake()->randomElement(Bids::all()),
-            'presentation' => fake()->sentence(),
-            'solution' => fake()->sentences(2),
+            'explanation' => fake()->sentence(),
+            'suboptimal' => false,
         ];
     }
 }
