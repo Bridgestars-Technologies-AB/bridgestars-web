@@ -17,7 +17,7 @@ class BiddingResultFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'errors' => fake()->numberBetween(0, 10),
         ];
     }
 }
