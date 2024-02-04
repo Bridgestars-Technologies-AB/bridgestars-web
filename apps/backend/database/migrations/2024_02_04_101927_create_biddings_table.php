@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Bids;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,15 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('deals', function (Blueprint $table) {
+        Schema::create('biddings', function (Blueprint $table) {
             $table->id();
             $table->publicId();
             $table->nonNullableTimestamps();
-            $table->string('cards', 100);
 
-            // den som delar ut kort och lägger första budet
-            $table->enum('dealer', ['N', 'E', 'S', 'W']);
-            $table->enum('vul', ['None', 'NS', 'EW', 'Both'])->default('None');
+            $table->foreignId('deal_id');
+            $table->unsignedTinyInteger('bidding_nbr');
+            $table->enum('bid', Bids::all());
+            $table->string('explanation', 255)->nullable();
+            $table->boolean('suboptimal');
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('deals');
+        Schema::dropIfExists('biddings');
     }
 };

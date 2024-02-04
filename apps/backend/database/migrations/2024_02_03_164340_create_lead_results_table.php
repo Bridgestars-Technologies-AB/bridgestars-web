@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lead_results', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->publicId();
+            $table->nonNullableTimestamps();
+            $table->foreignId('lead_problem_id');
+            $table->foreignId('user_id');
+            $table->string('cards', 100);
+            $table->unsignedInteger('errors');
+            $table->foreignId('challenge_id')->nullable();
         });
     }
 

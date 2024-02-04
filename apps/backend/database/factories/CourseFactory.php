@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CourseFactory extends Factory
 {
+    public static int $NUMBER_COURSES = 0;
     /**
      * Define the model's default state.
      *
@@ -17,7 +18,11 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => "Bridge " . ++self::$NUMBER_COURSES,
+            'course_nbr' => self::$NUMBER_COURSES,
+            'color' => fake()->regexify('#[A-Fa-f0-9]{6}'),
+            'published' => fake()->boolean(0.8),
+            'description' => fake()->text(200),
         ];
     }
 }

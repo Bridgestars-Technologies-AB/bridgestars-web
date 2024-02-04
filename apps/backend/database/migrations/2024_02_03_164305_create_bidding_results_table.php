@@ -18,8 +18,9 @@ return new class extends Migration
 
             $table->foreignId('bidding_problem_id');
             $table->foreignId('user_id');
+            $table->foreignId('challenge_id')->nullable();
             // $table->string('bidding', 200);
-            $table->unsignedInteger('failed_attempts');
+            $table->unsignedInteger('errors');
         });
     }
 
