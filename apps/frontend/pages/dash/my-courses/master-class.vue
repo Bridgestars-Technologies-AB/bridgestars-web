@@ -1,15 +1,10 @@
 <script setup>
-const items = [
-  {
-    header: "Olas kluringar",
-    course: "bidding",
-  },
-];
+import { CourseUtil } from "/composables/useCourseUtil.ts";
 </script>
 
 <template>
   <courses-bidding-page
-    :items="items"
+    :items="CourseUtil.masterClass"
     header="Master Class"
   ></courses-bidding-page>
 </template>

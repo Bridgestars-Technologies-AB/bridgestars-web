@@ -1,15 +1,10 @@
 <script setup>
-const items = [
-  {
-    header: "1 NT",
-    course: "bidding",
-  },
-];
+import { CourseUtil } from "/composables/useCourseUtil.ts";
 </script>
 
 <template>
   <courses-bidding-page
-    :items="items"
+    :items="CourseUtil.bridgeBertheau"
     header="BridgeBertheau-NT"
   ></courses-bidding-page>
 </template>

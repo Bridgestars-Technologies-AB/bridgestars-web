@@ -1,30 +1,5 @@
 <script setup>
-const items = [
-  {
-    header: "Bridge A",
-    course: "my-courses-bridgeA",
-  },
-  {
-    header: "Bridge B",
-    course: "my-courses-bridgeB",
-  },
-  {
-    header: "Avancerad",
-    course: "my-courses-advanced",
-  },
-  {
-    header: "Expert",
-    course: "my-courses-expert",
-  },
-  {
-    header: "Master Class",
-    course: "my-courses-master-class",
-  },
-  {
-    header: "BridgeBertheau-NT",
-    course: "my-courses-bridge-bertheau",
-  },
-];
+import { CourseUtil } from "/composables/useCourseUtil.ts";
 </script>
 
 <template>
@@ -34,10 +9,10 @@ const items = [
     <span class="text-3xl text-white font-semibold">Mina kurser</span>
     <div class="grid grid-cols-3 grid-flow-row gap-3">
       <courses-course-template
-        v-for="item in items"
-        :key="item.header"
-        :header="item.header"
-        :course="item.course"
+        v-for="course in CourseUtil.courses"
+        :key="course.header"
+        :header="course.header"
+        :course="course.course"
       ></courses-course-template>
     </div>
   </div>
