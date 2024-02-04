@@ -43,6 +43,11 @@ export default defineNuxtConfig({
     }
   },
   nitro: {
+    routeRules: {
+      "/backend/**": {
+        proxy: "http://localhost/**"
+      }
+    }
     //preset: "vercel-edge",
   },
   routeRules: {

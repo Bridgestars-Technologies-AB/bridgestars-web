@@ -81,6 +81,20 @@ export default function InitAuthFormValidation(form, callback) {
     }
     return valid;
   };
+  const checkName = () => {
+    if (!nameEl) return false;
+    let valid = false;
+    const name = nameEl.value.trim();
+    if (!isRequired(name)) {
+      showError(nameEl, t("auth:error:name.blank"));
+    } else if (!isNameValid(name)) {
+      showError(nameEl, t("auth:error:name.notValid"));
+    } else {
+      showSuccess(nameEl);
+      valid = true;
+    }
+    return valid;
+  };
 
   const checkPasswordSignIn = () => {
     if (!passwordSignInEl) return false;
@@ -142,6 +156,10 @@ export default function InitAuthFormValidation(form, callback) {
     return re.test(email);
   };
 
+  const isNameValid = (name) => {
+    return name.length > 2;
+  }
+
   const isPasswordSecure = (password) => {
     const re = new RegExp("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/");
     return re.test(password);
@@ -195,6 +213,7 @@ export default function InitAuthFormValidation(form, callback) {
       isPasswordSignInValid = checkPasswordSignIn(),
       isUsernameValid = checkUsername(),
       isEmailValid = checkEmail(),
+      isNameValid = checkName(),
       isPasswordValid = checkPassword(),
       isConfirmPasswordValid = checkConfirmPassword(),
       isTermsChecked = checkTerms();
@@ -202,6 +221,7 @@ export default function InitAuthFormValidation(form, callback) {
     let isSignUpValid =
       isUsernameValid &&
       isEmailValid &&
+      isNameValid &&
       isPasswordValid &&
       isConfirmPasswordValid &&
       isTermsChecked &&
