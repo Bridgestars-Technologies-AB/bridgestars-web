@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Enums\Bids;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BiddingProblem>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Bidding>
  */
-class BiddingProblemFactory extends Factory
+class BiddingFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +18,7 @@ class BiddingProblemFactory extends Factory
     public function definition(): array
     {
         return [
-            'hands_visible' => 2,
+            'bid' => fake()->randomElement(Bids::all()),
             'presentation' => fake()->sentence(),
             'solution' => fake()->sentences(2),
         ];

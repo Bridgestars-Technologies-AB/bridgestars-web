@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->unsignedInteger('hands_visible' );
             $table->string('presentation', 255);
-            $table->string('solution', 500);
+            $table->json('solution', 500);
         });
     }
 
