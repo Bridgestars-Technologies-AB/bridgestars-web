@@ -6,19 +6,36 @@ await loadTranslations("auth");
 
 const auth = useAuth();
 
-function submit(res: { usernameEmail: string; password: string }) {
+async function submit(res: { email: string; password: string }) {
   showLoading.value = true;
-  auth
-    .signIn(res.usernameEmail, res.password)
-    .then(() => {
-      toast.success("Du har loggats in"); //TODO: translate this
-      if (query.to) navigateTo({ path: query.to });
-      else navigateTo({ path: "/dash" });
+  await useFetch("/backend/sanctum/csrf-cookie", {
+    credentials: "include"
+  });
+  const {data, error} = await useFetch("/backend/login", {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      accept: "application/json",
+      "x-xsrf-token": useCookie("XSRF-TOKEN")
+    },
+    body: JSON.stringify({
+      email: res.email,
+      password: res.password
     })
-    .catch((e) => {
-      showLoading.value = false;
-      toast.error(e.message);
-    });
+  });
+
+  if (error) {
+    showLoading.value = false;
+    console.log(error.value?.data.message)
+    toast.error(error.value?.data.message);
+    return;
+  }
+
+  if (data) {
+    toast.success("Du har loggats in");
+    if (query.to) navigateTo({ path: query.to as string });
+    else navigateTo({ path: "/dash" });
+  }
 }
 </script>
 
@@ -30,15 +47,15 @@ function submit(res: { usernameEmail: string; password: string }) {
     @submit="submit"
   >
     <base-input-field
-      id="username-email"
+      id="email"
       v-model="query.email"
       wrapperClass="w-[100%]"
-      :placeholder="$t('auth:placeholder.usernameEmail')"
+      placeholder="Email"
     />
     <base-input-field
       id="password-signin"
       wrapperClass="w-[100%]"
-      :placeholder="$t('auth:placeholder.password')"
+      placeholder="Lösenord"
       type="password"
     />
 
