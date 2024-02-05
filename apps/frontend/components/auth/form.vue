@@ -65,7 +65,7 @@ onMounted(() => {
       <NuxtImg
         alt="background"
         src="/bridgestars/art/auth-form-ipad.svg"
-        class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1300px] min-w-[1200px]"
+        class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1300px] min-w-[1300px]"
       />
     </div>
     <!-- form -->
