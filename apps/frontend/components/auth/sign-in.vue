@@ -24,14 +24,14 @@ async function submit(res: { email: string; password: string }) {
     })
   });
 
-  if (error) {
+  if (error.value) {
     showLoading.value = false;
     console.log(error.value?.data.message)
     toast.error(error.value?.data.message);
     return;
   }
 
-  if (data) {
+  if (data.value) {
     toast.success("Du har loggats in");
     if (query.to) navigateTo({ path: query.to as string });
     else navigateTo({ path: "/dash" });

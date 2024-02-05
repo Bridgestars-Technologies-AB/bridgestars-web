@@ -13,6 +13,7 @@ export default function InitAuthFormValidation(form, callback) {
   const passwordSignInEl = form.querySelector("#password-signin");
   const passwordConfirmEl = form.querySelector("#password-confirm");
   const termsEl = form.querySelector("#terms-accept");
+  const nameEl = form.querySelector("#name");
   let errorElement = null;
   let hasSubmitted = false;
   //
@@ -86,9 +87,9 @@ export default function InitAuthFormValidation(form, callback) {
     let valid = false;
     const name = nameEl.value.trim();
     if (!isRequired(name)) {
-      showError(nameEl, t("auth:error:name.blank"));
+      showError(nameEl, "Glöm inte fylla i ditt namn");
     } else if (!isNameValid(name)) {
-      showError(nameEl, t("auth:error:name.notValid"));
+      showError(nameEl, "Fyll i hela ditt namn");
     } else {
       showSuccess(nameEl);
       valid = true;
@@ -158,7 +159,7 @@ export default function InitAuthFormValidation(form, callback) {
 
   const isNameValid = (name) => {
     return name.length > 2;
-  }
+  };
 
   const isPasswordSecure = (password) => {
     const re = new RegExp("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/");
@@ -218,8 +219,7 @@ export default function InitAuthFormValidation(form, callback) {
       isConfirmPasswordValid = checkConfirmPassword(),
       isTermsChecked = checkTerms();
 
-    let isSignUpValid =
-      isUsernameValid &&
+    let isSignUpValid = isUsernameValid &&
       isEmailValid &&
       isNameValid &&
       isPasswordValid &&
@@ -228,18 +228,18 @@ export default function InitAuthFormValidation(form, callback) {
       !usernameEmailEl &&
       !passwordSignInEl;
 
-    let isSignInValid =
-      isUsernameEmailValid &&
+    let isSignInValid = isUsernameEmailValid &&
       isPasswordSignInValid &&
       !emailEl &&
       !passwordConfirmEl &&
+      !nameEl &&
       !usernameEl;
 
-    let isResetValid =
-      isEmailValid &&
+    let isResetValid = isEmailValid &&
       !passwordEl &&
       !passwordConfirmEl &&
       !usernameEl &&
+      !nameEl &&
       !usernameEmailEl;
 
     let isFormValid = isSignUpValid || isSignInValid || isResetValid;
@@ -254,6 +254,7 @@ export default function InitAuthFormValidation(form, callback) {
       callback({
         username: usernameEl.value,
         email: emailEl.value,
+        name: nameEl.value,
         password: passwordEl.value,
         confirmPassword: passwordConfirmEl.value,
       });
@@ -286,6 +287,7 @@ export default function InitAuthFormValidation(form, callback) {
     checkPassword();
     checkConfirmPassword();
     checkTerms();
+    checkName();
   }
 
   form.addEventListener(
@@ -295,6 +297,9 @@ export default function InitAuthFormValidation(form, callback) {
       switch (e.target.id) {
         case "username":
           checkUsername();
+          break;
+        case "name":
+          checkName();
           break;
         case "email":
           checkEmail();

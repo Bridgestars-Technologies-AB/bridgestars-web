@@ -11,7 +11,7 @@ async function submit(res) {
   await useFetch("/backend/sanctum/csrf-cookie", {
     credentials: "include"
   });
-  const {data, error} = await useFetch("/backend/register", {
+  const {error, status} = await useFetch("/backend/register", {
     method: "POST",
     credentials: "include",
     headers: {
@@ -19,18 +19,20 @@ async function submit(res) {
       "x-xsrf-token": useCookie("XSRF-TOKEN")
     },
     body: JSON.stringify({
+      username: res.username,
       email: res.email,
-      password: res.password
+      password: res.password,
+      password_confirmation: res.password, // :S
+      name: res.name,
     })
   });
-
-  if (error) {
+  if (error.value) {
     showLoading.value = false;
     toast.error(error.value?.data.message);
     return;
   }
 
-  if (data) {
+  if (status.value) {
     toast.success("Du har loggats in");
     if (query.to) navigateTo({ path: query.to as string });
     else navigateTo({ path: "/dash" });
@@ -126,7 +128,7 @@ async function submit(res) {
     ></base-submit-button>
 
     <div class="flex text-center">
-      <div class="!mt-1 xs:!mb-3">
+      <div class="xs:!mb-3">
         <span class="text2 mr-1">{{ $t("auth:signUp.footer") }} </span>
         <button
           class="normal-case text-blue font-bold tracking-[0.5px]"

@@ -6,7 +6,8 @@ export default defineNuxtRouteMiddleware((to) => {
   for (const route of authRoutes) {
     // console.log(from.path, to.path)
     if (to.path.startsWith(route)) {
-      if (!useAuth().authenticated) {
+      //if (!useAuth().authenticated) {
+      if (false) {
         return {
           path: "/auth/sign-in",
           query: {

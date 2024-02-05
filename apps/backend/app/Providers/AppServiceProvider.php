@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Model::shouldBeStrict();
+        Model::unguard();
         Date::use(CarbonImmutable::class);
 
 /*        Relation::enforceMorphMap([
