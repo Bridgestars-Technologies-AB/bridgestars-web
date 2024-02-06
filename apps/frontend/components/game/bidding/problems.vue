@@ -79,12 +79,12 @@ const biddingBox =
 </template>
 
 <style scoped>
-/* Size for the bidding-container used in bidding-practice  h-full w-[24%];*/
+/* Size for the bidding-container used in bidding-problems  h-full w-[24%];*/
 /* .biddingContainer { */
 /*   @apply w-[80%] h-[10%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]; */
 /* } */
 
-/* Size for all bidding-components used in bidding-practice */
+/* Size for all bidding-components used in bidding-problems */
 /* .biddingComponent { */
 /*   @apply w-full lg:w-full lg:h-[70%]; */
 /* } */

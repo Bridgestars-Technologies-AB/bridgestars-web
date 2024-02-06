@@ -18,7 +18,7 @@ const items = [
     icon: "i-material-symbols-school",
   },
   {
-    name: "bidding",
+    name: "bidding-problems",
     icon: "i-material-symbols-sports-esports",
   },
   {

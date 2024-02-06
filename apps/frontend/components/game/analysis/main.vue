@@ -1,8 +1,8 @@
 <script setup lang="ts">
 /*
-This component displays the analysis from bidding-practice.
+This component displays the analysis from bidding-problems.
 Props:
-  history: List of {suit, rank}, comes from bidding-box in bidding-practice
+  history: List of {suit, rank}, comes from bidding-box in bidding-problems
   correct bid: {suit, rank}, the correct bid in the scenario
   biddingAnswer: String, the answer to why the correct bid is correct
   biddinghands: List of {suit, rank}, the hands of the players

@@ -3,8 +3,8 @@ import { CourseUtil } from "/composables/useCourseUtil.ts";
 </script>
 
 <template>
-  <courses-bidding-page
+  <courses-chapter-page
     :items="CourseUtil.masterClass"
     header="Master Class"
-  ></courses-bidding-page>
+  ></courses-chapter-page>
 </template>
