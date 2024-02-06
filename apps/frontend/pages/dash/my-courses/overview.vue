@@ -14,7 +14,7 @@ import { CourseUtil } from "/composables/useCourseUtil.ts";
         v-for="course in CourseUtil.courses"
         :key="course.header"
         :header="course.header"
-        :course="course.course"
+        :url="course.url"
       ></courses-course-template>
     </div>
   </div>
