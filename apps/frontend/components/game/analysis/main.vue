@@ -44,7 +44,7 @@ function getJustify(e: Number) {
         <div
           class="rounded-xl bg-dark-200 mx-[10px] flex items-center justify-center"
         >
-          <span class="header px-[6px] py-[2px]">Nästa giv > </span>
+          <button class="header px-[6px] py-[2px]">Nästa giv</button>
         </div>
       </div>
 

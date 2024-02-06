@@ -23,7 +23,10 @@ defineProps({ header: String, url: String });
       >
     </div>
     <div class="flex flex-row justify-end w-full">
-      <courses-button text="Fortsätt" :url="url"></courses-button>
+      <courses-button
+        text="Fortsätt"
+        :url="url + '-opening-bid-1nt'"
+      ></courses-button>
     </div>
   </div>
 </template>

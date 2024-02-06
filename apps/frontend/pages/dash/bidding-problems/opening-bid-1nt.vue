@@ -9,9 +9,13 @@ const solution = ref({
   rank: 2,
 });
 
+// used as v-model to be able to see the latest bid made
 const suit = ref(0);
 const rank = ref(0);
+const deal = ref(1);
+// used to check if the bid is correct
 const pass = ref(false);
+// used to check if a bid is made
 const isBidMade = ref(false);
 
 function check() {
@@ -35,9 +39,18 @@ const history = ref([
 </script>
 
 <template>
-  <div class="w-full h-full flex justify-center items-center">
+  <div
+    v-if="!pass"
+    class="w-full h-full flex flex-col justify-center items-center"
+  >
+    <div
+      class="w-[500px] h-[50px] mb-1 bg-dark-100 rounded-xl flex justify-center items-center"
+    >
+      <span class="text-[30px] text-dark dark:text-white"
+        >Giv {{ deal }} av 10</span
+      >
+    </div>
     <game-bidding-problem
-      v-if="!pass"
       v-model:suit="suit"
       v-model:rank="rank"
       :bidMade="{ suit: suit, rank: rank }"
@@ -46,12 +59,12 @@ const history = ref([
       :history="history"
       @check="check"
     ></game-bidding-problem>
+  </div>
+  <div v-else class="w-full h-full flex justify-center items-center">
     <game-analysis-main
-      v-else
       :biddingResult="history"
       :solution="solution"
       :biddingAnswer="biddingAnswer"
     ></game-analysis-main>
-    <!-- <game-analysis-main></game-analysis-main> -->
   </div>
 </template>
