@@ -1,118 +1,118 @@
 namespace CourseUtil {
-  export const courses: { header: string; course: string }[] = [
+  export const courses: { header: string; url: string }[] = [
     {
       header: "Bridge A",
-      course: "my-courses-bridgeA",
+      url: "my-courses-bridgeA",
     },
     {
       header: "Bridge B",
-      course: "my-courses-bridgeB",
+      url: "my-courses-bridgeB",
     },
     {
       header: "Avancerad",
-      course: "my-courses-advanced",
+      url: "my-courses-advanced",
     },
     {
       header: "Expert",
-      course: "my-courses-expert",
+      url: "my-courses-expert",
     },
     {
       header: "Master Class",
-      course: "my-courses-master-class",
+      url: "my-courses-master-class",
     },
     {
       header: "BridgeBertheau-NT",
-      course: "my-courses-bridge-bertheau",
+      url: "my-courses-bridge-bertheau",
     },
   ];
 
   export const bridgeA = [
     {
       header: "Öppningsbudet 1 NT",
-      course: "bidding",
+      url: "bidding-problems",
     },
     {
       header: "Öppningsbudet 1 i färg",
-      course: "bidding",
+      url: "bidding-problems",
     },
     {
       header: "Öppningsbudet 2 NT",
-      course: "bidding",
+      url: "bidding-problems",
     },
     {
       header: "SH:s 1:a bud och ÖH:s 2:a bud",
-      course: "bidding",
+      url: "bidding-problems",
     },
     {
       header: "2-över 1 och HANDTYP",
-      course: "bidding",
+      url: "bidding-problems",
     },
     {
       header: "Inkliv",
-      course: "bidding",
+      url: "bidding-problems",
     },
     {
       header: "Sammanfattning",
-      course: "bidding",
+      url: "bidding-problems",
     },
   ];
 
   export const bridgeB = [
     {
       header: "Svarshanden 2:a bud",
-      course: "bidding",
+      url: "bidding-problems",
     },
     {
       header: "Trumfstöd, Stenberg oh Essfråga",
-      course: "bidding",
+      url: "bidding-problems",
     },
     {
       header: "Upplysningsdubbling",
-      course: "bidding",
+      url: "bidding-problems",
     },
   ];
 
   export const advanced = [
     {
       header: "2 Klöver",
-      course: "bidding",
+      url: "bidding-problems",
     },
     {
       header: "Fjärde färg",
-      course: "bidding",
+      url: "bidding-problems",
     },
     {
       header: "Hand typ, Hand typ, Hand typ",
-      course: "bidding",
+      url: "bidding-problems",
     },
   ];
 
   export const expert = [
     {
       header: "2 över 1",
-      course: "bidding",
+      url: "bidding-problems",
     },
     {
       header: "SKROT",
-      course: "bidding",
+      url: "bidding-problems",
     },
     {
       header: "Spärrbud på 2-läget",
-      course: "bidding",
+      url: "bidding-problems",
     },
   ];
 
   export const masterClass = [
     {
       header: "Olas kluringar",
-      course: "bidding",
+      url: "bidding-problems",
     },
   ];
 
   export const bridgeBertheau = [
     {
       header: "1 NT",
-      course: "bidding",
+      url: "bidding-problems",
     },
   ];
 }

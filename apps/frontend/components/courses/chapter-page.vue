@@ -25,7 +25,7 @@ defineProps({
           v-for="item in items"
           :key="item.header"
           :header="item.header"
-          :course="item.course"
+          :url="item.url"
         ></courses-chapter-template>
       </div>
     </div>

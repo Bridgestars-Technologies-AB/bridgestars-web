@@ -1,7 +1,7 @@
 <!-- Component for displaying different bidding practices displayed on my-courses/bridgeA... -->
 
 <script setup>
-defineProps({ header: String, course: String });
+defineProps({ header: String, url: String });
 </script>
 
 <template>
@@ -23,7 +23,7 @@ defineProps({ header: String, course: String });
       >
     </div>
     <div class="flex flex-row justify-end w-full">
-      <courses-button text="Fortsätt" :course="course"></courses-button>
+      <courses-button text="Fortsätt" :url="url"></courses-button>
     </div>
   </div>
 </template>
