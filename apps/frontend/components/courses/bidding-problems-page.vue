@@ -21,12 +21,12 @@ defineProps({
             : 'flex flex-row space-x-3'
         "
       >
-        <courses-chapter-template
+        <courses-bidding-problems-template
           v-for="item in items"
           :key="item.header"
           :header="item.header"
           :url="item.url"
-        ></courses-chapter-template>
+        ></courses-bidding-problems-template>
       </div>
     </div>
   </div>

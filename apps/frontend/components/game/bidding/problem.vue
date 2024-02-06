@@ -4,6 +4,10 @@
 // initialize components based on data attribute selectors
 onMounted(() => {});
 
+defineProps({
+  presentationText: String,
+});
+
 const suit = ref(0);
 const rank = ref(0);
 const history = ref([]);
@@ -22,9 +26,7 @@ const biddingBox =
       :showImage="true"
       class="flex flex-col bg-dark-100 xs:w-[100%] sm:w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
     >
-      <game-bidding-text
-        text="Vad bjuder du som svarshand när din partner har öppnat med 1 NT?"
-      ></game-bidding-text>
+      <game-bidding-text :text="presentationText"></game-bidding-text>
     </game-bidding-container>
 
     <game-bidding-container

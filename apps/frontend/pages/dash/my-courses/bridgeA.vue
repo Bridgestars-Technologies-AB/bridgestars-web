@@ -3,8 +3,8 @@ import { CourseUtil } from "/composables/useCourseUtil.ts";
 </script>
 
 <template>
-  <courses-chapter-page
+  <courses-bidding-problems-page
     :items="CourseUtil.bridgeA"
     header="Bridge A"
-  ></courses-chapter-page>
+  ></courses-bidding-problems-page>
 </template>

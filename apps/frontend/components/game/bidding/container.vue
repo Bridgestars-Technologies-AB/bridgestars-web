@@ -18,7 +18,7 @@ defineProps({ header: String, showImage: Boolean });
       }`"
     >
       <div class="w-[100%] h-[100%] ml-[25px]">
-        <NuxtImg
+        <img
           alt="owl"
           src="/bridgestars/game/owls/owl-1.png"
           class="scale-[1]"

@@ -1,5 +1,6 @@
+<script setup></script>
 <template>
-  <div class="flex items-center justify-center">
-    <game-bidding-problems> </game-bidding-problems>
+  <div>
+    <NuxtPage />
   </div>
 </template>
