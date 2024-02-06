@@ -35,7 +35,7 @@ const isOpen = ref(false);
 
 const bgColor = props.transparent ? "bg-[#FFFFFF00]" : "bg-white";
 const textColor = props.transparent ? "!text-white" : "!text-dark";
-const menuIconColor = props.transparent ? "bg-white" : "bg-dark";
+const menuIconColor = props.transparent ? "bg-white" : "bg-color-dark";
 const iconColor = props.transparent ? "#FFFFFF" : "rgb(120,120,120)";
 
 //runs on both client and server

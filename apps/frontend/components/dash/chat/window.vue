@@ -90,16 +90,14 @@ const isMe = (m) => m.sender == auth.user?.id;
 <template>
   <div class="flex flex-col h-[500px] w-[350px] rounded-xl overflow-clip">
     <!-- Top bar , image and name  -->
-    <div
-      class="flex items-center px-3 h-[70px] bg-dash-light-500 dark:bg-dash-dark-300"
-    >
+    <div class="flex items-center px-3 h-[70px] bg-light-500 dark:bg-dark-300">
       <dash-chat-avatar :chat="chat" />
       <h4 class="flex-1 ml-2 text-[22px] dark:text-light text-dark">
         {{ chat.name }}
       </h4>
       <button @click="$emit('close')">
         <span
-          class="i-ic-round-close bg-dash-dark-500 dark:bg-dash-light-300 h-[35px] w-[35px] rounded-full"
+          class="i-ic-round-close bg-dark-500 dark:bg-light-300 h-[35px] w-[35px] rounded-full"
         />
       </button>
     </div>
@@ -108,7 +106,7 @@ const isMe = (m) => m.sender == auth.user?.id;
       <!-- messages field -->
       <div
         ref="scroller"
-        class="flex-1 overflow-y-auto dark:bg-dash-dark-400 bg-dash-light-300 pb-2"
+        class="flex-1 overflow-y-auto dark:bg-dark-400 bg-light-300 pb-2"
       >
         <!-- flex-1 expands this field to fill all remaining space of flexbox -->
         <div v-for="m in chat.messages" :key="m.id" class="w-full px-1 mt-2">
@@ -118,14 +116,14 @@ const isMe = (m) => m.sender == auth.user?.id;
               class="flex justify-between items-center text-xs text-dash-light-500 dark:text-dash-dark-300 my-4"
             >
               <div
-                class="w-[60px] h-[1px] mx-auto bg-dash-dark-500 opacity-[50%] dark:bg-dash-light-300"
+                class="w-[60px] h-[1px] mx-auto bg-dark-500 opacity-[50%] dark:bg-light-300"
               ></div>
               <span
                 class="mx-2 text2 text-[14px] leading-[14px] text-dark dark:text-light"
                 >{{ useTimeAgo().format(m.createdAt) }}</span
               >
               <div
-                class="w-[60px] h-[1px] mx-auto bg-dash-dark-500 opacity-[50%] dark:bg-dash-light-300"
+                class="w-[60px] h-[1px] mx-auto bg-dark-500 opacity-[50%] dark:bg-light-300"
               />
             </div>
           </div>
@@ -159,21 +157,21 @@ const isMe = (m) => m.sender == auth.user?.id;
         <!-- Date divider, Add a date divider after the last message "today" -->
         <!-- <div v-if="isNewDate(new Date())"> -->
         <!--   <div class="flex justify-between items-center text-xs text-dash-light-500 dark:text-dash-dark-300 my-4"> -->
-        <!--     <div class="w-[60px] h-[1px] mx-auto bg-dash-dark-500 opacity-[50%] dark:bg-dash-light-300"></div> -->
+        <!--     <div class="w-[60px] h-[1px] mx-auto bg-dark-500 opacity-[50%] dark:bg-light-300"></div> -->
         <!--     <span class="mx-2 text2 text-[14px] leading-[14px] text-dark dark:text-light">{{new Date().toLocaleDateString('sv-SE', { -->
         <!--       weekday: 'long', -->
         <!--       })}}</span> -->
-        <!--     <div class="w-[60px] h-[1px] mx-auto bg-dash-dark-500 opacity-[50%] dark:bg-dash-light-300"/> -->
+        <!--     <div class="w-[60px] h-[1px] mx-auto bg-dark-500 opacity-[50%] dark:bg-light-300"/> -->
         <!--   </div> -->
         <!-- </div> -->
       </div>
       <!-- input field and send button -->
       <div
-        :class="`flex justify-between items-center p-2 bg-dash-light-500 dark:bg-dash-dark-300`"
+        :class="`flex justify-between items-center p-2 bg-light-500 dark:bg-dark-300`"
       >
         <textarea
           ref="textarea"
-          class="flex-grow rounded-[20px] dark:bg-dash-dark-400 bg-dash-light-400 mr-2 px-3 py-1.5 h-[40px] text-[22px] no-scrollbar leading-[22px] dark:text-light text-dark"
+          class="flex-grow rounded-[20px] dark:bg-dark-400 bg-light-400 mr-2 px-3 py-1.5 h-[40px] text-[22px] no-scrollbar leading-[22px] dark:text-light text-dark"
           placeholder="Aa"
           @keyup="calculateInputFieldSize"
         />
@@ -182,7 +180,7 @@ const isMe = (m) => m.sender == auth.user?.id;
           @click="sendMessage"
         >
           <span
-            class="i-material-symbols-send-rounded bg-dash-light-500 translate-x-[2px] h-full w-full"
+            class="i-material-symbols-send-rounded bg-light-500 translate-x-[2px] h-full w-full"
           />
         </button>
       </div>

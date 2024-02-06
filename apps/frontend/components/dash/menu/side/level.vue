@@ -25,7 +25,7 @@ onMounted(() => {
     <span class="dark:text-white text-dark text-[14px] font-bold"
       >Lv.{{ levelFloored }}</span
     >
-    <div class="grow bg-dash-dark-300 h-[10px] rounded-full">
+    <div class="grow bg-dark-300 h-[10px] rounded-full">
       <div
         ref="bar"
         class="bg-dash-accent h-full rounded-full transition-[width] w-0"

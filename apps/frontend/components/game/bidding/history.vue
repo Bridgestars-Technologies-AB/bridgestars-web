@@ -34,7 +34,7 @@ const players = ["V", "N", "Ö", "S"];
         </div>
       </div>
     </div>
-    <div class="w-[100%] h-[2px] bg-dash-dark-400 mb-[7px]"></div>
+    <div class="w-[100%] h-[2px] bg-dark-400 mb-[7px]"></div>
     <div class="flex flex-row justify-center w-full">
       <div class="flex flex-row flex-wrap w-[97%]">
         <game-bidding-block
@@ -53,6 +53,6 @@ const players = ["V", "N", "Ö", "S"];
 
 <style scoped>
 .biddingBox {
-  @apply w-[50px] h-[30px] bg-dash-dark-200 hover:bg-transparent  sm:w-[55px] sm:h-[30px] md:w-[65px] md:h-[25px] lg:w-[40px] lg:h-[30px];
+  @apply w-[50px] h-[30px] bg-dark-200 hover:bg-transparent  sm:w-[55px] sm:h-[30px] md:w-[65px] md:h-[25px] lg:w-[40px] lg:h-[30px];
 }
 </style>

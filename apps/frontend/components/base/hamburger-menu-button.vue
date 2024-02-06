@@ -14,7 +14,11 @@ const props = defineProps({
     :class="props.class + ' ' + (isOpen ? 'open' : '')"
     @click="$emit('click')"
   >
-    <span v-for="i in 4" :key="i" :class="props.innerClass || 'bg-dark'" />
+    <span
+      v-for="i in 4"
+      :key="i"
+      :class="props.innerClass || 'bg-color-dark'"
+    />
   </div>
 </template>
 

@@ -4,7 +4,7 @@ import flowbite from "flowbite/plugin";
 import typography from "@tailwindcss/typography";
 
 const backgroundColors = {
-  dark: "#344767",
+  "color-dark": "#344767",
   primary: "#f74040", //röd
   secondary: "#2e294e", //lila
   info: "#2590ee", //"#49a3f1", //blå
@@ -12,9 +12,9 @@ const backgroundColors = {
   warning: "#fb8c00", //orange
   error: "#F44335", //röd
   white: "#fefefe",
-  light: "#dddddd",
+  "color-light": "#dddddd",
   DEFAULT: "#f74040",
-  "dash-dark": {
+  dark: {
     100: "#1a1625",
     200: "#2f2b3a",
     300: "#46424f",
@@ -23,7 +23,7 @@ const backgroundColors = {
     600: "#908d96",
     DEFAULT: "#908d96",
   },
-  "dash-light": {
+  light: {
     100: "#9e9e9e",
     200: "#bdbdbd",
     300: "#e0e0e0",
@@ -180,7 +180,7 @@ module.exports = {
   ],
   // purge: {
   //   options: {
-  //     blocklist: ["true", "false", /^debug-/], //prune 'true' and 'false' classes so that we can use ${open && 'bg-dark'} without polluting classList
+  //     blocklist: ["true", "false", /^debug-/], //prune 'true' and 'false' classes so that we can use ${open && 'bg-color-dark'} without polluting classList
   //   },
   // },
 };

@@ -6,13 +6,13 @@ defineProps({ header: String, course: String });
 
 <template>
   <div
-    class="flex flex-col justify-between w-[160px] h-[200px] bg-dash-dark-100 rounded-xl"
+    class="flex flex-col justify-between w-[160px] h-[200px] bg-dark-100 rounded-xl"
   >
     <div class="flex flex-col space-y-2">
       <div class="w-full flex flex-row justify-center mt-2">
         <span class="text-[11px] text-white font-semibold">{{ header }}</span>
       </div>
-      <div class="w-full h-[2px] bg-dash-dark-400"></div>
+      <div class="w-full h-[2px] bg-dark-400"></div>
     </div>
 
     <div class="w-full h-[100px] flex justify-center items-center">

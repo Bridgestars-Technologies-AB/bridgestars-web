@@ -90,7 +90,7 @@ function click(item) {
   >
     <div
       id="side-menu"
-      :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col ${
+      :class="`bg-light-300 dark:bg-dark-100 flex flex-col ${
         isOpen ? 'open' : 'closed'
       } ${$attrs.class} min-h-full pb-[200px]`"
     >

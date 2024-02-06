@@ -4,7 +4,7 @@ const common =
 const colored = (b) =>
   b
     ? common + "bg-dash-accent dark:bg-dash-accent"
-    : common + "bg-dark dark:bg-light";
+    : common + "bg-color-dark dark:bg-color-light";
 
 const notificationsOpen = ref(false);
 const hasUnreadNotifications = ref(true);
@@ -75,7 +75,7 @@ function formatTime(time) {
         class="fixed translate-x-[18px] -translate-y-[12px]"
       >
         <span
-          class="absolute animate-ping rounded-full bg-dark opacity-75 h-[10px] w-[10px]"
+          class="absolute animate-ping rounded-full bg-color-dark opacity-75 h-[10px] w-[10px]"
         ></span>
         <span class="absolute rounded-full h-[10px] w-[10px] bg-info"></span>
       </div>
@@ -86,7 +86,7 @@ function formatTime(time) {
     ref="popoverEl"
     data-popover
     role="tooltip"
-    class="fixed z-10 invisible inline-block w-64 text-sm transition-opacity duration-300 rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500"
+    class="fixed z-10 invisible inline-block w-64 text-sm transition-opacity duration-300 rounded-lg shadow-sm dark:bg-dark-300 bg-light-500"
   >
     <div
       class="px-3 py-2 border-b border-dark dark:border-white border-opacity-40 rounded-t-lg"

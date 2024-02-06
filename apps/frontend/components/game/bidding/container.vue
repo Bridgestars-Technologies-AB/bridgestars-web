@@ -28,7 +28,7 @@ defineProps({ header: String, showImage: Boolean });
 
     <div
       v-if="!showImage"
-      class="w-[90%] h-[2px] bg-dash-dark-400 self-center"
+      class="w-[90%] h-[2px] bg-dark-400 self-center"
     ></div>
     <div
       class="w-full h-[80%] mt-[10px] lg:flex lg:flex-col lg:w-full lg:h-full lg:justify-center"

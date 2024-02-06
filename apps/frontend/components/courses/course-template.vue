@@ -7,13 +7,13 @@ import { CourseUtil } from "/composables/useCourseUtil.ts";
 
 <template>
   <div
-    class="flex flex-col bg-dash-dark-100 rounded-xl w-[200px] h-[240px] justify-between"
+    class="flex flex-col bg-dark-100 rounded-xl w-[200px] h-[240px] justify-between"
   >
     <div class="flex flex-col">
       <div class="w-full flex flex-row justify-center">
         <span class="text-[18px] text-white font-semibold">{{ header }}</span>
       </div>
-      <div class="w-full h-[2px] bg-dash-dark-400"></div>
+      <div class="w-full h-[2px] bg-dark-400"></div>
     </div>
     <div
       class="flex flex-col items-center justify-center space-y-2 h-[150px] w-full"
