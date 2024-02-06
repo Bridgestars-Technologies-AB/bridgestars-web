@@ -7,11 +7,17 @@ It is supposed to be used when there is not a bid for a certain player -->
 onMounted(() => {});
 
 defineProps({
-  text: String,
+  biddingError: String,
+  presentationText: String,
+  bidMade: {
+    type: Object,
+    default: () => ({ suit: 0, rank: 0 }),
+  },
   history: {
     type: Array,
   },
   pass: Boolean,
+  isBidMade: Boolean,
 });
 
 const emit = defineEmits(["check", "update:suit", "update:rank"]);
@@ -43,9 +49,28 @@ const biddingBox =
       class="xs:w-[100%] sm:w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
     >
       <div class="w-full h-full flex flex-row justify-start">
+        <div class="flex flex-col" v-if="isBidMade">
+          <div class="flex flex-row space-x-4">
+            <span class="text3 text-dark dark:text-white sm:text-[15px] m-3"
+              >Du bjöd</span
+            >
+            <game-bidding-block
+              :card="{ suit: bidMade.suit, rank: bidMade.rank }"
+            ></game-bidding-block>
+          </div>
+
+          <span
+            class="text3 text-dark dark:text-white sm:text-[15px] ml-[12px]"
+          >
+            Tyvärr var det inte riktigt det budet vi tänkt oss... Försök igen!
+          </span>
+        </div>
+
         <span
+          v-else
           class="text3 text-dark dark:text-white sm:text-[20px] ml-[12px]"
-          >{{ text }}</span
+        >
+          {{ presentationText }}</span
         >
       </div>
     </game-bidding-container>

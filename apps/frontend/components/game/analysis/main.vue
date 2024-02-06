@@ -153,7 +153,7 @@ function getJustify(e: Number) {
               :key="e"
               :class="`flex flex-col h-full ${getJustify(e)}`"
             >
-              <NuxtImg
+              <img
                 src="/bridgestars/game/star.png"
                 alt="star"
                 class="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px]"

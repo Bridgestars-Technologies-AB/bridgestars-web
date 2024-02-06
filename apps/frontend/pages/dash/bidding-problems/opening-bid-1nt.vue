@@ -2,10 +2,8 @@
 //Mock data, will be fetched from DB table bidding-problems and bidding-result
 const presentationText =
   "Vad bjuder du som svarshand när din partner har öppnat med 1 NT?";
-const biddingError = `Fel bud, försök igen!`;
 const biddingAnswer =
   "Nord had 17hp och en jämn hand. Därför öppnar nord med 1NT som visar 15-17 hp och jämn hand. Syd fortsätter med 3NT som visar slutbud 10-15 hp.";
-
 const solution = ref({
   suit: 4,
   rank: 2,
@@ -13,9 +11,11 @@ const solution = ref({
 
 const suit = ref(0);
 const rank = ref(0);
-const pass = ref(0);
+const pass = ref(false);
+const isBidMade = ref(false);
 
 function check() {
+  isBidMade.value = true;
   if (
     suit.value === solution.value.suit &&
     rank.value === solution.value.rank
@@ -40,7 +40,9 @@ const history = ref([
       v-if="!pass"
       v-model:suit="suit"
       v-model:rank="rank"
-      :text="pass || pass === 0 ? presentationText : biddingError"
+      :bidMade="{ suit: suit, rank: rank }"
+      :presentationText="presentationText"
+      :isBidMade="isBidMade"
       :history="history"
       @check="check"
     ></game-bidding-problem>
