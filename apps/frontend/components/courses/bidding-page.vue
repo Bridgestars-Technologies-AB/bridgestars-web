@@ -9,7 +9,9 @@ defineProps({
 
 <template>
   <div class="flex flex-col items-center space-y-5 w-full h-full">
-    <span class="text-3xl text-white font-semibold">{{ header }}</span>
+    <span class="text-3xl text-dark dark:text-white font-semibold">{{
+      header
+    }}</span>
 
     <div class="w-full flex flex-row justify-center">
       <div

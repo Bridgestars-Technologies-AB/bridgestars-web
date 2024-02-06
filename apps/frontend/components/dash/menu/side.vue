@@ -14,48 +14,16 @@ const items = [
     icon: "i-material-symbols-home-rounded",
   },
   {
-    divider: true,
-    name: "courses",
-  },
-  {
-    name: "all-courses",
-    icon: "i-material-symbols-school",
-  },
-  {
     name: "my-courses-overview",
     icon: "i-material-symbols-school",
-  },
-  {
-    divider: true,
-    name: "library",
-  },
-  {
-    name: "books",
-    icon: "i-material-symbols-menu-book",
-  },
-  {
-    name: "documents",
-    icon: "i-material-symbols-library-books",
-  },
-  {
-    divider: true,
-    name: "practice",
   },
   {
     name: "bidding",
     icon: "i-material-symbols-sports-esports",
   },
   {
-    name: "scenario",
-    icon: "i-material-symbols-sports-esports",
-  },
-  {
-    divider: true,
-    name: "other",
-  },
-  {
-    name: "schedule",
-    icon: "i-material-symbols-calendar-month",
+    name: "documents",
+    icon: "i-material-symbols-library-books",
   },
   {
     name: "help",

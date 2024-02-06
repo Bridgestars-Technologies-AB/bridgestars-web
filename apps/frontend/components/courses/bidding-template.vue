@@ -6,19 +6,20 @@ defineProps({ header: String, course: String });
 
 <template>
   <div
-    class="flex flex-col justify-between w-[160px] h-[200px] dark:bg-dark-100 rounded-xl"
+    class="flex flex-col justify-between w-[160px] h-[200px] bg-white dark:bg-dark-100 rounded-xl"
   >
     <div class="flex flex-col space-y-2">
       <div class="w-full flex flex-row justify-center mt-2">
-        <span class="text-[11px] text-white font-semibold">{{ header }}</span>
+        <span class="text-[11px] text-dark dark:text-white font-semibold">{{
+          header
+        }}</span>
       </div>
       <div class="w-full h-[2px] bg-dark-400"></div>
     </div>
 
     <div class="w-full h-[100px] flex justify-center items-center">
-      <span class="text-[13px] text-white px-3"
-        >Här kommer lite text om detta öppningsbudet, som handlar om något
-        väldigt viktigt...</span
+      <span class="text-[13px] text-dark dark:text-white px-3"
+        >Giv 6 av 10</span
       >
     </div>
     <div class="flex flex-row justify-end w-full">
