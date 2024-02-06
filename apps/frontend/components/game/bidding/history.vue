@@ -20,7 +20,7 @@ const players = ["V", "N", "Ö", "S"];
 </script>
 
 <template>
-  <div class="flex flex-col items-center rounded-xl bg-[#121c27]">
+  <div class="flex flex-col items-center rounded-xl bg-white dark:bg-dark-100">
     <div class="w-[100%] flex flex-row justify-center">
       <div class="flex flex-row w-[97%]">
         <div
@@ -28,7 +28,9 @@ const players = ["V", "N", "Ö", "S"];
           :key="p"
           class="w-[24%] flex flex-row justify-center mt-[4px]"
         >
-          <span class="text1 text-[20px] font-semibold mb-[4px]">
+          <span
+            class="text-dark dark:text-white text-[20px] font-semibold mb-[4px]"
+          >
             {{ players[p - 1] }}
           </span>
         </div>

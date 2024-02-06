@@ -2,14 +2,15 @@
 defineProps({ header: String, showImage: Boolean });
 </script>
 <template>
-  <div>
+  <div :class="`${$attrs.class} flex flex-col bg-white dark:bg-dark-100`">
     <div
       v-if="header"
       class="w-full h-[15%] flex flex-row justify-center items-center mt-[10px] mb-[5px]"
     >
-      <span class="text-[22px] items-center text-white font-semibold h-auto">{{
-        header
-      }}</span>
+      <span
+        class="text-[22px] items-center text-dark dark:text-white font-semibold h-auto"
+        >{{ header }}</span
+      >
     </div>
 
     <div

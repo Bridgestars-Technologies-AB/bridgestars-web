@@ -17,20 +17,20 @@ function bid(s, r) {
 }
 
 const biddingBox =
-  "xs:w-[50px] xs:h-[28px] bg-dark-200 hover:bg-transparent lg:w-[43px] lg:h-[30px]";
+  "xs:w-[50px] xs:h-[28px] bg-color-dark dark:bg-dark-200 hover:bg-transparent lg:w-[43px] lg:h-[30px]";
 </script>
 <template>
   <!-- <div class="w-[90%] h-[80px] border mb-[20px]"></div> -->
   <div class="mobileSize desktopSize">
     <game-bidding-container
       :showImage="true"
-      class="flex flex-col bg-dark-100 xs:w-[100%] sm:w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
+      class="xs:w-[100%] sm:w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
     >
       <game-bidding-text :text="presentationText"></game-bidding-text>
     </game-bidding-container>
 
     <game-bidding-container
-      class="flex flex-col bg-dark-100 xs:w-[100%] sm:w-[80%] h-[40%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
+      class="xs:w-[100%] sm:w-[80%] h-[40%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
       header="BUDGIVNING"
     >
       <game-bidding-history
@@ -41,7 +41,7 @@ const biddingBox =
     </game-bidding-container>
 
     <game-bidding-container
-      class="flex flex-col bg-dark-100 min-h-[150px] xs:w-[100%] sm:w-[80%] h-[30%] mt-[8px] rounded-xl lg:h-full lg:w-[24%]"
+      class="min-h-[150px] xs:w-[100%] sm:w-[80%] h-[30%] mt-[8px] rounded-xl lg:h-full lg:w-[24%]"
       header="BUDLÅDA"
     >
       <game-bidding-box
@@ -54,11 +54,11 @@ const biddingBox =
     </game-bidding-container>
 
     <game-bidding-container
-      class="flex flex-col bg-dark-100 xs:w-[100%] sm:w-[80%] h-[12%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
+      class="xs:w-[100%] sm:w-[80%] h-[12%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
       header="DIN HAND"
     >
       <game-bidding-hand
-        class="bg-[#121c27] w-full mx-auto lg:w-full lg:h-[70%]"
+        class="bg-white dark:bg-dark-100 w-full mx-auto lg:w-full lg:h-[70%]"
         :showDeal="false"
         :hand="[
           { suit: 0, rank: 2 },
