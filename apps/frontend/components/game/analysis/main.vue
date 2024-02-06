@@ -1,30 +1,23 @@
 <script setup lang="ts">
+import type { CardUtil } from "~/composables/useCardUtil";
+
 /*
 This component displays the analysis from bidding-problems.
 Props:
   history: List of {suit, rank}, comes from bidding-box in bidding-problems
-  correct bid: {suit, rank}, the correct bid in the scenario
-  biddingAnswer: String, the answer to why the correct bid is correct
+  solution: {suit, rank}, the correct bid in the scenario
+  biddingAnswer: String, the answer to why the soultion bid is correct
   biddinghands: List of {suit, rank}, the hands of the players
 */
 
-defineProps({
-  history: {
-    type: Array[CardUtil.Card],
-  },
-  correctBid: {
-    type: CardUtil.Card,
-    default: { suit: 4, rank: 3 },
-  },
-  biddingAnswer: {
-    type: String,
-    default:
-      "Nord had 17hp och en jämn hand. Därför öppnar nord med 1NT som visar 15-17 hp och jämn hand. Syd fortsätter med 3NT som visar slutbud 10-15 hp.",
-  },
-  biddingHand: {
-    type: Array[CardUtil.Card],
-  },
-});
+interface Props {
+  biddingResult: CardUtil.Card[];
+  solution: CardUtil.Card;
+  biddingAnswer: string;
+  biddingHand: CardUtil.Card[];
+}
+
+defineProps<Props>();
 
 function getJustify(e: Number) {
   switch (e) {
@@ -115,14 +108,14 @@ function getJustify(e: Number) {
 
         <div class="h-[95%] w-full flex flex-col justify-center items-center">
           <game-bidding-history
-            :history="[{ suit: 1, rank: 1 }]"
+            :history="biddingResult"
             class="w-full h-[70%]"
             biddingBox="w-[50px] h-[30px] bg-dark-200 hover:bg-transparent  sm:w-[55px] sm:h-[30px] md:w-[65px] md:h-[30px] lg:w-[45px] lg:h-[30px] xl:w-[50px] xl:h-[35px] 2xl:w-[60px] 2xl:h-[40px]"
           ></game-bidding-history>
 
           <div class="flex justify-center items-center h-[20%] lg:w-[80%]">
             <game-analysis-bid
-              :brick="correctBid"
+              :brick="solution"
               dir="Nord"
               size="w-[70px] h-[40px] lg:w-[120px] lg:h-[60px]"
             ></game-analysis-bid>
@@ -147,7 +140,7 @@ function getJustify(e: Number) {
 
         <div class="w-full h-[95%] flex flex-col items-center">
           <game-analysis-bid
-            :brick="correctBid"
+            :brick="solution"
             dir="Nord"
             size="w-[60px] h-[30px] lg:w-[80px] lg:h-[40px]"
           ></game-analysis-bid>

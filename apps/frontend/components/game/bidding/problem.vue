@@ -1,19 +1,35 @@
 <!-- This component is the parent to all bid-components, keeps track of cards, bids, etc, -->
-
-<script setup>
+<!-- Right now {suit:10, rank: 10} represents invisible bid, but this will have to be changed later.
+It is supposed to be used when there is not a bid for a certain player -->
+<!-- The history prop is the play history of the bidding-problem -->
+<script setup lang="ts">
 // initialize components based on data attribute selectors
 onMounted(() => {});
 
 defineProps({
-  presentationText: String,
+  text: String,
+  history: {
+    type: Array,
+  },
+  pass: Boolean,
 });
 
+const emit = defineEmits(["check", "update:suit", "update:rank"]);
+
+const historyRef = ref([
+  { suit: 10, rank: 10 },
+  { suit: 4, rank: 1 },
+  { suit: 0, rank: 0 },
+]);
 const suit = ref(0);
 const rank = ref(0);
-const history = ref([]);
 
 function bid(s, r) {
-  history.value.push({ suit: s, rank: r });
+  emit("update:suit", s);
+  emit("update:rank", r);
+  emit("check", s, r);
+  // This is commented out because we dont use the bidding box in this way for bidding-problems
+  //historyRef.value.push({ suit: s, rank: r });
 }
 
 const biddingBox =
@@ -26,7 +42,12 @@ const biddingBox =
       :showImage="true"
       class="xs:w-[100%] sm:w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
     >
-      <game-bidding-text :text="presentationText"></game-bidding-text>
+      <div class="w-full h-full flex flex-row justify-start">
+        <span
+          class="text3 text-dark dark:text-white sm:text-[20px] ml-[12px]"
+          >{{ text }}</span
+        >
+      </div>
     </game-bidding-container>
 
     <game-bidding-container
@@ -34,7 +55,7 @@ const biddingBox =
       header="BUDGIVNING"
     >
       <game-bidding-history
-        :history="history"
+        :history="historyRef"
         class="w-full h-full lg:w-full lg:h-[70%]"
         :biddingBox="biddingBox"
       ></game-bidding-history>
