@@ -11,8 +11,8 @@ const iconColor = "bg-light-400 dark:bg-white";
 
 const bgColor = computed(() =>
   props.selected
-    ? "dark:bg-dark-200 bg-light-400"
-    : "dark:bg-dark-100 bg-light-300 dark:hover:bg-dark-300 hover:bg-light-400",
+    ? "dark:bg-dark-200 bg-transparent"
+    : "dark:bg-dark-100 bg-white dark:hover:bg-dark-300 hover:bg-transparent",
 );
 
 const textColor = computed(

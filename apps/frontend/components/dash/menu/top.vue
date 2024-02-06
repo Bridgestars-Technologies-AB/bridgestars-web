@@ -14,7 +14,7 @@ const colored = (b) =>
 </script>
 <template>
   <div
-    class="flex justify-end bg-light-400 dark:bg-dark-200 pr-3 transition-colors duration-300"
+    class="flex justify-end bg-transparent dark:bg-dark-200 pr-3 transition-colors duration-300"
   >
     <!-- side menu open/close -->
     <div class="fixed left-0 z-10">

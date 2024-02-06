@@ -6,7 +6,7 @@ defineProps({ header: String, course: String });
 
 <template>
   <div
-    class="flex flex-col justify-between w-[160px] h-[200px] bg-dark-100 rounded-xl"
+    class="flex flex-col justify-between w-[160px] h-[200px] dark:bg-dark-100 rounded-xl"
   >
     <div class="flex flex-col space-y-2">
       <div class="w-full flex flex-row justify-center mt-2">

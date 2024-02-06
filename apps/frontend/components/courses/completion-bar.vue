@@ -19,7 +19,7 @@ function getDummyWidth() {
 
 <template>
   <div class="flex flex-col w-full items-center">
-    <span class="text-white m-0 text-[14px]">{{ text }}</span>
+    <span class="text-dark m-0 text-[14px]">{{ text }}</span>
     <div
       class="flex flex-row justify-start bg-dark-200 rounded-2xl h-[10px] w-[120px]"
     >

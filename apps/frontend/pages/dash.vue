@@ -31,7 +31,7 @@ provide("side-menu-open", sideMenuOpen);
     }  h-full w-full overflow-x-clip `"
   >
     <div
-      class="flex bg-light-400 dark:bg-dark-200 transition-colors duration-300 w-full h-full"
+      class="flex bg-transparent dark:bg-dark-200 transition-colors duration-300 w-full h-full"
     >
       <!-- dash overlay -->
       <div

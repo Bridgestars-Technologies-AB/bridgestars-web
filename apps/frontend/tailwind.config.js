@@ -13,6 +13,7 @@ const backgroundColors = {
   error: "#F44335", //röd
   white: "#fefefe",
   "color-light": "#dddddd",
+  transparent: "#f3f6fd",
   DEFAULT: "#f74040",
   dark: {
     100: "#1a1625",
