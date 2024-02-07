@@ -22,11 +22,6 @@ defineProps({
 
 const emit = defineEmits(["check", "update:suit", "update:rank"]);
 
-const historyRef = ref([
-  { suit: 10, rank: 10 },
-  { suit: 4, rank: 1 },
-  { suit: 0, rank: 0 },
-]);
 const suit = ref(0);
 const rank = ref(0);
 
@@ -80,7 +75,7 @@ const biddingBox =
       header="BUDGIVNING"
     >
       <game-bidding-history
-        :history="historyRef"
+        :history="history"
         class="w-full h-full lg:w-full lg:h-[70%]"
         :biddingBox="biddingBox"
       ></game-bidding-history>

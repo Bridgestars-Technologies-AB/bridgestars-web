@@ -14,10 +14,12 @@ interface Props {
   biddingResult: CardUtil.Card[];
   solution: CardUtil.Card;
   biddingAnswer: string;
-  biddingHand: CardUtil.Card[];
 }
 
 defineProps<Props>();
+
+// this will later be a prop from the parent component on which position the player is
+const dir = "Syd";
 
 function getJustify(e: Number) {
   switch (e) {
@@ -116,7 +118,7 @@ function getJustify(e: Number) {
           <div class="flex justify-center items-center h-[20%] lg:w-[80%]">
             <game-analysis-bid
               :brick="solution"
-              dir="Nord"
+              :dir="dir"
               size="w-[70px] h-[40px] lg:w-[120px] lg:h-[60px]"
             ></game-analysis-bid>
           </div>
@@ -141,7 +143,7 @@ function getJustify(e: Number) {
         <div class="w-full h-[95%] flex flex-col items-center">
           <game-analysis-bid
             :brick="solution"
-            dir="Nord"
+            :dir="dir"
             size="w-[60px] h-[30px] lg:w-[80px] lg:h-[40px]"
           ></game-analysis-bid>
           <!-- Placeholder for star img -->
