@@ -78,7 +78,7 @@ function click(item) {
             <h6
               class="top-0 text-[20px] leading-[20px] font-medium -mr-12 max-w-[120px] overflow-x-clip font-family tracking-tighter"
               @click="navigateTo({ name: 'dash-profile' })"
-            >
+            > 
               {{ auth.user?.username }}
             </h6>
           <h6
