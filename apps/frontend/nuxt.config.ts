@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     "~/components",
   ],
   imports: {
-    dirs: ["composables", "composables/stores"],
+    dirs: ["composables", "composables/stores", "composables/biddingClasses"],
   },
   //experimental: {
   // payloadExtraction: true,

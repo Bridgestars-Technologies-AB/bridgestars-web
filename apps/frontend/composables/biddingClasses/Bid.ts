@@ -1,4 +1,4 @@
-class Bid {
+export class Bid {
   public suit: number;
   public rank: number;
   public shortName: string;

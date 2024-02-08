@@ -18,6 +18,8 @@ const emit = defineEmits(["check", "update:suit", "update:rank"]);
 const suit = ref(0);
 const rank = ref(0);
 
+const bidX = ref(new Bid(suit.value, rank.value));
+
 function bid(s, r) {
   emit("update:suit", s);
   emit("update:rank", r);
