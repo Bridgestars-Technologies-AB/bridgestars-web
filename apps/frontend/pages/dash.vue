@@ -1,4 +1,5 @@
 <script setup>
+
 await loadTranslations("dashboard"); // load translation
 
 const route = useRoute();

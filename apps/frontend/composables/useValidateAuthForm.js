@@ -247,7 +247,7 @@ export default function InitAuthFormValidation(form, callback) {
     // submit to the server if the form is valid
     if (isSignInValid) {
       callback({
-        usernameEmail: usernameEmailEl.value,
+        email: usernameEmailEl.value,
         password: passwordSignInEl.value,
       });
     } else if (isSignUpValid) {

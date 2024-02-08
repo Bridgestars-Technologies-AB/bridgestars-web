@@ -16,6 +16,7 @@ use Database\Factories\ChapterFactory;
 use Database\Factories\CourseFactory;
 use Database\Factories\DealFactory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,8 +28,9 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
+            'username' => 'testuser',
             'email' => 'test@example.com',
+            'password' => Hash::make('password'),
         ]);
 
         Course::factory(5)
