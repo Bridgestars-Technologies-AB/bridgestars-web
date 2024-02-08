@@ -3,6 +3,7 @@
 Runs all the frontend for bridgestars.
 
 ## Installing
+
 ```bash
 pnpm install
 ```
@@ -14,7 +15,9 @@ Start the development server on `http://localhost:3000`.
 ```bash
 pnpm start
 ```
+
 Run with production backend instead of local
+
 ```bash
 npm run with_prod_server
 ```
@@ -34,6 +37,7 @@ pnpm preview
 ```
 
 ## Other
+
 ```bash
 # find errors
 pnpm lint

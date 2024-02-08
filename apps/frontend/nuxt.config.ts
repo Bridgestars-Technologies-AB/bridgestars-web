@@ -14,10 +14,10 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["composables", "composables/stores"],
   },
-  experimental: {
-    // payloadExtraction: true,
-    // watcher: "parcel",
-  },
+  //experimental: {
+  // payloadExtraction: true,
+  // watcher: "parcel",
+  //},
   modules: [
     // "@nuxtjs/i18n",
     "@vite-pwa/nuxt",
@@ -33,11 +33,11 @@ export default defineNuxtConfig({
     format: ["webp"],
     quality: 85,
   },
-  runtimeConfig:{
+  runtimeConfig: {
     public: {
-      sentry:{
+      sentry: {
         dsn: process.env.SENTRY_DSN,
-        environment: process.dev ? "dev" : "prod"
+        environment: process.dev ? "dev" : "prod",
       },
     }
   },
@@ -46,9 +46,9 @@ export default defineNuxtConfig({
   // },
   nitro: {
     routeRules: {
-    "/backend/**": { proxy: "http://localhost:80/**" }
+      "/backend/**": { proxy: "http://localhost:80/**" }
     }
-  //       //proxy: process.env.BACKEND_URL+"/**"
+    //       //proxy: process.env.BACKEND_URL+"/**"
   },
   routeRules: {
     "/": { prerender: true }, // build static resource
