@@ -3,6 +3,7 @@ const route = useRoute();
 console.log(route.params.id);
 
 //axios.get(“/prefix/courses/id”) -> response.data
+// Mock up response data:
 const response = {
   name: "BridgeA",
   description: "This is a course about BridgeA",

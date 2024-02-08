@@ -27,7 +27,11 @@ import { CourseUtil } from "/composables/useCourseUtil.ts";
       ></courses-completion-bar>
     </div>
     <div class="flex flex-row justify-end">
-      <courses-button text="Fortsätt" :params="courseId"></courses-button>
+      <courses-button
+        text="Fortsätt"
+        dashPage="my-courses"
+        :params="courseId"
+      ></courses-button>
     </div>
   </div>
 </template>
