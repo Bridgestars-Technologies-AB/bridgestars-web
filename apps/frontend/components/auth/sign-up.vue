@@ -26,6 +26,7 @@ async function submit(res) {
       name: res.name,
     })
   });
+
   if (error.value) {
     showLoading.value = false;
     toast.error(error.value?.data.message);

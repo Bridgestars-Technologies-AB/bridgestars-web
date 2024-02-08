@@ -90,7 +90,7 @@ function click(item) {
         </div>
         <div class="[flex-basis:100%] h-0" />
         <dash-menu-side-level
-          :user="auth.user"
+          :user="null"
           :class="`mt-5 pl-2 pr-5 ${isOpen ? 'block' : 'hidden'}`"
         />
         <div :class="`h-[40px] ${isOpen ? 'hidden' : 'block'}`" />

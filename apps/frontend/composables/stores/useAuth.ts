@@ -1,55 +1,51 @@
+
 import { defineStore } from "pinia";
-import { Auth } from "bridgestars-db-client";
-/*
- * Minimal auth store that lets the server access information about the user in order to prerender certain routes like dash and navbar,
- * and, lets the server block certain routes like dash if the user is not signed in.
- */
+import axios from "@/composables/axios"
 
-const authStore = defineStore("auth", {
-  state: () => ({ username: "" as string }),
-  actions: {
-    async signUp(username: string, password: string, email: string) {
-      return Auth.signUp(username.trim(), password, email.trim()).then((u) => {
-        this.username = u.username.get();
-        return u;
-      });
-    },
-
-    async signIn(usernameEmail: string, password: string) {
-      return Auth.signIn(usernameEmail.toLowerCase(), password).then((user) => {
-        this.username = user.username.get();
-        return user;
-      });
-    },
-
-    async signOut() {
-      return Auth.signOut().then(() => {
-        authStore().$reset();
-        // ---- update manager/remove locally stored data about user ----
-        // useRealtimeClient().catch(() => { });
-        // useUserManager().catch(() => { });
-        // useChatManager().catch(() => { });
-      });
-    },
-    async requestPasswordReset(email: string) {
-      return Auth.requestPasswordReset(email);
-    },
-  },
+const useAuthStore = defineStore("auth", {
+  state: () => ({ user: null }), //fix auto-detect
   getters: {
-    //-------- server / client ----------
-    authenticated: ({ username }) => Boolean(username),
-
-    //------------ client only -----------
-    user: () => Auth.current(),
+    //enabled: (state) => state.value,
   },
-  persist: true, // store data in local cookie, possibly not needed since Parse.User.current() is already saved
+  actions: {
+    async update() {
+      axios.get("api/user").then((response) => {
+        this.user = response.data;
+      }).catch(() => this.user = null);
+    }
+  },
+  persist: true,
 });
 
-export default function useAuth() {
-  // store has username but user is not signed in
-  if (process.client && !Auth.current()) {
-    // -- if client side and not really logged in, ensure the store/server does not think we are signed in --
-    authStore().$reset();
+
+const useAuth = () => {
+  const store = useAuthStore();
+  const csrf = () => axios.get("sanctum/csrf-cookie");
+
+  const register = async ({ ...props }) => {
+    return await csrf()
+      .then(() => axios.post("register", props))
+      .then(() => store.update())
   }
-  return authStore();
+
+  const login = async ({ ...props }) => {
+    return await csrf()
+      .then(() => axios.post("login", props))
+      .then(() => store.update())
+  };
+
+  const logout = async () => {
+    return await axios.post("logout")
+        .then(() => store.update());
+  }
+
+  const forgotPassword = async ({ ...props }) => {
+    return await csrf()
+      .then(() => axios.post("forgot-password", props))
+  }
+
+
+  return { user: store.user, register, login, logout, forgotPassword }
 }
+
+export default useAuth;

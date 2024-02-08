@@ -39,16 +39,16 @@ export default defineNuxtConfig({
         dsn: process.env.SENTRY_DSN,
         environment: process.dev ? "dev" : "prod",
       },
-      PROD_SERVER: process.env.PROD_SERVER,
-    },
+    }
   },
+  // axios:{
+  //   proxy: true
+  // },
   nitro: {
     routeRules: {
-      "/backend/**": {
-        proxy: "http://localhost/**"
-      }
+      "/backend/**": { proxy: "http://localhost:80/**" }
     }
-    //preset: "vercel-edge",
+    //       //proxy: process.env.BACKEND_URL+"/**"
   },
   routeRules: {
     "/": { prerender: true }, // build static resource

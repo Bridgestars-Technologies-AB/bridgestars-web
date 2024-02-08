@@ -1,41 +1,48 @@
 <script setup lang="ts">
+import axios from 'axios';
+
 const toast = useToast();
 const query = useRoute().query;
 const showLoading = ref(false);
 await loadTranslations("auth");
 
-const auth = useAuth();
+//const auth = useAuth();
 
 async function submit(res: { email: string; password: string }) {
   showLoading.value = true;
-  await useFetch("/backend/sanctum/csrf-cookie", {
-    credentials: "include"
-  });
-  const {data, error} = await useFetch("/backend/login", {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      accept: "application/json",
-      "x-xsrf-token": useCookie("XSRF-TOKEN")
-    },
-    body: JSON.stringify({
-      email: res.email,
-      password: res.password
+
+  useAuth().login(res)
+    .then((response) => {
+      toast.success("Du har loggats in");
+      if (query.to) navigateTo({ path: query.to as string });
+      else navigateTo({ path: "/dash" });
     })
-  });
-
-  if (error.value) {
-    showLoading.value = false;
-    console.log(error.value?.data.message)
-    toast.error(error.value?.data.message);
-    return;
-  }
-
-  if (data.value) {
-    toast.success("Du har loggats in");
-    if (query.to) navigateTo({ path: query.to as string });
-    else navigateTo({ path: "/dash" });
-  }
+    .catch((error) => {
+      if (error.response) {
+        showLoading.value = false;
+        toast.error(error.response.data.message);
+      } else {
+        showLoading.value = false;
+        toast.error("Något gick fel, försök igen");
+      }
+    });
+  // await axios.get("/db/sanctum/csrf-cookie")
+  //   .then(() => axios.post("/db/login", res))
+  //   .then(({data, status}) => {
+  //     toast.success("Du har loggats in");
+  //     if (query.to) navigateTo({ path: query.to as string });
+  //     else navigateTo({ path: "/dash" });
+  //   })
+  //   .catch((error) => {
+  //     if(error.response){
+  //        showLoading.value = false;
+  //        toast.error(error.response.data.message);
+  //     }
+  //     else {
+  //       showLoading.value = false;
+  //       toast.error("Något gick fel, försök igen");
+  //     }
+  // })
 }
 </script>
 
@@ -47,7 +54,7 @@ async function submit(res: { email: string; password: string }) {
     @submit="submit"
   >
     <base-input-field
-      id="email"
+      id="username-email"
       v-model="query.email"
       wrapperClass="w-[100%]"
       placeholder="Email"
