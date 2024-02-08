@@ -1,6 +1,5 @@
-
 import { defineStore } from "pinia";
-import axios from "@/composables/axios"
+import axios from "@/composables/axios";
 
 const useAuthStore = defineStore("auth", {
   state: () => ({ user: null }), //fix auto-detect
@@ -8,15 +7,21 @@ const useAuthStore = defineStore("auth", {
     //enabled: (state) => state.value,
   },
   actions: {
-    async update() {
-      axios.get("api/user").then((response) => {
-        this.user = response.data;
-      }).catch(() => this.user = null);
-    }
+    async update(x: any) {
+      await axios.get("api/user")
+        .then((response) => this.user = response.data)
+        .catch((e) => {
+          useCookie('XSRF-TOKEN').value = null;
+          useCookie('laravel_session').value = null;
+          this.user = null
+      });
+      return x;
+    },
   },
-  persist: true,
+  persist: {
+    key: 'auth',
+  },
 });
-
 
 const useAuth = () => {
   const store = useAuthStore();
@@ -25,27 +30,26 @@ const useAuth = () => {
   const register = async ({ ...props }) => {
     return await csrf()
       .then(() => axios.post("register", props))
-      .then(() => store.update())
-  }
+      .then(store.update);
+  };
 
   const login = async ({ ...props }) => {
     return await csrf()
       .then(() => axios.post("login", props))
-      .then(() => store.update())
+      .then(store.update);
   };
 
   const logout = async () => {
     return await axios.post("logout")
-        .then(() => store.update());
-  }
+      .then(store.update);
+  };
 
   const forgotPassword = async ({ ...props }) => {
     return await csrf()
-      .then(() => axios.post("forgot-password", props))
-  }
+      .then(() => axios.post("forgot-password", props));
+  };
 
-
-  return { user: store.user, register, login, logout, forgotPassword }
-}
+  return { user: store.user, register, login, logout, forgotPassword };
+};
 
 export default useAuth;

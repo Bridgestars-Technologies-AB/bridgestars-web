@@ -11,7 +11,7 @@ await loadTranslations("auth");
 async function submit(res: { email: string; password: string }) {
   showLoading.value = true;
 
-  useAuth().login(res)
+  await useAuth().login(res)
     .then((response) => {
       toast.success("Du har loggats in");
       if (query.to) navigateTo({ path: query.to as string });

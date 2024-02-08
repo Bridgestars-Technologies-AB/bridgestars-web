@@ -5,7 +5,7 @@
 async function signOut() {
   const toast = useToast();
   useAuth()
-    .signOut()
+    .logout()
     .then(() => {
       // toast.success(t("auth:common.toast.signed_out"))
       toast.success("You have been signed out");
