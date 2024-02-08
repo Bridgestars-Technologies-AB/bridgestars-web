@@ -44,7 +44,7 @@ const biddingBox =
       class="xs:w-[100%] sm:w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
     >
       <div class="w-full h-full flex flex-row justify-start">
-        <div class="flex flex-col" v-if="isBidMade">
+        <!-- <div class="flex flex-col" v-if="isBidMade">
           <div class="flex flex-row space-x-4">
             <span class="text3 text-dark dark:text-white sm:text-[15px] m-3"
               >Du bjöd</span
@@ -59,12 +59,9 @@ const biddingBox =
           >
             Tyvärr var det inte riktigt det budet vi tänkt oss... Försök igen!
           </span>
-        </div>
+        </div> -->
 
-        <span
-          v-else
-          class="text3 text-dark dark:text-white sm:text-[20px] ml-[12px]"
-        >
+        <span class="text3 text-dark dark:text-white sm:text-[20px] ml-[12px]">
           {{ presentationText }}</span
         >
       </div>

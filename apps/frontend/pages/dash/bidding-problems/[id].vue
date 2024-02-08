@@ -2,7 +2,6 @@
 const route = useRoute();
 console.log(route.params.id);
 
-// GET PROBLEM (server logs that we have started on this problem)
 //axios.get(`/prefix/bidding-problem/${id}`) -> response.data
 // Mock up response data:
 const response = {
@@ -28,11 +27,44 @@ const response = {
   ],
 };
 
+//Mock up response from server when playing a bid ....
+const bidResponseList = [
+  {
+    correct: false,
+    finished: false,
+    bid: "2NT",
+    explanation: "Det var inte riktigt rätt",
+  },
+  // {
+  //   // vänta med denna, mer komplexitet
+  //   correct: true,
+  //   finished: false,
+  //   bid: "2NT",
+  //   explanation: "Du spelade 2NT, det visar hmm hmm hmm",
+  //   bidding: [
+  //     { bid: "3NT", explanation: " 0 - 8 hp, nord visar styrka" },
+  //     { bid: "PASS" },
+  //     { bid: "PASS" },
+  //   ],
+  // },
+  {
+    correct: true,
+    finished: true,
+    next_problem_id: "sjNDASL283aD",
+    cards: {
+      west: { spades: "D876", hearts: "AT4", diamonds: "KJ3", clubs: "KJ3" },
+      north: { spades: "D876", hearts: "AT4", diamonds: "KJ3", clubs: "KJ3" },
+      east: { spades: "D876", hearts: "AT4", diamonds: "KJ3", clubs: "KJ3" },
+      south: { spades: "D876", hearts: "AT4", diamonds: "KJ3", clubs: "KJ3" },
+    },
+    solution: "Given blablabla",
+    bidding: [
+      // all budgivnings historik för givet
+    ],
+  },
+];
+
 //Mock data, will be fetched from DB table bidding-problems and bidding-result
-const presentationText =
-  "Vad bjuder du som svarshand när din partner har öppnat med 1 NT?";
-const biddingAnswer =
-  "Nord had 17hp och en jämn hand. Därför öppnar nord med 1NT som visar 15-17 hp och jämn hand. Syd fortsätter med 3NT som visar slutbud 10-15 hp.";
 const solution = {
   suit: 4,
   rank: 2,
@@ -48,22 +80,31 @@ const history = [
 const suit = ref(0);
 const rank = ref(0);
 const deal = ref(1);
-// used to check if the bid is correct
-const pass = ref(false);
-// used to check if a bid is made
-const isBidMade = ref(false);
+
 // history of bids made
 const biddingHistory = ref(history);
 
-// Checks if solution is correct and updates pass and history accordingly
+const textOutput = ref(response.presentation);
+const pass = ref(false);
+
+// Checks if solution is correct
 // emited from bidding-problem
 function check() {
-  isBidMade.value = true;
-  if (suit.value === solution.suit && rank.value === solution.rank) {
-    pass.value = true;
-    biddingHistory.value.push({ suit: suit.value, rank: rank.value });
-  } else {
-    pass.value = false;
+  // Here we ask the backend if {suit, rank} is correct, and then we
+  // get a response if it was correct and data needed for that situation
+  // Will be simulated with a function returning a random response
+  //axios.post(`/prefix/bidding-problem/${route.params.id}`, { bid: "2NT" }) ->
+  const response =
+    bidResponseList[Math.floor(Math.random() * bidResponseList.length)];
+  if (!response.correct) {
+    // What happens if wrong bid was made
+    textOutput.value = response.explanation;
+  }
+  if (response.correct) {
+    // What happens if correct bid was made, but not finished
+  }
+  if (response.finished) {
+    // What happens if correct bid was made and finished
   }
 }
 </script>
@@ -84,9 +125,7 @@ function check() {
       <game-bidding-problem
         v-model:suit="suit"
         v-model:rank="rank"
-        :bidMade="{ suit: suit, rank: rank }"
-        :presentationText="presentationText"
-        :isBidMade="isBidMade"
+        :presentationText="textOutput"
         :history="history"
         @check="check"
       ></game-bidding-problem>
