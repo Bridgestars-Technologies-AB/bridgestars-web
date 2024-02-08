@@ -10,14 +10,16 @@ const response = {
   chapters: [
     {
       name: "Kapitel 5",
+      next_problem_id: 1, //id of the next problem
       //paid,       true/false
-      //next_problem_id to get to the bidding-problem in question
     },
     {
       name: "Kapitel 6",
+      next_problem_id: 2,
     },
     {
       name: "Kapitel 7",
+      next_problem_id: 2,
     },
   ],
 };
@@ -37,12 +39,12 @@ const response = {
             : 'flex flex-row space-x-3'
         "
       >
-        <courses-bidding-problems-template
+        <courses-chapter-template
           v-for="chapter in response.chapters"
           :key="chapter.name"
           :header="chapter.name"
-          url="xxx"
-        ></courses-bidding-problems-template>
+          :problemId="chapter.next_problem_id"
+        ></courses-chapter-template>
       </div>
     </div>
   </div>
