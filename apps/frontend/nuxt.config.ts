@@ -15,8 +15,8 @@ export default defineNuxtConfig({
     dirs: ["composables", "composables/stores"],
   },
   experimental: {
-    payloadExtraction: true,
-    watcher: "parcel",
+    // payloadExtraction: true,
+    // watcher: "parcel",
   },
   modules: [
     // "@nuxtjs/i18n",
