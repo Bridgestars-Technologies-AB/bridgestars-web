@@ -2,6 +2,32 @@
 const route = useRoute();
 console.log(route.params.id);
 
+// GET PROBLEM (server logs that we have started on this problem)
+//axios.get(`/prefix/bidding-problem/${id}`) -> response.data
+// Mock up response data:
+const response = {
+  number: 1, // problem 1 out of 10 in this chapter (deal_nbr)
+  total: 10,
+  presentation:
+    "Vad bjuder du som svarshand när din partner har öppnat med 1 NT?",
+  hands_visible: 1, // [1,2,4] bara min, mitt lag eller alla
+  cards: [
+    {
+      spades: "D876",
+      hearts: "AT4",
+      diamonds: "KJ3",
+      clubs: "KJ3",
+    },
+  ],
+  dealer: "N", // North starts the auction
+  player: "E", // Vem spelar vi som??
+  bidding: [
+    { bid: "1NT", explanation: " 0 - 8 hp" },
+    { bid: "PASS" },
+    { bid: "3NT", explanation: " 10 - 15 hp" },
+  ],
+};
+
 //Mock data, will be fetched from DB table bidding-problems and bidding-result
 const presentationText =
   "Vad bjuder du som svarshand när din partner har öppnat med 1 NT?";
