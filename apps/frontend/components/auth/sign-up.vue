@@ -4,51 +4,21 @@ const query = useRoute().query;
 const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
-async function submit(res) {
+async function submit(res:{username:string, email:string, name:string, password:string }) {
   showLoading.value = true;
   showLoading.value = true;
-  // move to nuxt interal api call, (server/api/auth/register)
-  await useFetch("/backend/sanctum/csrf-cookie", {
-    credentials: "include"
-  });
-  const {error, status} = await useFetch("/backend/register", {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      accept: "application/json",
-      "x-xsrf-token": useCookie("XSRF-TOKEN")
-    },
-    body: JSON.stringify({
-      username: res.username,
-      email: res.email,
-      password: res.password,
-      password_confirmation: res.password, // :S
-      name: res.name,
-    })
-  });
 
-  if (error.value) {
-    showLoading.value = false;
-    toast.error(error.value?.data.message);
-    return;
-  }
-
-  if (status.value) {
+  await useAuth().register(res)
+  .then(() => {
     toast.success("Du har loggats in");
     if (query.to) navigateTo({ path: query.to as string });
     else navigateTo({ path: "/dash" });
-  }
-  // useAuth()
-  //   .signUp(res.username, res.password, res.email)
-  //   .then((user) => {
-  //     toast.success(t("auth:signUp:toast.signedUp"));
-  //     if (query.to) navigateTo({ path: query.to });
-  //     else navigateTo({ path: "/dash" });
-  //   })
-  //   .catch((e) => {
-  //     showLoading.value = false;
-  //     toast.error(e.message);
-  //   });
+  })
+  .catch(e => {
+    showLoading.value = false;
+    toast.error(e.value?.data.message);
+    return;
+  })
 }
 </script>
 

@@ -7,43 +7,16 @@ const showLoading = ref(false);
 
 async function submit(res) {
   showLoading.value = true;
-  await useFetch("/backend/sanctum/csrf-cookie", {
-    credentials: "include",
-  });
-  const { data, error } = await useFetch("/backend/forgot-password", {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      accept: "application/json",
-      "x-xsrf-token": useCookie("XSRF-TOKEN"),
-    },
-    body: JSON.stringify({
-      email: res.email,
-    }),
-  });
-  if(error.value) {
-    showLoading.value = false;
-    toast.error(error.value?.data.message);
-    return;
-  }
-  if(data.value) {
+  await useAuth().forgotPassword(res)
+  .then(() => {
     toast.success("Vi har skickat ett mail till dig med instruktioner för att återställa ditt lösenord.");
     navigateTo({ path: "/auth/sign-in", query });
-    //if (query.to) navigateTo({ path: query.to as string });
-    //else navigateTo({ path: "/dash" });
-  }
-
-  // useAuth()
-  //   .requestPasswordReset(res.email)
-  //   .then(() => {
-  //     toast.success(t("auth:reset:toast.passwordReset"));
-  //     query.email = res.email;
-  //     navigateTo({ path: "/auth/sign-in", query });
-  //   })
-  //   .catch((e) => {
-  //     showLoading.value = false;
-  //     toast.error(e.message);
-  //   });
+  })
+  .catch(e => {
+    showLoading.value = false;
+    toast.error(e.value?.data.message);
+    return;
+  })
 }
 </script>
 

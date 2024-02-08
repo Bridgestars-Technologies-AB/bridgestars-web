@@ -1,7 +1,7 @@
 async function handleParseError(error: { reason: { code: number } }): void {
   if (error.reason.code == 209) {
     useAuth()
-      .signOut()
+      .logout()
       .catch(() => {});
     //await navigateTo("/auth/sign-in");
     useToast().error("You have been signed out", { timeout: false });
