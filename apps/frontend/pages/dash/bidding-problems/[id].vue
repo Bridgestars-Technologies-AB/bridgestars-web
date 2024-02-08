@@ -4,7 +4,7 @@ console.log(route.params.id);
 
 //axios.get(`/prefix/bidding-problem/${id}`) -> response.data
 // Mock up response data:
-const response = {
+const biddingProblem = {
   number: 1, // problem 1 out of 10 in this chapter (deal_nbr)
   total: 10,
   presentation:
@@ -57,7 +57,8 @@ const bidResponseList = [
       east: { spades: "D876", hearts: "AT4", diamonds: "KJ3", clubs: "KJ3" },
       south: { spades: "D876", hearts: "AT4", diamonds: "KJ3", clubs: "KJ3" },
     },
-    solution: "Given blablabla",
+    solution:
+      "Du har 18 hp och vet att din partner har 15-17 hp. Ni har tillsammans 33-35 hp och gränsen för att bjuda lillslam är minst 33 hp. Rätt bud är 6NT.",
     bidding: [
       // all budgivnings historik för givet
     ],
@@ -65,10 +66,6 @@ const bidResponseList = [
 ];
 
 //Mock data, will be fetched from DB table bidding-problems and bidding-result
-const solution = {
-  suit: 4,
-  rank: 2,
-};
 
 const history = [
   { suit: 10, rank: 10 },
@@ -79,13 +76,17 @@ const history = [
 // used as v-model to be able to see the latest bid made
 const suit = ref(0);
 const rank = ref(0);
-const deal = ref(1);
 
-// history of bids made
 const biddingHistory = ref(history);
 
-const textOutput = ref(response.presentation);
+// bid information
+
+//bidding information, can only be shown after a bid is made
+const isBidMade = ref(false);
 const pass = ref(false);
+const biddingExplanation = ref("");
+const solution = ref("");
+const nextProblemId = ref("");
 
 // Checks if solution is correct
 // emited from bidding-problem
@@ -98,13 +99,17 @@ function check() {
     bidResponseList[Math.floor(Math.random() * bidResponseList.length)];
   if (!response.correct) {
     // What happens if wrong bid was made
-    textOutput.value = response.explanation;
+    biddingExplanation.value = response.explanation;
+    isBidMade.value = true;
   }
   if (response.correct) {
     // What happens if correct bid was made, but not finished
   }
   if (response.finished) {
     // What happens if correct bid was made and finished
+    pass.value = true;
+    solution.value = response.solution;
+    nextProblemId.value = response.next_problem_id;
   }
 }
 </script>
@@ -119,22 +124,35 @@ function check() {
         class="w-[500px] h-[50px] mb-1 bg-dark-100 rounded-xl flex justify-center items-center"
       >
         <span class="text-[30px] text-dark dark:text-white"
-          >Giv {{ deal }} av 10</span
+          >Giv {{ biddingProblem.number }} av {{ biddingProblem.total }}</span
         >
       </div>
       <game-bidding-problem
         v-model:suit="suit"
         v-model:rank="rank"
-        :presentationText="textOutput"
+        :presentationText="biddingProblem.presentation"
         :history="history"
         @check="check"
       ></game-bidding-problem>
+      <div
+        v-if="isBidMade"
+        class="mt-3 w-[500px] h-[100px] bg-dark-100 rounded-xl flex flex-col justify-center items-center"
+      >
+        <span class="text-[20px] text-dark dark:text-white">
+          Du bjöd {{ suit }} {{ rank }}
+        </span>
+        <span class="text-[20px] text-dark dark:text-white">
+          {{ biddingExplanation }}
+        </span>
+      </div>
     </div>
     <div v-else class="w-full h-full flex justify-center items-center">
       <game-analysis-main
         :biddingResult="biddingHistory"
-        :solution="solution"
-        :biddingAnswer="biddingAnswer"
+        :solution="{ suit: suit, rank: rank }"
+        :player="biddingProblem.player"
+        :biddingAnswer="solution"
+        :nextProblemId="nextProblemId"
       ></game-analysis-main>
     </div>
   </div>

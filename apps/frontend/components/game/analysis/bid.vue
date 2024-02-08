@@ -3,7 +3,7 @@ defineProps({
   brick: {
     type: CardUtil.Card,
   },
-  dir: {
+  player: {
     type: String,
   },
   size: {
@@ -31,7 +31,7 @@ defineProps({
     <div
       :class="`${size} bg-dark-200 flex justify-center items-center rounded-xl ml-[5px]`"
     >
-      <span class="biddingText1 text1 tracking-[2px]">{{ dir }}</span>
+      <span class="biddingText1 text1 tracking-[2px]">{{ player }}</span>
     </div>
   </div>
 </template>

@@ -7,17 +7,10 @@ It is supposed to be used when there is not a bid for a certain player -->
 onMounted(() => {});
 
 defineProps({
-  biddingError: String,
   presentationText: String,
-  bidMade: {
-    type: Object,
-    default: () => ({ suit: 0, rank: 0 }),
-  },
   history: {
     type: Array,
   },
-  pass: Boolean,
-  isBidMade: Boolean,
 });
 
 const emit = defineEmits(["check", "update:suit", "update:rank"]);
