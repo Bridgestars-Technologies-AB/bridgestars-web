@@ -61,7 +61,7 @@ function hide() {
       ref="tooltip"
       data-popover
       role="tooltip"
-      class="fixed z-[100] invisible inline-block w-auto whitespace-nowrap transition-opacity duration-300 rounded-lg shadow-sm opacity-0 dark:bg-dash-light-400 bg-dash-dark-400"
+      class="fixed z-[100] invisible inline-block w-auto whitespace-nowrap transition-opacity duration-300 rounded-lg shadow-sm opacity-0 dark:bg-light-400 bg-dark-400"
     >
       <span
         v-if="text"

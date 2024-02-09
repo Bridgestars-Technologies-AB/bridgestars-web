@@ -15,7 +15,7 @@ defineProps({
 <template>
   <div class="flex flex-row justify-center mt-[5px]">
     <div
-      :class="`${size} bg-dash-dark-200 flex justify-center items-center rounded-xl`"
+      :class="`${size} bg-dark-200 flex justify-center items-center rounded-xl`"
     >
       <span class="biddingText1 text1 tracking-[2px] mr-[2px]">{{
         brick.rank
@@ -29,7 +29,7 @@ defineProps({
       ></span>
     </div>
     <div
-      :class="`${size} bg-dash-dark-200 flex justify-center items-center rounded-xl ml-[5px]`"
+      :class="`${size} bg-dark-200 flex justify-center items-center rounded-xl ml-[5px]`"
     >
       <span class="biddingText1 text1 tracking-[2px]">{{ dir }}</span>
     </div>

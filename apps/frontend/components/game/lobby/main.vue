@@ -4,7 +4,7 @@ const hasEntered = ref(false);
 
 <template>
   <div
-    class="flex flex-col justify-center items-center w-full h-full bg-dash-dark-200 space-y-[20px]"
+    class="flex flex-col justify-center items-center w-full h-full bg-dark-200 space-y-[20px]"
   >
     <span class="player !font-semibold mb-[15px]"> Spelare </span>
     <game-lobby-button

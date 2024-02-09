@@ -45,7 +45,7 @@ function toggleChatApp() {
 
       <!-- right column-->
       <div class="flex flex-col space-y-1 items-center">
-        <div class="bg-dash-light-400 dark:bg-dash-dark-200 rounded-full">
+        <div class="bg-light-400 dark:bg-dark-200 rounded-full">
           <!-- hack to let avatar find right color for status border without obstructing view -->
           <base-tooltip text="temp for show" position="left">
             <dash-chat-avatar :chat="chatManager.get(currentChat)" />
@@ -53,7 +53,7 @@ function toggleChatApp() {
         </div>
         <base-tooltip :text="$t('chat.tooltip.open')" position="left">
           <div
-            class="cursor-pointer rounded-full dark:bg-dash-dark-100 bg-dash-light-300 p-2 hover:bg-dash-light-500 dark:hover:bg-dash-dark-300"
+            class="cursor-pointer rounded-full dark:bg-dark-100 bg-light-300 p-2 hover:bg-light-500 dark:hover:bg-dark-300"
             @click="toggleChatApp"
           >
             <div v-if="!open">

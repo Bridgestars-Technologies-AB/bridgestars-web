@@ -27,7 +27,7 @@ defineProps({
         card.rank
       }}</span>
       <span
-        v-if="card.suit > 3"
+        v-if="card.suit === 4"
         class="text1 cursor-pointer biddingText3 m-0 p-0"
       >
         NT

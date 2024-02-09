@@ -14,48 +14,16 @@ const items = [
     icon: "i-material-symbols-home-rounded",
   },
   {
-    divider: true,
-    name: "courses",
-  },
-  {
-    name: "my-courses",
+    name: "my-courses-overview",
     icon: "i-material-symbols-school",
   },
   {
-    name: "all-courses",
-    icon: "i-material-symbols-school",
-  },
-  {
-    divider: true,
-    name: "library",
-  },
-  {
-    name: "books",
-    icon: "i-material-symbols-menu-book",
+    name: "bidding-problems",
+    icon: "i-material-symbols-sports-esports",
   },
   {
     name: "documents",
     icon: "i-material-symbols-library-books",
-  },
-  {
-    divider: true,
-    name: "practice",
-  },
-  {
-    name: "bidding",
-    icon: "i-material-symbols-sports-esports",
-  },
-  {
-    name: "scenario",
-    icon: "i-material-symbols-sports-esports",
-  },
-  {
-    divider: true,
-    name: "other",
-  },
-  {
-    name: "schedule",
-    icon: "i-material-symbols-calendar-month",
   },
   {
     name: "help",
@@ -90,7 +58,7 @@ function click(item) {
   >
     <div
       id="side-menu"
-      :class="`bg-dash-light-300 dark:bg-dash-dark-100 flex flex-col ${
+      :class="`bg-white dark:bg-dark-100 flex flex-col ${
         isOpen ? 'open' : 'closed'
       } ${$attrs.class} min-h-full pb-[200px]`"
     >
@@ -100,19 +68,19 @@ function click(item) {
           isOpen ? 'open' : 'closed'
         }`"
       >
-        <NuxtImg
+        <img
           width="50"
           class="object-cover object-top w-[50px] aspect-square rounded-full cursor-pointer"
           src="/bridgestars/images/castor.jpg"
           @click="navigateTo({ name: 'dash-profile' })"
         />
-        <div class="flex flex-col text-start pl-2 justify-center">
-          <h6
-            class="text-[24px] leading-[24px] font-family tracking-tighter"
-            @click="navigateTo({ name: 'dash-profile' })"
-          >
-            {{ auth.username }}
-          </h6>
+        <div class="flex flex-col text-start pl-2 space-y-1 justify-center">
+            <h6
+              class="top-0 text-[20px] leading-[20px] font-medium -mr-12 max-w-[120px] overflow-x-clip font-family tracking-tighter"
+              @click="navigateTo({ name: 'dash-profile' })"
+            > 
+              {{ auth.user?.username }}
+            </h6>
           <h6
             class="text-[#14C6A4] text-[18px] leading-[18px] dark:text-[#14C6a4] font-light tracking-normal"
             @click="navigateTo({ name: 'dash-profile' })"
@@ -122,7 +90,7 @@ function click(item) {
         </div>
         <div class="[flex-basis:100%] h-0" />
         <dash-menu-side-level
-          :user="auth.user"
+          :user="null"
           :class="`mt-5 pl-2 pr-5 ${isOpen ? 'block' : 'hidden'}`"
         />
         <div :class="`h-[40px] ${isOpen ? 'hidden' : 'block'}`" />

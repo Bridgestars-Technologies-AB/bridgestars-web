@@ -94,10 +94,10 @@ function bid(suit, rank) {
       <div
         v-for="e in biddingArray"
         :key="e"
-        :class="`cursor-pointer rounded-t-[8px] bg-dash-dark-100 border-t border-x border-dash-light-100 w-[45px] h-[40px] sm:w-[50px] sm:h-[45px] flex justify-center items-center ${
+        :class="`cursor-pointer rounded-t-[8px] bg-dark-100 border-t border-x border-dash-light-100 w-[45px] h-[40px] sm:w-[50px] sm:h-[45px] flex justify-center items-center ${
           currentRank === e
             ? 'z-[0.9] mb-[-1px]'
-            : 'bg-dash-dark-200 mb-[-8px] z-[0.8]'
+            : 'bg-dark-200 mb-[-8px] z-[0.8]'
         }`"
         @click="currentRank = e"
       >
@@ -107,7 +107,7 @@ function bid(suit, rank) {
       </div>
     </div>
     <div
-      class="border-dash-light-100 bg-dash-dark-100 border z-[0.8] rounded-[6px] px-7 sm:px-[45px] pt-2 pb-2"
+      class="border-dash-light-100 bg-dark-100 border z-[0.8] rounded-[6px] px-7 sm:px-[45px] pt-2 pb-2"
     >
       <div class="flex flex-row space-x-[3px]">
         <div v-for="e in 5" :key="e">

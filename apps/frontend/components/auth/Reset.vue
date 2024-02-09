@@ -5,19 +5,18 @@ const query = useRoute().query;
 const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
-function submit(res) {
+async function submit(res) {
   showLoading.value = true;
-  useAuth()
-    .requestPasswordReset(res.email)
-    .then(() => {
-      toast.success(t("auth:reset:toast.passwordReset"));
-      query.email = res.email;
-      navigateTo({ path: "/auth/sign-in", query });
-    })
-    .catch((e) => {
-      showLoading.value = false;
-      toast.error(e.message);
-    });
+  await useAuth().forgotPassword(res)
+  .then(() => {
+    toast.success("Vi har skickat ett mail till dig med instruktioner för att återställa ditt lösenord.");
+    navigateTo({ path: "/auth/sign-in", query });
+  })
+  .catch(e => {
+    showLoading.value = false;
+    toast.error(e.value?.data.message);
+    return;
+  })
 }
 </script>
 

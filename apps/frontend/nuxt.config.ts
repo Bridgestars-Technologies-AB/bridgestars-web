@@ -2,6 +2,8 @@
 
 import { periodicSyncForUpdates } from "virtual:nuxt-pwa-configuration";
 
+console.log(process.env.BACKEND_URL)
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   //css: ["~/assets/css/main.css"],
@@ -39,11 +41,16 @@ export default defineNuxtConfig({
         dsn: process.env.SENTRY_DSN,
         environment: process.dev ? "dev" : "prod",
       },
-      PROD_SERVER: process.env.PROD_SERVER,
-    },
+    }
   },
+  // axios:{
+  //   proxy: true
+  // },
   nitro: {
-    //preset: "vercel-edge",
+    routeRules: {
+      "/backend/**": { proxy: process.env.BACKEND_URL + "/**" }//"http://localhost:80/**" }
+    }
+    //       //proxy: process.env.BACKEND_URL+"/**"
   },
   routeRules: {
     "/": { prerender: true }, // build static resource
