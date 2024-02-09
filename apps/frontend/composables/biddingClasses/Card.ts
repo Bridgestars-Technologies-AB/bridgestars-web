@@ -10,14 +10,33 @@ export class Card {
   public suit: number;
   public rank: number;
 
-  // public constructor(suit: number, rank: number) {
-  //   this.suit = suit;
-  //   this.rank = rank;
-  // }
+  private ranks = new Map([
+    ["1", 1],
+    ["2", 2],
+    ["3", 3],
+    ["4", 4],
+    ["5", 5],
+    ["6", 6],
+    ["7", 7],
+    ["8", 8],
+    ["9", 9],
+    ["T", 10],
+    ["J", 11],
+    ["Q", 12],
+    ["K", 13],
+    ["A", 14],
+  ]);
 
-  // public constructor (rank: str, suit: SUIT) {
-  //   // input: H: "A"
-  //   this.suit = suit
+  private suits = new Map([
+    ["C", SUIT.CLUBS],
+    ["D", SUIT.DIAMONDS],
+    ["H", SUIT.HEARTS],
+    ["S", SUIT.SPADES],
+  ]);
 
-  // }
+  // example: rank = "A", suit = "S" => suit = 3, rank = 14
+  public constructor(rank: string, suit: string) {
+    this.rank = this.ranks.get(rank) as number;
+    this.suit = this.suits.get(suit) as number;
+  }
 }

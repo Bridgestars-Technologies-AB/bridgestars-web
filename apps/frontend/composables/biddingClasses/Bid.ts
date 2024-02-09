@@ -1,7 +1,7 @@
 import { t } from "i18next";
 
 // This interface is used to represent a bid sent from the server
-interface bidResponse {
+interface BidResponse {
   bid: string;
   explanation: string;
 }
@@ -65,7 +65,7 @@ export class Bid {
   }
 
   // This function is used to convert a bidding sequence from the server to a list of Bid objects
-  public static fromJson(bidding: Array<bidResponse>): Array<Bid> {
+  public static fromJson(bidding: Array<BidResponse>): Array<Bid> {
     return bidding.map((b) => this.fromString(b.bid, b.explanation));
   }
 
