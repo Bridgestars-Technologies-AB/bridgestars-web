@@ -4,11 +4,16 @@ It is supposed to be used when there is not a bid for a certain player -->
 <!-- The history prop is the play history of the bidding-problem -->
 <script setup lang="ts">
 import { Bid } from "~/composables/biddingClasses/Bid";
+import { Hand } from "~/composables/biddingClasses/Hand";
 // initialize components based on data attribute selectors
 onMounted(() => {});
 
 defineProps({
   presentationText: String,
+  hands: {
+    type: Array<Hand>,
+    required: true,
+  },
   history: {
     type: Array<Bid>,
   },
@@ -66,30 +71,16 @@ const biddingBox =
     </game-bidding-container>
 
     <!-- temporarily disabled for testing -->
-    <!-- <game-bidding-container
+    <game-bidding-container
       class="xs:w-[100%] sm:w-[80%] h-[12%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
       header="DIN HAND"
     >
       <game-bidding-hand
         class="bg-white dark:bg-dark-100 w-full mx-auto lg:w-full lg:h-[70%]"
         :showDeal="false"
-        :hand="[
-          { suit: 0, rank: 2 },
-          { suit: 0, rank: 5 },
-          { suit: 0, rank: 12 },
-          { suit: 1, rank: 13 },
-          { suit: 1, rank: 3 },
-          { suit: 1, rank: 8 },
-          { suit: 2, rank: 11 },
-          { suit: 2, rank: 13 },
-          { suit: 2, rank: 14 },
-          { suit: 3, rank: 5 },
-          { suit: 3, rank: 6 },
-          { suit: 3, rank: 9 },
-          { suit: 3, rank: 14 },
-        ]"
+        :hand="hands[0]"
       ></game-bidding-hand>
-    </game-bidding-container> -->
+    </game-bidding-container>
   </div>
 </template>
 

@@ -62,4 +62,8 @@ export class Card {
     this.rank = Card.ranksToNumber.get(rank) as number;
     this.suit = Card.suitsToNumber.get(suit) as number;
   }
+
+  public toString(): string {
+    return `${Card.ranksToString.get(this.rank)}`;
+  }
 }

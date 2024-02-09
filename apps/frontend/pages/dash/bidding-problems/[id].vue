@@ -15,7 +15,7 @@ const biddingProblem = {
   cards: [
     {
       player: "N",
-      spades: "D876",
+      spades: "Q876",
       hearts: "AT4",
       diamonds: "KJ3",
       clubs: "KJ3",
@@ -78,7 +78,7 @@ const bidResponseList = [
       },
       {
         player: "W",
-        spades: "D876",
+        spades: "Q876",
         hearts: "AT4",
         diamonds: "KJ3",
         clubs: "KJ3",
@@ -118,7 +118,7 @@ const pass = ref(false);
 const biddingExplanation = ref("");
 const solution = ref("");
 const nextProblemId = ref("");
-const hands = ref([]);
+const hands = biddingProblem.cards.map((hand) => new Hand(hand));
 
 // Checks if solution is correct
 // emited from bidding-problem
@@ -143,10 +143,10 @@ function check() {
     solution.value = response.solution;
     nextProblemId.value = response.next_problem_id;
     biddingHistory.value = Bid.fromJson(response.bidding);
-    response.cards.forEach((hand) => {
-      hands.value.push(new Hand(hand));
-    });
-    console.log(hands.value[1].spades);
+    // response.cards.forEach((hand) => {
+    //   hands.value.push(new Hand(hand));
+    // });
+    // console.log(hands.value[1].spades);
   }
 }
 </script>
@@ -168,6 +168,7 @@ function check() {
         v-model:bid="bid"
         :presentationText="biddingProblem.presentation"
         :history="Bid.fromJson(biddingProblem.bidding)"
+        :hands="hands"
         @check="check"
       ></game-bidding-problem>
       <div
