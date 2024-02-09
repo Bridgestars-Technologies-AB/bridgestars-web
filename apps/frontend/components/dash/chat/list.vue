@@ -50,11 +50,11 @@ async function searchUsers() {
   <div class="flex flex-col h-[500px] w-[350px] rounded-xl overflow-clip">
     <!-- Top bar with close button -->
     <div
-      class="flex justify-between items-center px-3 h-[50px] bg-dash-light-500 dark:bg-dash-dark-300"
+      class="flex justify-between items-center px-3 h-[50px] bg-light-500 dark:bg-dark-300"
     >
       <!-- <button @click="$emit('close')"> -->
       <!--   <span -->
-      <!--     class="i-ic-round-close bg-dash-dark-500 dark:bg-dash-light-300 h-[30px] w-[30px] rounded-full scale-[1.2] translate-y-[2px]" /> -->
+      <!--     class="i-ic-round-close bg-dark-500 dark:bg-light-300 h-[30px] w-[30px] rounded-full scale-[1.2] translate-y-[2px]" /> -->
       <!-- </button> -->
 
       <!-- new chat -->
@@ -62,13 +62,13 @@ async function searchUsers() {
         class="flex items-center justify-center h-[38px] w-[38px] rounded-full"
       >
         <span
-          class="i-material-symbols-add-circle-outline-rounded bg-dark dark:bg-light text-[28px]"
+          class="i-material-symbols-add-circle-outline-rounded bg-color-dark dark:bg-color-light text-[28px]"
         ></span>
       </div>
 
       <!-- search field TODO: this could be an component -->
       <div
-        class="flex justify-between items-center bg-dash-light-400 dark:bg-dash-dark-500 h-[38px] px-3 rounded-[12px]"
+        class="flex justify-between items-center bg-light-400 dark:bg-dark-500 h-[38px] px-3 rounded-[12px]"
       >
         <input
           type="söök"
@@ -77,10 +77,10 @@ async function searchUsers() {
           @input="searchTerm = $event.target.value"
         />
         <div
-          class="flex items-center justify-center bg-dash-light-300 dark:bg-dash-dark-300 h-[30px] w-[30px] rounded-full"
+          class="flex items-center justify-center bg-light-300 dark:bg-dark-300 h-[30px] w-[30px] rounded-full"
         >
           <span
-            class="i-ic-round-search text-[24px] bg-dark dark:bg-light"
+            class="i-ic-round-search text-[24px] bg-color-dark dark:bg-color-light"
           ></span>
         </div>
       </div>
@@ -89,7 +89,9 @@ async function searchUsers() {
         class="flex items-center justify-center h-[38px] w-[38px] rounded-full cursor-pointer"
         @click="$emit('close')"
       >
-        <span class="i-ic-round-close bg-dark dark:bg-light text-[28px]"></span>
+        <span
+          class="i-ic-round-close bg-color-dark dark:bg-color-light text-[28px]"
+        ></span>
       </div>
     </div>
 
@@ -97,7 +99,7 @@ async function searchUsers() {
       <!-- messages field -->
       <div
         ref="scroller"
-        class="flex-grow w-full overflow-x-hidden overflow-y-auto dark:bg-dash-dark-400 bg-dash-light-500 pb-2 pt-2"
+        class="flex-grow w-full overflow-x-hidden overflow-y-auto dark:bg-dark-400 bg-light-500 pb-2 pt-2"
       >
         <!-- flex-1 expands this field to fill all remaining space of flexbox -->
         <!-- <hr class="border-dark dark:border-white opacity-[20%] my-1" /> -->

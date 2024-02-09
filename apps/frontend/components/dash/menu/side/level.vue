@@ -5,7 +5,7 @@ const bar = ref(null);
 // random calculation, increasing xp needed to level up
 // level steps are: 0, 100, 400, 900, 1600, 2500, 3600, 4900, 6400
 // maybe that curve is a little steep
-const xp = props.user?.data.get("xp") || 550; // temp, should be 0 here
+const xp = props.user?.data?.get("xp") || 550; // temp, should be 0 here
 const level = computed(() => (xp / 100) ** 0.5);
 const levelFloored = computed(() => Math.floor(level.value));
 const levelProgressPercent = computed(
@@ -25,7 +25,7 @@ onMounted(() => {
     <span class="dark:text-white text-dark text-[14px] font-bold"
       >Lv.{{ levelFloored }}</span
     >
-    <div class="grow bg-dash-dark-300 h-[10px] rounded-full">
+    <div class="grow bg-dark-300 h-[10px] rounded-full">
       <div
         ref="bar"
         class="bg-dash-accent h-full rounded-full transition-[width] w-0"

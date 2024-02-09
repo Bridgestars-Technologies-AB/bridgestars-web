@@ -1,3 +1,5 @@
+<!-- Currently, const pointer and const opacity has commented code which stops block from being disabled -->
+
 <script setup lang="ts">
 const p = defineProps({
   card: {
@@ -19,20 +21,35 @@ const p = defineProps({
 defineEmits<{
   click: [suit: number, rank: number];
 }>();
+
+//used to make the block invisible if the card is {suit:10, rank:10}
+const invisible = computed(() =>
+  p.card.suit === 10 && p.card.rank === 10 ? "invisible" : "",
+);
+
+//used to make the block green if the card is {suit:0, rank:0}
 const bg = computed(() =>
   p.card.suit === 0 && p.card.rank === 0 ? "!bg-[#0E9F6E]" : "",
 ); // fattar inte varför den behöver "!"
-const pointer = computed(() =>
-  p.clickable && !p.disabled ? "" : "pointer-events-none",
+
+// uncomment for feedback on disabled blocks
+const pointer = computed(
+  () =>
+    //p.clickable && !p.disabled ? "" : "pointer-events-none",
+    "",
 );
-const opacity = computed(() =>
-  p.disabled ? "opacity-50 cursor-not-allowed" : "",
+
+// uncomment for feedback on disabled blocks
+const opacity = computed(
+  () =>
+    //   p.disabled ? "opacity-50 cursor-not-allowed" : "",
+    "",
 );
 </script>
 
 <template>
   <div
-    :class="`${$attrs.class} flex flex-row justify-center items-center my-[2px] hover:bg-transparent ${opacity}`"
+    :class="`${$attrs.class} ${invisible} flex flex-row justify-center items-center my-[2px] hover:bg-transparent ${opacity}`"
   >
     <div
       :class="`${size} rounded-lg ${pointer} ${bg}`"

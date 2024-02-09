@@ -130,7 +130,9 @@ onMounted(() => {
             >
           </div>
         </template>
-        <div class="w-full mt-4 h-[1.5px] opacity-60 bg-dark rounded-full" />
+        <div
+          class="w-full mt-4 h-[1.5px] opacity-60 bg-color-dark rounded-full"
+        />
         <!-- foreach key in item, print nicely -->
         <h4 class="font-bold mt-3 font-family1 sm:text-[20px] xs:text-[11px]">
           Parameters

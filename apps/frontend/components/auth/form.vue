@@ -18,7 +18,7 @@ const emit = defineEmits(["submit"]);
 //const formRef = ref(); // we need a DOM node
 
 onMounted(() => {
-  if (useAuth().authenticated) {
+  if (useAuth().user) {
     navigateTo("/auth/already");
   }
   document.querySelector("input")?.focus();
@@ -36,26 +36,26 @@ onMounted(() => {
     class="fixed bottom-0 top-0 w-full h-full flex flex-col justify-center bg-[#fefefe]"
   >
     <!-- header -->
-    <div
-      class="absolute top-0 flex justify-start whitespace-nowrap pt-[30px] pl-[30px]"
-    >
-      <span class="authHeader text-blue mr-2 xs:block sm:hidden">
-        {{ "<" }}
-      </span>
-      <button
-        class="normal-case text-blue authHeader"
-        @click="router.push({ path: '/' })"
-      >
-        {{ $t("auth:common.home") }}
-      </button>
-      <span class="authHeader text-grey opacity-80 mx-2 xs:hidden sm:block">
-        /
-      </span>
-      <span class="authHeader text-grey opacity-80 xs:hidden sm:block">{{
-        header
-      }}</span>
-    </div>
-
+    <!-- <div -->
+    <!--   class="absolute top-0 flex justify-start whitespace-nowrap pt-[30px] pl-[30px]" -->
+    <!-- > -->
+    <!--   <span class="authHeader text-blue mr-2 xs:block sm:hidden"> -->
+    <!--     {{ "<" }} -->
+    <!--   </span> -->
+    <!--   <button -->
+    <!--     class="normal-case text-blue authHeader" -->
+    <!--     @click="router.push({ path: '/' })" -->
+    <!--   > -->
+    <!--     {{ $t("auth:common.home") }} -->
+    <!--   </button> -->
+    <!--   <span class="authHeader text-grey opacity-80 mx-2 xs:hidden sm:block"> -->
+    <!--     / -->
+    <!--   </span> -->
+    <!--   <span class="authHeader text-grey opacity-80 xs:hidden sm:block">{{ -->
+    <!--     header -->
+    <!--   }}</span> -->
+    <!-- </div> -->
+    <!---->
     <div class="absolute flex justify-center items-center z-[-1] h-full w-full">
       <NuxtImg
         alt="background"
@@ -65,7 +65,7 @@ onMounted(() => {
       <NuxtImg
         alt="background"
         src="/bridgestars/art/auth-form-ipad.svg"
-        class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1300px] min-w-[1155px]"
+        class="xs:hidden sm:block w-[100%] scale-[1] max-w-[1300px] min-w-[1300px]"
       />
     </div>
     <!-- form -->
@@ -81,7 +81,7 @@ onMounted(() => {
       <!--   alt="bridgestars logo" -->
       <!-- /> -->
       <!-- TITLE -->
-      <NuxtImg
+      <img
         class="anim-bounce w-[120px] h-[120px] xs:mt-0 sm:mt-5 mb-5"
         src="/demo/bridgeschool.png"
         alt="Bridgeschool logo"

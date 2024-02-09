@@ -1,3 +1,3 @@
 <template>
-  <game-bidding-practice />
+  <game-bidding-problems />
 </template>

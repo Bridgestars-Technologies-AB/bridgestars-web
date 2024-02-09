@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div :class="`flex flex-row items-center bg-dash-dark-100 ${$attrs.class}`">
+  <div :class="`flex flex-row items-center bg-dark-100 ${$attrs.class}`">
     <!-- This will be changed with an icon later -->
     <div class="rounded-full border w-[20px] h-[20px] ml-[10px]"></div>
     <div class="flex flex-col justify-center ml-[5px]">

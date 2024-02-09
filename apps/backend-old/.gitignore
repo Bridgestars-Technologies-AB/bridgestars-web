@@ -1,0 +1,12 @@
+node_modules/
+.idea/
+logs/
+.DS_Store
+.vscode/
+doc/
+build/
+# Sentry Config File
+.sentryclirc
+
+# Sentry Config File
+.sentryclirc

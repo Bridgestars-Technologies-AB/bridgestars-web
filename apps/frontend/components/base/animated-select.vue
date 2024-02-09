@@ -49,7 +49,7 @@ function moveLine(event) {
 
 <template>
   <div
-    class="relative bg-dash-light-400 rounded-lg h-fit min-h-[50px] w-full flex xs:flex-col sm:flex-row items-center text-center"
+    class="relative bg-light-400 rounded-lg h-fit min-h-[50px] w-full flex xs:flex-col sm:flex-row items-center text-center"
   >
     <div
       v-for="o in options"
