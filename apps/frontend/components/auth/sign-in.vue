@@ -87,7 +87,7 @@ async function submit(res: { email: string; password: string }) {
       <button
         class="text-blue font-bold normal-case tracking-[0.5px] translate-y-[-12px]"
         type="button"
-        @click="navigateTo({ path: '/auth/reset', query })"
+        @click="navigateTo({ path: '/auth/forgot', query })"
       >
         {{ $t("auth:signIn.forgot") }}
       </button>
