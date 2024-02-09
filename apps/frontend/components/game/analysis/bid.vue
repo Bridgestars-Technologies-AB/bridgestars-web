@@ -1,7 +1,8 @@
-<script setup>
+<script setup lang="ts">
 defineProps({
-  brick: {
-    type: CardUtil.Card,
+  bid: {
+    type: Bid,
+    default: new Bid(0, 0),
   },
   player: {
     type: String,
@@ -18,15 +19,12 @@ defineProps({
       :class="`${size} bg-dark-200 flex justify-center items-center rounded-xl`"
     >
       <span class="biddingText1 text1 tracking-[2px] mr-[2px]">{{
-        brick.rank
+        bid.rank
       }}</span>
-      <span v-if="brick.suit > 3" class="tracking-[2px] text1 biddingText3">
+      <span v-if="bid.suit > 3" class="tracking-[2px] text1 biddingText3">
         NT
       </span>
-      <span
-        v-else
-        :class="`biddingText2 ${CardUtil.symbols[brick.suit]}`"
-      ></span>
+      <span v-else :class="`biddingText2 ${bid.tailwindSuitSymbol()}`"></span>
     </div>
     <div
       :class="`${size} bg-dark-200 flex justify-center items-center rounded-xl ml-[5px]`"

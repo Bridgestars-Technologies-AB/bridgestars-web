@@ -42,7 +42,7 @@ const biddingBox =
       </div>
     </game-bidding-container>
 
-    <!-- <game-bidding-container
+    <game-bidding-container
       class="xs:w-[100%] sm:w-[80%] h-[40%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
       header="BUDGIVNING"
     >
@@ -51,7 +51,7 @@ const biddingBox =
         class="w-full h-full lg:w-full lg:h-[70%]"
         :biddingBox="biddingBox"
       ></game-bidding-history>
-    </game-bidding-container> -->
+    </game-bidding-container>
 
     <game-bidding-container
       class="min-h-[150px] xs:w-[100%] sm:w-[80%] h-[30%] mt-[8px] rounded-xl lg:h-full lg:w-[24%]"

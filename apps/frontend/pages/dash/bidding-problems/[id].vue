@@ -62,18 +62,14 @@ const bidResponseList = [
     solution:
       "Du har 18 hp och vet att din partner har 15-17 hp. Ni har tillsammans 33-35 hp och gränsen för att bjuda lillslam är minst 33 hp. Rätt bud är 6NT.",
     bidding: [
-      // all budgivnings historik för givet
+      { bid: "1NT", explanation: " 0 - 8 hp" },
+      { bid: "PASS" },
+      { bid: "3NT", explanation: " 10 - 15 hp" },
     ],
   },
 ];
 
 //Mock data, will be fetched from DB table bidding-problems and bidding-result
-
-const history = [
-  { suit: 10, rank: 10 },
-  { suit: 4, rank: 1 },
-  { suit: 0, rank: 0 },
-];
 
 // used as v-model to be able to see the latest bid made
 const bid = ref(new Bid(0, 0));
@@ -95,7 +91,7 @@ function check() {
   // Here we ask the backend if {suit, rank} is correct, and then we
   // get a response if it was correct and data needed for that situation
   // Will be simulated with a function returning a random response
-  //axios.post(`/prefix/bidding-problem/${route.params.id}`, { bid: "2NT" }) ->
+  //axios.post(`/prefix/bidding-problem/${route.params.id}`, { bid: bid.getShortName }) ->
   const response =
     bidResponseList[Math.floor(Math.random() * bidResponseList.length)];
   if (!response.correct) {
@@ -111,6 +107,7 @@ function check() {
     pass.value = true;
     solution.value = response.solution;
     nextProblemId.value = response.next_problem_id;
+    biddingHistory.value = Bid.fromJson(response.bidding);
   }
 }
 </script>
@@ -131,7 +128,7 @@ function check() {
       <game-bidding-problem
         v-model:bid="bid"
         :presentationText="biddingProblem.presentation"
-        :history="history"
+        :history="Bid.fromJson(biddingProblem.bidding)"
         @check="check"
       ></game-bidding-problem>
       <div
@@ -153,7 +150,7 @@ function check() {
     <div v-else class="w-full h-full flex justify-center items-center">
       <game-analysis-main
         :biddingResult="biddingHistory"
-        :solution="{ suit: bid.suit, rank: bid.rank }"
+        :solution="bid"
         :player="biddingProblem.player"
         :biddingAnswer="solution"
         :nextProblemId="nextProblemId"
