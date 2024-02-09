@@ -1,24 +1,48 @@
 <script setup lang="ts">
+import axios from 'axios';
+
 const toast = useToast();
 const query = useRoute().query;
 const showLoading = ref(false);
 await loadTranslations("auth");
 
-const auth = useAuth();
+//const auth = useAuth();
 
-function submit(res: { usernameEmail: string; password: string }) {
+async function submit(res: { email: string; password: string }) {
   showLoading.value = true;
-  auth
-    .signIn(res.usernameEmail, res.password)
-    .then(() => {
-      toast.success("Du har loggats in"); //TODO: translate this
-      if (query.to) navigateTo({ path: query.to });
+
+  await useAuth().login(res)
+    .then((response) => {
+      toast.success("Du har loggats in");
+      if (query.to) navigateTo({ path: query.to as string });
       else navigateTo({ path: "/dash" });
     })
-    .catch((e) => {
-      showLoading.value = false;
-      toast.error(e.message);
+    .catch((error) => {
+      if (error.response) {
+        showLoading.value = false;
+        toast.error(error.response.data.message);
+      } else {
+        showLoading.value = false;
+        toast.error("Något gick fel, försök igen");
+      }
     });
+  // await axios.get("/db/sanctum/csrf-cookie")
+  //   .then(() => axios.post("/db/login", res))
+  //   .then(({data, status}) => {
+  //     toast.success("Du har loggats in");
+  //     if (query.to) navigateTo({ path: query.to as string });
+  //     else navigateTo({ path: "/dash" });
+  //   })
+  //   .catch((error) => {
+  //     if(error.response){
+  //        showLoading.value = false;
+  //        toast.error(error.response.data.message);
+  //     }
+  //     else {
+  //       showLoading.value = false;
+  //       toast.error("Något gick fel, försök igen");
+  //     }
+  // })
 }
 </script>
 
@@ -33,12 +57,12 @@ function submit(res: { usernameEmail: string; password: string }) {
       id="username-email"
       v-model="query.email"
       wrapperClass="w-[100%]"
-      :placeholder="$t('auth:placeholder.usernameEmail')"
+      placeholder="Email"
     />
     <base-input-field
       id="password-signin"
       wrapperClass="w-[100%]"
-      :placeholder="$t('auth:placeholder.password')"
+      placeholder="Lösenord"
       type="password"
     />
 
@@ -63,7 +87,7 @@ function submit(res: { usernameEmail: string; password: string }) {
       <button
         class="text-blue font-bold normal-case tracking-[0.5px] translate-y-[-12px]"
         type="button"
-        @click="navigateTo({ path: '/auth/reset', query })"
+        @click="navigateTo({ path: '/auth/forgot', query })"
       >
         {{ $t("auth:signIn.forgot") }}
       </button>

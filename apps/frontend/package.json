@@ -5,7 +5,6 @@
   "scripts": {
     "build": "nuxt build",
     "start": "nuxt dev --o --host",
-    "with_prod_server": "npx nuxi dev --dotenv .env.with_prod_server --o --host",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -50,6 +49,7 @@
     "@unly/universal-language-detector": "^2.0.3",
     "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.2",
+    "axios": "0.27.2",
     "bridgestars-db-client": "workspace:^",
     "bridgestars-frontend": "link:",
     "eslint-plugin-prettier": "^5.1.2",

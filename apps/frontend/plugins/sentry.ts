@@ -1,11 +1,13 @@
-import * as Sentry from '@sentry/vue'
+import * as Sentry from "@sentry/vue";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const router = useRouter()
-  const { public: { sentry } } = useRuntimeConfig()
+  const router = useRouter();
+  const {
+    public: { sentry },
+  } = useRuntimeConfig();
 
   if (!sentry.dsn) {
-    return
+    return;
   }
 
   Sentry.init({
@@ -28,5 +30,5 @@ export default defineNuxtPlugin((nuxtApp) => {
 
     // replaysSessionSampleRate: 1.0, // Change in prod
     // replaysOnErrorSampleRate: 1.0, // Change in prod if necessary
-  })
-})
+  });
+});

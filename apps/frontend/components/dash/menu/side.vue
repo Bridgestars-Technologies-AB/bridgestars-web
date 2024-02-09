@@ -106,13 +106,13 @@ function click(item) {
           src="/bridgestars/images/castor.jpg"
           @click="navigateTo({ name: 'dash-profile' })"
         />
-        <div class="flex flex-col text-start pl-2 justify-center">
-          <h6
-            class="text-[24px] leading-[24px] font-family tracking-tighter"
-            @click="navigateTo({ name: 'dash-profile' })"
-          >
-            {{ auth.username }}
-          </h6>
+        <div class="flex flex-col text-start pl-2 space-y-1 justify-center">
+            <h6
+              class="top-0 text-[20px] leading-[20px] font-medium -mr-12 max-w-[120px] overflow-x-clip font-family tracking-tighter"
+              @click="navigateTo({ name: 'dash-profile' })"
+            > 
+              {{ auth.user?.username }}
+            </h6>
           <h6
             class="text-[#14C6A4] text-[18px] leading-[18px] dark:text-[#14C6a4] font-light tracking-normal"
             @click="navigateTo({ name: 'dash-profile' })"
@@ -122,7 +122,7 @@ function click(item) {
         </div>
         <div class="[flex-basis:100%] h-0" />
         <dash-menu-side-level
-          :user="auth.user"
+          :user="null"
           :class="`mt-5 pl-2 pr-5 ${isOpen ? 'block' : 'hidden'}`"
         />
         <div :class="`h-[40px] ${isOpen ? 'hidden' : 'block'}`" />

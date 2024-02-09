@@ -1,22 +1,24 @@
-<script setup>
+<script setup lang="ts">
 const toast = useToast();
 const query = useRoute().query;
-const {t} = await loadTranslations("auth");
+const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
-function submit(res) {
+async function submit(res:{username:string, email:string, name:string, password:string }) {
   showLoading.value = true;
-  useAuth()
-    .signUp(res.username, res.password, res.email)
-    .then((user) => {
-      toast.success(t("auth:signUp:toast.signedUp"));
-      if (query.to) navigateTo({ path: query.to });
-      else navigateTo({ path: "/dash" });
-    })
-    .catch((e) => {
-      showLoading.value = false;
-      toast.error(e.message);
-    });
+  showLoading.value = true;
+
+  await useAuth().register(res)
+  .then(() => {
+    toast.success("Du har loggats in");
+    if (query.to) navigateTo({ path: query.to as string });
+    else navigateTo({ path: "/dash" });
+  })
+  .catch(e => {
+    showLoading.value = false;
+    toast.error(e.value?.data.message);
+    return;
+  })
 }
 </script>
 
@@ -33,11 +35,20 @@ function submit(res) {
       :placeholder="$t('auth:placeholder.username')"
       type="username"
     />
+    <!-- <div class="flex text-left"> -->
+    <!-- <span class="text2 pl-3 -pt-1 leading-6">Ditt användarnamn kan du använda istället för din mail när du loggar in.</span> -->
+    <!-- </div> -->
     <base-input-field
       id="email"
       wrapperClass="w-[100%]"
       :placeholder="$t('auth:placeholder.email')"
       type="email"
+    />
+    <base-input-field
+      id="name"
+      wrapperClass="w-[100%]"
+      placeholder="Namn"
+      type="name"
     />
     <base-input-field
       id="password"
@@ -62,15 +73,16 @@ function submit(res) {
           <!-- to add space between texts  -->
 
           <span class="normal-case text2 text-dark tracking-[0.5px]">
-            <i18next :translation="$t('auth:signUp:agree')">
-              <template #terms>
+            <!-- <i18next :translation="$t('auth:signUp:agree')"> -->
+            <!--   <template #terms> -->
+            Jag godkänner 
                 <NuxtLink
                   to="/policy"
-                  class="normal-case text2 text-blue font-bold tracking-[0.5px]"
-                  >{{ $t("auth:signUp:terms") }}</NuxtLink
+                  class="normal-case text2 text-[15px] text-blue font-bold tracking-[0.5px]"
+                  >Användarvillkoren</NuxtLink
                 >
-              </template>
-            </i18next>
+            <!--   </template> -->
+            <!-- </i18next> -->
           </span>
         </p>
       </div>
@@ -87,7 +99,7 @@ function submit(res) {
     ></base-submit-button>
 
     <div class="flex text-center">
-      <div class="xs:!mt-1 sm:!mt-1 xl:!mt-5 xs:!mb-3">
+      <div class="xs:!mb-3">
         <span class="text2 mr-1">{{ $t("auth:signUp.footer") }} </span>
         <button
           class="normal-case text-blue font-bold tracking-[0.5px]"

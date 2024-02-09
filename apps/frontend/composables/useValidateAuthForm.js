@@ -13,6 +13,7 @@ export default function InitAuthFormValidation(form, callback) {
   const passwordSignInEl = form.querySelector("#password-signin");
   const passwordConfirmEl = form.querySelector("#password-confirm");
   const termsEl = form.querySelector("#terms-accept");
+  const nameEl = form.querySelector("#name");
   let errorElement = null;
   let hasSubmitted = false;
   //
@@ -81,6 +82,20 @@ export default function InitAuthFormValidation(form, callback) {
     }
     return valid;
   };
+  const checkName = () => {
+    if (!nameEl) return false;
+    let valid = false;
+    const name = nameEl.value.trim();
+    if (!isRequired(name)) {
+      showError(nameEl, "Glöm inte fylla i ditt namn");
+    } else if (!isNameValid(name)) {
+      showError(nameEl, "Fyll i hela ditt namn");
+    } else {
+      showSuccess(nameEl);
+      valid = true;
+    }
+    return valid;
+  };
 
   const checkPasswordSignIn = () => {
     if (!passwordSignInEl) return false;
@@ -142,6 +157,10 @@ export default function InitAuthFormValidation(form, callback) {
     return re.test(email);
   };
 
+  const isNameValid = (name) => {
+    return name.length > 2;
+  };
+
   const isPasswordSecure = (password) => {
     const re = new RegExp("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/");
     return re.test(password);
@@ -195,51 +214,58 @@ export default function InitAuthFormValidation(form, callback) {
       isPasswordSignInValid = checkPasswordSignIn(),
       isUsernameValid = checkUsername(),
       isEmailValid = checkEmail(),
+      isNameValid = checkName(),
       isPasswordValid = checkPassword(),
       isConfirmPasswordValid = checkConfirmPassword(),
       isTermsChecked = checkTerms();
 
-    let isSignUpValid =
-      isUsernameValid &&
+    let isSignUpValid = isUsernameValid &&
       isEmailValid &&
+      isNameValid &&
       isPasswordValid &&
       isConfirmPasswordValid &&
       isTermsChecked &&
       !usernameEmailEl &&
       !passwordSignInEl;
 
-    let isSignInValid =
-      isUsernameEmailValid &&
+    let isSignInValid = isUsernameEmailValid &&
       isPasswordSignInValid &&
       !emailEl &&
       !passwordConfirmEl &&
+      !nameEl &&
       !usernameEl;
 
-    let isResetValid =
-      isEmailValid &&
+    let isForgotValid = isEmailValid &&
       !passwordEl &&
       !passwordConfirmEl &&
       !usernameEl &&
+      !nameEl &&
       !usernameEmailEl;
 
-    let isFormValid = isSignUpValid || isSignInValid || isResetValid;
+    let isResetValid = isPasswordValid && isConfirmPasswordValid && !emailEl && !usernameEl && !nameEl && !usernameEmailEl && !passwordSignInEl;
 
     // submit to the server if the form is valid
     if (isSignInValid) {
       callback({
-        usernameEmail: usernameEmailEl.value,
+        email: usernameEmailEl.value,
         password: passwordSignInEl.value,
       });
     } else if (isSignUpValid) {
       callback({
         username: usernameEl.value,
         email: emailEl.value,
+        name: nameEl.value,
         password: passwordEl.value,
         confirmPassword: passwordConfirmEl.value,
       });
-    } else if (isResetValid) {
+    } else if (isForgotValid) {
       callback({
         email: emailEl.value,
+      });
+    } else if (isResetValid) {
+      callback({
+        password: passwordEl.value,
+        confirmPassword: passwordConfirmEl.value,
       });
     }
   });
@@ -266,6 +292,7 @@ export default function InitAuthFormValidation(form, callback) {
     checkPassword();
     checkConfirmPassword();
     checkTerms();
+    checkName();
   }
 
   form.addEventListener(
@@ -275,6 +302,9 @@ export default function InitAuthFormValidation(form, callback) {
       switch (e.target.id) {
         case "username":
           checkUsername();
+          break;
+        case "name":
+          checkName();
           break;
         case "email":
           checkEmail();
