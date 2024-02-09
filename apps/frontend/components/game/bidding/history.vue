@@ -11,6 +11,7 @@ defineProps({
   history: {
     type: Array<Bid>,
     required: true,
+    default: () => [new Bid(0, 0)],
   },
   biddingBox: String,
 });

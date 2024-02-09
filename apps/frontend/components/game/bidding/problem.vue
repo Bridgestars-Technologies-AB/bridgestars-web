@@ -10,7 +10,7 @@ onMounted(() => {});
 defineProps({
   presentationText: String,
   history: {
-    type: Array,
+    type: Array<Bid>,
   },
 });
 
