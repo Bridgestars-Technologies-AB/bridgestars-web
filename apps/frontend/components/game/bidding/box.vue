@@ -12,11 +12,10 @@ Emits:
   bid: {suit: Number, rank: Number}
 -->
 <script setup lang="ts">
-import { Card } from "~/composables/biddingClasses/Card";
 import { Bid } from "~/composables/biddingClasses/Bid";
 
 const p = defineProps({
-  card: Card,
+  bid: Bid,
   biddingBox: String,
 });
 const emit = defineEmits(["bid", "update:bid"]);
@@ -26,9 +25,8 @@ const emit = defineEmits(["bid", "update:bid"]);
 //   return rank > currentRank || (suit > currentSuit && rank === currentRank);
 // }
 
-function bid(bid: Bid) {
+function makeBid(bid: Bid) {
   emit("update:bid", bid);
-  // here we maybe should emit a new Bid instead
   emit("bid", bid);
 }
 </script>
@@ -48,17 +46,17 @@ function bid(bid: Bid) {
           class="flex items-center justify-center overflow-x-hidden outline-none"
         >
           <game-bidding-block
-            :card="new Card(s - 1, r)"
+            :bid="new Bid(s - 1, r)"
             :size="biddingBox"
-            @click="bid"
+            @click="makeBid"
           ></game-bidding-block>
         </div>
       </div>
       <div class="w-full flex flex-row justify-center">
         <game-bidding-block
-          :card="new Card(0, 0)"
+          :bid="new Bid(0, 0)"
           :size="biddingBox"
-          @click="bid"
+          @click="makeBid"
         ></game-bidding-block>
       </div>
     </div>

@@ -1,5 +1,4 @@
 <script setup>
-import { Card } from "~/composables/biddingClasses/Card";
 import { Bid } from "~/composables/biddingClasses/Bid";
 
 const route = useRoute();
@@ -77,7 +76,7 @@ const history = [
 ];
 
 // used as v-model to be able to see the latest bid made
-const bid = ref(new Bid(new Card(0, 0)));
+const bid = ref(new Bid(0, 0));
 
 const biddingHistory = ref(history);
 
@@ -139,9 +138,13 @@ function check() {
         v-if="isBidMade"
         class="mt-3 w-[500px] h-[100px] bg-dark-100 rounded-xl flex flex-col justify-center items-center"
       >
-        <span class="text-[20px] text-dark dark:text-white">
-          Du bjöd {{ bid.card.rank }} {{ bid.card.suit }}
-        </span>
+        <div class="flex flex-row justify-center items-center">
+          <span class="text-[20px] text-dark dark:text-white">
+            Du bjöd {{ bid.getShortName() }}
+          </span>
+          <span v-if="bid.is('SUIT')" :class="bid.tailwindSuitSymbol()"> </span>
+        </div>
+
         <span class="text-[20px] text-dark dark:text-white">
           {{ biddingExplanation }}
         </span>
@@ -150,7 +153,7 @@ function check() {
     <div v-else class="w-full h-full flex justify-center items-center">
       <game-analysis-main
         :biddingResult="biddingHistory"
-        :solution="{ suit: bid.card.suit, rank: bid.card.rank }"
+        :solution="{ suit: bid.suit, rank: bid.rank }"
         :player="biddingProblem.player"
         :biddingAnswer="solution"
         :nextProblemId="nextProblemId"

@@ -2,9 +2,9 @@
 
 <script setup lang="ts">
 const p = defineProps({
-  card: {
-    type: Card,
-    default: new Card(0, 0),
+  bid: {
+    type: Bid,
+    default: new Bid(0, 0),
   },
   size: String,
   // bg: String,
@@ -25,11 +25,11 @@ const emit = defineEmits(["click", "bid"]);
 
 //used to make the block invisible if the card is {suit:10, rank:10}
 const invisible = computed(() =>
-  p.card.suit === 10 && p.card.rank === 10 ? "invisible" : "",
+  p.bid.suit === 10 && p.bid.rank === 10 ? "invisible" : "",
 );
 
 //used to make the block green if the card is {suit:0, rank:0}
-const bg = computed(() => (p.card.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar inte varför den behöver "!"
+const bg = computed(() => (p.bid.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar inte varför den behöver "!"
 
 // uncomment for feedback on disabled blocks
 const pointer = computed(
@@ -52,10 +52,10 @@ const opacity = computed(
   >
     <div
       :class="`${size} rounded-lg ${pointer} ${bg}`"
-      @click="emit('click', new Bid(card))"
+      @click="emit('click', bid)"
     >
       <!-- <span class="text1 text-white">{{ brick(card.suit, card.rank) }}</span> -->
-      <game-bidding-rank-suite :card="card"></game-bidding-rank-suite>
+      <game-bidding-rank-suite :bid="bid"></game-bidding-rank-suite>
     </div>
   </div>
 </template>

@@ -2,9 +2,9 @@
 // Import statement not needed, provided for context
 
 defineProps({
-  card: {
-    type: Card,
-    default: () => new Card(0, 0),
+  bid: {
+    type: Bid,
+    default: () => new Bid(0, 0),
   },
   click: Boolean,
 });
@@ -13,7 +13,7 @@ defineProps({
 <template>
   <div class="w-full h-full rounded-lg">
     <div
-      v-if="card.is('PASS')"
+      v-if="bid.is('PASS')"
       class="w-full h-full flex justify-center items-center"
     >
       <span
@@ -23,17 +23,17 @@ defineProps({
     </div>
     <div v-else class="w-full h-full flex flex-row justify-center items-center">
       <span class="biddingText1 text1 tracking-[2px] cursor-pointer">{{
-        card.rank
+        bid.rank
       }}</span>
       <span
-        v-if="card.is('NT')"
+        v-if="bid.is('NT')"
         class="text1 cursor-pointer biddingText3 m-0 p-0"
       >
         NT
       </span>
       <span
         v-else
-        :class="`biddingText2 cursor-pointer ${card.tailwindSuitSymbol()}`"
+        :class="`biddingText2 cursor-pointer ${bid.tailwindSuitSymbol()}`"
       ></span>
     </div>
   </div>

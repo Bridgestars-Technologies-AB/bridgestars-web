@@ -16,7 +16,7 @@ defineProps({
 
 const emit = defineEmits(["check", "update:bid"]);
 
-const bid = ref(new Bid(new Card(0, 0)));
+const bid = ref(new Bid(0, 0));
 
 function makeBid(bid: Bid) {
   emit("update:bid", bid);
@@ -111,7 +111,7 @@ const biddingBox =
 .desktopSize {
   @apply lg:flex-row lg:space-x-1 lg:justify-center
   lg:w-[100%]  lg:max-w-[1000px] 
-  lg:h-[400px] lg:max-h-[500px];
+  lg:h-[450px] lg:max-h-[500px];
 
   /* @apply sm:h-[100%] sm:w-[100%] lg:h-[400px] lg:w-[1000px] lg:flex-row lg:space-x-1 lg:justify-center  xl:w-[1200px] xl:h-[450px] 2xl:w-[1400px] 2xl:h-[500px]; */
 }
