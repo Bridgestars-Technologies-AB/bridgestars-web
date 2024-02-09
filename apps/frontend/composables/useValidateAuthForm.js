@@ -235,14 +235,14 @@ export default function InitAuthFormValidation(form, callback) {
       !nameEl &&
       !usernameEl;
 
-    let isResetValid = isEmailValid &&
+    let isForgotValid = isEmailValid &&
       !passwordEl &&
       !passwordConfirmEl &&
       !usernameEl &&
       !nameEl &&
       !usernameEmailEl;
 
-    let isFormValid = isSignUpValid || isSignInValid || isResetValid;
+    let isResetValid = isPasswordValid && isConfirmPasswordValid && !emailEl && !usernameEl && !nameEl && !usernameEmailEl && !passwordSignInEl;
 
     // submit to the server if the form is valid
     if (isSignInValid) {
@@ -258,9 +258,14 @@ export default function InitAuthFormValidation(form, callback) {
         password: passwordEl.value,
         confirmPassword: passwordConfirmEl.value,
       });
-    } else if (isResetValid) {
+    } else if (isForgotValid) {
       callback({
         email: emailEl.value,
+      });
+    } else if (isResetValid) {
+      callback({
+        password: passwordEl.value,
+        confirmPassword: passwordConfirmEl.value,
       });
     }
   });

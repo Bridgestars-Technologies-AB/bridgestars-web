@@ -36,26 +36,26 @@ onMounted(() => {
     class="fixed bottom-0 top-0 w-full h-full flex flex-col justify-center bg-[#fefefe]"
   >
     <!-- header -->
-    <div
-      class="absolute top-0 flex justify-start whitespace-nowrap pt-[30px] pl-[30px]"
-    >
-      <span class="authHeader text-blue mr-2 xs:block sm:hidden">
-        {{ "<" }}
-      </span>
-      <button
-        class="normal-case text-blue authHeader"
-        @click="router.push({ path: '/' })"
-      >
-        {{ $t("auth:common.home") }}
-      </button>
-      <span class="authHeader text-grey opacity-80 mx-2 xs:hidden sm:block">
-        /
-      </span>
-      <span class="authHeader text-grey opacity-80 xs:hidden sm:block">{{
-        header
-      }}</span>
-    </div>
-
+    <!-- <div -->
+    <!--   class="absolute top-0 flex justify-start whitespace-nowrap pt-[30px] pl-[30px]" -->
+    <!-- > -->
+    <!--   <span class="authHeader text-blue mr-2 xs:block sm:hidden"> -->
+    <!--     {{ "<" }} -->
+    <!--   </span> -->
+    <!--   <button -->
+    <!--     class="normal-case text-blue authHeader" -->
+    <!--     @click="router.push({ path: '/' })" -->
+    <!--   > -->
+    <!--     {{ $t("auth:common.home") }} -->
+    <!--   </button> -->
+    <!--   <span class="authHeader text-grey opacity-80 mx-2 xs:hidden sm:block"> -->
+    <!--     / -->
+    <!--   </span> -->
+    <!--   <span class="authHeader text-grey opacity-80 xs:hidden sm:block">{{ -->
+    <!--     header -->
+    <!--   }}</span> -->
+    <!-- </div> -->
+    <!---->
     <div class="absolute flex justify-center items-center z-[-1] h-full w-full">
       <NuxtImg
         alt="background"

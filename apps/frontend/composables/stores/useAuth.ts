@@ -48,8 +48,12 @@ const useAuth = () => {
     return await csrf()
       .then(() => axios.post("forgot-password", props));
   };
+  const resetPassword = async ({ ...props }) => {
+    return await csrf()
+    .then(() => axios.post("reset-password", props))
+  };
 
-  return { user: store.user, register, login, logout, forgotPassword };
+  return { user: store.user, register, login, logout, forgotPassword, resetPassword };
 };
 
 export default useAuth;
