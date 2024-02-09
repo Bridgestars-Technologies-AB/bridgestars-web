@@ -1,21 +1,21 @@
+import { Card } from "./Card";
+
 export class Bid {
-  public suit: number;
-  public rank: number;
+  public card: Card;
   public shortName: string;
   //public explanation: string;
 
-  public constructor(suit: number, rank: number) {
-    this.suit = suit;
-    this.rank = rank;
+  public constructor(card: Card) {
+    this.card = card;
     this.shortName = this.getShortName();
   }
 
   public is(str: string): boolean {
     switch (str) {
       case "PASS":
-        return this.suit === 0 && this.rank === 0;
+        return this.card.is("PASS");
       case "NT":
-        return this.suit === 4;
+        return this.card.is("NT");
       case "DOUBLE":
         //check if the bid is a double
         return false;

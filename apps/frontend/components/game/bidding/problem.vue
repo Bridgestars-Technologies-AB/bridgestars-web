@@ -3,6 +3,7 @@
 It is supposed to be used when there is not a bid for a certain player -->
 <!-- The history prop is the play history of the bidding-problem -->
 <script setup lang="ts">
+import { Bid } from "~/composables/biddingClasses/Bid";
 // initialize components based on data attribute selectors
 onMounted(() => {});
 
@@ -13,17 +14,13 @@ defineProps({
   },
 });
 
-const emit = defineEmits(["check", "update:suit", "update:rank"]);
+const emit = defineEmits(["check", "update:bid"]);
 
-const suit = ref(0);
-const rank = ref(0);
+const bid = ref(new Bid(new Card(0, 0)));
 
-const bidX = ref(new Bid(suit.value, rank.value));
-
-function bid(s, r) {
-  emit("update:suit", s);
-  emit("update:rank", r);
-  emit("check", s, r);
+function makeBid(bid: Bid) {
+  emit("update:bid", bid);
+  emit("check", bid);
   // This is commented out because we dont use the bidding box in this way for bidding-problems
   //historyRef.value.push({ suit: s, rank: r });
 }
@@ -39,30 +36,13 @@ const biddingBox =
       class="xs:w-[100%] sm:w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
     >
       <div class="w-full h-full flex flex-row justify-start">
-        <!-- <div class="flex flex-col" v-if="isBidMade">
-          <div class="flex flex-row space-x-4">
-            <span class="text3 text-dark dark:text-white sm:text-[15px] m-3"
-              >Du bjöd</span
-            >
-            <game-bidding-block
-              :card="{ suit: bidMade.suit, rank: bidMade.rank }"
-            ></game-bidding-block>
-          </div>
-
-          <span
-            class="text3 text-dark dark:text-white sm:text-[15px] ml-[12px]"
-          >
-            Tyvärr var det inte riktigt det budet vi tänkt oss... Försök igen!
-          </span>
-        </div> -->
-
         <span class="text3 text-dark dark:text-white sm:text-[20px] ml-[12px]">
           {{ presentationText }}</span
         >
       </div>
     </game-bidding-container>
 
-    <game-bidding-container
+    <!-- <game-bidding-container
       class="xs:w-[100%] sm:w-[80%] h-[40%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
       header="BUDGIVNING"
     >
@@ -71,22 +51,22 @@ const biddingBox =
         class="w-full h-full lg:w-full lg:h-[70%]"
         :biddingBox="biddingBox"
       ></game-bidding-history>
-    </game-bidding-container>
+    </game-bidding-container> -->
 
     <game-bidding-container
       class="min-h-[150px] xs:w-[100%] sm:w-[80%] h-[30%] mt-[8px] rounded-xl lg:h-full lg:w-[24%]"
       header="BUDLÅDA"
     >
       <game-bidding-box
-        v-model:suit="suit"
-        v-model:rank="rank"
+        v-model:bid="bid"
         class="w-full lg:w-full lg:h-[70%]"
         :biddingBox="biddingBox"
-        @bid="bid"
+        @bid="makeBid"
       />
     </game-bidding-container>
 
-    <game-bidding-container
+    <!-- temporarily disabled for testing -->
+    <!-- <game-bidding-container
       class="xs:w-[100%] sm:w-[80%] h-[12%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
       header="DIN HAND"
     >
@@ -109,7 +89,7 @@ const biddingBox =
           { suit: 3, rank: 14 },
         ]"
       ></game-bidding-hand>
-    </game-bidding-container>
+    </game-bidding-container> -->
   </div>
 </template>
 
