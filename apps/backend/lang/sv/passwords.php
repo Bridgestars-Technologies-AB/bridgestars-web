@@ -16,7 +16,7 @@ return [
     'reset' => 'Ditt lösenord har återställts!',
     'sent' => 'Vi har skickat en länk för att återställa ditt lösenord!',
     'throttled' => 'Vänligen vänta innan du försöker igen.',
-    'token' => 'Denna länk för att återställa lösenordet är ogiltig.',
+    'token' => 'Denna länk för att återställa lösenordet har blivit ogiltig.',
     'user' => "Vi kan inte hitta en användare med den e-postadressen.",
 
 ];

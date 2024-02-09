@@ -13,7 +13,7 @@ async function submit(res: { password: string }) {
 
   await useAuth().resetPassword({
     password: res.password, 
-    "password-confirm": res.password, 
+    "password_confirmation": res.password, 
     token: query.token, 
     email: query.email
   })

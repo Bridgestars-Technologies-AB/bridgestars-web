@@ -8,7 +8,7 @@ async function submit(res:{username:string, email:string, name:string, password:
   showLoading.value = true;
   showLoading.value = true;
 
-  await useAuth().register({...res, "password_confirmed": res.password})
+  await useAuth().register({...res, "password_confirmation": res.password})
   .then(() => {
     toast.success("Du har loggats in");
     if (query.to) navigateTo({ path: query.to as string });
