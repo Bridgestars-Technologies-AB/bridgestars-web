@@ -1,11 +1,10 @@
-<script setup>
+<script setup lang="ts">
 // Import statement not needed, provided for context
-import { CardUtil } from "/composables/useCardUtil.ts";
 
 defineProps({
-  card: {
-    type: CardUtil.Card,
-    default: () => ({ suit: 1, rank: 1 }),
+  bid: {
+    type: Bid,
+    default: () => new Bid(0, 0),
   },
   click: Boolean,
 });
@@ -14,7 +13,7 @@ defineProps({
 <template>
   <div class="w-full h-full rounded-lg">
     <div
-      v-if="card.suit === 0 && card.rank === 0"
+      v-if="bid.is('PASS')"
       class="w-full h-full flex justify-center items-center"
     >
       <span
@@ -24,17 +23,17 @@ defineProps({
     </div>
     <div v-else class="w-full h-full flex flex-row justify-center items-center">
       <span class="biddingText1 text1 tracking-[2px] cursor-pointer">{{
-        card.rank
+        bid.rank
       }}</span>
       <span
-        v-if="card.suit === 4"
+        v-if="bid.is('NT')"
         class="text1 cursor-pointer biddingText3 m-0 p-0"
       >
         NT
       </span>
       <span
         v-else
-        :class="`biddingText2 cursor-pointer ${CardUtil.symbols[card.suit]}`"
+        :class="`biddingText2 cursor-pointer ${bid.tailwindSuitSymbol()}`"
       ></span>
     </div>
   </div>

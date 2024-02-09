@@ -1,7 +1,7 @@
 <!-- Component for displaying different bidding practices displayed on my-courses/bridgeA... -->
 
 <script setup>
-defineProps({ header: String, url: String });
+defineProps({ header: String, problemId: String });
 </script>
 
 <template>
@@ -25,7 +25,8 @@ defineProps({ header: String, url: String });
     <div class="flex flex-row justify-end w-full">
       <courses-button
         text="Fortsätt"
-        :url="url + '-opening-bid-1nt'"
+        :params="problemId"
+        dashPage="bidding-problems"
       ></courses-button>
     </div>
   </div>

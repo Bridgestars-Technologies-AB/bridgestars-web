@@ -1,15 +1,17 @@
-<script setup>
+<script setup lang="ts">
 /*
 This component displays the bidding history from bidding-box.
 Props:
   history: List of {suit, rank}
   biddingBox: css properties for sizing of bidding-block component
 */
+import { Bid } from "~/composables/biddingClasses/Bid";
 
 defineProps({
   history: {
-    type: Array[CardUtil.Card],
+    type: Array<Bid>,
     required: true,
+    default: () => [new Bid(0, 0)],
   },
   biddingBox: String,
 });
@@ -40,11 +42,10 @@ const players = ["V", "N", "Ö", "S"];
     <div class="flex flex-row justify-center w-full">
       <div class="flex flex-row flex-wrap w-[97%]">
         <game-bidding-block
-          v-for="(e, index) in history"
-          :key="index"
+          v-for="bid in history"
+          :key="bid.rank + bid.suit"
           class="w-[24%]"
-          :card="e"
-          :bg="e.suit || e.rank ? '' : 'bg-[#0E9F6E]'"
+          :bid="bid"
           :size="biddingBox"
           :clickable="false"
         ></game-bidding-block>

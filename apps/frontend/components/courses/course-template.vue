@@ -1,7 +1,7 @@
 <!-- Template for displaying a course similar to budträning.se on my-course/overview -->
 
 <script setup>
-defineProps({ header: String, url: String, items: Array });
+defineProps({ header: String, courseId: Number });
 import { CourseUtil } from "/composables/useCourseUtil.ts";
 </script>
 
@@ -27,7 +27,11 @@ import { CourseUtil } from "/composables/useCourseUtil.ts";
       ></courses-completion-bar>
     </div>
     <div class="flex flex-row justify-end">
-      <courses-button text="Fortsätt" :url="url"></courses-button>
+      <courses-button
+        text="Fortsätt"
+        dashPage="my-courses"
+        :params="courseId"
+      ></courses-button>
     </div>
   </div>
 </template>

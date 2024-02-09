@@ -3,32 +3,29 @@
 It is supposed to be used when there is not a bid for a certain player -->
 <!-- The history prop is the play history of the bidding-problem -->
 <script setup lang="ts">
+import { Bid } from "~/composables/biddingClasses/Bid";
+import { Hand } from "~/composables/biddingClasses/Hand";
 // initialize components based on data attribute selectors
 onMounted(() => {});
 
 defineProps({
-  biddingError: String,
   presentationText: String,
-  bidMade: {
-    type: Object,
-    default: () => ({ suit: 0, rank: 0 }),
+  hands: {
+    type: Array<Hand>,
+    required: true,
   },
   history: {
-    type: Array,
+    type: Array<Bid>,
   },
-  pass: Boolean,
-  isBidMade: Boolean,
 });
 
-const emit = defineEmits(["check", "update:suit", "update:rank"]);
+const emit = defineEmits(["check", "update:bid"]);
 
-const suit = ref(0);
-const rank = ref(0);
+const bid = ref(new Bid(0, 0));
 
-function bid(s, r) {
-  emit("update:suit", s);
-  emit("update:rank", r);
-  emit("check", s, r);
+function makeBid(bid: Bid) {
+  emit("update:bid", bid);
+  emit("check", bid);
   // This is commented out because we dont use the bidding box in this way for bidding-problems
   //historyRef.value.push({ suit: s, rank: r });
 }
@@ -44,27 +41,7 @@ const biddingBox =
       class="xs:w-[100%] sm:w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
     >
       <div class="w-full h-full flex flex-row justify-start">
-        <div class="flex flex-col" v-if="isBidMade">
-          <div class="flex flex-row space-x-4">
-            <span class="text3 text-dark dark:text-white sm:text-[15px] m-3"
-              >Du bjöd</span
-            >
-            <game-bidding-block
-              :card="{ suit: bidMade.suit, rank: bidMade.rank }"
-            ></game-bidding-block>
-          </div>
-
-          <span
-            class="text3 text-dark dark:text-white sm:text-[15px] ml-[12px]"
-          >
-            Tyvärr var det inte riktigt det budet vi tänkt oss... Försök igen!
-          </span>
-        </div>
-
-        <span
-          v-else
-          class="text3 text-dark dark:text-white sm:text-[20px] ml-[12px]"
-        >
+        <span class="text3 text-dark dark:text-white sm:text-[20px] ml-[12px]">
           {{ presentationText }}</span
         >
       </div>
@@ -86,14 +63,14 @@ const biddingBox =
       header="BUDLÅDA"
     >
       <game-bidding-box
-        v-model:suit="suit"
-        v-model:rank="rank"
+        v-model:bid="bid"
         class="w-full lg:w-full lg:h-[70%]"
         :biddingBox="biddingBox"
-        @bid="bid"
+        @bid="makeBid"
       />
     </game-bidding-container>
 
+    <!-- temporarily disabled for testing -->
     <game-bidding-container
       class="xs:w-[100%] sm:w-[80%] h-[12%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
       header="DIN HAND"
@@ -101,21 +78,7 @@ const biddingBox =
       <game-bidding-hand
         class="bg-white dark:bg-dark-100 w-full mx-auto lg:w-full lg:h-[70%]"
         :showDeal="false"
-        :hand="[
-          { suit: 0, rank: 2 },
-          { suit: 0, rank: 5 },
-          { suit: 0, rank: 12 },
-          { suit: 1, rank: 13 },
-          { suit: 1, rank: 3 },
-          { suit: 1, rank: 8 },
-          { suit: 2, rank: 11 },
-          { suit: 2, rank: 13 },
-          { suit: 2, rank: 14 },
-          { suit: 3, rank: 5 },
-          { suit: 3, rank: 6 },
-          { suit: 3, rank: 9 },
-          { suit: 3, rank: 14 },
-        ]"
+        :hand="hands[0]"
       ></game-bidding-hand>
     </game-bidding-container>
   </div>
@@ -139,7 +102,7 @@ const biddingBox =
 .desktopSize {
   @apply lg:flex-row lg:space-x-1 lg:justify-center
   lg:w-[100%]  lg:max-w-[1000px] 
-  lg:h-[400px] lg:max-h-[500px];
+  lg:h-[450px] lg:max-h-[500px];
 
   /* @apply sm:h-[100%] sm:w-[100%] lg:h-[400px] lg:w-[1000px] lg:flex-row lg:space-x-1 lg:justify-center  xl:w-[1200px] xl:h-[450px] 2xl:w-[1400px] 2xl:h-[500px]; */
 }

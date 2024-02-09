@@ -11,47 +11,23 @@ Props:
 Emits:
   bid: {suit: Number, rank: Number}
 -->
-<script setup>
+<script setup lang="ts">
+import { Bid } from "~/composables/biddingClasses/Bid";
+
 const p = defineProps({
-  rank: {
-    type: Number,
-    required: true,
-  },
-  suit: {
-    type: Number,
-    required: true,
-  },
-  mobile: Boolean,
+  bid: Bid,
   biddingBox: String,
 });
-const emit = defineEmits(["bid", "update:rank", "update:suit"]);
+const emit = defineEmits(["bid", "update:bid"]);
 
-const currentRank = ref(1);
-const crank = ref(0);
+// function isValid(suit, rank, currentSuit = p.suit, currentRank = p.rank) {
+//   if (rank > 7) return false;
+//   return rank > currentRank || (suit > currentSuit && rank === currentRank);
+// }
 
-const biddingArray = ref([1, 2, 3, 4, 5, 6, 7]);
-
-function isValid(suit, rank, currentSuit = p.suit, currentRank = p.rank) {
-  if (rank > 7) return false;
-  return rank > currentRank || (suit > currentSuit && rank === currentRank);
-}
-
-function updateBiddingArray(suit, rank) {
-  biddingArray.value = biddingArray.value.filter((e) =>
-    isValid(4, e, suit, rank),
-  );
-  if (biddingArray.value.length !== 0) {
-    currentRank.value = biddingArray.value[0];
-  }
-}
-
-function bid(suit, rank) {
-  if (isValid(suit, rank)) {
-    updateBiddingArray(suit, rank);
-    emit("update:rank", rank);
-    emit("update:suit", suit);
-  }
-  emit("bid", suit, rank);
+function makeBid(bid: Bid) {
+  emit("update:bid", bid);
+  emit("bid", bid);
 }
 </script>
 
@@ -70,61 +46,19 @@ function bid(suit, rank) {
           class="flex items-center justify-center overflow-x-hidden outline-none"
         >
           <game-bidding-block
-            :card="{ suit: s - 1, rank: r }"
+            :bid="new Bid(s - 1, r)"
             :size="biddingBox"
-            :disabled="!isValid(s - 1, r)"
-            @click="bid"
+            @click="makeBid"
           ></game-bidding-block>
         </div>
       </div>
       <div class="w-full flex flex-row justify-center">
         <game-bidding-block
-          :card="{ suit: 0, rank: 0 }"
+          :bid="new Bid(0, 0)"
           :size="biddingBox"
-          @click="bid"
+          @click="makeBid"
         ></game-bidding-block>
       </div>
     </div>
-  </div>
-  <!-- "Component" smaller devices -->
-  <div
-    class="lg:hidden w-full h-full flex flex-col justify-center items-center"
-  >
-    <div class="flex flex-row items-center">
-      <div
-        v-for="e in biddingArray"
-        :key="e"
-        :class="`cursor-pointer rounded-t-[8px] bg-dark-100 border-t border-x border-dash-light-100 w-[45px] h-[40px] sm:w-[50px] sm:h-[45px] flex justify-center items-center ${
-          currentRank === e
-            ? 'z-[0.9] mb-[-1px]'
-            : 'bg-dark-200 mb-[-8px] z-[0.8]'
-        }`"
-        @click="currentRank = e"
-      >
-        <button class="text1 text-[18px] text-white" @click="currentRank = e">
-          {{ e }}
-        </button>
-      </div>
-    </div>
-    <div
-      class="border-dash-light-100 bg-dark-100 border z-[0.8] rounded-[6px] px-7 sm:px-[45px] pt-2 pb-2"
-    >
-      <div class="flex flex-row space-x-[3px]">
-        <div v-for="e in 5" :key="e">
-          <game-bidding-block
-            :card="{ suit: e - 1, rank: Math.min(currentRank, 7) }"
-            :size="biddingBox"
-            :disabled="!isValid(e - 1, currentRank)"
-            @click="bid"
-          ></game-bidding-block>
-        </div>
-      </div>
-    </div>
-    <game-bidding-block
-      class="mt-[10px]"
-      :card="{ suit: 0, rank: 0 }"
-      :size="biddingBox"
-      @click="bid"
-    ></game-bidding-block>
   </div>
 </template>

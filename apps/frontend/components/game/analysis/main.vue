@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CardUtil } from "~/composables/useCardUtil";
+import { Bid } from "~/composables/biddingClasses/Bid";
 
 /*
 This component displays the analysis from bidding-problems.
@@ -11,15 +11,14 @@ Props:
 */
 
 interface Props {
-  biddingResult: CardUtil.Card[];
-  solution: CardUtil.Card;
+  biddingResult: Array<Bid>;
+  solution: Bid;
   biddingAnswer: string;
+  player: string;
+  nextProblemId: string;
 }
 
 defineProps<Props>();
-
-// this will later be a prop from the parent component on which position the player is
-const dir = "Syd";
 
 function getJustify(e: Number) {
   switch (e) {
@@ -46,7 +45,17 @@ function getJustify(e: Number) {
         <div
           class="rounded-xl bg-dark-200 mx-[10px] flex items-center justify-center"
         >
-          <button class="header px-[6px] py-[2px]">Nästa giv</button>
+          <button
+            class="header px-[6px] py-[2px]"
+            @click="
+              navigateTo({
+                name: `dash-bidding-problems-id`,
+                params: { id: nextProblemId },
+              })
+            "
+          >
+            Nästa giv
+          </button>
         </div>
       </div>
 
@@ -117,8 +126,8 @@ function getJustify(e: Number) {
 
           <div class="flex justify-center items-center h-[20%] lg:w-[80%]">
             <game-analysis-bid
-              :brick="solution"
-              :dir="dir"
+              :bid="solution"
+              :player="player"
               size="w-[70px] h-[40px] lg:w-[120px] lg:h-[60px]"
             ></game-analysis-bid>
           </div>
@@ -142,8 +151,8 @@ function getJustify(e: Number) {
 
         <div class="w-full h-[95%] flex flex-col items-center">
           <game-analysis-bid
-            :brick="solution"
-            :dir="dir"
+            :bid="solution"
+            :player="player"
             size="w-[60px] h-[30px] lg:w-[80px] lg:h-[40px]"
           ></game-analysis-bid>
           <!-- Placeholder for star img -->
