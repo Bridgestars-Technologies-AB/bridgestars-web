@@ -48,9 +48,8 @@ export default defineNuxtConfig({
   // },
   nitro: {
     routeRules: {
-      "/backend/**": { proxy: process.env.BACKEND_URL + "/**" }//"http://localhost:80/**" }
+      "/backend/**": { proxy: process.env.BACKEND_URL + "/**" }
     }
-    //       //proxy: process.env.BACKEND_URL+"/**"
   },
   routeRules: {
     "/": { prerender: true }, // build static resource

@@ -2,29 +2,28 @@ import { defineStore } from "pinia";
 import axios from "@/composables/axios";
 
 const useAuthStore = defineStore("auth", {
-  state: () => ({ user: null }), //fix auto-detect
-  getters: {
-    //enabled: (state) => state.value,
-  },
+  state: () => ({ user: null }),
+  getters: {},
   actions: {
     async update(x: any) {
       await axios.get("api/user")
         .then((response) => this.user = response.data)
         .catch((e) => {
-          useCookie('XSRF-TOKEN').value = null;
-          useCookie('laravel_session').value = null;
-          this.user = null
-      });
+          useCookie("XSRF-TOKEN").value = null;
+          useCookie("laravel_session").value = null;
+          this.user = null;
+        });
       return x;
     },
   },
   persist: {
-    key: 'auth',
+    key: "auth",
   },
 });
 
 const useAuth = () => {
   const store = useAuthStore();
+
   const csrf = () => axios.get("sanctum/csrf-cookie");
 
   const register = async ({ ...props }) => {
@@ -48,12 +47,20 @@ const useAuth = () => {
     return await csrf()
       .then(() => axios.post("forgot-password", props));
   };
+
   const resetPassword = async ({ ...props }) => {
     return await csrf()
-    .then(() => axios.post("reset-password", props))
+      .then(() => axios.post("reset-password", props));
   };
 
-  return { user: store.user, register, login, logout, forgotPassword, resetPassword };
+  return {
+    user: store.user,
+    register,
+    login,
+    logout,
+    forgotPassword,
+    resetPassword,
+  };
 };
 
 export default useAuth;

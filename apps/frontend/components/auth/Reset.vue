@@ -14,7 +14,7 @@ async function submit(res) {
   })
   .catch(e => {
     showLoading.value = false;
-    toast.error(e.value?.data.message);
+    toast.error(e.response.data.message);
     return;
   })
 }

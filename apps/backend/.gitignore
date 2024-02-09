@@ -1,6 +1,5 @@
 node_modules/
 .idea/
-vendor/
 logs/
 .DS_Store
 .vscode/
@@ -13,6 +12,7 @@ doc/
 
 /.phpunit.cache
 /node_modules
+storage/pail/
 /public/build
 /public/hot
 /public/storage
