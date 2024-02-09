@@ -21,7 +21,7 @@ defineProps({
       <span class="biddingText1 text1 tracking-[2px] mr-[2px]">{{
         bid.rank
       }}</span>
-      <span v-if="bid.suit > 3" class="tracking-[2px] text1 biddingText3">
+      <span v-if="bid.is('NT')" class="tracking-[2px] text1 biddingText3">
         NT
       </span>
       <span v-else :class="`biddingText2 ${bid.tailwindSuitSymbol()}`"></span>

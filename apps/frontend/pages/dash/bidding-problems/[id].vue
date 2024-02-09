@@ -14,6 +14,7 @@ const biddingProblem = {
   hands_visible: 1, // [1,2,4] bara min, mitt lag eller alla
   cards: [
     {
+      player: "N",
       spades: "D876",
       hearts: "AT4",
       diamonds: "KJ3",
@@ -53,12 +54,36 @@ const bidResponseList = [
     correct: true,
     finished: true,
     next_problem_id: "sjNDASL283aD",
-    cards: {
-      west: { spades: "D876", hearts: "AT4", diamonds: "KJ3", clubs: "KJ3" },
-      north: { spades: "D876", hearts: "AT4", diamonds: "KJ3", clubs: "KJ3" },
-      east: { spades: "D876", hearts: "AT4", diamonds: "KJ3", clubs: "KJ3" },
-      south: { spades: "D876", hearts: "AT4", diamonds: "KJ3", clubs: "KJ3" },
-    },
+    cards: [
+      {
+        player: "N",
+        spades: "D876",
+        hearts: "AT4",
+        diamonds: "KJ3",
+        clubs: "KJ3",
+      },
+      {
+        player: "E",
+        spades: "D876",
+        hearts: "AT4",
+        diamonds: "KJ3",
+        clubs: "KJ3",
+      },
+      {
+        player: "S",
+        spades: "D876",
+        hearts: "AT4",
+        diamonds: "KJ3",
+        clubs: "KJ3",
+      },
+      {
+        player: "W",
+        spades: "D876",
+        hearts: "AT4",
+        diamonds: "KJ3",
+        clubs: "KJ3",
+      },
+    ],
     solution:
       "Du har 18 hp och vet att din partner har 15-17 hp. Ni har tillsammans 33-35 hp och gränsen för att bjuda lillslam är minst 33 hp. Rätt bud är 6NT.",
     bidding: [
@@ -74,7 +99,16 @@ const bidResponseList = [
 // used as v-model to be able to see the latest bid made
 const bid = ref(new Bid(0, 0));
 
-const biddingHistory = ref(history);
+const biddingHistory = ref();
+
+// this function will create the correct history depending on who the dealer is
+// inserting as many "invisible" blocks as needed
+// function createHistory (history: Array<Bid>) {
+//   const dealer = biddingProblem.dealer;
+//   if(dealer === "N") {
+//     Array.([new Bid(10, 10), new Bid(10,10)],history );
+//   }
+// }
 
 // bid information
 

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { CardUtil } from "~/composables/useCardUtil";
 import { Bid } from "~/composables/biddingClasses/Bid";
 
 /*
