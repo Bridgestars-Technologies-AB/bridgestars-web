@@ -6,11 +6,10 @@ enum SUIT {
 }
 
 export class Card {
-  // parsa, displaya i handen
   public suit: number;
   public rank: number;
 
-  private ranks = new Map([
+  static ranksToNumber = new Map([
     ["1", 1],
     ["2", 2],
     ["3", 3],
@@ -27,16 +26,40 @@ export class Card {
     ["A", 14],
   ]);
 
-  private suits = new Map([
+  static ranksToString = new Map([
+    [1, "1"],
+    [2, "2"],
+    [3, "3"],
+    [4, "4"],
+    [5, "5"],
+    [6, "6"],
+    [7, "7"],
+    [8, "8"],
+    [9, "9"],
+    [10, "T"],
+    [11, "J"],
+    [12, "Q"],
+    [13, "K"],
+    [14, "A"],
+  ]);
+
+  static suitsToNumber = new Map([
     ["C", SUIT.CLUBS],
     ["D", SUIT.DIAMONDS],
     ["H", SUIT.HEARTS],
     ["S", SUIT.SPADES],
   ]);
 
+  static suitsToTailwind = new Map([
+    [SUIT.CLUBS, "i-fluent-emoji-high-contrast-club-suit !text-clubs"],
+    [SUIT.DIAMONDS, "i-fluent-emoji-high-contrast-diamond-suit !text-diamonds"],
+    [SUIT.HEARTS, "i-fluent-emoji-high-contrast-heart-suit !text-hearts"],
+    [SUIT.SPADES, "i-fluent-emoji-high-contrast-spade-suit !text-spades"],
+  ]);
+
   // example: rank = "A", suit = "S" => suit = 3, rank = 14
   public constructor(rank: string, suit: string) {
-    this.rank = this.ranks.get(rank) as number;
-    this.suit = this.suits.get(suit) as number;
+    this.rank = Card.ranksToNumber.get(rank) as number;
+    this.suit = Card.suitsToNumber.get(suit) as number;
   }
 }
