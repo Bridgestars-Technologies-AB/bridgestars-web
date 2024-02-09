@@ -1,0 +1,24 @@
+# fly.toml app configuration file generated for bridgestars-backend on 2023-11-20T19:56:57+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "bridgestars-demo-backend"
+primary_region = "arn"
+
+[build]
+
+[[mounts]]
+  source = "demo_vol"
+  destination = "/data"
+  processes = ["app"]
+  initial_size="3gb"
+  auto_extend_size_threshold = 0
+
+[http_service]
+  internal_port = 1337
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = false
+  min_machines_running = 1
+  processes = ["app"]

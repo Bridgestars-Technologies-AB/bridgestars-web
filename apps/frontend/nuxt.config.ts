@@ -2,6 +2,8 @@
 
 import { periodicSyncForUpdates } from "virtual:nuxt-pwa-configuration";
 
+console.log(process.env.BACKEND_URL)
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   //css: ["~/assets/css/main.css"],
@@ -46,7 +48,7 @@ export default defineNuxtConfig({
   // },
   nitro: {
     routeRules: {
-      "/backend/**": { proxy: "http://localhost:80/**" }
+      "/backend/**": { proxy: process.env.BACKEND_URL + "/**" }//"http://localhost:80/**" }
     }
     //       //proxy: process.env.BACKEND_URL+"/**"
   },
