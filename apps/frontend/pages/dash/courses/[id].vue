@@ -1,30 +1,12 @@
-<script setup>
-const route = useRoute();
-console.log(route.params.id);
+<script setup lang="ts">
+import type { CourseData } from "~/types/generated";
 
-//axios.get(“/prefix/courses/id”) -> response.data
-// Mock up response data:
-const response = await api.get(`courses/${route.params.id}`)
-const course = response.data
-// const response = {
-//   name: "BridgeA",
-//   description: "This is a course about BridgeA",
-//   chapters: [
-//     {
-//       name: "Kapitel 5",
-//       next_problem_id: 1, //id of the next problem
-//       //paid,       true/false
-//     },
-//     {
-//       name: "Kapitel 6",
-//       next_problem_id: 2,
-//     },
-//     {
-//       name: "Kapitel 7",
-//       next_problem_id: 2,
-//     },
-//   ],
-// };
+const route = useRoute();
+
+const { data } = await api.get(`courses/${route.params.id}`);
+
+const course: CourseData = data;
+
 </script>
 
 <template>

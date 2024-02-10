@@ -2,7 +2,7 @@
 
 import { periodicSyncForUpdates } from "virtual:nuxt-pwa-configuration";
 
-console.log(process.env.BACKEND_URL)
+console.log(process.env.BACKEND_URL);
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -14,7 +14,12 @@ export default defineNuxtConfig({
     "~/components",
   ],
   imports: {
-    dirs: ["composables", "composables/stores", "composables/biddingClasses"],
+    dirs: [
+      "composables",
+      "composables/stores",
+      "composables/biddingClasses",
+      "composables/types",
+    ],
   },
   //experimental: {
   // payloadExtraction: true,
@@ -41,15 +46,15 @@ export default defineNuxtConfig({
         dsn: process.env.SENTRY_DSN,
         environment: process.dev ? "dev" : "prod",
       },
-    }
+    },
   },
   // axios:{
   //   proxy: true
   // },
   nitro: {
     routeRules: {
-      "/backend/**": { proxy: process.env.BACKEND_URL + "/**" }
-    }
+      "/backend/**": { proxy: process.env.BACKEND_URL + "/**" },
+    },
   },
   routeRules: {
     "/": { prerender: true }, // build static resource

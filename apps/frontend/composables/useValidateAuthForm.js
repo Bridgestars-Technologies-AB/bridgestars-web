@@ -219,7 +219,8 @@ export default function InitAuthFormValidation(form, callback) {
       isConfirmPasswordValid = checkConfirmPassword(),
       isTermsChecked = checkTerms();
 
-    let isSignUpValid = isUsernameValid &&
+    let isSignUpValid =
+      isUsernameValid &&
       isEmailValid &&
       isNameValid &&
       isPasswordValid &&
@@ -228,21 +229,30 @@ export default function InitAuthFormValidation(form, callback) {
       !usernameEmailEl &&
       !passwordSignInEl;
 
-    let isSignInValid = isUsernameEmailValid &&
+    let isSignInValid =
+      isUsernameEmailValid &&
       isPasswordSignInValid &&
       !emailEl &&
       !passwordConfirmEl &&
       !nameEl &&
       !usernameEl;
 
-    let isForgotValid = isEmailValid &&
+    let isForgotValid =
+      isEmailValid &&
       !passwordEl &&
       !passwordConfirmEl &&
       !usernameEl &&
       !nameEl &&
       !usernameEmailEl;
 
-    let isResetValid = isPasswordValid && isConfirmPasswordValid && !emailEl && !usernameEl && !nameEl && !usernameEmailEl && !passwordSignInEl;
+    let isResetValid =
+      isPasswordValid &&
+      isConfirmPasswordValid &&
+      !emailEl &&
+      !usernameEl &&
+      !nameEl &&
+      !usernameEmailEl &&
+      !passwordSignInEl;
 
     // submit to the server if the form is valid
     if (isSignInValid) {

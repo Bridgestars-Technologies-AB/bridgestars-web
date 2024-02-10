@@ -15,8 +15,9 @@ const useAuthStore = defineStore("auth", {
   getters: {},
   actions: {
     async update(x: any) {
-      await axios.get("api/user")
-        .then((response) => this.user = response.data)
+      await axios
+        .get("api/user")
+        .then((response) => (this.user = response.data))
         .catch((e) => {
           useCookie("XSRF-TOKEN").value = null;
           useCookie("laravel_session").value = null;
@@ -48,18 +49,15 @@ const useAuth = () => {
   };
 
   const logout = async () => {
-    return await axios.post("logout")
-      .then(store.update);
+    return await axios.post("logout").then(store.update);
   };
 
   const forgotPassword = async ({ ...props }) => {
-    return await csrf()
-      .then(() => axios.post("forgot-password", props));
+    return await csrf().then(() => axios.post("forgot-password", props));
   };
 
   const resetPassword = async ({ ...props }) => {
-    return await csrf()
-      .then(() => axios.post("reset-password", props));
+    return await csrf().then(() => axios.post("reset-password", props));
   };
 
   return {

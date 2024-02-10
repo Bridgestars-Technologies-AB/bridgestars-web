@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import axios from 'axios';
+import axios from "axios";
 
 const toast = useToast();
 const query = useRoute().query;
@@ -11,7 +11,8 @@ await loadTranslations("auth");
 async function submit(res: { email: string; password: string }) {
   showLoading.value = true;
 
-  await useAuth().login(res)
+  await useAuth()
+    .login(res)
     .then((response) => {
       toast.success("Du har loggats in");
       if (query.to) navigateTo({ path: query.to as string });

@@ -2,7 +2,7 @@ import i18next from "i18next";
 import I18NextVue from "i18next-vue";
 import { universalLanguageDetect } from "@unly/universal-language-detector";
 
-const SUPPORTED_LANGUAGES = ["sv"];//["sv","en"];
+const SUPPORTED_LANGUAGES = ["sv"]; //["sv","en"];
 const FALLBACK_LANG = "sv";
 
 i18next.init({
