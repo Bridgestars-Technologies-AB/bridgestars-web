@@ -20,5 +20,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
     Route::get('/courses', [CourseController::class, 'index']);
-    Route::get('/courses/{id}', [CourseController::class, 'show']);
+    Route::get('/courses/{course}', [CourseController::class, 'show']);
 });

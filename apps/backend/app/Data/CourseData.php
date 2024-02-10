@@ -31,14 +31,13 @@ class CourseData extends Data
 
     public static function fromModel(Course $course)
     {
-        Log::info($course->chapters);
         return new self(
             $course->public_id,
             $course->name,
             $course->course_nbr,
             $course->description,
             $course->color,
-            ChapterData::collect($course->chapters)
+            ChapterData::collect($course->chapter)
         );
     }
 }

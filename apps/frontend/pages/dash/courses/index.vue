@@ -3,9 +3,9 @@ const toast = useToast()
 
 const response = await api.get("/courses")
   .catch(e => {
-    toast.error(e.response.data.message)
+    toast.error(e.response?.data?.message)
   })
-const courses = response.data
+const courses = response?.data
   //.catch(e => console.error(e))
 // const response = {
 //   courses: [
