@@ -1,5 +1,14 @@
+import Axios from "axios";
 import { defineStore } from "pinia";
-import axios from "@/composables/axios";
+
+const axios = Axios.create({
+  baseURL: "/backend/",
+  headers: {
+    "X-Requested-With": "XMLHttpRequest",
+  },
+  withCredentials: true,
+  //withXSRFToken: true
+});
 
 const useAuthStore = defineStore("auth", {
   state: () => ({ user: null }),

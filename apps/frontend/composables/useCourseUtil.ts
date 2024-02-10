@@ -2,27 +2,27 @@ namespace CourseUtil {
   export const courses: { header: string; url: string }[] = [
     {
       header: "Bridge A",
-      url: "my-courses-bridgeA",
+      url: "courses-bridgeA",
     },
     {
       header: "Bridge B",
-      url: "my-courses-bridgeB",
+      url: "courses-bridgeB",
     },
     {
       header: "Avancerad",
-      url: "my-courses-advanced",
+      url: "courses-advanced",
     },
     {
       header: "Expert",
-      url: "my-courses-expert",
+      url: "courses-expert",
     },
     {
       header: "Master Class",
-      url: "my-courses-master-class",
+      url: "courses-master-class",
     },
     {
       header: "BridgeBertheau-NT",
-      url: "my-courses-bridge-bertheau",
+      url: "courses-bridge-bertheau",
     },
   ];
 
