@@ -37,7 +37,7 @@ class CourseData extends Data
             $course->course_nbr,
             $course->description,
             $course->color,
-            ChapterData::collect($course->chapter)
+            ChapterData::collect($course->chapters)
         );
     }
 }
