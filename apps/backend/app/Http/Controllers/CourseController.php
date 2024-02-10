@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Data\CourseData;
+use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
 {
@@ -12,7 +15,13 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::query()
+            ->where('published', '=', true)
+            ->orderBy('course_nbr')
+            ->with('chapters')
+            ->get();
+
+        return CourseData::collect($courses);
     }
 
     /**
@@ -36,7 +45,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        return $course;
     }
 
     /**

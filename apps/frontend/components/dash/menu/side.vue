@@ -14,7 +14,7 @@ const items = [
     icon: "i-material-symbols-home-rounded",
   },
   {
-    name: "my-courses-overview",
+    name: "courses",
     icon: "i-material-symbols-school",
   },
   {

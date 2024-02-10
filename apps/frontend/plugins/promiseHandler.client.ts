@@ -1,4 +1,4 @@
-async function handleParseError(error: { reason: { code: number } }): void {
+async function handleParseError(error: { reason: { code: number } }) {
   if (error.reason.code == 209) {
     useAuth()
       .logout()
@@ -10,9 +10,10 @@ async function handleParseError(error: { reason: { code: number } }): void {
 
 export default defineNuxtPlugin(() => {
   window.onunhandledrejection = (error) => {
-    handleParseError(error);
+    if(process.env.dev) useToast().error(error.reason);
+    //handleParseError(error);
   };
   window.onrejectionhandled = (error) => {
-    handleParseError(error);
+    //handleParseError(error);
   };
 });

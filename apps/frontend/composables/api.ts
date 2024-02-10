@@ -1,7 +1,8 @@
 import Axios from "axios";
 
-const axios = Axios.create({
-  baseURL: "/backend/",
+
+const api = Axios.create({
+  baseURL: "/backend/api/",
   headers: {
     "X-Requested-With": "XMLHttpRequest",
   },
@@ -9,4 +10,5 @@ const axios = Axios.create({
   //withXSRFToken: true
 });
 
-export default axios;
+export default api;
+
