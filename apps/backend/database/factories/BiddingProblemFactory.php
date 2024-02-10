@@ -20,6 +20,7 @@ class BiddingProblemFactory extends Factory
             'hands_visible' => 2,
             'presentation' => fake()->sentence(),
             'solution' => fake()->paragraph(2),
+            'published' => true,
         ];
     }
 }

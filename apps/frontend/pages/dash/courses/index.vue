@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { CourseData } from "~/types/generated";
+import type { ListCoursesData } from "~/types/generated";
 
 // automatic toast error bar, in prod maybe want better errors
 const { data, status } = await api.get("/courses");
 
 //generated api type
-const courses: CourseData[] = data;
+const courses: ListCoursesData[] = data;
 </script>
 
 <template>

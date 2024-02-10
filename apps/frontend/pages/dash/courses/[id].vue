@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import type { CourseData } from "~/types/generated";
+import type { GetCourseData } from "~/types/generated";
 
 const route = useRoute();
 
 const { data } = await api.get(`courses/${route.params.id}`);
 
-const course: CourseData = data;
-
+const course: GetCourseData = data;
 </script>
 
 <template>
@@ -25,8 +24,9 @@ const course: CourseData = data;
       >
         <courses-chapter-template
           v-for="chapter in course.chapters"
-          :key="chapter.name"
+          :key="chapter.public_id"
           :header="chapter.name"
+          :paid="chapter.paid"
           :problemId="chapter.next_problem_id"
         ></courses-chapter-template>
       </div>

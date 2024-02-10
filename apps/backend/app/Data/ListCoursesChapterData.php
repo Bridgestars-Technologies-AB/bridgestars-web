@@ -3,18 +3,18 @@
 namespace App\Data;
 
 use App\Models\Chapter;
+use Illuminate\Support\Facades\Log;
 use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
-class ChapterData extends Data
+class ListCoursesChapterData extends Data
 {
     public function __construct(
       //
         public string $public_id,
         public string $name,
-        public int $chapter_nbr,
-        public bool $paid,
+        public float $progress,
     ) {}
 
 
@@ -23,8 +23,7 @@ class ChapterData extends Data
         return new self(
             $chapter->public_id,
             $chapter->name,
-            $chapter->chapter_nbr,
-            $chapter->paid,
+            0.8
         );
     }
 }
