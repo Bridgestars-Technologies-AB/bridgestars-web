@@ -1,0 +1,51 @@
+# fly.toml app configuration file generated for bridgestars-demo-laravel on 2024-02-10T20:15:20+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'bridgestars-demo-laravel'
+primary_region = 'arn'
+console_command = 'php /var/www/html/artisan tinker'
+
+[build]
+  [build.args]
+    NODE_VERSION = '18'
+    PHP_VERSION = '8.3'
+
+[env]
+  APP_ENV = 'production'
+  LOG_CHANNEL = 'stderr'
+  LOG_LEVEL = 'info'
+  LOG_STDERR_FORMATTER = 'Monolog\Formatter\JsonFormatter'
+  SESSION_DRIVER = 'cookie'
+  SESSION_SECURE_COOKIE = 'true'
+  APP_URL = 'https://bridgestars-demo-laravel.fly.dev'
+  DB_CONNECTION = 'mysql'
+  DB_HOST = 'aws.connect.psdb.cloud'
+  DB_PORT = '3306'
+  DB_DATABASE = 'demo'
+  DB_USERNAME = 'z4jiaub5zgu4b4dxwobc'
+  MYSQL_ATTR_SSL_CA = '/etc/ssl/certs/ca-certificates.crt'
+  FRONTEND_URL = 'https://bridgestars-web-demo-git-chapters-api-bridgestars-projects.vercel.app'
+  SESSION_DOMAIN = 'bridgestars-web-demo-git-chapters-api-bridgestars-projects.vercel.app'
+  SANCTUM_STATEFUL_DOMAINS = 'bridgestars-web-demo-git-chapters-api-bridgestars-projects.vercel.app'
+
+
+[[mounts]]
+  source = 'demo_laravel_vol'
+  destination = '/data'
+  initial_size = '3gb'
+  processes = ['app']
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = false
+  min_machines_running = 1
+  processes = ['app']
+
+[[vm]]
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 256
