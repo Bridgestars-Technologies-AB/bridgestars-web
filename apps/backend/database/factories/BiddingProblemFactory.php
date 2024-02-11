@@ -21,6 +21,7 @@ class BiddingProblemFactory extends Factory
             'presentation' => fake()->sentence(),
             'solution' => fake()->paragraph(2),
             'published' => true,
+            'player' => fake()->randomElement(['N', 'E', 'S', 'W']),
         ];
     }
 }

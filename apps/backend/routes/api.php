@@ -23,4 +23,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/courses', [CourseController::class, 'index']);
     Route::get('/courses/{course}', [CourseController::class, 'show']);
     Route::get('/bidding-problems/{bidding_problem}', [BiddingProblemController::class, 'show']);
+    Route::post('/bidding-problems/{bidding_problem}', [BiddingProblemController::class, 'bid']);
 });

@@ -34,15 +34,15 @@ const bg = computed(() => (p.bid.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar 
 // uncomment for feedback on disabled blocks
 const pointer = computed(
   () =>
-    //p.clickable && !p.disabled ? "" : "pointer-events-none",
-    "",
+    p.clickable && !p.disabled ? "" : "pointer-events-none",
+    //"",
 );
 
 // uncomment for feedback on disabled blocks
 const opacity = computed(
   () =>
-    //   p.disabled ? "opacity-50 cursor-not-allowed" : "",
-    "",
+       p.disabled ? "opacity-50 cursor-not-allowed" : "",
+    //"",
 );
 </script>
 

@@ -1,37 +1,38 @@
-<script setup>
+<script setup lang="ts">
 import { Bid } from "~/composables/biddingClasses/Bid"
+import type {BiddingProblemData} from "~/types/generated"
 
 const route = useRoute();
 console.log(route.params.id);
 
-const { data } = api.get(`bidding-problems/${route.params.id}`);
-console.log(data)
+const { data } = await api.get(`bidding-problems/${route.params.id}`);
+const biddingProblem = data as BiddingProblemData;
 
 //axios.get(`/prefix/bidding-problem/${id}`) -> response.data
 // Mock up response data:
-const biddingProblem = {
-  number: 1, // problem 1 out of 10 in this chapter (deal_nbr)
-  total: 10,
-  presentation:
-    "Vad bjuder du som svarshand när din partner har öppnat med 1 NT?",
-  hands_visible: 1, // [1,2,4] bara min, mitt lag eller alla
-  cards: [
-    {
-      player: "N",
-      spades: "Q876",
-      hearts: "AT4",
-      diamonds: "KJ3",
-      clubs: "KJ3",
-    },
-  ],
-  dealer: "N", // North starts the auction
-  player: "E", // Vem spelar vi som??
-  bidding: [
-    { bid: "1NT", explanation: " 0 - 8 hp" },
-    { bid: "PASS" },
-    { bid: "3NT", explanation: " 10 - 15 hp" },
-  ],
-};
+// const biddingProblem = {
+//   number: 1, // problem 1 out of 10 in this chapter (deal_nbr)
+//   total: 10,
+//   presentation:
+//     "Vad bjuder du som svarshand när din partner har öppnat med 1 NT?",
+//   hands_visible: 1, // [1,2,4] bara min, mitt lag eller alla
+//   cards: [
+//     {
+//       player: "N",
+//       spades: "Q876",
+//       hearts: "AT4",
+//       diamonds: "KJ3",
+//       clubs: "KJ3",
+//     },
+//   ],
+//   dealer: "N", // North starts the auction
+//   player: "E", // Vem spelar vi som??
+//   bidding: [
+//     { bid: "1NT", explanation: " 0 - 8 hp" },
+//     { bid: "PASS" },
+//     { bid: "3NT", explanation: " 10 - 15 hp" },
+//   ],
+// };
 
 //Mock up response from server when playing a bid ....
 const bidResponseList = [
@@ -60,31 +61,31 @@ const bidResponseList = [
     cards: [
       {
         player: "N",
-        spades: "Q876",
-        hearts: "AT4",
-        diamonds: "KJ3",
-        clubs: "KJ3",
+        S: "Q876",
+        H: "AT4",
+        D: "KJ3",
+        C: "KJ3",
       },
       {
         player: "E",
-        spades: "Q876",
-        hearts: "AT4",
-        diamonds: "KJ3",
-        clubs: "KJ3",
+        S: "Q876",
+        H: "AT4",
+        D: "KJ3",
+        C: "KJ3",
       },
       {
         player: "S",
-        spades: "Q876",
-        hearts: "AT4",
-        diamonds: "KJ3",
-        clubs: "KJ3",
+        S: "Q876",
+        H: "AT4",
+        D: "KJ3",
+        C: "KJ3",
       },
       {
         player: "W",
-        spades: "Q876",
-        hearts: "AT4",
-        diamonds: "KJ3",
-        clubs: "KJ3",
+        S: "Q876",
+        H: "AT4",
+        D: "KJ3",
+        C: "KJ3",
       },
     ],
     solution:
@@ -130,8 +131,7 @@ function check() {
   // get a response if it was correct and data needed for that situation
   // Will be simulated with a function returning a random response
   //axios.post(`/prefix/bidding-problem/${route.params.id}`, { bid: bid.getShortName }) ->
-  const response =
-    bidResponseList[Math.floor(Math.random() * bidResponseList.length)];
+  const response = bidResponseList[Math.floor(Math.random() * bidResponseList.length)];
   if (!response.correct) {
     // What happens if wrong bid was made
     biddingExplanation.value = response.explanation;

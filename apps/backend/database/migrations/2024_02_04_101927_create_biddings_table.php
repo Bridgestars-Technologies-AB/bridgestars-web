@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\Bids;
+use App\Enums\Bid;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->foreignId('deal_id');
             $table->unsignedTinyInteger('bidding_nbr');
-            $table->enum('bid', Bids::all());
+            $table->enum('bid', Bid::all());
             $table->string('explanation', 255)->nullable();
             $table->boolean('suboptimal');
         });

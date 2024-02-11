@@ -13,4 +13,9 @@ class BiddingProblemController extends Controller
     {
         return BiddingProblemData::from($bidding_problem);
     }
+
+    public function bid(BiddingProblem $bidding_problem)
+    {
+
+    }
 }

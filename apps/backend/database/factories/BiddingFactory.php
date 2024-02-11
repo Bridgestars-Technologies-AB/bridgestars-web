@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\Bids;
+use App\Enums\Bid;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,8 +19,8 @@ class BiddingFactory extends Factory
     {
         return [
             'bidding_nbr' => fake()->numberBetween(1, 10),
-            'bid' => fake()->randomElement(Bids::all()),
-            'explanation' => fake()->sentence(),
+            'bid' => fake()->randomElement(array_slice(Bid::all(), 0, 20)),
+            'explanation' => fake()->randomElement(array('', fake()->sentence())),
             'suboptimal' => false,
         ];
     }

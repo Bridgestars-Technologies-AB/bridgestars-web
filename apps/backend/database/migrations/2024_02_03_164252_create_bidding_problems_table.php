@@ -20,10 +20,10 @@ return new class extends Migration
             $table->foreignId('chapter_id');
             $table->foreignId('deal_id');
 
+            $table->enum('player', ['N', 'E', 'S', 'W']);
             $table->unsignedInteger('hands_visible' );
             $table->string('presentation', 255);
             $table->string('solution', 500);
-            $table->enum('player', (array)Direction::class);
             $table->boolean('published')->default(false);
         });
     }
