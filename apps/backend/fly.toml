@@ -27,8 +27,8 @@ console_command = 'php /var/www/html/artisan tinker'
   DB_USERNAME = 'z4jiaub5zgu4b4dxwobc'
   MYSQL_ATTR_SSL_CA = '/etc/ssl/certs/ca-certificates.crt'
   FRONTEND_URL = 'https://bridgestars-web-demo-git-chapters-api-bridgestars-projects.vercel.app'
-  SESSION_DOMAIN = 'bridgestars-web-demo-git-chapters-api-bridgestars-projects.vercel.app'
-  SANCTUM_STATEFUL_DOMAINS = 'bridgestars-web-demo-git-chapters-api-bridgestars-projects.vercel.app'
+  #SESSION_DOMAIN = '.vercel.app'
+  #SANCTUM_STATEFUL_DOMAINS = 'vercel.app'
 
 
 [[mounts]]
