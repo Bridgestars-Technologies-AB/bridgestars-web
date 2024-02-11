@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-use App\Enums\Player;
+use App\Enums\Direction;
 use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
@@ -10,11 +10,11 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 class HandData extends Data
 {
     public function __construct(
-        public Player $player,
-        public string $S,
-        public string $H,
-        public string $D,
-        public string $C,
+        public Direction $player,
+        public string    $S,
+        public string    $H,
+        public string    $D,
+        public string    $C,
     ) {}
 
 }

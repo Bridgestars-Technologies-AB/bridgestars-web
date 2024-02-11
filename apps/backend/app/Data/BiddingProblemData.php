@@ -2,6 +2,7 @@
 
 namespace App\Data;
 
+use App\Enums\Direction;
 use App\Models\BiddingProblem;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Log;
@@ -21,6 +22,8 @@ class BiddingProblemData extends Data
         public string $presentation,
         public int $hands_visible,
         public Collection $cards,
+        public Direction $dealer,
+        public Direction $player,
     ) {}
 
     public static function fromModel(BiddingProblem $biddingProblem): self
@@ -37,7 +40,9 @@ class BiddingProblemData extends Data
             total: 10,
             presentation: $biddingProblem->presentation,
             hands_visible: $biddingProblem->hands_visible,
-            cards: Collection::empty()
+            cards: Collection::empty(),
+            $deal->dealer,
+            $biddingProblem->player,
         );
     }
 }
