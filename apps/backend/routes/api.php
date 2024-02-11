@@ -1,7 +1,10 @@
 <?php
 
+use App\Data\UserData;
 use App\Http\Controllers\BiddingProblemController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Internal\LoginController;
+use App\Http\Controllers\Internal\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +19,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::prefix('internal')->group(function () {
+    Route::post('register', RegisterController::class);
+    Route::post('login', LoginController::class);
+});
+
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', function (Request $request) {
-        return $request->user();
+        return UserData::from($request->user());
     });
     Route::get('/courses', [CourseController::class, 'index']);
     Route::get('/courses/{course}', [CourseController::class, 'show']);

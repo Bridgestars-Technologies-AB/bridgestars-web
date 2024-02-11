@@ -1,8 +1,9 @@
-import Axios from "axios";
+import Axios, { type AxiosResponse } from "axios";
 import { defineStore } from "pinia";
+import type { UserData } from "~/types/generated";
 
 const axios = Axios.create({
-  baseURL: "/backend/",
+  baseURL: "/api/",
   headers: {
     "X-Requested-With": "XMLHttpRequest",
   },
@@ -11,19 +12,19 @@ const axios = Axios.create({
 });
 
 const useAuthStore = defineStore("auth", {
-  state: () => ({ user: null }),
+  state: () => ({ user: null as UserData | null }),
   getters: {},
   actions: {
-    async update(x: any) {
-      await axios
-        .get("api/user")
-        .then((response) => (this.user = response.data))
+    async update() : Promise<UserData> {
+      return api.get<UserData>("user")
+        .then((response) => {
+          this.user = response.data;
+          return response.data;
+        })
         .catch((e) => {
-          useCookie("XSRF-TOKEN").value = null;
-          useCookie("laravel_session").value = null;
           this.user = null;
+          throw e;
         });
-      return x;
     },
   },
   persist: {
@@ -36,16 +37,12 @@ const useAuth = () => {
 
   const csrf = () => axios.get("sanctum/csrf-cookie");
 
-  const register = async ({ ...props }) => {
-    return await csrf()
-      .then(() => axios.post("register", props))
-      .then(store.update);
+  const register = async ({ ...props }): Promise<UserData> => {
+    return api.post("internal/register", props).then(store.update);
   };
 
-  const login = async ({ ...props }) => {
-    return await csrf()
-      .then(() => axios.post("login", props))
-      .then(store.update);
+  const login = async ({ ...props }): Promise<UserData> => {
+    return api.post("internal/login", props).then(store.update);
   };
 
   const logout = async () => {
