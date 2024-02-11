@@ -1,3 +1,11 @@
+export type BiddingProblemData = {
+    public_id: string;
+    number: number;
+    total: number;
+    presentation: string;
+    hands_visible: number;
+    cards: Array<HandData>;
+};
 export type GetCourseChapterData = {
     public_id: string;
     name: string;
@@ -15,6 +23,13 @@ export type GetCourseData = {
     color: string;
     chapters: Array<GetCourseChapterData>;
 };
+export type HandData = {
+    player: Player;
+    S: string;
+    H: string;
+    D: string;
+    C: string;
+};
 export type ListCoursesChapterData = {
     public_id: string;
     name: string;
@@ -28,3 +43,4 @@ export type ListCoursesData = {
     color: string;
     chapters: Array<ListCoursesChapterData>;
 };
+export type Player = "N" | "E" | "S" | "W";

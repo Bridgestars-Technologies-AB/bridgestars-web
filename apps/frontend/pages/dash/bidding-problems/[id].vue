@@ -1,8 +1,11 @@
 <script setup>
-import { Bid } from "~/composables/biddingClasses/Bid";
+import { Bid } from "~/composables/biddingClasses/Bid"
 
 const route = useRoute();
 console.log(route.params.id);
+
+const { data } = api.get(`bidding-problems/${route.params.id}`);
+console.log(data)
 
 //axios.get(`/prefix/bidding-problem/${id}`) -> response.data
 // Mock up response data:
