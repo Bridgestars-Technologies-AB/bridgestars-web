@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('cards', 100);
 
             // den som delar ut kort och lägger första budet
-            $table->enum('dealer', ['N', 'E', 'S', 'W']);
+            $table->enum('dealer', ['N', 'E', 'S', 'W' ]);
             $table->enum('vul', ['None', 'NS', 'EW', 'Both'])->default('None');
         });
     }

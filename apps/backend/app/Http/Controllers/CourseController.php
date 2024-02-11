@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Data\CourseData;
+use App\Data\ListCoursesData;
+use App\Data\GetCourseData;
 use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class CourseController extends Controller
             ->with('chapters')
             ->get();
 
-        return CourseData::collect($courses);
+        return ListCoursesData::collect($courses);
     }
 
     /**
@@ -45,7 +46,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        return $course;
+        return GetCourseData::from($course);
     }
 
     /**

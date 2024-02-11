@@ -1,6 +1,5 @@
 import Axios from "axios";
 
-
 const api = Axios.create({
   baseURL: "/backend/api/",
   headers: {
@@ -11,4 +10,3 @@ const api = Axios.create({
 });
 
 export default api;
-

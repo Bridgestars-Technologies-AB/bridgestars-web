@@ -7,16 +7,19 @@ const showLoading = ref(false);
 
 async function submit(res) {
   showLoading.value = true;
-  await useAuth().forgotPassword(res)
-  .then(() => {
-    toast.success("Vi har skickat ett mail till dig med instruktioner för att återställa ditt lösenord.");
-    navigateTo({ path: "/auth/sign-in", query });
-  })
-  .catch(e => {
-    showLoading.value = false;
-    toast.error(e.response.data.message);
-    return;
-  })
+  await useAuth()
+    .forgotPassword(res)
+    .then(() => {
+      toast.success(
+        "Vi har skickat ett mail till dig med instruktioner för att återställa ditt lösenord.",
+      );
+      navigateTo({ path: "/auth/sign-in", query });
+    })
+    .catch((e) => {
+      showLoading.value = false;
+      toast.error(e.response.data.message);
+      return;
+    });
 }
 </script>
 

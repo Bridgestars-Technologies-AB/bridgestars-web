@@ -1,12 +1,6 @@
 import { Card } from "./Card";
+import type { HandData } from "~/types/generated";
 
-interface BidResponse {
-  player: string;
-  spades: string;
-  hearts: string;
-  diamonds: string;
-  clubs: string;
-}
 export class Hand {
   public player: string;
   public cards: Array<Card>;
@@ -16,12 +10,12 @@ export class Hand {
   public clubs: Array<Card>;
 
   // constructor to create the hand from the response
-  public constructor(response: BidResponse) {
-    this.player = response.player;
-    this.spades = this.mapCards(response.spades.split(""), "S");
-    this.hearts = this.mapCards(response.hearts.split(""), "H");
-    this.diamonds = this.mapCards(response.diamonds.split(""), "D");
-    this.clubs = this.mapCards(response.clubs.split(""), "C");
+  public constructor({ player, S, H, D, C }: HandData) {
+    this.player = player;
+    this.spades = this.mapCards(S.split(""), "S");
+    this.hearts = this.mapCards(H.split(""), "H");
+    this.diamonds = this.mapCards(D.split(""), "D");
+    this.clubs = this.mapCards(C.split(""), "C");
     this.cards = [this.spades, this.hearts, this.diamonds, this.clubs].flat();
   }
 

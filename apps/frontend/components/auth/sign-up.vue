@@ -4,21 +4,27 @@ const query = useRoute().query;
 const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
-async function submit(res:{username:string, email:string, name:string, password:string }) {
+async function submit(res: {
+  username: string;
+  email: string;
+  name: string;
+  password: string;
+}) {
   showLoading.value = true;
   showLoading.value = true;
 
-  await useAuth().register({...res, "password_confirmation": res.password})
-  .then(() => {
-    toast.success("Du har loggats in");
-    if (query.to) navigateTo({ path: query.to as string });
-    else navigateTo({ path: "/dash" });
-  })
-  .catch(e => {
-    showLoading.value = false;
-    toast.error(e.response.data.message);
-    return;
-  })
+  await useAuth()
+    .register({ ...res, password_confirmation: res.password })
+    .then(() => {
+      toast.success("Du har loggats in");
+      if (query.to) navigateTo({ path: query.to as string });
+      else navigateTo({ path: "/dash" });
+    })
+    .catch((e) => {
+      showLoading.value = false;
+      toast.error(e.response.data.message);
+      return;
+    });
 }
 </script>
 
@@ -75,12 +81,12 @@ async function submit(res:{username:string, email:string, name:string, password:
           <span class="normal-case text2 text-dark tracking-[0.5px]">
             <!-- <i18next :translation="$t('auth:signUp:agree')"> -->
             <!--   <template #terms> -->
-            Jag godkänner 
-                <NuxtLink
-                  to="/policy"
-                  class="normal-case text2 text-[15px] text-blue font-bold tracking-[0.5px]"
-                  >Användarvillkoren</NuxtLink
-                >
+            Jag godkänner
+            <NuxtLink
+              to="/policy"
+              class="normal-case text2 text-[15px] text-blue font-bold tracking-[0.5px]"
+              >Användarvillkoren</NuxtLink
+            >
             <!--   </template> -->
             <!-- </i18next> -->
           </span>

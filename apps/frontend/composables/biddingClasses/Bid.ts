@@ -1,10 +1,8 @@
 import { t } from "i18next";
 
+import type {BidData} from "~/types/generated";
+
 // This interface is used to represent a bid sent from the server
-interface BidResponse {
-  bid: string;
-  explanation: string;
-}
 
 export class Bid {
   public suit: number;
@@ -65,7 +63,7 @@ export class Bid {
   }
 
   // This function is used to convert a bidding sequence from the server to a list of Bid objects
-  public static fromJson(bidding: Array<BidResponse>): Array<Bid> {
+  public static fromJson(bidding: Array<BidData>): Array<Bid> {
     return bidding.map((b) => this.fromString(b.bid, b.explanation));
   }
 
@@ -73,20 +71,27 @@ export class Bid {
   public static fromString(bid: string, explanation: string): Bid {
     let suit = 0;
     let rank = 0;
-    if (bid === "PASS") {
+    if (bid === "pass") {
       suit = 0;
       rank = 0;
     }
-    if (bid.includes("NT")) {
+    else if (bid === "double") {
+      suit = 0;
+      rank = 0;
+    }
+    else if (bid === "redouble") {
+      suit = 0;
+      rank = 0;
+    }
+    else if (bid.includes("NT")) {
       const temp = bid.split("NT");
       suit = 4;
       rank = parseInt(temp[0]);
     }
     // not decided yet how to represent suit, so this is a placeholder
-    if (bid.includes("....")) {
-      const temp = bid.split("....");
-      //suit = ?;
-      rank = parseInt(temp[0]);
+    else {
+      rank = parseInt(bid[0])
+      suit = bid[1] === "C" ? 0 : bid[1] === "D" ? 1 : bid[1] === "H" ? 2 : 3;
     }
     return new Bid(suit, rank, explanation);
   }

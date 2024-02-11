@@ -21,13 +21,15 @@ const props = defineProps({
 defineEmits(["update:open"]);
 
 async function signOut() {
-  await useAuth().logout()
+  await useAuth()
+    .logout()
     .then(() => {
       toast.clear(); //remove old toasts , ex sign in
       toast.success(t("dashboard:sign_out_modal.signed_out"));
       if (props.customSignOutAction) props.customSignOutAction();
       else navigateTo("/auth/sign-in"); // go to home or sign-in on signout?? not sure what is best
-    }).catch((e) => {
+    })
+    .catch((e) => {
       toast.error(e.value?.data.message);
     });
 }

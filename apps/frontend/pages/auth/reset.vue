@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import axios from 'axios';
+import axios from "axios";
 
 const toast = useToast();
 const showLoading = ref(false);
@@ -11,12 +11,13 @@ await loadTranslations("auth");
 async function submit(res: { password: string }) {
   showLoading.value = true;
 
-  await useAuth().resetPassword({
-    password: res.password, 
-    "password_confirmation": res.password, 
-    token: query.token, 
-    email: query.email
-  })
+  await useAuth()
+    .resetPassword({
+      password: res.password,
+      password_confirmation: res.password,
+      token: query.token,
+      email: query.email,
+    })
     .then((response) => {
       toast.success("Ditt lösenord har återställs. Testa nu att logga in.");
       navigateTo({ path: "/auth/sign-in", query });
@@ -67,7 +68,7 @@ async function submit(res: { password: string }) {
         class="text-blue font-bold normal-case tracking-[0.5px]"
         @click="navigateTo({ path: '/auth/sign-up', query })"
       >
-         Logga in
+        Logga in
       </button>
     </div>
   </auth-form>
