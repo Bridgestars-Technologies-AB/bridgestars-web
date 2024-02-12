@@ -59,7 +59,7 @@ function visiblePlayers(): string[] {
 }
 
 //temporary to test ui for different number of hands
-const nbr = ref(2);
+const nbr = ref(1);
 </script>
 
 <template>
@@ -112,12 +112,8 @@ const nbr = ref(2);
     </div>
   </div>
   <div v-else :class="`flex flex-row h-full ml-7 items-center`">
-    <div :class="`flex flex-col items-start h-1/2`">
-      <div
-        v-for="index in 4"
-        :key="index"
-        class="h-1/4 flex flex-row items-center"
-      >
+    <div :class="`flex flex-col items-start`">
+      <div v-for="index in 4" :key="index" class="flex flex-row items-center">
         <span
           :class="`mr-[3px] text-[30px] ${Card.suitsToTailwind.get(index - 1)}`"
         >

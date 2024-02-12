@@ -27,11 +27,7 @@ const suitNames = ["spades", "hearts", "diamonds", "clubs"];
 
 <template>
   <div :class="`rounded-xl flex flex-col items-start`">
-    <div
-      v-for="index in 4"
-      :key="index"
-      class="h-1/4 flex flex-row items-center"
-    >
+    <div v-for="index in 4" :key="index" class="flex flex-row items-center">
       <span
         :class="`mr-[3px] text-[19px] ${Card.suitsToTailwind.get(index - 1)}`"
       >

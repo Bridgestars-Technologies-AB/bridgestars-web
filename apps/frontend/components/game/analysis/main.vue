@@ -68,7 +68,7 @@ function getJustify(e: Number) {
     <!-- Here comes div for all boxes -->
     <div class="flex flex-col h-[90%] lg-flex lg:flex-row lg:w-full">
       <!-- First container -->
-      <div class="bg-dark-100 w-1/3 h-full flex items-center justify-center">
+      <div class="bg-dark-100 w-1/3 h-full flex justify-center items-center">
         <game-bidding-showHands
           :handsVisable="handsVisable"
           :hands="hands"
