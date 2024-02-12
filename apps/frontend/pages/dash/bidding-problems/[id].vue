@@ -191,6 +191,7 @@ function check() {
         :hands="hands"
         :solution="bid"
         :player="biddingProblem.player"
+        :handsVisable="biddingProblem.hands_visible"
         :biddingAnswer="solution"
         :nextProblemId="nextProblemId"
       ></game-analysis-main>

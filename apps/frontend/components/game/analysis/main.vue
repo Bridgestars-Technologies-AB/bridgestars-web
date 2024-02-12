@@ -18,6 +18,7 @@ interface Props {
   biddingAnswer: string;
   player: string;
   nextProblemId: string;
+  handsVisable: number;
 }
 
 defineProps<Props>();
@@ -67,45 +68,13 @@ function getJustify(e: Number) {
     <!-- Here comes div for all boxes -->
     <div class="flex flex-col h-[90%] lg-flex lg:flex-row lg:w-full">
       <!-- First container -->
-      <div
-        class="w-full h-[30%] bg-dark-100 flex flex-col space-y-2 items-center justify-center lg:justify-around lg:w-1/3 lg:h-full"
-      >
-        <div class="flex justify-center items-center w-full lg:h-[30%]">
-          <game-bidding-hand
-            :showDeal="false"
-            :hand="hands[0]"
-            class="w-full lg:h-full lg:w-[70%]"
-          ></game-bidding-hand>
-        </div>
-
-        <div class="flex flex-row justify-center items-center">
-          <div
-            class="flex items-center justify-center bg-[#075B0E] w-[100px] h-[100px] rounded-xl"
-          >
-            <div class="flex flex-col w-[90%] h-[90%]">
-              <div class="w-full h-1/3 flex justify-center items-start">
-                <span class="text1 !text-white">N</span>
-              </div>
-              <div
-                class="flex flex-row w-full h-1/3 justify-between items-center"
-              >
-                <span class="text1 !text-white">W</span>
-                <span class="text1 !text-white">E</span>
-              </div>
-              <div class="w-full h-1/3 flex justify-center items-end">
-                <span class="text1 !text-white">S</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex justify-center items-center w-full lg:h-[30%]">
-          <game-bidding-hand
-            :showDeal="false"
-            :hand="hands[1]"
-            class="w-full lg:h-full lg:w-[70%]"
-          ></game-bidding-hand>
-        </div>
+      <div class="bg-dark-100 w-1/3 h-full flex items-center justify-center">
+        <game-bidding-showHands
+          :handsVisable="handsVisable"
+          :hands="hands"
+          :player="player"
+        >
+        </game-bidding-showHands>
       </div>
 
       <!-- Line -->

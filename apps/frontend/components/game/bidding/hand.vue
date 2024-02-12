@@ -26,7 +26,7 @@ const suitNames = ["spades", "hearts", "diamonds", "clubs"];
 </script>
 
 <template>
-  <div :class="`rounded-xl flex flex-col items-start ${$attrs.class}`">
+  <div :class="`rounded-xl flex flex-col items-start`">
     <div
       v-for="index in 4"
       :key="index"

@@ -76,7 +76,6 @@ const biddingBox =
 
     <game-bidding-container class="container" header="DIN HAND">
       <game-bidding-showHands
-        class="w-full"
         :handsVisable="handsVisable"
         :hands="hands"
         :player="player"
