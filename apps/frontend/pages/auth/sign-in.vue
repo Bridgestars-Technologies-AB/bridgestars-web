@@ -7,26 +7,21 @@ const query = useRoute().query;
 const showLoading = ref(false);
 await loadTranslations("auth");
 
-import {useAuth} from '#imports'
-const { signIn } = useAuth()
 
-
-//const auth = useAuth();
 
 async function submit(res: { email: string; password: string }) {
   showLoading.value = true;
-  signIn('local', {username: res.email, password: res.password, password_confirmation: res.password})
-  .then(data => {
-      console.log(data)
-      // toast.success("Du har loggats in");
-      // if (query.to) navigateTo({ path: query.to as string });
-      // else navigateTo({ path: "/dash" });
-  })
-  .catch(error => {
-      showLoading.value = false;
-      console.log(error)
-      toast.error(error.response.data.message);
-  })
+  useAuth()
+    .login({username:res.email, password:res.password, password_confirmation: res.password})
+    .then(() => {
+        toast.success("Du har loggats in");
+        if (query.to) navigateTo({ path: query.to as string });
+        else navigateTo({ path: "/dash" });
+    })
+    .catch(error => {
+        showLoading.value = false;
+        toast.error(error.response.data.message);
+    })
 }
 </script>
 

@@ -11,15 +11,22 @@ async function handleParseError(error: { reason: { code: number } }) {
 export default defineNuxtPlugin(() => {
   window.onunhandledrejection = (error) => {
     //if(process.env.dev)
+    console.log(error.reason)
     const response = error?.reason?.response;
     if (response){
       const data = response.data;
       if(data?.data?.message){
-        useToast().error(data?.data?.message);
+        useToast().error(data.data.message);
       }
       else if(data?.message){
-        useToast().error(data?.message);
+        useToast().error(data.message);
       }
+      else if(response.message){
+        useToast().error(response.message);
+      }
+    }
+    else if(error?.reason?.message){
+        useToast().error(error.reason.message);
     }
 
     //handleParseError(error);

@@ -1,60 +1,60 @@
-import Axios, { type AxiosResponse } from "axios";
 import { defineStore } from "pinia";
 import type { UserData } from "~/types/generated";
 
-const axios = Axios.create({
-  baseURL: "/api/",
-  headers: {
-    "X-Requested-With": "XMLHttpRequest",
-  },
-  withCredentials: true,
-  //withXSRFToken: true
-});
-
-const useAuthStore = defineStore("auth", {
-  state: () => ({ user: null as UserData | null }),
+const useUserStore = defineStore("user", {
+  state: () => ({ user: null as Omit<UserData, 'email'> | null }),
   getters: {},
   actions: {
     async update() : Promise<UserData> {
       return api.get<UserData>("user")
         .then((response) => {
-          this.user = response.data;
+          let temp:any = response.data;
+          delete temp.email; // don't store email in cookie
+          this.user = temp;
+          //delete this.user;
           return response.data;
         })
         .catch((e) => {
           this.user = null;
+          useCookie('auth').value = null;
+          useCookie('user').value = null;
           throw e;
         });
     },
+    delete() {
+      this.user = null;
+      useCookie('auth').value = null;
+      useCookie('user').value = null;
+    }
   },
   persist: {
-    key: "auth",
+    key: "user",
   },
 });
 
 const useAuth = () => {
-  const store = useAuthStore();
+  const store = useUserStore();
 
-  const csrf = () => axios.get("sanctum/csrf-cookie");
+  //const csrf = () => axios.get("sanctum/csrf-cookie");
 
   const register = async ({ ...props }): Promise<UserData> => {
-    return api.post("internal/register", props).then(store.update);
+    return api.post("auth/register", props).then(store.update);
   };
 
-  const login = async ({ ...props }): Promise<UserData> => {
-    return api.post("internal/login", props).then(store.update);
+  async function login({ ...props }): Promise<UserData>{
+    return api.post("auth/login", props).then(store.update);
   };
 
   const logout = async () => {
-    return await axios.post("logout").then(store.update);
+    return api.post("auth/logout").then(store.delete);
   };
-
+  //
   const forgotPassword = async ({ ...props }) => {
-    return await csrf().then(() => axios.post("forgot-password", props));
+    return api.post("forgot-password", props);
   };
-
+  //
   const resetPassword = async ({ ...props }) => {
-    return await csrf().then(() => axios.post("reset-password", props));
+    return api.post("reset-password", props);
   };
 
   return {
@@ -67,4 +67,4 @@ const useAuth = () => {
   };
 };
 
-//export default useAuth;
+export default useAuth;

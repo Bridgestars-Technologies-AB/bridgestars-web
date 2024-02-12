@@ -28,6 +28,7 @@ export default defineNuxtConfig({
   //},
   modules: [
     "@vite-pwa/nuxt",
+    "nuxt-security",
     //"@nuxtjs/pwa",
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
@@ -35,31 +36,9 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/image",
     "@averjs/nuxt-compression",
-    "@sidebase/nuxt-auth",
   ],
-  auth: {
-    provider: {
-      type: "local",
-      endpoints: {
-        signIn: { path: "/login", method: "post" },
-        signOut: { path: "/logout", method: "post" },
-        signUp: { path: "/register", method: "post" },
-        getSession: { path: "/user", method: "get" },
-      },
-      pages: {
-        login: "/auth/sign-in",
-      },
-      token: {
-        maxAgeInSeconds: 2592000, //30 days
-        sameSiteAttribute: "strict", //boolean | 'lax' | 'strict' | 'none' | undefined,
-      },
-      sessionDataType: {
-        public_id: "string",
-        name: "string",
-        email: "string",
-        username: "string",
-      },
-    },
+  security:{
+
   },
   image: {
     format: ["webp"],
@@ -174,7 +153,7 @@ export default defineNuxtConfig({
     plugins: [],
   },
   build: {
-    transpile: ["vue-toastification", "bridgestars-db-client", "parse-sdk-ts"],
+    transpile: ["vue-toastification", "jsonwebtoken"],
     postcss: {
       plugins: {
         tailwindcss: {},

@@ -21,7 +21,6 @@
     "@nuxtjs/tailwindcss": "^6.10.3",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@sentry/vue": "^7.93.0",
-    "@sidebase/nuxt-auth": "^0.6.7",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^18.19.4",
     "@typescript-eslint/eslint-plugin": "^6.17.0",
@@ -33,6 +32,7 @@
     "eslint-plugin-vue": "^9.19.2",
     "lint-staged": "^14.0.1",
     "nuxi": "^3.10.0",
+    "nuxt-security": "^1.1.1",
     "prettier": "3.0.3",
     "sass": "^1.69.7"
   },

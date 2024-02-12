@@ -6,12 +6,13 @@ const SECRET = "dummy";
 const ENCRYPTION_SECRET = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
 
 export default defineEventHandler(async (event) => {
-  return laravel.post(event, "/api/auth/login")
-  .then((data) => {
-      setCookie(event, "auth", data.token, {
-        maxAge: 60 * 60 * 24 * 30,
-        sameSite: 'strict'
-      })
+  return laravel.post(event, "/api/auth/logout")
+    .then((data) => {
+      deleteCookie(event, "auth")
+    })
+    .catch((e) => {
+      throw e
+      //deleteCookie(event, "auth")
     })
 
   // return $fetch(process.env.BACKEND_URL + "/api/internal/login", {
