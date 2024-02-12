@@ -50,11 +50,11 @@ const useAuth = () => {
   };
   //
   const forgotPassword = async ({ ...props }) => {
-    return api.post("forgot-password", props);
+    return api.post("auth/forgot-password", props);
   };
   //
   const resetPassword = async ({ ...props }) => {
-    return api.post("reset-password", props);
+    return api.post("auth/reset-password", props);
   };
 
   return {

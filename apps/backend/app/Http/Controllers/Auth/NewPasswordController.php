@@ -21,6 +21,7 @@ class NewPasswordController extends Controller
      */
     public function __invoke(Request $request): JsonResponse
     {
+        $request['email'] = strtolower($request->email);
         $request->validate([
             'token' => ['required'],
             'email' => ['required', 'email'],
