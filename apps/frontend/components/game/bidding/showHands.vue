@@ -1,11 +1,60 @@
 <script setup lang="ts">
 import { Hand } from "~/composables/biddingClasses/Hand";
-interface Props {
-  hands: Array<Hand>;
-  nbrOfHands: number;
+
+const p = defineProps({
+  hands: {
+    type: Array<Hand>,
+    required: true,
+  },
+  handsVisable: Number,
+  player: {
+    type: String,
+    required: true,
+  },
+});
+
+//function used to get the hand of a certain player
+function getHand(player: string): Hand {
+  const hand = p.hands.find((hand) => hand.player === player);
+  if (hand) {
+    return hand;
+  } else {
+    // if no hand is found, return first hand of the list
+    return p.hands[0];
+  }
 }
 
-defineProps<Props>();
+function getPartner(player: string): string {
+  switch (player) {
+    case "N":
+      return "S";
+    case "S":
+      return "N";
+    case "E":
+      return "W";
+    case "W":
+      return "E";
+    default:
+      return "N";
+  }
+}
+
+//function returning if a certain players hand is visible
+function showHand(player: string): boolean {
+  console.log(player, visiblePlayers());
+  return visiblePlayers().includes(player);
+}
+
+// function returning which players hands are visible
+function visiblePlayers(): string[] {
+  if (p.handsVisable === 1) {
+    return [p.player];
+  } else if (p.handsVisable === 2) {
+    return [p.player, getPartner(p.player)];
+  } else {
+    return ["N", "E", "S", "W"];
+  }
+}
 
 //temporary to test ui for different number of hands
 const nbr = ref(2);
@@ -15,17 +64,17 @@ const nbr = ref(2);
   <div v-if="nbr > 1" :class="`${$attrs.class} space-y-3`">
     <div class="flex w-full justify-center items-center">
       <game-bidding-hand
-        :class="`${nbr >= 1 ? '' : 'invisible'}`"
+        :class="`${showHand('N') ? '' : 'invisible'}`"
         :showDeal="false"
-        :hand="hands[0]"
+        :hand="getHand('N')"
       ></game-bidding-hand>
     </div>
 
     <div class="flex flex-row space-x-3 items-center justify-center">
       <game-bidding-hand
-        :class="`${nbr >= 2 ? '' : 'invisible'}`"
+        :class="`${showHand('W') ? '' : 'invisible'}`"
         :showDeal="false"
-        :hand="hands[0]"
+        :hand="getHand('W')"
       ></game-bidding-hand>
 
       <div
@@ -46,17 +95,17 @@ const nbr = ref(2);
       </div>
 
       <game-bidding-hand
-        :class="`${nbr >= 3 ? '' : 'invisible'}`"
+        :class="`${showHand('E') ? '' : 'invisible'}`"
         :showDeal="false"
-        :hand="hands[0]"
+        :hand="getHand('E')"
       ></game-bidding-hand>
     </div>
 
     <div class="flex justify-center items-center">
       <game-bidding-hand
-        :class="`${nbr >= 4 ? '' : 'invisible'}`"
+        :class="`${showHand('S') ? '' : 'invisible'}`"
         :showDeal="false"
-        :hand="hands[0]"
+        :hand="getHand('S')"
       ></game-bidding-hand>
     </div>
   </div>

@@ -21,8 +21,6 @@ const p = defineProps({
   },
 });
 
-console.log(p.hand.spades);
-
 //only used for displaying
 const suitNames = ["spades", "hearts", "diamonds", "clubs"];
 </script>
@@ -35,11 +33,11 @@ const suitNames = ["spades", "hearts", "diamonds", "clubs"];
       class="h-1/4 flex flex-row items-center"
     >
       <span
-        :class="`ml-[10px] text-[14px] ${Card.suitsToTailwind.get(index - 1)}`"
+        :class="`mr-[3px] text-[19px] ${Card.suitsToTailwind.get(index - 1)}`"
       >
       </span>
       <span
-        class="text-[15px] font-semibold text-dark dark:text-white tracking-[1px]"
+        class="text-[17px] font-semibold text-dark dark:text-white tracking-[1px]"
         >{{ hand.toString(suitNames[index - 1]) }}
       </span>
     </div>

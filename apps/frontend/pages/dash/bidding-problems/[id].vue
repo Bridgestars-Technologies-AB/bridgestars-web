@@ -3,7 +3,6 @@ import { Bid } from "~/composables/biddingClasses/Bid";
 import type { BiddingProblemData } from "~/types/generated";
 
 const route = useRoute();
-console.log(route.params.id);
 
 const { data } = await api.get(`bidding-problems/${route.params.id}`);
 const biddingProblem = data as BiddingProblemData;
@@ -143,10 +142,6 @@ function check() {
     solution.value = response.solution;
     nextProblemId.value = response.next_problem_id;
     biddingHistory.value = Bid.fromJson(response.bidding);
-    // response.cards.forEach((hand) => {
-    //   hands.value.push(new Hand(hand));
-    // });
-    // console.log(hands.value[1].spades);
   }
 }
 </script>
@@ -169,6 +164,8 @@ function check() {
         :presentationText="biddingProblem.presentation"
         :history="Bid.fromJson(biddingProblem.bidding)"
         :hands="hands"
+        :handsVisable="biddingProblem.hands_visible"
+        :player="biddingProblem.player"
         @check="check"
       ></game-bidding-problem>
       <div

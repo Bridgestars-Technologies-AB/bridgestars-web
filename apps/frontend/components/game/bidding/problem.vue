@@ -17,6 +17,14 @@ const props = defineProps({
   history: {
     type: Array<Bid>,
   },
+  handsVisable: {
+    type: Number,
+    default: 2,
+  },
+  player: {
+    type: String,
+    required: true,
+  },
 });
 
 const emit = defineEmits(["check", "update:bid"]);
@@ -67,7 +75,12 @@ const biddingBox =
     </game-bidding-container>
 
     <game-bidding-container class="container" header="DIN HAND">
-      <game-bidding-showHands class="w-full" :nbrOfHands="2" :hands="hands">
+      <game-bidding-showHands
+        class="w-full"
+        :handsVisable="handsVisable"
+        :hands="hands"
+        :player="player"
+      >
       </game-bidding-showHands>
     </game-bidding-container>
   </div>
