@@ -21,8 +21,12 @@ const props = defineProps({
 
 const emit = defineEmits(["check", "update:bid"]);
 
-const bid = ref(props.history && props.history.length > 0 ? props.history[props.history.length - 1] : new Bid(0, 0));
-console.log(bid.value)
+const bid = ref(
+  props.history && props.history.length > 0
+    ? props.history[props.history.length - 1]
+    : new Bid(0, 0),
+);
+console.log(bid.value);
 
 function makeBid(bid: Bid) {
   emit("update:bid", bid);

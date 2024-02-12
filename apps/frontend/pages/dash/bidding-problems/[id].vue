@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Bid } from "~/composables/biddingClasses/Bid"
-import type {BiddingProblemData} from "~/types/generated"
+import { Bid } from "~/composables/biddingClasses/Bid";
+import type { BiddingProblemData } from "~/types/generated";
 
 const route = useRoute();
 console.log(route.params.id);
@@ -92,13 +92,11 @@ const bidResponseList = [
       "Du har 18 hp och vet att din partner har 15-17 hp. Ni har tillsammans 33-35 hp och gränsen för att bjuda lillslam är minst 33 hp. Rätt bud är 6NT.",
     bidding: [
       { bid: "1NT", explanation: " 0 - 8 hp" },
-      { bid: "PASS" },
+      { bid: "pass" },
       { bid: "3NT", explanation: " 10 - 15 hp" },
     ],
   },
 ];
-
-//Mock data, will be fetched from DB table bidding-problems and bidding-result
 
 // used as v-model to be able to see the latest bid made
 const bid = ref(new Bid(0, 0));
@@ -113,8 +111,6 @@ const biddingHistory = ref();
 //     Array.([new Bid(10, 10), new Bid(10,10)],history );
 //   }
 // }
-
-// bid information
 
 //bidding information, can only be shown after a bid is made
 const isBidMade = ref(false);
@@ -131,7 +127,8 @@ function check() {
   // get a response if it was correct and data needed for that situation
   // Will be simulated with a function returning a random response
   //axios.post(`/prefix/bidding-problem/${route.params.id}`, { bid: bid.getShortName }) ->
-  const response = bidResponseList[Math.floor(Math.random() * bidResponseList.length)];
+  const response =
+    bidResponseList[Math.floor(Math.random() * bidResponseList.length)];
   if (!response.correct) {
     // What happens if wrong bid was made
     biddingExplanation.value = response.explanation;
@@ -175,8 +172,9 @@ function check() {
         @check="check"
       ></game-bidding-problem>
       <div
-        v-if="isBidMade"
-        class="mt-3 w-[500px] h-[100px] bg-dark-100 rounded-xl flex flex-col justify-center items-center"
+        :class="`mt-3 w-[500px] h-[100px] bg-dark-100 rounded-xl flex flex-col justify-center items-center ${
+          isBidMade ? '' : 'invisible'
+        }`"
       >
         <div class="flex flex-row justify-center items-center">
           <span class="text-[20px] text-dark dark:text-white">
@@ -193,6 +191,7 @@ function check() {
     <div v-else class="w-full h-full flex justify-center items-center">
       <game-analysis-main
         :biddingResult="biddingHistory"
+        :hands="hands"
         :solution="bid"
         :player="biddingProblem.player"
         :biddingAnswer="solution"

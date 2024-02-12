@@ -1,16 +1,33 @@
 <script setup lang="ts">
-defineProps({
+const p = defineProps({
   bid: {
     type: Bid,
     default: new Bid(0, 0),
   },
   player: {
     type: String,
+    default: "W",
   },
   size: {
     type: String,
   },
 });
+
+function getPlayerName(): String {
+  // this function will be auto completed
+  switch (p.player) {
+    case "W":
+      return "West";
+    case "N":
+      return "North";
+    case "E":
+      return "East";
+    case "S":
+      return "South";
+    default:
+      return "";
+  }
+}
 </script>
 
 <template>
@@ -29,7 +46,7 @@ defineProps({
     <div
       :class="`${size} bg-dark-200 flex justify-center items-center rounded-xl ml-[5px]`"
     >
-      <span class="biddingText1 text1 tracking-[2px]">{{ player }}</span>
+      <span class="biddingText1 text1">{{ getPlayerName() }}</span>
     </div>
   </div>
 </template>

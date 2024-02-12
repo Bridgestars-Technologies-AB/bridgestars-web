@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Bid } from "~/composables/biddingClasses/Bid";
+import { Hand } from "~/composables/biddingClasses/Hand";
 
 /*
 This component displays the analysis from bidding-problems.
@@ -12,6 +13,7 @@ Props:
 
 interface Props {
   biddingResult: Array<Bid>;
+  hands: Array<Hand>;
   solution: Bid;
   biddingAnswer: string;
   player: string;
@@ -71,6 +73,7 @@ function getJustify(e: Number) {
         <div class="flex justify-center items-center w-full lg:h-[30%]">
           <game-bidding-hand
             :showDeal="false"
+            :hand="hands[0]"
             class="w-full lg:h-full lg:w-[70%]"
           ></game-bidding-hand>
         </div>
@@ -99,6 +102,7 @@ function getJustify(e: Number) {
         <div class="flex justify-center items-center w-full lg:h-[30%]">
           <game-bidding-hand
             :showDeal="false"
+            :hand="hands[1]"
             class="w-full lg:h-full lg:w-[70%]"
           ></game-bidding-hand>
         </div>
