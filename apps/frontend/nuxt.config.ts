@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 import { periodicSyncForUpdates } from "virtual:nuxt-pwa-configuration";
+import type { UserData } from "~/types/generated";
 
 console.log(process.env.BACKEND_URL);
 
@@ -26,7 +27,6 @@ export default defineNuxtConfig({
   // watcher: "parcel",
   //},
   modules: [
-    // "@nuxtjs/i18n",
     "@vite-pwa/nuxt",
     //"@nuxtjs/pwa",
     "@pinia/nuxt",
@@ -35,7 +35,32 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/image",
     "@averjs/nuxt-compression",
+    "@sidebase/nuxt-auth",
   ],
+  auth: {
+    provider: {
+      type: "local",
+      endpoints: {
+        signIn: { path: "/login", method: "post" },
+        signOut: { path: "/logout", method: "post" },
+        signUp: { path: "/register", method: "post" },
+        getSession: { path: "/user", method: "get" },
+      },
+      pages: {
+        login: "/auth/sign-in",
+      },
+      token: {
+        maxAgeInSeconds: 2592000, //30 days
+        sameSiteAttribute: "strict", //boolean | 'lax' | 'strict' | 'none' | undefined,
+      },
+      sessionDataType: {
+        public_id: "string",
+        name: "string",
+        email: "string",
+        username: "string",
+      },
+    },
+  },
   image: {
     format: ["webp"],
     quality: 85,
