@@ -9,10 +9,12 @@ export default defineEventHandler(async (event) => {
   return laravel.post(event, "/api/auth/logout")
     .then((data) => {
       deleteCookie(event, "auth")
+      deleteCookie(event, "user")
     })
     .catch((e) => {
-      throw e
-      //deleteCookie(event, "auth")
+      deleteCookie(event, "auth")
+      deleteCookie(event, "user")
+      //throw e
     })
 
   // return $fetch(process.env.BACKEND_URL + "/api/internal/login", {
