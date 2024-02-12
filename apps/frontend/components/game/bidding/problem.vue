@@ -40,11 +40,8 @@ const biddingBox =
 </script>
 <template>
   <!-- <div class="w-[90%] h-[80px] border mb-[20px]"></div> -->
-  <div class="mobileSize desktopSize">
-    <game-bidding-container
-      :showImage="true"
-      class="xs:w-[100%] sm:w-[80%] h-[10%] min-h-[70px] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
-    >
+  <div class="flex flex-row space-x-1 justify-center w-[1100px] h-[450px]">
+    <game-bidding-container :showImage="true" class="container">
       <div class="w-full h-full flex flex-row justify-start">
         <span class="text3 text-dark dark:text-white sm:text-[20px] ml-[12px]">
           {{ presentationText }}</span
@@ -52,10 +49,7 @@ const biddingBox =
       </div>
     </game-bidding-container>
 
-    <game-bidding-container
-      class="xs:w-[100%] sm:w-[80%] h-[40%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
-      header="BUDGIVNING"
-    >
+    <game-bidding-container class="container" header="BUDGIVNING">
       <game-bidding-history
         :history="history"
         class="w-full h-full lg:w-full lg:h-[70%]"
@@ -63,10 +57,7 @@ const biddingBox =
       ></game-bidding-history>
     </game-bidding-container>
 
-    <game-bidding-container
-      class="min-h-[150px] xs:w-[100%] sm:w-[80%] h-[30%] mt-[8px] rounded-xl lg:h-full lg:w-[24%]"
-      header="BUDLÅDA"
-    >
+    <game-bidding-container class="container" header="BUDLÅDA">
       <game-bidding-box
         v-model:bid="bid"
         class="w-full lg:w-full lg:h-[70%]"
@@ -75,16 +66,9 @@ const biddingBox =
       />
     </game-bidding-container>
 
-    <!-- temporarily disabled for testing -->
-    <game-bidding-container
-      class="xs:w-[100%] sm:w-[80%] h-[12%] rounded-xl mt-[8px] lg:h-full lg:w-[24%]"
-      header="DIN HAND"
-    >
-      <game-bidding-hand
-        class="bg-white dark:bg-dark-100 w-full mx-auto lg:w-full lg:h-[70%]"
-        :showDeal="false"
-        :hand="hands[0]"
-      ></game-bidding-hand>
+    <game-bidding-container class="container" header="DIN HAND">
+      <game-bidding-showHands class="w-full" :nbrOfHands="2" :hands="hands">
+      </game-bidding-showHands>
     </game-bidding-container>
   </div>
 </template>
@@ -100,16 +84,8 @@ const biddingBox =
 /*   @apply w-full lg:w-full lg:h-[70%]; */
 /* } */
 
-.mobileSize {
-  @apply flex flex-col h-[100%] w-[100%] items-center;
-}
-
-.desktopSize {
-  @apply lg:flex-row lg:space-x-1 lg:justify-center
-  lg:w-[100%]  lg:max-w-[1000px] 
-  lg:h-[450px] lg:max-h-[500px];
-
-  /* @apply sm:h-[100%] sm:w-[100%] lg:h-[400px] lg:w-[1000px] lg:flex-row lg:space-x-1 lg:justify-center  xl:w-[1200px] xl:h-[450px] 2xl:w-[1400px] 2xl:h-[500px]; */
+.container {
+  @apply h-full w-[33%];
 }
 </style>
 
