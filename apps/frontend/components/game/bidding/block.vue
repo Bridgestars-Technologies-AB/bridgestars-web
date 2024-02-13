@@ -22,7 +22,7 @@ const p = defineProps({
 const emit = defineEmits(["click", "bid"]);
 
 //used to make the block green if the card is {suit:0, rank:0}
-const bg = computed(() => (p.bid.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar inte varför den behöver "!"
+const isPass = computed(() => (p.bid.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar inte varför den behöver "!"
 
 const pointer = computed(
   () =>
@@ -34,20 +34,33 @@ const opacity = computed(
   () => (p.bid.isValid(p.latestBid) ? "" : "opacity-50 cursor-not-allowed"),
   //"",
 );
+
+const bg = computed(() =>
+  !p.clickable && p.bid.explanation !== "" ? "bg-[#DAA520]" : "bg-dark-200",
+);
+
+const hover = ref(false);
 </script>
 
 <template>
   <div
     :class="`${$attrs.class} ${
       bid.isVisible ? '' : 'invisible'
-    } flex flex-row justify-center items-center my-[2px] hover:bg-transparent ${opacity}`"
+    } flex flex-row justify-center items-center my-[2px] relative ${opacity}`"
+    @mouseover="hover = true"
+    @mouseleave="hover = false"
   >
     <div
-      :class="`${size} rounded-lg ${pointer} ${bg}`"
+      :class="`${size} rounded-lg ${pointer} ${bg} ${isPass}`"
       @click="emit('click', bid)"
     >
       <!-- <span class="text1 text-white">{{ brick(card.suit, card.rank) }}</span> -->
       <game-bidding-rank-suite :bid="bid"></game-bidding-rank-suite>
     </div>
+    <span
+      v-if="!p.clickable && p.bid.explanation !== '' && hover"
+      class="z-10 dark:text-white bg-black absolute text-[10px] top-[-30px] w-[200px] text-center p-1 rounded-lg opacity-80"
+      >{{ bid.explanation }}</span
+    >
   </div>
 </template>

@@ -43,8 +43,7 @@ function makeBid(bid: Bid) {
   //historyRef.value.push({ suit: s, rank: r });
 }
 
-const biddingBox =
-  "xs:w-[50px] xs:h-[28px] bg-color-dark dark:bg-dark-200 hover:bg-transparent lg:w-[43px] lg:h-[30px]";
+const biddingBox = "w-[43px] h-[30px]";
 </script>
 <template>
   <!-- <div class="w-[90%] h-[80px] border mb-[20px]"></div> -->
