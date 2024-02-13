@@ -4,4 +4,4 @@ node_modules/
 .idea/
 nuxt/
 apps/backend-old/build/
-packages/
+packages

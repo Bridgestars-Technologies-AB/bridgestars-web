@@ -29,9 +29,6 @@ async function signOut() {
       if (props.customSignOutAction) props.customSignOutAction();
       else navigateTo("/auth/sign-in"); // go to home or sign-in on signout?? not sure what is best
     })
-    .catch((e) => {
-      toast.error(e.value?.data.message);
-    });
 }
 </script>
 
