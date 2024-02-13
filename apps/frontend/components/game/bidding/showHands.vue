@@ -6,7 +6,7 @@ const p = defineProps({
     type: Array<Hand>,
     required: true,
   },
-  handsVisible: {
+  handsVisable: {
     type: Number,
     default: 2,
   },
@@ -51,9 +51,9 @@ function showHand(player: string): boolean {
 
 // function returning which players hands are visible
 function visiblePlayers(): string[] {
-  if (p.handsVisible === 1) {
+  if (p.handsVisable === 1) {
     return [p.player];
-  } else if (p.handsVisible === 2) {
+  } else if (p.handsVisable === 2) {
     return [p.player, getPartner(p.player)];
   } else {
     return ["N", "E", "S", "W"];
@@ -65,7 +65,7 @@ const nbr = ref(1);
 </script>
 
 <template>
-  <div v-if="handsVisible > 1" :class="`space-y-3`">
+  <div v-if="handsVisable > 1" :class="`space-y-3`">
     <div class="flex w-full justify-center items-center">
       <game-bidding-hand
         :class="`${showHand('N') ? '' : 'invisible'}`"
@@ -89,8 +89,8 @@ const nbr = ref(1);
             <span class="text-white font-bold">N</span>
           </div>
           <div class="flex flex-row w-full h-1/3 justify-between items-center">
-            <span class="text-white font-bold">W</span>
-            <span class="text-white font-bold">E</span>
+            <span class="text-white font-bold">V</span>
+            <span class="text-white font-bold">Ö</span>
           </div>
           <div class="w-full h-1/3 flex justify-center items-end">
             <span class="text-white font-bold">S</span>
@@ -117,7 +117,7 @@ const nbr = ref(1);
     <div :class="`flex flex-col items-start`">
       <div v-for="index in 4" :key="index" class="flex flex-row items-center">
         <span
-          :class="`mr-[3px] text-[35px] ${Card.toTailwindIcon.get(index - 1)}`"
+          :class="`mr-[3px] text-[35px] ${Card.suitsToTailwind.get(index - 1)}`"
         >
         </span>
         <span

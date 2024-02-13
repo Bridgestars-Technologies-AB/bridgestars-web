@@ -16,13 +16,13 @@ const { bid, player, size } = defineProps({
 function getPlayerName(): String {
   switch (player) {
     case "W":
-      return "West";
+      return "Väst";
     case "N":
-      return "North";
+      return "Nord";
     case "E":
-      return "East";
+      return "Öst";
     case "S":
-      return "South";
+      return "Syd";
     default:
       return "";
   }
