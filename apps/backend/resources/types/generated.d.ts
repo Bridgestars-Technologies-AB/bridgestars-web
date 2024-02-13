@@ -90,3 +90,9 @@ export type ListCoursesData = {
     color: string;
     chapters: Array<ListCoursesChapterData>;
 };
+export type UserData = {
+    public_id: string;
+    name: string;
+    email: string;
+    username: string;
+};

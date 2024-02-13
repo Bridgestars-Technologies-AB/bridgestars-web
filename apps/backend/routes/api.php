@@ -1,7 +1,13 @@
 <?php
 
+use App\Data\UserData;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\BiddingProblemController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +22,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::prefix('auth')->group(function () {
+
+    Route::middleware('guest')->group(function (){
+        Route::post('/forgot-password', PasswordResetLinkController::class);
+        Route::post('/reset-password', NewPasswordController::class);
+        Route::post('register', RegisterController::class);
+        Route::post('login', LoginController::class);
+    });
+
+    Route::post('logout', LogoutController::class)
+        ->middleware('auth:sanctum');
+});
+
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', function (Request $request) {
-        return $request->user();
+        return UserData::from($request->user());
     });
     Route::get('/courses', [CourseController::class, 'index']);
     Route::get('/courses/{course}', [CourseController::class, 'show']);

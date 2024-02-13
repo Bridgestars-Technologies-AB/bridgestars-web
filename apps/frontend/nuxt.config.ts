@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 import { periodicSyncForUpdates } from "virtual:nuxt-pwa-configuration";
+import type { UserData } from "~/types/generated";
 
 console.log(process.env.BACKEND_URL);
 
@@ -26,8 +27,8 @@ export default defineNuxtConfig({
   // watcher: "parcel",
   //},
   modules: [
-    // "@nuxtjs/i18n",
     "@vite-pwa/nuxt",
+    "nuxt-security",
     //"@nuxtjs/pwa",
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
@@ -36,6 +37,9 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@averjs/nuxt-compression",
   ],
+  security:{
+
+  },
   image: {
     format: ["webp"],
     quality: 85,
@@ -149,7 +153,7 @@ export default defineNuxtConfig({
     plugins: [],
   },
   build: {
-    transpile: ["vue-toastification", "bridgestars-db-client", "parse-sdk-ts"],
+    transpile: ["vue-toastification", "jsonwebtoken"],
     postcss: {
       plugins: {
         tailwindcss: {},

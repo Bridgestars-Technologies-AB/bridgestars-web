@@ -20,6 +20,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Key
+    |--------------------------------------------------------------------------
+    |
+    | This key is used by the nuxt server to gain access to laravel api
+    |
+    */
+    'api_key' => env('API_KEY'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |
@@ -30,6 +40,8 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +68,6 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
-
-    'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000'),
 
     'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000'),
 
