@@ -6,6 +6,7 @@ const route = useRoute();
 
 const { data } = await api.get(`bidding-problems/${route.params.id}`);
 const biddingProblem = data as BiddingProblemData;
+console.log(biddingProblem.dealer);
 
 //axios.get(`/prefix/bidding-problem/${id}`) -> response.data
 // Mock up response data:
@@ -104,12 +105,24 @@ const biddingHistory = ref();
 
 // this function will create the correct history depending on who the dealer is
 // inserting as many "invisible" blocks as needed
-// function createHistory (history: Array<Bid>) {
-//   const dealer = biddingProblem.dealer;
-//   if(dealer === "N") {
-//     Array.([new Bid(10, 10), new Bid(10,10)],history );
-//   }
-// }
+function createHistory(history: Array<Bid>): Array<Bid> {
+  const dealer = biddingProblem.dealer;
+  if (dealer === "W") {
+    return [new Bid(0, 0, "", false), history].flat();
+  }
+  if (dealer === "N") {
+    return [new Bid(0, 0, "", false), new Bid(0, 0, "", false), history].flat();
+  }
+  if (dealer === "E") {
+    return [
+      new Bid(0, 0, "", false),
+      new Bid(0, 0, "", false),
+      new Bid(0, 0, "", false),
+      history,
+    ].flat();
+  }
+  return history;
+}
 
 //bidding information, can only be shown after a bid is made
 const isBidMade = ref(false);
@@ -141,7 +154,7 @@ function check() {
     pass.value = true;
     solution.value = response.solution;
     nextProblemId.value = response.next_problem_id;
-    biddingHistory.value = Bid.fromJson(response.bidding);
+    biddingHistory.value = createHistory(Bid.fromJson(response.bidding));
   }
 }
 </script>
@@ -162,7 +175,7 @@ function check() {
       <game-bidding-problem
         v-model:bid="bid"
         :presentationText="biddingProblem.presentation"
-        :history="Bid.fromJson(biddingProblem.bidding)"
+        :history="createHistory(Bid.fromJson(biddingProblem.bidding))"
         :hands="hands"
         :handsVisable="biddingProblem.hands_visible"
         :player="biddingProblem.player"

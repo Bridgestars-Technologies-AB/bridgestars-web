@@ -68,7 +68,11 @@ function getJustify(e: Number) {
     <!-- Here comes div for all boxes -->
     <div class="flex flex-col h-[90%] lg-flex lg:flex-row lg:w-full">
       <!-- First container -->
-      <div class="bg-dark-100 w-1/3 h-full flex justify-center items-center">
+      <div class="bg-dark-100 w-1/3 h-full flex flex-col justify-center">
+        <div class="w-full flex justify-center items-center">
+          <span v-if="handsVisable === 1" class="header">Din hand</span>
+        </div>
+
         <game-bidding-showHands
           :handsVisable="handsVisable"
           :hands="hands"
@@ -164,6 +168,6 @@ function getJustify(e: Number) {
 
 <style scoped>
 .header {
-  @apply text-white text-[20px] items-center font-semibold h-auto;
+  @apply text-white text-[24px] items-center font-semibold h-auto;
 }
 </style>

@@ -9,12 +9,19 @@ export class Bid {
   public rank: number;
   public shortName: string;
   public explanation: string;
+  public isVisible: boolean;
 
-  public constructor(suit: number, rank: number, explanation = "") {
+  public constructor(
+    suit: number,
+    rank: number,
+    explanation = "",
+    isVisible = true,
+  ) {
     this.suit = suit;
     this.rank = rank;
     this.shortName = this.getShortName();
     this.explanation = explanation;
+    this.isVisible = isVisible;
   }
 
   public is(str: string): boolean {

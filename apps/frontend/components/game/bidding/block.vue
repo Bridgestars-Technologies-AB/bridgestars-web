@@ -23,32 +23,27 @@ const p = defineProps({
 // }>();
 const emit = defineEmits(["click", "bid"]);
 
-//used to make the block invisible if the card is {suit:10, rank:10}
-const invisible = computed(() =>
-  p.bid.suit === 10 && p.bid.rank === 10 ? "invisible" : "",
-);
-
 //used to make the block green if the card is {suit:0, rank:0}
 const bg = computed(() => (p.bid.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar inte varför den behöver "!"
 
 // uncomment for feedback on disabled blocks
 const pointer = computed(
-  () =>
-    p.clickable && !p.disabled ? "" : "pointer-events-none",
-    //"",
+  () => (p.clickable && !p.disabled ? "" : "pointer-events-none"),
+  //"",
 );
 
 // uncomment for feedback on disabled blocks
 const opacity = computed(
-  () =>
-       p.disabled ? "opacity-50 cursor-not-allowed" : "",
-    //"",
+  () => (p.disabled ? "opacity-50 cursor-not-allowed" : ""),
+  //"",
 );
 </script>
 
 <template>
   <div
-    :class="`${$attrs.class} ${invisible} flex flex-row justify-center items-center my-[2px] hover:bg-transparent ${opacity}`"
+    :class="`${$attrs.class} ${
+      bid.isVisible ? '' : 'invisible'
+    } flex flex-row justify-center items-center my-[2px] hover:bg-transparent ${opacity}`"
   >
     <div
       :class="`${size} rounded-lg ${pointer} ${bg}`"

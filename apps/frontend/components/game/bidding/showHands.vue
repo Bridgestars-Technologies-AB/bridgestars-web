@@ -6,7 +6,10 @@ const p = defineProps({
     type: Array<Hand>,
     required: true,
   },
-  handsVisable: Number,
+  handsVisable: {
+    type: Number,
+    default: 2,
+  },
   player: {
     type: String,
     required: true,
@@ -43,7 +46,6 @@ function getPartner(player: string): string {
 
 //function returning if a certain players hand is visible
 function showHand(player: string): boolean {
-  console.log(player, visiblePlayers());
   return visiblePlayers().includes(player);
 }
 
@@ -63,7 +65,7 @@ const nbr = ref(1);
 </script>
 
 <template>
-  <div v-if="nbr > 1" :class="`space-y-3`">
+  <div v-if="handsVisable > 1" :class="`space-y-3`">
     <div class="flex w-full justify-center items-center">
       <game-bidding-hand
         :class="`${showHand('N') ? '' : 'invisible'}`"
@@ -72,7 +74,7 @@ const nbr = ref(1);
       ></game-bidding-hand>
     </div>
 
-    <div class="flex flex-row space-x-3 items-center justify-center">
+    <div class="flex flex-row space-x-5 items-center justify-center">
       <game-bidding-hand
         :class="`${showHand('W') ? '' : 'invisible'}`"
         :showDeal="false"
@@ -115,11 +117,11 @@ const nbr = ref(1);
     <div :class="`flex flex-col items-start`">
       <div v-for="index in 4" :key="index" class="flex flex-row items-center">
         <span
-          :class="`mr-[3px] text-[30px] ${Card.suitsToTailwind.get(index - 1)}`"
+          :class="`mr-[3px] text-[35px] ${Card.suitsToTailwind.get(index - 1)}`"
         >
         </span>
         <span
-          class="text-[28px] font-semibold text-dark dark:text-white tracking-[1px]"
+          class="text-[32px] font-semibold text-dark dark:text-white tracking-[1px]"
           >{{ getHand().toString(suitNames[index - 1]) }}
         </span>
       </div>
