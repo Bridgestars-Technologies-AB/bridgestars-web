@@ -153,6 +153,7 @@ function check() {
     // What happens if correct bid was made, but not finished
     presentationText.value = response.explanation;
     biddingHistory.value = createHistory(Bid.fromJson(response.bidding));
+    isBidMade.value = false;
   }
   if (response.finished) {
     // What happens if correct bid was made and finished
