@@ -68,6 +68,7 @@ const biddingBox =
     <game-bidding-container class="container" header="BUDLÅDA">
       <game-bidding-box
         v-model:bid="bid"
+        :history="history"
         class="w-full lg:w-full lg:h-[70%]"
         :biddingBox="biddingBox"
         @bid="makeBid"

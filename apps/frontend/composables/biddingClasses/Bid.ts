@@ -24,6 +24,20 @@ export class Bid {
     this.isVisible = isVisible;
   }
 
+  // This function checks if a bid is valid based on latest bid
+  public isValid(bid: Bid): boolean {
+    if (this.is("PASS")) {
+      return true;
+    }
+    if (this.rank > 7) {
+      return false;
+    }
+
+    return (
+      this.rank > bid.rank || (this.suit > bid.suit && this.rank === bid.rank)
+    );
+  }
+
   public is(str: string): boolean {
     switch (str) {
       case "PASS":

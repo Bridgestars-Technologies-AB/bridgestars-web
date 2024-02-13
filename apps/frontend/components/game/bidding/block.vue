@@ -6,13 +6,11 @@ const p = defineProps({
     type: Bid,
     default: new Bid(0, 0),
   },
-  size: String,
-  // bg: String,
-  // invisible: Boolean,
-  disabled: {
-    type: Boolean,
-    default: false,
+  latestBid: {
+    type: Bid,
+    default: new Bid(0, 0),
   },
+  size: String,
   clickable: {
     type: Boolean,
     default: true,
@@ -26,15 +24,14 @@ const emit = defineEmits(["click", "bid"]);
 //used to make the block green if the card is {suit:0, rank:0}
 const bg = computed(() => (p.bid.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar inte varför den behöver "!"
 
-// uncomment for feedback on disabled blocks
 const pointer = computed(
-  () => (p.clickable && !p.disabled ? "" : "pointer-events-none"),
+  () =>
+    p.clickable && p.bid.isValid(p.latestBid) ? "" : "pointer-events-none",
   //"",
 );
 
-// uncomment for feedback on disabled blocks
 const opacity = computed(
-  () => (p.disabled ? "opacity-50 cursor-not-allowed" : ""),
+  () => (p.bid.isValid(p.latestBid) ? "" : "opacity-50 cursor-not-allowed"),
   //"",
 );
 </script>
