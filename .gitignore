@@ -1,7 +1,5 @@
 .DS_Store
 .idea/
 node_modules/
-.idea/
 nuxt/
 apps/backend-old/build/
-packages
