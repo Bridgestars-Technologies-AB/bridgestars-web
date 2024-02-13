@@ -1,12 +1,12 @@
 <!-- Component for displaying different bidding practices displayed on my-courses/bridgeA... -->
 
 <script setup>
-defineProps({ header: String, problemId: String|null });
+defineProps({ header: String, problemId: String | null });
 </script>
 
 <template>
   <div
-    class="flex flex-col justify-between w-[160px] h-[200px] bg-white dark:bg-dark-100 rounded-xl"
+    class="flex flex-col justify-between w-[180px] h-[220px] bg-white dark:bg-dark-100 rounded-xl"
   >
     <div class="flex flex-col space-y-2">
       <div class="w-full flex flex-row justify-center mt-2">

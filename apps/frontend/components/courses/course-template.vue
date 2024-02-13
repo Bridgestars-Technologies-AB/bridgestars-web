@@ -7,7 +7,7 @@ import { CourseUtil } from "/composables/useCourseUtil.ts";
 
 <template>
   <div
-    class="flex flex-col bg-white dark:bg-dark-100 rounded-xl w-[200px] h-[240px] justify-between"
+    class="flex flex-col bg-white dark:bg-dark-100 rounded-xl w-[200px] h-[250px] justify-between"
   >
     <div class="flex flex-col">
       <div class="w-full flex flex-row justify-center">
@@ -26,7 +26,7 @@ import { CourseUtil } from "/composables/useCourseUtil.ts";
         :text="item.header"
       ></courses-completion-bar>
     </div>
-    <div class="flex flex-row justify-end">
+    <div class="flex flex-row justify-end p-1">
       <courses-button
         text="Fortsätt"
         dashPage="courses"

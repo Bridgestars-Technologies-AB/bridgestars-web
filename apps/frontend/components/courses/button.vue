@@ -5,7 +5,7 @@ defineProps({ text: String, dashPage: String, params: Number });
 
 <template>
   <button
-    class="w-[80px] h-[20px] rounded-2xl m-1 text-[12px] bg-[#168f7c] text-white font-semibold"
+    class="w-[90px] h-[25px] rounded-2xl m-1 text-[14px] bg-[#168f7c] text-white font-semibold"
     @click="
       () => navigateTo({ name: `dash-${dashPage}-id`, params: { id: params } })
     "
