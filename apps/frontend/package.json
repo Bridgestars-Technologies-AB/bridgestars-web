@@ -54,6 +54,7 @@
     "i18next-vue": "2.2.1",
     "javascript-time-ago": "2.5.9",
     "nuxt": "3.10.1",
+    "nuxt-security": "1.1.1",
     "pinia": "2.1.7",
     "pinia-plugin-persistedstate": "3.2.1",
     "socket.io-client": "4.7.4",
