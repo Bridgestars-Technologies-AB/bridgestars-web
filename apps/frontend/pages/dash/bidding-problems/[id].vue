@@ -42,18 +42,17 @@ const bidResponseList = [
     bid: "2NT",
     explanation: "Det var inte riktigt rätt",
   },
-  // {
-  //   // vänta med denna, mer komplexitet
-  //   correct: true,
-  //   finished: false,
-  //   bid: "2NT",
-  //   explanation: "Du spelade 2NT, det visar hmm hmm hmm",
-  //   bidding: [
-  //     { bid: "3NT", explanation: " 0 - 8 hp, nord visar styrka" },
-  //     { bid: "PASS" },
-  //     { bid: "PASS" },
-  //   ],
-  // },
+  {
+    correct: true,
+    finished: false,
+    bid: "2NT",
+    explanation: "Du spelade 2NT, det visar hmm hmm hmm",
+    bidding: [
+      { bid: "3NT", explanation: " 0 - 8 hp, nord visar styrka" },
+      { bid: "pass" },
+      { bid: "5H" },
+    ],
+  },
   {
     correct: true,
     finished: true,
@@ -98,11 +97,6 @@ const bidResponseList = [
   },
 ];
 
-// used as v-model to be able to see the latest bid made
-const bid = ref(new Bid(0, 0));
-
-const biddingHistory = ref();
-
 // this function will create the correct history depending on who the dealer is
 // inserting as many "invisible" blocks as needed
 function createHistory(history: Array<Bid>): Array<Bid> {
@@ -124,9 +118,18 @@ function createHistory(history: Array<Bid>): Array<Bid> {
   return history;
 }
 
-//bidding information, can only be shown after a bid is made
+// used as v-model to be able to see the latest bid made
+const bid = ref(new Bid(0, 0));
+
+// refs to keep track of the state of the problem
 const isBidMade = ref(false);
 const pass = ref(false);
+
+//bidding information that will be showed during the bidding-problem
+const presentationText = ref(biddingProblem.presentation);
+const biddingHistory = ref(createHistory(Bid.fromJson(biddingProblem.bidding)));
+
+//bidding information that will be showed when problem is finished
 const biddingExplanation = ref("");
 const solution = ref("");
 const nextProblemId = ref("");
@@ -146,8 +149,10 @@ function check() {
     biddingExplanation.value = response.explanation;
     isBidMade.value = true;
   }
-  if (response.correct) {
+  if (response.correct && !response.finished) {
     // What happens if correct bid was made, but not finished
+    presentationText.value = response.explanation;
+    biddingHistory.value = createHistory(Bid.fromJson(response.bidding));
   }
   if (response.finished) {
     // What happens if correct bid was made and finished
@@ -174,8 +179,8 @@ function check() {
       </div>
       <game-bidding-problem
         v-model:bid="bid"
-        :presentationText="biddingProblem.presentation"
-        :history="createHistory(Bid.fromJson(biddingProblem.bidding))"
+        :presentationText="presentationText"
+        :history="biddingHistory"
         :hands="hands"
         :handsVisable="biddingProblem.hands_visible"
         :player="biddingProblem.player"
