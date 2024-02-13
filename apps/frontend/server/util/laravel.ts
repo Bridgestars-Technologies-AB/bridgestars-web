@@ -6,7 +6,7 @@ export async function post(event, path){
       "Content-Type": "application/json",
       "accept": "application/json",
       "Authorization": "Bearer " + parseCookies(event)["auth"],
-      "X-App-Key": process.env.APP_KEY,
+      "X-Api-Key": process.env.API_KEY,
     },
   });
 }
@@ -19,7 +19,7 @@ export function get(event, path){
       "Content-Type": "application/json",
       "accept": "application/json",
       "Authorization": "Bearer " + parseCookies(event)["auth"],
-      "X-App-Key": process.env.APP_KEY,
+      "X-Api-Key": process.env.API_KEY,
     },
   });
 }

@@ -26,7 +26,7 @@ return [
     | This key is used by the nuxt server to gain access to laravel api
     |
     */
-    'app_key' => env('APP_KEY'),
+    'api_key' => env('API_KEY'),
 
     /*
     |--------------------------------------------------------------------------

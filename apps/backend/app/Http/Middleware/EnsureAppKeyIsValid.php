@@ -16,8 +16,8 @@ class EnsureAppKeyIsValid
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $app_key = $request->header('X-App-Key');
-        if(!$app_key || $app_key !== config('app.app_key')){
+        $app_key = $request->header('X-Api-Key');
+        if(!$app_key || $app_key !== config('app.api_key')){
             throw new UnauthorizedException('Invalid app key.');
         }
         return $next($request);
