@@ -1,6 +1,6 @@
 import { t } from "i18next";
 
-import type {BidData} from "~/types/generated";
+import type { BidData } from "~/types/generated";
 
 // This interface is used to represent a bid sent from the server
 
@@ -9,12 +9,33 @@ export class Bid {
   public rank: number;
   public shortName: string;
   public explanation: string;
+  public isVisible: boolean;
 
-  public constructor(suit: number, rank: number, explanation = "") {
+  public constructor(
+    suit: number,
+    rank: number,
+    explanation = "",
+    isVisible = true,
+  ) {
     this.suit = suit;
     this.rank = rank;
     this.shortName = this.getShortName();
     this.explanation = explanation;
+    this.isVisible = isVisible;
+  }
+
+  // This function checks if a bid is valid based on latest bid
+  public isValid(bid: Bid): boolean {
+    if (this.is("PASS")) {
+      return true;
+    }
+    if (this.rank > 7) {
+      return false;
+    }
+
+    return (
+      this.rank > bid.rank || (this.suit > bid.suit && this.rank === bid.rank)
+    );
   }
 
   public is(str: string): boolean {
@@ -74,23 +95,20 @@ export class Bid {
     if (bid === "pass") {
       suit = 0;
       rank = 0;
-    }
-    else if (bid === "double") {
+    } else if (bid === "double") {
       suit = 0;
       rank = 0;
-    }
-    else if (bid === "redouble") {
+    } else if (bid === "redouble") {
       suit = 0;
       rank = 0;
-    }
-    else if (bid.includes("NT")) {
+    } else if (bid.includes("NT")) {
       const temp = bid.split("NT");
       suit = 4;
       rank = parseInt(temp[0]);
     }
     // not decided yet how to represent suit, so this is a placeholder
     else {
-      rank = parseInt(bid[0])
+      rank = parseInt(bid[0]);
       suit = bid[1] === "C" ? 0 : bid[1] === "D" ? 1 : bid[1] === "H" ? 2 : 3;
     }
     return new Bid(suit, rank, explanation);

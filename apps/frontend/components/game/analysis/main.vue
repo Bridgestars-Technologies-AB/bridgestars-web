@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Bid } from "~/composables/biddingClasses/Bid";
+import { Hand } from "~/composables/biddingClasses/Hand";
 
 /*
 This component displays the analysis from bidding-problems.
@@ -12,10 +13,12 @@ Props:
 
 interface Props {
   biddingResult: Array<Bid>;
+  hands: Array<Hand>;
   solution: Bid;
   biddingAnswer: string;
   player: string;
   nextProblemId: string;
+  handsVisable: number;
 }
 
 defineProps<Props>();
@@ -65,43 +68,17 @@ function getJustify(e: Number) {
     <!-- Here comes div for all boxes -->
     <div class="flex flex-col h-[90%] lg-flex lg:flex-row lg:w-full">
       <!-- First container -->
-      <div
-        class="w-full h-[30%] bg-dark-100 flex flex-col space-y-2 items-center justify-center lg:justify-around lg:w-1/3 lg:h-full"
-      >
-        <div class="flex justify-center items-center w-full lg:h-[30%]">
-          <game-bidding-hand
-            :showDeal="false"
-            class="w-full lg:h-full lg:w-[70%]"
-          ></game-bidding-hand>
+      <div class="bg-dark-100 w-1/3 h-full flex flex-col justify-center">
+        <div class="w-full flex justify-center items-center">
+          <span v-if="handsVisable === 1" class="header">Din hand</span>
         </div>
 
-        <div class="flex flex-row justify-center items-center">
-          <div
-            class="flex items-center justify-center bg-[#075B0E] w-[100px] h-[100px] rounded-xl"
-          >
-            <div class="flex flex-col w-[90%] h-[90%]">
-              <div class="w-full h-1/3 flex justify-center items-start">
-                <span class="text1 !text-white">N</span>
-              </div>
-              <div
-                class="flex flex-row w-full h-1/3 justify-between items-center"
-              >
-                <span class="text1 !text-white">W</span>
-                <span class="text1 !text-white">E</span>
-              </div>
-              <div class="w-full h-1/3 flex justify-center items-end">
-                <span class="text1 !text-white">S</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex justify-center items-center w-full lg:h-[30%]">
-          <game-bidding-hand
-            :showDeal="false"
-            class="w-full lg:h-full lg:w-[70%]"
-          ></game-bidding-hand>
-        </div>
+        <game-bidding-showHands
+          :handsVisable="handsVisable"
+          :hands="hands"
+          :player="player"
+        >
+        </game-bidding-showHands>
       </div>
 
       <!-- Line -->
@@ -191,6 +168,6 @@ function getJustify(e: Number) {
 
 <style scoped>
 .header {
-  @apply text-white text-[20px] items-center font-semibold h-auto;
+  @apply text-white text-[24px] items-center font-semibold h-auto;
 }
 </style>

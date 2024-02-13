@@ -21,35 +21,22 @@ const p = defineProps({
   },
 });
 
-console.log(p.hand.spades);
-
 //only used for displaying
 const suitNames = ["spades", "hearts", "diamonds", "clubs"];
 </script>
 
 <template>
-  <div
-    :class="`rounded-xl flex flex-row justify-center space-x-[10px] lg:flex-col lg:items-start ${$attrs.class}`"
-  >
-    <div
-      v-for="index in 4"
-      :key="index"
-      class="h-1/4 flex flex-row items-center lg:ml-[10px]"
-    >
+  <div :class="`rounded-xl flex flex-col items-start`">
+    <div v-for="index in 4" :key="index" class="flex flex-row items-center">
       <span
-        :class="`text-[25px] sm:text-[25px] lg:ml-[10px] lg:text-[30px] ${Card.suitsToTailwind.get(
-          index - 1,
-        )}`"
+        :class="`mr-[3px] text-[19px] ${Card.suitsToTailwind.get(index - 1)}`"
       >
       </span>
-      <span class="rank">{{ hand.toString(suitNames[index - 1]) }} </span>
+      <span
+        class="text-[17px] font-semibold text-dark dark:text-white tracking-[1px]"
+        >{{ hand.toString(suitNames[index - 1]) }}
+      </span>
     </div>
   </div>
   <!-- text-[${suitColors[index]}] -->
 </template>
-
-<style scoped>
-.rank {
-  @apply ml-[10px] text-[20px] sm:text-[20px] lg:text-[25px] font-semibold text-dark dark:text-white tracking-[1px];
-}
-</style>

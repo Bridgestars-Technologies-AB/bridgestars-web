@@ -14,19 +14,18 @@ Emits:
 <script setup lang="ts">
 import { Bid } from "~/composables/biddingClasses/Bid";
 
-const {bid} = defineProps({
+const { bid } = defineProps({
   bid: {
     type: Bid,
-    required: true
+    required: true,
   },
   biddingBox: String,
+  history: {
+    type: Array<Bid>,
+    default: () => [new Bid(0, 0)],
+  },
 });
 const emit = defineEmits(["bid", "update:bid"]);
-
-function isValid(suit:number, rank:number) {
-  if (rank > 7) return false;
-  return rank > bid.rank || (suit > bid.suit && rank === bid.rank);
-}
 
 function makeBid(bid: Bid) {
   emit("update:bid", bid);
@@ -51,7 +50,7 @@ function makeBid(bid: Bid) {
           <game-bidding-block
             :bid="new Bid(s - 1, r)"
             :size="biddingBox"
-            :disabled="!isValid(s - 1, r)"
+            :latestBid="history[history.length - 1]"
             @click="makeBid"
           ></game-bidding-block>
         </div>
