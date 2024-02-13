@@ -3,3 +3,4 @@
 node_modules/
 nuxt/
 apps/backend-old/build/
+packages
