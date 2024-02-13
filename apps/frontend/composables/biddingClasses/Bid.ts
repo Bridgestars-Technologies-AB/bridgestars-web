@@ -113,4 +113,8 @@ export class Bid {
     }
     return new Bid(suit, rank, explanation);
   }
+
+  public static placeholder(): Bid {
+    return new Bid(0, 0, "", false);
+  }
 }

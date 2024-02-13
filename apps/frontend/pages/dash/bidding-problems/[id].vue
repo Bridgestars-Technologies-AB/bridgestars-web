@@ -102,16 +102,16 @@ const bidResponseList = [
 function createHistory(history: Array<Bid>): Array<Bid> {
   const dealer = biddingProblem.dealer;
   if (dealer === "W") {
-    return [new Bid(0, 0, "", false), history].flat();
+    return [Bid.placeholder(), history].flat();
   }
   if (dealer === "N") {
-    return [new Bid(0, 0, "", false), new Bid(0, 0, "", false), history].flat();
+    return [Bid.placeholder(), Bid.placeholder(), history].flat();
   }
   if (dealer === "E") {
     return [
-      new Bid(0, 0, "", false),
-      new Bid(0, 0, "", false),
-      new Bid(0, 0, "", false),
+      Bid.placeholder(),
+      Bid.placeholder(),
+      Bid.placeholder(),
       history,
     ].flat();
   }
@@ -183,7 +183,7 @@ function check() {
         :presentationText="presentationText"
         :history="biddingHistory"
         :hands="hands"
-        :handsVisable="biddingProblem.hands_visible"
+        :handsVisible="biddingProblem.hands_visible"
         :player="biddingProblem.player"
         @check="check"
       ></game-bidding-problem>
@@ -229,7 +229,7 @@ function check() {
         :hands="hands"
         :solution="bid"
         :player="biddingProblem.player"
-        :handsVisable="biddingProblem.hands_visible"
+        :handsVisible="biddingProblem.hands_visible"
         :biddingAnswer="solution"
         :nextProblemId="nextProblemId"
       ></game-analysis-main>

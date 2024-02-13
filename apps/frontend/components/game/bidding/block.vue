@@ -1,7 +1,7 @@
 <!-- Currently, const pointer and const opacity has commented code which stops block from being disabled -->
 
 <script setup lang="ts">
-const p = defineProps({
+const { bid, latestBid, size, clickable } = defineProps({
   bid: {
     type: Bid,
     default: new Bid(0, 0),
@@ -22,21 +22,20 @@ const p = defineProps({
 const emit = defineEmits(["click", "bid"]);
 
 //used to make the block green if the card is {suit:0, rank:0}
-const isPass = computed(() => (p.bid.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar inte varför den behöver "!"
+const isPass = computed(() => (bid.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar inte varför den behöver "!"
 
 const pointer = computed(
-  () =>
-    p.clickable && p.bid.isValid(p.latestBid) ? "" : "pointer-events-none",
+  () => (clickable && bid.isValid(latestBid) ? "" : "pointer-events-none"),
   //"",
 );
 
 const opacity = computed(
-  () => (p.bid.isValid(p.latestBid) ? "" : "opacity-50 cursor-not-allowed"),
+  () => (bid.isValid(latestBid) ? "" : "opacity-50 cursor-not-allowed"),
   //"",
 );
 
 const bg = computed(() =>
-  !p.clickable && p.bid.explanation !== "" ? "bg-[#DAA520]" : "bg-dark-200",
+  !clickable && bid.explanation !== "" ? "bg-[#DAA520]" : "bg-dark-200",
 );
 
 const hover = ref(false);
@@ -58,8 +57,8 @@ const hover = ref(false);
       <game-bidding-rank-suite :bid="bid"></game-bidding-rank-suite>
     </div>
     <span
-      v-if="!p.clickable && p.bid.explanation !== '' && hover"
-      class="z-10 dark:text-white bg-black absolute text-[10px] top-[-30px] w-[200px] text-center p-1 rounded-lg opacity-80"
+      v-if="!clickable && bid.explanation !== '' && hover"
+      class="z-10 dark:text-white bg-black absolute text-[12px] top-[-55px] w-[200px] text-center p-2 rounded-lg opacity-80"
       >{{ bid.explanation }}</span
     >
   </div>

@@ -50,7 +50,7 @@ export class Card {
     ["S", SUIT.SPADES],
   ]);
 
-  static suitsToTailwind = new Map([
+  static toTailwindIcon = new Map([
     [SUIT.CLUBS, "i-fluent-emoji-high-contrast-club-suit !text-clubs"],
     [SUIT.DIAMONDS, "i-fluent-emoji-high-contrast-diamond-suit !text-diamonds"],
     [SUIT.HEARTS, "i-fluent-emoji-high-contrast-heart-suit !text-hearts"],

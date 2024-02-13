@@ -17,7 +17,7 @@ const props = defineProps({
   history: {
     type: Array<Bid>,
   },
-  handsVisable: {
+  handsVisible: {
     type: Number,
     default: 2,
   },
@@ -76,7 +76,7 @@ const biddingBox = "w-[43px] h-[30px]";
 
     <game-bidding-container class="container" header="DIN HAND">
       <game-bidding-showHands
-        :handsVisable="handsVisable"
+        :handsVisible="handsVisible"
         :hands="hands"
         :player="player"
       >

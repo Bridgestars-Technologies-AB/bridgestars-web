@@ -18,7 +18,7 @@ interface Props {
   biddingAnswer: string;
   player: string;
   nextProblemId: string;
-  handsVisable: number;
+  handsVisible: number;
 }
 
 const p = defineProps<Props>();
@@ -51,7 +51,7 @@ function getJustify(e: Number) {
           class="rounded-xl bg-dark-200 mx-[10px] flex items-center justify-center"
         >
           <button
-            class="header px-[6px] py-[2px]"
+            class="header p-[9px]"
             @click="
               navigateTo({
                 name: `dash-bidding-problems-id`,
@@ -72,11 +72,11 @@ function getJustify(e: Number) {
       <!-- First container -->
       <div class="bg-dark-100 w-1/3 h-full flex flex-col justify-center">
         <div class="w-full flex justify-center items-center">
-          <span v-if="handsVisable === 1" class="header">Din hand</span>
+          <span v-if="handsVisible === 1" class="header">Din hand</span>
         </div>
 
         <game-bidding-showHands
-          :handsVisable="handsVisable"
+          :handsVisible="handsVisible"
           :hands="hands"
           :player="player"
         >
@@ -100,7 +100,7 @@ function getJustify(e: Number) {
           <game-bidding-history
             :history="biddingResult"
             class="w-full h-[70%]"
-            biddingBox="w-[50px] h-[30px] bg-dark-200 hover:bg-transparent  sm:w-[55px] sm:h-[30px] md:w-[65px] md:h-[30px] lg:w-[45px] lg:h-[30px] xl:w-[50px] xl:h-[35px] 2xl:w-[60px] 2xl:h-[40px]"
+            biddingBox="w-[50px] h-[30px] hover:bg-transparent  sm:w-[55px] sm:h-[30px] md:w-[65px] md:h-[30px] lg:w-[45px] lg:h-[30px] xl:w-[50px] xl:h-[35px] 2xl:w-[60px] 2xl:h-[40px]"
           ></game-bidding-history>
 
           <div class="flex justify-center items-center h-[20%] lg:w-[80%]">
