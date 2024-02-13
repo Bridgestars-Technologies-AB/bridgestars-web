@@ -21,7 +21,9 @@ interface Props {
   handsVisable: number;
 }
 
-defineProps<Props>();
+const p = defineProps<Props>();
+
+console.log(p.solution);
 
 function getJustify(e: Number) {
   switch (e) {
@@ -130,7 +132,7 @@ function getJustify(e: Number) {
           <game-analysis-bid
             :bid="solution"
             :player="player"
-            size="w-[60px] h-[30px] lg:w-[80px] lg:h-[40px]"
+            size="w-[90px] h-[50px]"
           ></game-analysis-bid>
           <!-- Placeholder for star img -->
           <div
