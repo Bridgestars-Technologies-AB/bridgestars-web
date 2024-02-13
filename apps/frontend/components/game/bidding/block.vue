@@ -35,7 +35,7 @@ const opacity = computed(
 );
 
 const bg = computed(() =>
-  !clickable && bid.explanation !== "" ? "bg-[#DAA520]" : "bg-dark-200",
+  !clickable && bid.explanation !== "" ? "bg-[#e3b43e]" : "bg-dark-200",
 );
 
 const hover = ref(false);

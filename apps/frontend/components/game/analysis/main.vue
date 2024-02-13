@@ -48,7 +48,7 @@ function getJustify(e: Number) {
       <div class="w-full flex flex-row justify-between items-center my-[2px]">
         <span class="header flex-grow-1 mx-[10px]"> Analys </span>
         <div
-          class="rounded-xl bg-dark-200 mx-[10px] flex items-center justify-center"
+          class="rounded-xl bg-dark-200 mx-[10px] flex items-center justify-center mb-1"
         >
           <button
             class="header p-[9px]"
@@ -170,6 +170,6 @@ function getJustify(e: Number) {
 
 <style scoped>
 .header {
-  @apply text-white text-[24px] items-center font-semibold h-auto;
+  @apply text-white text-[20px] items-center font-semibold h-auto;
 }
 </style>
