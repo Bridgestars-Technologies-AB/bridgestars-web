@@ -33,7 +33,7 @@
     "lint-staged": "14.0.1",
     "nuxi": "3.10.0",
     "prettier": "3.0.3",
-    "sass": "1.70.7"
+    "sass": "1.70.0"
   },
   "dependencies": {
     "@egoist/tailwindcss-icons": "1.7.4",
