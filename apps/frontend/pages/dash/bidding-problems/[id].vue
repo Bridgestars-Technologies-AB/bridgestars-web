@@ -187,20 +187,39 @@ function check() {
         @check="check"
       ></game-bidding-problem>
       <div
-        :class="`mt-3 w-[500px] h-[100px] bg-dark-100 rounded-xl flex flex-col justify-center items-center ${
+        :class="`mt-2 flex flex-row justify-center items-center space-x-1 ${
           isBidMade ? '' : 'invisible'
         }`"
       >
-        <div class="flex flex-row justify-center items-center">
-          <span class="text-[20px] text-dark dark:text-white">
-            Du bjöd {{ bid.getShortName() }}
-          </span>
-          <span v-if="bid.is('SUIT')" :class="bid.tailwindSuitSymbol()"> </span>
-        </div>
+        <div
+          :class="`w-[500px] h-[100px] bg-dark-100 rounded-xl flex flex-col justify-center items-center`"
+        >
+          <div class="flex flex-row justify-center items-center">
+            <span class="text-[20px] text-dark dark:text-white">
+              Du bjöd {{ bid.getShortName() }}
+            </span>
+            <span v-if="bid.is('SUIT')" :class="bid.tailwindSuitSymbol()">
+            </span>
+          </div>
 
-        <span class="text-[20px] text-dark dark:text-white">
-          {{ biddingExplanation }}
-        </span>
+          <span class="text-[20px] text-dark dark:text-white">
+            {{ biddingExplanation }}
+          </span>
+        </div>
+        <div
+          class="w-[500px] h-[100px] bg-dark-100 rounded-xl flex flex-col justify-center items-center space-y-2"
+        >
+          <span class="text-[16px] text-dark dark:text-white"
+            >Om du kört fast på en giv, klicka nedan för att komma till
+            lösningen</span
+          >
+          <button
+            class="w-[150px] h-[40px] bg-[#0e9f6e] rounded-xl text-dark dark:text-white font-semibold"
+            @click="pass = true"
+          >
+            Gå till lösning
+          </button>
+        </div>
       </div>
     </div>
     <div v-else class="w-full h-full flex justify-center items-center">
