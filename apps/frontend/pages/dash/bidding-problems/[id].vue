@@ -35,67 +35,67 @@ console.log(biddingProblem.dealer);
 // };
 
 //Mock up response from server when playing a bid ....
-const bidResponseList = [
-  {
-    correct: false,
-    finished: false,
-    bid: "2NT",
-    explanation: "Det var inte riktigt rätt",
-  },
-  {
-    correct: true,
-    finished: false,
-    bid: "2NT",
-    explanation: "Du spelade 2NT, det visar hmm hmm hmm",
-    bidding: [
-      { bid: "3NT", explanation: " 0 - 8 hp, nord visar styrka" },
-      { bid: "pass" },
-      { bid: "5H" },
-    ],
-  },
-  {
-    correct: true,
-    finished: true,
-    next_problem_id: "sjNDASL283aD",
-    cards: [
-      {
-        player: "N",
-        S: "Q876",
-        H: "AT4",
-        D: "KJ3",
-        C: "KJ3",
-      },
-      {
-        player: "E",
-        S: "Q876",
-        H: "AT4",
-        D: "KJ3",
-        C: "KJ3",
-      },
-      {
-        player: "S",
-        S: "Q876",
-        H: "AT4",
-        D: "KJ3",
-        C: "KJ3",
-      },
-      {
-        player: "W",
-        S: "Q876",
-        H: "AT4",
-        D: "KJ3",
-        C: "KJ3",
-      },
-    ],
-    solution:
-      "Du har 18 hp och vet att din partner har 15-17 hp. Ni har tillsammans 33-35 hp och gränsen för att bjuda lillslam är minst 33 hp. Rätt bud är 6NT.",
-    bidding: [
-      { bid: "1NT", explanation: " 0 - 8 hp" },
-      { bid: "pass" },
-      { bid: "3NT", explanation: " 10 - 15 hp" },
-    ],
-  },
-];
+//const bidResponseList = [
+  // {
+  //   correct: false,
+  //   finished: false,
+  //   bid: "2NT",
+  //   explanation: "Det var inte riktigt rätt",
+  // },
+  // {
+  //   correct: true,
+  //   finished: false,
+  //   bid: "2NT",
+  //   explanation: "Du spelade 2NT, det visar hmm hmm hmm",
+  //   bidding: [
+  //     { bid: "3NT", explanation: " 0 - 8 hp, nord visar styrka" },
+  //     { bid: "pass" },
+  //     { bid: "5H" },
+  //   ],
+  // },
+  // {
+  //   correct: true,
+  //   finished: true,
+  //   next_problem_id: "sjNDASL283aD",
+  //   cards: [
+  //     {
+  //       player: "N",
+  //       S: "Q876",
+  //       H: "AT4",
+  //       D: "KJ3",
+  //       C: "KJ3",
+  //     },
+  //     {
+  //       player: "E",
+  //       S: "Q876",
+  //       H: "AT4",
+  //       D: "KJ3",
+  //       C: "KJ3",
+  //     },
+  //     {
+  //       player: "S",
+  //       S: "Q876",
+  //       H: "AT4",
+  //       D: "KJ3",
+  //       C: "KJ3",
+  //     },
+  //     {
+  //       player: "W",
+  //       S: "Q876",
+  //       H: "AT4",
+  //       D: "KJ3",
+  //       C: "KJ3",
+  //     },
+  //   ],
+  //   solution:
+  //     "Du har 18 hp och vet att din partner har 15-17 hp. Ni har tillsammans 33-35 hp och gränsen för att bjuda lillslam är minst 33 hp. Rätt bud är 6NT.",
+  //   bidding: [
+  //     { bid: "1NT", explanation: " 0 - 8 hp" },
+  //     { bid: "pass" },
+  //     { bid: "3NT", explanation: " 10 - 15 hp" },
+  //   ],
+  // },
+//];
 
 // this function will create the correct history depending on who the dealer is
 // inserting as many "invisible" blocks as needed
@@ -137,13 +137,16 @@ const hands = biddingProblem.cards.map((hand) => new Hand(hand));
 
 // Checks if solution is correct
 // emited from bidding-problem
-function check() {
+async function check() {
   // Here we ask the backend if {suit, rank} is correct, and then we
   // get a response if it was correct and data needed for that situation
   // Will be simulated with a function returning a random response
   //axios.post(`/prefix/bidding-problem/${route.params.id}`, { bid: bid.getShortName }) ->
-  const response =
-    bidResponseList[Math.floor(Math.random() * bidResponseList.length)];
+  const response = await api.post(`/bidding-problems/${route.params.id}/bid`, {
+    bid: bid.value.toString(),
+  });
+  const data = response.data;
+
   if (!response.correct) {
     // What happens if wrong bid was made
     biddingExplanation.value = response.explanation;
