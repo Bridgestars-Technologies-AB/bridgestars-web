@@ -135,6 +135,16 @@ const solution = ref("");
 const nextProblemId = ref("");
 const hands = biddingProblem.cards.map((hand) => new Hand(hand));
 
+const surrender = async () => {
+  // will add types later
+  const {data} = await api.post(`/bidding-problems/${route.params.id}/surrender`);
+  // new data: data.stars (number of stars, 1-3)
+  pass.value = true;
+  solution.value = data.solution;
+  nextProblemId.value = data.next_problem_id;
+  biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
+}
+
 // Checks if solution is correct
 // emited from bidding-problem
 async function check() {
@@ -142,6 +152,7 @@ async function check() {
   // get a response if it was correct and data needed for that situation
   // Will be simulated with a function returning a random response
   //axios.post(`/prefix/bidding-problem/${route.params.id}`, { bid: bid.getShortName }) ->
+  // will add types later
   const response = await api.post(`/bidding-problems/${route.params.id}/bid`, {
     bid: bid.value.toString(),
   });
@@ -157,13 +168,6 @@ async function check() {
     presentationText.value = response.explanation;
     biddingHistory.value = createHistory(Bid.fromJson(response.bidding));
     isBidMade.value = false;
-  }
-  if (response.finished) {
-    // What happens if correct bid was made and finished
-    pass.value = true;
-    solution.value = response.solution;
-    nextProblemId.value = response.next_problem_id;
-    biddingHistory.value = createHistory(Bid.fromJson(response.bidding));
   }
 }
 </script>
@@ -219,7 +223,7 @@ async function check() {
           >
           <button
             class="w-[150px] h-[40px] bg-[#0e9f6e] rounded-xl text-dark dark:text-white font-semibold"
-            @click="pass = true"
+            @click="surrender"
           >
             Gå till lösning
           </button>
