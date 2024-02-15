@@ -8,94 +8,6 @@ const { data } = await api.get(`bidding-problems/${route.params.id}`);
 const biddingProblem = data as BiddingProblemData;
 console.log(biddingProblem.dealer);
 
-//axios.get(`/prefix/bidding-problem/${id}`) -> response.data
-// Mock up response data:
-// const biddingProblem = {
-//   number: 1, // problem 1 out of 10 in this chapter (deal_nbr)
-//   total: 10,
-//   presentation:
-//     "Vad bjuder du som svarshand när din partner har öppnat med 1 NT?",
-//   hands_visible: 1, // [1,2,4] bara min, mitt lag eller alla
-//   cards: [
-//     {
-//       player: "N",
-//       spades: "Q876",
-//       hearts: "AT4",
-//       diamonds: "KJ3",
-//       clubs: "KJ3",
-//     },
-//   ],
-//   dealer: "N", // North starts the auction
-//   player: "E", // Vem spelar vi som??
-//   bidding: [
-//     { bid: "1NT", explanation: " 0 - 8 hp" },
-//     { bid: "PASS" },
-//     { bid: "3NT", explanation: " 10 - 15 hp" },
-//   ],
-// };
-
-//Mock up response from server when playing a bid ....
-//const bidResponseList = [
-  // {
-  //   correct: false,
-  //   finished: false,
-  //   bid: "2NT",
-  //   explanation: "Det var inte riktigt rätt",
-  // },
-  // {
-  //   correct: true,
-  //   finished: false,
-  //   bid: "2NT",
-  //   explanation: "Du spelade 2NT, det visar hmm hmm hmm",
-  //   bidding: [
-  //     { bid: "3NT", explanation: " 0 - 8 hp, nord visar styrka" },
-  //     { bid: "pass" },
-  //     { bid: "5H" },
-  //   ],
-  // },
-  // {
-  //   correct: true,
-  //   finished: true,
-  //   next_problem_id: "sjNDASL283aD",
-  //   cards: [
-  //     {
-  //       player: "N",
-  //       S: "Q876",
-  //       H: "AT4",
-  //       D: "KJ3",
-  //       C: "KJ3",
-  //     },
-  //     {
-  //       player: "E",
-  //       S: "Q876",
-  //       H: "AT4",
-  //       D: "KJ3",
-  //       C: "KJ3",
-  //     },
-  //     {
-  //       player: "S",
-  //       S: "Q876",
-  //       H: "AT4",
-  //       D: "KJ3",
-  //       C: "KJ3",
-  //     },
-  //     {
-  //       player: "W",
-  //       S: "Q876",
-  //       H: "AT4",
-  //       D: "KJ3",
-  //       C: "KJ3",
-  //     },
-  //   ],
-  //   solution:
-  //     "Du har 18 hp och vet att din partner har 15-17 hp. Ni har tillsammans 33-35 hp och gränsen för att bjuda lillslam är minst 33 hp. Rätt bud är 6NT.",
-  //   bidding: [
-  //     { bid: "1NT", explanation: " 0 - 8 hp" },
-  //     { bid: "pass" },
-  //     { bid: "3NT", explanation: " 10 - 15 hp" },
-  //   ],
-  // },
-//];
 
 // this function will create the correct history depending on who the dealer is
 // inserting as many "invisible" blocks as needed
@@ -158,16 +70,25 @@ async function check() {
   });
   const data = response.data;
 
-  if (!response.correct) {
+  if (!data.correct) {
     // What happens if wrong bid was made
-    biddingExplanation.value = response.explanation;
+    biddingExplanation.value = data.explanation;
     isBidMade.value = true;
   }
-  if (response.correct && !response.finished) {
+  if (data.correct && !data.finished) {
     // What happens if correct bid was made, but not finished
-    presentationText.value = response.explanation;
-    biddingHistory.value = createHistory(Bid.fromJson(response.bidding));
+    presentationText.value = data.explanation;
+    biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
     isBidMade.value = false;
+  }
+  if(data.finished){
+    // hade varit nice att animera in buden.
+    biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
+    setTimeout(() => {
+      pass.value = true
+      solution.value = data.solution
+      nextProblemId.value = data.next_problem_id
+    }, 500);
   }
 }
 </script>
