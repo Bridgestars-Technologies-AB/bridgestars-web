@@ -4,12 +4,14 @@ defineProps({
   text: String,
   loading: Boolean,
 });
+defineEmits(["click"]);
 </script>
 
 <template>
   <div :class="'buttonDiv ' + wrapperClass">
     <button
       class="text-[18px] font-family py-[12px] px-[28px] font-normal rounded-[8px] h-[42px] btn tracking-[2px]"
+      @click="$emit('click')"
       v-bind="$attrs"
     >
       <span v-if="!loading">
