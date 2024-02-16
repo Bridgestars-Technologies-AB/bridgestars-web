@@ -1,5 +1,5 @@
 export type Bid =
-    | "pass"
+    | "PASS"
     | "1C"
     | "1D"
     | "1H"
@@ -35,8 +35,18 @@ export type Bid =
     | "5NT"
     | "6NT"
     | "7NT"
-    | "double"
-    | "redouble";
+    | "DOUBLE"
+    | "REDOUBLE";
+export type BidAnalysisData = {
+    correct: boolean;
+    stars: number;
+    next_problem_id: string;
+    cards: Array<HandData>;
+    solution: string;
+    bidding: Array<BidData>;
+    contract: Bid;
+    finished: true;
+};
 export type BidData = {
     bid: Bid;
     explanation: string;
@@ -45,12 +55,20 @@ export type BiddingProblemData = {
     public_id: string;
     number: number;
     total: number;
+    progress: number;
     presentation: string;
     hands_visible: number;
     cards: Array<HandData>;
     dealer: Direction;
     player: Direction;
     bidding: Array<BidData>;
+};
+export type CorrectBidData = {
+    bid: string;
+    explanation: string;
+    bidding: Array<BidData>;
+    correct: true;
+    finished: false;
 };
 export type Direction = "N" | "E" | "W" | "S";
 export type GetCourseChapterData = {
@@ -77,6 +95,12 @@ export type HandData = {
     D: string;
     C: string;
 };
+export type IncorrectBidData = {
+    bid: Bid;
+    explanation: string;
+    correct: false;
+    finished: false;
+};
 export type ListCoursesChapterData = {
     public_id: string;
     name: string;
@@ -92,7 +116,8 @@ export type ListCoursesData = {
 };
 export type UserData = {
     public_id: string;
-    name: string;
+    first_name: string;
+    last_name: string;
     email: string;
     username: string;
 };
