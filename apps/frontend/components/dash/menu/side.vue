@@ -71,7 +71,7 @@ function click(item) {
         <img
           width="50"
           class="object-cover object-top w-[50px] aspect-square rounded-full cursor-pointer"
-          src="/bridgestars/images/castor.jpg"
+          src="/bridgestars/images/no_profile_img.png"
           @click="navigateTo({ name: 'dash-profile' })"
         />
         <div class="flex flex-col text-start pl-2 space-y-1 justify-center">
