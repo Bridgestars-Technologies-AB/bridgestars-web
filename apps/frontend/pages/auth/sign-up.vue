@@ -7,7 +7,8 @@ const showLoading = ref(false);
 async function submit(res: {
   username: string;
   email: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   password: string;
 }) {
   showLoading.value = true;
@@ -35,15 +36,23 @@ async function submit(res: {
     :subtitle="$t('auth:signUp.subtitle')"
     @submit="submit"
   >
-    <base-input-field
-      id="username"
-      wrapperClass="w-[100%]"
-      :placeholder="$t('auth:placeholder.username')"
-      type="username"
-    />
     <!-- <div class="flex text-left"> -->
     <!-- <span class="text2 pl-3 -pt-1 leading-6">Ditt användarnamn kan du använda istället för din mail när du loggar in.</span> -->
     <!-- </div> -->
+    <div class="flex justify-between">
+      <base-input-field
+        id="first-name"
+        wrapperClass="w-[49%]"
+        placeholder="Förnamn"
+        type="first-name"
+      />
+      <base-input-field
+        id="last-name"
+        wrapperClass="w-[49%]"
+        placeholder="Efternamn"
+        type="last-name"
+      />
+    </div>
     <base-input-field
       id="email"
       wrapperClass="w-[100%]"
@@ -51,10 +60,10 @@ async function submit(res: {
       type="email"
     />
     <base-input-field
-      id="name"
+      id="username"
       wrapperClass="w-[100%]"
-      placeholder="Namn"
-      type="name"
+      :placeholder="$t('auth:placeholder.username')"
+      type="username"
     />
     <base-input-field
       id="password"

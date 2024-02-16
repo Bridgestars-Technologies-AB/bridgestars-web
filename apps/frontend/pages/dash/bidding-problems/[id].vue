@@ -8,94 +8,6 @@ const { data } = await api.get(`bidding-problems/${route.params.id}`);
 const biddingProblem = data as BiddingProblemData;
 console.log(biddingProblem.dealer);
 
-//axios.get(`/prefix/bidding-problem/${id}`) -> response.data
-// Mock up response data:
-// const biddingProblem = {
-//   number: 1, // problem 1 out of 10 in this chapter (deal_nbr)
-//   total: 10,
-//   presentation:
-//     "Vad bjuder du som svarshand när din partner har öppnat med 1 NT?",
-//   hands_visible: 1, // [1,2,4] bara min, mitt lag eller alla
-//   cards: [
-//     {
-//       player: "N",
-//       spades: "Q876",
-//       hearts: "AT4",
-//       diamonds: "KJ3",
-//       clubs: "KJ3",
-//     },
-//   ],
-//   dealer: "N", // North starts the auction
-//   player: "E", // Vem spelar vi som??
-//   bidding: [
-//     { bid: "1NT", explanation: " 0 - 8 hp" },
-//     { bid: "PASS" },
-//     { bid: "3NT", explanation: " 10 - 15 hp" },
-//   ],
-// };
-
-//Mock up response from server when playing a bid ....
-const bidResponseList = [
-  {
-    correct: false,
-    finished: false,
-    bid: "2NT",
-    explanation: "Det var inte riktigt rätt",
-  },
-  {
-    correct: true,
-    finished: false,
-    bid: "2NT",
-    explanation: "Du spelade 2NT, det visar hmm hmm hmm",
-    bidding: [
-      { bid: "3NT", explanation: " 0 - 8 hp, nord visar styrka" },
-      { bid: "pass" },
-      { bid: "5H" },
-    ],
-  },
-  {
-    correct: true,
-    finished: true,
-    next_problem_id: "sjNDASL283aD",
-    cards: [
-      {
-        player: "N",
-        S: "Q876",
-        H: "AT4",
-        D: "KJ3",
-        C: "KJ3",
-      },
-      {
-        player: "E",
-        S: "Q876",
-        H: "AT4",
-        D: "KJ3",
-        C: "KJ3",
-      },
-      {
-        player: "S",
-        S: "Q876",
-        H: "AT4",
-        D: "KJ3",
-        C: "KJ3",
-      },
-      {
-        player: "W",
-        S: "Q876",
-        H: "AT4",
-        D: "KJ3",
-        C: "KJ3",
-      },
-    ],
-    solution:
-      "Du har 18 hp och vet att din partner har 15-17 hp. Ni har tillsammans 33-35 hp och gränsen för att bjuda lillslam är minst 33 hp. Rätt bud är 6NT.",
-    bidding: [
-      { bid: "1NT", explanation: " 0 - 8 hp" },
-      { bid: "pass" },
-      { bid: "3NT", explanation: " 10 - 15 hp" },
-    ],
-  },
-];
 
 // this function will create the correct history depending on who the dealer is
 // inserting as many "invisible" blocks as needed
@@ -135,32 +47,48 @@ const solution = ref("");
 const nextProblemId = ref("");
 const hands = biddingProblem.cards.map((hand) => new Hand(hand));
 
+const surrender = async () => {
+  // will add types later
+  const {data} = await api.post(`/bidding-problems/${route.params.id}/surrender`);
+  // new data: data.stars (number of stars, 1-3)
+  pass.value = true;
+  solution.value = data.solution;
+  nextProblemId.value = data.next_problem_id;
+  biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
+}
+
 // Checks if solution is correct
 // emited from bidding-problem
-function check() {
+async function check() {
   // Here we ask the backend if {suit, rank} is correct, and then we
   // get a response if it was correct and data needed for that situation
   // Will be simulated with a function returning a random response
   //axios.post(`/prefix/bidding-problem/${route.params.id}`, { bid: bid.getShortName }) ->
-  const response =
-    bidResponseList[Math.floor(Math.random() * bidResponseList.length)];
-  if (!response.correct) {
+  // will add types later
+  const response = await api.post(`/bidding-problems/${route.params.id}/bid`, {
+    bid: bid.value.toString(),
+  });
+  const data = response.data;
+
+  if (!data.correct) {
     // What happens if wrong bid was made
-    biddingExplanation.value = response.explanation;
+    biddingExplanation.value = data.explanation;
     isBidMade.value = true;
   }
-  if (response.correct && !response.finished) {
+  if (data.correct && !data.finished) {
     // What happens if correct bid was made, but not finished
-    presentationText.value = response.explanation;
-    biddingHistory.value = createHistory(Bid.fromJson(response.bidding));
+    presentationText.value = data.explanation;
+    biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
     isBidMade.value = false;
   }
-  if (response.finished) {
-    // What happens if correct bid was made and finished
-    pass.value = true;
-    solution.value = response.solution;
-    nextProblemId.value = response.next_problem_id;
-    biddingHistory.value = createHistory(Bid.fromJson(response.bidding));
+  if(data.finished){
+    // hade varit nice att animera in buden.
+    biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
+    setTimeout(() => {
+      pass.value = true
+      solution.value = data.solution
+      nextProblemId.value = data.next_problem_id
+    }, 500);
   }
 }
 </script>
@@ -216,7 +144,7 @@ function check() {
           >
           <button
             class="w-[150px] h-[40px] bg-[#0e9f6e] rounded-xl text-dark dark:text-white font-semibold"
-            @click="pass = true"
+            @click="surrender"
           >
             Gå till lösning
           </button>
