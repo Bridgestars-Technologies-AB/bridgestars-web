@@ -46,14 +46,14 @@ provide("side-menu-open", sideMenuOpen);
 
       <!-- side menu mock for displacing content -->
       <div
+        id="sideMock"
         :class="` ${
           sideMenuOpen ? 'sm:w-[268px]' : 'sm:w-[70px]'
         } shrink-0 grow-0`"
-        id="sideMock"
       />
 
       <!-- top and content -->
-      <div class="grow flex flex-col" id="content">
+      <div id="content" class="grow flex flex-col">
         <!-- top -->
         <dash-menu-top />
 

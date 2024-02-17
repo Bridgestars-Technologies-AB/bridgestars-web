@@ -75,16 +75,19 @@ async function check() {
     IncorrectBidData | CorrectBidData | BidAnalysisData
   >(`/bidding-problems/${route.params.id}/bid`, { bid: bid.value.toString() });
 
-  if (!data.correct && !data.finished) { // InvalidBid 
+  if (!data.correct && !data.finished) {
+    // InvalidBid
     biddingExplanation.value = data.explanation;
     isBidMade.value = true;
   }
-  if (data.correct && !data.finished) {  // CorrectBid
+  if (data.correct && !data.finished) {
+    // CorrectBid
     presentationText.value = data.explanation;
     biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
     isBidMade.value = false;
   }
-  if (data.finished) { // BidAnalysisData
+  if (data.finished) {
+    // BidAnalysisData
     // hade varit nice att animera in buden.
     biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
     setTimeout(() => {

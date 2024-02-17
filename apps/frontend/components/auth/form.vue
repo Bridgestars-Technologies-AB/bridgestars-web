@@ -82,7 +82,7 @@ onMounted(() => {
       <!-- /> -->
       <!-- TITLE -->
       <img
-        class="anim-bounce w-[120px] h-[120px] xs:mt-0 sm:mt-5 mb-5"
+        class="anim-bounce w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] xs:mt-0 sm:mt-5 mb-3 sm:mb-5"
         src="/demo/bridgeschool.png"
         alt="Bridgeschool logo"
       />

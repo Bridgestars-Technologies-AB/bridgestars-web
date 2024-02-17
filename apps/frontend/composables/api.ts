@@ -11,7 +11,7 @@ const axios = Axios.create({
 });
 
 function unwrap<T>(response: AxiosResponse<any, any>): AxiosResponse<T, any> {
-  if (response.data?.data) {
+  if (response?.data?.data) {
     response.data = response.data.data as T;
   }
   return response;
