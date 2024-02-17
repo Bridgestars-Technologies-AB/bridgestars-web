@@ -17,8 +17,8 @@ export function get(event, path) {
     //body: await readBody(event),
     headers: {
       "Content-Type": "application/json",
-      accept: "application/json",
-      Authorization: "Bearer " + parseCookies(event)["auth"],
+      "Accept": "application/json",
+      "Authorization": "Bearer " + parseCookies(event)["auth"],
       "X-Api-Key": process.env.API_KEY,
     },
   });
