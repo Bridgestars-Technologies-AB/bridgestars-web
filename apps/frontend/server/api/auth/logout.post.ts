@@ -1,21 +1,22 @@
 import jwt from "jsonwebtoken";
-import * as crypto from '~/server/util/crypto'
-import * as laravel from '~/server/util/laravel'
+import * as crypto from "~/server/util/crypto";
+import * as laravel from "~/server/util/laravel";
 
 const SECRET = "dummy";
-const ENCRYPTION_SECRET = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+const ENCRYPTION_SECRET = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
 export default defineEventHandler(async (event) => {
-  return laravel.post(event, "/api/auth/logout")
+  return laravel
+    .post(event, "/api/auth/logout")
     .then((data) => {
-      deleteCookie(event, "auth")
-      deleteCookie(event, "user")
+      deleteCookie(event, "auth");
+      deleteCookie(event, "user");
     })
     .catch((e) => {
-      deleteCookie(event, "auth")
-      deleteCookie(event, "user")
+      deleteCookie(event, "auth");
+      deleteCookie(event, "user");
       //throw e
-    })
+    });
 
   // return $fetch(process.env.BACKEND_URL + "/api/internal/login", {
   //   body: await readBody(event),

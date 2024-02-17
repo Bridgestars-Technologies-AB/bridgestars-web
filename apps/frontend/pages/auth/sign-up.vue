@@ -16,7 +16,7 @@ async function submit(res: {
 
   await useAuth()
     .register({ ...res, password_confirmation: res.password })
-    .then(user => {
+    .then((user) => {
       toast.success("Du har loggats in");
       if (query.to) navigateTo({ path: query.to as string });
       else navigateTo({ path: "/dash" });

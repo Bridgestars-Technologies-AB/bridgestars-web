@@ -2,13 +2,14 @@ import { defineStore } from "pinia";
 import type { UserData } from "~/types/generated";
 
 const useUserStore = defineStore("user", {
-  state: () => ({ user: null as Omit<UserData, 'email'> | null }),
+  state: () => ({ user: null as Omit<UserData, "email"> | null }),
   getters: {},
   actions: {
-    async update() : Promise<UserData> {
-      return api.get<UserData>("user")
+    async update(): Promise<UserData> {
+      return api
+        .get<UserData>("user")
         .then((response) => {
-          let temp:any = response.data;
+          let temp: any = response.data;
           delete temp.email; // don't store email in cookie
           this.user = temp;
           //delete this.user;
@@ -16,16 +17,16 @@ const useUserStore = defineStore("user", {
         })
         .catch((e) => {
           this.user = null;
-          useCookie('auth').value = null;
-          useCookie('user').value = null;
+          useCookie("auth").value = null;
+          useCookie("user").value = null;
           throw e;
         });
     },
     delete() {
       this.user = null;
-      useCookie('auth').value = null;
-      useCookie('user').value = null;
-    }
+      useCookie("auth").value = null;
+      useCookie("user").value = null;
+    },
   },
   persist: {
     key: "user",
@@ -41,9 +42,9 @@ const useAuth = () => {
     return api.post("auth/register", props).then(store.update);
   };
 
-  async function login({ ...props }): Promise<UserData>{
+  async function login({ ...props }): Promise<UserData> {
     return api.post("auth/login", props).then(store.update);
-  };
+  }
 
   const logout = async () => {
     return api.post("auth/logout").then(store.delete);

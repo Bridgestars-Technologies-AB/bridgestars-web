@@ -169,7 +169,6 @@ export default function InitAuthFormValidation(form, callback) {
     return re.test(email);
   };
 
-
   const isPasswordSecure = (password) => {
     const re = new RegExp("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/");
     return re.test(password);
@@ -219,8 +218,7 @@ export default function InitAuthFormValidation(form, callback) {
     // prevent the form from submitting
     e.preventDefault();
     // validate fields
-    const 
-      isFirstNameValid = checkFirstName(),
+    const isFirstNameValid = checkFirstName(),
       isLastNameValid = checkLastName(),
       isEmailValid = checkEmail(),
       isUsernameValid = checkUsername(),
@@ -309,8 +307,8 @@ export default function InitAuthFormValidation(form, callback) {
   };
   function checkAll() {
     if (!hasSubmitted) return;
-    checkFirstName()
-    checkLastName()
+    checkFirstName();
+    checkLastName();
     checkEmail();
     checkUsername();
 

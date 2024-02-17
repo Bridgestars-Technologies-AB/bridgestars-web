@@ -2,7 +2,6 @@
 
 <script setup>
 defineProps({ header: String, courseId: Number });
-import { CourseUtil } from "/composables/useCourseUtil.ts";
 </script>
 
 <template>
@@ -21,9 +20,9 @@ import { CourseUtil } from "/composables/useCourseUtil.ts";
       class="flex flex-col items-center justify-center space-y-2 h-[150px] w-full"
     >
       <courses-completion-bar
-        v-for="item in CourseUtil.bridgeA.slice(0, 3)"
+        v-for="item in ['Kapitel 1', 'Kapitel 2', 'Kapitel 3']"
         :key="item"
-        :text="item.header"
+        :text="item"
       ></courses-completion-bar>
     </div>
     <div class="flex flex-row justify-end">

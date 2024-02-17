@@ -7,8 +7,7 @@ function ensureProperOptions(algorithm: string, key: string) {
   }
 
   if (algorithm === "aes256" && key.length !== 32) {
-    const errorLabel =
-      `A 32-bits key must be used with aes256. Given: ${key.length} (${key}-bits)`;
+    const errorLabel = `A 32-bits key must be used with aes256. Given: ${key.length} (${key}-bits)`;
     throw new Error(errorLabel);
   }
 }
@@ -33,11 +32,7 @@ export function encryptCookie(
   ensureProperOptions(algorithm, key);
 
   const iv = crypto.randomBytes(16);
-  const cipher = crypto.createCipheriv(
-    algorithm,
-    key,
-    iv,
-  );
+  const cipher = crypto.createCipheriv(algorithm, key, iv);
   const encrypted = [
     iv.toString("hex"),
     ":",
@@ -71,8 +66,8 @@ export function decryptCookie(
   const iv = new Buffer(encryptedArray[0], "hex");
   const encrypted = new Buffer(encryptedArray[1], "hex");
   const decipher = crypto.createDecipheriv(algorithm, key, iv);
-  const decrypted = decipher.update(encrypted, "hex", "utf8") +
-    decipher.final("utf8");
+  const decrypted =
+    decipher.update(encrypted, "hex", "utf8") + decipher.final("utf8");
 
   return decrypted;
 }
