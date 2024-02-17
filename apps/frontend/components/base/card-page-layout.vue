@@ -2,6 +2,7 @@
 const props = defineProps({
   imgSrc: String,
   hideNavbar: Boolean,
+  hideFooter: Boolean,
   class: String,
   backdropClass: String,
   lazy: {
@@ -30,7 +31,7 @@ const props = defineProps({
         <slot></slot>
       </div>
     </div>
-    <base-footer />
+    <base-footer :hideLinks="hideFooter" />
   </div>
 </template>
 <style scoped>

@@ -128,12 +128,12 @@ export default function InitAuthFormValidation(form, callback) {
     // TODO change requirements
     if (!isRequired(password)) {
       showError(passwordEl, t("auth:error:password.blankSignup"));
-    // } else if (password.search(/[a-z]/) < 0) {
-    //   showError(passwordEl, t("auth:error:password.atLeastLower"));
-    // } else if (password.search(/[A-Z]/) < 0) {
-    //   showError(passwordEl, t("auth:error:password.atLeastUpper"));
-    // } else if (password.search(/[0-9]/) < 0) {
-    //   showError(passwordEl, t("auth:error:password.atLeastDigit"));
+      // } else if (password.search(/[a-z]/) < 0) {
+      //   showError(passwordEl, t("auth:error:password.atLeastLower"));
+      // } else if (password.search(/[A-Z]/) < 0) {
+      //   showError(passwordEl, t("auth:error:password.atLeastUpper"));
+      // } else if (password.search(/[0-9]/) < 0) {
+      //   showError(passwordEl, t("auth:error:password.atLeastDigit"));
     } else if (password.length < 8) {
       showError(passwordEl, t("auth:error:password.atLeastChar"));
     } else {

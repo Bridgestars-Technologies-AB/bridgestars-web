@@ -15,7 +15,7 @@ function handleParseError(error: { reason: { code: number } }) {
 export default defineNuxtPlugin(() => {
   window.onunhandledrejection = (error: PromiseRejectionEvent) => {
     //if(process.env.dev)
-    if(error && error.reason){
+    if (error && error.reason) {
       console.log(error.reason);
       const response = error?.reason?.response;
       if (response) {
