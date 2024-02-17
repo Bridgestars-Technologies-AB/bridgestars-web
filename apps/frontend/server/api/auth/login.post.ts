@@ -10,7 +10,8 @@ export default defineEventHandler(async (event) => {
   .then((data) => {
       setCookie(event, "auth", data.token, {
         maxAge: 60 * 60 * 24 * 30,
-        sameSite: 'strict'
+        sameSite: 'strict',
+        httpOnly: true 
       })
     })
 

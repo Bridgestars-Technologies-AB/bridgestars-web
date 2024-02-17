@@ -68,6 +68,17 @@ export class Bid {
     }
   }
 
+  public toString(): string {
+    if (this.rank === 0 && this.suit === 0) {
+      return "PASS";
+    }
+    if (this.suit === 4) {
+      return this.rank + "NT";
+    } else {
+      return this.rank.toString() + ["C", "D", "H", "S"][this.suit];
+    }
+  }
+
   public tailwindSuitSymbol(): string {
     switch (this.suit) {
       case 0:
@@ -92,13 +103,13 @@ export class Bid {
   public static fromString(bid: string, explanation: string): Bid {
     let suit = 0;
     let rank = 0;
-    if (bid === "pass") {
+    if (bid === "PASS") {
       suit = 0;
       rank = 0;
-    } else if (bid === "double") {
+    } else if (bid === "DOUBLE") {
       suit = 0;
       rank = 0;
-    } else if (bid === "redouble") {
+    } else if (bid === "REDOUBLE") {
       suit = 0;
       rank = 0;
     } else if (bid.includes("NT")) {
