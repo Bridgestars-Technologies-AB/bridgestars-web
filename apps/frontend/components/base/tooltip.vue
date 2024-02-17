@@ -48,8 +48,8 @@ function hide() {
   <div class="relative">
     <div
       ref="tooltipTrigger"
-      @click="hide"
       :class="props.class"
+      @click="hide"
       @mouseleave="hide"
       @mouseenter="show"
       @touchstart="isTouch = true"

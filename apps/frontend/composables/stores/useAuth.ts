@@ -9,7 +9,7 @@ const useUserStore = defineStore("user", {
       return api
         .get<UserData>("user")
         .then((response) => {
-          let temp: any = response.data;
+          const temp: any = response.data;
           delete temp.email; // don't store email in cookie
           this.user = temp;
           //delete this.user;

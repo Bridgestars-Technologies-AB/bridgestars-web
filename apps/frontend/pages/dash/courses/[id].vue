@@ -3,8 +3,9 @@ import type { GetCourseData } from "~/types/generated";
 
 const route = useRoute();
 
-const { data: course } = await api.get<GetCourseData>(`courses/${route.params.id}`);
-
+const { data: course } = await api.get<GetCourseData>(
+  `courses/${route.params.id}`,
+);
 </script>
 
 <template>

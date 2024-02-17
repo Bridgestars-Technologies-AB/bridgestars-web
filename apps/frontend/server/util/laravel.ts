@@ -1,4 +1,4 @@
-import {H3Event} from "h3";
+import { H3Event } from "h3";
 
 export async function post(event: H3Event<Request>, path: string) {
   return $fetch(process.env.BACKEND_URL + path, {
@@ -7,8 +7,8 @@ export async function post(event: H3Event<Request>, path: string) {
     // @ts-ignore
     headers: {
       "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": "Bearer " + parseCookies(event)["auth"],
+      Accept: "application/json",
+      Authorization: "Bearer " + parseCookies(event)["auth"],
       "X-Api-Key": process.env.API_KEY,
     },
   });
@@ -21,8 +21,8 @@ export function get(event: H3Event<Request>, path: string) {
     // @ts-ignore
     headers: {
       "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": "Bearer " + parseCookies(event)["auth"],
+      Accept: "application/json",
+      Authorization: "Bearer " + parseCookies(event)["auth"],
       "X-Api-Key": process.env.API_KEY,
     },
   });
