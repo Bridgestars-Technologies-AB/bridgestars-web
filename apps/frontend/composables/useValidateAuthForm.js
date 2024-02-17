@@ -253,7 +253,8 @@ export default function InitAuthFormValidation(form, callback) {
       !passwordEl &&
       !passwordConfirmEl &&
       !usernameEl &&
-      !nameEl &&
+      !firstNameEl &&
+      !lastNameEl &&
       !usernameEmailEl;
 
     let isResetValid =
@@ -261,7 +262,8 @@ export default function InitAuthFormValidation(form, callback) {
       isConfirmPasswordValid &&
       !emailEl &&
       !usernameEl &&
-      !nameEl &&
+      !firstNameEl &&
+      !lastNameEl &&
       !usernameEmailEl &&
       !passwordSignInEl;
 
