@@ -4,7 +4,7 @@ const props = defineProps({
     type: String,
   },
   options: {
-    type: String,
+    type: Array,
   },
 });
 const emits = defineEmits(["update:modelValue"]);
@@ -17,6 +17,7 @@ onMounted(() => {
   moveLine({ target: document.getElementById(props.modelValue) });
   window.addEventListener("resize", resize);
 });
+
 onUnmounted(() => {
   window.removeEventListener("resize", resize);
 });

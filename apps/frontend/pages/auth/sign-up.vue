@@ -4,6 +4,8 @@ const query = useRoute().query;
 const { t } = await loadTranslations("auth");
 const showLoading = ref(false);
 
+const termsModalOpen = ref(false);
+
 async function submit(res: {
   username: string;
   email: string;
@@ -91,10 +93,11 @@ async function submit(res: {
             <!-- <i18next :translation="$t('auth:signUp:agree')"> -->
             <!--   <template #terms> -->
             Jag godkänner
-            <NuxtLink
-              to="/policy"
+            <button
+              type="button"
+              @click="termsModalOpen = true"
               class="normal-case text2 text-[15px] text-blue font-bold tracking-[0.5px]"
-              >Användarvillkoren</NuxtLink
+              >Användarvillkoren</button
             >
             <!--   </template> -->
             <!-- </i18next> -->
@@ -131,6 +134,9 @@ async function submit(res: {
     <!-- </button> -->
     <!-- </div> -->
   </auth-form>
+  <base-modal class="w-full sm:p-10 mx-auto" v-model:open="termsModalOpen">
+    <Policy/>
+  </base-modal>
 </template>
 
 <style>
