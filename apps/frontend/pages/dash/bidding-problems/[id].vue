@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { Bid } from "~/composables/biddingClasses/Bid";
-import type { BiddingProblemData } from "~/types/generated";
+import type {
+  BiddingProblemData,
+  BidAnalysisData,
+  CorrectBidData,
+  IncorrectBidData,
+} from "~/types/generated";
 
 const route = useRoute();
 
 const { data } = await api.get(`bidding-problems/${route.params.id}`);
 const biddingProblem = data as BiddingProblemData;
 console.log(biddingProblem.dealer);
-
 
 // this function will create the correct history depending on who the dealer is
 // inserting as many "invisible" blocks as needed
@@ -49,13 +53,15 @@ const hands = biddingProblem.cards.map((hand) => new Hand(hand));
 
 const surrender = async () => {
   // will add types later
-  const {data} = await api.post(`/bidding-problems/${route.params.id}/surrender`);
+  const { data } = await api.post<BidAnalysisData>(
+    `/bidding-problems/${route.params.id}/surrender`,
+  );
   // new data: data.stars (number of stars, 1-3)
   pass.value = true;
   solution.value = data.solution;
   nextProblemId.value = data.next_problem_id;
   biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
-}
+};
 
 // Checks if solution is correct
 // emited from bidding-problem
@@ -65,29 +71,29 @@ async function check() {
   // Will be simulated with a function returning a random response
   //axios.post(`/prefix/bidding-problem/${route.params.id}`, { bid: bid.getShortName }) ->
   // will add types later
-  const response = await api.post(`/bidding-problems/${route.params.id}/bid`, {
-    bid: bid.value.toString(),
-  });
-  const data = response.data;
+  const { data } = await api.post<
+    IncorrectBidData | CorrectBidData | BidAnalysisData
+  >(`/bidding-problems/${route.params.id}/bid`, { bid: bid.value.toString() });
 
-  if (!data.correct) {
-    // What happens if wrong bid was made
+  if (!data.correct && !data.finished) {
+    // InvalidBid
     biddingExplanation.value = data.explanation;
     isBidMade.value = true;
   }
   if (data.correct && !data.finished) {
-    // What happens if correct bid was made, but not finished
+    // CorrectBid
     presentationText.value = data.explanation;
     biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
     isBidMade.value = false;
   }
-  if(data.finished){
+  if (data.finished) {
+    // BidAnalysisData
     // hade varit nice att animera in buden.
     biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
     setTimeout(() => {
-      pass.value = true
-      solution.value = data.solution
-      nextProblemId.value = data.next_problem_id
+      pass.value = true;
+      solution.value = data.solution;
+      nextProblemId.value = data.next_problem_id;
     }, 500);
   }
 }

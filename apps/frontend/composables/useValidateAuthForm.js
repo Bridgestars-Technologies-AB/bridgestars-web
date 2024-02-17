@@ -128,12 +128,12 @@ export default function InitAuthFormValidation(form, callback) {
     // TODO change requirements
     if (!isRequired(password)) {
       showError(passwordEl, t("auth:error:password.blankSignup"));
-    } else if (password.search(/[a-z]/) < 0) {
-      showError(passwordEl, t("auth:error:password.atLeastLower"));
-    } else if (password.search(/[A-Z]/) < 0) {
-      showError(passwordEl, t("auth:error:password.atLeastUpper"));
-    } else if (password.search(/[0-9]/) < 0) {
-      showError(passwordEl, t("auth:error:password.atLeastDigit"));
+      // } else if (password.search(/[a-z]/) < 0) {
+      //   showError(passwordEl, t("auth:error:password.atLeastLower"));
+      // } else if (password.search(/[A-Z]/) < 0) {
+      //   showError(passwordEl, t("auth:error:password.atLeastUpper"));
+      // } else if (password.search(/[0-9]/) < 0) {
+      //   showError(passwordEl, t("auth:error:password.atLeastDigit"));
     } else if (password.length < 8) {
       showError(passwordEl, t("auth:error:password.atLeastChar"));
     } else {
@@ -168,7 +168,6 @@ export default function InitAuthFormValidation(form, callback) {
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
-
 
   const isPasswordSecure = (password) => {
     const re = new RegExp("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/");
@@ -219,8 +218,7 @@ export default function InitAuthFormValidation(form, callback) {
     // prevent the form from submitting
     e.preventDefault();
     // validate fields
-    const 
-      isFirstNameValid = checkFirstName(),
+    const isFirstNameValid = checkFirstName(),
       isLastNameValid = checkLastName(),
       isEmailValid = checkEmail(),
       isUsernameValid = checkUsername(),
@@ -255,7 +253,8 @@ export default function InitAuthFormValidation(form, callback) {
       !passwordEl &&
       !passwordConfirmEl &&
       !usernameEl &&
-      !nameEl &&
+      !firstNameEl &&
+      !lastNameEl &&
       !usernameEmailEl;
 
     let isResetValid =
@@ -263,7 +262,8 @@ export default function InitAuthFormValidation(form, callback) {
       isConfirmPasswordValid &&
       !emailEl &&
       !usernameEl &&
-      !nameEl &&
+      !firstNameEl &&
+      !lastNameEl &&
       !usernameEmailEl &&
       !passwordSignInEl;
 
@@ -309,8 +309,8 @@ export default function InitAuthFormValidation(form, callback) {
   };
   function checkAll() {
     if (!hasSubmitted) return;
-    checkFirstName()
-    checkLastName()
+    checkFirstName();
+    checkLastName();
     checkEmail();
     checkUsername();
 

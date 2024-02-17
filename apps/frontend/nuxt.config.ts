@@ -37,9 +37,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@averjs/nuxt-compression",
   ],
-  security:{
-
-  },
+  security: {},
   image: {
     format: ["webp"],
     quality: 85,
