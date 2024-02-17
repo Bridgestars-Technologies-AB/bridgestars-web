@@ -9,10 +9,11 @@ const useUserStore = defineStore("user", {
       return api
         .get<UserData>("user")
         .then((response) => {
+          /* eslint-disable */
           const temp: any = response.data;
           delete temp.email; // don't store email in cookie
-          this.user = temp;
-          //delete this.user;
+          this.user = response.data as Omit<UserData, "email">;
+          /* eslint-enable */
           return response.data;
         })
         .catch((e) => {
@@ -33,6 +34,7 @@ const useUserStore = defineStore("user", {
   },
 });
 
+/* eslint-disable @typescript-eslint/unbound-method */
 const useAuth = () => {
   const store = useUserStore();
 
