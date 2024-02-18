@@ -41,7 +41,7 @@ const players = ["V", "N", "Ö", "S"];
     <div class="w-[100%] h-[2px] bg-dark-400 mb-[7px]"></div>
     <div class="flex flex-row justify-center w-full">
       <div class="flex flex-row flex-wrap w-[97%] px-1">
-        <div v-for="bid in history" class="px-2 w-1/4">
+        <div v-for="bid in history" class="px-1 w-1/4 py-1">
           <game-bidding-block
             :key="bid.rank + bid.suit"
             class="w-full"
