@@ -19,6 +19,7 @@ interface Props {
   player: string;
   nextProblemId: string;
   handsVisible: number;
+  nbrOfStars: number;
 }
 
 const p = defineProps<Props>();
@@ -95,7 +96,11 @@ function getJustify(e: Number) {
               :class="`flex flex-col h-full ${getJustify(e)}`"
             >
               <img
-                src="/bridgestars/game/star.png"
+                :src="
+                  e > nbrOfStars
+                    ? '/bridgestars/game/grayStar.png'
+                    : '/bridgestars/game/star.png'
+                "
                 alt="star"
                 class="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px]"
               />
