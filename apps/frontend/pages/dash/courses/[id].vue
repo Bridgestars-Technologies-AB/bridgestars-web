@@ -9,7 +9,9 @@ const { data: course } = await api.get<GetCourseData>(
 </script>
 
 <template>
-  <div class="flex flex-col items-center space-y-5 w-full h-full">
+  <div
+    class="flex flex-col items-center justify-center space-y-5 w-full h-full"
+  >
     <span class="text-3xl text-dark dark:text-white font-semibold">{{
       course.name
     }}</span>
