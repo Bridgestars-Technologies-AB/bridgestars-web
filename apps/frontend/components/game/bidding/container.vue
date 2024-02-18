@@ -15,7 +15,7 @@ defineProps({ header: String, showImage: Boolean });
 
     <div
       :class="{
-        'sm:flex justify-center pt-3': showImage,
+        'md:flex justify-center pt-3': showImage,
         hidden: true,
       }"
     >

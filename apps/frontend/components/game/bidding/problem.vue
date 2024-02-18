@@ -48,9 +48,7 @@ const biddingBlockClass = "w-[43px] h-[30px]";
   <div class="w-full flex flex-row flex-wrap justify-center">
     <div class="container">
       <game-bidding-container :showImage="true" class="h-full">
-        <div
-          class="w-full h-full flex flex-row justify-center items-start mt-5 px-5"
-        >
+        <div class="w-full h-full flex flex-row justify-center items-start mt-5 px-5">
           <span class="text3 text-dark dark:text-white sm:text-[20px]">
             {{ presentationText }}</span
           >
