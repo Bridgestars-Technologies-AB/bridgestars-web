@@ -61,20 +61,21 @@ function visiblePlayers(): string[] {
 }
 
 //temporary to test ui for different number of hands
-const nbr = ref(1);
+const nbr = ref(2);
 </script>
 
 <template>
-  <div v-if="nbr > 1" :class="`space-y-3`">
+  <!--  FOUR HANDS   -->
+  <div v-if="nbr == 4" :class="`space-y-3`">
     <div class="flex w-full justify-center items-center">
       <game-bidding-hand
-        :class="`${showHand('N') ? '' : 'invisible'}`"
+        :class="`${showHand('N') ? '' : 'hidden'}`"
         :showDeal="false"
         :hand="getHand('N')"
       ></game-bidding-hand>
     </div>
 
-    <div class="flex flex-row space-x-5 items-center justify-center">
+    <div class="flex flex-row items-center justify-between">
       <game-bidding-hand
         :class="`${showHand('W') ? '' : 'invisible'}`"
         :showDeal="false"
@@ -107,17 +108,60 @@ const nbr = ref(1);
 
     <div class="flex justify-center items-center">
       <game-bidding-hand
-        :class="`${showHand('S') ? '' : 'invisible'}`"
+        :class="`${showHand('S') ? '' : 'hidden'}`"
         :showDeal="false"
         :hand="getHand('S')"
       ></game-bidding-hand>
     </div>
   </div>
-  <div v-else :class="`flex flex-row h-full ml-7 items-center`">
-    <div :class="`flex flex-col items-start`">
+
+  <!--  TWO HANDS   -->
+  <div v-else-if="nbr == 2" :class="`space-y-3 p-2`">
+    <div class="flex w-full justify-center items-center">
+      <game-bidding-hand
+        :class="`${showHand('N') ? '' : 'hidden'}`"
+        :showDeal="false"
+        :hand="getHand('N')"
+      ></game-bidding-hand>
+    </div>
+
+    <div class="flex flex-row items-center justify-center">
+      <div
+        class="flex items-center justify-center bg-[#075B0E] w-[80px] h-[80px] rounded-xl"
+      >
+        <div class="flex flex-col w-[90%] h-[90%]">
+          <div class="w-full h-1/3 flex justify-center items-start">
+            <span class="text-white font-bold">N</span>
+          </div>
+          <div class="flex flex-row w-full h-1/3 justify-between items-center">
+            <span class="text-white font-bold">V</span>
+            <span class="text-white font-bold">Ö</span>
+          </div>
+          <div class="w-full h-1/3 flex justify-center items-end">
+            <span class="text-white font-bold">S</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center items-center">
+      <game-bidding-hand
+        :class="`${showHand('S') ? '' : 'hidden'}`"
+        :showDeal="false"
+        :hand="getHand('S')"
+      ></game-bidding-hand>
+    </div>
+  </div>
+
+  <!--  JUST ONE HAND   -->
+  <div
+    v-else
+    :class="`flex flex-row h-full justify-center items-center w-full`"
+  >
+    <div :class="`flex flex-col`">
       <div v-for="index in 4" :key="index" class="flex flex-row items-center">
         <span
-          :class="`mr-[3px] text-[35px] ${Card.toTailwindIcon.get(index - 1)}`"
+          :class="`mr-[3px] text-[30px] ${Card.toTailwindIcon.get(index - 1)}`"
         >
         </span>
         <span

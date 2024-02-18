@@ -27,61 +27,65 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["check", "update:bid"]);
+const emit = defineEmits(["makeBid"]);
 
-const bid = ref(
+const leadingBid = computed(() => 
   props.history && props.history.length > 0
     ? props.history[props.history.length - 1]
     : new Bid(0, 0),
 );
-console.log(bid.value);
 
 function makeBid(bid: Bid) {
-  emit("update:bid", bid);
-  emit("check", bid);
+  emit("makeBid", bid);
   // This is commented out because we dont use the bidding box in this way for bidding-problems
   //historyRef.value.push({ suit: s, rank: r });
 }
 
-const biddingBox = "w-[43px] h-[30px]";
+const biddingBlockClass = "w-[43px] h-[30px]";
 </script>
 <template>
   <!-- <div class="w-[90%] h-[80px] border mb-[20px]"></div> -->
-  <div class="flex flex-row space-x-1 justify-center w-[1100px] h-[450px]">
-    <game-bidding-container :showImage="true" class="container">
-      <div class="w-full h-full flex flex-row justify-start">
-        <span class="text3 text-dark dark:text-white sm:text-[20px] ml-[12px]">
-          {{ presentationText }}</span
-        >
+  <div class="w-full flex flex-row flex-wrap justify-center">
+    <div class="container">
+      <game-bidding-container :showImage="true" class="h-full">
+        <div class="w-full h-full flex flex-row justify-center items-start mt-5 px-5">
+          <span class="text3 text-dark dark:text-white sm:text-[20px]">
+            {{ presentationText }}</span
+          >
+        </div>
+      </game-bidding-container>
+    </div>
+
+    <div class="container">
+      <game-bidding-container class="h-full" header="BUDGIVNING">
+        <game-bidding-history class="w-full h-full lg:w-full lg:h-[90%]"
+          :history="history"
+          :biddingBox="biddingBlockClass"
+        ></game-bidding-history>
+      </game-bidding-container>
+    </div>
+
+      <div class="container">
+        <game-bidding-container class="h-full" header="BUDLÅDA">
+          <game-bidding-box class="w-full lg:w-full lg:h-[70%]"
+            :leadingBid="leadingBid"
+            :history="history"
+            :biddingBlockClass="biddingBlockClass"
+            @makeBid="makeBid"
+          />
+        </game-bidding-container>
       </div>
-    </game-bidding-container>
 
-    <game-bidding-container class="container" header="BUDGIVNING">
-      <game-bidding-history
-        :history="history"
-        class="w-full h-full lg:w-full lg:h-[70%]"
-        :biddingBox="biddingBox"
-      ></game-bidding-history>
-    </game-bidding-container>
-
-    <game-bidding-container class="container" header="BUDLÅDA">
-      <game-bidding-box
-        v-model:bid="bid"
-        :history="history"
-        class="w-full lg:w-full lg:h-[70%]"
-        :biddingBox="biddingBox"
-        @bid="makeBid"
-      />
-    </game-bidding-container>
-
-    <game-bidding-container class="container" header="DIN HAND">
-      <game-bidding-showHands
-        :handsVisible="handsVisible"
-        :hands="hands"
-        :player="player"
-      >
-      </game-bidding-showHands>
-    </game-bidding-container>
+      <div class="container">
+        <game-bidding-container class="h-full" header="DIN HAND">
+          <game-bidding-showHands
+            :handsVisible="handsVisible"
+            :hands="hands"
+            :player="player"
+          >
+          </game-bidding-showHands>
+        </game-bidding-container>
+      </div>
   </div>
 </template>
 
@@ -97,8 +101,9 @@ const biddingBox = "w-[43px] h-[30px]";
 /* } */
 
 .container {
-  @apply h-full w-[33%];
+  @apply h-1/4 md:h-[450px] w-full md:w-1/2 lg:w-1/4 p-0.5;
 }
+
 </style>
 
 <!--   sm:w-[100%]  max-w-[1000px] 
