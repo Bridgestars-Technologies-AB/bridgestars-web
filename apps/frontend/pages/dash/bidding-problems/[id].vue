@@ -139,7 +139,7 @@ async function check(playedBid: Bid) {
         }`"
       >
         <div
-          :class="`w-1/2 h-[100px] bg-white dark:bg-dark-100 rounded-xl flex flex-col justify-center items-center`"
+          :class="`w-1/2 h-[130px] bg-white dark:bg-dark-100 rounded-xl flex flex-col justify-center items-center`"
         >
           <div class="flex flex-row justify-center items-center">
             <span class="text-[20px] text-dark dark:text-white">
@@ -154,14 +154,14 @@ async function check(playedBid: Bid) {
           </span>
         </div>
         <div
-          class="w-1/2 pt-2 px-2 text-center h-[100px] bg-white dark:bg-dark-100 rounded-xl flex flex-col justify-center items-center space-y-2"
+          class="w-1/2 pt-2 px-2 text-center h-[130px] bg-white dark:bg-dark-100 rounded-xl flex flex-col justify-center items-center space-y-2"
         >
           <span class="text-[16px] text-dark dark:text-light"
             >Om du kört fast på en giv, klicka nedan för att komma till
             lösningen.</span
           >
           <button
-            class="w-[150px] h-[40px] bg-[#0e9f6e] rounded-xl text-white dark:text-white font-semibold"
+            class="w-[150px] h-[40px] bg-[#0e9f6e] rounded-xl text-white dark:text-white font-semibold p-2"
             @click="surrender"
           >
             Se lösningen

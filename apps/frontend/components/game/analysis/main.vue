@@ -70,17 +70,52 @@ function getJustify(e: Number) {
     <!-- Here comes div for all boxes -->
     <div class="flex flex-col h-[90%] lg-flex lg:flex-row lg:w-full">
       <!-- First container -->
-      <div class="bg-white dark:bg-dark-100 w-1/3 h-full flex flex-col justify-center">
-        <div class="w-full flex justify-center items-center">
-          <span v-if="handsVisible === 1" class="header">Din hand</span>
+      <div
+        class="w-full h-[30%] bg-white dark:bg-dark-100 flex flex-col items-center lg:justify-center lg:h-full lg:w-1/3"
+      >
+        <div
+          class="w-full h-[10%] flex flex-row justify-center mb-[8px] lg:mb-[10px] lg:h-[5%]"
+        >
+          <span class="header"> Korrekt Slutbud </span>
         </div>
 
-        <game-bidding-showHands
-          :handsVisible="handsVisible"
-          :hands="hands"
-          :player="player"
-        >
-        </game-bidding-showHands>
+        <div class="w-full h-[95%] flex flex-col items-center">
+          <game-analysis-bid
+            :bid="solution"
+            :player="player"
+            size="w-[90px] h-[50px]"
+          ></game-analysis-bid>
+          <!-- Placeholder for star img -->
+          <div
+            class="w-auto h-[35px] sm:h-[60px] flex flex-row mb-[3px] mt-[5px]"
+          >
+            <div
+              v-for="e in 3"
+              :key="e"
+              :class="`flex flex-col h-full ${getJustify(e)}`"
+            >
+              <img
+                src="/bridgestars/game/star.png"
+                alt="star"
+                class="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px]"
+              />
+            </div>
+          </div>
+
+          <!-- Line -->
+          <div
+            class="w-[90%] h-[2px] bg-dark-500 dark:bg-dark-400 mb-[2px] mt-[5px]"
+          ></div>
+
+          <div class="w-full flex flex-row justify-center">
+            <div class="w-[95%] ml-[10px]">
+              <span
+                class="text1 text-dark dark:text-light leading-tight text-[16px] tracking-wide sm:text-[19px] md:text-[18px]"
+                >{{ biddingAnswer }}</span
+              >
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Line -->
@@ -120,49 +155,18 @@ function getJustify(e: Number) {
 
       <!-- Third container -->
       <div
-        class="w-full h-[30%] bg-white dark:bg-dark-100 flex flex-col items-center lg:justify-center lg:h-full lg:w-1/3"
+        class="bg-white dark:bg-dark-100 w-1/3 h-full flex flex-col justify-center"
       >
-        <div
-          class="w-full h-[10%] flex flex-row justify-center mb-[8px] lg:mb-[10px] lg:h-[5%]"
+        <div class="w-full flex justify-center items-center">
+          <span v-if="handsVisible === 1" class="header">Din hand</span>
+        </div>
+
+        <game-bidding-showHands
+          :handsVisible="handsVisible"
+          :hands="hands"
+          :player="player"
         >
-          <span class="header"> Korrekt Slutbud </span>
-        </div>
-
-        <div class="w-full h-[95%] flex flex-col items-center">
-          <game-analysis-bid
-            :bid="solution"
-            :player="player"
-            size="w-[90px] h-[50px]"
-          ></game-analysis-bid>
-          <!-- Placeholder for star img -->
-          <div
-            class="w-auto h-[35px] sm:h-[60px] flex flex-row mb-[3px] mt-[5px]"
-          >
-            <div
-              v-for="e in 3"
-              :key="e"
-              :class="`flex flex-col h-full ${getJustify(e)}`"
-            >
-              <img
-                src="/bridgestars/game/star.png"
-                alt="star"
-                class="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px]"
-              />
-            </div>
-          </div>
-
-          <!-- Line -->
-          <div class="w-[90%] h-[2px] bg-dark-500 dark:bg-dark-400 mb-[2px] mt-[5px]"></div>
-
-          <div class="w-full flex flex-row justify-center">
-            <div class="w-[95%] ml-[10px]">
-              <span
-                class="text1 text-dark dark:text-light leading-tight text-[16px] tracking-wide sm:text-[19px] md:text-[18px]"
-                >{{ biddingAnswer }}</span
-              >
-            </div>
-          </div>
-        </div>
+        </game-bidding-showHands>
       </div>
     </div>
   </div>
