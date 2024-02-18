@@ -110,6 +110,9 @@ const biddingBlockClass = "w-[43px] h-[30px]";
 .container {
   @apply h-1/4 md:h-[450px] w-full md:w-1/2 lg:w-1/4 p-0.5;
 }
+div {
+  @apply transition-colors duration-300;
+}
 </style>
 
 <!--   sm:w-[100%]  max-w-[1000px] 

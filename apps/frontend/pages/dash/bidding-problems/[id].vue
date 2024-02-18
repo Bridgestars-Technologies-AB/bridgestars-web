@@ -108,9 +108,9 @@ async function check(playedBid: Bid) {
     >
       <!-- 1 av 10 -->
       <div
-        class="w-1/2 max-w-[800px] min-w-[200px] h-[50px] mb-1 bg-dark-100 rounded-xl flex justify-center items-center"
+        class="w-1/2 max-w-[800px] min-w-[200px] h-[50px] mb-1 bg-white dark:bg-dark-100 rounded-xl flex justify-center items-center"
       >
-        <span class="text-[30px] text-dark dark:text-white"
+        <span class="text-[30px] text-dark dark:text-dark dark:text-white"
           >Giv {{ biddingProblem.number }} av {{ biddingProblem.total }}</span
         >
       </div>
@@ -133,7 +133,7 @@ async function check(playedBid: Bid) {
         }`"
       >
         <div
-          :class="`w-1/2 h-[100px] bg-dark-100 rounded-xl flex flex-col justify-center items-center`"
+          :class="`w-1/2 h-[100px] bg-white dark:bg-dark-100 rounded-xl flex flex-col justify-center items-center`"
         >
           <div class="flex flex-row justify-center items-center">
             <span class="text-[20px] text-dark dark:text-white">
@@ -148,17 +148,17 @@ async function check(playedBid: Bid) {
           </span>
         </div>
         <div
-          class="w-1/2 h-[100px] bg-dark-100 rounded-xl flex flex-col justify-center items-center space-y-2"
+          class="w-1/2 pt-2 px-2 text-center h-[100px] bg-white dark:bg-dark-100 rounded-xl flex flex-col justify-center items-center space-y-2"
         >
-          <span class="text-[16px] text-dark dark:text-white"
+          <span class="text-[16px] text-dark dark:text-light"
             >Om du kört fast på en giv, klicka nedan för att komma till
-            lösningen</span
+            lösningen.</span
           >
           <button
-            class="w-[150px] h-[40px] bg-[#0e9f6e] rounded-xl text-dark dark:text-white font-semibold"
+            class="w-[150px] h-[40px] bg-[#0e9f6e] rounded-xl text-white dark:text-white font-semibold"
             @click="surrender"
           >
-            Gå till lösning
+            Se lösningen
           </button>
         </div>
       </div>
@@ -176,3 +176,8 @@ async function check(playedBid: Bid) {
     </div>
   </div>
 </template>
+<style scoped>
+div, span {
+  @apply transition-colors duration-300;
+}
+</style>

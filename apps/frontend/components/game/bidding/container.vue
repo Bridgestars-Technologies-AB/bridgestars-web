@@ -8,7 +8,7 @@ defineProps({ header: String, showImage: Boolean });
       class="w-full h-[15%] flex flex-row justify-center items-center mt-[10px] mb-[5px]"
     >
       <span
-        class="text-[22px] items-center text-dark dark:text-white font-semibold h-auto"
+        class="transition-colors duration-300 text-[22px] items-center text-dark dark:text-white font-semibold h-auto"
         >{{ header }}</span
       >
     </div>

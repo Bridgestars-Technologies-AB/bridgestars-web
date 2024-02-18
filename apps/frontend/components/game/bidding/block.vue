@@ -34,7 +34,7 @@ const pointer = computed(
 );
 
 const bg = computed(() =>
-  !clickable && bid.explanation !== "" ? "bg-[#e3b43e]" : "bg-dark-200",
+  !clickable && bid.explanation !== "" ? "bg-[#e3b43e]" : "bg-light-500 dark:bg-dark-200",
 );
 
 const disabled = computed(() => inBiddingBox && !bid.isValid(leadingBid));
@@ -46,9 +46,10 @@ const hover = ref(false);
   <div
     v-if="inBiddingBox && !disabled && !bid.is('PASS')"
     :class="{
-      'w-1/5 max-w-[50px] min-w-[34px] h-full top-0 bg-dark-200 translate-y-[5px] absolute z-[0]':true,
+      'w-1/5 max-w-[50px] min-w-[34px] h-full top-0 translate-y-[5px] absolute z-[0]':true,
       'rounded-br-md': bid.rank === 7 && bid.suit === 0,
       'rounded-bl-md': bid.rank === 7 && bid.suit === 4,
+      [`${bg}`]: true
     }"
   ></div>
   <div
@@ -69,7 +70,7 @@ const hover = ref(false);
     <div
       :class="{
         [`${pointer} w-full h-full ${bg} ${isPass}`]: true,
-        'rounded-t-lg border-t-[1px] border-dark-500':
+        'rounded-t-lg border-t-[1px] border-light-200 dark:border-dark-500':
           inBiddingBox && !bid.is('PASS'),
         'rounded-md': !inBiddingBox || bid.is('PASS'),
       }"
@@ -85,3 +86,8 @@ const hover = ref(false);
     >
   </div>
 </template>
+<style scoped>
+div {
+  @apply transition-colors duration-300;
+}
+</style>

@@ -40,7 +40,7 @@ function getJustify(e: Number) {
 </script>
 <template>
   <div
-    class="h-full w-full flex flex-col bg-dark-100 max-w-[1000px] lg:h-[500px]"
+    class="h-full w-full flex flex-col bg-white dark:bg-dark-100 max-w-[1000px] lg:h-[500px]"
   >
     <div
       class="w-full flex flex-col justify-center items-center h-[6%] lg:items-start lg:h-[10%]"
@@ -48,7 +48,7 @@ function getJustify(e: Number) {
       <div class="w-full flex flex-row justify-between items-center my-[2px]">
         <span class="header flex-grow-1 mx-[10px]"> Analys </span>
         <div
-          class="rounded-xl bg-dark-200 mx-[10px] flex items-center justify-center mb-1"
+          class="rounded-xl bg-light-500 dark:bg-dark-200 mx-[10px] flex items-center justify-center mb-1"
         >
           <button
             class="header p-[9px]"
@@ -64,13 +64,13 @@ function getJustify(e: Number) {
         </div>
       </div>
 
-      <div class="w-full h-[2px] bg-dark-400"></div>
+      <div class="w-full h-[2px] bg-dark-500 dark:bg-dark-400"></div>
     </div>
 
     <!-- Here comes div for all boxes -->
     <div class="flex flex-col h-[90%] lg-flex lg:flex-row lg:w-full">
       <!-- First container -->
-      <div class="bg-dark-100 w-1/3 h-full flex flex-col justify-center">
+      <div class="bg-white dark:bg-dark-100 w-1/3 h-full flex flex-col justify-center">
         <div class="w-full flex justify-center items-center">
           <span v-if="handsVisible === 1" class="header">Din hand</span>
         </div>
@@ -85,12 +85,12 @@ function getJustify(e: Number) {
 
       <!-- Line -->
       <div
-        class="w-[90%] h-[2px] bg-dark-400 self-center lg:h-[95%] lg:w-[2px]"
+        class="w-[90%] h-[2px] bg-dark-500 dark:bg-dark-400 self-center lg:h-[95%] lg:w-[2px]"
       ></div>
 
       <!-- Second container -->
       <div
-        class="w-full h-[40%] bg-dark-100 flex flex-col items-center justify-center space-y-1 lg:w-1/3 lg:h-full"
+        class="w-full h-[40%] bg-white dark:bg-dark-100 flex flex-col items-center justify-center space-y-1 lg:w-1/3 lg:h-full"
       >
         <div class="w-full flex flex-row justify-center h-[10%] lg:h-[5%]">
           <span class="header"> Budgivning </span>
@@ -115,12 +115,12 @@ function getJustify(e: Number) {
 
       <!-- Line -->
       <div
-        class="w-[90%] h-[2px] bg-dark-400 self-center mb-[5px] lg:h-[95%] lg:w-[2px]"
+        class="w-[90%] h-[2px] bg-dark-500 dark:bg-dark-400 self-center mb-[5px] lg:h-[95%] lg:w-[2px]"
       ></div>
 
       <!-- Third container -->
       <div
-        class="w-full h-[30%] bg-dark-100 flex flex-col items-center lg:justify-center lg:h-full lg:w-1/3"
+        class="w-full h-[30%] bg-white dark:bg-dark-100 flex flex-col items-center lg:justify-center lg:h-full lg:w-1/3"
       >
         <div
           class="w-full h-[10%] flex flex-row justify-center mb-[8px] lg:mb-[10px] lg:h-[5%]"
@@ -152,12 +152,12 @@ function getJustify(e: Number) {
           </div>
 
           <!-- Line -->
-          <div class="w-[90%] h-[2px] bg-dark-400 mb-[2px] mt-[5px]"></div>
+          <div class="w-[90%] h-[2px] bg-dark-500 dark:bg-dark-400 mb-[2px] mt-[5px]"></div>
 
           <div class="w-full flex flex-row justify-center">
             <div class="w-[95%] ml-[10px]">
               <span
-                class="text1 !text-[#FFFEFA] leading-tight text-[16px] tracking-wide sm:text-[19px] md:text-[18px]"
+                class="text1 text-dark dark:text-light leading-tight text-[16px] tracking-wide sm:text-[19px] md:text-[18px]"
                 >{{ biddingAnswer }}</span
               >
             </div>
@@ -170,6 +170,9 @@ function getJustify(e: Number) {
 
 <style scoped>
 .header {
-  @apply text-white text-[20px] items-center font-semibold h-auto;
+  @apply text-dark dark:text-white text-[20px] items-center font-semibold h-auto;
+}
+div {
+  @apply transition-colors duration-300;
 }
 </style>

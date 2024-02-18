@@ -40,3 +40,8 @@ const suitNames = ["spades", "hearts", "diamonds", "clubs"];
   </div>
   <!-- text-[${suitColors[index]}] -->
 </template>
+<style scoped>
+span {
+  @apply transition-colors duration-300; 
+}
+</style>
