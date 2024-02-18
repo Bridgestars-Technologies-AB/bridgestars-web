@@ -11,19 +11,18 @@ const route = useRoute();
 
 const { data } = await api.get(`bidding-problems/${route.params.id}`);
 const biddingProblem = data as BiddingProblemData;
-console.log(biddingProblem.dealer);
 
 // this function will create the correct history depending on who the dealer is
 // inserting as many "invisible" blocks as needed
 function createHistory(history: Array<Bid>): Array<Bid> {
   const dealer = biddingProblem.dealer;
-  if (dealer === "W") {
+  if (dealer === "N") {
     return [Bid.placeholder(), history].flat();
   }
-  if (dealer === "N") {
+  if (dealer === "E") {
     return [Bid.placeholder(), Bid.placeholder(), history].flat();
   }
-  if (dealer === "E") {
+  if (dealer === "S") {
     return [
       Bid.placeholder(),
       Bid.placeholder(),
@@ -36,6 +35,8 @@ function createHistory(history: Array<Bid>): Array<Bid> {
 
 // used as v-model to be able to see the latest bid made
 const bid = ref(new Bid(0, 0));
+
+console.log(biddingProblem.dealer);
 
 // refs to keep track of the state of the problem
 const isBidMade = ref(false);
@@ -177,7 +178,8 @@ async function check(playedBid: Bid) {
   </div>
 </template>
 <style scoped>
-div, span {
+div,
+span {
   @apply transition-colors duration-300;
 }
 </style>
