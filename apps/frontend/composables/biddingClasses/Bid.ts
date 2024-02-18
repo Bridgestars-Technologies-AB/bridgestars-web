@@ -99,7 +99,7 @@ export class Bid {
   }
 
   // This function creates a Bid object from a string representation of a bid
-  public static fromString(bid: string, explanation: string): Bid {
+  public static fromString(bid: string, explanation: string = ""): Bid {
     let suit = 0;
     let rank = 0;
     if (bid === "PASS") {

@@ -52,6 +52,9 @@ const solution = ref("");
 const nextProblemId = ref("");
 const hands = biddingProblem.cards.map((hand) => new Hand(hand));
 
+//contract received when the problem is finished
+const contract = ref(new Bid(0, 0));
+
 const surrender = async () => {
   // will add types later
   const { data } = await api.post<BidAnalysisData>(
@@ -62,6 +65,7 @@ const surrender = async () => {
   solution.value = data.solution;
   nextProblemId.value = data.next_problem_id;
   biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
+  contract.value = Bid.fromString(data.contract);
 };
 
 // Checks if solution is correct
@@ -92,6 +96,7 @@ async function check(playedBid: Bid) {
     // BidAnalysisData
     // hade varit nice att animera in buden.
     biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
+    contract.value = Bid.fromString(data.contract);
     setTimeout(() => {
       pass.value = true;
       solution.value = data.solution;
@@ -168,7 +173,7 @@ async function check(playedBid: Bid) {
       <game-analysis-main
         :biddingResult="biddingHistory"
         :hands="hands"
-        :solution="bid"
+        :solution="contract"
         :player="biddingProblem.player"
         :handsVisible="biddingProblem.hands_visible"
         :biddingAnswer="solution"
