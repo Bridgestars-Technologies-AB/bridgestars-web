@@ -6,7 +6,7 @@ const p = defineProps({
     type: Array<Hand>,
     required: true,
   },
-  handsVisable: {
+  handsVisible: {
     type: Number,
     default: 2,
   },
@@ -51,9 +51,9 @@ function showHand(player: string): boolean {
 
 // function returning which players hands are visible
 function visiblePlayers(): string[] {
-  if (p.handsVisable === 1) {
+  if (p.handsVisible === 1) {
     return [p.player];
-  } else if (p.handsVisable === 2) {
+  } else if (p.handsVisible === 2) {
     return [p.player, getPartner(p.player)];
   } else {
     return ["N", "E", "S", "W"];
@@ -65,7 +65,7 @@ const nbr = ref(1);
 </script>
 
 <template>
-  <div v-if="handsVisable > 1" :class="`space-y-3`">
+  <div v-if="nbr > 1" :class="`space-y-3`">
     <div class="flex w-full justify-center items-center">
       <game-bidding-hand
         :class="`${showHand('N') ? '' : 'invisible'}`"
@@ -117,11 +117,11 @@ const nbr = ref(1);
     <div :class="`flex flex-col items-start`">
       <div v-for="index in 4" :key="index" class="flex flex-row items-center">
         <span
-          :class="`mr-[3px] text-[35px] ${Card.suitsToTailwind.get(index - 1)}`"
+          :class="`mr-[3px] text-[35px] ${Card.toTailwindIcon.get(index - 1)}`"
         >
         </span>
         <span
-          class="text-[32px] font-semibold text-dark dark:text-white tracking-[1px]"
+          class="text-[25px] font-semibold text-dark dark:text-white tracking-[1px]"
           >{{ getHand().toString(suitNames[index - 1]) }}
         </span>
       </div>
