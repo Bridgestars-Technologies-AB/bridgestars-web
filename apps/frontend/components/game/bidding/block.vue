@@ -1,7 +1,7 @@
 <!-- Currently, const pointer and const opacity has commented code which stops block from being disabled -->
 
 <script setup lang="ts">
-const { bid, leadingBid, size, clickable, inBiddingBox } = defineProps({
+const props = defineProps({
   bid: {
     type: Bid,
     default: new Bid(0, 0),
@@ -24,20 +24,25 @@ const { bid, leadingBid, size, clickable, inBiddingBox } = defineProps({
 //   (event: "click", card: Card): void;
 // }>();
 const emit = defineEmits(["click"]);
+ watch(() => props.leadingBid, () => {
+  console.log("bid changed");
+});
 
 //used to make the block green if the card is {suit:0, rank:0}
-const isPass = computed(() => (bid.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar inte varför den behöver "!"
+const isPass = computed(() => (props.bid.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar inte varför den behöver "!"
+
+const isValid = computed(() => props.bid.isValid(props.leadingBid));
 
 const pointer = computed(
-  () => (clickable && bid.isValid(leadingBid) ? "" : "pointer-events-none"),
+  () => (props.clickable && isValid.value ? "" : "pointer-events-none"),
   //"",
 );
 
 const bg = computed(() =>
-  !clickable && bid.explanation !== "" ? "bg-[#e3b43e]" : "bg-light-500 dark:bg-dark-200",
+  !props.clickable && props.bid.explanation !== "" ? "bg-[#e3b43e]" : "bg-light-500 dark:bg-dark-200",
 );
 
-const disabled = computed(() => inBiddingBox && !bid.isValid(leadingBid));
+const disabled = computed(() => props.inBiddingBox && !isValid.value);
 
 const hover = ref(false);
 </script>

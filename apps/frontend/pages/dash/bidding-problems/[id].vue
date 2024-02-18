@@ -36,8 +36,6 @@ function createHistory(history: Array<Bid>): Array<Bid> {
 // used as v-model to be able to see the latest bid made
 const bid = ref(new Bid(0, 0));
 
-console.log(biddingProblem.dealer);
-
 // refs to keep track of the state of the problem
 const isBidMade = ref(false);
 const pass = ref(false);

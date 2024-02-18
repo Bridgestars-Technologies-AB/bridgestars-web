@@ -29,20 +29,17 @@ const props = defineProps({
 
 const emit = defineEmits(["makeBid"]);
 
-const bidsWithoutPass = ref(props.history?.filter((bid) => !bid.is("PASS")));
-
-// kanske inte blev så snyggt men nu borde det vara bra
-const leadingBidOrUndefined = ref(
-  bidsWithoutPass.value &&
-    bidsWithoutPass.value[bidsWithoutPass.value?.length - 1],
-);
-
-const leadingBid: Ref<Bid> = ref(leadingBidOrUndefined.value || new Bid(0, 0));
+const leadingBid = computed(() => {
+  const withoutPass = props.history?.filter((bid) => !bid.is("PASS"));
+  const leading = withoutPass && withoutPass[withoutPass?.length - 1];
+  console.log(leading)
+  return leading || new Bid(0, 0);
+});
 
 function makeBid(bid: Bid) {
   emit("makeBid", bid);
   // This is commented out because we dont use the bidding box in this way for bidding-problems
-  //historyRef.value.push({ suit: s, rank: r });
+  // historyRef.value.push({ suit: s, rank: r });
 }
 
 const biddingBlockClass = "w-[43px] h-[30px]";

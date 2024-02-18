@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { bid, player, size } = defineProps({
+const props = defineProps({
   bid: {
     type: Bid,
     default: new Bid(0, 0),
@@ -14,7 +14,7 @@ const { bid, player, size } = defineProps({
 });
 
 function getPlayerName(): String {
-  switch (player) {
+  switch (props.player) {
     case "W":
       return "Väst";
     case "N":
