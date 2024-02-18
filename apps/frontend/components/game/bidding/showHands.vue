@@ -82,22 +82,10 @@ const nbr = ref(2);
         :hand="getHand('W')"
       ></game-bidding-hand>
 
-      <div
-        class="flex items-center justify-center bg-[#075B0E] w-[80px] h-[80px] rounded-xl"
-      >
-        <div class="flex flex-col w-[90%] h-[90%]">
-          <div class="w-full h-1/3 flex justify-center items-start">
-            <span class="text-white font-bold">N</span>
-          </div>
-          <div class="flex flex-row w-full h-1/3 justify-between items-center">
-            <span class="text-white font-bold">V</span>
-            <span class="text-white font-bold">Ö</span>
-          </div>
-          <div class="w-full h-1/3 flex justify-center items-end">
-            <span class="text-white font-bold">S</span>
-          </div>
-        </div>
-      </div>
+      <game-bidding-table-compass
+        :class="`w-[80px] h-[80px] rounded-xl`"
+        :player="p.player"
+      />
 
       <game-bidding-hand
         :class="`${showHand('E') ? '' : 'invisible'}`"
@@ -126,22 +114,10 @@ const nbr = ref(2);
     </div>
 
     <div class="flex flex-row items-center justify-center">
-      <div
-        class="flex items-center justify-center bg-[#075B0E] w-[80px] h-[80px] rounded-xl"
-      >
-        <div class="flex flex-col w-[90%] h-[90%]">
-          <div class="w-full h-1/3 flex justify-center items-start">
-            <span class="text-white font-bold">N</span>
-          </div>
-          <div class="flex flex-row w-full h-1/3 justify-between items-center">
-            <span class="text-white font-bold">V</span>
-            <span class="text-white font-bold">Ö</span>
-          </div>
-          <div class="w-full h-1/3 flex justify-center items-end">
-            <span class="text-white font-bold">S</span>
-          </div>
-        </div>
-      </div>
+      <game-bidding-table-compass
+        :class="`w-[80px] h-[80px] rounded-xl`"
+        :player="p.player"
+      />
     </div>
 
     <div class="flex justify-center items-center">

@@ -32,7 +32,7 @@ const emit = defineEmits(["makeBid"]);
 const leadingBid = computed(() => {
   const withoutPass = props.history?.filter((bid) => !bid.is("PASS"));
   const leading = withoutPass && withoutPass[withoutPass?.length - 1];
-  console.log(leading)
+  console.log(leading);
   return leading || new Bid(0, 0);
 });
 

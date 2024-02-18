@@ -42,6 +42,6 @@ const suitNames = ["spades", "hearts", "diamonds", "clubs"];
 </template>
 <style scoped>
 span {
-  @apply transition-colors duration-300; 
+  @apply transition-colors duration-300;
 }
 </style>
