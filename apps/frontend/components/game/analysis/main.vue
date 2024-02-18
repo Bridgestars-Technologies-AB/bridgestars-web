@@ -40,7 +40,7 @@ function getJustify(e: Number) {
 </script>
 <template>
   <div
-    class="h-[100%] w-[100%] flex flex-col bg-dark-100 lg:w-[1000px] lg:h-[500px]"
+    class="h-full w-full flex flex-col bg-dark-100 max-w-[1000px] lg:h-[500px]"
   >
     <div
       class="w-full flex flex-col justify-center items-center h-[6%] lg:items-start lg:h-[10%]"

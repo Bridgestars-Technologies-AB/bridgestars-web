@@ -14,16 +14,13 @@ defineProps({ header: String, showImage: Boolean });
     </div>
 
     <div
-      :class="`flex flex-row justify-start items-center w-[60%] h-[80%] ${
-        showImage ? 'hidden lg:block' : 'hidden'
-      }`"
+      :class="{
+        'sm:flex justify-center pt-3': showImage,
+        hidden: true,
+      }"
     >
-      <div class="w-[100%] h-[100%] ml-[25px]">
-        <img
-          alt="owl"
-          src="/bridgestars/game/owls/owl-1.png"
-          class="scale-[1]"
-        />
+      <div class="w-[60%] max-w-[200px]">
+        <img alt="owl" src="/bridgestars/game/owls/owl-1.png" class="" />
       </div>
     </div>
 

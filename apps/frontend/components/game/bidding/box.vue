@@ -14,28 +14,27 @@ Emits:
 <script setup lang="ts">
 import { Bid } from "~/composables/biddingClasses/Bid";
 
-const { bid } = defineProps({
-  bid: {
+defineProps({
+  leadingBid: {
     type: Bid,
     required: true,
   },
-  biddingBox: String,
+  biddingBlockClass: String,
   history: {
     type: Array<Bid>,
     default: () => [new Bid(0, 0)],
   },
 });
-const emit = defineEmits(["bid", "update:bid"]);
+const emit = defineEmits(["makeBid"]);
 
 function makeBid(bid: Bid) {
-  emit("update:bid", bid);
-  emit("bid", bid);
+  emit("makeBid", bid);
 }
 </script>
 
 <template>
   <!-- "Component" for larger devices -->
-  <div class="hidden lg:block">
+  <div class="hidden md:block">
     <div :class="'flex flex-col space-y-1 ' + $attrs.class">
       <div
         v-for="r in 7"
@@ -49,7 +48,7 @@ function makeBid(bid: Bid) {
         >
           <game-bidding-block
             :bid="new Bid(s - 1, r)"
-            :size="biddingBox"
+            :size="biddingBlockClass"
             :latestBid="history[history.length - 1]"
             @click="makeBid"
           ></game-bidding-block>
@@ -58,10 +57,19 @@ function makeBid(bid: Bid) {
       <div class="w-full flex flex-row justify-center">
         <game-bidding-block
           :bid="new Bid(0, 0)"
-          :size="biddingBox"
+          :size="biddingBlockClass"
           @click="makeBid"
         ></game-bidding-block>
       </div>
     </div>
   </div>
+
+  <game-bidding-mobile-box
+    class="block md:hidden"
+    :leadingBid="leadingBid"
+    :biddingBlockClass="biddingBlockClass"
+    :history="history"
+    @makeBid="makeBid"
+  />
+    <!-- "Component" smaller devices -->
 </template>
