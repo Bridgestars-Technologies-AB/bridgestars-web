@@ -40,15 +40,16 @@ const players = ["V", "N", "Ö", "S"];
     </div>
     <div class="w-[100%] h-[2px] bg-dark-400 mb-[7px]"></div>
     <div class="flex flex-row justify-center w-full">
-      <div class="flex flex-row flex-wrap w-[97%]">
-        <game-bidding-block
-          v-for="bid in history"
-          :key="bid.rank + bid.suit"
-          class="w-[24%]"
-          :bid="bid"
-          :size="biddingBox"
-          :clickable="false"
-        ></game-bidding-block>
+      <div class="flex flex-row flex-wrap w-[97%] px-1">
+        <div v-for="bid in history" class="px-2 w-1/4">
+          <game-bidding-block
+            :key="bid.rank + bid.suit"
+            class="w-full"
+            :bid="bid"
+            :size="biddingBox"
+            :clickable="false"
+          ></game-bidding-block>
+        </div>
       </div>
     </div>
   </div>

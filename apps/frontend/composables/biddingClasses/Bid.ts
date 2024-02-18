@@ -32,7 +32,6 @@ export class Bid {
     if (this.rank > 7) {
       return false;
     }
-
     return (
       this.rank > bid.rank || (this.suit > bid.suit && this.rank === bid.rank)
     );

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Bid } from "~/composables/biddingClasses/Bid";
 
-const {leadingBid} = defineProps({
+const { leadingBid } = defineProps({
   leadingBid: {
     type: Bid,
     required: true,
@@ -31,9 +31,7 @@ const biddingArray = ref([1, 2, 3, 4, 5, 6, 7]);
         v-for="e in biddingArray"
         :key="e"
         :class="`cursor-pointer rounded-t-[8px] bg-dark-100 border-t border-x border-light-100 w-[45px] h-[40px] sm:w-[50px] sm:h-[45px] flex justify-center items-center ${
-          rank === e
-            ? 'z-[0.9] mb-[-1px]'
-            : 'bg-dark-200 mb-[-8px] z-[0.8]'
+          rank === e ? 'z-[0.9] mb-[-1px]' : 'bg-dark-200 mb-[-8px] z-[0.8]'
         }`"
         @click="rank = e"
       >
@@ -50,7 +48,7 @@ const biddingArray = ref([1, 2, 3, 4, 5, 6, 7]);
           <game-bidding-block
             :bid="new Bid(e - 1, rank)"
             :size="biddingBlockClass"
-            :latestBid="history[history.length - 1]"
+            :leadingBid="leadingBid"
             @click="makeBid"
           ></game-bidding-block>
         </div>
