@@ -22,9 +22,10 @@ defineProps({
       >
     </div>
     <div v-else class="w-full h-full flex flex-row justify-center items-center">
-      <span class="biddingText1 text-dark dark:text-light text1 tracking-[2px] cursor-pointer">{{
-        bid.rank
-      }}</span>
+      <span
+        class="biddingText1 text-dark dark:text-light text1 tracking-[2px] cursor-pointer"
+        >{{ bid.rank }}</span
+      >
       <span
         v-if="bid.is('NT')"
         class="text1 text-dark dark:text-light cursor-pointer biddingText3 m-0 p-0"

@@ -14,7 +14,7 @@ Emits:
 <script setup lang="ts">
 import { Bid } from "~/composables/biddingClasses/Bid";
 
-defineProps({
+const props = defineProps({
   leadingBid: {
     type: Bid,
     required: true,
@@ -28,6 +28,7 @@ defineProps({
     default: () => [new Bid(0, 0)],
   },
 });
+
 const emit = defineEmits(["makeBid"]);
 
 function makeBid(bid: Bid) {

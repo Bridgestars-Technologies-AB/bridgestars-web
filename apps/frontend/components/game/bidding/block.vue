@@ -1,7 +1,7 @@
 <!-- Currently, const pointer and const opacity has commented code which stops block from being disabled -->
 
 <script setup lang="ts">
-const { bid, leadingBid, size, clickable, inBiddingBox } = defineProps({
+const props = defineProps({
   bid: {
     type: Bid,
     default: new Bid(0, 0),
@@ -24,20 +24,30 @@ const { bid, leadingBid, size, clickable, inBiddingBox } = defineProps({
 //   (event: "click", card: Card): void;
 // }>();
 const emit = defineEmits(["click"]);
+watch(
+  () => props.leadingBid,
+  () => {
+    console.log("bid changed");
+  },
+);
 
 //used to make the block green if the card is {suit:0, rank:0}
-const isPass = computed(() => (bid.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar inte varför den behöver "!"
+const isPass = computed(() => (props.bid.is("PASS") ? "!bg-[#0E9F6E]" : "")); // fattar inte varför den behöver "!"
+
+const isValid = computed(() => props.bid.isValid(props.leadingBid));
 
 const pointer = computed(
-  () => (clickable && bid.isValid(leadingBid) ? "" : "pointer-events-none"),
+  () => (props.clickable && isValid.value ? "" : "pointer-events-none"),
   //"",
 );
 
 const bg = computed(() =>
-  !clickable && bid.explanation !== "" ? "bg-[#e3b43e]" : "bg-light-500 dark:bg-dark-200",
+  !props.clickable && props.bid.explanation !== ""
+    ? "bg-[#e3b43e]"
+    : "bg-light-500 dark:bg-dark-200",
 );
 
-const disabled = computed(() => inBiddingBox && !bid.isValid(leadingBid));
+const disabled = computed(() => props.inBiddingBox && !isValid.value);
 
 const hover = ref(false);
 </script>
@@ -46,10 +56,10 @@ const hover = ref(false);
   <div
     v-if="inBiddingBox && !disabled && !bid.is('PASS')"
     :class="{
-      'w-1/5 max-w-[50px] min-w-[34px] h-full top-0 translate-y-[5px] absolute z-[0]':true,
+      'w-1/5 max-w-[50px] min-w-[34px] h-full top-0 translate-y-[5px] absolute z-[0]': true,
       'rounded-br-md': bid.rank === 7 && bid.suit === 0,
       'rounded-bl-md': bid.rank === 7 && bid.suit === 4,
-      [`${bg}`]: true
+      [`${bg}`]: true,
     }"
   ></div>
   <div
