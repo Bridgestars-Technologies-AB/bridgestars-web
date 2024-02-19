@@ -65,6 +65,7 @@ const biddingBlockClass = "w-[43px] h-[30px]";
           class="w-full h-full lg:w-full lg:h-[90%]"
           :history="history"
           :biddingBox="biddingBlockClass"
+          :player="player"
         ></game-bidding-history>
       </game-bidding-container>
     </div>

@@ -49,6 +49,7 @@ const biddingExplanation = ref("");
 const solution = ref("");
 const nextProblemId = ref("");
 const hands = biddingProblem.cards.map((hand) => new Hand(hand));
+const nbrOfStars = ref(0);
 
 //contract received when the problem is finished
 const contract = ref(new Bid(0, 0));
@@ -64,6 +65,8 @@ const surrender = async () => {
   nextProblemId.value = data.next_problem_id;
   biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
   contract.value = Bid.fromString(data.contract);
+  // Vad visar vi om man gav upp? Kanske inga stjärnor?
+  nbrOfStars.value = data.stars;
 };
 
 // Checks if solution is correct
@@ -95,6 +98,7 @@ async function check(playedBid: Bid) {
     // hade varit nice att animera in buden.
     biddingHistory.value = createHistory(Bid.fromJson(data.bidding));
     contract.value = Bid.fromString(data.contract);
+    nbrOfStars.value = data.stars;
     setTimeout(() => {
       pass.value = true;
       solution.value = data.solution;
@@ -176,6 +180,7 @@ async function check(playedBid: Bid) {
         :handsVisible="biddingProblem.hands_visible"
         :biddingAnswer="solution"
         :nextProblemId="nextProblemId"
+        :nbrOfStars="nbrOfStars"
       ></game-analysis-main>
     </div>
   </div>

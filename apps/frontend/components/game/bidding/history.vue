@@ -14,6 +14,7 @@ defineProps({
     default: () => [new Bid(0, 0)],
   },
   biddingBox: String,
+  player: String,
 });
 
 //lägg till funktionalitet för hover/click, tooltip?
@@ -31,7 +32,9 @@ const players = ["V", "N", "Ö", "S"];
           class="w-[24%] flex flex-row justify-center mt-[4px]"
         >
           <span
-            class="text-dark dark:text-white text-[20px] font-semibold mb-[4px]"
+            :class="`text-dark dark:text-white text-[20px] font-semibold mb-[4px] ${
+              players[p - 1] === player ? 'underline' : ''
+            }`"
           >
             {{ players[p - 1] }}
           </span>
