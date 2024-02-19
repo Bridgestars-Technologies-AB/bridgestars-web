@@ -117,7 +117,7 @@ function click(item) {
         <div v-for="item in items" :key="item.key" @click="() => click(item)">
           <div
             v-if="item.divider"
-            class="font-family font-light text-dark opacity-70 dark:text-light mb-1 ml-5 mt-5 tracking-wide text-[16px] cursor-default"
+            class="font-family font-light text-dark opacity-70 dark:text-light mb-1 ml-5 mt-3 tracking-wide text-[16px] cursor-default"
           >
             {{ $t("dashboard:side_menu." + item.name) }}
           </div>
