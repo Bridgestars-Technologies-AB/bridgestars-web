@@ -8,22 +8,19 @@ defineProps({ header: String, showImage: Boolean });
       class="w-full h-[15%] flex flex-row justify-center items-center mt-[10px] mb-[5px]"
     >
       <span
-        class="text-[22px] items-center text-dark dark:text-white font-semibold h-auto"
+        class="transition-colors duration-300 text-[22px] items-center text-dark dark:text-white font-semibold h-auto"
         >{{ header }}</span
       >
     </div>
 
     <div
-      :class="`flex flex-row justify-start items-center w-[60%] h-[80%] ${
-        showImage ? 'hidden lg:block' : 'hidden'
-      }`"
+      :class="{
+        'md:flex justify-center pt-3': showImage,
+        hidden: true,
+      }"
     >
-      <div class="w-[100%] h-[100%] ml-[25px]">
-        <img
-          alt="owl"
-          src="/bridgestars/game/owls/owl-1.png"
-          class="scale-[1]"
-        />
+      <div class="w-[60%] max-w-[200px]">
+        <img alt="owl" src="/bridgestars/game/owls/owl-1.png" class="" />
       </div>
     </div>
 

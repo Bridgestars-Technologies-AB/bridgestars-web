@@ -32,7 +32,6 @@ export class Bid {
     if (this.rank > 7) {
       return false;
     }
-
     return (
       this.rank > bid.rank || (this.suit > bid.suit && this.rank === bid.rank)
     );
@@ -100,7 +99,7 @@ export class Bid {
   }
 
   // This function creates a Bid object from a string representation of a bid
-  public static fromString(bid: string, explanation: string): Bid {
+  public static fromString(bid: string, explanation: string = ""): Bid {
     let suit = 0;
     let rank = 0;
     if (bid === "PASS") {
@@ -123,5 +122,9 @@ export class Bid {
       suit = bid[1] === "C" ? 0 : bid[1] === "D" ? 1 : bid[1] === "H" ? 2 : 3;
     }
     return new Bid(suit, rank, explanation);
+  }
+
+  public static placeholder(): Bid {
+    return new Bid(0, 0, "", false);
   }
 }

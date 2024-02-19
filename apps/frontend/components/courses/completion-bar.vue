@@ -21,11 +21,11 @@ function getDummyWidth() {
   <div class="flex flex-col w-full items-center">
     <span class="text-dark dark:text-white m-0 text-[14px]">{{ text }}</span>
     <div
-      class="flex flex-row justify-start bg-dark-200 rounded-2xl h-[10px] w-[120px]"
+      class="flex flex-row justify-start bg-dark-200 rounded-2xl h-[12px] w-[140px]"
     >
       <div
         ref="progress"
-        class="h-[10px] rounded-2xl bg-[#168f7c] w-[width]"
+        class="h-[12px] rounded-2xl bg-[#168f7c] w-[width]"
       ></div>
     </div>
   </div>

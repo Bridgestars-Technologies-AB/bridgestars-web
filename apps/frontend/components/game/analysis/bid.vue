@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const p = defineProps({
+const props = defineProps({
   bid: {
     type: Bid,
     default: new Bid(0, 0),
@@ -14,16 +14,15 @@ const p = defineProps({
 });
 
 function getPlayerName(): String {
-  // this function will be auto completed
-  switch (p.player) {
+  switch (props.player) {
     case "W":
-      return "West";
+      return "Väst";
     case "N":
-      return "North";
+      return "Nord";
     case "E":
-      return "East";
+      return "Öst";
     case "S":
-      return "South";
+      return "Syd";
     default:
       return "";
   }
@@ -33,15 +32,25 @@ function getPlayerName(): String {
 <template>
   <div class="flex flex-row justify-center mt-[5px]">
     <div
-      :class="`${size} bg-dark-200 flex justify-center items-center rounded-xl`"
+      :class="`${size} ${
+        bid.is('PASS') ? 'bg-[#0E9F6E]' : 'bg-dark-200'
+      } flex justify-center items-center rounded-xl`"
     >
-      <span class="biddingText1 text1 tracking-[2px] mr-[2px]">{{
-        bid.rank
-      }}</span>
-      <span v-if="bid.is('NT')" class="tracking-[2px] text1 biddingText3">
-        NT
-      </span>
-      <span v-else :class="`biddingText2 ${bid.tailwindSuitSymbol()}`"></span>
+      <span
+        v-if="bid.is('PASS')"
+        class="biddingText1 text1 tracking-[1px] mr-[2px] rounded-xl"
+        >PASS</span
+      >
+      <div v-else>
+        <span class="biddingText1 text1 tracking-[2px] mr-[2px]">{{
+          bid.rank
+        }}</span>
+
+        <span v-if="bid.is('NT')" class="tracking-[2px] text1 biddingText3">
+          NT
+        </span>
+        <span v-else :class="`biddingText2 ${bid.tailwindSuitSymbol()}`"></span>
+      </div>
     </div>
     <div
       :class="`${size} bg-dark-200 flex justify-center items-center rounded-xl ml-[5px]`"

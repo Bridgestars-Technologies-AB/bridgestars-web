@@ -15,7 +15,15 @@ const items = [
   },
   {
     name: "courses",
+    divider: true,
+  },
+  {
+    name: "courses",
     icon: "i-material-symbols-school",
+  },
+  {
+    name: "bidding-problems",
+    divider: true,
   },
   {
     name: "bidding-problems",
@@ -23,7 +31,15 @@ const items = [
   },
   {
     name: "documents",
+    divider: true,
+  },
+  {
+    name: "documents",
     icon: "i-material-symbols-library-books",
+  },
+  {
+    name: "other",
+    divider: true,
   },
   {
     name: "help",
@@ -97,11 +113,11 @@ function click(item) {
       </div>
 
       <!-- menu items -->
-      <div class="flex flex-col mt-6">
+      <div class="flex flex-col mt-6 space-y-1">
         <div v-for="item in items" :key="item.key" @click="() => click(item)">
           <div
             v-if="item.divider"
-            class="font-family font-light text-dark opacity-70 dark:text-light mb-1 ml-5 mt-5 tracking-wide text-[16px] cursor-default"
+            class="font-family font-light text-dark opacity-70 dark:text-light mb-1 ml-5 mt-3 tracking-wide text-[16px] cursor-default"
           >
             {{ $t("dashboard:side_menu." + item.name) }}
           </div>

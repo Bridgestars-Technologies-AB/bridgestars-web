@@ -16,13 +16,20 @@ async function submit(res: { email: string; password: string }) {
       password_confirmation: res.password,
     })
     .then(() => {
+      toast.clear()
       toast.success("Du har loggats in");
       if (query.to) navigateTo({ path: query.to as string });
       else navigateTo({ path: "/dash" });
     })
     .catch((error) => {
-      showLoading.value = false;
-      toast.error(error.response.data.message);
+      console.log(error)
+      if(error.code === "ERR_BAD_RESPONSE"){
+        toast.error("Kunde inte ansluta till servern, kontrollera ditt internet.")
+      }
+      else {
+        toast.error(error.response.data.message);
+      }
+        showLoading.value = false;
     });
 }
 </script>

@@ -14,6 +14,7 @@ defineProps({
     default: () => [new Bid(0, 0)],
   },
   biddingBox: String,
+  player: String,
 });
 
 //lägg till funktionalitet för hover/click, tooltip?
@@ -31,7 +32,9 @@ const players = ["V", "N", "Ö", "S"];
           class="w-[24%] flex flex-row justify-center mt-[4px]"
         >
           <span
-            class="text-dark dark:text-white text-[20px] font-semibold mb-[4px]"
+            :class="`text-dark dark:text-white text-[20px] font-semibold mb-[4px] ${
+              players[p - 1] === player ? 'underline' : ''
+            }`"
           >
             {{ players[p - 1] }}
           </span>
@@ -40,15 +43,16 @@ const players = ["V", "N", "Ö", "S"];
     </div>
     <div class="w-[100%] h-[2px] bg-dark-400 mb-[7px]"></div>
     <div class="flex flex-row justify-center w-full">
-      <div class="flex flex-row flex-wrap w-[97%]">
-        <game-bidding-block
-          v-for="bid in history"
-          :key="bid.rank + bid.suit"
-          class="w-[24%]"
-          :bid="bid"
-          :size="biddingBox"
-          :clickable="false"
-        ></game-bidding-block>
+      <div class="flex flex-row flex-wrap w-[97%] px-1">
+        <div v-for="bid in history" class="px-1 w-1/4 py-1">
+          <game-bidding-block
+            :key="bid.rank + bid.suit"
+            class="w-full"
+            :bid="bid"
+            :size="biddingBox"
+            :clickable="false"
+          ></game-bidding-block>
+        </div>
       </div>
     </div>
   </div>

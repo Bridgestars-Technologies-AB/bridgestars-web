@@ -10,10 +10,17 @@ function signOut() {
 //custom action replaces route so that <back> doesn't direct us to "you are already signed in" since we are not anymore signed in
 const redirect = () => useRouter().replace("/auth/sign-in");
 
-onMounted(() => {
-  if (!useAuth().user)
-    // we should never show this page if user is not signed in
-    redirect();
+onMounted(async () => {
+  await useAuth()
+    .update()
+    .catch((e) => {
+      if (e.response?.status === 401) {
+        useToast().info("Din session har löpt ut, vänligen logga in igen.");
+        redirect();
+      } else {
+        useToast().error("Något gick fel, vänligen försök igen.");
+      }
+    });
 });
 </script>
 

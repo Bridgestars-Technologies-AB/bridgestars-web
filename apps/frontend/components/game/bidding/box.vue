@@ -14,54 +14,70 @@ Emits:
 <script setup lang="ts">
 import { Bid } from "~/composables/biddingClasses/Bid";
 
-const { bid } = defineProps({
-  bid: {
+const props = defineProps({
+  leadingBid: {
     type: Bid,
     required: true,
   },
-  biddingBox: String,
+  biddingBlockClass: {
+    type: String,
+    default: () => "w-full h-full min-h-[34px]",
+  },
   history: {
     type: Array<Bid>,
     default: () => [new Bid(0, 0)],
   },
 });
-const emit = defineEmits(["bid", "update:bid"]);
+
+const emit = defineEmits(["makeBid"]);
 
 function makeBid(bid: Bid) {
-  emit("update:bid", bid);
-  emit("bid", bid);
+  emit("makeBid", bid);
 }
 </script>
 
 <template>
   <!-- "Component" for larger devices -->
-  <div class="hidden lg:block">
-    <div :class="'flex flex-col space-y-1 ' + $attrs.class">
+  <div :class="'relative hidden md:block ' + $attrs.class">
+    <div :class="'flex flex-col h-full w-full px-1'">
       <div
         v-for="r in 7"
         :key="r"
-        class="flex flex-row justify-center space-x-1"
+        class="flex justify-center h-full relative w-full"
       >
         <div
           v-for="s in 5"
           :key="s"
-          class="flex items-center justify-center overflow-x-hidden outline-none"
+          class="w-1/5 max-w-[50px] min-w-[34px] outline-none"
         >
           <game-bidding-block
-            :bid="new Bid(s - 1, r)"
-            :size="biddingBox"
-            :latestBid="history[history.length - 1]"
+            :bid="new Bid(5 - s, r)"
+            :size="biddingBlockClass"
+            :leadingBid="leadingBid"
+            :inBiddingBox="true"
             @click="makeBid"
           ></game-bidding-block>
         </div>
       </div>
-      <div class="w-full flex flex-row justify-center">
+      <div
+        class="w-full flex flex-row justify-center mt-3 max-w-[150px] mx-auto"
+      >
         <game-bidding-block
           :bid="new Bid(0, 0)"
-          :size="biddingBox"
+          :size="biddingBlockClass"
+          :inBiddingBox="true"
           @click="makeBid"
         ></game-bidding-block>
       </div>
     </div>
   </div>
+
+  <game-bidding-mobile-box
+    class="block md:hidden"
+    :leadingBid="leadingBid"
+    :biddingBlockClass="biddingBlockClass"
+    :history="history"
+    @makeBid="makeBid"
+  />
+  <!-- "Component" smaller devices -->
 </template>

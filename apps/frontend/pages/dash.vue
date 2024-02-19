@@ -8,6 +8,16 @@ if (route.name === "dash") {
 }
 
 onMounted(() => {
+  useAuth()
+    .update()
+    .catch((e) => {
+      if (e.response?.status === 401) {
+        useToast().info("Din session har löpt ut, vänligen logga in igen.");
+        navigateTo({ path: "/auth/sign-in" });
+      } else {
+        useToast().error("Något gick fel, fungerar ditt internet?");
+      }
+    });
   //find html and body elements and set their overflow to hidden
   document.getElementsByTagName("html")[0].style.overflow = "hidden";
   document.getElementsByTagName("body")[0].style.overflow = "hidden";

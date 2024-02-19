@@ -6,13 +6,17 @@ defineProps({ header: String, courseId: Number });
 
 <template>
   <div
-    class="flex flex-col bg-white dark:bg-dark-100 rounded-xl w-[200px] h-[240px] justify-between"
+    class="flex flex-col bg-white dark:bg-dark-100 rounded-xl w-[250px] h-[300px] justify-between"
   >
     <div class="flex flex-col">
-      <div class="w-full flex flex-row justify-center">
+      <div class="w-full flex flex-col items-center justify-center">
         <span class="text-[18px] text-dark dark:text-white font-semibold">{{
-          header
+          `${header.split("-")[0]}${header.includes("-") ? "-" : ""}`
         }}</span>
+        <span class="text-[18px] text-dark dark:text-white font-semibold">
+          {{ header.split("-")[1] }}
+        </span>
+        <br v-if="!header.split('-')[1]" />
       </div>
       <div class="w-full h-[2px] bg-dark-400"></div>
     </div>
@@ -25,7 +29,7 @@ defineProps({ header: String, courseId: Number });
         :text="item"
       ></courses-completion-bar>
     </div>
-    <div class="flex flex-row justify-end">
+    <div class="flex flex-row justify-center p-1">
       <courses-button
         text="Fortsätt"
         dashPage="courses"
