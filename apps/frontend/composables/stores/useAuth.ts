@@ -17,9 +17,11 @@ const useUserStore = defineStore("user", {
           return response.data;
         })
         .catch((e) => {
-          this.user = null;
-          useCookie("auth").value = null;
-          useCookie("user").value = null;
+          if (e.response?.status === 401) {
+            this.user = null;
+            useCookie("auth").value = null;
+            useCookie("user").value = null;
+          }
           throw e;
         });
     },
@@ -60,8 +62,13 @@ const useAuth = () => {
     return api.post("auth/reset-password", props);
   };
 
+  const update = async (): Promise<UserData> => {
+    return store.update();
+  };
+
   return {
     user: store.user,
+    update: update,
     register,
     login,
     logout,

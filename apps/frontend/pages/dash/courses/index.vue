@@ -2,8 +2,13 @@
 import type { ListCoursesData } from "~/types/generated";
 import { api } from "~/composables/api";
 
-// automatic toast error bar, in prod maybe want better errors
-const { data: courses } = await api.get<ListCoursesData>("/courses");
+const courses = ref({} as ListCoursesData);
+api
+  .get<ListCoursesData>("/courses")
+  .then(({ data }) => (courses.value = data))
+  .catch((e) => {
+    useToast().error("Kunde inte hämta kurser, vänligen försök igen.");
+  });
 </script>
 
 <template>
