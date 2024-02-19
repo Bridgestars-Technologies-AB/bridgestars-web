@@ -16,7 +16,8 @@ const p = defineProps({
   },
 });
 
-const suitNames = ["spades", "hearts", "diamonds", "clubs"];
+//const suitNames = ["spades", "hearts", "diamonds", "clubs"].toReversed();
+const suitNames = ["clubs", "diamonds", "hearts", "spades"];
 
 //function used to get the hand of a certain player
 function getHand(player: string = ""): Hand {
@@ -61,12 +62,11 @@ function visiblePlayers(): string[] {
 }
 
 //temporary to test ui for different number of hands
-const nbr = ref(2);
 </script>
 
 <template>
   <!--  FOUR HANDS   -->
-  <div v-if="nbr == 4" :class="`space-y-3`">
+  <div v-if="handsVisible == 4" :class="`space-y-3`">
     <div class="flex w-full justify-center items-center">
       <game-bidding-hand
         :class="`${showHand('N') ? '' : 'hidden'}`"
@@ -104,7 +104,7 @@ const nbr = ref(2);
   </div>
 
   <!--  TWO HANDS   -->
-  <div v-else-if="nbr == 2" :class="`space-y-3 p-2`">
+  <div v-else :class="`space-y-3 p-2`">
     <div class="flex w-full justify-center items-center">
       <game-bidding-hand
         :class="`${showHand('N') ? '' : 'hidden'}`"
@@ -130,21 +130,21 @@ const nbr = ref(2);
   </div>
 
   <!--  JUST ONE HAND   -->
-  <div
-    v-else
-    :class="`flex flex-row h-full justify-center items-center w-full`"
-  >
-    <div :class="`flex flex-col`">
-      <div v-for="index in 4" :key="index" class="flex flex-row items-center">
-        <span
-          :class="`mr-[3px] text-[30px] ${Card.toTailwindIcon.get(index - 1)}`"
-        >
-        </span>
-        <span
-          class="text-[25px] font-semibold text-dark dark:text-white tracking-[1px]"
-          >{{ getHand().toString(suitNames[index - 1]) }}
-        </span>
-      </div>
-    </div>
-  </div>
+  <!-- <div -->
+  <!--   v-else -->
+  <!--   :class="`flex flex-row h-full justify-center items-center w-full`" -->
+  <!-- > -->
+  <!--   <div :class="`flex flex-col`"> -->
+  <!--     <div v-for="index in 4" :key="index" class="flex flex-row items-center"> -->
+  <!--       <span -->
+  <!--         :class="`mr-[3px] text-[30px] ${Card.toTailwindIcon.get(index - 1)}`" -->
+  <!--       > -->
+  <!--       </span> -->
+  <!--       <span -->
+  <!--         class="text-[25px] font-semibold text-dark dark:text-white tracking-[1px]" -->
+  <!--         >{{ getHand().toString(suitNames[index - 1]) }} -->
+  <!--       </span> -->
+  <!--     </div> -->
+  <!--   </div> -->
+  <!-- </div> -->
 </template>

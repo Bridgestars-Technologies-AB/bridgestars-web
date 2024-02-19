@@ -84,7 +84,7 @@ const biddingBlockClass = "w-[43px] h-[30px]";
     <div class="container">
       <game-bidding-container class="h-full" header="DIN HAND">
         <game-bidding-showHands
-          :handsVisible="handsVisible"
+          :handsVisible="1"
           :hands="hands"
           :player="player"
         >

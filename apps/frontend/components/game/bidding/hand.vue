@@ -23,17 +23,18 @@ const p = defineProps({
 
 //only used for displaying
 const suitNames = ["spades", "hearts", "diamonds", "clubs"];
+//const suitNames = ["clubs", "diamonds", "hearts", "spades"];
 </script>
 
 <template>
   <div :class="`rounded-xl flex flex-col items-start`">
     <div v-for="index in 4" :key="index" class="flex flex-row items-center">
       <span
-        :class="`mr-[3px] text-[19px] ${Card.toTailwindIcon.get(index - 1)}`"
+        :class="`mr-[3px] text-[21px] ${Card.toTailwindIcon.get(4 - index)}`"
       >
       </span>
       <span
-        class="text-[17px] font-semibold text-dark dark:text-white tracking-[1px]"
+        class="text-[19px] font-semibold text-dark dark:text-white tracking-[1px]"
         >{{ hand.toString(suitNames[index - 1]) }}
       </span>
     </div>
