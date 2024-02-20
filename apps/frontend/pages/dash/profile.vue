@@ -21,7 +21,16 @@ const friends = [
   { name: "Carin", email: "test3@gmail.com" },
 ];
 
+// Mock up data for user details
+const userDetails = {
+  first_name: "Kalle",
+  last_name: "Anka",
+  email: "donald.duck@gmail.com",
+  password: "password",
+};
+
 const buttonIsPressed = ref([false, false, false]);
+const editProfile = ref(false);
 
 function press(type: string) {
   switch (type) {
@@ -35,6 +44,16 @@ function press(type: string) {
       buttonIsPressed.value = [false, false, true];
       break;
   }
+}
+
+// Function to toggle edit profile
+function edit() {
+  editProfile.value = !editProfile.value;
+}
+
+// Function to submit changes to profile, needs to call api to update user details
+function submit() {
+  editProfile.value = !editProfile.value;
 }
 
 function subscribe() {
@@ -65,7 +84,7 @@ function subscribe() {
           <div
             v-for="(b, index) in subscription.buttons"
             :key="b.title"
-            :class="`w-[30%] flex flex-col items-center cursor-pointer border-2 border-dark rounded-xl ${
+            :class="`w-[30%] flex flex-col items-center cursor-pointer -2 -dark rounded-xl ${
               buttonIsPressed[index] ? 'bg-secondary' : ''
             }`"
             @click="press(b.title)"
@@ -94,7 +113,7 @@ function subscribe() {
           <div class="w-full flex flex-row justify-center">
             <button
               class="w-[30%] h-[40px] mt-2 bg-secondary text-white text-[20px] font-semibold rounded-full"
-              @click="subscribe()"
+              @click="subscribe"
             >
               Gå till kassan
             </button>
@@ -142,7 +161,52 @@ function subscribe() {
       <div
         class="flex flex-col items-center dark:bg-dark-100 bg-white rounded-xl w-[49%] max-w-[440px] h-[450px]"
       >
-        <span class="text-white text-[30px] font-bold">Användardetaljer</span>
+        <span class="dark:text-white text-dark text-[30px] font-bold"
+          >Användardetaljer</span
+        >
+        <div class="w-[92%] flex flex-col items-center mt-3">
+          <div class="w-full flex flex-row justify-end mb-5">
+            <button
+              v-if="!editProfile"
+              class="text-white bg-secondary text-[15px] p-2 rounded-xl"
+              @click="edit"
+            >
+              Edit profile
+            </button>
+            <button
+              v-else
+              class="text-white bg-secondary text-[15px] p-2 rounded-xl"
+              @click="submit"
+            >
+              Save changes
+            </button>
+          </div>
+          <div class="flex flex-col space-y-10 w-full">
+            <div
+              v-for="(key, index) in Object.keys(userDetails)"
+              :key="index"
+              class="w-full justify-between flex flex-row text-white pl-1"
+            >
+              <div class="w-1/2 font-semibold h-[50px] flex items-center">
+                <span class="font-semibold dark:text-white text-dark">{{
+                  key
+                }}</span>
+              </div>
+              <div v-if="!editProfile" class="w-1/2 flex items-center h-[50px]">
+                <span class="dark:text-white text-dark">{{
+                  userDetails[key]
+                }}</span>
+              </div>
+              <base-input-field
+                v-else
+                :id="key.replace('_', '-')"
+                wrapperClass="w-1/2 h-[30px] dark:bg-dark-100"
+                :placeholder="key"
+                bg="dark:bg-dark-100"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
