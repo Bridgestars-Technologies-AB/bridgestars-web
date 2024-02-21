@@ -114,10 +114,10 @@ function getJustify(e: Number) {
 
           <div class="w-full flex flex-row justify-center">
             <div class="w-[95%] ml-[10px]">
-              <span
+              <MDC
                 class="text1 text-dark dark:text-light leading-tight text-[16px] tracking-wide sm:text-[19px] md:text-[18px]"
-                >{{ biddingAnswer }}</span
-              >
+                :value="biddingAnswer"
+              ></MDC>
             </div>
           </div>
         </div>
