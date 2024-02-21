@@ -198,7 +198,7 @@ async function statistics() {
       <div
         class="flex justify-center items-center border-2 border-[#14be9f] rounded-xl dark:bg-dark-100 bg-white w-[300px] h-[100px] lg:w-[500px]"
       >
-        <span class="text-[#14be9f] text-dark text-[20px] font-bold"
+        <span class="text-[#14be9f] text-[20px] font-bold"
           >Övning avslutad!</span
         >
       </div>
