@@ -13,7 +13,7 @@ interface WelcomePage {
 }
 
 const data: WelcomePage = {
-  title: "Välkommen Till BridgeStars! Det nya sättet att bli bättre på bridge!",
+  title: "Välkommen Till Bridgestars! Det nya sättet att bli bättre på bridge!",
   introduction:
     "Bridge To Bridge är en utbildningsplattform med tusentals givar att träna på. Vi hoppas du vill vara med på vår gemensamma resa mot bättre bridge även om vi fortfarande knappt har startat motorerna. Om du har kommentarer eller förslag, tveka inte att kontakta oss på info@bridgetobridge.se Bridge to Bridge är en prenumerationstjänst och du betalar för tjänsten under fliken Mina sidor. Vissa delar av materialet är helt gratis, medan andra delar är för dig som är prenumerant. Titta gärna på vår YouTube-kanal där vi berättar om hur saker och ting fungerar på vår hemsida.",
   headlines: [
@@ -30,12 +30,8 @@ const data: WelcomePage = {
 </script>
 
 <template>
-  <div
-    class="flex flex-col items-center justify-center w-full h-full overflow-auto"
-  >
-    <div
-      class="flex flex-col items-center justify-center rounded-xl mt-[20px] mb-[20px]"
-    >
+  <div class="flex flex-col items-center justify-center w-full h-full">
+    <div class="flex flex-col items-center justify-center rounded-xl mb-[50px]">
       <span
         class="dark:text-white text-dark text-[10px] sm:text-[35px] font-bold font-family2 leading-3 sm:leading-10"
         >{{ data.title.split("!")[0] }}</span
@@ -45,18 +41,18 @@ const data: WelcomePage = {
         >{{ data.title.split("!")[1] }}!</span
       >
     </div>
-    <MDC
+    <!-- <MDC
       class="prose prose-lg dark:prose-invert"
       :value="data.introduction"
       tag="article"
-    />
+    /> -->
     <div
       class="flex flex-col space-y-2 lg:flex-row lg:space-y-0 lg:space-x-2 mt-[30px]"
     >
       <div
         v-for="(h, index) in data.headlines"
         :key="index"
-        class="w-[350px] border-2 border-premium rounded-xl dark:bg-dark-100 bg-white flex flex-col items-center"
+        class="w-full lg:max-w-[450px] border-2 border-premium rounded-xl dark:bg-dark-100 bg-white flex flex-col items-center"
       >
         <span
           class="dark:text-white text-dark text-[20px] sm:text-[30px] font-bold font-family2 leading-7 sm:leading-10"
