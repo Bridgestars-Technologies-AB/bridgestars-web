@@ -41,6 +41,8 @@ const data: WelcomePage = {
     </div>
     <div
       class="flex-row prose-h4:flex-wrap prose prose-lg dark:prose-invert text-dark dark:text-white h-full"
-    ></div>
+    >
+      <MDC :value="data.sections[1]" tag="article" />
+    </div>
   </div>
 </template>

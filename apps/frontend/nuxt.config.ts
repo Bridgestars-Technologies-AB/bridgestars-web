@@ -36,6 +36,7 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxt/image",
     "@averjs/nuxt-compression",
+    "@nuxtjs/mdc",
   ],
   security: {},
   image: {
