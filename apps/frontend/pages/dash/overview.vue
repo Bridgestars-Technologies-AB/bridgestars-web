@@ -30,19 +30,44 @@ const data: WelcomePage = {
 </script>
 
 <template>
-  <div class="flex flex-col items-center w-full h-full">
+  <div
+    class="flex flex-col items-center justify-center w-full h-full overflow-auto"
+  >
     <div
-      class="flex flex-col items-center justify-center h-[100px] sm:h-[150px] rounded-xl mt-[40px]"
+      class="flex flex-col items-center justify-center rounded-xl mt-[20px] mb-[20px]"
     >
       <span
-        class="dark:text-white text-dark text-[20px] sm:text-[35px] font-bold font-family2 leading-7 sm:leading-10"
-        >{{ data.title }}</span
+        class="dark:text-white text-dark text-[10px] sm:text-[35px] font-bold font-family2 leading-3 sm:leading-10"
+        >{{ data.title.split("!")[0] }}</span
+      >
+      <span
+        class="dark:text-white text-dark text-[7px] sm:text-[35px] font-bold font-family2 leading-3 sm:leading-10"
+        >{{ data.title.split("!")[1] }}!</span
       >
     </div>
+    <MDC
+      class="prose prose-lg dark:prose-invert"
+      :value="data.introduction"
+      tag="article"
+    />
     <div
-      class="flex-row prose-h4:flex-wrap prose prose-lg dark:prose-invert text-dark dark:text-white h-full"
+      class="flex flex-col space-y-2 lg:flex-row lg:space-y-0 lg:space-x-2 mt-[30px]"
     >
-      <MDC :value="data.sections[1]" tag="article" />
+      <div
+        v-for="(h, index) in data.headlines"
+        :key="index"
+        class="w-[350px] border-2 border-premium rounded-xl dark:bg-dark-100 bg-white flex flex-col items-center"
+      >
+        <span
+          class="dark:text-white text-dark text-[20px] sm:text-[30px] font-bold font-family2 leading-7 sm:leading-10"
+          >{{ h }}</span
+        >
+        <MDC
+          class="prose prose-lg p-5 text-[17px] dark:prose-invert"
+          :value="data.sections[index]"
+          tag="article"
+        />
+      </div>
     </div>
   </div>
 </template>
