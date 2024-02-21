@@ -67,15 +67,16 @@ function subscribe() {
   <div class="w-full h-full flex flex-col items-center space-y-4">
     <!-- Subscription block -->
     <div
-      class="flex flex-row w-3/4 max-w-[900px] h-[400px] rounded-xl bg-white dark:bg-dark-100"
+      class="flex flex-row w-[95%] lg:w-3/4 lg:min-w-[600px] max-w-[900px] h-[400px] rounded-xl bg-white dark:bg-dark-100"
     >
       <div class="w-full flex flex-col items-center">
-        <span class="text-[#15b497] text-[30px] font-bold">{{
+        <span class="text-[#15b497] text-[25px] xl:text-[28px] font-bold">{{
           subscription.title
         }}</span>
-        <span class="text-dark dark:text-white text-[18px] px-5 text-center">{{
-          subscription.text
-        }}</span>
+        <span
+          class="text-dark dark:text-white text-[14px] lg:text-[16px] xl:text-[16px] px-5 text-center"
+          >{{ subscription.text }}</span
+        >
         <div
           :class="`w-[80%] flex flex-row justify-between ${
             !buttonIsPressed ? 'mt-[50px]' : 'mt-5'
@@ -84,16 +85,17 @@ function subscribe() {
           <div
             v-for="(b, index) in subscription.buttons"
             :key="b.title"
-            :class="`w-[30%] flex flex-col items-center cursor-pointer -2 -dark rounded-xl ${
+            :class="`w-[30%] h-[50px] xl:h-[70px] flex flex-col items-center cursor-pointer rounded-xl ${
               buttonIsPressed[index] ? 'bg-secondary' : ''
             }`"
             @click="press(b.title)"
           >
-            <span class="text-[#15b497] font-bold text-[20px]">{{
-              b.title
-            }}</span>
             <span
-              :class="` text-[20px] ${
+              class="text-[#15b497] font-bold text-[15px] lg:text-[17px] xl:text-[20px]"
+              >{{ b.title }}</span
+            >
+            <span
+              :class="` text-[15px] lg:text-[17px] xl:text-[20px] ${
                 buttonIsPressed[index]
                   ? 'text-white'
                   : 'text-dark dark:text-white'
@@ -107,12 +109,12 @@ function subscribe() {
           class="flex flex-col items-center"
         >
           <span
-            class="text-dark dark:text-white text-[18px] px-10 text-center mt-5"
+            class="text-dark dark:text-white text-[12px] lg:text-[14px] xl:text-[18px] px-10 text-center mt-5"
             >{{ subscription.purchaceInfo }}
           </span>
           <div class="w-full flex flex-row justify-center">
             <button
-              class="w-[30%] h-[40px] mt-2 bg-secondary text-white text-[20px] font-semibold rounded-full"
+              class="mt-2 bg-secondary text-white w-[30%] h-[25px] lg:text-[15px] lg:h-[30px] xl:h-[40px] xl:text-[20px] font-semibold rounded-full"
               @click="subscribe"
             >
               Gå till kassan
@@ -125,12 +127,15 @@ function subscribe() {
       </div>
     </div>
     <!-- Lower two blocks -->
-    <div class="flex flex-row w-3/4 max-w-[900px] justify-between">
+    <div
+      class="flex flex-row w-[95%] lg:w-3/4 lg:min-w-[600px] max-w-[900px] justify-between"
+    >
       <!-- Friends block -->
       <div
-        class="flex flex-col items-center dark:bg-dark-100 bg-white rounded-xl w-[49%] max-w-[440px] h-[450px]"
+        class="flex flex-col items-center dark:bg-dark-100 bg-white rounded-xl w-[49%] max-w-[440px] h-[400px]"
       >
-        <span class="dark:text-white text-dark text-[30px] font-bold"
+        <span
+          class="text-[22px] lg:text-[25px] xl:text-[30px] dark:text-white text-dark font-bold"
           >Vänner</span
         >
         <div class="w-full flex flex-col items-center mt-10">
@@ -159,16 +164,17 @@ function subscribe() {
       </div>
       <!-- User details block -->
       <div
-        class="flex flex-col items-center dark:bg-dark-100 bg-white rounded-xl w-[49%] max-w-[440px] h-[450px]"
+        class="flex flex-col items-center dark:bg-dark-100 bg-white rounded-xl w-[49%] max-w-[440px] h-[400px]"
       >
-        <span class="dark:text-white text-dark text-[30px] font-bold"
+        <span
+          class="text-[22px] lg:text-[25px] xl:text-[30px] dark:text-white text-dark font-bold"
           >Användardetaljer</span
         >
         <div class="w-[92%] flex flex-col items-center mt-3">
           <div class="w-full flex flex-row justify-end mb-5">
             <button
               v-if="!editProfile"
-              class="text-white bg-secondary text-[15px] p-2 rounded-xl"
+              class="text-white bg-secondary text-[12px] lg:text-[15px] p-2 rounded-xl"
               @click="edit"
             >
               Edit profile
@@ -181,21 +187,27 @@ function subscribe() {
               Save changes
             </button>
           </div>
-          <div class="flex flex-col space-y-10 w-full">
+          <div class="flex flex-col items-start space-y-8 w-full">
             <div
               v-for="(key, index) in Object.keys(userDetails)"
               :key="index"
-              class="w-full justify-between flex flex-row text-white pl-1"
+              class="w-[80%] justify-between flex flex-row text-white pl-1"
             >
               <div class="w-1/2 font-semibold h-[50px] flex items-center">
                 <span class="font-semibold dark:text-white text-dark">{{
                   key
                 }}</span>
               </div>
-              <div v-if="!editProfile" class="w-1/2 flex items-center h-[50px]">
-                <span class="dark:text-white text-dark">{{
-                  userDetails[key]
-                }}</span>
+              <div
+                v-if="
+                  !editProfile || key === 'first_name' || key === 'last_name'
+                "
+                class="w-1/2 flex items-center h-[50px]"
+              >
+                <span
+                  class="dark:text-white text-dark text-[13px] lg:text-[15px]"
+                  >{{ userDetails[key] }}</span
+                >
               </div>
               <base-input-field
                 v-else
