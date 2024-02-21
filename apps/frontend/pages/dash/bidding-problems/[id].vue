@@ -106,6 +106,11 @@ async function check(playedBid: Bid) {
     }, 500);
   }
 }
+
+async function statistics() {
+  //const { data } = await api.get(`/bidding-problems/${route.params.id}/statistics`);
+  //console.log(data);
+}
 </script>
 
 <template>
@@ -171,7 +176,10 @@ async function check(playedBid: Bid) {
         </div>
       </div>
     </div>
-    <div v-else class="w-full h-full flex justify-center items-center">
+    <!-- <div
+      v-else-if="biddingProblem.number < biddingProblem.total"
+      class="w-full h-full flex justify-center items-center"
+    >
       <game-analysis-main
         :biddingResult="biddingHistory"
         :hands="hands"
@@ -182,6 +190,46 @@ async function check(playedBid: Bid) {
         :nextProblemId="nextProblemId"
         :nbrOfStars="nbrOfStars"
       ></game-analysis-main>
+    </div> -->
+    <div
+      v-else
+      class="w-full h-full flex flex-col justify-center items-center space-y-2"
+    >
+      <div
+        class="flex justify-center items-center border-2 border-[#14be9f] rounded-xl dark:bg-dark-100 bg-white w-[300px] h-[100px] lg:w-[500px]"
+      >
+        <span class="text-[#14be9f] text-dark text-[20px] font-bold"
+          >Övning avslutad!</span
+        >
+      </div>
+      <div
+        class="flex flex-col space-y-2 items-center lg:w-3/4 lg:space-x-2 lg:space-y-0 lg:flex-row lg:justify-center"
+      >
+        <!-- First box -->
+        <div class="statistics-container">
+          <span class="text-dark dark:text-white font-bold text-[25px]"
+            >Resultat</span
+          >
+          <span class="dark:text-white text-dark text-[20px]"
+            >Grymt jobbat!</span
+          >
+          <span class="text-dark dark:text-white text-[15px]"
+            >På 10 givar fick du 21/30 stjärnor</span
+          >
+        </div>
+        <!-- Second box -->
+        <div class="statistics-container">
+          <span class="text-dark dark:text-white font-bold text-[20px]"
+            >Träna mer</span
+          >
+        </div>
+        <!-- Third box -->
+        <div class="statistics-container">
+          <span class="text-dark dark:text-white font-bold text-[20px]"
+            >Bläddra</span
+          >
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -189,5 +237,9 @@ async function check(playedBid: Bid) {
 div,
 span {
   @apply transition-colors duration-300;
+}
+
+.statistics-container {
+  @apply flex flex-col items-center w-2/3 min-w-[300px] max-w-[400px] h-[200px] rounded-xl border-2 border-[#14be9f] bg-white dark:bg-dark-100 lg:h-[350px] lg:min-w-[200px] lg:max-w-[300px];
 }
 </style>

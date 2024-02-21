@@ -24,8 +24,6 @@ interface Props {
 
 const p = defineProps<Props>();
 
-console.log(p.solution);
-
 function getJustify(e: Number) {
   switch (e) {
     case 1:
@@ -56,7 +54,7 @@ function getJustify(e: Number) {
             @click="
               navigateTo({
                 name: `dash-bidding-problems-id`,
-                params: { id: nextProblemId },
+                params: { id: p.nextProblemId },
               })
             "
           >
