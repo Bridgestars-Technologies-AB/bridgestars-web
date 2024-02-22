@@ -7,8 +7,6 @@ const response = [
     courseMaterial: [
       { name: "Val av öppningsbud", id: 1 },
       { name: "Svar på öppningsbud", id: 2 },
-      { name: "Försvar mot öppningsbud", id: 3 },
-      { name: "Försvar mot öppningsbud", id: 4 },
     ],
   },
   {
@@ -17,37 +15,11 @@ const response = [
     courseMaterial: [
       { name: "Försvar mot öppningsbud", id: 1 },
       { name: "Försvar mot öppningsbud", id: 2 },
-      { name: "Försvar mot öppningsbud", id: 3 },
-      { name: "Försvarsbudgivning - Upplysningsdubbling", id: 4 },
-      { name: "Försvar mot öppningsbud", id: 5 },
-      { name: "Försvar mot öppningsbud", id: 6 },
-      { name: "Försvar mot öppningsbud", id: 7 },
-      { name: "Svarshandens första bud utan trumfstöd", id: 8 },
     ],
   },
   {
     name: "Avancerat",
     id: 3,
-    courseMaterial: [
-      { name: "Försvar mot öppningsbud", id: 1 },
-      { name: "Försvar mot öppningsbud", id: 2 },
-      { name: "Försvar mot öppningsbud", id: 3 },
-      { name: "Försvar mot öppningsbud", id: 4 },
-    ],
-  },
-  {
-    name: "Expert",
-    id: 4,
-    courseMaterial: [
-      { name: "Försvar mot öppningsbud", id: 1 },
-      { name: "Försvar mot öppningsbud", id: 2 },
-      { name: "Försvar mot öppningsbud", id: 3 },
-      { name: "Försvar mot öppningsbud", id: 4 },
-    ],
-  },
-  {
-    name: "BridgeBertheau",
-    id: 5,
     courseMaterial: [
       { name: "Försvar mot öppningsbud", id: 1 },
       { name: "Försvar mot öppningsbud", id: 2 },
