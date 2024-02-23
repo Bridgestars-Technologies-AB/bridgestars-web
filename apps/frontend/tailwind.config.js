@@ -14,6 +14,7 @@ const backgroundColors = {
   white: "#fefefe",
   "color-light": "#dddddd",
   transparent: "#f3f6fd",
+  premium: "#14be9f",
   DEFAULT: "#f74040",
   dark: {
     100: "#1a1625",
