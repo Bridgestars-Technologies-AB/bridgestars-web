@@ -3,7 +3,7 @@ This repository consists of a teaching platform for the card game Bridge, implem
 The web application supports user authentication and has a dashboard environment for learning Bridge. The dashboard environment mainly contains playable exercises divided into different courses. 
 It is a responsive web app that works for iPads and desktops.
 
-## Viewing courses and Doing exercises
+## Viewing courses and doing exercises
 <p float="left">
   <img src="https://github.com/user-attachments/assets/3086e129-8623-4890-849e-ef3d43edb059" width="45%" height="auto" />
   &nbsp;&nbsp;&nbsp;&nbsp;
