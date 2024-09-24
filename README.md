@@ -29,10 +29,24 @@ It is a responsive web app that works for iPads and desktops.
 
 `apps/frontend` - the new website built with vue3 and nuxt3
 
-`apps/backend` - the new server built on Parse
+`apps/bridgestars-api` - the new backend built on laravel
+
+`apps/backend-old` - the old server built on js + Parse
 
 `packages/bridgestars-db-client` - a client database wrapper using [parse-sdk-ts](https://github.com/theolundqvist/Parse-SDK-TS)
 
+## Development stack
+### Frameworks
+- Frontend: `Vue3`
+- SSR and convenience: `Nuxt`
+- client-server library: `bridgestars-db-client` (built on Parse-SDK-TS)
+- Server: `Parse`
+- Database: `MongoDB`
+
+### Hosts
+- Frontend: `Vercel`
+- Backend: `Fly.io`
+- Database: `Mongo Atlas`
 
 ## Getting started
 requirements: `pnpm, git`
@@ -73,15 +87,4 @@ The `release` branch connects to the server at
 
 The `main` branch does not yet have a server.
 
-## Development stack
-### Frameworks
-- Frontend: `Vue3`
-- SSR and convenience: `Nuxt`
-- client-server library: `bridgestars-db-client` (built on Parse-SDK-TS)
-- Server: `Parse`
-- Database: `MongoDB`
 
-### Hosts
-- Frontend: `Vercel`
-- Backend: `Fly.io`
-- Database: `Mongo Atlas`
