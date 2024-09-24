@@ -53,7 +53,7 @@ onMounted(() => {
       <span class="text2 mt-2">
         <i18next :translation="$t('download:desc1')">
           <template #here>
-            <NuxtLink to="/auth/reset" class="text-blue font-normal underline">
+            <NuxtLink to="/auth/forgot" class="text-blue font-normal underline">
               {{ $t("common:here").toLowerCase() }}
             </NuxtLink>
           </template>

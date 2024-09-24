@@ -1,8 +1,12 @@
-<script setup></script>
+<script setup>
+defineProps({
+  hideLinks: Boolean,
+});
+</script>
 
 <template>
   <footer class="mt-[100px] space-y-5 px-3">
-    <div class="flex space-x-5 justify-center flex-wrap">
+    <div v-if="!hideLinks" class="flex space-x-5 justify-center flex-wrap">
       <NuxtLink class="" href="/">{{ $t("common:home") }}</NuxtLink>
       <NuxtLink class="" href="/auth/sign-in">{{
         $t("common:profile")
@@ -13,7 +17,7 @@
       <NuxtLink class="" href="/policy">{{ $t("common:policy") }}</NuxtLink>
     </div>
 
-    <div class="flex space-x-5 justify-center">
+    <div v-if="!hideLinks" class="flex space-x-5 justify-center">
       <base-tooltip text="Facebook" position="bottom">
         <a
           class="bottom"

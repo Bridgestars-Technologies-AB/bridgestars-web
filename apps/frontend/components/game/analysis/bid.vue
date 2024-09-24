@@ -1,37 +1,61 @@
-<script setup>
-defineProps({
-  brick: {
-    type: CardUtil.Card,
+<script setup lang="ts">
+const props = defineProps({
+  bid: {
+    type: Bid,
+    default: new Bid(0, 0),
   },
-  dir: {
+  player: {
     type: String,
+    default: "W",
   },
   size: {
     type: String,
   },
 });
+
+function getPlayerName(): String {
+  switch (props.player) {
+    case "W":
+      return "Väst";
+    case "N":
+      return "Nord";
+    case "E":
+      return "Öst";
+    case "S":
+      return "Syd";
+    default:
+      return "";
+  }
+}
 </script>
 
 <template>
   <div class="flex flex-row justify-center mt-[5px]">
     <div
-      :class="`${size} bg-dash-dark-200 flex justify-center items-center rounded-xl`"
+      :class="`${size} ${
+        bid.is('PASS') ? 'bg-[#0E9F6E]' : 'bg-dark-200'
+      } flex justify-center items-center rounded-xl`"
     >
-      <span class="biddingText1 text1 tracking-[2px] mr-[2px]">{{
-        brick.rank
-      }}</span>
-      <span v-if="brick.suit > 3" class="tracking-[2px] text1 biddingText3">
-        NT
-      </span>
       <span
-        v-else
-        :class="`biddingText2 ${CardUtil.symbols[brick.suit]}`"
-      ></span>
+        v-if="bid.is('PASS')"
+        class="biddingText1 text1 tracking-[1px] mr-[2px] rounded-xl"
+        >PASS</span
+      >
+      <div v-else>
+        <span class="biddingText1 text1 tracking-[2px] mr-[2px]">{{
+          bid.rank
+        }}</span>
+
+        <span v-if="bid.is('NT')" class="tracking-[2px] text1 biddingText3">
+          NT
+        </span>
+        <span v-else :class="`biddingText2 ${bid.tailwindSuitSymbol()}`"></span>
+      </div>
     </div>
     <div
-      :class="`${size} bg-dash-dark-200 flex justify-center items-center rounded-xl ml-[5px]`"
+      :class="`${size} bg-dark-200 flex justify-center items-center rounded-xl ml-[5px]`"
     >
-      <span class="biddingText1 text1 tracking-[2px]">{{ dir }}</span>
+      <span class="biddingText1 text1">{{ getPlayerName() }}</span>
     </div>
   </div>
 </template>

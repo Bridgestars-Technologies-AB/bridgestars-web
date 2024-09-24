@@ -10,11 +10,11 @@ const isSelected = (item) => route.name == "dash-" + item;
 const colored = (b) =>
   b
     ? common + "bg-dash-accent dark:bg-dash-accent"
-    : common + "bg-dark dark:bg-light";
+    : common + "bg-color-dark dark:bg-color-light";
 </script>
 <template>
   <div
-    class="flex justify-end bg-dash-light-400 dark:bg-dash-dark-200 pr-3 transition-colors duration-300"
+    class="flex justify-end bg-transparent dark:bg-dark-200 pr-3 transition-colors duration-300"
   >
     <!-- side menu open/close -->
     <div class="fixed left-0 z-10">
@@ -31,11 +31,11 @@ const colored = (b) =>
         >
           <span
             v-if="open"
-            class="i-mdi-menu-open dark:bg-dash-light-300 bg-dark h-[38px] w-[38px] ml-3 transition-colors duration-300"
+            class="i-mdi-menu-open dark:bg-light-300 bg-color-dark h-[38px] w-[38px] ml-3 transition-colors duration-300"
           ></span>
           <span
             v-else
-            class="i-mdi-menu-close dark:bg-dash-light-300 bg-dark h-[38px] w-[38px] ml-3 transition-colors duration-300"
+            class="i-mdi-menu-close dark:bg-light-300 bg-color-dark h-[38px] w-[38px] ml-3 transition-colors duration-300"
           ></span>
         </base-tooltip>
       </div>

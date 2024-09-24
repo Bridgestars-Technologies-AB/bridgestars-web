@@ -11,120 +11,73 @@ Props:
 Emits:
   bid: {suit: Number, rank: Number}
 -->
-<script setup>
-const p = defineProps({
-  rank: {
-    type: Number,
+<script setup lang="ts">
+import { Bid } from "~/composables/biddingClasses/Bid";
+
+const props = defineProps({
+  leadingBid: {
+    type: Bid,
     required: true,
   },
-  suit: {
-    type: Number,
-    required: true,
+  biddingBlockClass: {
+    type: String,
+    default: () => "w-full h-full min-h-[34px]",
   },
-  mobile: Boolean,
-  biddingBox: String,
+  history: {
+    type: Array<Bid>,
+    default: () => [new Bid(0, 0)],
+  },
 });
-const emit = defineEmits(["bid", "update:rank", "update:suit"]);
 
-const currentRank = ref(1);
-const crank = ref(0);
+const emit = defineEmits(["makeBid"]);
 
-const biddingArray = ref([1, 2, 3, 4, 5, 6, 7]);
-
-function isValid(suit, rank, currentSuit = p.suit, currentRank = p.rank) {
-  if (rank > 7) return false;
-  return rank > currentRank || (suit > currentSuit && rank === currentRank);
-}
-
-function updateBiddingArray(suit, rank) {
-  biddingArray.value = biddingArray.value.filter((e) =>
-    isValid(4, e, suit, rank),
-  );
-  if (biddingArray.value.length !== 0) {
-    currentRank.value = biddingArray.value[0];
-  }
-}
-
-function bid(suit, rank) {
-  if (isValid(suit, rank)) {
-    updateBiddingArray(suit, rank);
-    emit("update:rank", rank);
-    emit("update:suit", suit);
-  }
-  emit("bid", suit, rank);
+function makeBid(bid: Bid) {
+  emit("makeBid", bid);
 }
 </script>
 
 <template>
   <!-- "Component" for larger devices -->
-  <div class="hidden lg:block">
-    <div :class="'flex flex-col space-y-1 ' + $attrs.class">
+  <div :class="'relative hidden md:block ' + $attrs.class">
+    <div :class="'flex flex-col h-full w-full px-1'">
       <div
         v-for="r in 7"
         :key="r"
-        class="flex flex-row justify-center space-x-1"
+        class="flex justify-center h-full relative w-full"
       >
         <div
           v-for="s in 5"
           :key="s"
-          class="flex items-center justify-center overflow-x-hidden outline-none"
+          class="w-1/5 max-w-[50px] min-w-[34px] outline-none"
         >
           <game-bidding-block
-            :card="{ suit: s - 1, rank: r }"
-            :size="biddingBox"
-            :disabled="!isValid(s - 1, r)"
-            @click="bid"
+            :bid="new Bid(5 - s, r)"
+            :size="biddingBlockClass"
+            :leadingBid="leadingBid"
+            :inBiddingBox="true"
+            @click="makeBid"
           ></game-bidding-block>
         </div>
       </div>
-      <div class="w-full flex flex-row justify-center">
+      <div
+        class="w-full flex flex-row justify-center mt-3 max-w-[150px] mx-auto"
+      >
         <game-bidding-block
-          :card="{ suit: 0, rank: 0 }"
-          :size="biddingBox"
-          @click="bid"
+          :bid="new Bid(0, 0)"
+          :size="biddingBlockClass"
+          :inBiddingBox="true"
+          @click="makeBid"
         ></game-bidding-block>
       </div>
     </div>
   </div>
+
+  <game-bidding-mobile-box
+    class="block md:hidden"
+    :leadingBid="leadingBid"
+    :biddingBlockClass="biddingBlockClass"
+    :history="history"
+    @makeBid="makeBid"
+  />
   <!-- "Component" smaller devices -->
-  <div
-    class="lg:hidden w-full h-full flex flex-col justify-center items-center"
-  >
-    <div class="flex flex-row items-center">
-      <div
-        v-for="e in biddingArray"
-        :key="e"
-        :class="`cursor-pointer rounded-t-[8px] bg-dash-dark-100 border-t border-x border-dash-light-100 w-[45px] h-[40px] sm:w-[50px] sm:h-[45px] flex justify-center items-center ${
-          currentRank === e
-            ? 'z-[0.9] mb-[-1px]'
-            : 'bg-dash-dark-200 mb-[-8px] z-[0.8]'
-        }`"
-        @click="currentRank = e"
-      >
-        <button class="text1 text-[18px] text-white" @click="currentRank = e">
-          {{ e }}
-        </button>
-      </div>
-    </div>
-    <div
-      class="border-dash-light-100 bg-dash-dark-100 border z-[0.8] rounded-[6px] px-7 sm:px-[45px] pt-2 pb-2"
-    >
-      <div class="flex flex-row space-x-[3px]">
-        <div v-for="e in 5" :key="e">
-          <game-bidding-block
-            :card="{ suit: e - 1, rank: Math.min(currentRank, 7) }"
-            :size="biddingBox"
-            :disabled="!isValid(e - 1, currentRank)"
-            @click="bid"
-          ></game-bidding-block>
-        </div>
-      </div>
-    </div>
-    <game-bidding-block
-      class="mt-[10px]"
-      :card="{ suit: 0, rank: 0 }"
-      :size="biddingBox"
-      @click="bid"
-    ></game-bidding-block>
-  </div>
 </template>

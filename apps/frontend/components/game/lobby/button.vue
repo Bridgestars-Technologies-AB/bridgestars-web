@@ -17,14 +17,14 @@ function takeSeat() {
   <div :class="`flex flex-col ${$attrs.class}`">
     <button
       v-show="!hasEntered"
-      class="w-[70px] h-[30px] bg-dash-dark-100 text-white rounded-xl mb-[5px]"
+      class="w-[70px] h-[30px] bg-dark-100 text-white rounded-xl mb-[5px]"
       @click="takeSeat"
     >
       Ta Plats
     </button>
     <button
       v-if="!seated"
-      class="w-[70px] h-[30px] bg-dash-dark-100 text-white rounded-xl"
+      class="w-[70px] h-[30px] bg-dark-100 text-white rounded-xl"
     >
       Bjud in
     </button>

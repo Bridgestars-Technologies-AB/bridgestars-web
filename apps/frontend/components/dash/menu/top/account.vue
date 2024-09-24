@@ -7,7 +7,7 @@ const common =
 const colored = (b) =>
   b
     ? common + "bg-dash-accent dark:bg-dash-accent"
-    : common + "bg-dark dark:bg-light";
+    : common + "bg-color-dark dark:bg-color-light";
 
 const popoverTrigger = ref(null);
 const popoverElement = ref(null);
@@ -50,7 +50,7 @@ onMounted(() => {
     ref="popoverElement"
     data-popover
     role="tooltip"
-    class="fixed z-10 invisible inline-block w-[200px] text-sm transition-opacity duration-300 rounded-lg shadow-sm dark:bg-dash-dark-300 bg-dash-light-500"
+    class="fixed z-10 invisible inline-block w-[200px] text-sm transition-opacity duration-300 rounded-lg shadow-sm dark:bg-dark-300 bg-light-500"
   >
     <div
       class="px-3 py-2 border-b border-dash-dark dark:border-dash-light border-opacity-20 group cursor-pointer"

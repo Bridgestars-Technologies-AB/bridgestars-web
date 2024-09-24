@@ -1,55 +1,80 @@
 import { defineStore } from "pinia";
-import { Auth } from "bridgestars-db-client";
-/*
- * Minimal auth store that lets the server access information about the user in order to prerender certain routes like dash and navbar,
- * and, lets the server block certain routes like dash if the user is not signed in.
- */
+import type { UserData } from "~/types/generated";
 
-const authStore = defineStore("auth", {
-  state: () => ({ username: "" as string }),
+const useUserStore = defineStore("user", {
+  state: () => ({ user: null as Omit<UserData, "email"> | null }),
+  getters: {},
   actions: {
-    async signUp(username: string, password: string, email: string) {
-      return Auth.signUp(username.trim(), password, email.trim()).then((u) => {
-        this.username = u.username.get();
-        return u;
-      });
+    async update(): Promise<UserData> {
+      return api
+        .get<UserData>("user")
+        .then((response) => {
+          /* eslint-disable */
+          const temp: any = response.data;
+          delete temp.email; // don't store email in cookie
+          this.user = response.data as Omit<UserData, "email">;
+          /* eslint-enable */
+          return response.data;
+        })
+        .catch((e) => {
+          if (e.response?.status === 401) {
+            this.user = null;
+            useCookie("auth").value = null;
+            useCookie("user").value = null;
+          }
+          throw e;
+        });
     },
-
-    async signIn(usernameEmail: string, password: string) {
-      return Auth.signIn(usernameEmail.toLowerCase(), password).then((user) => {
-        this.username = user.username.get();
-        return user;
-      });
-    },
-
-    async signOut() {
-      return Auth.signOut().then(() => {
-        authStore().$reset();
-        // ---- update manager/remove locally stored data about user ----
-        // useRealtimeClient().catch(() => { });
-        // useUserManager().catch(() => { });
-        // useChatManager().catch(() => { });
-      });
-    },
-    async requestPasswordReset(email: string) {
-      return Auth.requestPasswordReset(email);
+    delete() {
+      this.user = null;
+      useCookie("auth").value = null;
+      useCookie("user").value = null;
     },
   },
-  getters: {
-    //-------- server / client ----------
-    authenticated: ({ username }) => Boolean(username),
-
-    //------------ client only -----------
-    user: () => Auth.current(),
+  persist: {
+    key: "user",
   },
-  persist: true, // store data in local cookie, possibly not needed since Parse.User.current() is already saved
 });
 
-export default function useAuth() {
-  // store has username but user is not signed in
-  if (process.client && !Auth.current()) {
-    // -- if client side and not really logged in, ensure the store/server does not think we are signed in --
-    authStore().$reset();
+/* eslint-disable @typescript-eslint/unbound-method */
+const useAuth = () => {
+  const store = useUserStore();
+
+  //const csrf = () => axios.get("sanctum/csrf-cookie");
+
+  const register = async ({ ...props }): Promise<UserData> => {
+    return api.post("auth/register", props).then(store.update);
+  };
+
+  async function login({ ...props }): Promise<UserData> {
+    return api.post("auth/login", props).then(store.update);
   }
-  return authStore();
-}
+
+  const logout = async () => {
+    return api.post("auth/logout").then(store.delete);
+  };
+  //
+  const forgotPassword = async ({ ...props }) => {
+    return api.post("auth/forgot-password", props);
+  };
+  //
+  const resetPassword = async ({ ...props }) => {
+    return api.post("auth/reset-password", props);
+  };
+
+  const update = async (): Promise<UserData> => {
+    return store.update();
+  };
+
+  return {
+    user: store.user,
+    update: update,
+    register,
+    login,
+    logout,
+    forgotPassword,
+    resetPassword,
+  };
+};
+
+export default useAuth;

@@ -1,0 +1,23 @@
+{
+  "name": "bridgestars-backend",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=14.21.0 <17 || >=18 <19"
+  },
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "npm run clean && tsc -w ",
+    "docker": "npm run clean && tsc && docker build -t bridgestars-backend . && docker run --env-file ./.env -p 1337:1337 bridgestars-backend",
+    "start": "npm run clean && tsc && ENV=shell node build/app.js",
+    "deploy:prod": "npm run clean && tsc && fly deploy",
+    "test": "cd test && pnpm test",
+    "clean": "rimraf -rf build"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+
+  },
+  "keywords": []
+}

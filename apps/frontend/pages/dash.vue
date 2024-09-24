@@ -8,6 +8,16 @@ if (route.name === "dash") {
 }
 
 onMounted(() => {
+  useAuth()
+    .update()
+    .catch((e) => {
+      if (e.response?.status === 401) {
+        useToast().info("Din session har löpt ut, vänligen logga in igen.");
+        navigateTo({ path: "/auth/sign-in" });
+      } else {
+        useToast().error("Något gick fel, fungerar ditt internet?");
+      }
+    });
   //find html and body elements and set their overflow to hidden
   document.getElementsByTagName("html")[0].style.overflow = "hidden";
   document.getElementsByTagName("body")[0].style.overflow = "hidden";
@@ -31,7 +41,7 @@ provide("side-menu-open", sideMenuOpen);
     }  h-full w-full overflow-x-clip `"
   >
     <div
-      class="flex bg-dash-light-400 dark:bg-dash-dark-200 transition-colors duration-300 w-full h-full"
+      class="flex bg-transparent dark:bg-dark-200 transition-colors duration-300 w-full h-full"
     >
       <!-- dash overlay -->
       <div
@@ -46,14 +56,14 @@ provide("side-menu-open", sideMenuOpen);
 
       <!-- side menu mock for displacing content -->
       <div
+        id="sideMock"
         :class="` ${
           sideMenuOpen ? 'sm:w-[268px]' : 'sm:w-[70px]'
         } shrink-0 grow-0`"
-        id="sideMock"
       />
 
       <!-- top and content -->
-      <div class="grow flex flex-col" id="content">
+      <div id="content" class="grow flex flex-col">
         <!-- top -->
         <dash-menu-top />
 

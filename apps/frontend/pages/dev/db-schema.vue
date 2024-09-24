@@ -98,7 +98,9 @@ function copyUrl(id) {
             class="i-material-symbols-link-rounded text-dark text-2xl ml-2"
           />
         </div>
-        <div class="w-full mt-1 h-[1.5px] opacity-60 bg-dark rounded-full" />
+        <div
+          class="w-full mt-1 h-[1.5px] opacity-60 bg-color-dark rounded-full"
+        />
         <!-- foreach key in item, print nicely -->
         <table class="w-full">
           <tr>

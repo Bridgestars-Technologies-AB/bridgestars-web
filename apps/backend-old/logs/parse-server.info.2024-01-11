@@ -1,0 +1,4 @@
+{"level":"warn","message":"DeprecationWarning: Parse.Cloud.beforeSaveFile is deprecated and will be removed in a future version. Use Parse.Cloud.beforeSave(Parse.File, (request) => {})","timestamp":"2024-01-11T14:58:11.776Z"}
+{"level":"warn","message":"DeprecationWarning: The Parse Server option 'encodeParseObjectInCloudFunction' default will change to 'true' in a future version.","timestamp":"2024-01-11T14:58:11.778Z"}
+{"level":"info","message":"Running Migrations","timestamp":"2024-01-11T14:58:12.760Z"}
+{"level":"info","message":"Running Migrations Completed","timestamp":"2024-01-11T14:58:13.348Z"}

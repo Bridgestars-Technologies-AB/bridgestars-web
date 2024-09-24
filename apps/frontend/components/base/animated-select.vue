@@ -4,7 +4,7 @@ const props = defineProps({
     type: String,
   },
   options: {
-    type: String,
+    type: Array,
   },
 });
 const emits = defineEmits(["update:modelValue"]);
@@ -17,6 +17,7 @@ onMounted(() => {
   moveLine({ target: document.getElementById(props.modelValue) });
   window.addEventListener("resize", resize);
 });
+
 onUnmounted(() => {
   window.removeEventListener("resize", resize);
 });
@@ -49,7 +50,7 @@ function moveLine(event) {
 
 <template>
   <div
-    class="relative bg-dash-light-400 rounded-lg h-fit min-h-[50px] w-full flex xs:flex-col sm:flex-row items-center text-center"
+    class="relative bg-light-400 rounded-lg h-fit min-h-[50px] w-full flex xs:flex-col sm:flex-row items-center text-center"
   >
     <div
       v-for="o in options"

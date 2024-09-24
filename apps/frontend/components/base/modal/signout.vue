@@ -12,7 +12,6 @@ props:
 -->
 
 <script setup>
-const auth = useAuth();
 const toast = useToast();
 const { t } = await loadTranslations("dashboard");
 const props = defineProps({
@@ -22,16 +21,14 @@ const props = defineProps({
 defineEmits(["update:open"]);
 
 async function signOut() {
-  try {
-    await auth.signOut();
-  } catch (e) {
-    //if user is not signed in, nothing happens
-    console.error(e);
-  }
-  toast.clear(); //remove old toasts , ex sign in
-  toast.success(t("dashboard:sign_out_modal.signed_out"));
-  if (props.customSignOutAction) props.customSignOutAction();
-  else navigateTo("/auth/sign-in"); // go to home or sign-in on signout?? not sure what is best
+  await useAuth()
+    .logout()
+    .then(() => {
+      toast.clear(); //remove old toasts , ex sign in
+      toast.success(t("dashboard:sign_out_modal.signed_out"));
+      if (props.customSignOutAction) props.customSignOutAction();
+      else navigateTo("/auth/sign-in"); // go to home or sign-in on signout?? not sure what is best
+    });
 }
 </script>
 
