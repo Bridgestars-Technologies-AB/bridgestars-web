@@ -3,27 +3,32 @@ This repository consists of a teaching platform for the card game Bridge, implem
 The web application supports user authentication and has a dashboard environment for learning Bridge. The dashboard environment mainly contains playable exercises divided into different courses. 
 It is a responsive web app that works for iPads and desktops.
 
-## Viewing courses
-![CleanShot_2024-09-24_at_20 20 16](https://github.com/user-attachments/assets/147f3fd6-49e7-4da1-a802-f7bf001fd0b0|width=10)
+## Viewing courses and Doing exercises
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/3086e129-8623-4890-849e-ef3d43edb059" width="45%" height="auto" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/adb5c826-3e17-4dc0-9e4c-213782b12e43" width="45%" height="auto" />
+</p>
 
-## Doing exercises
-![CleanShot_2024-09-24_at_20 24 25](https://github.com/user-attachments/assets/adb5c826-3e17-4dc0-9e4c-213782b12e43)
+## Lightmode and smaller screens
+<p float="left">
+   <img src="https://github.com/user-attachments/assets/05512eca-0e14-4b1c-a987-8db8caab2be9" width="45%" height="auto" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/2f8ca126-8ebf-4199-a40e-14ed3d0eb63a" width="45% height="auto"/>
+</p>
 
-## Analyzing your results
-![CleanShot_2024-09-24_at_20 23 06](https://github.com/user-attachments/assets/e3344adf-e5db-4f54-83c7-f71981802cb2)
 
-## Supporting smaller screens
-![CleanShot_2024-09-24_at_20 25 04](https://github.com/user-attachments/assets/2f8ca126-8ebf-4199-a40e-14ed3d0eb63a)
-
-## Light mode
-![CleanShot_2024-09-24_at_20 25 58](https://github.com/user-attachments/assets/05512eca-0e14-4b1c-a987-8db8caab2be9)
-
-## Creating and logging in to your account
-![CleanShot_2024-09-24_at_20 27 11](https://github.com/user-attachments/assets/b43ea2d3-0e50-40b5-a5a6-5ffb50ba5d5f)
+## Creating and logging in to your account, Analyzing results
+<p float="left">
+    <img src="https://github.com/user-attachments/assets/b43ea2d3-0e50-40b5-a5a6-5ffb50ba5d5f" width="45%" height="auto" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/e3344adf-e5db-4f54-83c7-f71981802cb2" width="45%" height="auto"/>
+</p>
 
 ## Terms and conditions page
-![CleanShot_2024-09-24_at_20 28 01](https://github.com/user-attachments/assets/5c3a7a88-49af-4fbb-8998-31c20c83600d)
-
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/5c3a7a88-49af-4fbb-8998-31c20c83600d" width="45%" height="auto" />
+</p>
 
 # bridgestars-web
 
