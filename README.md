@@ -4,7 +4,7 @@ The web application supports user authentication and has a dashboard environment
 It is a responsive web app that works for iPads and desktops.
 
 ## Viewing courses
-![CleanShot_2024-09-24_at_20 20 16](https://github.com/user-attachments/assets/147f3fd6-49e7-4da1-a802-f7bf001fd0b0)
+![CleanShot_2024-09-24_at_20 20 16](https://github.com/user-attachments/assets/147f3fd6-49e7-4da1-a802-f7bf001fd0b0|width=10)
 
 ## Doing exercises
 ![CleanShot_2024-09-24_at_20 24 25](https://github.com/user-attachments/assets/adb5c826-3e17-4dc0-9e4c-213782b12e43)
