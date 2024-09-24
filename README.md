@@ -1,7 +1,6 @@
 # About the project
-This repository consists of a teaching platform for the card game Bridge, implemented as a web application in nuxt.js. It is a mono repo, with a backend written in Laravel.
+This repository consists of a teaching platform for the card game Bridge, implemented as a responsive web application in nuxt.js. It is a mono repo, with a backend written in Laravel.
 The web application supports user authentication and has a dashboard environment for learning Bridge. The dashboard environment mainly contains playable exercises divided into different courses. 
-It is a responsive web app that works for iPads and desktops.
 
 ## Viewing courses and doing exercises
 <p float="left">
