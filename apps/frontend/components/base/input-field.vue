@@ -4,6 +4,10 @@ const props = defineProps({
   id: String,
   wrapperClass: String,
   modelValue: String,
+  bg: {
+    type: String,
+    default: "bg-white",
+  },
 });
 defineEmits(["update:modelValue"]);
 
@@ -35,7 +39,7 @@ function toggleShowPass() {
       v-bind="$attrs"
       :id="id"
       ref="input"
-      class="py-2.5 px-4 !bg-white text-[16px] font-family2"
+      :class="`py-2.5 px-4 ${bg} text-[16px] font-family2`"
       placeholder=" "
       :value="modelValue || value"
       @input="update"
